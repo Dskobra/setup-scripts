@@ -7,7 +7,7 @@ These are my scripts to automate setting up Fedora.
 folder layout
 -------------
 root
-    [*]34
+    \* 34
     [*]35
     [*]shared - installation of stuff that doesn't normally change per release or automated like rpmfusion, flatpak etc.
     [*]extras - mostly a script to download GloriousEggroll custom proton and wine for lutris/steam.
