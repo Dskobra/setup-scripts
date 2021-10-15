@@ -8,16 +8,14 @@ folder layout
 -------------
 root
 * 34
-    [*]35
-    [*]shared - installation of stuff that doesn't normally change per release or automated like rpmfusion, flatpak etc.
-    [*]extras - mostly a script to download GloriousEggroll custom proton and wine for lutris/steam.
-    [*]old - old versions of scripts that got redone or for things i dont use anymore like nvidia cards.
-    [*]tests - obvious. things i played with.
-
-    
+* 35
+* shared - installation of stuff that doesn't normally change per release or automated like rpmfusion, flatpak etc.
+* extras - mostly a script to download GloriousEggroll custom proton and wine for lutris/steam.
+* old - old versions of scripts that got redone or for things i dont use anymore like nvidia cards.
+* tests - obvious. things i played with.
 
 
 *Important scripts in root directory
-    [*]setup.sh - launch script
-    [*]35.sh - launches fedora 35 versions of scripts.
-    [*]34.sh - launches fedora 34 versions of scripts.
+* setup.sh - launch script
+* 35.sh - launches fedora 35 versions of scripts.
+* 34.sh - launches fedora 34 versions of scripts.
