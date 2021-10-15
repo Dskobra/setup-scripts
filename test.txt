@@ -1,0 +1,3 @@
+model name	: AMD Ryzen 9 3900X 12-Core Processor            
+AMD Ryzen 7 4800H with Radeon Graphics
+

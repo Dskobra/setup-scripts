@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+STEAM=0
+EGGROLL=https://github.com/GloriousEggroll/proton-ge-custom/releases/download/6.12-GE-1/Proton-6.12-GE-1.tar.gz
+PROTON=Proton-6.12-GE-1.tar.gz
+test -d ~/.steam/ && STEAM=rpmfusion
+test -d ~/.var/app/com.valvesoftware.Steam/ && STEAM=flatpak
+if [ "$STEAM" = "rpmfusion" ];
+then
+  cd ~/.steam/root/
+  mkdir compatibilitytools.d
+  cd compatibilitytools.d
+  wget $EGGROLL
+  tar -xvf $PROTON
+  rm $PROTON
+elif [ "$STEAM" = "flatpak" ];
+then
+  cd ~/.var/app/com.valvesoftware.Steam/data/Steam/
+  mkdir compatibilitytools.d
+  cd compatibilitytools.d
+  wget $EGGROLL
+  tar -xvf $PROTON
+  rm $PROTON
+fi
