@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 gaming_apps(){
-	#sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/34/winehq.repo
-	#sudo dnf install -y winehq-staging lutris mangohud steam
-	sudo dnf install -y lutris mangohud steam
+	# temporarily use fedora 34 winehq repo on fedora 35. change when one for 35 is released.
+	sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/34/winehq.repo
+	sudo dnf install -y winehq-staging lutris mangohud steam
 	echo "Installing world of warcraft deps for wine"
 	sudo dnf install -y gnutls gnutls.i686 gnutls-devel gnutls-devel.i686 openldap openldap.i686 \
 	openldap-devel openldap-devel.i686 libgpg-error libgpg-error.i686 \
