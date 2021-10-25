@@ -1,6 +1,6 @@
 #/usr/bin/bash
-PROTONGELINK=https://github.com/GloriousEggroll/proton-ge-custom/releases/download/6.19-GE-2/Proton-6.19-GE-2.tar.gz
-PROTONGETARBALL=Proton-6.19-GE-2.tar.gz
+PROTONGELINK=https://github.com/GloriousEggroll/proton-ge-custom/releases/download/6.20-GE-1/Proton-6.20-GE-1.tar.gz
+PROTONGETARBALL=Proton-6.20-GE-1.tar.gz
 
 WINEGE=https://github.com/GloriousEggroll/wine-ge-custom/releases/download/6.19-GE-1/wine-lutris-ge-6.19-1-x86_64.tar.xz
 WINEGETARBALL=wine-lutris-ge-6.19-1-x86_64.tar.xz
