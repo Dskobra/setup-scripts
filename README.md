@@ -19,3 +19,6 @@ root
 * setup.sh - launch script
 * 35.sh - launches fedora 35 versions of scripts.
 * 34.sh - launches fedora 34 versions of scripts.
+
+*Random notes
+I prefer to have things grouped together and reuse code as much as possible.
