@@ -6,12 +6,13 @@ check_vm(){
 	vmString=$(sudo dmidecode -s system-manufacturer)
 	if [ "$vmString" = "QEMU" ]
 	then
-		echo "VM Detected as " $vmString
-		./35/vm.sh
-	elif [ "$vmString" != "QEMU" ]
+		echo "Running in a VM" $vmString
+	elif [ "$vmString" = "innotek GmbH" ]
 	then
-		echo "Not detected as a VM."
-		./35/nonvm.sh
+		echo "vbox test"
+	elif [ "$vmString" != "QEMU" || "innotek GmbH" ]
+	then
+	echo "success!"
 	else
 		echo "error"
 		exit
