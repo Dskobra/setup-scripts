@@ -7,9 +7,8 @@ WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v
 WCLOGSBINARY=Warcraft-Logs-Uploader-5.6.4.AppImage
 
 wowup(){
-    cd ~/Games
-    mkdir wowup 
-    cd wowup 
+    mkdir ~/Games/wowup 
+    cd ~/Games/wowup 
     wget WOWUPLINK
     chmod +x WOWUPBINARY
 }
@@ -21,13 +20,18 @@ weakauras(){
 }
 
 warcraftlogs(){
-    cd ~/Games
-    mkdir warcraftlogs
-    cd warcraftlogs
+    mkdir ~/Games/warcraftlogs
+    cd ~/Games/warcraftlogs
     wget WCLOGSLINK
     chmod +x WCLOGSBINARY
 }
 
+raiderio(){
+    # due to the cdn they use I can't download the appimage directly.
+    mkdir ~/Games/raiderio
+    firefox https://raider.io/addon
+}
 wowup
 weakauras
 warcraftlogs
+raiderio
