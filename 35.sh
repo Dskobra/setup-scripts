@@ -4,9 +4,10 @@ echo "Dsk Fedora setup script"
 
 check_vm(){
 	vmString=$(sudo dmidecode -s system-manufacturer)
-	if [ "$vmString" = "QEMU" ]
+	if [ "$vmString" = "QEMU" ] || [ "$vmString" = "innotek GmbH" ]
 	then
 		echo "VM Detected as: $vmString"
+		#./35/nonvm #used for debugging in vm
 		./35/vm.sh
 	elif [ "$vmString" != "QEMU" ] || [ "$vmString" != "innotek GmbH" ]
 	then

@@ -1,11 +1,14 @@
 #!/usr/bin/bash
-
+echo "Launching script for Fedora 35 Beta"
 repos(){
 	./shared/repos.sh
 }
 
 hardware(){
 	./shared/hardware.sh
+}
+amdgpu(){
+	./shared/amdgpu.sh
 }
 
 desktop_extras(){
@@ -60,8 +63,10 @@ cleanup(){
 	./shared/cleanup.sh
 }
 
+echo "Launching script for Fedora 35 Beta"
 repos
 hardware
+amdgpu
 desktop_extras
 basic_apps
 office

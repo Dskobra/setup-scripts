@@ -22,9 +22,14 @@ non_vm(){
 	then
 		echo "DEVICE IS DISPLAY"
 		./35/display.sh
-	elif [ $input -eq 0 ]
+	elif [ "$device" = "BETA" ]
 	then
-		exit
+		echo "Launching script for Fedora 35 Beta"
+		./35/beta.sh
+	elif [ "$device" = "DEBUG" ]
+	then
+		echo "Launching script for debugging."
+		./35/debug.sh
 	else
 		echo "error."
 	fi

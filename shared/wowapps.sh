@@ -9,21 +9,21 @@ WCLOGSBINARY=Warcraft-Logs-Uploader-5.6.4.AppImage
 wowup(){
     mkdir ~/Games/wowup 
     cd ~/Games/wowup 
-    wget WOWUPLINK
-    chmod +x WOWUPBINARY
+    wget $WOWUPLINK
+    chmod +x $WOWUPBINARY
 }
 weakauras(){
     cd ~/Downloads
-    wget WAAPLINK
-    sudo rpm -i WAAPBINARY
-    rm WAAPBINARY
+    wget $WAAPLINK
+    sudo rpm -i $WAAPBINARY
+    rm $WAAPBINARY
 }
 
 warcraftlogs(){
     mkdir ~/Games/warcraftlogs
     cd ~/Games/warcraftlogs
-    wget WCLOGSLINK
-    chmod +x WCLOGSBINARY
+    wget $WCLOGSLINK
+    chmod +x $WCLOGSBINARY
 }
 
 raiderio(){

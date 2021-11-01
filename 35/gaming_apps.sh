@@ -1,7 +1,4 @@
 #!/usr/bin/bash
-wowApps(){
-	./shared/wowapps.sh
-}
 gaming_apps(){
 	# temporarily use fedora 34 winehq repo on fedora 35. change when one for 35 is released.
 	sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/34/winehq.repo

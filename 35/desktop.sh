@@ -32,7 +32,11 @@ media_apps(){
 }
 
 gaming_apps(){
-	./34/gaming_apps.sh
+	./35/gaming_apps.sh
+}
+
+wowapps(){
+	./shared/wowapps.sh
 }
 
 coding_tools(){
@@ -68,6 +72,7 @@ office
 internet
 media_apps
 gaming_apps
+wowapps
 editors
 coding_tools
 controller_setup
