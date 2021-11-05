@@ -17,7 +17,7 @@ then
     tar -xvf $PROTONGETARBALL
     rm $PROTONGETARBALL
 else
-    echo "Please make sure steam is installed before running this script."
+    echo "Please make sure steam is installed and run once before running this script."
 fi
 }
 
@@ -26,6 +26,7 @@ DIREXISTS=0
 test -d ~/.var/app/com.valvesoftware.Steam/ && DIREXISTS=flatpak
 if [ "$DIREXISTS" = "flatpak" ];
 then
+    echo "Requires flatpak 1.12.1+ or later to run official proton."
     cd ~/.var/app/com.valvesoftware.Steam/data/Steam/
     mkdir compatibilitytools.d
     cd compatibilitytools.d
@@ -34,7 +35,7 @@ then
     
     rm $PROTONGETARBALL
 else
-    echo "Please make sure steam is installed before running this script."
+    echo "Please make sure steam is installed and run once before running this script."
 fi
 }
 
@@ -51,31 +52,31 @@ then
     
     rm $WINEGETARBALL
 else
-    echo "Please make sure lutris is installed before running this script."
+    echo "Please make sure lutris is installed and run once before running this script."
 fi
 }
-echo "GloriousEggroll Installer"
 
-echo "1. GE (rpmfusion) 2. GE (flatpak)"
-echo "3. GE Wine (lutris) 0. Exit"
-read input
+menu(){
+    echo "GloriousEggroll Installer"
+    echo "1. GE (rpmfusion) 2. GE (flatpak)"
+    echo "3. GE Wine (lutris) 0. Exit"
+    read input
+    if [ $input -eq 1 ]
+    then
+	    rpmfusion
+    elif [ $input -eq 2 ]
+    then
+        flatpak
+    elif [ $input -eq 3 ]
+    then
+        lutris
+    elif [ $input -eq 0 ]
+    then
+	    exit
+    else
+	    echo "error."
+    fi
+    menu
+}
+menu
 
-
-if [ $input -eq 1 ]
-then
-	rpmfusion
-elif [ $input -eq 2 ]
-then
-  #flatpak
-  zenity --warning --width=430 height=300 \
---text="Proton 5.13+ broken due to Pressure Vessel. Please use flatpak version of proton without pressure vessel. Or rpmfusion.
-flatpak install com.valvesoftware.Steam.CompatibilityTool.Proton"
-elif [ $input -eq 3 ]
-then
-    lutris
-elif [ $input -eq 0 ]
-then
-	exit
-else
-	echo "error."
-fi
