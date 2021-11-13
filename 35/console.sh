@@ -12,11 +12,7 @@ amdgpu(){
 }
 
 desktop_extras(){
-	./shared/desktop_extras.sh
-}
-
-basic_apps(){
-	./shared/basic_apps.sh
+	./shared/de.sh
 }
 
 internet(){
@@ -47,7 +43,6 @@ repos
 hardware
 amdgpu
 desktop_extras
-basic_apps
 internet
 media_apps
 gaming_apps

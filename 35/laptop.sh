@@ -9,11 +9,7 @@ hardware(){
 }
 
 desktop_extras(){
-	./shared/desktop_extras.sh
-}
-
-basic_apps(){
-	./shared/basic_apps.sh
+	./shared/de.sh
 }
 
 office(){
@@ -63,7 +59,6 @@ cleanup(){
 repos
 hardware
 desktop_extras
-basic_apps
 office
 internet
 media_apps

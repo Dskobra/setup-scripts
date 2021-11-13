@@ -47,6 +47,31 @@ if [ "$?" = -1 ] ; then
 fi
 }
 
+steam_flatpak(){
+    gui_install
+    flatpak run com.valvesoftware.Steam
+    cd ~/.var/app/com.valvesoftware.Steam/data/Steam/
+    mkdir compatibilitytools.d
+    cd compatibilitytools.d
+    (
+    echo "25" ; wget $PROTONGELINK
+    echo "# Extracting ProtonGE" ; sleep 1
+    echo "50" ; tar -xvf $PROTONGETARBALL
+    echo "# Removing ProtonGE tarball" ; sleep 1
+    echo "75" ; rm $PROTONGETARBALL
+    echo "# Removing ProtonGE tarball" ; sleep 1
+    echo "100" ; sleep 1
+)|  zenity --progress \
+    --title="ProtonGE Installer" \
+    --text="Downloading ProtonGE..." \
+    --percentage=0
+
+if [ "$?" = -1 ] ; then
+        zenity --error \
+          --text="Update canceled."
+fi
+}
+
 test_one(){
     STEAMEXISTS=0
     test -f /usr/bin/steam && STEAMEXISTS=rpmfusion
@@ -76,31 +101,6 @@ test_one(){
     fi
 else
     gui_error
-fi
-}
-
-steam_flatpak(){
-    gui_install
-    flatpak run com.valvesoftware.Steam
-    cd ~/.var/app/com.valvesoftware.Steam/data/Steam/
-    mkdir compatibilitytools.d
-    cd compatibilitytools.d
-    (
-    echo "25" ; wget $PROTONGELINK
-    echo "# Extracting ProtonGE" ; sleep 1
-    echo "50" ; tar -xvf $PROTONGETARBALL
-    echo "# Removing ProtonGE tarball" ; sleep 1
-    echo "75" ; rm $PROTONGETARBALL
-    echo "# Removing ProtonGE tarball" ; sleep 1
-    echo "100" ; sleep 1
-)|  zenity --progress \
-    --title="ProtonGE Installer" \
-    --text="Downloading ProtonGE..." \
-    --percentage=0
-
-if [ "$?" = -1 ] ; then
-        zenity --error \
-          --text="Update canceled."
 fi
 }
 
@@ -135,7 +135,7 @@ else
 fi
 }
 
-lutris_test(){
+lutris_wine(){
 LUTRISEXISTS=0
 test -f /usr/bin/lutris && LUTRISEXISTS=lutris
 if [ "$LUTRISEXISTS" = "lutris" ];
@@ -170,68 +170,6 @@ else
 fi
 }
 
-old_rpmfusion(){
-DIREXISTS=0
-test -d ~/.steam/ && DIREXISTS=rpmfusion
-if [ "$DIREXISTS" = "rpmfusion" ];
-then
-    gui_install
-    steam
-    cd ~/.steam/root/
-    mkdir compatibilitytools.d
-    cd compatibilitytools.d
-    wget $PROTONGELINK
-    tar -xvf $PROTONGETARBALL
-    rm $PROTONGETARBALL
-    gui_finished
-else
-    echo "Please make sure steam is installed before running this script."
-fi
-}
-
-
-old_flatpak(){
-DIREXISTS=0
-test -d ~/.var/app/com.valvesoftware.Steam/ && DIREXISTS=flatpak
-if [ "$DIREXISTS" = "flatpak" ];
-then
-    echo "Requires flatpak 1.12.1+ or later to run official proton."
-    gui_install
-    cd ~/.var/app/com.valvesoftware.Steam/data/Steam/
-    mkdir compatibilitytools.d
-    cd compatibilitytools.d
-    wget $PROTONGELINK
-    tar -xvf $PROTONGETARBALL
-    rm $PROTONGETARBALL
-    gui_finished
-else
-    echo "Please make sure steam is installed before running this script."
-fi
-}
-
-lutris_wine(){
-LUTRISEXISTS=0
-test -f /usr/bin/lutris && LUTRISEXISTS=lutris
-if [ "$LUTRISEXISTS" = "lutris" ];
-then
-    zenity --warning --width=430 height=300 \
-    --text="This will now run lutris to ensure runners are installed.."
-    zenity --info --width=430 height=300 \
-    --text="Please close lutris once it opens to continue the script."
-    lutris
-    cd ~/.local/share/lutris/runners/
-    mkdir wine
-    cd wine
-    wget $WINEGELINK
-    tar -xvf $WINEGETARBALL
-    rm $WINEGETARBALL
-    zenity --info --width=430 height=300 \
-    --text="WinenGE is now installed." 
-else
-    echo "Please make sure lutris is installed before running this script."
-fi
-}
-
 menu(){
     echo "GE Installer"
     echo "1. ProtonGE (rpmfusion) 2. ProtonGE (flatpak)"
@@ -239,13 +177,13 @@ menu(){
     read input
     if [ $input -eq 1 ]
     then
-	   test_one
+	   steam_rpmfusion
     elif [ $input -eq 2 ]
     then
-        test_two
+        steam_flatpak
     elif [ $input -eq 3 ]
     then
-        lutris_test
+        lutris_wine
     elif [ $input -eq 0 ]
     then
 	    exit

@@ -12,7 +12,7 @@ amdgpu(){
 }
 
 desktop_extras(){
-	./shared/desktop_extras.sh
+	./shared/de.sh
 }
 
 basic_apps(){

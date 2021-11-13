@@ -8,10 +8,6 @@ desktop_extras(){
 	./shared/desktop_extras.sh
 }
 
-basic_apps(){
-	./shared/basic_apps.sh
-}
-
 internet(){
 	./shared/internet.sh
 }
@@ -30,7 +26,6 @@ cleanup(){
 
 repos
 desktop_extras
-basic_apps
 internet
 media_apps
 utilities

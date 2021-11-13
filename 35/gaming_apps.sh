@@ -2,7 +2,7 @@
 gaming_apps(){
 	# temporarily use fedora 35 winehq repo on fedora 35. change when one for 36 is released.
 	sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo
-	sudo dnf install -y winehq-staging lutris mangohud
+	sudo dnf install -y winehq-staging python3-magic lutris mangohud
 	flatpak install -y flathub com.discordapp.Discord
 	flatpak install -y flathub io.gitlab.jstest_gtk.jstest_gtk
 	flatpak install -y flathub com.valvesoftware.Steam
