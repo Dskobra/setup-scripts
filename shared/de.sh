@@ -9,16 +9,16 @@ test -f /usr/bin/mate-session && DESKTOP=mate
 test -f /usr/bin/xfce4-panel && DESKTOP=xfce
 	if [ "$DESKTOP" = "gnome" ];
 	then
-		./de/gnome.sh
+		./shared/de/gnome.sh
 	elif [ "$DESKTOP" = "kde" ];
 	then
-		./de/kde.sh
+		./shared/de/kde.sh
 	elif [ "$DESKTOP" = "mate" ];
 	then
-		./de/mate.sh
+		./shared/de/mate.sh
 	elif [ "$DESKTOP" = "xfce" ];
 	then
-		./de/xfce.sh
+		./shared/de/xfce.sh
 	fi
 }
 get_desktop_extras

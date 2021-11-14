@@ -1,9 +1,9 @@
 #/usr/bin/bash
-PROTONGELINK=https://github.com/GloriousEggroll/proton-ge-custom/releases/download/6.20-GE-1/Proton-6.20-GE-1.tar.gz
-PROTONGETARBALL=Proton-6.20-GE-1.tar.gz
+PROTONGELINK=https://github.com/GloriousEggroll/proton-ge-custom/releases/download/6.21-GE-1/Proton-6.21-GE-1.tar.gz
+PROTONGETARBALL=Proton-6.21-GE-1.tar.gz
 
-WINEGELINK=https://github.com/GloriousEggroll/wine-ge-custom/releases/download/6.20-GE-1/wine-lutris-ge-6.20-1-x86_64.tar.xz
-WINEGETARBALL=wine-lutris-ge-6.20-1-x86_64.tar.xz
+WINEGELINK=https://github.com/GloriousEggroll/wine-ge-custom/releases/download/6.21-GE-1/wine-lutris-ge-6.21-1-x86_64.tar.xz
+WINEGETARBALL=wine-lutris-ge-6.21-1-x86_64.tar.xz
 
 gui_install(){
     zenity --info --width=430 height=300 \
