@@ -7,9 +7,16 @@ repos(){
 hardware(){
 	./shared/hardware.sh
 }
+amdgpu(){
+	./shared/amdgpu.sh
+}
 
 desktop_extras(){
 	./shared/de.sh
+}
+
+basic_apps(){
+	./shared/basic_apps.sh
 }
 
 office(){
@@ -59,6 +66,7 @@ cleanup(){
 repos
 hardware
 desktop_extras
+basic_apps
 office
 internet
 media_apps

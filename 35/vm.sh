@@ -3,30 +3,48 @@
 repos(){
 	./shared/repos.sh
 }
+amdgpu(){
+	./shared/amdgpu.sh
+}
 
-get_desktop_extras(){
-	./shared/get_desktop_extras.sh
+desktop_extras(){
+	./shared/de.sh
 }
 
 basic_apps(){
-	./shared/vm_basic_apps.sh
+	./shared/basic_apps.sh
+}
+
+internet(){
+	./shared/internet.sh
 }
 
 media_apps(){
 	./shared/media_apps.sh
 }
 
-gaming_apps(){
-	./gaming_apps_34.sh
+coding_tools(){
+	./shared/coding_tools.sh
 }
 
-coding_apps(){
-	./shared/vm_coding_apps.sh
+editors(){
+	./shared/editors.sh
+}
+
+virtualization(){
+	./shared/virtualization.sh
+}
+
+cleanup(){
+	./shared/cleanup.sh
 }
 
 repos
-get_desktop_extras
+desktop_extras
 basic_apps
+internet
 media_apps
-gaming_apps
-coding_apps
+editors
+coding_tools
+utilities
+cleanup
