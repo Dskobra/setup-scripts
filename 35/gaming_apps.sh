@@ -1,8 +1,17 @@
 #!/usr/bin/bash
+WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.4.7/WowUp-2.4.7.AppImage
+WOWUPBINARY=WowUp-2.4.7.AppImage
+
+WAAPLINK=https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v3.3.4/weakauras-companion-3.3.4.x86_64.rpm
+WAAPBINARY=weakauras-companion-3.3.4.x86_64.rpm
+
+WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v5.6.4/Warcraft-Logs-Uploader-5.6.4.AppImage
+WCLOGSBINARY=Warcraft-Logs-Uploader-5.6.4.AppImage
+
 gaming_apps(){
-	# temporarily use fedora 35 winehq repo on fedora 35. change when one for 36 is released.
+	# temporarily use fedora 35 winehq repo on fedora 36. change when one for 36 is released.
 	sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo
-	sudo dnf install -y winehq-staging python3-magic lutris mangohud
+	sudo dnf install -y winehq-staging mangohud gamemode
 	flatpak install -y flathub com.discordapp.Discord
 	flatpak install -y flathub io.gitlab.jstest_gtk.jstest_gtk
 	flatpak install -y flathub com.valvesoftware.Steam
@@ -38,6 +47,45 @@ wine(){
 	openldap-devel libgpg-error libgpg-error.i686 sqlite2.i686 sqlite2.x86_64
 	sudo dnf install -y pipewire-devel.i686 pipewire-devel.x86_64 gstreamer1*.i686 gstreamer1*.x86_64
 }
+wowup(){
+    mkdir ~/Games/wowup 
+    cd ~/Games/wowup 
+    wget $WOWUPLINK
+    chmod +x $WOWUPBINARY
+}
+weakauras(){
+    cd ~/Downloads
+    wget $WAAPLINK
+    sudo rpm -i $WAAPBINARY
+    rm $WAAPBINARY
+}
 
-wine
+warcraftlogs(){
+    mkdir ~/Games/warcraftlogs
+    cd ~/Games/warcraftlogs
+    wget $WCLOGSLINK
+    chmod +x $WCLOGSBINARY
+}
+
+raiderio(){
+    # due to the cdn they use I can't download the appimage directly.
+    mkdir ~/Games/raiderio
+    #firefox https://raider.io/addon 
+	#some reason scripts tend to crash the desktop session so I now run from tty which obviously cant open firefox
+}
+
+getlutris()
+{
+	# changede to upstream lutris due to some weird crashing on 1 computer (other computer oddly is fine), but upstream works fine.
+	cd ~/Apps 
+	git clone https://github.com/lutris/lutris.git
+	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
+	python3-magic
+}
+
 gaming_apps
+getlutris
+wowup
+weakauras
+warcraftlogs
+raiderio

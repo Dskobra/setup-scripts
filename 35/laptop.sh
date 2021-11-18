@@ -35,10 +35,6 @@ gaming_apps(){
 	./35/gaming_apps.sh
 }
 
-wowapps(){
-	./shared/wowapps.sh
-}
-
 coding_tools(){
 	./shared/coding_tools.sh
 }
@@ -69,11 +65,10 @@ desktop_extras
 basic_apps
 office
 internet
-media_apps
-gaming_apps
-wowapps
 editors
 coding_tools
+media_apps
+gaming_apps
 controller_setup
 utilities
 virtualization
