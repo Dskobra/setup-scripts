@@ -41,7 +41,7 @@ winedeps(){
     sudo dnf install -y libtiff-devel.i686 openal-soft-devel.i686 mesa-libOpenCL-devel.i686 opencl-utils-devel.i686 alsa-lib-devel.i686 gsm-devel.i686
     sudo dnf install -y libjpeg-turbo-devel.i686 pulseaudio-libs-devel.i686 pulseaudio-libs-devel gtk3-devel.i686 libattr-devel.i686 libva-devel.i686
     sudo dnf install -y libexif-devel.i686 libexif.i686 glib2-devel.i686 mpg123-devel.i686 mpg123-devel.x86_64 libcom_err-devel.i686
-    sudo dnf install -y sudo dnf install -y libcom_err-devel.x86_64 libFAudio-devel.i686 libFAudio-devel.x86_64
+    sudo dnf install -y libcom_err-devel.x86_64 libFAudio-devel.i686 libFAudio-devel.x86_64
     sudo dnf install -y gnutls.i686 gnutls-devel openldap openldap.i686
 	sudo dnf install -y openldap-devel libgpg-error libgpg-error.i686 sqlite2.i686 sqlite2.x86_64
 	sudo dnf install -y pipewire-devel.i686 pipewire-devel.x86_64 gstreamer1*.i686 gstreamer1*.x86_64
