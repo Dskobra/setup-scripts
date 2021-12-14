@@ -72,68 +72,6 @@ if [ "$?" = -1 ] ; then
 fi
 }
 
-test_one(){
-    STEAMEXISTS=0
-    test -f /usr/bin/steam && STEAMEXISTS=rpmfusion
-    if [ "$STEAMEXISTS" = "rpmfusion" ];
-    then
-        gui_install
-        steam
-        cd ~/.steam/root/
-        mkdir compatibilitytools.d
-        cd compatibilitytools.d
-        (
-        echo "25" ; wget $PROTONGELINK
-        echo "# Extracting ProtonGE" ; sleep 1
-        echo "50" ; tar -xvf $PROTONGETARBALL
-        echo "# Removing ProtonGE tarball" ; sleep 1
-        echo "75" ; rm $PROTONGETARBALL
-        echo "# Removing ProtonGE tarball" ; sleep 1
-        echo "100" ; sleep 1
-    )|  zenity --progress \
-        --title="ProtonGE Installer" \
-        --text="Downloading ProtonGE..." \
-        --percentage=0
-
-    if [ "$?" = -1 ] ; then
-        zenity --error \
-          --text="Update canceled."
-    fi
-else
-    gui_error
-fi
-}
-
-test_two(){
-    STEAMEXISTS=0
-    test -d /var/lib/app/com.valvesoftware.Steam && STEAMEXISTS=flatpak
-    if [ "$STEAMEXISTS" = "flatpak" ];
-    then
-    flatpak run com.valvesoftware.Steam
-    cd ~/.var/app/com.valvesoftware.Steam/data/Steam/
-    mkdir compatibilitytools.d
-    cd compatibilitytools.d
-    (
-    echo "25" ; wget $PROTONGELINK
-    echo "# Extracting ProtonGE" ; sleep 1
-    echo "50" ; tar -xvf $PROTONGETARBALL
-    echo "# Removing ProtonGE tarball" ; sleep 1
-    echo "75" ; rm $PROTONGETARBALL
-    echo "# Removing ProtonGE tarball" ; sleep 1
-    echo "100" ; sleep 1
-    )|  zenity --progress \
-        --title="ProtonGE Installer" \
-        --text="Downloading ProtonGE..." \
-        --percentage=0
-
-    if [ "$?" = -1 ] ; then
-        zenity --error \
-          --text="Update canceled."
-    fi
-else
-    gui_error
-fi
-}
 
 lutris_wine(){
 LUTRISEXISTS=0

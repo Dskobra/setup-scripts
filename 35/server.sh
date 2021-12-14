@@ -1,4 +1,3 @@
-#!/usr/bin/bash
 
 repos(){
 	./shared/repos.sh
