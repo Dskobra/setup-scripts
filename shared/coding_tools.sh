@@ -10,8 +10,7 @@ coding_tools(){
 	sudo dnf groupinstall -y "C Development Tools and Libraries"
 	sudo dnf groupinstall -y "RPM Development Tools"
 	sudo dnf install -y python3-tools python3-devel github-desktop
-	sudo dnf install -y java-11-openjdk-devel
-	#sudo dnf install -y java-17-openjdk-devel fedora 35 plans to default to this so install sdks.
+	sudo dnf install -y java-17-openjdk-devel
 
 }
 

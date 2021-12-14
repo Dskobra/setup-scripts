@@ -48,6 +48,11 @@ winedeps(){
 	sudo dnf install -y dxvk-native-devel.x86_64 dxvk-native-devel.i686 vulkan-tools
 }
 
+controller_setup(){
+	sudo dnf install -y kernel-modules-extra
+	sudo modprobe xpad
+}
+
 wowup(){
     mkdir ~/Games/wowup 
     cd ~/Games/wowup 
@@ -71,8 +76,10 @@ getlutris()
 	python3-magic
 }
 
+
 gaming_apps
 winedeps
+controller_setup
 getlutris
 wowup
 weakauras
