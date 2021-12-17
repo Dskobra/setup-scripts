@@ -2,12 +2,10 @@
 My personal scripts for setting up Fedora quick on my pc.
 Includes my normal programs and other stuff. Ignore the mess. :P
 
-These are my scripts to automate setting up Fedora.
-
 folder layout
 -------------
 root
-* sources - All the main installation scripts.
+* sources - installation scripts.
 * extras - mostly a script to download GloriousEggroll custom proton and wine for lutris/steam.
 
 
