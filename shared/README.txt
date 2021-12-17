@@ -1,1 +1,0 @@
-Package installation scripts that shouldn't have specific release repos or other configurations.

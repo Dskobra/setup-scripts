@@ -29,38 +29,38 @@ menu(){
     
     if [ $input -eq 1 ]
     then
-        ./shared/repos.sh
+        ./sources/repos.sh
     elif [ $input -eq 2 ]
     then
-        ./shared/amdgpu.sh
+        ./sources/amdgpu.sh
     elif [ $input -eq 3 ]
     then
-        ./shared/basic_apps.sh
-        ./shared/de.sh
+        ./sources/basic_apps.sh
+        ./sources/de.sh
     elif [ $input -eq 4 ]
     then
-        ./shared/av_support.sh
+        ./sources/av_support.sh
     elif [ $input -eq 5 ]
     then
-        ./shared/office.sh
+        ./sources/office.sh
     elif [ $input -eq 6 ]
     then
-        ./shared/mm_editing.sh
+        ./sources/mm_editing.sh
     elif [ $input -eq 7 ]
     then
-        ./shared/coding_tools.sh
+        ./sources/coding_tools.sh
     elif [ $input -eq 8 ]
     then
-        ./shared/gaming_apps.sh
+        ./sources/gaming_apps.sh
     elif [ $input -eq 9 ]
     then
-        ./shared/servers.sh
+        ./sources/servers.sh
     elif [ $input -eq 10 ]
     then
-        ./shared/utilities.sh
+        ./sources/utilities.sh
     elif [ $input -eq 11 ]
     then
-        ./shared/virtualization.sh
+        ./sources/virtualization.sh
     elif [ $input -eq 99 ]
     then
         help

@@ -1,1 +1,0 @@
-Package installation scripts for fedora 35 repos and configurations.

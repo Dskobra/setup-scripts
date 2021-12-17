@@ -10,7 +10,7 @@ old(){
     dos2unix *.sh
     cd ../old
     dos2unix *.sh
-    cd ../shared
+    cd ../sources
     dos2unix *.sh
     cd de
     dos2unix *.sh
@@ -27,7 +27,7 @@ cd 34
 dos2unix *.sh
 cd ../35
 dos2unix *.sh
-cd ../../shared
+cd ../../sources
 dos2unix *.sh
 cd de
 dos2unix *.sh
