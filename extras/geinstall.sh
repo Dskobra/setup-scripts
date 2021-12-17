@@ -25,7 +25,7 @@ gui_error(){
 steam_rpmfusion(){
     gui_install
     steam
-    cd ~/.steam/root/
+    cd /home/$USER/.steam/root/
     mkdir compatibilitytools.d
     cd compatibilitytools.d
     (
@@ -50,7 +50,7 @@ fi
 steam_flatpak(){
     gui_install
     flatpak run com.valvesoftware.Steam
-    cd ~/.var/app/com.valvesoftware.Steam/data/Steam/
+    cd /home/$USER/.var/app/com.valvesoftware.Steam/data/Steam/
     mkdir compatibilitytools.d
     cd compatibilitytools.d
     (
@@ -83,7 +83,7 @@ then
     zenity --info --width=430 height=300 \
     --text="Please close lutris once it loads to continue the script."
     lutris
-    cd ~/.local/share/lutris/runners/
+    cd /home/$USER/.local/share/lutris/runners/
     mkdir wine
     cd wine
     (

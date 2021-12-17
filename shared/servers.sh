@@ -1,7 +1,5 @@
 #!/usr/bin/bash
 
-USER=$(whoami)
-
 setup_servers(){
 	sudo dnf install -y httpd mysql
 }
@@ -15,5 +13,13 @@ setup_samba(){
 	sudo chown $USER /mnt/backups -R
 	sudo chown $USER /mnt/projects -R
 }
+
+remote_tools(){
+	sudo dnf install -y cockpit
+	sudo systemctl enable --now cockpit.socket
+	sudo firewall-cmd --add-service=cockpit
+	sudo firewall-cmd --add-service=cockpit --permanent
+}
 setup_servers
 setup_samba
+remote_tools

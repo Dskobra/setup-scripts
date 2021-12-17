@@ -14,7 +14,7 @@ gaming_apps(){
 	flatpak install -y flathub com.valvesoftware.Steam
 	flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
 	flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
-	cd ~
+	cd /home/$USER
 	mkdir Games
 	cd Games
 	wget https://launcher.mojang.com/download/Minecraft.tar.gz
@@ -71,13 +71,13 @@ controller_setup(){
 }
 
 wowup(){
-    mkdir ~/Games/wowup 
-    cd ~/Games/wowup 
+    mkdir /home/$USER/Games/wowup 
+    cd /home/$USER/Games/wowup 
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
 }
 weakauras(){
-    cd ~/Downloads
+    cd /home/$USER/Downloads
     wget $WAAPLINK
     sudo rpm -i $WAAPBINARY
     rm $WAAPBINARY
@@ -88,7 +88,7 @@ getlutris()
 {
 	# changed to upstream lutris due to some weird crashing on 1 computer (other computer oddly is fine), but upstream works fine.
 	sudo dnf install -y git
-	cd ~/Apps 
+	cd /home/$USER/Apps 
 	git clone https://github.com/lutris/lutris.git
 	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
 	python3-magic
