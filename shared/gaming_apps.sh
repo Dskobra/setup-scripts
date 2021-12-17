@@ -8,15 +8,13 @@ WAAPBINARY=weakauras-companion-3.3.4.x86_64.rpm
 
 
 gaming_apps(){
-	# temporarily use fedora 35 winehq repo on fedora 36. change when one for 36 is released.
-	sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo
 	sudo dnf install -y winehq-staging mangohud gamemode
 	flatpak install -y flathub com.discordapp.Discord
 	flatpak install -y flathub io.gitlab.jstest_gtk.jstest_gtk
 	flatpak install -y flathub com.valvesoftware.Steam
 	flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
 	flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
-	cd ~
+	cd /home/$USER
 	mkdir Games
 	cd Games
 	wget https://launcher.mojang.com/download/Minecraft.tar.gz
@@ -24,6 +22,25 @@ gaming_apps(){
 	rm Minecraft.tar.gz
 }
 
+wine_repo(){
+	source /etc/os-release
+	getRelease=$(echo $VERSION_ID)
+	echo "Fedora Version:" $getRelease
+
+	if [ "$getRelease" = "35" ]
+	then
+		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo
+	elif [ "$getRelease" = "36" ]
+	then
+		# temporarily use fedora 35 winehq repo on fedora 36. change when one for 36 is released.
+		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo
+	elif [ $input -eq 0 ]
+	then
+		exit
+	else
+		echo "error."
+	fi
+}
 winedeps(){
 	echo "Installing various wine deps."
     sudo dnf install -y alsa-plugins-pulseaudio.i686 glibc-devel.i686 glibc-devel libgcc.i686 libX11-devel.i686 freetype-devel.i686
@@ -48,14 +65,19 @@ winedeps(){
 	sudo dnf install -y dxvk-native-devel.x86_64 dxvk-native-devel.i686 vulkan-tools
 }
 
+controller_setup(){
+	sudo dnf install -y kernel-modules-extra
+	sudo modprobe xpad
+}
+
 wowup(){
-    mkdir ~/Games/wowup 
-    cd ~/Games/wowup 
+    mkdir /home/$USER/Games/wowup 
+    cd /home/$USER/Games/wowup 
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
 }
 weakauras(){
-    cd ~/Downloads
+    cd /home/$USER/Downloads
     wget $WAAPLINK
     sudo rpm -i $WAAPBINARY
     rm $WAAPBINARY
@@ -64,17 +86,20 @@ weakauras(){
 
 getlutris()
 {
-	# changede to upstream lutris due to some weird crashing on 1 computer (other computer oddly is fine), but upstream works fine.
-	USER=$(whoami)
-    cd ~/Apps 
+	# changed to upstream lutris due to some weird crashing on 1 computer (other computer oddly is fine), but upstream works fine.
+	sudo dnf install -y git
+	cd /home/$USER/Apps 
 	git clone https://github.com/lutris/lutris.git
 	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
 	python3-magic
-    sudo ln -s "/home/$USER/Apps/lutris/bin/lutris" "/usr/bin/lutris"
+	sudo ln -s "/home/$USER/Apps/lutris/bin/lutris" "/usr/bin/lutris"
 }
 
-gaming_apps
+
+wine_repo
 winedeps
+gaming_apps
+controller_setup
 getlutris
 wowup
 weakauras
