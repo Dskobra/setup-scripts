@@ -13,7 +13,6 @@ gaming_apps(){
 	flatpak install -y flathub io.gitlab.jstest_gtk.jstest_gtk
 	flatpak install -y flathub com.valvesoftware.Steam
 	flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
-	flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
 	cd /home/$USER
 	mkdir Games
 	cd Games

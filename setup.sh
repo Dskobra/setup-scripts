@@ -1,6 +1,6 @@
 #/usr/bin/bash
 
-USER=$(whoami)
+
 
 help(){
     echo "1. Repos - rpmfusion, flatpak and brave browser."
@@ -29,38 +29,38 @@ menu(){
     
     if [ $input -eq 1 ]
     then
-        ./sources/repos.sh
+        ./install/repos.sh
     elif [ $input -eq 2 ]
     then
-        ./sources/amdgpu.sh
+        ./install/amdgpu.sh
     elif [ $input -eq 3 ]
     then
-        ./sources/basic_apps.sh
-        ./sources/de.sh
+        ./install/basic_apps.sh
+        ./install/de.sh
     elif [ $input -eq 4 ]
     then
-        ./sources/av_support.sh
+        ./install/av_support.sh
     elif [ $input -eq 5 ]
     then
-        ./sources/office.sh
+        ./install/office.sh
     elif [ $input -eq 6 ]
     then
-        ./sources/mm_editing.sh
+        ./install/mm_editing.sh
     elif [ $input -eq 7 ]
     then
-        ./sources/coding_tools.sh
+        ./install/coding_tools.sh
     elif [ $input -eq 8 ]
     then
-        ./sources/gaming_apps.sh
+        ./install/gaming_apps.sh
     elif [ $input -eq 9 ]
     then
-        ./sources/servers.sh
+        ./install/servers.sh
     elif [ $input -eq 10 ]
     then
-        ./sources/utilities.sh
+        ./install/utilities.sh
     elif [ $input -eq 11 ]
     then
-        ./sources/virtualization.sh
+        ./install/virtualization.sh
     elif [ $input -eq 99 ]
     then
         help
@@ -70,5 +70,7 @@ menu(){
     else
 	    echo "error."
     fi
+    menu
 }
+USER=$(whoami)
 menu

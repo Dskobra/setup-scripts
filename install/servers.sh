@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 setup_servers(){
-	sudo dnf install -y httpd mysql
+	sudo dnf install -y httpd php mariadb
 }
 setup_samba(){
 	sudo dnf install -y samba
@@ -15,7 +15,7 @@ setup_samba(){
 }
 
 remote_tools(){
-	sudo dnf install -y cockpit
+	sudo dnf install -y cockpit phpmyadmin
 	sudo systemctl enable --now cockpit.socket
 	sudo firewall-cmd --add-service=cockpit
 	sudo firewall-cmd --add-service=cockpit --permanent

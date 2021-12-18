@@ -108,10 +108,16 @@ else
 fi
 }
 
+help(){
+    echo "4. Setup MangoHud (flatpak) - overrides folder permissions to enable"
+    echo "flatpak mangohud to work with flatpak steam. Using this in gaming_apps.sh script"
+    echo "gives an error."
+}
+
 menu(){
     echo "GE Installer"
     echo "1. ProtonGE (rpmfusion) 2. ProtonGE (flatpak)"
-    echo "3. WineGE (lutris) 0. Exit"
+    echo "3. WineGE (lutris) 4. Setup MangoHud (flatpak) 0. Exit"
     read input
     if [ $input -eq 1 ]
     then
@@ -122,6 +128,12 @@ menu(){
     elif [ $input -eq 3 ]
     then
         lutris_wine
+    elif [ $input -eq 4 ]
+    then
+        flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
+    elif [ $input -eq 99 ]
+    then
+        help
     elif [ $input -eq 0 ]
     then
 	    exit
