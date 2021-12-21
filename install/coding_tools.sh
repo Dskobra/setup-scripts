@@ -17,7 +17,7 @@ github_desktop(){
 	GITHUBLINK=https://github.com/shiftkey/desktop/releases/download/release-2.9.6-linux1/GitHubDesktop-linux-2.9.6-linux1.rpm
 	GITHUBBINARY=GitHubDesktop-linux-2.9.6-linux1.rpm
 	cd /home/$USER/Downloads
-	wget $GITHUBBINARY
+	wget $GITHUBLINK
 	sudo rpm -i $GITHUBBINARY
 	rm $GITHUBBINARY
 }
