@@ -12,7 +12,7 @@ gaming_apps(){
 	flatpak install -y flathub com.discordapp.Discord
 	flatpak install -y flathub io.gitlab.jstest_gtk.jstest_gtk
 	flatpak install -y flathub com.valvesoftware.Steam
-	flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
+	flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud
 	cd /home/$USER
 	mkdir Games
 	cd Games
