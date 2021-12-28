@@ -15,6 +15,7 @@ help(){
     echo "9. Servers - Apache Web Server, samba and mysql."
     echo "10. Utilities - Clamav, dnfdragora and some other useful packages."
     echo "11. Virtualization - libvirt and related tools."
+    echo "12. OSSEC Server - Setups ossec managment server on centos."
 }
 
 menu(){
@@ -24,6 +25,7 @@ menu(){
     echo "7.Coding Tools 8. Gaming"
     echo "9. Servers 10. Utilities"
     echo "11. Virtualization"
+    echo "12. OSSEC Server"
     echo "99. Help 0. Exit"
     read input
     
@@ -61,6 +63,9 @@ menu(){
     elif [ $input -eq 11 ]
     then
         ./install/virtualization.sh
+    elif [ $input -eq 12 ]
+    then
+    ./ossec_server.sh
     elif [ $input -eq 99 ]
     then
         help
