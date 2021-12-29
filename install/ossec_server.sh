@@ -16,18 +16,31 @@ setup_servers(){
     sudo systemctl enable --now httpd mariadb
 }
 setup_phpmyadmin(){
+    #download and setup phpmyadmin
     cd /home/$USER/Downloads
     wget $PHPMYADMINLINK
     unzip $PHPMYADMINBINARY
     rm $PHPMYADMINBINARY
     sudo mv $PHPMYADMINDIR /usr/share/phpmyadmin
-    sudo mv config.sample.inc.php config.inc.php
-    mkdir /usr/share/phpmyadmin/tmp
-    chown -R apache:apache /usr/share/phpmyadmin
-    chmod 777 /usr/share/phpmyadmin/tmp
+    sudo cp /usr/share/phpmyadmin/config.sample.inc.php  /usr/share/phpmyadmin/config.inc.php
+    sudo mkdir /usr/share/phpmyadmin/tmp
+
+    #setup phpmyadmin folder permissions and firewall
+    sudo chown -R apache:apache /usr/share/phpmyadmin
+    sudo chmod 777 /usr/share/phpmyadmin/tmp
+    
+    sudo firewall–cmd ––permanent ––add-service=http
+    sudo firewall-cmd ––reload
+
+    #make sure selinux tools are installed and force a relabel
     sudo dnf install -y policycoreutils-python-utils
     cd /
     sudo touch .autorelabel
+}
+
+setup_epel(){
+    sudo dnf config-manager --set-enabled powertools
+    sudo dnf install epel-release epel-next-release
 }
 
 ossec_server(){

@@ -65,7 +65,7 @@ menu(){
         ./install/virtualization.sh
     elif [ $input -eq 12 ]
     then
-    ./ossec_server.sh
+        ./ossec_server.sh
     elif [ $input -eq 99 ]
     then
         help

@@ -2,8 +2,8 @@
 PROTONGELINK=https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc2-GE-1/Proton-7.0rc2-GE-1.tar.gz
 PROTONGETARBALL=Proton-7.0rc2-GE-1.tar.gz
 
-WINEGELINK=https://github.com/GloriousEggroll/wine-ge-custom/releases/download/7.0rc2-GE-1/wine-lutris-ge-7.0rc2-1-x86_64.tar.xz
-WINEGETARBALL=wine-lutris-ge-7.0rc2-1-x86_64.tar.xz
+WINEGELINK=https://github.com/GloriousEggroll/wine-ge-custom/releases/download/7.0rc3-GE-1/wine-lutris-ge-7.0rc3-1-x86_64.tar.xz
+WINEGETARBALL=wine-lutris-ge-7.0rc3-1-x86_64.tar.xz
 
 gui_install(){
     zenity --info --width=430 height=300 \
