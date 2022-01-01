@@ -8,3 +8,5 @@ cd ../install
 dos2unix *.sh
 cd de
 dos2unix *.sh
+cd ../../menus
+dos2unix *.sh
