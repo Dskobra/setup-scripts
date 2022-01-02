@@ -51,7 +51,7 @@ menu(){
         ./install/coding_tools.sh
     elif [ $input -eq 8 ]
     then
-        ./install/gaming_apps.sh
+        ./menus/gm.sh
     elif [ $input -eq 9 ]
     then
         ./menus/sm.sh
