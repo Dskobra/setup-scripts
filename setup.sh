@@ -51,10 +51,10 @@ menu(){
         ./install/coding_tools.sh
     elif [ $input -eq 8 ]
     then
-        ./menus/gm.sh
+        ./menus/games.sh
     elif [ $input -eq 9 ]
     then
-        ./menus/sm.sh
+        ./menus/servers.sh
     elif [ $input -eq 10 ]
     then
         ./install/utilities.sh

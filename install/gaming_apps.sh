@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 gaming_apps(){
+	mkdir /home/$USER/Games
 	sudo dnf install -y mangohud gamemode
 	flatpak install -y flathub com.discordapp.Discord
 	flatpak install -y flathub io.gitlab.jstest_gtk.jstest_gtk

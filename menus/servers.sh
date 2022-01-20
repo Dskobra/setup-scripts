@@ -16,7 +16,7 @@ menu(){
     
     if [ $input -eq 1 ]
     then
-        ./install/servers.sh
+        ./install/lamp.sh
     elif [ $input -eq 2 ]
     then
         ./install/samba_share.sh
