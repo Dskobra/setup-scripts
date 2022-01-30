@@ -25,7 +25,8 @@ menu(){
         ./install/remote_tools.sh
     elif [ $input -eq 4 ]
     then
-        ./install/ossec_server.sh
+        #./install/ossec_server.sh
+        echo "Disabled."
     elif [ $input -eq 99 ]
     then
         help
