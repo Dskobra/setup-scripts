@@ -1,9 +1,13 @@
 #/usr/bin/bash
-PROTONGELINK=https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.1-GE-1/Proton-7.1-GE-1.tar.gz
-PROTONGETARBALL=Proton-7.1-GE-1.tar.gz
+PROTONGELINK=0
+PROTONGETARBALL=0
 
-WINEGELINK=https://github.com/GloriousEggroll/wine-ge-custom/releases/download/7.1-GE-1/wine-lutris-ge-7.1-1-x86_64.tar.xz
-WINEGETARBALL=wine-lutris-ge-7.1-1-x86_64.tar.xz
+WINEGELINK=0
+WINEGETARBALL=0
+
+USER=$(whoami)
+STEAMPATH=0
+STEAMRUN=0
 
 gui_install(){
     zenity --info --width=430 height=300 \
@@ -22,10 +26,10 @@ gui_error(){
     --text="Please make sure steam is installed before running this script."
 }
 
-steam_rpmfusion(){
+proton_setup(){
     gui_install
-    steam
-    cd /home/$USER/.steam/root/
+    $STEAMRUN
+    cd $STEAMPATH
     mkdir compatibilitytools.d
     cd compatibilitytools.d
     (
@@ -47,33 +51,7 @@ if [ "$?" = -1 ] ; then
 fi
 }
 
-steam_flatpak(){
-    gui_install
-    flatpak run com.valvesoftware.Steam
-    cd /home/$USER/.var/app/com.valvesoftware.Steam/data/Steam/
-    mkdir compatibilitytools.d
-    cd compatibilitytools.d
-    (
-    echo "25" ; wget $PROTONGELINK
-    echo "# Extracting ProtonGE" ; sleep 1
-    echo "50" ; tar -xvf $PROTONGETARBALL
-    echo "# Removing ProtonGE tarball" ; sleep 1
-    echo "75" ; rm $PROTONGETARBALL
-    echo "# Removing ProtonGE tarball" ; sleep 1
-    echo "100" ; sleep 1
-)|  zenity --progress \
-    --title="ProtonGE Installer" \
-    --text="Downloading ProtonGE..." \
-    --percentage=0
-
-if [ "$?" = -1 ] ; then
-        zenity --error \
-          --text="Update canceled."
-fi
-}
-
-
-lutris_wine(){
+winege_setup(){
 LUTRISEXISTS=0
 test -f /usr/bin/lutris && LUTRISEXISTS=lutris
 if [ "$LUTRISEXISTS" = "lutris" ];
@@ -113,20 +91,44 @@ help(){
     echo "flatpak mangohud to work with flatpak steam. Using this in gaming_apps.sh script"
     echo "gives an error."
 
-menu(){
-    echo "GE Installer"
-    echo "1. ProtonGE (rpmfusion) 2. ProtonGE (flatpak)"
-    echo "3. WineGE (lutris) 4. Setup MangoHud (flatpak) 0. Exit"
+
+steam_type_menu(){
+    echo "Select how you installed Steam"
+    echo "1. Package Manager 2. Flatpak"
+    echo "0. Main Menu"
     read input
     if [ $input -eq 1 ]
     then
-	   steam_rpmfusion
+        STEAMPATH=/home/$USER/.steam/root/
+        STEAMRUN=steam
+	    ./menus/proton_menu.sh
     elif [ $input -eq 2 ]
     then
-        steam_flatpak
+        STEAMPATH=/home/$USER/.var/app/com.valvesoftware.Steam/data/Steam/
+        STEAMRUN="flatpak run com.valvesoftware.Steam"
+        ./menus/proton_menu.sh
+    elif [ $input -eq 0 ]
+    then
+	    exit
+    else
+	    echo "error."
+    fi
+    menu
+}
+
+menu(){
+    echo "Select platform"
+    echo "1. ProtonGE (steam) 2. WineGE (lutris)" 
+    echo "Set flatpak MangoHud Permissions" 
+    echo "0. Exit"
+    read input
+    if [ $input -eq 1 ]
+    then
+	   steam_type_menu
     elif [ $input -eq 3 ]
     then
-        lutris_wine
+        ./menus/wine_menu.sh
+        winege_setup
     elif [ $input -eq 4 ]
     then
         flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
@@ -141,5 +143,6 @@ menu(){
     fi
     menu
 }
+
 menu
 

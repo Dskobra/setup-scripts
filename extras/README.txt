@@ -1,1 +1,0 @@
-Mostly geinstall script, but also some other scripts i'm not using atm.
