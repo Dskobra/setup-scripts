@@ -1,1 +1,2 @@
 *.vscode
+*/python_test/__pycache__
