@@ -1,4 +1,3 @@
-import proton71ge1
 import subprocess
 import os.path
 import getpass
@@ -17,6 +16,7 @@ def PROCESS_LINK():
     start_pos = link.index("Proton")
     end_pos = len(link)
     PROTONGETARBALL = link[start_pos:end_pos]
+    print(PROTONGETARBALL)
 
 def MENU():
     print("1. Steam 2. Lutris")
@@ -39,6 +39,7 @@ def STEAM_MENU():
         print(home_dir)
         STEAM_PATH = home_dir + "//compatibilitytools.d//"
         print(STEAM_PATH)
+        PROTONGE_MENU()
     elif userInput == '2':
         print("")
     else:
@@ -47,7 +48,7 @@ def STEAM_MENU():
 def WINGE_MENU():
     print("Placeholder")
 
-def PROTON_MENU():
+def PROTONGE_MENU():
     print("Select Proton Version")
     print("1. Proton-7.1-GE-1 2. Proton-7.1-GE-1")
     print("0. Exit")
@@ -59,8 +60,7 @@ def PROTON_MENU():
         from protonge import proton71ge2
         PROTONGELINK = proton71ge2()
         PROCESS_LINK()
-        PROCESS_LINK
-        subprocess.call(["tar", "-xvf", ""])
+        #subprocess.call(["tar", "-xvf", PROTONGETARBALL, STEAM_PATH])
     elif userInput == '2':
         print("Placeholder")
     elif userInput == '0':
