@@ -60,6 +60,7 @@ def PROTONGE_MENU():
         from protonge import proton71ge2
         PROTONGELINK = proton71ge2()
         PROCESS_LINK()
+        subprocess.call(["wget", PROTONGELINK])
         #subprocess.call(["tar", "-xvf", PROTONGETARBALL, STEAM_PATH])
     elif userInput == '2':
         print("Placeholder")
