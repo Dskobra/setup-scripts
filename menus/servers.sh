@@ -20,7 +20,7 @@ menu(){
     elif [ $input -eq 2 ]
     then
         ./install/samba_share.sh
-    elif [ $input -eq 3]
+    elif [ $input -eq 3 ]
     then
         ./install/remote_tools.sh
     elif [ $input -eq 4 ]
