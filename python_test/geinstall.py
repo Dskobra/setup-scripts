@@ -65,8 +65,8 @@ def WINGE_MENU():
     PROTON_TYPE="wine"
     print("This is not done yet.")
     print("Select WineGE Version")
-    print("1. Wine-7.1-GE-1 2. Wine-7.0rc3-GE-1")
-    print("3. Wine-7.0rc2-GE-1")
+    print("722 Wine-7.2-GE-2")
+    print("721. Wine-7.2-GE-1  711. Wine-7.1-GE-1")
     print("0. Exit")
 
     temp1 = "/home/" # set the home part of location for concat later
@@ -76,9 +76,14 @@ def WINGE_MENU():
     #subprocess.call(["mkdir -p", PROTON_PATH])
     
     userInput = input("Enter an option: ")
-    if userInput == '1':
+    if userInput == '722':
+        from winege import winge722
+        #winge722()
+        print(userInput)
+        print("Placeholder")
+    elif userInput == '721':
         from winege import winge721
-        #winge72()
+        #winge721()
         print(userInput)
         print("Placeholder")
     elif userInput == '2':
@@ -93,12 +98,18 @@ def PROTONGE_MENU():
     global PROTON_TYPE
     PROTON_TYPE="Proton"
     print("Select Proton Version")
-    print("721. Proton-7.2-GE-1 712. Proton-7.1-GE-2") 
-    print("711. Proton-7.1-GE-1 print 7061. Proton-7.0rc6-GE-1")
+    print("722 Proton-7.2-GE-2 721. Proton-7.2-GE-1")
+    print("712. Proton-7.1-GE-2 711. Proton-7.1-GE-1")
+    print ("7061. Proton-7.0rc6-GE-1")
     print("0. Exit")
 
     userInput = input("Enter an option: ")
-    if userInput == '721':
+    if userInput == '722':
+        from protonge import protonge722
+        PROTONGELINK = protonge722()
+        PROCESS_LINK()
+        SETUP_PROTON()
+    elif userInput == '721':
         from protonge import protonge721
         PROTONGELINK = protonge721()
         PROCESS_LINK()
