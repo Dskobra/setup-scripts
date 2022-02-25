@@ -2,11 +2,11 @@ def winege722():
     link = "https://github.com/GloriousEggroll/wine-ge-custom/releases/download/7.2-GE-2/wine-lutris-ge-7.2-2-x86_64.tar.xz"
     return link
 
-def winge721():
+def winege721():
     link = "https://github.com/GloriousEggroll/wine-ge-custom/releases/download/7.2-GE-1/wine-lutris-ge-7.2-1-x86_64.tar.xz"
     return link
 
-def winge711():
+def winege711():
     link = "https://github.com/GloriousEggroll/wine-ge-custom/releases/download/7.1-GE-1/wine-lutris-ge-7.1-1-x86_64.tar.xz"
     return link
 
