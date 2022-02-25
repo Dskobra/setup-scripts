@@ -13,3 +13,5 @@ root
 
 *Random notes
 I prefer to have things grouped together and reuse code as much as possible.
+
+**Now a separate repository.**
