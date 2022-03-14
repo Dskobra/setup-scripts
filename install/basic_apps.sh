@@ -6,6 +6,8 @@ basic_apps(){
 	sudo dnf install -y codium vim-enhanced java-17-openjdk\
 	brave-browser
 	flatpak install -y flathub org.keepassxc.KeePassXC
+	flatpak install -y flathub com.usebottles.bottles
+	flatpak install -y flathub com.github.tchx84.Flatseal
 	mkdir /home/$USER/Apps 
 	mkdir /home/$USER/Apps/launchers
 }
