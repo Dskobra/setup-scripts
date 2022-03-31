@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment=
+Exec=raiderio
+Icon=preferences-desktop-gaming
+Name=Raider.IO
+NoDisplay=false
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

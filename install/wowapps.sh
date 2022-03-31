@@ -6,8 +6,8 @@ WAAPLINK=https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v3.3
 WAAPBINARY=weakauras-companion-3.3.4.x86_64.rpm
 
 wowup(){
-    mkdir /home/$USER/Games/wowup 
-    cd /home/$USER/Games/wowup 
+    mkdir /home/$USER/Apps/wowup 
+    cd /home/$USER/Apps/wowup 
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
 }

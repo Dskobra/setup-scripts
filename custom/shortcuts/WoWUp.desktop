@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment=
+Exec=wowup
+Icon=preferences-desktop-gaming
+Name=WoWUp
+NoDisplay=false
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

@@ -10,3 +10,9 @@ cd de
 dos2unix *.sh
 cd ../../menus
 dos2unix *.sh
+cd ../custom
+dos2unix *.sh
+cd launchers
+dos2unix *.sh
+cd ../shortcuts
+dos2unix *.desktop

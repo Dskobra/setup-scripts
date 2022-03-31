@@ -4,7 +4,7 @@ help(){
     echo "1. Lamp Stack - Apache web server, mariadb etc."
     echo "2. Samba Share - Installs samba server and creates folders."
     echo "3. Remote Tools - Setups fedora cockpit for remote management."
-    echo "3. OSSEC Management Server - Setups ossec managment server on centos."
+    echo "3. OSSEC Management Server - Setups ossec managment server."
 }
 
 menu(){
@@ -25,7 +25,7 @@ menu(){
         ./install/remote_tools.sh
     elif [ $input -eq 4 ]
     then
-        #./install/ossec_server.sh
+        ./install/ossec_server.sh
         echo "Disabled."
     elif [ $input -eq 99 ]
     then

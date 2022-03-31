@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
-WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v5.6.4/Warcraft-Logs-Uploader-5.6.4.AppImage
-WCLOGSBINARY=Warcraft-Logs-Uploader-5.6.4.AppImage
+WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v5.8.9/Warcraft-Logs-Uploader-5.8.9.AppImage
+WCLOGSBINARY=Warcraft-Logs-Uploader-5.8.9.AppImage
 
 warcraftlogs(){
-    mkdir ~/Games/warcraftlogs
-    cd ~/Games/warcraftlogs
+    mkdir /home/$USER/Apps/warcraftlogs
+    cd /home/$USER/Apps/warcraftlogs
     wget $WCLOGSLINK
     chmod +x $WCLOGSBINARY
 }
