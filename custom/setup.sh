@@ -3,7 +3,9 @@
 USER=$(whoami)
 cd launchers
 chown $USER:$USER *.sh
-sudo cp *.sh /usr/bin/
+sudo ln -s "/home/$USER/Apps/launchers/raiderio.sh" "/usr/bin/raiderio"
+sudo ln -s "/home/$USER/Apps/launchers/wowup.sh" "/usr/bin/wowup"
+sudo ln -s "/home/$USER/Apps/launchers/warcraftlogs.sh" "/usr/bin/warcraftlogs"
 
 #cd ../shortcuts
 #chown $USER:$USER *.desktop
