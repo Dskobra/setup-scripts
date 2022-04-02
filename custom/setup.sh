@@ -2,7 +2,7 @@
 
 USER=$(whoami)
 cd launchers
-chown $USER:$USER *.sh
+sudo chown $USER:$USER *.sh
 cp *.sh /home/$USER/Apps/launchers
 sudo ln -s "/home/$USER/Apps/launchers/raiderio.sh" "/usr/bin/raiderio"
 sudo ln -s "/home/$USER/Apps/launchers/wowup.sh" "/usr/bin/wowup"
