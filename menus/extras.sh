@@ -20,7 +20,7 @@ menu(){
         sudo dnf install -y ossec-hids-agent
     elif [ $input -eq 3 ]
     then
-        ./install/ossec_server.sh
+        sudo dnf install -y ossec-hids-server
     elif [ $input -eq 99 ]
     then
         help

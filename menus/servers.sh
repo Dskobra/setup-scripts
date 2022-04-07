@@ -10,7 +10,6 @@ help(){
 menu(){
     echo "1. Lamp Stack 2. Samba Share"
     echo "3. Remote Tools"
-    echo "4. OSSEC Management Server"
     echo "99. Help 0. Back to main menu"
     read input
     
@@ -23,10 +22,6 @@ menu(){
     elif [ $input -eq 3 ]
     then
         ./install/remote_tools.sh
-    elif [ $input -eq 4 ]
-    then
-        ./install/ossec_server.sh
-        echo "Disabled."
     elif [ $input -eq 99 ]
     then
         help
