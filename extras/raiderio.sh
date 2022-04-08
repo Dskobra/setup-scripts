@@ -2,10 +2,12 @@
 
 raiderio(){
     # due to the cdn they use I can't download the appimage directly.
+    USER=$(whoami)
     mkdir /home/$USER/Apps/raiderio
     firefox https://raider.io/addon
-    USER=$(whoami)
-    cd /home/$USER/Apps/raiderio/
+    cd /home/$USER/Downloads
     chmod +x RaiderIO_Client.AppImage
+    mv RaiderIO_Client.AppImage /home/$USER/Apps/raiderio/
+    
 }
 raiderio
