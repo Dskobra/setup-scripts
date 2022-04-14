@@ -7,6 +7,7 @@ basic_apps(){
 	brave-browser plymouth-theme-spinfinity
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
+	flatpak install -y flathub org.fedoraproject.MediaWriter
 	flatpak install -y flathub com.usebottles.bottles
 	flatpak install -y flathub com.github.tchx84.Flatseal
 	mkdir /home/$USER/Apps 
