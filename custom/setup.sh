@@ -11,5 +11,7 @@ sudo ln -s "/home/$USER/Apps/launchers/steamgs.sh" "/usr/bin/steamgs"
 
 #cd ../shortcuts
 #chown $USER:$USER *.desktop
-#xdg-desktop-menu install Raiderio.desktop --mode system --novendor
+xdg-desktop-menu install Raiderio.desktop --mode user --novendor
+xdg-desktop-menu install WoWUp.desktop --mode user --novendor
+xdg-desktop-menu install WarcraftLogs.desktop --mode user --novendor
 
