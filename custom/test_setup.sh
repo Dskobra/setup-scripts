@@ -22,6 +22,7 @@ menu(){
         ./install/setup_wow_apps.sh
     elif [ $input -eq 3 ]
     then
+        ./setup_permissions.sh
         ./setup_mangohud.sh
     elif [ $input -eq 99 ]
     then

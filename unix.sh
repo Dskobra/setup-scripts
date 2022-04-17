@@ -16,3 +16,5 @@ cd launchers
 dos2unix *.sh
 cd ../shortcuts
 dos2unix *.desktop
+cd ../mangohud
+dos2unix *.conf
