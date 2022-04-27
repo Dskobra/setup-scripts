@@ -1,7 +1,7 @@
 [Desktop Entry]
-Comment=
+Comment=M+ logging
 Exec=raiderio
-Icon=usr/share/icons/Bluecurve/48x48/apps/icon-logbook.png
+Icon=/usr/share/icons/Bluecurve/48x48/apps/icon-logbook.png
 Name=Raider.IO
 NoDisplay=false
 Path=
