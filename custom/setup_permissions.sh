@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cd /launchers/
+cd launchers
 sudo chown $USER:$USER *.sh
 cd ../shortcuts
 sudo chown $USER:$USER *.desktop
