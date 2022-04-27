@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment=
 Exec=wowup
-Icon=preferences-desktop-gaming
+Icon=/usr/share/icons/Bluecurve/48x48/apps/ark.png
 Name=WoWUp
 NoDisplay=false
 Path=
@@ -11,3 +11,4 @@ TerminalOptions=
 Type=Application
 X-KDE-SubstituteUID=false
 X-KDE-Username=
+Categories=Game;
