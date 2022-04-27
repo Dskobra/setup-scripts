@@ -3,7 +3,7 @@
 
 
 help(){
-    echo "1. Gaming Apps - flatpak versions of steam, discored and mangohud."
+    echo "1. Gaming Apps - steam, bottles, discord and mangohud."
     echo "2. Wine - official version of wine from winehq."
     echo "3. Lutris - pulls in official lutris with git."
     echo "4. WoW Apps - wowup and weak auras desktop apps."

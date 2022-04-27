@@ -10,11 +10,10 @@ wine_repo(){
 		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo
 	elif [ "$getRelease" = "36" ]
 	then
-		# temporarily use fedora 35 winehq repo on fedora 36. change when one for 36 is released.
 		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
 	elif [ "$getRelease" = "37" ]
 	then
-		# temporarily use fedora 35 winehq repo on fedora 36. change when one for 36 is released.
+		# temporarily use fedora 36 winehq repo on fedora 36. change when one for 36 is released.
 		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
 	elif [ $input -eq 0 ]
 	then
