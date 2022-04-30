@@ -9,6 +9,7 @@ menu(){
     echo "Setup launchers/shortcuts"
     echo "1. Steam (gamescope) 2. WoW Apps"
     echo "3. Setup mangohud configs"
+    echo "4. Setup Lutris"
     echo "99. Help 0. Exit"
     read input
     
@@ -24,6 +25,10 @@ menu(){
     then
         ./setup_permissions.sh
         ./setup_mangohud.sh
+    elif [ $input -wq 4 ]
+    then
+        ./setup_permissions.sh
+        ./setup_lutris.sh
     elif [ $input -eq 99 ]
     then
         help
