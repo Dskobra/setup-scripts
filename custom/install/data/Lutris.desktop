@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment=Game management
 Exec=lutris -d
-Icon=/opt/lutris/share/icons/hicolor/48x48/apps/
+Icon=/opt/lutris/share/icons/hicolor/48x48/apps/lutris.png
 Name=Lutris
 NoDisplay=false
 Path=

@@ -8,8 +8,8 @@ basic_apps(){
 	bluecurve-icon-theme
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
-	mkdir /home/$USER/Apps 
-	mkdir /home/$USER/Apps/launchers
+	sudo mkdir /opt/launchers
+	sudo chown $USER:$USER launchers
 }
 
 basic_apps

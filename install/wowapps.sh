@@ -6,10 +6,11 @@ WAAPLINK=https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v3.3
 WAAPBINARY=weakauras-companion-3.3.4.x86_64.rpm
 
 wowup(){
-    mkdir /home/$USER/Apps/wowup 
-    cd /home/$USER/Apps/wowup 
+    mkdir /home/$USER/Downloads/wowup 
+    cd /home/$USER/Downloads/wowup 
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
+    sudo mv /home/$USER/Downloads/wowup /opt/wowup
 }
 weakauras(){
     cd /home/$USER/Downloads
@@ -20,11 +21,12 @@ weakauras(){
 
 raiderio(){
     # due to the cdn they use I can't download the appimage directly.
-    mkdir /home/$USER/Apps/raiderio
+    mkdir /home/$USER/Downloads/raiderio
     firefox https://raider.io/addon
     cd /home/$USER/Downloads
     chmod +x RaiderIO_Client.AppImage
-    mv RaiderIO_Client.AppImage /home/$USER/Apps/raiderio/
+    mv RaiderIO_Client.AppImage /home/$USER/Downloads/raiderio/
+    sudo mv /home/$USER/Downloads/raiderio/ /opt/raiderio
 }
 wowup
 weakauras

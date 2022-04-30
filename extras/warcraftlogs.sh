@@ -4,10 +4,10 @@ WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v
 WCLOGSBINARY=Warcraft-Logs-Uploader-5.8.9.AppImage
 
 warcraftlogs(){
-    USER=$(whoami)
-    mkdir /home/$USER/Apps/warcraftlogs
-    cd /home/$USER/Apps/warcraftlogs
+    mkdir /home/$USER/Downloads/warcraftlogs
+    cd /home/$USER/Downloads/warcraftlogs
     wget $WCLOGSLINK
     chmod +x $WCLOGSBINARY
+    sudo mv /home/$USER/Downloads/warcraftlogs /opt/warcraftlogs
 }
 warcraftlogs
