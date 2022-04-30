@@ -6,6 +6,7 @@ gaming_apps(){
 	flatpak install -y flathub com.discordapp.Discord
 	#flatpak install -y flathub com.valvesoftware.Steam
 	flatpak install -y flathub com.usebottles.bottles
+	flatpak install -y flathub net.davidotek.pupgui2
 	flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud
 }
 
