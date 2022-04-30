@@ -9,6 +9,7 @@ setup_wow_apps(){
     cp raiderio.sh /home/$USER/Apps/launchers
     cp warcraftlogs.sh /home/$USER/Apps/launchers
     cp wowup.sh /home/$USER/Apps/launchers
+    xdg-desktop-menu install Lutris.desktop --mode user --novendor
     xdg-desktop-menu install Raiderio.desktop --mode user --novendor
     xdg-desktop-menu install WoWUp.desktop --mode user --novendor
     xdg-desktop-menu install WarcraftLogs.desktop --mode user --novendor

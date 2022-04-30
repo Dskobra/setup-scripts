@@ -1,5 +1,4 @@
 #! /usr/bin/bash
 
-USER=$(whoami)
-cd /home/$USER/Apps/warcraftlogs/
+cd /opt/warcraftlogs/
 ./Warcraft-Logs-Uploader*.AppImage

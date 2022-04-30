@@ -1,5 +1,5 @@
 #! /usr/bin/bash
 
 USER=$(whoami)
-cd /home/$USER/Apps/raiderio/
+cd /opt/raiderio/
 ./RaiderIO_Client.AppImage

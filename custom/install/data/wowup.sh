@@ -1,5 +1,4 @@
 #! /usr/bin/bash
 
-USER=$(whoami)
-cd /home/$USER/Apps/wowup
+cd /opt/wowup
 ./WowUp*.AppImage
