@@ -1,8 +1,6 @@
 #!/usr/bin/bash
 
-cd launchers
+cd install/data
 sudo chown $USER:$USER *.sh
-cd ../shortcuts
 sudo chown $USER:$USER *.desktop
-cd ../mangohud
 sudo chown $USER:$USER *.conf

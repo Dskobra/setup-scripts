@@ -14,7 +14,8 @@ cd ../custom
 dos2unix *.sh
 cd launchers
 dos2unix *.sh
-cd ../shortcuts
-dos2unix *.desktop
-cd ../mangohud
+cd ../install
+dos2unix *.sh
+cd data
+dos2unix *.sh
 dos2unix *.conf
