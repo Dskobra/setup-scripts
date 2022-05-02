@@ -12,9 +12,7 @@ cd ../../menus
 dos2unix *.sh
 cd ../custom
 dos2unix *.sh
-cd launchers
-dos2unix *.sh
-cd ../install
+cd install
 dos2unix *.sh
 cd data
 dos2unix *.sh

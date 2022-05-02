@@ -5,7 +5,7 @@ setup_wow_apps(){
     sudo ln -s "/opt/launchers/wowup.sh" "/usr/bin/wowup"
     sudo ln -s "/opt/launchers/warcraftlogs.sh" "/usr/bin/warcraftlogs"
 
-    cd data
+    cd install/data
     cp raiderio.sh /opt/launchers
     cp warcraftlogs.sh /opt/launchers
     cp wowup.sh /opt/launchers

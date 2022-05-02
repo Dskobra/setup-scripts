@@ -2,5 +2,5 @@
 
 USER=$(whoami)
 mkdir /home/$USER/.config/MangoHud/
-cd data
+cd install/data
 cp *.conf /home/$USER/.config/MangoHud/
