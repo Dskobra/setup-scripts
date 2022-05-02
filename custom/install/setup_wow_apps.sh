@@ -1,14 +1,14 @@
 #! /usr/bin/bash
 
 setup_wow_apps(){
-    sudo ln -s "/home/$USER/Apps/launchers/raiderio.sh" "/usr/bin/raiderio"
-    sudo ln -s "/home/$USER/Apps/launchers/wowup.sh" "/usr/bin/wowup"
-    sudo ln -s "/home/$USER/Apps/launchers/warcraftlogs.sh" "/usr/bin/warcraftlogs"
+    sudo ln -s "/opt/launchers/raiderio.sh" "/usr/bin/raiderio"
+    sudo ln -s "/opt/launchers/wowup.sh" "/usr/bin/wowup"
+    sudo ln -s "/opt/launchers/warcraftlogs.sh" "/usr/bin/warcraftlogs"
 
     cd data
-    cp raiderio.sh /home/$USER/Apps/launchers
-    cp warcraftlogs.sh /home/$USER/Apps/launchers
-    cp wowup.sh /home/$USER/Apps/launchers
+    cp raiderio.sh /opt/launchers
+    cp warcraftlogs.sh /opt/launchers
+    cp wowup.sh /opt/launchers
     xdg-desktop-menu install Lutris.desktop --mode user --novendor
     xdg-desktop-menu install Raiderio.desktop --mode user --novendor
     xdg-desktop-menu install WoWUp.desktop --mode user --novendor

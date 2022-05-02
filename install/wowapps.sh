@@ -5,6 +5,11 @@ WOWUPBINARY=WowUp-2.7.0.AppImage
 WAAPLINK=https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v3.3.4/weakauras-companion-3.3.4.x86_64.rpm
 WAAPBINARY=weakauras-companion-3.3.4.x86_64.rpm
 
+
+WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v5.8.9/Warcraft-Logs-Uploader-5.8.9.AppImage
+WCLOGSBINARY=Warcraft-Logs-Uploader-5.8.9.AppImage
+
+
 wowup(){
     mkdir /home/$USER/Downloads/wowup 
     cd /home/$USER/Downloads/wowup 
@@ -28,6 +33,16 @@ raiderio(){
     mv RaiderIO_Client.AppImage /home/$USER/Downloads/raiderio/
     sudo mv /home/$USER/Downloads/raiderio/ /opt/raiderio
 }
+
+warcraftlogs(){
+    mkdir /home/$USER/Downloads/warcraftlogs
+    cd /home/$USER/Downloads/warcraftlogs
+    wget $WCLOGSLINK
+    chmod +x $WCLOGSBINARY
+    sudo mv /home/$USER/Downloads/warcraftlogs /opt/warcraftlogs
+}
+
 wowup
 weakauras
 raiderio
+warcraftlogs
