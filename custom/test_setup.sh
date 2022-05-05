@@ -25,7 +25,7 @@ menu(){
     then
         ./setup_permissions.sh
         ./setup_mangohud.sh
-    elif [ $input -wq 4 ]
+    elif [ $input -eq 4 ]
     then
         ./setup_permissions.sh
         ./setup_lutris.sh
