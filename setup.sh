@@ -65,8 +65,7 @@ menu(){
         ./install/virtualization.sh
     elif [ $input -eq 12 ]
     then
-        echo "Disabled."
-        #./menus/extras.sh
+        ./menus/extras.sh
     elif [ $input -eq 99 ]
     then
         help
