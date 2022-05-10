@@ -19,7 +19,7 @@ help(){
 }
 
 menu(){
-    echo "1. Repos 2. Amd Drivers"
+    echo "1. Repos 2. AMD Fan Control"
     echo "3. Setup DE 4. Audio/Video Support" 
     echo "5. Office 6. Multimedia Editing Tools"
     echo "7.Coding Tools 8. Gaming"
@@ -34,7 +34,7 @@ menu(){
         ./install/repos.sh
     elif [ $input -eq 2 ]
     then
-        ./install/amdgpu.sh
+        ./install/amd_fan.sh
     elif [ $input -eq 3 ]
     then
         ./install/basic_apps.sh

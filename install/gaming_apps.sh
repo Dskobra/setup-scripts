@@ -2,7 +2,7 @@
 
 gaming_apps(){
 	mkdir /home/$USER/Games
-	sudo dnf install -y mangohud steam gamemode gamemode.i686 \
+	sudo dnf install -y mangohud gamemode gamemode.i686 \
 	steam-devices
 	flatpak install -y flathub com.discordapp.Discord
 	flatpak install -y flathub com.valvesoftware.Steam

@@ -1,17 +1,44 @@
 #! /usr/bin/bash
 
+help(){
+    echo ""
+    echo ""
+}
+
+menu(){
+    echo "Setup launchers/shortcuts"
+    echo "1. Steam (gamescope) 2. WoW Apps"
+    echo "3. Setup mangohud configs"
+    echo "4. Setup Lutris"
+    echo "99. Help 0. Exit"
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        ./setup_permissions.sh
+        ./install/setup_steam.sh
+    elif [ $input -eq 2 ]
+    then
+        ./setup_permissions.sh
+        ./install/setup_wow_apps.sh
+    elif [ $input -eq 3 ]
+    then
+        ./setup_permissions.sh
+        ./setup_mangohud.sh
+    elif [ $input -eq 4 ]
+    then
+        ./setup_permissions.sh
+        ./setup_lutris.sh
+    elif [ $input -eq 99 ]
+    then
+        help
+    elif [ $input -eq 0 ]
+    then
+	    exit
+    else
+	    echo "error."
+    fi
+    menu
+}
 USER=$(whoami)
-cd launchers
-sudo chown $USER:$USER *.sh
-cp *.sh /home/$USER/Apps/launchers
-sudo ln -s "/home/$USER/Apps/launchers/raiderio.sh" "/usr/bin/raiderio"
-sudo ln -s "/home/$USER/Apps/launchers/wowup.sh" "/usr/bin/wowup"
-sudo ln -s "/home/$USER/Apps/launchers/warcraftlogs.sh" "/usr/bin/warcraftlogs"
-sudo ln -s "/home/$USER/Apps/launchers/steamgs.sh" "/usr/bin/steamgs"
-
-#cd ../shortcuts
-#chown $USER:$USER *.desktop
-#xdg-desktop-menu install Raiderio.desktop --mode user --novendor
-#xdg-desktop-menu install WoWUp.desktop --mode user --novendor
-#xdg-desktop-menu install WarcraftLogs.desktop --mode user --novendor
-
+menu
