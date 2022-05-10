@@ -2,9 +2,10 @@
 
 gaming_apps(){
 	mkdir /home/$USER/Games
-	sudo dnf install -y mangohud steam gamescope gamemode #steam-devices	#using rpmfusion of steam now with gamescope
+	sudo dnf install -y mangohud steam gamemode gamemode.i686 \
+	steam-devices
 	flatpak install -y flathub com.discordapp.Discord
-	#flatpak install -y flathub com.valvesoftware.Steam
+	flatpak install -y flathub com.valvesoftware.Steam
 	flatpak install -y flathub com.usebottles.bottles
 	flatpak install -y flathub net.davidotek.pupgui2
 	flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud

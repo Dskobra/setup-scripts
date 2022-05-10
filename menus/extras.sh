@@ -5,13 +5,16 @@ help(){
 }
 
 menu(){
-    echo "1. OSSEC setup"
+    echo "1. OSSEC setup 2. hplip-gui"
     echo "99. Help 0. Back to main menu"
     read input
     
     if [ $input -eq 1 ]
     then
         ./install/ossec.sh
+    elif [ $input -eq 2 ]
+    then
+        sudo dnf install -y hplip-gui 
     elif [ $input -eq 99 ]
     then
         help
