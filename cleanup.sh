@@ -2,7 +2,8 @@
 
 cleanup(){
 	sudo dnf remove -y libreoffice-core kwrite \
-	gnome-shell-extension-gamemode transmission-qt
+	gnome-shell-extension-gamemode transmission-qt \
+	kmahjongg kmines
 }
 
 cleanup
