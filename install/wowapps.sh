@@ -1,13 +1,13 @@
 #!/usr/bin/bash
-WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.7.1/WowUp-2.7.1.AppImage
-WOWUPBINARY=WowUp-2.7.1.AppImage
+WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.8.1/WowUp-2.8.1.AppImage
+WOWUPBINARY=WowUp-2.8.1.AppImage
 
 WAAPLINK=https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v4.0.0/weakauras-companion-4.0.0.x86_64.rpm
 WAAPBINARY=weakauras-companion-4.0.0.x86_64.rpm
 
 
-WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v5.8.9/Warcraft-Logs-Uploader-5.8.9.AppImage
-WCLOGSBINARY=Warcraft-Logs-Uploader-5.8.9.AppImage
+WCLOGSLINK=https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v5.9.0/Warcraft-Logs-Uploader-5.9.0.AppImage
+WCLOGSBINARY=Warcraft-Logs-Uploader-5.9.0.AppImage
 
 
 wowup(){
