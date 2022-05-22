@@ -8,7 +8,8 @@ cleanup(){
 	# to be installed.
 	sudo dnf remove -y libreoffice-core kwrite \
 	gnome-shell-extension-gamemode transmission-qt \
-	kmahjongg kmines systemd-oomd-defaults
+	kmahjongg kmines systemd-oomd-defaults \
+	gnome-text-editor
 }
 
 cleanup
