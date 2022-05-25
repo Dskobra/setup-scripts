@@ -5,8 +5,9 @@ Includes my normal programs and other stuff. Ignore the mess. :P
 folder layout
 -------------
 root
-* sources - installation scripts.
-* extras - mostly a script to download GloriousEggroll custom proton and wine for lutris/steam.
+* install - installation scripts.
+* menus - submenu folder.
+* custom - scripts for setting up my desktop shortcuts, profiles etc.
 
 
 *Important scripts in root directory

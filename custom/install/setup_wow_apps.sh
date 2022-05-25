@@ -1,9 +1,10 @@
 #! /usr/bin/bash
 
 setup_wow_apps(){
-    sudo ln -s "/opt/launchers/raiderio.sh" "/usr/bin/raiderio"
-    sudo ln -s "/opt/launchers/wowup.sh" "/usr/bin/wowup"
-    sudo ln -s "/opt/launchers/warcraftlogs.sh" "/usr/bin/warcraftlogs"
+    # Not really needed anymore as I'm putting /opt/launchers in path
+    #sudo ln -s "/opt/launchers/raiderio.sh" "/usr/bin/raiderio"
+    #sudo ln -s "/opt/launchers/wowup.sh" "/usr/bin/wowup"
+    #sudo ln -s "/opt/launchers/warcraftlogs.sh" "/usr/bin/warcraftlogs"
 
     cd install/data
     cp raiderio.sh /opt/launchers

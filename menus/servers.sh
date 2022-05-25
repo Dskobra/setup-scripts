@@ -3,12 +3,12 @@
 help(){
     echo "1. Lamp Stack - Apache web server, mariadb etc."
     echo "2. Samba Share - Installs samba server and creates folders."
-    echo "3. Remote Tools - Setups fedora cockpit for remote management."
+    echo "3. Fedora Cockpit - Setups fedora cockpit for remote management."
 }
 
 menu(){
     echo "1. Lamp Stack 2. Samba Share"
-    echo "3. Remote Tools"
+    echo "3. Fedora Cockpit"
     echo "99. Help 0. Back to main menu"
     read input
     
@@ -20,7 +20,7 @@ menu(){
         ./install/samba_share.sh
     elif [ $input -eq 3 ]
     then
-        ./install/remote_tools.sh
+        ./install/cockpit.sh
     elif [ $input -eq 99 ]
     then
         help

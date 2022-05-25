@@ -10,6 +10,7 @@ menu(){
     echo "1. Steam (gamescope) 2. WoW Apps"
     echo "3. Setup mangohud configs"
     echo "4. Setup Lutris 5. Setup Dropbox Tray"
+    echo "6. Ossec start 7. Setup bash profile"
     echo "99. Help 0. Exit"
     read input
     
@@ -33,6 +34,14 @@ menu(){
     then
         ./install/setup_permissions.sh
         ./install/setup_dropbox.sh
+    elif [ $input -eq 6 ]
+    then
+        sudo cp install/data/ossec.sh /opt/launchers
+        sudo chown $USER:$USER /opt/launchers/ossec.sh
+    elif [ $input -eq 7 ]
+    then
+        cp /home/$USER/.bashrc /home/$USER/.bashrc.bak
+        ./install/setup_paths.sh
     elif [ $input -eq 99 ]
     then
         help

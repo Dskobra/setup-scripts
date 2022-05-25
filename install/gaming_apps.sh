@@ -2,6 +2,7 @@
 
 gaming_apps(){
 	mkdir /home/$USER/Games
+	mkdir /home/$USER/Games/bottles
 	sudo dnf install -y mangohud gamemode gamemode.i686 \
 	steam-devices
 	flatpak install -y flathub com.discordapp.Discord

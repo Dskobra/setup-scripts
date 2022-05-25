@@ -21,7 +21,7 @@ help(){
 menu(){
     echo "1. Repos 2. AMD Fan Control"
     echo "3. Setup DE 4. Audio/Video Support" 
-    echo "5. Office 6. Multimedia Editing Tools"
+    echo "5. Office 6. A/V/Image Editing/Recording"
     echo "7.Coding Tools 8. Gaming"
     echo "9. Servers 10. Utilities"
     echo "11. Virtualization"
