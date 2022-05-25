@@ -1,6 +1,6 @@
 #!/usr/bin/bash
-WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.8.1/WowUp-2.8.1.AppImage
-WOWUPBINARY=WowUp-2.8.1.AppImage
+WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.8.2/WowUp-2.8.2.AppImage
+WOWUPBINARY=WowUp-2.8.2.AppImage
 
 WAAPLINK=https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v4.0.0/weakauras-companion-4.0.0.x86_64.rpm
 WAAPBINARY=weakauras-companion-4.0.0.x86_64.rpm
