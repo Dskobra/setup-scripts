@@ -9,5 +9,8 @@ ossec(){
     tar -xvf $OSSECTARBALL
     cd ossec-hids*
     sudo ./install.sh
+    cd /home/$USER/Downloads/
+    rm -r -f ossec-hids*
+    rm OSSECTARBALL
 }
 ossec
