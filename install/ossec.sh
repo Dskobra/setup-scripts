@@ -11,6 +11,6 @@ ossec(){
     sudo ./install.sh
     cd /home/$USER/Downloads/
     rm -r -f ossec-hids*
-    rm OSSECTARBALL
+    rm $OSSECTARBALL
 }
 ossec
