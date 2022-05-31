@@ -8,7 +8,7 @@ getlutris()
 	git clone https://github.com/lutris/lutris.git
 	sudo mv lutris /opt/lutris
 	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
-	python3-magic
+	python3-magic libraqm python3-olefile python3-pillow
 	sudo ln -s "/opt/lutris/bin/lutris" "/usr/bin/lutris"
 }
 
