@@ -5,10 +5,7 @@ wine_repo(){
 	getRelease=$(echo $VERSION_ID)
 	echo "Fedora Version:" $getRelease
 
-	if [ "$getRelease" = "35" ]
-	then
-		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo
-	elif [ "$getRelease" = "36" ]
+	if [ "$getRelease" = "36" ]
 	then
 		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
 	elif [ "$getRelease" = "37" ]
