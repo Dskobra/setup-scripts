@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.1
-Type=Application
-Name=Steam (gamescope)
-Comment=Launch steam with gamescope compositor
-Icon=steam
-Exec=steamgs
-Actions=
-Categories=Game;
