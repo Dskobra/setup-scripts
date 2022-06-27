@@ -19,6 +19,7 @@ help(){
 }
 
 menu(){
+    echo "Version: $VERSION"
     echo "1. Repos 2. AMD Fan Control"
     echo "3. Setup DE 4. Audio/Video Support" 
     echo "5. Office 6. A/V/Image Editing/Recording"
@@ -78,4 +79,5 @@ menu(){
     menu
 }
 USER=$(whoami)
+VERSION=1.0
 menu
