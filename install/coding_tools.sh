@@ -8,6 +8,7 @@ coding_tools(){
 	sudo dnf install -y python3-tools python3-devel git-gui \
 	java-17-openjdk-devel
 	flatpak install -y flathub io.github.shiftey.Desktop
+	flatpak install -y flathub org.geany.Geany
 
 }
 coding_tools

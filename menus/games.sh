@@ -12,7 +12,7 @@ help(){
 
 menu(){
     echo "1. Gaming Apps 2. Wine"
-    echo "3. Lutris 4. WoW Apps" 
+    echo "3. Lutris 4. WoW Up" 
     echo "5. Minecraft"
     echo "6. Steam flatpak permissions for mangohud"
     echo "99. Help 0. Back to main menu"
@@ -29,7 +29,7 @@ menu(){
         ./install/getlutris.sh
     elif [ $input -eq 4 ]
     then
-        ./install/wowapps.sh
+        ./install/wowup.sh
     elif [ $input -eq 5 ]
     then
         ./install/minecraft.sh

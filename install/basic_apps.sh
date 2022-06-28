@@ -8,7 +8,6 @@ basic_apps(){
 	bluecurve-icon-theme lm_sensors kleopatra kolourpaint
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
-	flatpak install -y flathub com.transmissionbt.Transmission
 	sudo mkdir /opt/launchers
 	sudo chown $USER:$USER /opt/launchers
 }

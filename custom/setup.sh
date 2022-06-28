@@ -7,7 +7,7 @@ help(){
 
 menu(){
     echo "Setup launchers/shortcuts"
-    echo "1. Steam (gamescope) 2. WoW Apps"
+    echo "1. Steam (gamescope) 2. WoW Up"
     echo "3. Setup mangohud configs"
     echo "4. Setup Lutris 5. Setup Dropbox Tray"
     echo "6. Ossec start 7. Setup bash profile"
@@ -21,7 +21,7 @@ menu(){
     elif [ $input -eq 2 ]
     then
         ./install/setup_permissions.sh
-        ./install/setup_wow_apps.sh
+        ./install/setup_wowup.sh
     elif [ $input -eq 3 ]
     then
         ./install/setup_permissions.sh
