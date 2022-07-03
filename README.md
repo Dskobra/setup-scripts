@@ -12,7 +12,7 @@ root
 
 *Important scripts in root directory
 * setup.sh - launch script
-* cleanup.sh - removes kwrite and libreoffice non flatpak version.
+* cleanup.sh - removes some unwanted packages such as kwrite and libreoffice non flatpak version.
 * unix.sh - i sometimes use windows which causes the line endings to not be in unix format. This fixes it.
 
 *Random notes
