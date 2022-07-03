@@ -41,7 +41,7 @@ menu(){
         ./install/setup_mangohud_steam.sh
     elif [ $input -eq 7 ]
     then
-        ./install/other_options.sh
+        ./other_options.sh
     elif [ $input -eq 99 ]
     then
         help
