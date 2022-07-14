@@ -3,35 +3,40 @@
 
 
 help(){
-    echo "1. Gaming Apps - steam, bottles, discord and mangohud."
+    echo "1. Steam Client - Self explanatory. :P"
     echo "2. Wine - official version of wine from winehq."
-    echo "3. Lutris - pulls in official lutris with git."
-    echo "4. WoW Apps - wowup and weak auras desktop apps."
-    echo "5. Minecraft - downloads minecraft."
+    echo "3. Lutris/Bottles - Downloads latest stable lutris, bottles and protonup."
+    echo "4. WoW Up - World of Warcraft addon manager."
+    echo "5. Minecraft - installs flatpak package of minecraft."
+    echo "6. Controller Setup - Installs kernel development packages and runs xpad."
 }
 
 menu(){
-    echo "1. Gaming Apps 2. Wine"
-    echo "3. Lutris 4. WoW Up" 
-    echo "5. Minecraft"
+    echo "1. Steam Client 2. Wine"
+    echo "3. Lutris/Bottles 4. WoW Up" 
+    echo "5. Minecraft 6. Controller Setup"
     echo "99. Help 0. Back to main menu"
     read input
     
     if [ $input -eq 1 ]
     then
-        ./install/gaming_apps.sh
+        ./install/steam.sh
     elif [ $input -eq 2 ]
     then
         ./install/winehq.sh
     elif [ $input -eq 3 ]
     then
-        ./install/getlutris.sh
+        ./install/gaming_apps.sh
     elif [ $input -eq 4 ]
     then
         ./install/wowup.sh
     elif [ $input -eq 5 ]
     then
-        ./install/minecraft.sh
+        flatpak -y install flathub com.mojang.Minecraft
+    elif [ $input -eq 6 ]
+    then
+        sudo dnf install -y kernel-modules-extra
+	    sudo modprobe xpad
     elif [ $input -eq 99 ]
     then
         help

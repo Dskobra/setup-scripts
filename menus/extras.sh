@@ -1,11 +1,12 @@
 #/usr/bin/bash
 
 help(){
-    echo "1. OSSEC Setup - Downloads the ossec tarball and compiles."
+    echo "1. OSSEC Setup - Downloads the latest ossec tarball and compiles."
+    echo "2. HP Printer Drivers - Self Explanatory. :P"
 }
 
 menu(){
-    echo "1. OSSEC setup 2. hplip-gui"
+    echo "1. OSSEC setup 2. HP Printer Drivers"
     echo "99. Help 0. Back to main menu"
     read input
     

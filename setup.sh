@@ -45,10 +45,12 @@ menu(){
         ./install/av_support.sh
     elif [ $input -eq 5 ]
     then
-        ./install/office.sh
+        ./menus/office.sh
     elif [ $input -eq 6 ]
     then
-        ./install/mm_editing.sh
+        sudo dnf install -y kolourpaint
+	    flatpak install -y flathub com.obsproject.Studio
+	    flatpak install -y flathub org.openshot.OpenShot
     elif [ $input -eq 7 ]
     then
         ./install/coding_tools.sh
@@ -79,5 +81,5 @@ menu(){
     menu
 }
 USER=$(whoami)
-VERSION=1.2
+VERSION=1.3
 menu
