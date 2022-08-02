@@ -15,6 +15,7 @@ menu(){
     echo "1. Steam Client 2. Wine"
     echo "3. Lutris/Bottles 4. WoW Up" 
     echo "5. Minecraft 6. Controller Setup"
+    echo "7. Steam Deck"
     echo "99. Help 0. Back to main menu"
     read input
     
@@ -37,6 +38,9 @@ menu(){
     then
         sudo dnf install -y kernel-modules-extra
 	    sudo modprobe xpad
+    elif [ $input -eq 7 ]
+    then
+        ./install/deck.sh
     elif [ $input -eq 99 ]
     then
         help
