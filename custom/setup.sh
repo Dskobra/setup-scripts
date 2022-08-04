@@ -9,9 +9,8 @@ menu(){
     echo "My custom setup scripts"
     echo "1. Setup bash profile 2. Setup Lutris Shortcut"
     echo "3. WoW Up 4. Copy Ossec start script" 
-    echo "5. Copy Lutris mangohud configs"
-    echo "6. Copy Steam(flatpak) mangohud configs"
-    echo "7. Other"
+    echo "5. Copy Steam/Lutris mangohud configs"
+    echo "6. Other"
     echo "99. Help 0. Exit"
     read input
     
@@ -34,12 +33,8 @@ menu(){
     elif [ $input -eq 5 ]
     then
         ./install/setup_permissions.sh
-        ./install/setup_mangohud_lutris.sh
+        ./install/setup_mangohud.sh
     elif [ $input -eq 6 ]
-    then
-        ./install/setup_permissions.sh
-        ./install/setup_mangohud_steam.sh
-    elif [ $input -eq 7 ]
     then
         ./other_options.sh
     elif [ $input -eq 99 ]

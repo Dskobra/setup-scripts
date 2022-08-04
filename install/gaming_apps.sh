@@ -4,7 +4,6 @@ gaming_apps(){
 	mkdir /home/$USER/Games
 	mkdir /home/$USER/Games/bottles
 	flatpak install -y flathub com.usebottles.bottles
-	flatpak install -y flathub net.davidotek.pupgui2
 }
 
 
