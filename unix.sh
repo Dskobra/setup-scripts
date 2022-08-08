@@ -14,9 +14,7 @@ cd install
 dos2unix *
 cd data
 dos2unix *
-cd nonsteam
+cd mangohud
 dos2unix *
 cd ../shortcuts
-dos2unix *
-cd ../steam 
 dos2unix *
