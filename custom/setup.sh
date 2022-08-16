@@ -9,7 +9,7 @@ menu(){
     echo "My custom setup scripts"
     echo "1. Setup bash profile 2. Setup Lutris Shortcut"
     echo "3. WoW Up 4. Copy Ossec start script" 
-    echo "5. Copy Steam/Lutris mangohud configs"
+    echo "5. Copy Steam/Lutris/bottles mangohud configs"
     echo "6. Other"
     echo "99. Help 0. Exit"
     read input

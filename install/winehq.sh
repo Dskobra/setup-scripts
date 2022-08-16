@@ -19,7 +19,7 @@ wine_repo(){
 		echo "error."
 	fi
 }
-winedeps(){
+wine_deps(){
 	echo "Installing various wine deps."
     sudo dnf install -y alsa-plugins-pulseaudio.i686 glibc-devel.i686 glibc-devel libgcc.i686 libX11-devel.i686 freetype-devel.i686
     sudo dnf install -y libXcursor-devel.i686 libXi-devel.i686 libXext-devel.i686 libXxf86vm-devel.i686 libXrandr-devel.i686
@@ -46,4 +46,4 @@ winedeps(){
 
 
 wine_repo
-winedeps
+wine_deps
