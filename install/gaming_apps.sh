@@ -7,6 +7,11 @@ gaming_apps(){
 }
 
 
+get_lutris_deps(){
+	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
+	python3-magic libraqm python3-olefile python3-pillow
+}
+
 get_lutris()
 {
 	# changed to upstream lutris due to some weird crashing on 1 computer (other computer oddly is fine), but upstream works fine.
@@ -17,8 +22,6 @@ get_lutris()
 	unzip $LUTRISZIP
 	mv lutris* lutris 
 	sudo mv lutris /opt/lutris
-	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
-	python3-magic libraqm python3-olefile python3-pillow
 	sudo ln -s "/opt/lutris/bin/lutris" "/usr/bin/lutris"
 }
 
@@ -28,6 +31,9 @@ get_lutris_beta(){
 	 flatpak install flathub org.gnome.Platform.Compat.i386 org.freedesktop.Platform.GL32.default org.freedesktop.Platform.GL.default
 	 flatpak install -y flathub-beta net.lutris.Lutris
 }
+
+
 gaming_apps
-get_lutris
-get_lutris_beta
+get_lutris_deps
+# get_lutris
+# get_lutris_beta

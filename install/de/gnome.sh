@@ -7,5 +7,7 @@ gnome(){
 	gnome-shell-extension-appindicator openssl \
 	humanity-icon-theme 
 	flatpak install -y flathub org.gnome.Extensions
+	flatpak install -y flathub com.transmissionbt.Transmission
+	flatpak install -y flathub org.gimp.GIMP
 }
 gnome
