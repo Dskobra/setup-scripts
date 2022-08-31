@@ -2,7 +2,7 @@
 
 USER=$(whoami)
 mkdir /home/$USER/.config/MangoHud/
-mkdir /home/$USER/.var/app/net.lutris.Lutris/config/MangoHud/
+#mkdir /home/$USER/.var/app/net.lutris.Lutris/config/MangoHud/
 mkdir /home/$USER/.var/app/com.usebottles.bottles/config/MangoHud/
 cd install/data/mangohud
 
@@ -17,6 +17,6 @@ cp wine-WorldOfWarships.conf /home/$USER/.config/MangoHud/
 cp wine-Gw2-64.conf /home/$USER/.config/MangoHud/
 cp wine-WoW.conf /home/$USER/.config/MangoHud/
 
-# for flutris/flatpak installed via flatpak
+# for lutris/flatpak installed via flatpak
 #cp wine-Gw2-64.conf /home/$USER/.var/app/net.lutris.Lutris/config/MangoHud/
 #cp wine-WoW.conf /home/$USER/.var/app/com.usebottles.bottles/config/MangoHud/
