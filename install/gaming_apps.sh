@@ -27,15 +27,7 @@ get_lutris()
 	sudo dnf install -y lutris
 }
 
-get_lutris_beta(){
-	 flatpak remote-add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-	 flatpak update --appstream
-	 flatpak install flathub org.gnome.Platform.Compat.i386 org.freedesktop.Platform.GL32.default org.freedesktop.Platform.GL.default
-	 flatpak install -y flathub-beta net.lutris.Lutris
-}
-
 
 gaming_apps
 get_lutris_deps
 get_lutris
-# get_lutris_beta

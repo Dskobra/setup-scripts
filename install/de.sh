@@ -10,7 +10,10 @@ DESKTOP=$XDG_CURRENT_DESKTOP
 		./install/de/kde.sh
 	elif [ "$DESKTOP" = "MATE" ];
 	then
-		./install/de/mate.sh
+		#./install/de/mate.sh
+		echo "Now setting up some extra mate features."
+		sudo dnf install -y caja-dropbox caja-share \
+		mate-menu
 	fi
 }
 get_desktop_extras

@@ -35,14 +35,20 @@ menu(){
         ./install/repos.sh
     elif [ $input -eq 2 ]
     then
-        ./install/amd_fan.sh
+        #./install/amd_fan.sh
+        sudo dnf install -y radeon-profile
+	    sudo systemctl enable radeon-profile-daemon.service
+	    sudo systemctl start radeon-profile-daemon.service
     elif [ $input -eq 3 ]
     then
         ./install/basic_apps.sh
         ./install/de.sh
     elif [ $input -eq 4 ]
     then
-        ./install/av_support.sh
+        #./install/av_support.sh
+        sudo dnf install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg
+	    flatpak install -y flathub org.videolan.VLC
     elif [ $input -eq 5 ]
     then
         ./menus/office.sh
@@ -81,5 +87,5 @@ menu(){
     menu
 }
 USER=$(whoami)
-VERSION=8.2.2022.2.18pm
+VERSION=9.8.2022.2.08am
 menu

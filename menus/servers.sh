@@ -2,8 +2,8 @@
 
 help(){
     echo "1. Lamp Stack - Apache web server, mariadb etc."
-    echo "2. Samba Share - Installs samba server and creates folders."
-    echo "3. Fedora Cockpit - Setups fedora cockpit for remote management."
+    echo "2. Fedora Cockpit - Setups fedora cockpit for remote management."
+    echo "3. Samba Share - Installs samba server and creates folders."
 }
 
 menu(){
@@ -17,10 +17,10 @@ menu(){
         ./install/lamp.sh
     elif [ $input -eq 2 ]
     then
-        ./install/samba_share.sh
+        ./install/cockpit.sh
     elif [ $input -eq 3 ]
     then
-        ./install/cockpit.sh
+        ./install/samba_share.sh
     elif [ $input -eq 99 ]
     then
         help
