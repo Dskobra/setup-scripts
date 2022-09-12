@@ -87,5 +87,5 @@ menu(){
     menu
 }
 USER=$(whoami)
-VERSION=9.8.2022.2.08am
+VERSION=9.12.2022.2.03am
 menu
