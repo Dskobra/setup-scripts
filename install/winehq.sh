@@ -7,11 +7,17 @@ wine_repo(){
 
 	if [ "$getRelease" = "36" ]
 	then
+		# remove after 37 is released, winehq updated and no major bugs.
 		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
 	elif [ "$getRelease" = "37" ]
 	then
-		# temporarily use fedora 36 winehq repo on fedora 36. change when one for 36 is released.
+		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
 		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
+	elif [ "$getRelease" = "38" ]
+	then
+		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
+		#sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
+		echo "Fedora 38 placeholder. Not due for release until around may/june"
 	elif [ $input -eq 0 ]
 	then
 		exit

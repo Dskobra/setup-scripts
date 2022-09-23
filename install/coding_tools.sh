@@ -7,7 +7,7 @@ coding_tools(){
 	source ~/.bashrc
 	nvm install lts/*
 	sudo dnf install -y python3-tools python3-devel git-gui \
-	java-17-openjdk-devel codium vim-enhanced
+	java-17-openjdk-devel codium
 	flatpak install -y flathub io.github.shiftey.Desktop
 	flatpak install -y flathub org.geany.Geany
 
