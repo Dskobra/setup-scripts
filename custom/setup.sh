@@ -33,10 +33,9 @@ menu(){
         ./install/setup_permissions.sh
         ./install/setup_mangohud.sh
     elif [ $input -eq 5 ]
+    then
         ./install/setup_permissions.sh
         ./install/setup_dropbox.sh
-    then
-        ./other_options.sh
     elif [ $input -eq 6 ]
     then
         ./other_options.sh
