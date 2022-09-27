@@ -26,7 +26,6 @@ menu(){
     echo "7.Coding Tools 8. Gaming"
     echo "9. Servers 10. Utilities"
     echo "11. Virtualization"
-    echo "12. Extras"
     echo "99. Help 0. Exit"
     read input
     
@@ -35,7 +34,6 @@ menu(){
         ./install/repos.sh
     elif [ $input -eq 2 ]
     then
-        #./install/amd_fan.sh
         sudo dnf install -y radeon-profile
 	    sudo systemctl enable radeon-profile-daemon.service
 	    sudo systemctl start radeon-profile-daemon.service
@@ -45,7 +43,6 @@ menu(){
         ./install/de.sh
     elif [ $input -eq 4 ]
     then
-        #./install/av_support.sh
         sudo dnf install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg
 	    flatpak install -y flathub org.videolan.VLC
@@ -72,9 +69,6 @@ menu(){
     elif [ $input -eq 11 ]
     then
         ./install/virtualization.sh
-    elif [ $input -eq 12 ]
-    then
-        ./menus/extras.sh
     elif [ $input -eq 99 ]
     then
         help
@@ -87,5 +81,5 @@ menu(){
     menu
 }
 USER=$(whoami)
-VERSION=9.12.2022.2.03am
+VERSION=9.27.2022.4.58am
 menu

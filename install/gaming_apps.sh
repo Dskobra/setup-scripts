@@ -14,16 +14,6 @@ get_lutris_deps(){
 
 get_lutris()
 {
-	# changed to upstream lutris due to some weird crashing on 1 computer (other computer oddly is fine), but upstream works fine.
-	# 8.22.2022 lutris from fedora repos works fine now. Commenting lines for now.
-	#LUTRISLINK=https://github.com/lutris/lutris/archive/refs/tags/v0.5.10.1.zip
-	#LUTRISZIP=v0.5.10.1.zip
-	#cd /home/$USER/Downloads
-	#wget $LUTRISLINK
-	#unzip $LUTRISZIP
-	#mv lutris* lutris 
-	#sudo mv lutris /opt/lutris
-	#sudo ln -s "/opt/lutris/bin/lutris" "/usr/bin/lutris"
 	sudo dnf install -y lutris
 }
 

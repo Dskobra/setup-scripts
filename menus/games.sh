@@ -20,7 +20,6 @@ menu(){
     
     if [ $input -eq 1 ]
     then
-        #./install/steam.sh
         sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices
 	    flatpak install -y flathub net.davidotek.pupgui2
     elif [ $input -eq 2 ]
