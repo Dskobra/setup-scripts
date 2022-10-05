@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-setup_samba(){
+install_samba(){
 	sudo dnf install -y samba
 	sudo systemctl enable smb nmb
 	sudo firewall-cmd --add-service=samba --permanent
@@ -8,4 +8,4 @@ setup_samba(){
 	sudo mkdir /mnt/shared
 	sudo chown $USER /mnt/shared -R
 }
-setup_samba
+install_samba

@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-mate(){
+install_mate_extras(){
 	echo "Now setting up some extra mate features."
 	sudo dnf install -y caja-dropbox caja-share \
 	mate-menu
 }
-mate
+install_mate_extras

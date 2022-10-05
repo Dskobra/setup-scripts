@@ -68,7 +68,10 @@ menu(){
         ./install/utilities.sh
     elif [ $input -eq 11 ]
     then
-        ./install/virtualization.sh
+        #./install/virtualization.sh
+        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+        -O /etc/yum.repos.d/virtio-win.repo
+	sudo dnf install -y	virt-manager libvirt-client virtio-win
     elif [ $input -eq 99 ]
     then
         help
@@ -81,5 +84,5 @@ menu(){
     menu
 }
 USER=$(whoami)
-VERSION=9.27.2022.4.58am
+VERSION=10.5.2022.3.20am
 menu

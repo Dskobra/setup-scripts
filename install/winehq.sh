@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-wine_repo(){
+setup_wine_repo(){
 	source /etc/os-release
 	getRelease=$(echo $VERSION_ID)
 	echo "Fedora Version:" $getRelease
@@ -25,8 +25,8 @@ wine_repo(){
 		echo "error."
 	fi
 }
-wine_deps(){
-	echo "Installing various wine deps."
+install_wine(){
+	echo "Installing wine and various libs for things like wow."
     sudo dnf install -y alsa-plugins-pulseaudio.i686 glibc-devel.i686 glibc-devel libgcc.i686 libX11-devel.i686 freetype-devel.i686
     sudo dnf install -y libXcursor-devel.i686 libXi-devel.i686 libXext-devel.i686 libXxf86vm-devel.i686 libXrandr-devel.i686
     sudo dnf install -y libXinerama-devel.i686 mesa-libGLU-devel.i686 mesa-libOSMesa-devel.i686 libXrender-devel.i686 libpcap-devel.i686
@@ -51,5 +51,5 @@ wine_deps(){
 }
 
 
-wine_repo
-wine_deps
+setup_wine_repo
+install_wine

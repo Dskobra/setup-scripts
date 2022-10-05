@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-basic_apps(){
+install_basic_apps(){
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
 	bluecurve-icon-theme
@@ -10,4 +10,4 @@ basic_apps(){
 	sudo chown $USER:$USER /opt/launchers
 }
 
-basic_apps
+install_basic_apps

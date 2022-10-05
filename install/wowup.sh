@@ -1,9 +1,8 @@
 #!/usr/bin/bash
-WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.8.3/WowUp-2.8.3.AppImage
-WOWUPBINARY=WowUp-2.8.3.AppImage
 
-
-wowup(){
+install_wowup(){
+    WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.9.0/WowUp-2.9.0.AppImage
+    WOWUPBINARY=WowUp-2.9.0.AppImage
     mkdir /home/$USER/Downloads/wowup 
     cd /home/$USER/Downloads/wowup 
     wget $WOWUPLINK
@@ -11,4 +10,4 @@ wowup(){
     sudo mv /home/$USER/Downloads/wowup /opt/wowup
 }
 
-wowup
+install_wowup

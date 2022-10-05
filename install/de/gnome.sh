@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-gnome(){
+install_gnome_extras(){
 	echo "Now setting up some extra gnome features."
 	sudo dnf install -y menulibre pavucontrol \
 	gnome-tweaks nautilus-dropbox file-roller \
@@ -10,4 +10,4 @@ gnome(){
 	flatpak install -y flathub com.transmissionbt.Transmission
 	flatpak install -y flathub org.gimp.GIMP
 }
-gnome
+install_gnome_extras
