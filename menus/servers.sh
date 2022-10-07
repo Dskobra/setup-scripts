@@ -14,10 +14,17 @@ menu(){
     
     if [ $input -eq 1 ]
     then
-        ./install/lamp.sh
+        #./install/lamp.sh
+        sudo dnf install -y httpd php mariadb mariadb-server
+	    sudo dnf install -y phpmyadmin
+	    sudo systemctl enable --now httpd mariadb
     elif [ $input -eq 2 ]
     then
-        ./install/cockpit.sh
+        #./install/cockpit.sh
+        sudo dnf install -y cockpit
+	    sudo systemctl enable --now cockpit.socket
+	    sudo firewall-cmd --add-service=cockpit
+	    sudo firewall-cmd --add-service=cockpit --permanent
     elif [ $input -eq 3 ]
     then
         ./install/samba_share.sh
