@@ -19,6 +19,78 @@ install_basic_apps(){
 	sudo chown $USER:$USER /opt/launchers
 }
 
+get_desktop_extras(){
+    DESKTOP=$XDG_CURRENT_DESKTOP
+	if [ "$DESKTOP" = "GNOME" ];
+	then
+		install_gnome_extras
+	elif [ "$DESKTOP" = "KDE" ];
+	then
+		install_kde_extras
+	elif [ "$DESKTOP" = "MATE" ];
+	then
+		echo "Now setting up some extra mate features."
+		sudo dnf install -y caja-dropbox caja-share \
+		mate-menu
+	fi
+}
+
+install_gnome_extras(){
+	echo "Now setting up some extra gnome features."
+	sudo dnf install -y menulibre pavucontrol \
+	gnome-tweaks nautilus-dropbox file-roller \
+	gnome-shell-extension-appindicator openssl \
+	humanity-icon-theme gedit gedit-plugins
+	flatpak install -y flathub org.gnome.Extensions
+	flatpak install -y flathub com.transmissionbt.Transmission
+	flatpak install -y flathub org.gimp.GIMP
+}
+
+install_kde_extras(){
+	echo "Now setting up some extra kde features."
+	sudo dnf install -y dolphin-plugins \
+	kate zenity ark digikam kde-connect konversation \
+	kpat ktorrent krusader
+	flatpak install -y flathub com.dropbox.Client
+}
+
+get_desktop_extras(){
+    DESKTOP=$XDG_CURRENT_DESKTOP
+    if [ "$DESKTOP" = "GNOME" ];
+	then
+		install_gnome_extras
+	elif [ "$DESKTOP" = "KDE" ];
+	then
+		install_kde_extras
+	elif [ "$DESKTOP" = "MATE" ];
+	then
+		echo "Now setting up some extra mate features."
+		sudo dnf install -y caja-dropbox caja-share \
+		mate-menu
+	fi
+}
+
+install_coding_tools(){
+	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
+	wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	source ~/.bashrc
+	nvm install lts/*
+	sudo dnf install -y python3-tools python3-devel git-gui \
+	java-17-openjdk-devel codium
+	flatpak install -y flathub io.github.shiftey.Desktop
+	flatpak install -y flathub org.geany.Geany
+
+}
+
+install_utilities(){
+	sudo dnf -y copr enable timlau/yumex-dnf
+	sudo dnf install -y yumex-dnf dconf-editor \
+	clamav clamav-update firewall-applet kleopatra \
+	mediawriter
+	flatpak install -y flathub org.gtkhash.gtkhash
+	flatpak install -y flathub com.github.tchx84.Flatseal
+}
 main_help(){
     echo "1. Repos - rpmfusion, flatpak and brave browser."
     echo "2. Amd Drivers - x11 driver arnd radeon-profile package for fan control. Doesnt work on laptops or cards without fans."
@@ -203,7 +275,7 @@ main_menu(){
     elif [ $input -eq 3 ]
     then
         install_basic_apps
-        ./install/de.sh
+        get_desktop_extras
     elif [ $input -eq 4 ]
     then
         sudo dnf install -y gstreamer1-plugin-openh264 \
@@ -211,7 +283,7 @@ main_menu(){
 	    flatpak install -y flathub org.videolan.VLC
     elif [ $input -eq 5 ]
     then
-        ./menus/office.sh
+        office_menu
     elif [ $input -eq 6 ]
     then
         sudo dnf install -y kolourpaint
@@ -219,16 +291,16 @@ main_menu(){
 	    flatpak install -y flathub org.openshot.OpenShot
     elif [ $input -eq 7 ]
     then
-        ./install/coding_tools.sh
+        install_coding_tools
     elif [ $input -eq 8 ]
     then
         games_menu
     elif [ $input -eq 9 ]
     then
-        ./menus/servers.sh
+        servers_menu
     elif [ $input -eq 10 ]
     then
-        ./install/utilities.sh
+        install_utilities
     elif [ $input -eq 11 ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
