@@ -1,6 +1,23 @@
 #/usr/bin/bash
 
+setup_repos(){
+	echo "Setting up rpmfusion and flathub."
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+	sudo dnf update -y
+}
 
+install_basic_apps(){
+	sudo dnf install -y  java-17-openjdk brave-browser \
+	plymouth-theme-spinfinity vim-enhanced lm_sensors \
+	bluecurve-icon-theme
+	sudo plymouth-set-default-theme spinfinity -R
+	flatpak install -y flathub org.keepassxc.KeePassXC
+	sudo mkdir /opt/launchers
+	sudo chown $USER:$USER /opt/launchers
+}
 
 main_help(){
     echo "1. Repos - rpmfusion, flatpak and brave browser."
@@ -177,7 +194,7 @@ main_menu(){
     
     if [ $input -eq 1 ]
     then
-        ./install/repos.sh
+        setup_repos
     elif [ $input -eq 2 ]
     then
         sudo dnf install -y radeon-profile
@@ -185,7 +202,7 @@ main_menu(){
 	    sudo systemctl start radeon-profile-daemon.service
     elif [ $input -eq 3 ]
     then
-        ./install/basic_apps.sh
+        install_basic_apps
         ./install/de.sh
     elif [ $input -eq 4 ]
     then
