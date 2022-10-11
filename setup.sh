@@ -9,6 +9,48 @@ setup_repos(){
 	sudo dnf update -y
 }
 
+setup_wine_repo(){
+	source /etc/os-release
+	getRelease=$(echo $VERSION_ID)
+	echo "Fedora Version:" $getRelease
+
+	if [ "$getRelease" = "36" ]
+	then
+		# remove after 37 is released, winehq updated and no major bugs.
+		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
+	elif [ "$getRelease" = "37" ]
+	then
+		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
+		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
+	elif [ "$getRelease" = "38" ]
+	then
+		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
+		#sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
+		echo "Fedora 38 placeholder. Not due for release until around may/june"
+	elif [ $input -eq 0 ]
+	then
+		exit
+	else
+		echo "error."
+	fi
+}
+
+get_desktop_extras(){
+    DESKTOP=$XDG_CURRENT_DESKTOP
+    if [ "$DESKTOP" = "GNOME" ];
+	then
+		install_gnome_extras
+	elif [ "$DESKTOP" = "KDE" ];
+	then
+		install_kde_extras
+	elif [ "$DESKTOP" = "MATE" ];
+	then
+		echo "Now setting up some extra mate features."
+		sudo dnf install -y caja-dropbox caja-share \
+		mate-menu
+	fi
+}
+
 install_basic_apps(){
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
@@ -52,22 +94,6 @@ install_kde_extras(){
 	kate zenity ark digikam kde-connect konversation \
 	kpat ktorrent krusader
 	flatpak install -y flathub com.dropbox.Client
-}
-
-get_desktop_extras(){
-    DESKTOP=$XDG_CURRENT_DESKTOP
-    if [ "$DESKTOP" = "GNOME" ];
-	then
-		install_gnome_extras
-	elif [ "$DESKTOP" = "KDE" ];
-	then
-		install_kde_extras
-	elif [ "$DESKTOP" = "MATE" ];
-	then
-		echo "Now setting up some extra mate features."
-		sudo dnf install -y caja-dropbox caja-share \
-		mate-menu
-	fi
 }
 
 install_coding_tools(){
@@ -139,32 +165,6 @@ install_wowup(){
     sudo mv /home/$USER/Downloads/wowup /opt/wowup
 }
 
-setup_wine_repo(){
-	source /etc/os-release
-	getRelease=$(echo $VERSION_ID)
-	echo "Fedora Version:" $getRelease
-
-	if [ "$getRelease" = "36" ]
-	then
-		# remove after 37 is released, winehq updated and no major bugs.
-		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
-	elif [ "$getRelease" = "37" ]
-	then
-		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
-		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
-	elif [ "$getRelease" = "38" ]
-	then
-		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
-		#sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
-		echo "Fedora 38 placeholder. Not due for release until around may/june"
-	elif [ $input -eq 0 ]
-	then
-		exit
-	else
-		echo "error."
-	fi
-}
-
 install_samba(){
 	sudo dnf install -y samba
 	sudo systemctl enable smb nmb
@@ -190,61 +190,6 @@ main_help(){
     echo "12. Extras - Some extra stuff like ossec."
 }
 
-about(){
-    VERSION=10.5.2022.3.20am
-    echo "================================================"
-    echo "Copyright (c) 2022 Jordan Bottoms"
-    echo "Released under the MIT license"
-    echo "Version: $VERSION"
-    echo "================================================"
-    main_menu
-}
-
-games_menu(){
-    echo "================================================"
-    echo "Games Menu"
-    echo "1. Steam Client 2. Wine"
-    echo "3. Lutris/Bottles 4. WoW Up" 
-    echo "5. Minecraft 6. Controller Setup"
-    echo "99. Help 0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input -eq 1 ]
-    then
-        sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices
-	    flatpak install -y flathub net.davidotek.pupgui2
-    elif [ $input -eq 2 ]
-    then
-        setup_wine_repo
-        install_wine
-    elif [ $input -eq 3 ]
-    then
-        install_bottles
-        install_lutris
-    elif [ $input -eq 4 ]
-    then
-        install_wowup
-    elif [ $input -eq 5 ]
-    then
-        flatpak -y install flathub com.mojang.Minecraft
-    elif [ $input -eq 6 ]
-    then
-        sudo dnf install -y kernel-modules-extra
-	    sudo modprobe xpad
-    elif [ $input -eq 99 ]
-    then
-        games_help
-    elif [ $input -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    games_menu
-}
-
 games_help(){
     echo "1. Steam Client - Self explanatory. :P"
     echo "2. Wine - official version of wine from winehq."
@@ -254,84 +199,21 @@ games_help(){
     echo "6. Controller Setup - Installs kernel development packages and runs xpad."
 }
 
-office_menu(){
-    echo "================================================"
-    echo "Office Menu"
-    echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
-    echo "3. HP Printer Drivers"
-    echo "99. Help 0. Back to main menu"
-    printf "Option: "
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input -eq 1 ]
-    then
-        flatpak install -y flathub org.libreoffice.LibreOffice
-	    flatpak install -y flathub org.qownnotes.QOwnNotes
-    elif [ $input -eq 2 ]
-    then
-        flatpak install -y flathub com.discordapp.Discord
-	    flatpak install -y flathub im.pidgin.Pidgin
-    elif [ $input -eq 3 ]
-    then
-        sudo dnf install -y hplip-gui
-    elif [ $input -eq 99 ]
-    then
-        office_help
-    elif [ $input -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    office_menu
-}
-
 office_help(){
     echo "1. LibreOffice/QOwnNotes - self explanatory. :P"
     echo "2. Social Apps - Currently installs discord and pidgin."
-}
-
-servers_menu(){
-    echo "================================================"
-    echo "1. Lamp Stack 2. Fedora Cockpit"
-    echo "3. Samba Share"
-    echo "99. Help 0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input -eq 1 ]
-    then
-        sudo dnf install -y httpd php mariadb mariadb-server
-	    sudo dnf install -y phpmyadmin
-	    sudo systemctl enable --now httpd mariadb
-    elif [ $input -eq 2 ]
-    then
-        sudo dnf install -y cockpit
-	    sudo systemctl enable --now cockpit.socket
-	    sudo firewall-cmd --add-service=cockpit
-	    sudo firewall-cmd --add-service=cockpit --permanent
-    elif [ $input -eq 3 ]
-    then
-        install_samba
-    elif [ $input -eq 99 ]
-    then
-        servers_help
-    elif [ $input -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    servers_menu
 }
 
 servers_help(){
     echo "1. Lamp Stack - Apache web server, mariadb etc."
     echo "2. Fedora Cockpit - Setups fedora cockpit for remote management."
     echo "3. Samba Share - Installs samba server and creates folders."
+}
+
+media_help(){
+    echo ""
+    echo ""
+    echo ""
 }
 
 main_menu(){
@@ -406,6 +288,154 @@ main_menu(){
     main_menu
 }
 
+games_menu(){
+    echo "================================================"
+    echo "Games Menu"
+    echo "1. Steam Client 2. Wine"
+    echo "3. Lutris/Bottles 4. WoW Up" 
+    echo "5. Minecraft 6. Controller Setup"
+    echo "99. Help 0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices
+	    flatpak install -y flathub net.davidotek.pupgui2
+    elif [ $input -eq 2 ]
+    then
+        setup_wine_repo
+        install_wine
+    elif [ $input -eq 3 ]
+    then
+        install_bottles
+        install_lutris
+    elif [ $input -eq 4 ]
+    then
+        install_wowup
+    elif [ $input -eq 5 ]
+    then
+        flatpak -y install flathub com.mojang.Minecraft
+    elif [ $input -eq 6 ]
+    then
+        sudo dnf install -y kernel-modules-extra
+	    sudo modprobe xpad
+    elif [ $input -eq 99 ]
+    then
+        games_help
+    elif [ $input -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    games_menu
+}
+
+office_menu(){
+    echo "================================================"
+    echo "Office Menu"
+    echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
+    echo "3. HP Printer Drivers"
+    echo "99. Help 0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        flatpak install -y flathub org.libreoffice.LibreOffice
+	    flatpak install -y flathub org.qownnotes.QOwnNotes
+    elif [ $input -eq 2 ]
+    then
+        flatpak install -y flathub com.discordapp.Discord
+	    flatpak install -y flathub im.pidgin.Pidgin
+    elif [ $input -eq 3 ]
+    then
+        sudo dnf install -y hplip-gui
+    elif [ $input -eq 99 ]
+    then
+        office_help
+    elif [ $input -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    office_menu
+}
+
+media_menu(){
+    echo "================================================"
+    echo "Media Menu"
+    echo "99. Help 0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        echo ""
+    elif [ $input -eq 2 ]
+    then
+        echo ""
+    elif [ $input -eq 99 ]
+    then
+        media_help
+    elif [ $input -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    media_menu
+}
+
+servers_menu(){
+    echo "================================================"
+    echo "1. Lamp Stack 2. Fedora Cockpit"
+    echo "3. Samba Share"
+    echo "99. Help 0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        sudo dnf install -y httpd php mariadb mariadb-server
+	    sudo dnf install -y phpmyadmin
+	    sudo systemctl enable --now httpd mariadb
+    elif [ $input -eq 2 ]
+    then
+        sudo dnf install -y cockpit
+	    sudo systemctl enable --now cockpit.socket
+	    sudo firewall-cmd --add-service=cockpit
+	    sudo firewall-cmd --add-service=cockpit --permanent
+    elif [ $input -eq 3 ]
+    then
+        install_samba
+    elif [ $input -eq 99 ]
+    then
+        servers_help
+    elif [ $input -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    servers_menu
+}
+
+about(){
+    VERSION=10.5.2022.3.20am
+    echo "================================================"
+    echo "Copyright (c) 2022 Jordan Bottoms"
+    echo "Released under the MIT license"
+    echo "Version: $VERSION"
+    echo "================================================"
+    main_menu
+}
 
 USER=$(whoami)
 main_menu
