@@ -30,6 +30,7 @@ about(){
 
 games_menu(){
     echo "================================================"
+    echo "Games Menu"
     echo "1. Steam Client 2. Wine"
     echo "3. Lutris/Bottles 4. WoW Up" 
     echo "5. Minecraft 6. Controller Setup"
@@ -60,7 +61,7 @@ games_menu(){
 	    sudo modprobe xpad
     elif [ $input -eq 99 ]
     then
-        help
+        games_help
     elif [ $input -eq 0 ]
     then
 	    main_menu
@@ -70,10 +71,23 @@ games_menu(){
     games_menu
 }
 
+games_help(){
+    echo "1. Steam Client - Self explanatory. :P"
+    echo "2. Wine - official version of wine from winehq."
+    echo "3. Lutris/Bottles - Downloads latest stable lutris, bottles and protonup."
+    echo "4. WoW Up - World of Warcraft addon manager."
+    echo "5. Minecraft - installs flatpak package of minecraft."
+    echo "6. Controller Setup - Installs kernel development packages and runs xpad."
+}
+
 office_menu(){
+    echo "================================================"
+    echo "Office Menu"
     echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
     echo "3. HP Printer Drivers"
     echo "99. Help 0. Back to main menu"
+    printf "Option: "
+    echo "================================================"
     printf "Option: "
     read input
     
@@ -90,7 +104,7 @@ office_menu(){
         sudo dnf install -y hplip-gui
     elif [ $input -eq 99 ]
     then
-        help
+        office_help
     elif [ $input -eq 0 ]
     then
 	    main_menu
@@ -98,6 +112,11 @@ office_menu(){
 	    echo "error."
     fi
     office_menu
+}
+
+office_help(){
+    echo "1. LibreOffice/QOwnNotes - self explanatory. :P"
+    echo "2. Social Apps - Currently installs discord and pidgin."
 }
 
 servers_menu(){
@@ -127,7 +146,7 @@ servers_menu(){
         ./install/samba_share.sh
     elif [ $input -eq 99 ]
     then
-        help
+        servers_help
     elif [ $input -eq 0 ]
     then
 	    main_menu
@@ -137,9 +156,16 @@ servers_menu(){
     servers_menu
 }
 
+servers_help(){
+    echo "1. Lamp Stack - Apache web server, mariadb etc."
+    echo "2. Fedora Cockpit - Setups fedora cockpit for remote management."
+    echo "3. Samba Share - Installs samba server and creates folders."
+}
+
 main_menu(){
     echo "================================================"
-    echo "1. Repos 2. AMD Fan Control"
+    echo "Main Menu"
+    echo "1. Repos 2. AMD Radeon Fan Control"
     echo "3. Setup DE 4. Audio/Video Support" 
     echo "5. Office 6. A/V/Image Editing/Recording"
     echo "7.Coding Tools 8. Gaming"
