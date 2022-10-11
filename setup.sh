@@ -2,7 +2,7 @@
 
 
 
-help(){
+main_help(){
     echo "1. Repos - rpmfusion, flatpak and brave browser."
     echo "2. Amd Drivers - x11 driver arnd radeon-profile package for fan control. Doesnt work on laptops or cards without fans."
     echo "3. Setup DE - Sets up desktop environment specific packages. Also installs brave and few other basic packages."
@@ -130,13 +130,11 @@ servers_menu(){
     
     if [ $input -eq 1 ]
     then
-        #./install/lamp.sh
         sudo dnf install -y httpd php mariadb mariadb-server
 	    sudo dnf install -y phpmyadmin
 	    sudo systemctl enable --now httpd mariadb
     elif [ $input -eq 2 ]
     then
-        #./install/cockpit.sh
         sudo dnf install -y cockpit
 	    sudo systemctl enable --now cockpit.socket
 	    sudo firewall-cmd --add-service=cockpit
@@ -216,13 +214,12 @@ main_menu(){
         ./install/utilities.sh
     elif [ $input -eq 11 ]
     then
-        #./install/virtualization.sh
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
 	    sudo dnf install -y	virt-manager libvirt-client virtio-win
     elif [ $input -eq 99 ]
     then
-        help
+        main_help
     elif [ $input -eq 100 ]
     then
         about
