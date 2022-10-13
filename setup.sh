@@ -220,11 +220,10 @@ main_menu(){
     echo "================================================"
     echo "Main Menu"
     echo "1. Repos 2. AMD Radeon Fan Control"
-    echo "3. Setup DE 4. Audio/Video Support" 
-    echo "5. Office 6. A/V/Image Editing/Recording"
-    echo "7.Coding Tools 8. Gaming"
-    echo "9. Servers 10. Utilities"
-    echo "11. Virtualization"
+    echo "3. Setup DE 4. Media" 
+    echo "5. Office 6.Coding Tools"
+    echo "7. Gaming 8. Servers"
+    echo "9. Utilities 10. Virtualization"
     echo "99. Help 100. About script "
     echo "0. Exit"
     echo "================================================"
@@ -245,30 +244,23 @@ main_menu(){
         get_desktop_extras
     elif [ $input -eq 4 ]
     then
-        sudo dnf install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg
-	    flatpak install -y flathub org.videolan.VLC
+        media_menu
     elif [ $input -eq 5 ]
     then
         office_menu
     elif [ $input -eq 6 ]
     then
-        sudo dnf install -y kolourpaint
-	    flatpak install -y flathub com.obsproject.Studio
-	    flatpak install -y flathub org.openshot.OpenShot
+        install_coding_tools
     elif [ $input -eq 7 ]
     then
-        install_coding_tools
+        games_menu
     elif [ $input -eq 8 ]
     then
-        games_menu
+        servers_menu
     elif [ $input -eq 9 ]
     then
-        servers_menu
-    elif [ $input -eq 10 ]
-    then
         install_utilities
-    elif [ $input -eq 11 ]
+    elif [ $input -eq 10 ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
@@ -369,6 +361,8 @@ office_menu(){
 media_menu(){
     echo "================================================"
     echo "Media Menu"
+    echo "1. Codecs/Playback 2. Editing Tools"
+    echo "3. OBS Studio"
     echo "99. Help 0. Back to main menu"
     echo "================================================"
     printf "Option: "
@@ -377,9 +371,16 @@ media_menu(){
     if [ $input -eq 1 ]
     then
         echo ""
+        sudo dnf install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg
+	    flatpak install -y flathub org.videolan.VLC
     elif [ $input -eq 2 ]
     then
-        echo ""
+        sudo dnf install -y kolourpaint
+	    flatpak install -y flathub org.openshot.OpenShot
+    elif [$input -eq 3 ]
+    then
+        flatpak install -y flathub com.obsproject.Studio
     elif [ $input -eq 99 ]
     then
         media_help

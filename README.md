@@ -6,7 +6,6 @@ folder layout
 -------------
 root
 * install - installation scripts.
-* menus - submenu folder.
 * custom - scripts for setting up my desktop shortcuts, profiles etc.
 
 
