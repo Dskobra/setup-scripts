@@ -378,7 +378,7 @@ media_menu(){
     then
         sudo dnf install -y kolourpaint
 	    flatpak install -y flathub org.openshot.OpenShot
-    elif [$input -eq 3 ]
+    elif [ $input -eq 3 ]
     then
         flatpak install -y flathub com.obsproject.Studio
     elif [ $input -eq 99 ]
