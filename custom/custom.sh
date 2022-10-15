@@ -30,7 +30,7 @@ setup_mangohud(){
     mkdir /home/$USER/.var/app/com.usebottles.bottles/config/MangoHud/
     cd /$PARENT/data/mangohud
 
-# for steam/lutris installed via package manager
+    # for steam/lutris installed via package manager
     cp wine-GTA5.conf /home/$USER/.config/MangoHud/
     cp wine-NewWorld.conf /home/$USER/.config/MangoHud/
     cp wine-PathOfExile_x64Steam.conf /home/$USER/.config/MangoHud/
@@ -63,9 +63,11 @@ other_options_help(){
 }
 
 other_options_menu(){
+    echo "================================================"
     echo "Other options"
     echo "1. Steam (gamescope)"
     echo "99. Help 0. Back"
+    echo "================================================"
     printf "Option: "
     read input
     
@@ -86,19 +88,20 @@ other_options_menu(){
 }
 
 main_menu(){
+    echo "================================================"
     echo "My custom setup scripts"
     echo "1. Setup bash profile 2. WoW Up"
     echo "3. Copy Mangohud configs"
     echo "4. Setup dropbox tray 6. Other"
     echo "99. Help 0. Exit"
+    echo "================================================"
     printf "Option: "
     read input
     
     if [ $input -eq 1 ]
     then
-        cp /home/$USER/.bashrc /home/$USER/.bashrc.bak
-        test=$(pwd)
-        #cat /$PARENT/data/custom_paths >> /home/$USER/.bashrc
+        cp /home/$USER/.bashrc /home/$USER/.bashrc.ba
+        cat /$PARENT/data/custom_paths >> /home/$USER/.bashrc
     elif [ $input -eq 2 ]
     then
         setup_permissions
@@ -126,5 +129,5 @@ main_menu(){
     main_menu
 }
 USER=$(whoami)
-PARENT=$(pwd)   # get the setup-scripts root folder
+PARENT=$(pwd)   # get the current folder custom.sh is running from
 main_menu
