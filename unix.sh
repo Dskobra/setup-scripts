@@ -4,8 +4,6 @@
 dos2unix *
 cd custom
 dos2unix *
-cd install
-dos2unix *
 cd data
 dos2unix *
 cd mangohud

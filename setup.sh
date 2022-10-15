@@ -131,27 +131,78 @@ install_lutris(){
 }
 
 install_wine(){
-	echo "Installing wine and various libs for things like wow."
-    sudo dnf install -y alsa-plugins-pulseaudio.i686 glibc-devel.i686 glibc-devel libgcc.i686 libX11-devel.i686 freetype-devel.i686
-    sudo dnf install -y libXcursor-devel.i686 libXi-devel.i686 libXext-devel.i686 libXxf86vm-devel.i686 libXrandr-devel.i686
-    sudo dnf install -y libXinerama-devel.i686 mesa-libGLU-devel.i686 mesa-libOSMesa-devel.i686 libXrender-devel.i686 libpcap-devel.i686
-    sudo dnf install -y ncurses-devel.i686 libzip-devel.i686 lcms2-devel.i686 zlib-devel.i686 libv4l-devel.i686 libgphoto2-devel.i686
-    sudo dnf install -y cups-devel.i686 libxml2-devel.i686 openldap-devel.i686 libxslt-devel.i686 gnutls-devel.i686 libpng-devel.i686
-    sudo dnf install -y flac-libs.i686 json-c.i686 libICE.i686 libSM.i686 libXtst.i686 libasyncns.i686 libedit.i686
-    sudo dnf install -y liberation-narrow-fonts.noarch libieee1284.i686 libogg.i686 libsndfile.i686 libuuid.i686 libva.i686 libvorbis.i686
-    sudo dnf install -y libwayland-client.i686 libwayland-server.i686 llvm-libs.i686 mesa-dri-drivers.i686 mesa-filesystem.i686 mesa-libEGL.i686
-    sudo dnf install -y mesa-libgbm.i686 nss-mdns.i686 ocl-icd.i686 pulseaudio-libs.i686  sane-backends-libs.i686 tcp_wrappers-libs.i686 unixODBC.i686
-    sudo dnf install -y samba-common-tools.x86_64 samba-libs.x86_64 samba-winbind.x86_64
-    sudo dnf install -y samba-winbind-clients.x86_64 samba-winbind-modules.x86_64 mesa-libGL-devel.i686 fontconfig-devel.i686 libXcomposite-devel.i686
-    sudo dnf install -y libtiff-devel.i686 openal-soft-devel.i686 mesa-libOpenCL-devel.i686 opencl-utils-devel.i686 alsa-lib-devel.i686 gsm-devel.i686
-    sudo dnf install -y libjpeg-turbo-devel.i686 pulseaudio-libs-devel.i686 pulseaudio-libs-devel gtk3-devel.i686 libattr-devel.i686 libva-devel.i686
-    sudo dnf install -y libexif-devel.i686 libexif.i686 glib2-devel.i686 mpg123-devel.i686 mpg123-devel.x86_64 libcom_err-devel.i686
-    sudo dnf install -y libcom_err-devel.x86_64 libFAudio-devel.i686 libFAudio-devel.x86_64
-    sudo dnf install -y gnutls.i686 gnutls-devel openldap openldap.i686
-	sudo dnf install -y openldap-devel libgpg-error libgpg-error.i686 sqlite2.i686 sqlite2.x86_64
-	sudo dnf install -y pipewire-devel.i686 pipewire-devel.x86_64 gstreamer1*.i686 gstreamer1*.x86_64
-	sudo dnf install -y freetype.i686 gnutls.i686 openldap.i686 libgpg-error.i686 sqlite2.i686 pulseaudio-libs.i686
-	sudo dnf install -y dxvk-native-devel.x86_64 dxvk-native-devel.i686 vulkan-tools
+    echo "================================================"
+	echo "This will now install wine and many libraries"
+    echo "for as much a complete experience as possible"
+    echo "for running Windows games."
+    echo "================================================"
+
+    sudo dnf install -y alsa-plugins-pulseaudio.i686 glibc-devel.i686 glibc-devel libgcc.i686 libX11-devel.i686 freetype-devel.i686\
+    libXcursor-devel.i686 libXi-devel.i686 libXext-devel.i686 libXxf86vm-devel.i686 libXrandr-devel.i686 libXinerama-devel.i686 \
+    mesa-libGLU-devel.i686 mesa-libOSMesa-devel.i686 libXrender-devel.i686 libpcap-devel.i686 ncurses-devel.i686 libzip-devel.i686 \
+    lcms2-devel.i686 zlib-devel.i686 libv4l-devel.i686 libgphoto2-devel.i686 cups-devel.i686 libxml2-devel.i686 openldap-devel.i686 \
+    
+    sudo dnf install -y libxslt-devel.i686 gnutls-devel.i686 libpng-devel.i686 flac-libs.i686 json-c.i686 libICE.i686 libSM.i686 \
+    libXtst.i686 libasyncns.i686 libedit.i686 liberation-narrow-fonts.noarch libieee1284.i686 libogg.i686 libsndfile.i686 \
+    libuuid.i686 libva.i686 libvorbis.i686 libwayland-client.i686 libwayland-server.i686 llvm-libs.i686 \
+    mesa-dri-drivers.i686 mesa-filesystem.i686 mesa-libEGL.i686 mesa-libgbm.i686 nss-mdns.i686 ocl-icd.i686 \
+    pulseaudio-libs.i686  sane-backends-libs.i686 tcp_wrappers-libs.i686 unixODBC.i686 samba-common-tools.x86_64 samba-libs.x86_64 \
+    samba-winbind.x86_64 samba-winbind-clients.x86_64 samba-winbind-modules.x86_64 mesa-libGL-devel.i686 fontconfig-devel.i686 \
+    libXcomposite-devel.i686
+    
+    sudo dnf install -y libtiff-devel.i686 openal-soft-devel.i686 mesa-libOpenCL-devel.i686 opencl-utils-devel.i686 \
+    alsa-lib-devel.i686 gsm-devel.i686 libjpeg-turbo-devel.i686 pulseaudio-libs-devel.i686 pulseaudio-libs-devel gtk3-devel.i686 \
+    libattr-devel.i686 libva-devel.i686 libexif-devel.i686 libexif.i686 glib2-devel.i686 mpg123-devel.i686 mpg123-devel.x86_64 \
+    libcom_err-devel.i686 libcom_err-devel.x86_64 libFAudio-devel.i686 libFAudio-devel.x86_64 gnutls.i686 gnutls-devel openldap \
+    openldap.i686 openldap-devel libgpg-error libgpg-error.i686 sqlite2.i686 sqlite2.x86_64 pipewire-devel.i686 \
+    pipewire-devel.x86_64 gstreamer1*.i686 gstreamer1*.x86_64 freetype.i686 gnutls.i686 openldap.i686 \
+    libgpg-error.i686 sqlite2.i686 pulseaudio-libs.i686 dxvk-native-devel.x86_64 dxvk-native-devel.i686 vulkan-tools
+
+    sudo dnf install -y SDL2.i686 SDL2.x86_64 SDL2_net.x86_64 alsa-lib.i686 avahi-libs.i686 bzip2-libs.i686 cairo.i686 \
+    cairo-gobject.i686 cdparanoia-libs.i686 cups-libs.i686 cyrus-sasl-lib.i686 dbus-libs.i686 elfutils-debuginfod-client.i686 \
+    elfutils-libelf.i686 elfutils-libs.i686 expat.i686 flac-libs.i686 fluid-soundfont-common.noarch fluid-soundfont-gm.noarch
+    
+    sudo dnf install -y fluidsynth-libs.x86_64 fontconfig.i686 freetype.i686 fribidi.i686 gd.i686 gdbm-libs.i686 gdk-pixbuf2.i686 \
+    glib2.i686 glibc.i686 glibc-gconv-extra.i686 gmp.i686 gnutls.i686 graphene.i686 graphite2.i686 gsm.i686 gstreamer1.i686 \
+    gstreamer1-plugins-base.i686 gstreamer1-plugins-good.i686 harfbuzz.i686 isl.x86_64 jbigkit-libs.i686 keyutils-libs.i686          
+
+    sudo dnf install -y krb5-libs.i686 lame-libs.i686 libX11.i686 libX11-xcb.i686 libXau.i686 libXcomposite.i686 libXcursor.i686 \
+    libXdamage.i686 libXext.i686 libXfixes.i686 libXft.i686 libXinerama.i686 libXpm.i686 libXrandr.i686 libXrender.i686 libXv.i686 \
+    libXxf86vm.i686 libaom.i686 libasyncns.i686 libavif.i686 libblkid.i686 libbrotli.i686 libcap.i686 libcom_err.i686 \
+    libcurl.i686 libdatrie.i686 libdav1d.i686 libdecor.i686 libdecor.x86_64 libdrm.i686 libedit.i686
+
+
+    sudo dnf install -y liberation-narrow-fonts.noarch libevent.i686 libexif.i686 libffi.i686 libgcc.i686 libgcrypt.i686 libglvnd.i686 \
+    libglvnd-egl.i686 libglvnd-glx.i686 libgomp.i686 libgpg-error.i686 libgphoto2.i686 libgudev.i686 libibverbs.i686 \
+    libidn2.i686 libieee1284.i686 libimagequant.i686 libinstpatch.x86_64 libjpeg-turbo.i686 libjxl.i686 libkadm5.x86_64 \
+    libmount.i686 libnghttp2.i686 libnl3.i686 libogg.i686 libpcap.i686 libpciaccess.i686 libpng.i686 libpsl.i686 \
+    libselinux.i686 libsepol.i686 libshout.i686 libslirp.x86_64 libsndfile.i686 libssh.i686 libstdc++.i686 libtasn1.i686
+    
+    sudo dnf install -y libthai.i686 libtheora.i686 libtiff.i686 libtool-ltdl.i686 libunistring.i686 libunwind.i686 libusb1.i686 libuuid.i686 \
+    libv4l.i686 libva.i686 libverto.i686 libvisual.i686 libvorbis.i686 libvpx.i686 libwayland-client.i686 \
+    libwayland-cursor.i686 libwayland-egl.i686 libwayland-server.i686 libwebp.i686 libxcb.i686 libxcrypt.i686 libxml2.i686 \
+    libxshmfence.i686 libzstd.i686 llvm-libs.i686 lmdb.x86_64 lockdev.i686 lz4-libs.i686 mesa-dri-drivers.i686 \
+    mesa-filesystem.i686 mesa-libEGL.i686 mesa-libGL.i686 mesa-libOSMesa.i686 mesa-libOSMesa.x86_64 mesa-libgbm.i686
+    
+    sudo dnf install -y mesa-libglapi.i686 mesa-vulkan-drivers.i686 mingw-binutils-generic.x86_64 mingw-filesystem-base.noarch \
+    mingw32-binutils.x86_64 mingw32-cpp.x86_64 mingw32-crt.noarch mingw32-filesystem.noarch mingw32-gcc.x86_64 \
+    mingw32-headers.noarch mingw32-lcms2.noarch mingw32-libpng.noarch mingw32-libxml2.noarch mingw32-libxslt.noarch \
+    mingw32-vkd3d.noarch mingw32-win-iconv.noarch mingw32-winpthreads.noarch mingw32-zlib.noarch mingw64-binutils.x86_64 \
+    mingw64-cpp.x86_64 mingw64-crt.noarch mingw64-filesystem.noarch mingw64-gcc.x86_64 mingw64-headers.noarch \
+    mingw64-lcms2.noarch mingw64-libpng.noarch mingw64-libxml2.noarch mingw64-libxslt.noarch mingw64-vkd3d.noarch
+    
+    sudo dnf install -y mingw64-win-iconv.noarch mingw64-winpthreads.noarch mingw64-zlib.noarch mpg123-libs.i686 mt32emu.x86_64 \
+    ncurses-libs.i686 nettle.i686 nss-mdns.i686 ocl-icd.i686 ocl-icd.x86_64 openal-soft.i686 openal-soft.x86_64 \
+    openldap.i686 openssl-libs.i686 openssl-pkcs11.i686 opus.i686 orc.i686 p11-kit.i686 pango.i686 pcre.i686 \
+    pcre2.i686 pixman.i686 pulseaudio-libs.i686 python3-dns.noarch python3-ldb.x86_64 python3-samba.x86_64 
+    
+    sudo dnf install -y python3-samba-dc.x86_64 python3-talloc.x86_64 python3-tdb.x86_64 python3-tevent.x86_64 rav1e-libs.i686  \
+    readline.i686 samba.x86_64 samba-common-tools.x86_64 samba-dc-libs.x86_64 samba-libs.x86_64 \
+    samba-winbind.x86_64 samba-winbind-clients.x86_64 samba-winbind-modules.x86_64 \
+    sane-backends-drivers-cameras.i686 sane-backends-drivers-scanners.i686  sane-backends-libs.i686 \
+    speex.i686 systemd-libs.i686 taglib.i686 tdb-tools.x86_64 twolame-libs.i686 unixODBC.i686 unixODBC.x86_64  \
+    vulkan-loader.i686 vulkan-tools.x86_64 wavpack.i686 xz-libs.i686 zlib.i686        
+    
     sudo dnf install -y winehq-staging
 }
 
