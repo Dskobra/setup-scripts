@@ -157,7 +157,7 @@ install_wine(){
     libattr-devel.i686 libva-devel.i686 libexif-devel.i686 libexif.i686 glib2-devel.i686 mpg123-devel.i686 mpg123-devel.x86_64 \
     libcom_err-devel.i686 libcom_err-devel.x86_64 libFAudio-devel.i686 libFAudio-devel.x86_64 gnutls.i686 gnutls-devel openldap \
     openldap.i686 openldap-devel libgpg-error libgpg-error.i686 sqlite2.i686 sqlite2.x86_64 pipewire-devel.i686 \
-    pipewire-devel.x86_64 gstreamer1*.i686 gstreamer1*.x86_64 freetype.i686 gnutls.i686 openldap.i686 \
+    pipewire-devel.x86_64 gstreamer1-plugin-libav.i686 gstreamer1-plugin-libav.x86_64 freetype.i686 gnutls.i686 openldap.i686 \
     libgpg-error.i686 sqlite2.i686 pulseaudio-libs.i686 dxvk-native-devel.x86_64 dxvk-native-devel.i686 vulkan-tools
 
     sudo dnf install -y SDL2.i686 SDL2.x86_64 SDL2_net.x86_64 alsa-lib.i686 avahi-libs.i686 bzip2-libs.i686 cairo.i686 \
