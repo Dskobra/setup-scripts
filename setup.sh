@@ -37,17 +37,19 @@ setup_wine_repo(){
 
 get_desktop_extras(){
     DESKTOP=$XDG_CURRENT_DESKTOP
-    if [ "$DESKTOP" = "GNOME" ];
+    if [ "$DESKTOP" = "GNOME" ]
 	then
 		install_gnome_extras
-	elif [ "$DESKTOP" = "KDE" ];
+	elif [ "$DESKTOP" = "KDE" ]
 	then
 		install_kde_extras
-	elif [ "$DESKTOP" = "MATE" ];
+	elif [ "$DESKTOP" = "MATE" ]
 	then
 		echo "Now setting up some extra mate features."
 		sudo dnf install -y caja-dropbox caja-share \
 		mate-menu
+    else
+        echo "test"
 	fi
 }
 
@@ -57,24 +59,8 @@ install_basic_apps(){
 	bluecurve-icon-theme
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
-	sudo mkdir /opt/launchers
-	sudo chown $USER:$USER /opt/launchers
-}
-
-get_desktop_extras(){
-    DESKTOP=$XDG_CURRENT_DESKTOP
-	if [ "$DESKTOP" = "GNOME" ];
-	then
-		install_gnome_extras
-	elif [ "$DESKTOP" = "KDE" ];
-	then
-		install_kde_extras
-	elif [ "$DESKTOP" = "MATE" ];
-	then
-		echo "Now setting up some extra mate features."
-		sudo dnf install -y caja-dropbox caja-share \
-		mate-menu
-	fi
+    mkdir /home/$USER/.apps
+    mkdir /home/$USER/.apps/launchers
 }
 
 install_gnome_extras(){
@@ -127,8 +113,8 @@ install_bottles(){
 install_lutris(){
 	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
 	python3-magic libraqm python3-olefile python3-pillow fluid-soundfont-gs p7zip p7zip-plugins 
-	sudo dnf install -y lutris
-    #flatpak -y install flathub net.lutris.Lutris
+	#sudo dnf install -y lutris
+    flatpak -y install flathub net.lutris.Lutris
 
 }
 
@@ -215,7 +201,7 @@ install_wowup(){
     cd /home/$USER/Downloads/wowup 
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
-    sudo mv /home/$USER/Downloads/wowup /opt/wowup
+    mv /home/$USER/Downloads/wowup /home/$USER/.apps
 }
 
 install_samba(){
