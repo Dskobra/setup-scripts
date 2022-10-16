@@ -10,7 +10,6 @@ setup_permissions(){
     sudo chown $USER:$USER *.desktop
 }
 
-
 setup_wowup(){
     cd $PARENT/data/
     cp wowup.sh /home/$USER/.apps/launchers
@@ -56,42 +55,13 @@ main_help(){
     echo "lutris and bottles."
 }
 
-other_options_help(){
-    echo ""
-    echo ""
-}
-
-other_options_menu(){
-    echo "================================================"
-    echo "Other options"
-    echo "1. Steam (gamescope)"
-    echo "99. Help 0. Back"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input -eq 1 ]
-    then
-        setup_permissions
-        setup_steam_with_gamescope
-    elif [ $input -eq 99 ]
-    then
-        other_options_help
-    elif [ $input -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    other_options_menu
-}
-
 main_menu(){
     echo "================================================"
     echo "My custom setup scripts"
     echo "1. Setup bash profile 2. WoW Up"
     echo "3. Copy Mangohud configs"
-    echo "4. Setup dropbox tray 6. Other"
+    echo "4. Setup dropbox tray"
+    echo "6. Steam (gamescope)"
     echo "99. Help 0. Exit"
     echo "================================================"
     printf "Option: "
@@ -115,7 +85,8 @@ main_menu(){
         setup_dropbox
     elif [ $input -eq 6 ]
     then
-        other_options_menu
+        setup_permissions
+        setup_steam_with_gamescope
     elif [ $input -eq 99 ]
     then
         main_help

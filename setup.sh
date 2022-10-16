@@ -59,6 +59,7 @@ install_basic_apps(){
 	bluecurve-icon-theme
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
+    flatpak install -y flathub com.transmissionbt.Transmission
     mkdir /home/$USER/.apps
     mkdir /home/$USER/.apps/launchers
 }
@@ -70,8 +71,8 @@ install_gnome_extras(){
 	gnome-shell-extension-appindicator openssl \
 	humanity-icon-theme gedit gedit-plugins
 	flatpak install -y flathub org.gnome.Extensions
-	flatpak install -y flathub com.transmissionbt.Transmission
-	flatpak install -y flathub org.gimp.GIMP
+	
+	
 }
 
 install_kde_extras(){
@@ -241,18 +242,19 @@ games_help(){
 office_help(){
     echo "1. LibreOffice/QOwnNotes - self explanatory. :P"
     echo "2. Social Apps - Currently installs discord and pidgin."
+    echo "3. HP Printer Drivers - self explanatory. :P"
 }
 
 servers_help(){
-    echo "1. Lamp Stack - Apache web server, mariadb etc."
+    echo "1. Lamp Stack - Apache web server, mariadb and php/phpmyadmin."
     echo "2. Fedora Cockpit - Setups fedora cockpit for remote management."
     echo "3. Samba Share - Installs samba server and creates folders."
 }
 
 media_help(){
-    echo ""
-    echo ""
-    echo ""
+    echo "1. Codecs/Playback - openh264 (firefox), ffmpeg and vlc."
+    echo "2. Editing Tools - GIMP, Kolourpaint and OpenShot."
+    echo "3. OBS Studio - self explanatory. :P"
 }
 
 main_menu(){
@@ -411,12 +413,13 @@ media_menu(){
     then
         echo ""
         sudo dnf install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg
+	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 	    flatpak install -y flathub org.videolan.VLC
     elif [ $input -eq 2 ]
     then
         sudo dnf install -y kolourpaint
 	    flatpak install -y flathub org.openshot.OpenShot
+        flatpak install -y flathub org.gimp.GIMP
     elif [ $input -eq 3 ]
     then
         flatpak install -y flathub com.obsproject.Studio
