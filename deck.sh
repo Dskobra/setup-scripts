@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 flatpak install -y flathub org.mozilla.firefox
 flatpak install -y flathub com.brave.Browser

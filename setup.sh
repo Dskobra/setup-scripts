@@ -1,4 +1,4 @@
-#/usr/bin/bash
+#!/usr/bin/bash
 
 setup_repos(){
 	echo "Setting up rpmfusion and flathub."

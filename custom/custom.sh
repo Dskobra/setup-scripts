@@ -1,26 +1,25 @@
-#! /usr/bin/bash
-
+#!/usr/bin/bash
 setup_permissions(){
-    cd /$PARENT/data
+    cd $PARENT/data
     sudo chown $USER:$USER *.sh
 
-    cd /$PARENT/data/mangohud
+    cd $PARENT/data/mangohud
     sudo chown $USER:$USER *.conf
 
-    cd /$PARENT/data/shortcuts
+    cd $PARENT/data/shortcuts
     sudo chown $USER:$USER *.desktop
 }
 
 
 setup_wowup(){
-    cd /$PARENT/data/
-    cp wowup.sh /opt/launchers
-    cd /$PARENT/data/shortcuts
+    cd $PARENT/data/
+    cp wowup.sh /home/$USER/.apps/launchers
+    cd $PARENT/data/shortcuts
     xdg-desktop-menu install WoWUp.desktop --mode user --novendor
 }
 
 setup_dropbox(){
-    cd /$PARENT/data/shortcuts
+    cd $PARENT/data/shortcuts
     xdg-desktop-menu install Dropbox-fix.desktop --mode user --novendor
 }
 
@@ -28,7 +27,7 @@ setup_mangohud(){
     mkdir /home/$USER/.config/MangoHud/
     #mkdir /home/$USER/.var/app/net.lutris.Lutris/config/MangoHud/
     mkdir /home/$USER/.var/app/com.usebottles.bottles/config/MangoHud/
-    cd /$PARENT/data/mangohud
+    cd $PARENT/data/mangohud
 
     # for steam/lutris installed via package manager
     cp wine-GTA5.conf /home/$USER/.config/MangoHud/
@@ -43,9 +42,9 @@ setup_mangohud(){
 }
 
 setup_steam_with_gamescope(){
-    cd /$PARENT/data/shortcuts
-    cp /$PARENT/data/steamgs.sh /opt/launchers
-    sudo ln -s "/opt/launchers/steamgs.sh" "/usr/bin/steamgs"
+    cd $PARENT/data/shortcuts
+    cp $PARENT/data/steamgs.sh /home/$USER/.apps/launchers
+    sudo ln -s "/home/$USER/.apps/launchers/steamgs.sh" "/usr/bin/steamgs"
     xdg-desktop-menu install Steamgs.desktop --mode user --novendor
 
 }
@@ -100,8 +99,8 @@ main_menu(){
     
     if [ $input -eq 1 ]
     then
-        cp /home/$USER/.bashrc /home/$USER/.bashrc.ba
-        cat /$PARENT/data/custom_paths >> /home/$USER/.bashrc
+        cp /home/$USER/.bashrc /home/$USER/.bashrc.bak
+        echo "export PATH="/home/$USER/.apps/launchers/:\$PATH"" >> /home/$USER/.bashrc
     elif [ $input -eq 2 ]
     then
         setup_permissions

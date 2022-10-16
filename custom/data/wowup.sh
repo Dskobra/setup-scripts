@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
-cd /opt/wowup
+cd /home/$USER/.apps/wowup
 ./WowUp*.AppImage

@@ -13,6 +13,8 @@
 
 PARENT=$(pwd)
 dos2unix *
+cd $PARENT/custom
+dos2unix *
 cd $PARENT/custom/data
 dos2unix *
 cd $PARENT/custom/data/mangohud
