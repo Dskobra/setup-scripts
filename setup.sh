@@ -56,7 +56,7 @@ get_desktop_extras(){
 install_basic_apps(){
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-	bluecurve-icon-theme
+	bluecurve-icon-theme p7zip p7zip-plugins 
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
     flatpak install -y flathub com.transmissionbt.Transmission
@@ -77,10 +77,9 @@ install_gnome_extras(){
 
 install_kde_extras(){
 	echo "Now setting up some extra kde features."
-	sudo dnf install -y dolphin-plugins \
-	kate zenity ark digikam kde-connect konversation \
-	kpat ktorrent krusader
-	flatpak install -y flathub com.dropbox.Client
+	sudo dnf install -y dolphin-plugins ark digikam \
+    kde-connect kpat krusader dropbox
+	#flatpak install -y flathub com.dropbox.Client
 }
 
 install_coding_tools(){
@@ -105,17 +104,15 @@ install_utilities(){
 	flatpak install -y flathub com.github.tchx84.Flatseal
 }
 
-install_bottles(){
-	mkdir /home/$USER/Games
+install_game_clients(){
+    mkdir /home/$USER/Games
 	mkdir /home/$USER/Games/bottles
+    sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices
+	flatpak install -y flathub net.davidotek.pupgui2
 	flatpak install -y flathub com.usebottles.bottles
-}
+    flatpak install -y flathub net.lutris.Lutris
+    flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
 
-install_lutris(){
-	sudo dnf install -y gnome-desktop3 xrandr xorg-x11-server-Xephyr python3-evdev gvfs cabextract \
-	python3-magic libraqm python3-olefile python3-pillow fluid-soundfont-gs p7zip p7zip-plugins 
-	#sudo dnf install -y lutris
-    flatpak -y install flathub net.lutris.Lutris
 
 }
 
@@ -322,9 +319,9 @@ main_menu(){
 games_menu(){
     echo "================================================"
     echo "Games Menu"
-    echo "1. Steam Client 2. Wine"
-    echo "3. Lutris/Bottles 4. WoW Up" 
-    echo "5. Minecraft 6. Controller Setup"
+    echo "1. Game Clients 2. Wine"
+    echo "3. WoW Up 4. Minecraft "
+    echo "5. Controller Setup"
     echo "99. Help 0. Back to main menu"
     echo "================================================"
     printf "Option: "
@@ -332,23 +329,19 @@ games_menu(){
     
     if [ $input -eq 1 ]
     then
-        sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices
-	    flatpak install -y flathub net.davidotek.pupgui2
+        install_game_clients
     elif [ $input -eq 2 ]
     then
-        setup_wine_repo
-        install_wine
+        #setup_wine_repo
+        #install_wine
+        echo "Disabled atm"
     elif [ $input -eq 3 ]
     then
-        install_bottles
-        install_lutris
+        install_wowup
     elif [ $input -eq 4 ]
     then
-        install_wowup
-    elif [ $input -eq 5 ]
-    then
         flatpak -y install flathub com.mojang.Minecraft
-    elif [ $input -eq 6 ]
+    elif [ $input -eq 5 ]
     then
         sudo dnf install -y kernel-modules-extra
 	    sudo modprobe xpad
