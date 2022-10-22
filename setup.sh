@@ -89,9 +89,9 @@ install_coding_tools(){
 	source ~/.bashrc
 	nvm install lts/*
 	sudo dnf install -y python3-tools python3-devel git-gui \
-	java-17-openjdk-devel codium
+	java-17-openjdk-devel codium geany geany-plugins-spellcheck geany-plugins-treebrowser \
+    geany-plugins-markdown
 	flatpak install -y flathub io.github.shiftey.Desktop
-	flatpak install -y flathub org.geany.Geany
 
 }
 
