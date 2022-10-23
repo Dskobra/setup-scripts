@@ -60,8 +60,8 @@ main_menu(){
     echo "My custom setup scripts"
     echo "1. Setup bash profile 2. WoW Up"
     echo "3. Copy Mangohud configs"
-    echo "4. Setup dropbox tray"
-    echo "6. Steam (gamescope)"
+    echo "4. Steam (gamescope)"
+    echo "5. Setup dropbox tray"
     echo "99. Help 0. Exit"
     echo "================================================"
     printf "Option: "
@@ -82,11 +82,11 @@ main_menu(){
     elif [ $input -eq 4 ]
     then
         setup_permissions
-        setup_dropbox
-    elif [ $input -eq 6 ]
+        setup_steam_with_gamescope
+    elif [ $input -eq 5 ]
     then
         setup_permissions
-        setup_steam_with_gamescope
+        setup_dropbox
     elif [ $input -eq 99 ]
     then
         main_help
