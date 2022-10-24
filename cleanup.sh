@@ -6,7 +6,7 @@ cleanup(){
 	# This creates a package conflict with mate-desktop and mate-desktop-configs when updating. Research shows this is an 
 	# uneeded/extra package as Fedora uses earlyoom. So removing systemd-oomd-defaults is perfectly safe. Unsure what causes this
 	# to be installed.
-	sudo dnf remove -y libreoffice-core kwrite \
+	sudo dnf remove -y libreoffice-core \
 	gnome-shell-extension-gamemode transmission-qt \
 	kmahjongg kmines systemd-oomd-defaults \
 	gnome-text-editor

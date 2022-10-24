@@ -10,11 +10,12 @@ setup_permissions(){
     sudo chown $USER:$USER *.desktop
 }
 
-setup_wowup(){
+setup_games(){
     cd $PARENT/data/
     cp wowup.sh /home/$USER/.apps/launchers
     cd $PARENT/data/shortcuts
     xdg-desktop-menu install WoWUp.desktop --mode user --novendor
+    xdg-desktop-menu install Minecraft.desktop --mode user --novendor
 }
 
 setup_dropbox(){
@@ -58,7 +59,7 @@ main_help(){
 main_menu(){
     echo "================================================"
     echo "My custom setup scripts"
-    echo "1. Setup bash profile 2. WoW Up"
+    echo "1. Setup bash profile 2. WoW Up/Minecraft"
     echo "3. Copy Mangohud configs"
     echo "4. Steam (gamescope)"
     echo "5. Setup dropbox tray"
@@ -74,7 +75,7 @@ main_menu(){
     elif [ $input -eq 2 ]
     then
         setup_permissions
-        setup_wowup
+        setup_games
     elif [ $input -eq 3 ]
     then
         setup_permissions
@@ -98,6 +99,7 @@ main_menu(){
     fi
     main_menu
 }
+
 USER=$(whoami)
 PARENT=$(pwd)   # get the current folder custom.sh is running from
 main_menu

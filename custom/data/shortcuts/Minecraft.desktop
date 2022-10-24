@@ -1,0 +1,14 @@
+[Desktop Entry]
+Comment=Do whatever with blocks :P
+Exec=minecraft-launcher
+Icon=/usr/share/icons/Bluecurve/48x48/actions/gohome.png
+Name=Minecraft Java Edition
+NoDisplay=false
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+Categories=Game;
