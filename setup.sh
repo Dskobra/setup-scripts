@@ -112,9 +112,16 @@ install_game_clients(){
     kernel-modules-extra
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
-	flatpak install -y flathub com.usebottles.bottles
+
+    flatpak install -y flathub com.usebottles.bottles
+    flatpak run com.usebottles.bottles
+
     flatpak install -y flathub net.lutris.Lutris
-    flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
+    flatpak run net.lutris.Lutris
+
+    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
+    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+
 }
 
 install_wowup(){
