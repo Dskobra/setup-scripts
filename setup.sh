@@ -157,7 +157,7 @@ install_samba(){
 
 main_help(){
     echo "1. Repos - rpmfusion, flatpak and brave browser."
-    echo "2. AMD Radeon Fan Control - installs radeon-profile package for fan control and enables the service."
+    echo "2. Corectrl - installs corectrl overclocking tool and enables it on login."
     echo "3. Setup DE - Sets up desktop environment specific packages. Also installs brave and few other basic packages."
     echo "Such as nautilus-dropbox for gnome etc."
     echo "4. Media Menu - Sub menu for media related packages."
@@ -199,7 +199,7 @@ media_help(){
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Repos 2. AMD Radeon Fan Control"
+    echo "1. Repos 2. Corectrl"
     echo "3. Setup DE 4. Media Menu" 
     echo "5. Office Menu 6.Coding Tools"
     echo "7. Gaming Menu 8. Servers Menu"
@@ -215,9 +215,8 @@ main_menu(){
         setup_repos
     elif [ $input -eq 2 ]
     then
-        sudo dnf install -y radeon-profile
-	    sudo systemctl enable radeon-profile-daemon.service
-	    sudo systemctl start radeon-profile-daemon.service
+        sudo dnf install -y corectrl
+	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
     elif [ $input -eq 3 ]
     then
         install_basic_apps
