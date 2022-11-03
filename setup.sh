@@ -125,8 +125,8 @@ install_game_clients(){
 }
 
 install_wowup(){
-    WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.9.0/WowUp-2.9.0.AppImage
-    WOWUPBINARY=WowUp-2.9.0.AppImage
+    WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.9.1/WowUp-2.9.1.AppImage
+    WOWUPBINARY=WowUp-2.9.1.AppImage
     mkdir /home/$USER/Downloads/wowup 
     cd /home/$USER/Downloads/wowup 
     wget $WOWUPLINK
