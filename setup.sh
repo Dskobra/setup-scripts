@@ -219,7 +219,7 @@ games_menu(){
     echo "================================================"
     echo "Games Menu"
     echo "1. Game Clients 2. WoW Up"
-    echo "3. Minecraft"
+    echo "3. Minecraft 4. Steam Deck"
     echo "99. Help 0. Back to main menu"
     echo "================================================"
     printf "Option: "
@@ -234,6 +234,9 @@ games_menu(){
     elif [ $input -eq 3 ]
     then
         install_minecraft
+    elif [ $input -eq 4 ]
+    then
+        setup_deck
     elif [ $input -eq 99 ]
     then
         games_help
@@ -285,6 +288,17 @@ install_minecraft(){
     cd /home/$USER/Downloads
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
+}
+
+setup_deck(){
+    flatpak install -y flathub org.mozilla.firefox
+    flatpak install -y flathub com.brave.Browser
+    flatpak install -y flathub com.dropbox.Client
+    flatpak install -y flathub org.keepassxc.KeePassXC
+    flatpak install -y flathub com.discordapp.Discord
+    flatpak install -y flathub net.davidotek.pupgui2
+    flatpak install -y flathub net.lutris.Lutris
+    flatpak install -y flathub com.github.tchx84.Flatseal
 }
 
 games_help(){
