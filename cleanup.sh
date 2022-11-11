@@ -7,9 +7,9 @@ cleanup(){
 	# uneeded/extra package as Fedora uses earlyoom. So removing systemd-oomd-defaults is perfectly safe. Unsure what causes this
 	# to be installed.
 	sudo dnf remove -y libreoffice-core \
-	gnome-shell-extension-gamemode transmission-qt \
+	gnome-shell-extension-gamemode gnome-text-editor \
 	kmahjongg kmines systemd-oomd-defaults \
-	gnome-text-editor
+	transmission-gtk transmission-qt
 }
 
 cleanup

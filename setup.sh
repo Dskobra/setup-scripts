@@ -1,201 +1,5 @@
 #!/usr/bin/bash
 
-setup_repos(){
-	echo "Setting up rpmfusion and flathub."
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-	sudo dnf update -y
-}
-
-setup_wine_repo(){
-	source /etc/os-release
-	getRelease=$(echo $VERSION_ID)
-	echo "Fedora Version:" $getRelease
-
-	if [ "$getRelease" = "36" ]
-	then
-		# remove after 37 is released, winehq updated and no major bugs.
-		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
-	elif [ "$getRelease" = "37" ]
-	then
-		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
-		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
-	elif [ "$getRelease" = "38" ]
-	then
-		# temporarily use fedora 36 winehq repo on fedora 37. change when official 37 support is added.
-		#sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
-		echo "Fedora 38 placeholder. Not due for release until around may/june"
-	elif [ $input -eq 0 ]
-	then
-		exit
-	else
-		echo "error."
-	fi
-}
-
-get_desktop_extras(){
-    DESKTOP=$XDG_CURRENT_DESKTOP
-    if [ "$DESKTOP" = "GNOME" ]
-	then
-		install_gnome_extras
-	elif [ "$DESKTOP" = "KDE" ]
-	then
-		install_kde_extras
-	elif [ "$DESKTOP" = "MATE" ]
-	then
-		echo "Now setting up some extra mate features."
-		sudo dnf install -y caja-dropbox caja-share \
-		mate-menu dconf-editor
-    else
-        echo "test"
-	fi
-}
-
-install_basic_apps(){
-	sudo dnf install -y  java-17-openjdk brave-browser \
-	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-	bluecurve-icon-theme p7zip p7zip-plugins 
-	sudo plymouth-set-default-theme spinfinity -R
-	flatpak install -y flathub org.keepassxc.KeePassXC
-    flatpak install -y flathub com.transmissionbt.Transmission
-    mkdir /home/$USER/.apps
-    mkdir /home/$USER/.apps/launchers
-}
-
-install_gnome_extras(){
-	echo "Now setting up some extra gnome features."
-	sudo dnf install -y menulibre pavucontrol \
-	gnome-tweaks nautilus-dropbox file-roller \
-	gnome-shell-extension-appindicator openssl \
-	humanity-icon-theme gedit gedit-plugins \
-    dconf-editor
-	flatpak install -y flathub org.gnome.Extensions
-	
-	
-}
-
-install_kde_extras(){
-	echo "Now setting up some extra kde features."
-	sudo dnf install -y dolphin-plugins ark digikam \
-    kde-connect kpat krusader dropbox
-	#flatpak install -y flathub com.dropbox.Client
-}
-
-install_coding_tools(){
-	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-    sudo rpm --import https://mirror.mwt.me/ghd/gpgkey
-	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-	sudo sh -c 'echo -e "[shiftkey]\nname=GitHub Desktop\nbaseurl=https://mirror.mwt.me/ghd/rpm\nenabled=1\ngpgcheck=0\nrepo_gpgcheck=1\ngpgkey=https://mirror.mwt.me/ghd/gpgkey" > /etc/yum.repos.d/shiftkey-desktop.repo'
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
-	sudo dnf install -y python3-tools python3-devel git-gui \
-	java-17-openjdk-devel codium github-desktop
-
-}
-
-install_utilities(){
-	sudo dnf -y copr enable timlau/yumex-dnf
-	sudo dnf install -y yumex-dnf clamav \
-    clamav-update firewall-applet kleopatra \
-	mediawriter
-	flatpak install -y flathub org.gtkhash.gtkhash
-	flatpak install -y flathub com.github.tchx84.Flatseal
-}
-
-install_game_clients(){
-    mkdir /home/$USER/Games
-	mkdir /home/$USER/Games/bottles
-    sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices \
-    kernel-modules-extra
-    sudo modprobe xpad
-	flatpak install -y flathub net.davidotek.pupgui2
-
-    flatpak install -y flathub com.usebottles.bottles
-    flatpak run com.usebottles.bottles
-
-    flatpak install -y flathub net.lutris.Lutris
-    flatpak run net.lutris.Lutris
-
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
-
-}
-
-install_wowup(){
-    WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.9.1/WowUp-2.9.1.AppImage
-    WOWUPBINARY=WowUp-2.9.1.AppImage
-    mkdir /home/$USER/Downloads/wowup 
-    cd /home/$USER/Downloads/wowup 
-    wget $WOWUPLINK
-    chmod +x $WOWUPBINARY
-    mv /home/$USER/Downloads/wowup /home/$USER/.apps
-}
-
-install_minecraft(){
-    cd /home/$USER/Downloads
-    wget https://launcher.mojang.com/download/Minecraft.tar.gz
-    tar -xvf Minecraft.tar.gz
-    cd minecraft-launcher
-    chmod +x minecraft-launcher
-    mv minecraft-launcher /home/$USER/.apps/launchers
-    cd /home/$USER/Downloads
-    rm -r minecraft-launcher
-    rm Minecraft.tar.gz
-}
-
-install_samba(){
-	sudo dnf install -y samba
-	sudo systemctl enable smb nmb
-	sudo firewall-cmd --add-service=samba --permanent
-	sudo firewall-cmd --reload
-	sudo mkdir /mnt/shared
-	sudo chown $USER /mnt/shared -R
-}
-
-main_help(){
-    echo "1. Repos - rpmfusion, flatpak and brave browser."
-    echo "2. Corectrl - installs corectrl overclocking tool and enables it on login."
-    echo "3. Setup DE - Sets up desktop environment specific packages. Also installs brave and few other basic packages."
-    echo "Such as nautilus-dropbox for gnome etc."
-    echo "4. Media Menu - Sub menu for media related packages."
-    echo "5. Office Menu - Sub menu for office related packages."
-    echo "6. Coding Tools - openJDK, nodejs and other development packages."
-    echo "7. Gaming Menu - Sub menmu for gaming related packages."
-    echo "8. Servers Menu - Sub menu for server related packages."
-    echo "9. Utilities - Clamav, yumex and some other useful packages."
-    echo "10. Virtualization - libvirt and related tools."
-}
-
-games_help(){
-    echo "1. Steam Client - Self explanatory. :P"
-    echo "2. Wine - official version of wine from winehq."
-    echo "3. Lutris/Bottles - Downloads latest stable lutris, bottles and protonup."
-    echo "4. WoW Up - World of Warcraft addon manager."
-    echo "5. Minecraft - installs flatpak package of minecraft."
-    echo "6. Controller Setup - Installs kernel development packages and runs xpad."
-}
-
-office_help(){
-    echo "1. LibreOffice/QOwnNotes - self explanatory. :P"
-    echo "2. Social Apps - Currently installs discord and pidgin."
-    echo "3. HP Printer Drivers - self explanatory. :P"
-}
-
-servers_help(){
-    echo "1. Lamp Stack - Apache web server, mariadb and php/phpmyadmin."
-    echo "2. Fedora Cockpit - Setups fedora cockpit for remote management."
-    echo "3. Samba Share - Installs samba server and creates folders."
-}
-
-media_help(){
-    echo "1. Codecs/Playback - openh264 (firefox), ffmpeg and vlc."
-    echo "2. Editing Tools - GIMP, Kolourpaint and OpenShot."
-    echo "3. OBS Studio - self explanatory. :P"
-}
-
 main_menu(){
     echo "================================================"
     echo "Main Menu"
@@ -243,7 +47,8 @@ main_menu(){
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
-	    sudo dnf install -y	virt-manager libvirt-client virtio-win
+        sudo dnf groupinstall -y "Virtualization"
+	    sudo dnf install -y virtio-win
     elif [ $input -eq 99 ]
     then
         main_help
@@ -259,68 +64,61 @@ main_menu(){
     main_menu
 }
 
-games_menu(){
-    echo "================================================"
-    echo "Games Menu"
-    echo "1. Game Clients 2. WoW Up"
-    echo "3. Minecraft"
-    echo "99. Help 0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input -eq 1 ]
-    then
-        install_game_clients
-    elif [ $input -eq 2 ]
-    then
-        install_wowup
-    elif [ $input -eq 3 ]
-    then
-        install_minecraft
-    elif [ $input -eq 99 ]
-    then
-        games_help
-    elif [ $input -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    games_menu
+setup_repos(){
+	echo "Setting up rpmfusion and flathub."
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+	sudo dnf update -y
 }
 
-office_menu(){
-    echo "================================================"
-    echo "Office Menu"
-    echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
-    echo "3. HP Printer Drivers"
-    echo "99. Help 0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input -eq 1 ]
-    then
-        flatpak install -y flathub org.libreoffice.LibreOffice
-	    flatpak install -y flathub org.qownnotes.QOwnNotes
-    elif [ $input -eq 2 ]
-    then
-        flatpak install -y flathub com.discordapp.Discord
-	    flatpak install -y flathub im.pidgin.Pidgin
-    elif [ $input -eq 3 ]
-    then
-        sudo dnf install -y hplip-gui
-    elif [ $input -eq 99 ]
-    then
-        office_help
-    elif [ $input -eq 0 ]
-    then
-	    main_menu
+install_basic_apps(){
+	sudo dnf install -y  java-17-openjdk brave-browser \
+	plymouth-theme-spinfinity vim-enhanced lm_sensors \
+	bluecurve-icon-theme p7zip p7zip-plugins 
+	sudo plymouth-set-default-theme spinfinity -R
+	flatpak install -y flathub org.keepassxc.KeePassXC
+    flatpak install -y flathub com.transmissionbt.Transmission
+    mkdir /home/$USER/.apps
+    mkdir /home/$USER/.apps/launchers
+}
+
+get_desktop_extras(){
+    DESKTOP=$XDG_CURRENT_DESKTOP
+    if [ "$DESKTOP" = "GNOME" ]
+	then
+		install_gnome_extras
+	elif [ "$DESKTOP" = "KDE" ]
+	then
+		install_kde_extras
+	elif [ "$DESKTOP" = "MATE" ]
+	then
+		echo "Now setting up some extra mate features."
+		sudo dnf install -y caja-dropbox caja-share \
+		mate-menu dconf-editor humanity-icon-theme \
+        gnome-icon-theme pavucontrol
     else
-	    echo "error."
-    fi
-    office_menu
+        echo "test"
+	fi
+}
+
+install_gnome_extras(){
+	echo "Now setting up some extra gnome features."
+	sudo dnf install -y menulibre pavucontrol \
+	gnome-tweaks nautilus-dropbox file-roller \
+	gnome-shell-extension-appindicator openssl \
+	humanity-icon-theme gedit gedit-plugins \
+    dconf-editor
+	flatpak install -y flathub org.gnome.Extensions
+	
+	
+}
+
+install_kde_extras(){
+	echo "Now setting up some extra kde features."
+	sudo dnf install -y dolphin-plugins ark digikam \
+    kde-connect kpat krusader dropbox
 }
 
 media_menu(){
@@ -359,6 +157,145 @@ media_menu(){
     media_menu
 }
 
+media_help(){
+    echo "1. Codecs/Playback - openh264 (firefox), ffmpeg and vlc."
+    echo "2. Editing Tools - GIMP, Kolourpaint and OpenShot."
+    echo "3. OBS Studio - self explanatory. :P"
+}
+
+office_menu(){
+    echo "================================================"
+    echo "Office Menu"
+    echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
+    echo "3. HP Printer Drivers"
+    echo "99. Help 0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        flatpak install -y flathub org.libreoffice.LibreOffice
+	    flatpak install -y flathub org.qownnotes.QOwnNotes
+    elif [ $input -eq 2 ]
+    then
+        flatpak install -y flathub com.discordapp.Discord
+	    flatpak install -y flathub im.pidgin.Pidgin
+    elif [ $input -eq 3 ]
+    then
+        sudo dnf install -y hplip-gui
+    elif [ $input -eq 99 ]
+    then
+        office_help
+    elif [ $input -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    office_menu
+}
+
+office_help(){
+    echo "1. LibreOffice/QOwnNotes - self explanatory. :P"
+    echo "2. Social Apps - Currently installs discord and pidgin."
+    echo "3. HP Printer Drivers - self explanatory. :P"
+}
+
+install_coding_tools(){
+	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+    sudo rpm --import https://mirror.mwt.me/ghd/gpgkey
+	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
+	sudo sh -c 'echo -e "[shiftkey]\nname=GitHub Desktop\nbaseurl=https://mirror.mwt.me/ghd/rpm\nenabled=1\ngpgcheck=0\nrepo_gpgcheck=1\ngpgkey=https://mirror.mwt.me/ghd/gpgkey" > /etc/yum.repos.d/shiftkey-desktop.repo'
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	source ~/.bashrc
+	nvm install lts/*
+	sudo dnf install -y python3-tools python3-devel git-gui \
+	java-17-openjdk-devel codium github-desktop
+
+}
+
+games_menu(){
+    echo "================================================"
+    echo "Games Menu"
+    echo "1. Game Clients 2. WoW Up"
+    echo "3. Minecraft"
+    echo "99. Help 0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        install_game_clients
+    elif [ $input -eq 2 ]
+    then
+        install_wowup
+    elif [ $input -eq 3 ]
+    then
+        install_minecraft
+    elif [ $input -eq 99 ]
+    then
+        games_help
+    elif [ $input -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    games_menu
+}
+
+install_game_clients(){
+    mkdir /home/$USER/Games
+	mkdir /home/$USER/Games/bottles
+    sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices \
+    kernel-modules-extra
+    sudo modprobe xpad
+	flatpak install -y flathub net.davidotek.pupgui2
+
+    flatpak install -y flathub com.usebottles.bottles
+    flatpak run com.usebottles.bottles
+
+    flatpak install -y flathub net.lutris.Lutris
+    flatpak run net.lutris.Lutris
+
+    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
+    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+
+}
+
+install_wowup(){
+    WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.9.1/WowUp-2.9.1.AppImage
+    WOWUPBINARY=WowUp-2.9.1.AppImage
+    mkdir /home/$USER/Downloads/wowup 
+    cd /home/$USER/Downloads/wowup 
+    wget $WOWUPLINK
+    chmod +x $WOWUPBINARY
+    mv /home/$USER/Downloads/wowup /home/$USER/.apps
+}
+
+install_minecraft(){
+    cd /home/$USER/Downloads
+    wget https://launcher.mojang.com/download/Minecraft.tar.gz
+    tar -xvf Minecraft.tar.gz
+    cd minecraft-launcher
+    chmod +x minecraft-launcher
+    mv minecraft-launcher /home/$USER/.apps/launchers
+    cd /home/$USER/Downloads
+    rm -r minecraft-launcher
+    rm Minecraft.tar.gz
+}
+
+games_help(){
+    echo "1. Steam Client - Self explanatory. :P"
+    echo "2. Wine - official version of wine from winehq."
+    echo "3. Lutris/Bottles - Downloads latest stable lutris, bottles and protonup."
+    echo "4. WoW Up - World of Warcraft addon manager."
+    echo "5. Minecraft - installs flatpak package of minecraft."
+    echo "6. Controller Setup - Installs kernel development packages and runs xpad."
+}
+
 servers_menu(){
     echo "================================================"
     echo "1. Lamp Stack 2. Fedora Cockpit"
@@ -394,6 +331,29 @@ servers_menu(){
     servers_menu
 }
 
+install_samba(){
+	sudo dnf install -y samba
+	sudo systemctl enable smb nmb
+	sudo firewall-cmd --add-service=samba --permanent
+	sudo firewall-cmd --reload
+    mkdir /home/$USER/FILES
+}
+
+servers_help(){
+    echo "1. Lamp Stack - Apache web server, mariadb and php/phpmyadmin."
+    echo "2. Fedora Cockpit - Setups fedora cockpit for remote management."
+    echo "3. Samba Share - Installs samba server and creates folders."
+}
+
+install_utilities(){
+	sudo dnf -y copr enable timlau/yumex-dnf
+	sudo dnf install -y yumex-dnf clamav \
+    clamav-update firewall-applet kleopatra \
+	mediawriter
+	flatpak install -y flathub org.gtkhash.gtkhash
+	flatpak install -y flathub com.github.tchx84.Flatseal
+}
+
 about(){
     VERSION="dev branch"
     echo "================================================"
@@ -402,6 +362,20 @@ about(){
     echo "Version: $VERSION"
     echo "================================================"
     main_menu
+}
+
+main_help(){
+    echo "1. Repos - rpmfusion, flatpak and brave browser."
+    echo "2. Corectrl - installs corectrl overclocking tool and enables it on login."
+    echo "3. Setup DE - Sets up desktop environment specific packages. Also installs brave and few other basic packages."
+    echo "Such as nautilus-dropbox for gnome etc."
+    echo "4. Media Menu - Sub menu for media related packages."
+    echo "5. Office Menu - Sub menu for office related packages."
+    echo "6. Coding Tools - openJDK, nodejs and other development packages."
+    echo "7. Gaming Menu - Sub menmu for gaming related packages."
+    echo "8. Servers Menu - Sub menu for server related packages."
+    echo "9. Utilities - Clamav, yumex and some other useful packages."
+    echo "10. Virtualization - libvirt and related tools."
 }
 
 USER=$(whoami)
