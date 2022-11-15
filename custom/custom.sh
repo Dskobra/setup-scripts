@@ -21,6 +21,7 @@ setup_games(){
 setup_dropbox(){
     cd $PARENT/data/shortcuts
     xdg-desktop-menu install Dropbox-fix.desktop --mode user --novendor
+    cp /home/$USER/.local/share/applications/Dropbox-fix.desktop /home/$USER/.config/autostart/Dropbox-fix.desktop
 }
 
 setup_mangohud(){
