@@ -9,7 +9,8 @@ cleanup(){
 	sudo dnf remove -y libreoffice-core \
 	gnome-shell-extension-gamemode gnome-text-editor \
 	kmahjongg kmines systemd-oomd-defaults \
-	transmission-gtk transmission-qt
+	transmission-gtk transmission-qt \
+	compiz
 }
 
 cleanup

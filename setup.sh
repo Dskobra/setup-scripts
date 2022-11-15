@@ -20,6 +20,7 @@ main_menu(){
     elif [ $input -eq 2 ]
     then
         sudo dnf install -y corectrl
+        mkdir /home/$USER/.config/autostart # some desktops like mate dont have this created by default.
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
     elif [ $input -eq 3 ]
     then
@@ -118,7 +119,7 @@ install_gnome_extras(){
 install_kde_extras(){
 	echo "Now setting up some extra kde features."
 	sudo dnf install -y dolphin-plugins ark digikam \
-    kde-connect kpat krusader dropbox
+    krusader dropbox
 }
 
 media_menu(){
@@ -219,7 +220,7 @@ games_menu(){
     echo "================================================"
     echo "Games Menu"
     echo "1. Game Clients 2. WoW Up"
-    echo "3. Minecraft 4. Steam Deck"
+    echo "3. Extra Games 4. Steam Deck"
     echo "99. Help 0. Back to main menu"
     echo "================================================"
     printf "Option: "
@@ -233,7 +234,7 @@ games_menu(){
         install_wowup
     elif [ $input -eq 3 ]
     then
-        install_minecraft
+        install_extra_games
     elif [ $input -eq 4 ]
     then
         setup_deck
@@ -252,8 +253,8 @@ games_menu(){
 install_game_clients(){
     mkdir /home/$USER/Games
 	mkdir /home/$USER/Games/bottles
-    sudo dnf install -y mangohud gamemode gamemode.i686 steam steam-devices \
-    kernel-modules-extra
+    sudo dnf install -y mangohud gamemode gamemode.i686 gamescope \
+    steam steam-devices kernel-modules-extra
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
 
@@ -278,7 +279,7 @@ install_wowup(){
     mv /home/$USER/Downloads/wowup /home/$USER/.apps
 }
 
-install_minecraft(){
+install_extra_games(){
     cd /home/$USER/Downloads
     wget https://launcher.mojang.com/download/Minecraft.tar.gz
     tar -xvf Minecraft.tar.gz
@@ -288,6 +289,8 @@ install_minecraft(){
     cd /home/$USER/Downloads
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
+
+    sudo dnf install kpat
 }
 
 setup_deck(){
@@ -302,12 +305,12 @@ setup_deck(){
 }
 
 games_help(){
-    echo "1. Steam Client - Self explanatory. :P"
-    echo "2. Wine - official version of wine from winehq."
-    echo "3. Lutris/Bottles - Downloads latest stable lutris, bottles and protonup."
-    echo "4. WoW Up - World of Warcraft addon manager."
-    echo "5. Minecraft - installs flatpak package of minecraft."
-    echo "6. Controller Setup - Installs kernel development packages and runs xpad."
+    echo "1. Game Clients - Steam (rpmfusion), bottles and lutris flatpaks."
+    echo " Also setups xpad for controller support"
+    echo "2. WoW Up - World of Warcraft addon manager."
+    echo "3. Extra games - Downloads java version of minecraft and installs kpat"
+    echo "kde card games."
+    echo "4. Steam Deck - installs some flatpaks for my steam deck if I ever need to reset it."
 }
 
 servers_menu(){
@@ -381,15 +384,15 @@ about(){
 main_help(){
     echo "1. Repos - rpmfusion, flatpak and brave browser."
     echo "2. Corectrl - installs corectrl overclocking tool and enables it on login."
-    echo "3. Setup DE - Sets up desktop environment specific packages. Also installs brave and few other basic packages."
-    echo "Such as nautilus-dropbox for gnome etc."
+    echo "3. Setup DE - Sets up dropbox, desktop specific packages and some extras like vim."
     echo "4. Media Menu - Sub menu for media related packages."
     echo "5. Office Menu - Sub menu for office related packages."
     echo "6. Coding Tools - openJDK, nodejs and other development packages."
     echo "7. Gaming Menu - Sub menmu for gaming related packages."
     echo "8. Servers Menu - Sub menu for server related packages."
     echo "9. Utilities - Clamav, yumex and some other useful packages."
-    echo "10. Virtualization - libvirt and related tools."
+    echo "10. Virtualization - Installs the Virtualization package group and virtio-win"
+    echo "windows client drivers/tools."
 }
 
 USER=$(whoami)
