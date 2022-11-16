@@ -9,15 +9,6 @@ setup_permissions(){
     cd $PARENT/data/shortcuts
     sudo chown $USER:$USER *.desktop
 }
-
-setup_games(){
-    cd $PARENT/data/
-    cp wowup.sh /home/$USER/.apps/launchers
-    cd $PARENT/data/shortcuts
-    xdg-desktop-menu install WoWUp.desktop --mode user --novendor
-    xdg-desktop-menu install Minecraft.desktop --mode user --novendor
-}
-
 setup_dropbox(){
     cd $PARENT/data/shortcuts
     xdg-desktop-menu install Dropbox-fix.desktop --mode user --novendor
@@ -60,10 +51,10 @@ main_help(){
 main_menu(){
     echo "================================================"
     echo "My custom setup scripts"
-    echo "1. Setup bash profile 2. WoW Up/Minecraft"
-    echo "3. Copy Mangohud configs"
-    echo "4. Steam (gamescope)"
-    echo "5. Setup dropbox tray"
+    echo "1. Setup bash profile"
+    echo "2. Copy Mangohud configs"
+    echo "3. Steam (gamescope)"
+    echo "4. Setup dropbox tray"
     echo "99. Help 0. Exit"
     echo "================================================"
     printf "Option: "
@@ -76,16 +67,12 @@ main_menu(){
     elif [ $input -eq 2 ]
     then
         setup_permissions
-        setup_games
+        setup_mangohud
     elif [ $input -eq 3 ]
     then
         setup_permissions
-        setup_mangohud
-    elif [ $input -eq 4 ]
-    then
-        setup_permissions
         setup_steam_with_gamescope
-    elif [ $input -eq 5 ]
+    elif [ $input -eq 4 ]
     then
         setup_permissions
         setup_dropbox

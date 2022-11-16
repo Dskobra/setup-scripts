@@ -81,8 +81,6 @@ install_basic_apps(){
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
     flatpak install -y flathub com.transmissionbt.Transmission
-    mkdir /home/$USER/.apps
-    mkdir /home/$USER/.apps/launchers
 }
 
 get_desktop_extras(){
@@ -271,12 +269,10 @@ install_game_clients(){
 
 install_wowup(){
     WOWUPLINK=https://github.com/WowUp/WowUp/releases/download/v2.9.1/WowUp-2.9.1.AppImage
-    WOWUPBINARY=WowUp-2.9.1.AppImage
-    mkdir /home/$USER/Downloads/wowup 
-    cd /home/$USER/Downloads/wowup 
+    WOWUPBINARY=WowUp-2.9.1.AppImage 
+    cd /home/$USER/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
-    mv /home/$USER/Downloads/wowup /home/$USER/.apps
 }
 
 install_extra_games(){
@@ -285,12 +281,12 @@ install_extra_games(){
     tar -xvf Minecraft.tar.gz
     cd minecraft-launcher
     chmod +x minecraft-launcher
-    mv minecraft-launcher /home/$USER/.apps/launchers
+    mv minecraft-launcher /home/$USER/Desktop
     cd /home/$USER/Downloads
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
 
-    sudo dnf install kpat
+    sudo dnf install -y kpat
 }
 
 setup_deck(){
