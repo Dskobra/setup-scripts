@@ -81,43 +81,29 @@ install_basic_apps(){
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
     flatpak install -y flathub com.transmissionbt.Transmission
+    flatpak install -y flathub com.dropbox.Client
 }
 
 get_desktop_extras(){
     DESKTOP=$XDG_CURRENT_DESKTOP
-    if [ "$DESKTOP" = "GNOME" ]
-	then
-		install_gnome_extras
-	elif [ "$DESKTOP" = "KDE" ]
+	if [ "$DESKTOP" = "KDE" ]
 	then
 		install_kde_extras
 	elif [ "$DESKTOP" = "MATE" ]
 	then
 		echo "Now setting up some extra mate features."
-		sudo dnf install -y caja-dropbox caja-share \
-		mate-menu dconf-editor humanity-icon-theme \
+		sudo dnf install -y caja-share mate-menu 
+        dconf-editor humanity-icon-theme \
         gnome-icon-theme pavucontrol
     else
         echo "test"
 	fi
 }
 
-install_gnome_extras(){
-	echo "Now setting up some extra gnome features."
-	sudo dnf install -y menulibre pavucontrol \
-	gnome-tweaks nautilus-dropbox file-roller \
-	gnome-shell-extension-appindicator openssl \
-	humanity-icon-theme gedit gedit-plugins \
-    dconf-editor
-	flatpak install -y flathub org.gnome.Extensions
-	
-	
-}
-
 install_kde_extras(){
 	echo "Now setting up some extra kde features."
 	sudo dnf install -y dolphin-plugins ark digikam \
-    krusader dropbox
+    krusader
 }
 
 media_menu(){
@@ -138,7 +124,7 @@ media_menu(){
 	    flatpak install -y flathub org.videolan.VLC
     elif [ $input -eq 2 ]
     then
-        sudo dnf install -y kolourpaint
+        sudo dnf install -y kolourpaint k3b
 	    flatpak install -y flathub org.openshot.OpenShot
         flatpak install -y flathub org.gimp.GIMP
     elif [ $input -eq 3 ]
