@@ -119,6 +119,7 @@ media_menu(){
     if [ $input -eq 1 ]
     then
         echo ""
+        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 	    flatpak install -y flathub org.videolan.VLC
