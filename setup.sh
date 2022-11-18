@@ -78,6 +78,7 @@ install_basic_apps(){
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
 	bluecurve-icon-theme p7zip p7zip-plugins 
+    sudo dnf groupinstall -y "Firefox Web Browser"
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
     flatpak install -y flathub com.transmissionbt.Transmission
@@ -193,6 +194,8 @@ install_coding_tools(){
     sudo rpm --import https://mirror.mwt.me/ghd/gpgkey
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey]\nname=GitHub Desktop\nbaseurl=https://mirror.mwt.me/ghd/rpm\nenabled=1\ngpgcheck=0\nrepo_gpgcheck=1\ngpgkey=https://mirror.mwt.me/ghd/gpgkey" > /etc/yum.repos.d/shiftkey-desktop.repo'
+    sudo dnf groupinstall -y "C Development Tools and libraries"
+    sudo dnf groupinstall -y "Development Tools"
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*

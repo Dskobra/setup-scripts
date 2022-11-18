@@ -2,7 +2,7 @@
 
 USER=$(whoami)
 
-cd mangohud
+
 mkdir /home/$USER/.config/MangoHud/
 #lutris/bottles store MangoHud under /home/$USER/.var/app/APPNAME/config/MangoHud/
 ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/net.lutris.Lutris/config/"
