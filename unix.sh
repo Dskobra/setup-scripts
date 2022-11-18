@@ -3,11 +3,7 @@
 
 PARENT=$(pwd)
 dos2unix *
-cd $PARENT/custom
+cd $PARENT/mangohud
 dos2unix *
-cd $PARENT/custom/data
-dos2unix *
-cd $PARENT/custom/data/mangohud
-dos2unix *
-cd $PARENT/custom/data/shortcuts
+cd $PARENT/mangohud/conf
 dos2unix *
