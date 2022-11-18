@@ -2,4 +2,4 @@
 My personal scripts for setting up Fedora quick on my pc.
 Includes my normal programs and other stuff. Ignore the mess. :P
 
-Current release is: 1.2
+Current release is: 11.18.2022.3.24am
