@@ -3,12 +3,13 @@
 USER=$(whoami)
 
 cd mangohud
-sudo chown $USER:$USER *.conf
 mkdir /home/$USER/.config/MangoHud/
 #lutris/bottles store MangoHud under /home/$USER/.var/app/APPNAME/config/MangoHud/
 ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/net.lutris.Lutris/config/"
 ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/com.usebottles.bottles/config/"
 
+cd conf
+sudo chown $USER:$USER *.conf
 cp wine-GTA5.conf /home/$USER/.config/MangoHud/
 cp wine-NewWorld.conf /home/$USER/.config/MangoHud/
 cp wine-PathOfExile_x64Steam.conf /home/$USER/.config/MangoHud/
