@@ -238,7 +238,7 @@ games_menu(){
 install_game_clients(){
     mkdir /home/$USER/Games
 	mkdir /home/$USER/Games/bottles
-    sudo dnf install -y mangohud gamemode gamemode.i686 gamescope \
+    sudo dnf install -y mangohud gamemode gamemode.i686 \
     steam steam-devices kernel-modules-extra
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
