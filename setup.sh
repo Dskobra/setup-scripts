@@ -298,8 +298,8 @@ install_game_clients(){
 }
 
 install_wowup(){
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.3/WowUp-CF-2.9.2-beta.3.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.2-beta.3.AppImage
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.4/WowUp-CF-2.9.2-beta.4.AppImage
+    WOWUPBINARY=WowUp-CF-2.9.2-beta.4.AppImage
     cd /home/$USER/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
