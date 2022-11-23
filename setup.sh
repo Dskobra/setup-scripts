@@ -3,12 +3,12 @@
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Repos 2. Corectrl"
-    echo "3. Setup DE 4. Media Menu" 
-    echo "5. Office Menu 6.Coding Tools"
-    echo "7. Gaming Menu 8. Servers Menu"
-    echo "9. Utilities 10. Virtualization"
-    echo "99. Help 100. About script "
+    echo "1. Repos 2. Setup DE"
+    echo "3. Media Menu 4. Office Menu"
+    echo "5.Coding Tools 6. Gaming Menu" 
+    echo "7. Servers Menu 8. Utilities" 
+    echo "9. Virtualization Extras Menu"
+    echo "99. Help 100. About script"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -19,37 +19,35 @@ main_menu(){
         setup_repos
     elif [ $input -eq 2 ]
     then
-        sudo dnf install -y corectrl
-        mkdir /home/$USER/.config/autostart # some desktops like mate dont have this created by default.
-	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
-    elif [ $input -eq 3 ]
-    then
         install_basic_apps
         get_desktop_extras
-    elif [ $input -eq 4 ]
+    elif [ $input -eq 3 ]
     then
         media_menu
-    elif [ $input -eq 5 ]
+    elif [ $input -eq 4 ]
     then
         office_menu
-    elif [ $input -eq 6 ]
+    elif [ $input -eq 5 ]
     then
         install_coding_tools
-    elif [ $input -eq 7 ]
+    elif [ $input -eq 6 ]
     then
         games_menu
-    elif [ $input -eq 8 ]
+    elif [ $input -eq 7 ]
     then
         servers_menu
-    elif [ $input -eq 9 ]
+    elif [ $input -eq 8 ]
     then
         install_utilities
-    elif [ $input -eq 10 ]
+    elif [ $input -eq 9 ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
         sudo dnf groupinstall -y "Virtualization"
 	    sudo dnf install -y virtio-win
+    elif [ $input -eq 9 ]
+    then
+        extras_menu
     elif [ $input -eq 99 ]
     then
         main_help
@@ -74,6 +72,48 @@ setup_repos(){
 	sudo dnf update -y
 }
 
+extras_menu(){
+    echo "================================================"
+    echo "Main Menu"
+    echo "1. Corectrl"
+    echo "2. Replace firewalld with ufw"
+    echo "99. Help 100. About script "
+    echo "0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input -eq 1 ]
+    then
+        sudo dnf install -y corectrl
+        mkdir /home/$USER/.config/autostart # some desktops like mate dont have this created by default.
+	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
+    elif [ $input -eq 2 ]
+    then
+        firewall_replace
+    elif [ $input -eq 99 ]
+    then
+        echo "1. Corectrl - installs corectrl for overclocking/fan control."
+        echo "2. Replaces firewalld with ufw. Firewall currently is blocking world of warcraft."
+    elif [ $input -eq 0 ]
+    then
+	    exit
+    else
+	    echo "error."
+    fi
+    main_menu
+}
+
+firewall_replace(){
+        sudo dnf remove -y firewalld && sudo dnf install -y ufw
+        DESKTOP=$XDG_CURRENT_DESKTOP
+        if [ "$DESKTOP" = "KDE" ]
+        then
+            sudo dnf install -y plasma-firewall-ufw
+        else
+            echo "Not installing ufw plasma integration."
+        fi
+}
 install_basic_apps(){
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
