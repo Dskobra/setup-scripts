@@ -7,7 +7,7 @@ main_menu(){
     echo "3. Media Menu 4. Office Menu"
     echo "5.Coding Tools 6. Gaming Menu" 
     echo "7. Servers Menu 8. Utilities" 
-    echo "9. Virtualization Extras Menu"
+    echo "9. Virtualization 10. Extras Menu"
     echo "99. Help 100. About script"
     echo "0. Exit"
     echo "================================================"
@@ -45,7 +45,7 @@ main_menu(){
         -O /etc/yum.repos.d/virtio-win.repo
         sudo dnf groupinstall -y "Virtualization"
 	    sudo dnf install -y virtio-win
-    elif [ $input -eq 9 ]
+    elif [ $input -eq 10 ]
     then
         extras_menu
     elif [ $input -eq 99 ]
