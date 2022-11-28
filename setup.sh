@@ -114,6 +114,7 @@ firewall_replace(){
             echo "Not installing ufw plasma integration."
         fi
 }
+
 install_basic_apps(){
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
@@ -133,7 +134,7 @@ get_desktop_extras(){
 	elif [ "$DESKTOP" = "MATE" ]
 	then
 		echo "Now setting up some extra mate features."
-		sudo dnf install -y caja-share mate-menu 
+		sudo dnf install -y caja-share mate-menu \
         dconf-editor humanity-icon-theme \
         gnome-icon-theme pavucontrol
     else
