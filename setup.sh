@@ -74,7 +74,7 @@ setup_repos(){
 
 extras_menu(){
     echo "================================================"
-    echo "Main Menu"
+    echo "Extras Submenu"
     echo "1. Corectrl"
     echo "2. Replace firewalld with ufw"
     echo "99. Help 100. About script "
@@ -97,11 +97,11 @@ extras_menu(){
         echo "2. Replaces firewalld with ufw. Firewall currently is blocking world of warcraft."
     elif [ $input -eq 0 ]
     then
-	    exit
+	    main_menu
     else
 	    echo "error."
     fi
-    main_menu
+    extras_menu
 }
 
 firewall_replace(){
@@ -150,7 +150,7 @@ install_kde_extras(){
 
 media_menu(){
     echo "================================================"
-    echo "Media Menu"
+    echo "Media Submenu"
     echo "1. Codecs/Playback 2. Editing Tools"
     echo "3. OBS Studio"
     echo "99. Help 0. Back to main menu"
@@ -193,7 +193,7 @@ media_help(){
 
 office_menu(){
     echo "================================================"
-    echo "Office Menu"
+    echo "Office Submenu"
     echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
     echo "3. HP Printer Drivers"
     echo "99. Help 0. Back to main menu"
@@ -342,6 +342,7 @@ games_help(){
 
 servers_menu(){
     echo "================================================"
+    echo "Servers Submenu"
     echo "1. Lamp Stack 2. Fedora Cockpit"
     echo "3. Samba Share"
     echo "99. Help 0. Back to main menu"
