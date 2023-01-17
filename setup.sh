@@ -77,7 +77,6 @@ extras_menu(){
     echo "Extras Submenu"
     echo "1. Corectrl"
     echo "2. Replace firewalld with ufw"
-    echo "99. Help 100. About script "
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -106,6 +105,7 @@ extras_menu(){
 
 firewall_replace(){
         sudo dnf remove -y firewalld && sudo dnf install -y ufw
+        sudo systemctl enable --now ufw 
         DESKTOP=$XDG_CURRENT_DESKTOP
         if [ "$DESKTOP" = "KDE" ]
         then
@@ -128,6 +128,9 @@ install_basic_apps(){
 
 get_desktop_extras(){
     DESKTOP=$XDG_CURRENT_DESKTOP
+    if [ "$DESKTOP" = "GNOME" ]
+    then
+        install_gnome_extras
 	if [ "$DESKTOP" = "KDE" ]
 	then
 		install_kde_extras
@@ -142,10 +145,17 @@ get_desktop_extras(){
 	fi
 }
 
+install_gnome_extras(){
+	echo "Now setting up some extra gnome features."
+	sudo dnf install -y menulibre pavucontrol \
+	gnome-tweaks libappindicator-gtk3 libdbusmenu-gtk3 \
+    libdbusmenu openssl file-roller humanity-icon-theme 
+	flatpak install -y flathub org.gnome.Extensions
+}
+
 install_kde_extras(){
 	echo "Now setting up some extra kde features."
-	sudo dnf install -y dolphin-plugins ark digikam \
-    krusader
+	sudo dnf install -y dolphin-plugins ark
 }
 
 media_menu(){
@@ -317,7 +327,7 @@ install_extra_games(){
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
 
-    sudo dnf install -y kpat
+    flatpak install -y flathub org.kde.kpat
 }
 
 setup_deck(){
@@ -329,6 +339,7 @@ setup_deck(){
     flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y flathub net.lutris.Lutris
     flatpak install -y flathub com.github.tchx84.Flatseal
+    flatpak install -y flathub org.kde.kpat
 }
 
 games_help(){
@@ -392,11 +403,11 @@ servers_help(){
 
 install_utilities(){
 	sudo dnf -y copr enable timlau/yumex-dnf
-	sudo dnf install -y yumex-dnf clamav \
-    clamav-update firewall-applet kleopatra \
-	mediawriter
+	sudo dnf install -y yumex-dnf firewall-applet \
+    mediawriter
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
+    flatpak install -y flathub org.kde.kleopatra
 }
 
 about(){
