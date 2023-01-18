@@ -149,13 +149,13 @@ install_gnome_extras(){
 	echo "Now setting up some extra gnome features."
 	sudo dnf install -y menulibre pavucontrol \
 	gnome-tweaks libappindicator-gtk3 libdbusmenu-gtk3 \
-    libdbusmenu openssl file-roller humanity-icon-theme 
+    libdbusmenu openssl xarchiver humanity-icon-theme 
 	flatpak install -y flathub org.gnome.Extensions
 }
 
 install_kde_extras(){
 	echo "Now setting up some extra kde features."
-	sudo dnf install -y dolphin-plugins ark
+	sudo dnf install -y dolphin-plugins ark k3b
 }
 
 media_menu(){
@@ -170,16 +170,15 @@ media_menu(){
     
     if [ $input -eq 1 ]
     then
-        echo ""
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 	    flatpak install -y flathub org.videolan.VLC
     elif [ $input -eq 2 ]
     then
-        sudo dnf install -y kolourpaint k3b
 	    flatpak install -y flathub org.openshot.OpenShot
         flatpak install -y flathub org.gimp.GIMP
+        flatpak install -y flathub org.kde.kolourpaint
     elif [ $input -eq 3 ]
     then
         flatpak install -y flathub com.obsproject.Studio
@@ -290,6 +289,50 @@ games_menu(){
     games_menu
 }
 
+setup_wine_repo(){
+	source /etc/os-release
+	getRelease=$(echo $VERSION_ID)
+	echo "Fedora Version:" $getRelease
+
+	if [ "$getRelease" = "36" ]
+	then
+		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/36/winehq.repo
+	elif [ "$getRelease" = "37" ]
+	then
+		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/37/winehq.repo
+	elif [ $input -eq 0 ]
+	then
+		exit
+	else
+		echo "error."
+	fi
+}
+
+install_wine(){
+    sudo dnf install -y alsa-plugins-pulseaudio.i686 glibc-devel.i686 glibc-devel \
+        libgcc.i686 libX11-devel.i686 freetype-devel.i686 libXcursor-devel.i686 \
+        libXi-devel.i686 libXext-devel.i686 libXxf86vm-devel.i686 libXrandr-devel.i686 \
+        libXinerama-devel.i686 mesa-libGLU-devel.i686 mesa-libOSMesa-devel.i686 \
+        libXrender-devel.i686 libpcap-devel.i686 ncurses-devel.i686 libzip-devel.i686 \
+        lcms2-devel.i686 zlib-devel.i686 libv4l-devel.i686 libgphoto2-devel.i686  \
+        cups-devel.i686 libxml2-devel.i686 openldap-devel.i686 libxslt-devel.i686 gnutls-devel.i686 \
+        libpng-devel.i686 flac-libs.i686 json-c.i686 libICE.i686 libSM.i686 libXtst.i686 \
+        libasyncns.i686 libedit.i686 liberation-narrow-fonts.noarch libieee1284.i686 libogg.i686 \
+        libsndfile.i686 libuuid.i686 libva.i686 libvorbis.i686 libwayland-client.i686 \
+        libwayland-server.i686 llvm-libs.i686 mesa-dri-drivers.i686 mesa-filesystem.i686 \
+        mesa-libEGL.i686 mesa-libgbm.i686 nss-mdns.i686 ocl-icd.i686 pulseaudio-libs.i686 \
+        sane-backends-libs.i686 tcp_wrappers-libs.i686 unixODBC.i686 samba-common-tools.x86_64 \
+        samba-libs.x86_64 samba-winbind.x86_64 samba-winbind-clients.x86_64 \
+        samba-winbind-modules.x86_64 mesa-libGL-devel.i686 fontconfig-devel.i686 \
+        libXcomposite-devel.i686 libtiff-devel.i686 openal-soft-devel.i686 \
+        mesa-libOpenCL-devel.i686 opencl-utils-devel.i686 alsa-lib-devel.i686 gsm-devel.i686 \
+        libjpeg-turbo-devel.i686 pulseaudio-libs-devel.i686 pulseaudio-libs-devel gtk3-devel.i686 \
+        libattr-devel.i686 libva-devel.i686 libexif-devel.i686 libexif.i686 glib2-devel.i686 \
+        mpg123-devel.i686 mpg123-devel.x86_64 libcom_err-devel.i686 libcom_err-devel.x86_64 \
+        libFAudio-devel.i686 libFAudio-devel.x86_64
+        sudo dnf install -y winehq-staging
+}
+
 install_game_clients(){
     mkdir /home/$USER/Games
 	mkdir /home/$USER/Games/bottles
@@ -308,6 +351,8 @@ install_game_clients(){
     DESKTOP=$XDG_CURRENT_DESKTOP
     if [ "$DESKTOP" = "GNOME" ]
     then
+        setup_wine_repo
+        install_wine
         sudo dnf install -y lutris
 	elif [ "$DESKTOP" = "KDE" ]
 	then
@@ -428,6 +473,7 @@ install_utilities(){
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
     flatpak install -y flathub org.kde.kleopatra
+    flatpak install -y flathub org.raspberrypi.rpi-imager
 }
 
 about(){
