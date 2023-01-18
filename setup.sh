@@ -141,7 +141,7 @@ get_desktop_extras(){
         dconf-editor humanity-icon-theme \
         gnome-icon-theme pavucontrol
     else
-        echo "test"
+        echo "Unknown desktop"
 	fi
 }
 
@@ -183,6 +183,7 @@ media_menu(){
     elif [ $input -eq 3 ]
     then
         flatpak install -y flathub com.obsproject.Studio
+        sudo dnf install -y v4l2loopback    # needed for obs virtual camera
     elif [ $input -eq 99 ]
     then
         media_help
@@ -292,19 +293,38 @@ games_menu(){
 install_game_clients(){
     mkdir /home/$USER/Games
 	mkdir /home/$USER/Games/bottles
+    mkdir /home/$USER/.config/MangoHud/
     sudo dnf install -y mangohud gamemode gamemode.i686 \
     steam steam-devices kernel-modules-extra
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
 
     flatpak install -y flathub com.usebottles.bottles
-    flatpak run com.usebottles.bottles
+    flatpak run com.usebottles.bottles # run once to ensure folders/runtimes are setup
 
-    flatpak install -y flathub net.lutris.Lutris
-    flatpak run net.lutris.Lutris
+    
+    #lutris/bottles store MangoHud under /home/$USER/.var/app/APPNAME/config/MangoHud/
+    ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/com.usebottles.bottles/config/"
+    DESKTOP=$XDG_CURRENT_DESKTOP
+    if [ "$DESKTOP" = "GNOME" ]
+    then
+        sudo dnf install -y lutris
+	if [ "$DESKTOP" = "KDE" ]
+	then
+        # winetricks runs poorly on kde with kdialog throwing popups 
+        # on every warning (on gnome they are hidden). flatpak lutris
+        # doesnt experience this on kde.
+        flatpak install -y flathub net.lutris.Lutris        
+        flatpak run net.lutris.Lutris       # run once to ensure folders/runtimes are setup
 
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+        flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
+        flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+
+        #lutris/bottles store MangoHud under /home/$USER/.var/app/APPNAME/config/MangoHud/
+        ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/net.lutris.Lutris/config/"
+    else
+        echo "Unknown desktop"
+	fi
 
 }
 
