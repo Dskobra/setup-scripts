@@ -131,7 +131,7 @@ get_desktop_extras(){
     if [ "$DESKTOP" = "GNOME" ]
     then
         install_gnome_extras
-	if [ "$DESKTOP" = "KDE" ]
+	elif [ "$DESKTOP" = "KDE" ]
 	then
 		install_kde_extras
 	elif [ "$DESKTOP" = "MATE" ]
@@ -309,7 +309,7 @@ install_game_clients(){
     if [ "$DESKTOP" = "GNOME" ]
     then
         sudo dnf install -y lutris
-	if [ "$DESKTOP" = "KDE" ]
+	elif [ "$DESKTOP" = "KDE" ]
 	then
         # winetricks runs poorly on kde with kdialog throwing popups 
         # on every warning (on gnome they are hidden). flatpak lutris
