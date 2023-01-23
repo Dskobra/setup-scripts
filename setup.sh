@@ -8,7 +8,7 @@ main_menu(){
     echo "5.Coding Tools 6. Gaming Menu" 
     echo "7. Servers Menu 8. Utilities" 
     echo "9. Virtualization 10. Extras Menu"
-    echo "99. Help 100. About script"
+    echo "100. About script"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -48,9 +48,6 @@ main_menu(){
     elif [ $input -eq 10 ]
     then
         extras_menu
-    elif [ $input -eq 99 ]
-    then
-        main_help
     elif [ $input -eq 100 ]
     then
         about
@@ -90,10 +87,6 @@ extras_menu(){
     elif [ $input -eq 2 ]
     then
         firewall_replace
-    elif [ $input -eq 99 ]
-    then
-        echo "1. Corectrl - installs corectrl for overclocking/fan control."
-        echo "2. Replaces firewalld with ufw. Firewall currently is blocking world of warcraft."
     elif [ $input -eq 0 ]
     then
 	    main_menu
@@ -130,10 +123,15 @@ get_desktop_extras(){
     DESKTOP=$XDG_CURRENT_DESKTOP
     if [ "$DESKTOP" = "GNOME" ]
     then
-        install_gnome_extras
+        echo "Now setting up some extra gnome features."
+        sudo dnf install -y menulibre pavucontrol \
+        gnome-tweaks libappindicator-gtk3 libdbusmenu-gtk3 \
+        libdbusmenu openssl xarchiver humanity-icon-theme 
+        flatpak install -y flathub org.gnome.Extensions
 	elif [ "$DESKTOP" = "KDE" ]
 	then
-		install_kde_extras
+        echo "Now setting up some extra kde features."
+		sudo dnf install -y dolphin-plugins ark
 	elif [ "$DESKTOP" = "MATE" ]
 	then
 		echo "Now setting up some extra mate features."
@@ -145,25 +143,12 @@ get_desktop_extras(){
 	fi
 }
 
-install_gnome_extras(){
-	echo "Now setting up some extra gnome features."
-	sudo dnf install -y menulibre pavucontrol \
-	gnome-tweaks libappindicator-gtk3 libdbusmenu-gtk3 \
-    libdbusmenu openssl xarchiver humanity-icon-theme 
-	flatpak install -y flathub org.gnome.Extensions
-}
-
-install_kde_extras(){
-	echo "Now setting up some extra kde features."
-	sudo dnf install -y dolphin-plugins ark k3b
-}
-
 media_menu(){
     echo "================================================"
     echo "Media Submenu"
     echo "1. Codecs/Playback 2. Editing Tools"
     echo "3. OBS Studio"
-    echo "99. Help 0. Back to main menu"
+    echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
     read input
@@ -176,29 +161,32 @@ media_menu(){
 	    flatpak install -y flathub org.videolan.VLC
     elif [ $input -eq 2 ]
     then
-	    flatpak install -y flathub org.openshot.OpenShot
+        flatpak install -y flathub org.openshot.OpenShot
         flatpak install -y flathub org.gimp.GIMP
         flatpak install -y flathub org.kde.kolourpaint
-    elif [ $input -eq 3 ]
-    then
-        flatpak install -y flathub com.obsproject.Studio
-        sudo dnf install -y v4l2loopback    # needed for obs virtual camera
-    elif [ $input -eq 99 ]
-    then
-        media_help
-    elif [ $input -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    media_menu
-}
 
-media_help(){
-    echo "1. Codecs/Playback - openh264 (firefox), ffmpeg and vlc."
-    echo "2. Editing Tools - GIMP, Kolourpaint and OpenShot."
-    echo "3. OBS Studio - self explanatory. :P"
+        # prefer brasero on gnome/mate k3b on kde
+        DESKTOP=$XDG_CURRENT_DESKTOP
+        if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
+        then
+            sudo dnf install -y brasero
+        elif [ "$DESKTOP" = "KDE" ]
+        then
+            sudo dnf install -y k3b
+        else
+            echo "Unknown desktop"
+        fi
+        elif [ $input -eq 3 ]
+        then
+            flatpak install -y flathub com.obsproject.Studio
+            sudo dnf install -y v4l2loopback    # needed for obs virtual camera
+        elif [ $input -eq 0 ]
+        then
+            main_menu
+        else
+            echo "error."
+        fi
+    media_menu
 }
 
 office_menu(){
@@ -206,7 +194,7 @@ office_menu(){
     echo "Office Submenu"
     echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
     echo "3. HP Printer Drivers"
-    echo "99. Help 0. Back to main menu"
+    echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
     read input
@@ -222,9 +210,6 @@ office_menu(){
     elif [ $input -eq 3 ]
     then
         sudo dnf install -y hplip-gui
-    elif [ $input -eq 99 ]
-    then
-        office_help
     elif [ $input -eq 0 ]
     then
 	    main_menu
@@ -232,12 +217,6 @@ office_menu(){
 	    echo "error."
     fi
     office_menu
-}
-
-office_help(){
-    echo "1. LibreOffice/QOwnNotes - self explanatory. :P"
-    echo "2. Social Apps - Currently installs discord and pidgin."
-    echo "3. HP Printer Drivers - self explanatory. :P"
 }
 
 install_coding_tools(){
@@ -260,7 +239,7 @@ games_menu(){
     echo "Games Menu"
     echo "1. Game Clients 2. WoW Up"
     echo "3. Extra Games 4. Steam Deck"
-    echo "99. Help 0. Back to main menu"
+    echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
     read input
@@ -277,9 +256,6 @@ games_menu(){
     elif [ $input -eq 4 ]
     then
         setup_deck
-    elif [ $input -eq 99 ]
-    then
-        games_help
     elif [ $input -eq 0 ]
     then
 	    main_menu
@@ -407,21 +383,12 @@ setup_deck(){
     flatpak install -y flathub org.kde.kpat
 }
 
-games_help(){
-    echo "1. Game Clients - Steam (rpmfusion), bottles and lutris flatpaks."
-    echo " Also setups xpad for controller support"
-    echo "2. WoW Up - World of Warcraft addon manager."
-    echo "3. Extra games - Downloads java version of minecraft and installs kpat"
-    echo "kde card games."
-    echo "4. Steam Deck - installs some flatpaks for my steam deck if I ever need to reset it."
-}
-
 servers_menu(){
     echo "================================================"
     echo "Servers Submenu"
     echo "1. Lamp Stack 2. Fedora Cockpit"
     echo "3. Samba Share"
-    echo "99. Help 0. Back to main menu"
+    echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
     read input
@@ -460,20 +427,24 @@ install_samba(){
     mkdir /home/$USER/FILES
 }
 
-servers_help(){
-    echo "1. Lamp Stack - Apache web server, mariadb and php/phpmyadmin."
-    echo "2. Fedora Cockpit - Setups fedora cockpit for remote management."
-    echo "3. Samba Share - Installs samba server and creates folders."
-}
-
 install_utilities(){
 	sudo dnf -y copr enable timlau/yumex-dnf
 	sudo dnf install -y yumex-dnf firewall-applet \
     mediawriter
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
-    flatpak install -y flathub org.kde.kleopatra
     flatpak install -y flathub org.raspberrypi.rpi-imager
+
+    DESKTOP=$XDG_CURRENT_DESKTOP
+    if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
+    then
+        flatpak install -y flathub org.kde.kleopatra
+	elif [ "$DESKTOP" = "KDE" ]
+	then
+		sudo dnf install -y kleopatra
+    else
+        echo "Unknown desktop"
+	fi
 }
 
 about(){
@@ -484,20 +455,6 @@ about(){
     echo "Version: $VERSION"
     echo "================================================"
     main_menu
-}
-
-main_help(){
-    echo "1. Repos - rpmfusion, flatpak and brave browser."
-    echo "2. Corectrl - installs corectrl overclocking tool and enables it on login."
-    echo "3. Setup DE - Sets up dropbox, desktop specific packages and some extras like vim."
-    echo "4. Media Menu - Sub menu for media related packages."
-    echo "5. Office Menu - Sub menu for office related packages."
-    echo "6. Coding Tools - openJDK, nodejs and other development packages."
-    echo "7. Gaming Menu - Sub menmu for gaming related packages."
-    echo "8. Servers Menu - Sub menu for server related packages."
-    echo "9. Utilities - Clamav, yumex and some other useful packages."
-    echo "10. Virtualization - Installs the Virtualization package group and virtio-win"
-    echo "windows client drivers/tools."
 }
 
 USER=$(whoami)
