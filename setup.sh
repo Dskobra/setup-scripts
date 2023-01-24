@@ -189,18 +189,19 @@ media_menu(){
         else
             echo "Unknown desktop"
         fi
-        elif [ "$input" -eq 3 ]
-        then
-            flatpak install -y flathub com.obsproject.Studio
-            sudo dnf install -y v4l2loopback    # needed for obs virtual camera
-        elif [ "$input" -eq 0 ]
-        then
-            main_menu
-        else
-            echo "error."
-        fi
+    elif [ "$input" -eq 3 ]
+    then
+        flatpak install -y flathub com.obsproject.Studio
+        sudo dnf install -y v4l2loopback    # needed for obs virtual camera
+    elif [ "$input" -eq 0 ]
+    then
+        main_menu
+    else
+        echo "error."
+    fi
     media_menu
 }
+
 
 office_menu(){
     echo "================================================"
@@ -209,7 +210,7 @@ office_menu(){
     echo "3. HP Printer Drivers"
     echo "0. Back to main menu"
     echo "================================================"
-    echo "Option: "
+    printf "Option: "
     read -r input
     
     if [ "$input" -eq 1 ]
