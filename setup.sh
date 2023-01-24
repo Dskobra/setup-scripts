@@ -12,46 +12,46 @@ main_menu(){
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
-    read input
+    read -r input
     
-    if [ $input -eq 1 ]
+    if [ "$input" -eq 1 ]
     then
         setup_repos
-    elif [ $input -eq 2 ]
+    elif [ "$input" -eq 2 ]
     then
         install_basic_apps
         get_desktop_extras
-    elif [ $input -eq 3 ]
+    elif [ "$input" -eq 3 ]
     then
         media_menu
-    elif [ $input -eq 4 ]
+    elif [ "$input" -eq 4 ]
     then
         office_menu
-    elif [ $input -eq 5 ]
+    elif [ "$input" -eq 5 ]
     then
         install_coding_tools
-    elif [ $input -eq 6 ]
+    elif [ "$input" -eq 6 ]
     then
         games_menu
-    elif [ $input -eq 7 ]
+    elif [ "$input" -eq 7 ]
     then
         servers_menu
-    elif [ $input -eq 8 ]
+    elif [ "$input" -eq 8 ]
     then
         install_utilities
-    elif [ $input -eq 9 ]
+    elif [ "$input" -eq 9 ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
         sudo dnf groupinstall -y "Virtualization"
 	    sudo dnf install -y virtio-win
-    elif [ $input -eq 10 ]
+    elif [ "$input" -eq 10 ]
     then
         extras_menu
-    elif [ $input -eq 100 ]
+    elif [ "$input" -eq 100 ]
     then
         about
-    elif [ $input -eq 0 ]
+    elif [ "$input" -eq 0 ]
     then
 	    exit
     else
@@ -74,20 +74,24 @@ extras_menu(){
     echo "Extras Submenu"
     echo "1. Corectrl"
     echo "2. Replace firewalld with ufw"
+    echo "3. Replace ufw with firewalld"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
-    read input
+    read -r input
     
-    if [ $input -eq 1 ]
+    if [ "$input" -eq 1 ]
     then
         sudo dnf install -y corectrl
-        mkdir /home/$USER/.config/autostart # some desktops like mate dont have this created by default.
-	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
-    elif [ $input -eq 2 ]
+        mkdir /home/"$USER"/.config/autostart # some desktops like mate dont have this created by default.
+	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/"$USER"/.config/autostart/org.corectrl.corectrl.desktop
+    elif [ "$input" -eq 2 ]
     then
-        firewall_replace
-    elif [ $input -eq 0 ]
+        replace_with_ufw
+    elif [ "$input" -eq 3 ]
+    then
+        replace_with_firewalld
+    elif [ "$input" -eq 0 ]
     then
 	    main_menu
     else
@@ -96,7 +100,7 @@ extras_menu(){
     extras_menu
 }
 
-firewall_replace(){
+replace_with_ufw(){
         sudo dnf remove -y firewalld && sudo dnf install -y ufw
         sudo systemctl enable --now ufw 
         DESKTOP=$XDG_CURRENT_DESKTOP
@@ -107,6 +111,14 @@ firewall_replace(){
             echo "Not installing ufw plasma integration."
         fi
 }
+
+replace_with_firewalld(){
+        sudo systemctl disable --now ufw 
+        sudo dnf remove -y ufw plasma-firewall-ufw
+        sudo dnf install firewalld firewall-applet
+        sudo systemctl enable --now firewalld
+}
+
 
 install_basic_apps(){
 	sudo dnf install -y  java-17-openjdk brave-browser \
@@ -131,7 +143,8 @@ get_desktop_extras(){
 	elif [ "$DESKTOP" = "KDE" ]
 	then
         echo "Now setting up some extra kde features."
-		sudo dnf install -y dolphin-plugins ark
+		sudo dnf install -y dolphin-plugins ark \
+        kate kate-plugins
 	elif [ "$DESKTOP" = "MATE" ]
 	then
 		echo "Now setting up some extra mate features."
@@ -151,15 +164,15 @@ media_menu(){
     echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
-    read input
+    read -r input
     
-    if [ $input -eq 1 ]
+    if [ "$input" -eq 1 ]
     then
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 	    flatpak install -y flathub org.videolan.VLC
-    elif [ $input -eq 2 ]
+    elif [ "$input" -eq 2 ]
     then
         flatpak install -y flathub org.openshot.OpenShot
         flatpak install -y flathub org.gimp.GIMP
@@ -176,11 +189,11 @@ media_menu(){
         else
             echo "Unknown desktop"
         fi
-        elif [ $input -eq 3 ]
+        elif [ "$input" -eq 3 ]
         then
             flatpak install -y flathub com.obsproject.Studio
             sudo dnf install -y v4l2loopback    # needed for obs virtual camera
-        elif [ $input -eq 0 ]
+        elif [ "$input" -eq 0 ]
         then
             main_menu
         else
@@ -196,21 +209,21 @@ office_menu(){
     echo "3. HP Printer Drivers"
     echo "0. Back to main menu"
     echo "================================================"
-    printf "Option: "
-    read input
+    echo "Option: "
+    read -r input
     
-    if [ $input -eq 1 ]
+    if [ "$input" -eq 1 ]
     then
         flatpak install -y flathub org.libreoffice.LibreOffice
 	    flatpak install -y flathub org.qownnotes.QOwnNotes
-    elif [ $input -eq 2 ]
+    elif [ "$input" -eq 2 ]
     then
         flatpak install -y flathub com.discordapp.Discord
 	    flatpak install -y flathub im.pidgin.Pidgin
-    elif [ $input -eq 3 ]
+    elif [ "$input" -eq 3 ]
     then
         sudo dnf install -y hplip-gui
-    elif [ $input -eq 0 ]
+    elif [ "$input" -eq 0 ]
     then
 	    main_menu
     else
@@ -226,6 +239,7 @@ install_coding_tools(){
 	sudo sh -c 'echo -e "[shiftkey]\nname=GitHub Desktop\nbaseurl=https://mirror.mwt.me/ghd/rpm\nenabled=1\ngpgcheck=0\nrepo_gpgcheck=1\ngpgkey=https://mirror.mwt.me/ghd/gpgkey" > /etc/yum.repos.d/shiftkey-desktop.repo'
     sudo dnf groupinstall -y "C Development Tools and libraries"
     sudo dnf groupinstall -y "Development Tools"
+    sudo dnf groupinstall -y "RPM Development Tools"
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
@@ -242,21 +256,21 @@ games_menu(){
     echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
-    read input
+    read -r input
     
-    if [ $input -eq 1 ]
+    if [ "$input" -eq 1 ]
     then
         install_game_clients
-    elif [ $input -eq 2 ]
+    elif [ "$input" -eq 2 ]
     then
         install_wowup
-    elif [ $input -eq 3 ]
+    elif [ "$input" -eq 3 ]
     then
         install_extra_games
-    elif [ $input -eq 4 ]
+    elif [ "$input" -eq 4 ]
     then
         setup_deck
-    elif [ $input -eq 0 ]
+    elif [ "$input" -eq 0 ]
     then
 	    main_menu
     else
@@ -268,7 +282,7 @@ games_menu(){
 setup_wine_repo(){
 	source /etc/os-release
 	getRelease=$(echo $VERSION_ID)
-	echo "Fedora Version:" $getRelease
+	echo "Fedora Version: $getRelease"
 
 	if [ "$getRelease" = "36" ]
 	then
@@ -276,7 +290,7 @@ setup_wine_repo(){
 	elif [ "$getRelease" = "37" ]
 	then
 		sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/37/winehq.repo
-	elif [ $input -eq 0 ]
+	elif [ "$input" -eq 0 ]
 	then
 		exit
 	else
@@ -310,9 +324,9 @@ install_wine(){
 }
 
 install_game_clients(){
-    mkdir /home/$USER/Games
-	mkdir /home/$USER/Games/bottles
-    mkdir /home/$USER/.config/MangoHud/
+    mkdir /home/"$USER"/Games
+	mkdir /home/"$USER"/Games/bottles
+    mkdir /home/"$USER"/.config/MangoHud/
     sudo dnf install -y mangohud gamemode gamemode.i686 \
     steam steam-devices kernel-modules-extra
     sudo modprobe xpad
@@ -322,7 +336,7 @@ install_game_clients(){
     flatpak run com.usebottles.bottles # run once to ensure folders/runtimes are setup
 
     
-    #lutris/bottles store MangoHud under /home/$USER/.var/app/APPNAME/config/MangoHud/
+    #lutris/bottles store MangoHud under /home/"$USER"/.var/app/APPNAME/config/MangoHud/
     ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/com.usebottles.bottles/config/"
     DESKTOP=$XDG_CURRENT_DESKTOP
     if [ "$DESKTOP" = "GNOME" ]
@@ -341,7 +355,7 @@ install_game_clients(){
         flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
         flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
 
-        #lutris/bottles store MangoHud under /home/$USER/.var/app/APPNAME/config/MangoHud/
+        #lutris/bottles store MangoHud under /home/"$USER"/.var/app/APPNAME/config/MangoHud/
         ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/net.lutris.Lutris/config/"
     else
         echo "Unknown desktop"
@@ -352,19 +366,19 @@ install_game_clients(){
 install_wowup(){
     WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.9/WowUp-CF-2.9.2-beta.9.AppImage
     WOWUPBINARY=WowUp-CF-2.9.2-beta.9.AppImage
-    cd /home/$USER/Desktop
+    cd /home/"$USER"/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
 }
 
 install_extra_games(){
-    cd /home/$USER/Downloads
+    cd /home/"$USER"/Downloads
     wget https://launcher.mojang.com/download/Minecraft.tar.gz
     tar -xvf Minecraft.tar.gz
     cd minecraft-launcher
     chmod +x minecraft-launcher
-    mv minecraft-launcher /home/$USER/Desktop
-    cd /home/$USER/Downloads
+    mv minecraft-launcher /home/"$USER"/Desktop
+    cd /home/"$USER"/Downloads
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
 
@@ -391,26 +405,26 @@ servers_menu(){
     echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
-    read input
+    read -r input
     
-    if [ $input -eq 1 ]
+    if [ "$input" -eq 1 ]
     then
         sudo dnf install -y httpd php mariadb mariadb-server
 	    sudo dnf install -y phpmyadmin
 	    sudo systemctl enable --now httpd mariadb
-    elif [ $input -eq 2 ]
+    elif [ "$input" -eq 2 ]
     then
         sudo dnf install -y cockpit
 	    sudo systemctl enable --now cockpit.socket
 	    sudo firewall-cmd --add-service=cockpit
 	    sudo firewall-cmd --add-service=cockpit --permanent
-    elif [ $input -eq 3 ]
+    elif [ "$input" -eq 3 ]
     then
         install_samba
-    elif [ $input -eq 99 ]
+    elif [ "$input" -eq 99 ]
     then
         servers_help
-    elif [ $input -eq 0 ]
+    elif [ "$input" -eq 0 ]
     then
 	    main_menu
     else
@@ -424,12 +438,11 @@ install_samba(){
 	sudo systemctl enable smb nmb
 	sudo firewall-cmd --add-service=samba --permanent
 	sudo firewall-cmd --reload
-    mkdir /home/$USER/FILES
+    mkdir /home/"$USER"/FILES
 }
 
 install_utilities(){
-	sudo dnf -y copr enable timlau/yumex-dnf
-	sudo dnf install -y yumex-dnf firewall-applet \
+	sudo dnf install -y dnfdragora firewall-applet \
     mediawriter
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
