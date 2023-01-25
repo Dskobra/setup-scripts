@@ -65,7 +65,10 @@ media_menu(){
     elif [ "$input" -eq 3 ]
     then
         flatpak install -y flathub com.obsproject.Studio
-        sudo dnf install -y v4l2loopback    # needed for obs virtual camera
+        # needed to use obs virtual camera and
+        # to share screen (games appear to work fine)
+        # in discord under wayland
+        sudo dnf install -y v4l2loopback    
     elif [ "$input" -eq 0 ]
     then
         main_menu
@@ -137,7 +140,7 @@ gaming_menu(){
     else
 	    echo "error."
     fi
-    games_menu
+    gaming_menu
 }
 
 coding_servers_menu(){
@@ -210,12 +213,13 @@ extras_menu(){
         # if using uncomplicated firewall remove it
         sudo systemctl disable --now ufw 
         sudo dnf remove -y ufw plasma-firewall-ufw
-        sudo dnf install firewalld firewall-applet
+        sudo dnf install -y firewalld firewall-applet
         sudo systemctl enable --now firewalld
     elif [ "$input" -eq 5 ]
     then
         # if using firewalld remove it. Note firewalld broke connections to wow in past.
         # remove and use ufw if something similar happens again.
+        sudo systemctl disable --now firewalld
         sudo dnf remove -y firewalld firewall-applet && sudo dnf install -y ufw
         sudo systemctl enable --now ufw 
         DESKTOP=$XDG_CURRENT_DESKTOP
