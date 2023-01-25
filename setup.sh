@@ -61,7 +61,7 @@ media_menu(){
 	    flatpak install -y flathub org.videolan.VLC
     elif [ "$input" -eq 2 ]
     then
-        codecs_and_playback
+        av_editing
     elif [ "$input" -eq 3 ]
     then
         flatpak install -y flathub com.obsproject.Studio
@@ -180,6 +180,7 @@ coding_servers_menu(){
     fi
     coding_servers_menu
 }
+
 extras_menu(){
     echo "================================================"
     echo "Extras"
@@ -292,7 +293,7 @@ install_coding_tools(){
 
 }
 
-codecs_and_playback(){
+av_editing(){
     flatpak install -y flathub org.openshot.OpenShot
     flatpak install -y flathub org.gimp.GIMP
     flatpak install -y flathub org.kde.kolourpaint
@@ -388,14 +389,6 @@ install_game_clients(){
         echo "Unknown desktop"
 	fi
 
-}
-
-install_wowup(){
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.9/WowUp-CF-2.9.2-beta.9.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.2-beta.9.AppImage
-    cd /home/"$USER"/Desktop
-    wget $WOWUPLINK
-    chmod +x $WOWUPBINARY
 }
 
 install_extra_games(){
