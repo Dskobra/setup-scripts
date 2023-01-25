@@ -3,11 +3,9 @@
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Setup DE 2. Media Menu" 
-    echo "3. Office Menu 4.Coding Tools"
-    echo "5. Gaming Menu 6. Servers Menu"
-    echo "7. Utilities 8. Virtualization" 
-    echo "9. Extras Menu"
+    echo "1. Setup DE 2. Media" 
+    echo "3. Office 4.Coding/Servers"
+    echo "5. Gaming 6. Extras"
     echo "100. About script"
     echo "0. Exit"
     echo "================================================"
@@ -26,23 +24,11 @@ main_menu(){
         office_menu
     elif [ "$input" -eq 4 ]
     then
-        install_coding_tools
+        coding_servers_menu
     elif [ "$input" -eq 5 ]
     then
         games_menu
     elif [ "$input" -eq 6 ]
-    then
-        servers_menu
-    elif [ "$input" -eq 7 ]
-    then
-        install_utilities
-    elif [ "$input" -eq 8 ]
-    then
-        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-        -O /etc/yum.repos.d/virtio-win.repo
-        sudo dnf groupinstall -y "Virtualization"
-	    sudo dnf install -y virtio-win
-    elif [ "$input" -eq 9 ]
     then
         extras_menu
     elif [ "$input" -eq 100 ]
@@ -57,12 +43,150 @@ main_menu(){
     main_menu
 }
 
+media_menu(){
+    echo "================================================"
+    echo "Media Submenu"
+    echo "1. Codecs/Playback 2. Editing Tools"
+    echo "3. OBS Studio"
+    echo "0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    if [ "$input" -eq 1 ]
+    then
+        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+        sudo dnf install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+	    flatpak install -y flathub org.videolan.VLC
+    elif [ "$input" -eq 2 ]
+    then
+        codecs_and_playback
+    elif [ "$input" -eq 3 ]
+    then
+        flatpak install -y flathub com.obsproject.Studio
+        sudo dnf install -y v4l2loopback    # needed for obs virtual camera
+    elif [ "$input" -eq 0 ]
+    then
+        main_menu
+    else
+        echo "error."
+    fi
+    media_menu
+}
+
+office_menu(){
+    echo "================================================"
+    echo "Office Submenu"
+    echo "1. LibreOffice/QOwnNotes 2. Discord/Pidgin"
+    echo "3. HP Printer Drivers"
+    echo "0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    if [ "$input" -eq 1 ]
+    then
+        flatpak install -y flathub org.libreoffice.LibreOffice
+	    flatpak install -y flathub org.qownnotes.QOwnNotes
+    elif [ "$input" -eq 2 ]
+    then
+        flatpak install -y flathub com.discordapp.Discord
+	    flatpak install -y flathub im.pidgin.Pidgin
+    elif [ "$input" -eq 3 ]
+    then
+        sudo dnf install -y hplip-gui
+    elif [ "$input" -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    office_menu
+}
+
+games_menu(){
+    echo "================================================"
+    echo "Games Menu"
+    echo "1. Game Clients 2. WoW Up"
+    echo "3. Extra Games 4. Steam Deck"
+    echo "0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    if [ "$input" -eq 1 ]
+    then
+        install_game_clients
+    elif [ "$input" -eq 2 ]
+    then
+        WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.9/WowUp-CF-2.9.2-beta.9.AppImage
+        WOWUPBINARY=WowUp-CF-2.9.2-beta.9.AppImage
+        cd /home/"$USER"/Desktop
+        wget $WOWUPLINK
+        chmod +x $WOWUPBINARY
+    elif [ "$input" -eq 3 ]
+    then
+        install_extra_games
+    elif [ "$input" -eq 4 ]
+    then
+        setup_deck
+    elif [ "$input" -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    games_menu
+}
+
+coding_servers_menu(){
+    echo "================================================"
+    echo "Coding and Servers Submenu"
+    echo "1. Coding Tools 2. Lamp Stack" 
+    echo "3. Fedora Cockpit 4. Samba Share"
+    echo "0. Back to main menu"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    if [ "$input" -eq 1 ]
+    then
+        install_coding_tools
+    elif [ "$input" -eq 2 ]
+    then
+        sudo dnf install -y httpd php mariadb mariadb-server
+	    sudo dnf install -y phpmyadmin
+	    sudo systemctl enable --now httpd mariadb
+    elif [ "$input" -eq 3 ]
+    then
+        sudo dnf install -y cockpit
+	    sudo systemctl enable --now cockpit.socket
+	    sudo firewall-cmd --add-service=cockpit
+	    sudo firewall-cmd --add-service=cockpit --permanent
+    elif [ "$input" -eq 4 ]
+    then
+        sudo dnf install -y samba
+        sudo systemctl enable smb nmb
+        sudo firewall-cmd --add-service=samba --permanent
+        sudo firewall-cmd --reload
+        mkdir /home/"$USER"/FILES1
+        mkdir /home/"$USER"/FILES2
+    elif [ "$input" -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    coding_servers_menu
+}
 extras_menu(){
     echo "================================================"
-    echo "Extras Submenu"
-    echo "1. Corectrl"
-    echo "2. Replace firewalld with ufw"
-    echo "3. Replace ufw with firewalld"
+    echo "Extras"
+    echo "1. Utilities. 2. Virtualization"
+    echo "3. Corectrl"
+    echo "4. Replace firewalld with ufw"
+    echo "5. Replace ufw with firewalld"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -70,25 +194,19 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        sudo dnf install -y corectrl
-        mkdir /home/"$USER"/.config/autostart # some desktops like mate dont have this created by default.
-	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/"$USER"/.config/autostart/org.corectrl.corectrl.desktop
+        install_utilities
     elif [ "$input" -eq 2 ]
     then
-        replace_with_ufw
+        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+        -O /etc/yum.repos.d/virtio-win.repo
+        sudo dnf groupinstall -y "Virtualization"
+	    sudo dnf install -y virtio-win
     elif [ "$input" -eq 3 ]
     then
-        replace_with_firewalld
-    elif [ "$input" -eq 0 ]
+        sudo dnf install -y corectrl
+	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/"$USER"/.config/autostart/org.corectrl.corectrl.desktop
+    elif [ "$input" -eq 4 ]
     then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    extras_menu
-}
-
-replace_with_ufw(){
         sudo dnf remove -y firewalld && sudo dnf install -y ufw
         sudo systemctl enable --now ufw 
         DESKTOP=$XDG_CURRENT_DESKTOP
@@ -98,15 +216,20 @@ replace_with_ufw(){
         else
             echo "Not installing ufw plasma integration."
         fi
-}
-
-replace_with_firewalld(){
+    elif [ "$input" -eq 5 ]
+    then
         sudo systemctl disable --now ufw 
         sudo dnf remove -y ufw plasma-firewall-ufw
         sudo dnf install firewalld firewall-applet
         sudo systemctl enable --now firewalld
+    elif [ "$input" -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    extras_menu
 }
-
 
 install_basic_apps(){
 	echo "Setting up rpmfusion and flathub."
@@ -125,6 +248,7 @@ install_basic_apps(){
 	flatpak install -y flathub org.keepassxc.KeePassXC
     flatpak install -y flathub com.transmissionbt.Transmission
     flatpak install -y flathub com.dropbox.Client
+    mkdir /home/"$USER"/.config/autostart # some desktops like mate dont have this created by default.
 }
 
 get_desktop_extras(){
@@ -152,83 +276,6 @@ get_desktop_extras(){
 	fi
 }
 
-media_menu(){
-    echo "================================================"
-    echo "Media Submenu"
-    echo "1. Codecs/Playback 2. Editing Tools"
-    echo "3. OBS Studio"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo dnf install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-	    flatpak install -y flathub org.videolan.VLC
-    elif [ "$input" -eq 2 ]
-    then
-        flatpak install -y flathub org.openshot.OpenShot
-        flatpak install -y flathub org.gimp.GIMP
-        flatpak install -y flathub org.kde.kolourpaint
-
-        # prefer brasero on gnome/mate k3b on kde
-        DESKTOP=$XDG_CURRENT_DESKTOP
-        if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
-        then
-            sudo dnf install -y brasero
-        elif [ "$DESKTOP" = "KDE" ]
-        then
-            sudo dnf install -y k3b
-        else
-            echo "Unknown desktop"
-        fi
-    elif [ "$input" -eq 3 ]
-    then
-        flatpak install -y flathub com.obsproject.Studio
-        sudo dnf install -y v4l2loopback    # needed for obs virtual camera
-    elif [ "$input" -eq 0 ]
-    then
-        main_menu
-    else
-        echo "error."
-    fi
-    media_menu
-}
-
-
-office_menu(){
-    echo "================================================"
-    echo "Office Submenu"
-    echo "1. LibreOffice/QOwnNotes 2. Social Apps (messengers etc)"
-    echo "3. HP Printer Drivers"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        flatpak install -y flathub org.libreoffice.LibreOffice
-	    flatpak install -y flathub org.qownnotes.QOwnNotes
-    elif [ "$input" -eq 2 ]
-    then
-        flatpak install -y flathub com.discordapp.Discord
-	    flatpak install -y flathub im.pidgin.Pidgin
-    elif [ "$input" -eq 3 ]
-    then
-        sudo dnf install -y hplip-gui
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    office_menu
-}
-
 install_coding_tools(){
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     sudo rpm --import https://mirror.mwt.me/ghd/gpgkey
@@ -245,35 +292,21 @@ install_coding_tools(){
 
 }
 
-games_menu(){
-    echo "================================================"
-    echo "Games Menu"
-    echo "1. Game Clients 2. WoW Up"
-    echo "3. Extra Games 4. Steam Deck"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
+codecs_and_playback(){
+    flatpak install -y flathub org.openshot.OpenShot
+    flatpak install -y flathub org.gimp.GIMP
+    flatpak install -y flathub org.kde.kolourpaint
+    # prefer brasero on gnome/mate k3b on kde
+    DESKTOP=$XDG_CURRENT_DESKTOP
+    if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
     then
-        install_game_clients
-    elif [ "$input" -eq 2 ]
+        sudo dnf install -y brasero
+    elif [ "$DESKTOP" = "KDE" ]
     then
-        install_wowup
-    elif [ "$input" -eq 3 ]
-    then
-        install_extra_games
-    elif [ "$input" -eq 4 ]
-    then
-        setup_deck
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
+        sudo dnf install -y k3b
     else
-	    echo "error."
+        echo "Unknown desktop"
     fi
-    games_menu
 }
 
 install_wine(){
@@ -389,50 +422,6 @@ setup_deck(){
     flatpak install -y flathub net.lutris.Lutris
     flatpak install -y flathub com.github.tchx84.Flatseal
     flatpak install -y flathub org.kde.kpat
-}
-
-servers_menu(){
-    echo "================================================"
-    echo "Servers Submenu"
-    echo "1. Lamp Stack 2. Fedora Cockpit"
-    echo "3. Samba Share"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        sudo dnf install -y httpd php mariadb mariadb-server
-	    sudo dnf install -y phpmyadmin
-	    sudo systemctl enable --now httpd mariadb
-    elif [ "$input" -eq 2 ]
-    then
-        sudo dnf install -y cockpit
-	    sudo systemctl enable --now cockpit.socket
-	    sudo firewall-cmd --add-service=cockpit
-	    sudo firewall-cmd --add-service=cockpit --permanent
-    elif [ "$input" -eq 3 ]
-    then
-        install_samba
-    elif [ "$input" -eq 99 ]
-    then
-        servers_help
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    servers_menu
-}
-
-install_samba(){
-	sudo dnf install -y samba
-	sudo systemctl enable smb nmb
-	sudo firewall-cmd --add-service=samba --permanent
-	sudo firewall-cmd --reload
-    mkdir /home/"$USER"/FILES
 }
 
 install_utilities(){
