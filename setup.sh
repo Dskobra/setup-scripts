@@ -207,13 +207,16 @@ extras_menu(){
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/"$USER"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 4 ]
     then
+        # if using uncomplicated firewall remove it
         sudo systemctl disable --now ufw 
         sudo dnf remove -y ufw plasma-firewall-ufw
         sudo dnf install firewalld firewall-applet
         sudo systemctl enable --now firewalld
     elif [ "$input" -eq 5 ]
     then
-        sudo dnf remove -y firewalld && sudo dnf install -y ufw
+        # if using firewalld remove it. Note firewalld broke connections to wow in past.
+        # remove and use ufw if something similar happens again.
+        sudo dnf remove -y firewalld firewall-applet && sudo dnf install -y ufw
         sudo systemctl enable --now ufw 
         DESKTOP=$XDG_CURRENT_DESKTOP
         if [ "$DESKTOP" = "KDE" ]
