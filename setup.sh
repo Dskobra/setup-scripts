@@ -3,11 +3,11 @@
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Repos 2. Setup DE"
-    echo "3. Media Menu 4. Office Menu"
-    echo "5.Coding Tools 6. Gaming Menu" 
-    echo "7. Servers Menu 8. Utilities" 
-    echo "9. Virtualization 10. Extras Menu"
+    echo "1. Setup DE 2. Media Menu" 
+    echo "3. Office Menu 4.Coding Tools"
+    echo "5. Gaming Menu 6. Servers Menu"
+    echo "7. Utilities 8. Virtualization" 
+    echo "9. Extras Menu"
     echo "100. About script"
     echo "0. Exit"
     echo "================================================"
@@ -16,36 +16,33 @@ main_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        setup_repos
-    elif [ "$input" -eq 2 ]
-    then
         install_basic_apps
         get_desktop_extras
-    elif [ "$input" -eq 3 ]
+    elif [ "$input" -eq 2 ]
     then
         media_menu
-    elif [ "$input" -eq 4 ]
+    elif [ "$input" -eq 3 ]
     then
         office_menu
-    elif [ "$input" -eq 5 ]
+    elif [ "$input" -eq 4 ]
     then
         install_coding_tools
-    elif [ "$input" -eq 6 ]
+    elif [ "$input" -eq 5 ]
     then
         games_menu
-    elif [ "$input" -eq 7 ]
+    elif [ "$input" -eq 6 ]
     then
         servers_menu
-    elif [ "$input" -eq 8 ]
+    elif [ "$input" -eq 7 ]
     then
         install_utilities
-    elif [ "$input" -eq 9 ]
+    elif [ "$input" -eq 8 ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
         sudo dnf groupinstall -y "Virtualization"
 	    sudo dnf install -y virtio-win
-    elif [ "$input" -eq 10 ]
+    elif [ "$input" -eq 9 ]
     then
         extras_menu
     elif [ "$input" -eq 100 ]
@@ -58,15 +55,6 @@ main_menu(){
 	    echo "error."
     fi
     main_menu
-}
-
-setup_repos(){
-	echo "Setting up rpmfusion and flathub."
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-	sudo dnf update -y
 }
 
 extras_menu(){
@@ -121,6 +109,14 @@ replace_with_firewalld(){
 
 
 install_basic_apps(){
+	echo "Setting up rpmfusion and flathub."
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+	sudo dnf update -y
+
+
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
 	bluecurve-icon-theme p7zip p7zip-plugins 
@@ -280,8 +276,8 @@ games_menu(){
     games_menu
 }
 
-setup_wine_repo(){
-	source /etc/os-release
+install_wine(){
+    source /etc/os-release
 	getRelease=$(echo $VERSION_ID)
 	echo "Fedora Version: $getRelease"
 
@@ -297,9 +293,7 @@ setup_wine_repo(){
 	else
 		echo "error."
 	fi
-}
 
-install_wine(){
     sudo dnf install -y alsa-plugins-pulseaudio.i686 glibc-devel.i686 glibc-devel \
         libgcc.i686 libX11-devel.i686 freetype-devel.i686 libXcursor-devel.i686 \
         libXi-devel.i686 libXext-devel.i686 libXxf86vm-devel.i686 libXrandr-devel.i686 \
@@ -342,7 +336,6 @@ install_game_clients(){
     DESKTOP=$XDG_CURRENT_DESKTOP
     if [ "$DESKTOP" = "GNOME" ]
     then
-        setup_wine_repo
         install_wine
         sudo dnf install -y lutris
 	elif [ "$DESKTOP" = "KDE" ]
