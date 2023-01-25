@@ -27,7 +27,7 @@ main_menu(){
         coding_servers_menu
     elif [ "$input" -eq 5 ]
     then
-        games_menu
+        gaming_menu
     elif [ "$input" -eq 6 ]
     then
         extras_menu
@@ -45,7 +45,7 @@ main_menu(){
 
 media_menu(){
     echo "================================================"
-    echo "Media Submenu"
+    echo "Media"
     echo "1. Codecs/Playback 2. Editing Tools"
     echo "3. OBS Studio"
     echo "0. Back to main menu"
@@ -77,7 +77,7 @@ media_menu(){
 
 office_menu(){
     echo "================================================"
-    echo "Office Submenu"
+    echo "Office"
     echo "1. LibreOffice/QOwnNotes 2. Discord/Pidgin"
     echo "3. HP Printer Drivers"
     echo "0. Back to main menu"
@@ -105,9 +105,9 @@ office_menu(){
     office_menu
 }
 
-games_menu(){
+gaming_menu(){
     echo "================================================"
-    echo "Games Menu"
+    echo "Gaming"
     echo "1. Game Clients 2. WoW Up"
     echo "3. Extra Games 4. Steam Deck"
     echo "0. Back to main menu"
@@ -142,7 +142,7 @@ games_menu(){
 
 coding_servers_menu(){
     echo "================================================"
-    echo "Coding and Servers Submenu"
+    echo "Coding and Servers"
     echo "1. Coding Tools 2. Lamp Stack" 
     echo "3. Fedora Cockpit 4. Samba Share"
     echo "0. Back to main menu"
