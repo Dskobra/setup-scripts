@@ -185,9 +185,8 @@ extras_menu(){
     echo "================================================"
     echo "Extras"
     echo "1. Utilities. 2. Virtualization"
-    echo "3. Corectrl"
-    echo "4. Replace firewalld with ufw"
-    echo "5. Replace ufw with firewalld"
+    echo "3. Corectrl 4. Install firewalld"
+    echo "5. Install ufw"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -208,6 +207,12 @@ extras_menu(){
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/"$USER"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 4 ]
     then
+        sudo systemctl disable --now ufw 
+        sudo dnf remove -y ufw plasma-firewall-ufw
+        sudo dnf install firewalld firewall-applet
+        sudo systemctl enable --now firewalld
+    elif [ "$input" -eq 5 ]
+    then
         sudo dnf remove -y firewalld && sudo dnf install -y ufw
         sudo systemctl enable --now ufw 
         DESKTOP=$XDG_CURRENT_DESKTOP
@@ -217,12 +222,6 @@ extras_menu(){
         else
             echo "Not installing ufw plasma integration."
         fi
-    elif [ "$input" -eq 5 ]
-    then
-        sudo systemctl disable --now ufw 
-        sudo dnf remove -y ufw plasma-firewall-ufw
-        sudo dnf install firewalld firewall-applet
-        sudo systemctl enable --now firewalld
     elif [ "$input" -eq 0 ]
     then
 	    main_menu
@@ -418,8 +417,7 @@ setup_deck(){
 }
 
 install_utilities(){
-	sudo dnf install -y dnfdragora firewall-applet \
-    mediawriter
+	sudo dnf install -y dnfdragora mediawriter
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
     flatpak install -y flathub org.raspberrypi.rpi-imager
