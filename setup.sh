@@ -125,7 +125,7 @@ gaming_menu(){
     then
         WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.9/WowUp-CF-2.9.2-beta.9.AppImage
         WOWUPBINARY=WowUp-CF-2.9.2-beta.9.AppImage
-        cd /home/"$USER"/Desktop
+        cd "$HOME"/Desktop
         wget $WOWUPLINK
         chmod +x $WOWUPBINARY
     elif [ "$input" -eq 3 ]
@@ -173,8 +173,8 @@ coding_servers_menu(){
         sudo systemctl enable smb nmb
         sudo firewall-cmd --add-service=samba --permanent
         sudo firewall-cmd --reload
-        mkdir /home/"$USER"/FILES1
-        mkdir /home/"$USER"/FILES2
+        mkdir "$HOME"/FILES1
+        mkdir "$HOME"/FILES2
     elif [ "$input" -eq 0 ]
     then
 	    main_menu
@@ -207,7 +207,7 @@ extras_menu(){
     elif [ "$input" -eq 3 ]
     then
         sudo dnf install -y corectrl
-	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/"$USER"/.config/autostart/org.corectrl.corectrl.desktop
+	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 4 ]
     then
         # if using uncomplicated firewall remove it
@@ -255,7 +255,7 @@ install_basic_apps(){
 	flatpak install -y flathub org.keepassxc.KeePassXC
     flatpak install -y flathub com.transmissionbt.Transmission
     flatpak install -y flathub com.dropbox.Client
-    mkdir /home/"$USER"/.config/autostart # some desktops like mate dont have this created by default.
+    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
 }
 
 get_desktop_extras(){
@@ -359,9 +359,9 @@ install_wine(){
 }
 
 install_game_clients(){
-    mkdir /home/"$USER"/Games
-	mkdir /home/"$USER"/Games/bottles
-    mkdir /home/"$USER"/.config/MangoHud/
+    mkdir "$HOME"/Games
+	mkdir "$HOME"/Games/bottles
+    mkdir "$HOME"/.config/MangoHud/
     sudo dnf install -y mangohud gamemode gamemode.i686 \
     steam steam-devices kernel-modules-extra
     sudo modprobe xpad
@@ -371,8 +371,8 @@ install_game_clients(){
     flatpak run com.usebottles.bottles # run once to ensure folders/runtimes are setup
 
     
-    #lutris/bottles store MangoHud under /home/"$USER"/.var/app/APPNAME/config/MangoHud/
-    ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/com.usebottles.bottles/config/"
+    #lutris/bottles store MangoHud under "$HOME"/.var/app/APPNAME/config/MangoHud/
+    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
     DESKTOP=$XDG_CURRENT_DESKTOP
     if [ "$DESKTOP" = "GNOME" ]
     then
@@ -389,8 +389,8 @@ install_game_clients(){
         flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
         flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
 
-        #lutris/bottles store MangoHud under /home/"$USER"/.var/app/APPNAME/config/MangoHud/
-        ln -s "/home/$USER/.config/MangoHud/" "/home/$USER/.var/app/net.lutris.Lutris/config/"
+        #lutris/bottles store MangoHud under "$HOME"/.var/app/APPNAME/config/MangoHud/
+        ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
     else
         echo "Unknown desktop"
 	fi
@@ -398,13 +398,13 @@ install_game_clients(){
 }
 
 install_extra_games(){
-    cd /home/"$USER"/Downloads
+    cd "$HOME"/Downloads
     wget https://launcher.mojang.com/download/Minecraft.tar.gz
     tar -xvf Minecraft.tar.gz
     cd minecraft-launcher
     chmod +x minecraft-launcher
-    mv minecraft-launcher /home/"$USER"/Desktop
-    cd /home/"$USER"/Downloads
+    mv minecraft-launcher "$HOME"/Desktop
+    cd "$HOME"/Downloads
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
 
