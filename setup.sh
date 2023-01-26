@@ -40,6 +40,8 @@ main_menu(){
     else
 	    echo "error."
     fi
+    echo $input
+    unset input
     main_menu
 }
 
@@ -75,6 +77,8 @@ media_menu(){
     else
         echo "error."
     fi
+    echo $input
+    unset input
     media_menu
 }
 
@@ -105,6 +109,8 @@ office_menu(){
     else
 	    echo "error."
     fi
+    echo $input
+    unset input
     office_menu
 }
 
@@ -140,6 +146,8 @@ gaming_menu(){
     else
 	    echo "error."
     fi
+    echo $input
+    unset input
     gaming_menu
 }
 
@@ -222,7 +230,7 @@ extras_menu(){
         sudo systemctl disable --now firewalld
         sudo dnf remove -y firewalld firewall-applet && sudo dnf install -y ufw
         sudo systemctl enable --now ufw 
-        DESKTOP=$XDG_CURRENT_DESKTOP
+        
         if [ "$DESKTOP" = "KDE" ]
         then
             sudo dnf install -y plasma-firewall-ufw
@@ -235,6 +243,8 @@ extras_menu(){
     else
 	    echo "error."
     fi
+    echo $input
+    unset input
     extras_menu
 }
 
@@ -259,7 +269,6 @@ install_basic_apps(){
 }
 
 get_desktop_extras(){
-    DESKTOP=$XDG_CURRENT_DESKTOP
     if [ "$DESKTOP" = "GNOME" ]
     then
         echo "Now setting up some extra gnome features."
@@ -303,8 +312,8 @@ av_editing(){
     flatpak install -y flathub org.openshot.OpenShot
     flatpak install -y flathub org.gimp.GIMP
     flatpak install -y flathub org.kde.kolourpaint
+
     # prefer brasero on gnome/mate k3b on kde
-    DESKTOP=$XDG_CURRENT_DESKTOP
     if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
     then
         sudo dnf install -y brasero
@@ -373,7 +382,7 @@ install_game_clients(){
     
     #lutris/bottles store MangoHud under "$HOME"/.var/app/APPNAME/config/MangoHud/
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
-    DESKTOP=$XDG_CURRENT_DESKTOP
+    
     if [ "$DESKTOP" = "GNOME" ]
     then
         install_wine
@@ -428,8 +437,7 @@ install_utilities(){
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
     flatpak install -y flathub org.raspberrypi.rpi-imager
-
-    DESKTOP=$XDG_CURRENT_DESKTOP
+  
     if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
     then
         flatpak install -y flathub org.kde.kleopatra
@@ -452,4 +460,5 @@ about(){
 }
 
 USER=$(whoami)
+DESKTOP=$XDG_CURRENT_DESKTOP
 main_menu
