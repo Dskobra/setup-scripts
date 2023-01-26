@@ -118,7 +118,7 @@ gaming_menu(){
     echo "================================================"
     echo "Gaming"
     echo "1. Game Clients 2. WoW Up"
-    echo "3. Extra Games 4. Steam Deck"
+    echo "3. Extra Games 5. Steam Deck"
     echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
@@ -127,6 +127,7 @@ gaming_menu(){
     if [ "$input" -eq 1 ]
     then
         install_game_clients
+        mango
     elif [ "$input" -eq 2 ]
     then
         WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.9/WowUp-CF-2.9.2-beta.9.AppImage
@@ -199,7 +200,7 @@ extras_menu(){
     echo "Extras"
     echo "1. Utilities. 2. Virtualization"
     echo "3. Corectrl 4. Install firewalld"
-    echo "5. Install ufw"
+    echo "5. Install ufw 6. Cleanup"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -239,6 +240,9 @@ extras_menu(){
         else
             echo "Not installing ufw plasma integration."
         fi
+    elif [ "$input" -eq 6 ]
+    then
+        cleanup
     elif [ "$input" -eq 0 ]
     then
 	    main_menu
@@ -335,14 +339,15 @@ install_game_clients(){
     steam steam-devices kernel-modules-extra
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
-
-    flatpak install -y flathub com.usebottles.bottles
-    flatpak run com.usebottles.bottles # run once to ensure folders/runtimes are setup
-
-    flatpak install -y flathub net.lutris.Lutris        
-    flatpak run net.lutris.Lutris       # run once to ensure folders/runtimes are setup
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+
+    flatpak install -y flathub com.usebottles.bottles
+    flatpak install -y flathub net.lutris.Lutris 
+    
+    # run once to ensure folders/runtimes are setup
+    flatpak run com.usebottles.bottles
+    flatpak run net.lutris.Lutris
 }
 
 install_extra_games(){
@@ -357,6 +362,21 @@ install_extra_games(){
     rm Minecraft.tar.gz
 
     flatpak install -y flathub org.kde.kpat
+}
+
+mango(){
+    USER=$(whoami)
+    cd mangohud
+    sudo chown $USER:$USER *.conf
+    cp wine-GTA5.conf $HOME/.config/MangoHud/
+    cp wine-NewWorld.conf $HOME/.config/MangoHud/
+    cp wine-PathOfExile_x64Steam.conf $HOME/.config/MangoHud/
+    cp wine-R5Apex.conf $HOME/.config/MangoHud/
+    cp wine-RuneScape.conf $HOME/.config/MangoHud/
+    cp wine-WorldOfTanks.conf $HOME/.config/MangoHud/
+    cp wine-WorldOfWarships.conf $HOME/.config/MangoHud/
+    cp wine-Gw2-64.conf $HOME/.config/MangoHud/
+    cp wine-WoW.conf $HOME/.config/MangoHud/
 }
 
 setup_deck(){
@@ -388,6 +408,19 @@ install_utilities(){
 	fi
 }
 
+cleanup(){
+	# Installing Fedora 36 using the everything installer to install the mate desktop with my normal package groups "Development Tools", 
+	# "C Development Tools and libraries" and "RPM Development Tools" results in systemd-oomd-defaults also being installed.
+	# This creates a package conflict with mate-desktop and mate-desktop-configs when updating. Research shows this is an 
+	# uneeded/extra package as Fedora uses earlyoom. So removing systemd-oomd-defaults is perfectly safe. Unsure what causes this
+	# to be installed.
+	sudo dnf remove -y libreoffice-core \
+	gnome-shell-extension-gamemode gnome-text-editor \
+	kmahjongg kmines systemd-oomd-defaults \
+	transmission-gtk transmission-qt \
+	compiz
+}
+
 about(){
     VERSION="dev branch"
     echo "================================================"
@@ -398,6 +431,5 @@ about(){
     main_menu
 }
 
-USER=$(whoami)
 DESKTOP=$XDG_CURRENT_DESKTOP
 main_menu

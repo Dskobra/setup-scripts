@@ -5,5 +5,3 @@ PARENT=$(pwd)
 dos2unix *
 cd $PARENT/mangohud
 dos2unix *
-cd $PARENT/mangohud/conf
-dos2unix *
