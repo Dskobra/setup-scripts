@@ -189,6 +189,8 @@ coding_servers_menu(){
     else
 	    echo "error."
     fi
+    echo $input
+    unset input
     coding_servers_menu
 }
 
