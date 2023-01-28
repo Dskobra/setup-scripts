@@ -348,6 +348,11 @@ install_game_clients(){
     # run once to ensure folders/runtimes are setup
     flatpak run com.usebottles.bottles
     flatpak run net.lutris.Lutris
+
+    # link bottles/lutris to mangohud configuration folder
+    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
+    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
+    
 }
 
 install_extra_games(){
