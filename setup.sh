@@ -14,6 +14,7 @@ main_menu(){
     
     if [ "$input" -eq 1 ]
     then
+        get_fedora_version
         install_basic_apps
         get_desktop_extras
     elif [ "$input" -eq 2 ]
@@ -256,7 +257,17 @@ extras_menu(){
 
 install_basic_apps(){
 	echo "Setting up rpmfusion and flathub."
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    if [ "$fedoraVersion" = "38" ]
+    then
+        echo "Fedora Version: $fedoraVersion includes flathub, but disabled by default."
+        flatpak remote-modify --enable flathub
+	elif [ "$fedoraVersion" = "37" ]
+	then
+		echo "Fedora Version: $fedoraVersion which requires adding remote flathub."
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    else
+        echo "Unknown error has occured"
+	fi
 	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
@@ -413,6 +424,12 @@ install_utilities(){
 	fi
 }
 
+get_fedora_version(){
+    source /etc/os-release
+	fedoraVersion=$(echo $VERSION_ID)
+	echo "Fedora Version:" $fedoraVersion
+}
+
 cleanup(){
 	# Installing Fedora 36 using the everything installer to install the mate desktop with my normal package groups "Development Tools", 
 	# "C Development Tools and libraries" and "RPM Development Tools" results in systemd-oomd-defaults also being installed.
@@ -429,7 +446,7 @@ cleanup(){
 about(){
     VERSION="dev branch"
     echo "================================================"
-    echo "Copyright (c) 2022 Jordan Bottoms"
+    echo "Copyright (c) 2023 Jordan Bottoms"
     echo "Released under the MIT license"
     echo "Version: $VERSION"
     echo "================================================"
@@ -437,4 +454,5 @@ about(){
 }
 
 DESKTOP=$XDG_CURRENT_DESKTOP
+$fedoraVersion
 main_menu
