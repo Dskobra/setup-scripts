@@ -394,6 +394,8 @@ mango(){
     cp wine-WorldOfWarships.conf $HOME/.config/MangoHud/
     cp wine-Gw2-64.conf $HOME/.config/MangoHud/
     cp wine-WoW.conf $HOME/.config/MangoHud/
+    cp "wine-Diablo IV.conf" $HOME/.config/MangoHud/
+    
 }
 
 setup_deck(){
