@@ -257,6 +257,7 @@ extras_menu(){
 
 install_basic_apps(){
 	echo "Setting up rpmfusion and flathub."
+    flatpak remote-modify --disable fedora
     if [ "$fedoraVersion" = "38" ]
     then
         echo "Fedora Version: $fedoraVersion includes flathub, but disabled by default."
@@ -276,7 +277,7 @@ install_basic_apps(){
 
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-	bluecurve-icon-theme p7zip p7zip-plugins 
+	bluecurve-icon-theme p7zip p7zip-plugins    # note bluecurve seems to have been removed.
     sudo dnf groupinstall -y "Firefox Web Browser"
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
