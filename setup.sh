@@ -131,8 +131,8 @@ gaming_menu(){
         mango
     elif [ "$input" -eq 2 ]
     then
-        WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2-beta.9/WowUp-CF-2.9.2-beta.9.AppImage
-        WOWUPBINARY=WowUp-CF-2.9.2-beta.9.AppImage
+        WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.2/WowUp-CF-2.9.4-beta.2.AppImage
+        WOWUPBINARY=WowUp-CF-2.9.4-beta.2.AppImage
         cd "$HOME"/Desktop
         wget $WOWUPLINK
         chmod +x $WOWUPBINARY
