@@ -233,14 +233,8 @@ extras_menu(){
         # remove and use ufw if something similar happens again.
         sudo systemctl disable --now firewalld
         sudo dnf remove -y firewalld firewall-applet && sudo dnf install -y ufw
-        sudo systemctl enable --now ufw 
-        
-        if [ "$DESKTOP" = "KDE" ]
-        then
-            sudo dnf install -y plasma-firewall-ufw
-        else
-            echo "Not installing ufw plasma integration."
-        fi
+        sudo systemctl enable --now ufw
+        sudo dnf install -y plasma-firewall-ufw
     elif [ "$input" -eq 6 ]
     then
         cleanup
@@ -287,14 +281,7 @@ install_basic_apps(){
 }
 
 get_desktop_extras(){
-    if [ "$DESKTOP" = "GNOME" ]
-    then
-        echo "Now setting up some extra gnome features."
-        sudo dnf install -y menulibre pavucontrol \
-        gnome-tweaks libappindicator-gtk3 libdbusmenu-gtk3 \
-        libdbusmenu openssl xarchiver humanity-icon-theme 
-        flatpak install -y flathub org.gnome.Extensions
-	elif [ "$DESKTOP" = "KDE" ]
+	if [ "$DESKTOP" = "KDE" ]
 	then
         echo "Now setting up some extra kde features."
 		sudo dnf install -y dolphin-plugins ark \
@@ -327,20 +314,10 @@ install_coding_tools(){
 }
 
 av_editing(){
+    sudo dnf install -y k3b
     flatpak install -y flathub org.openshot.OpenShot
     flatpak install -y flathub org.gimp.GIMP
     flatpak install -y flathub org.kde.kolourpaint
-
-    # prefer brasero on gnome/mate k3b on kde
-    if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
-    then
-        sudo dnf install -y brasero
-    elif [ "$DESKTOP" = "KDE" ]
-    then
-        sudo dnf install -y k3b
-    else
-        echo "Unknown desktop"
-    fi
 }
 
 install_game_clients(){
@@ -411,20 +388,12 @@ setup_deck(){
 }
 
 install_utilities(){
-	sudo dnf install -y dnfdragora mediawriter
+	sudo dnf install -y dnfdragora
+    flatpak install -y flathub org.fedoraproject.MediaWriter
+    flatpak install -y flathub org.kde.kleopatra
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
     flatpak install -y flathub org.raspberrypi.rpi-imager
-  
-    if [ "$DESKTOP" = "GNOME" ] || [ "$DESKTOP" = "MATE" ]
-    then
-        flatpak install -y flathub org.kde.kleopatra
-	elif [ "$DESKTOP" = "KDE" ]
-	then
-		sudo dnf install -y kleopatra
-    else
-        echo "Unknown desktop"
-	fi
 }
 
 get_fedora_version(){
