@@ -3,10 +3,10 @@
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Setup DE 2. Media" 
-    echo "3. Office 4.Coding/Servers"
+    echo "1. Setup DE "
     echo "5. Gaming 6. Extras"
-    echo "100. About script"
+    echo "4.Coding/Servers"
+   echo "100. About script"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -17,12 +17,6 @@ main_menu(){
         get_fedora_version
         install_basic_apps
         get_desktop_extras
-    elif [ "$input" -eq 2 ]
-    then
-        media_menu
-    elif [ "$input" -eq 3 ]
-    then
-        office_menu
     elif [ "$input" -eq 4 ]
     then
         coding_servers_menu
@@ -67,11 +61,7 @@ media_menu(){
         av_editing
     elif [ "$input" -eq 3 ]
     then
-        flatpak install -y flathub com.obsproject.Studio
-        # needed to use obs virtual camera and
-        # to share screen (games appear to work fine)
-        # in discord under wayland
-        sudo dnf install -y v4l2loopback    
+  
     elif [ "$input" -eq 0 ]
     then
         main_menu
@@ -83,43 +73,10 @@ media_menu(){
     media_menu
 }
 
-office_menu(){
-    echo "================================================"
-    echo "Office"
-    echo "1. LibreOffice/QOwnNotes 2. Discord/Pidgin"
-    echo "3. HP Printer Drivers"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        flatpak install -y flathub org.libreoffice.LibreOffice
-	    flatpak install -y flathub org.qownnotes.QOwnNotes
-    elif [ "$input" -eq 2 ]
-    then
-        flatpak install -y flathub com.discordapp.Discord
-	    flatpak install -y flathub im.pidgin.Pidgin
-    elif [ "$input" -eq 3 ]
-    then
-        sudo dnf install -y hplip-gui
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    office_menu
-}
-
 gaming_menu(){
     echo "================================================"
     echo "Gaming"
-    echo "1. Game Clients 2. WoW Up"
-    echo "3. Extra Games 5. Steam Deck"
+    echo "1. Game Clients 2. Steam Deck"
     echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
@@ -129,16 +86,6 @@ gaming_menu(){
     then
         install_game_clients
         mango
-    elif [ "$input" -eq 2 ]
-    then
-        WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.2/WowUp-CF-2.9.4-beta.2.AppImage
-        WOWUPBINARY=WowUp-CF-2.9.4-beta.2.AppImage
-        cd "$HOME"/Desktop
-        wget $WOWUPLINK
-        chmod +x $WOWUPBINARY
-    elif [ "$input" -eq 3 ]
-    then
-        install_extra_games
     elif [ "$input" -eq 4 ]
     then
         setup_deck
@@ -200,8 +147,7 @@ extras_menu(){
     echo "================================================"
     echo "Extras"
     echo "1. Utilities. 2. Virtualization"
-    echo "3. Corectrl 4. Install firewalld"
-    echo "5. Install ufw 6. Cleanup"
+    echo "3. Corectrl 4. Cleanup"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -222,21 +168,6 @@ extras_menu(){
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 4 ]
     then
-        # if using uncomplicated firewall remove it
-        sudo systemctl disable --now ufw 
-        sudo dnf remove -y ufw plasma-firewall-ufw
-        sudo dnf install -y firewalld firewall-applet
-        sudo systemctl enable --now firewalld
-    elif [ "$input" -eq 5 ]
-    then
-        # if using firewalld remove it. Note firewalld broke connections to wow in past.
-        # remove and use ufw if something similar happens again.
-        sudo systemctl disable --now firewalld
-        sudo dnf remove -y firewalld firewall-applet && sudo dnf install -y ufw
-        sudo systemctl enable --now ufw
-        sudo dnf install -y plasma-firewall-ufw
-    elif [ "$input" -eq 6 ]
-    then
         cleanup
     elif [ "$input" -eq 0 ]
     then
@@ -247,6 +178,25 @@ extras_menu(){
     echo $input
     unset input
     extras_menu
+}
+
+extra_apps(){
+    
+    flatpak install -y flathub org.openshot.OpenShot
+    flatpak install -y flathub org.gimp.GIMP
+    flatpak install -y flathub org.kde.kolourpaint
+    flatpak install -y flathub com.discordapp.Discord
+	flatpak install -y flathub im.pidgin.Pidgin
+    flatpak install -y flathub org.libreoffice.LibreOffice
+	flatpak install -y flathub org.qownnotes.QOwnNotes
+
+    flatpak install -y flathub org.fedoraproject.MediaWriter
+    flatpak install -y flathub org.kde.kleopatra
+	flatpak install -y flathub org.gtkhash.gtkhash
+	flatpak install -y flathub com.github.tchx84.Flatseal
+    flatpak install -y flathub org.raspberrypi.rpi-imager
+    
+
 }
 
 install_basic_apps(){
@@ -271,7 +221,8 @@ install_basic_apps(){
 
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-	bluecurve-icon-theme p7zip p7zip-plugins    # note bluecurve seems to have been removed.
+    bluecurve-icon-theme p7zip p7zip-plugins hplip-gui k3b \
+    dnfdragora                      # note bluecurve seems to have been removed.
     sudo dnf groupinstall -y "Firefox Web Browser"
 	sudo plymouth-set-default-theme spinfinity -R
 	flatpak install -y flathub org.keepassxc.KeePassXC
@@ -313,13 +264,6 @@ install_coding_tools(){
 
 }
 
-av_editing(){
-    sudo dnf install -y k3b
-    flatpak install -y flathub org.openshot.OpenShot
-    flatpak install -y flathub org.gimp.GIMP
-    flatpak install -y flathub org.kde.kolourpaint
-}
-
 install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
@@ -341,10 +285,7 @@ install_game_clients(){
     # link bottles/lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
-    
-}
 
-install_extra_games(){
     cd "$HOME"/Downloads
     wget https://launcher.mojang.com/download/Minecraft.tar.gz
     tar -xvf Minecraft.tar.gz
@@ -356,6 +297,13 @@ install_extra_games(){
     rm Minecraft.tar.gz
 
     flatpak install -y flathub org.kde.kpat
+
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.2/WowUp-CF-2.9.4-beta.2.AppImage
+    WOWUPBINARY=WowUp-CF-2.9.4-beta.2.AppImage
+    cd "$HOME"/Desktop
+    wget $WOWUPLINK
+    chmod +x $WOWUPBINARY
+    
 }
 
 mango(){
@@ -385,15 +333,6 @@ setup_deck(){
     flatpak install -y flathub net.lutris.Lutris
     flatpak install -y flathub com.github.tchx84.Flatseal
     flatpak install -y flathub org.kde.kpat
-}
-
-install_utilities(){
-	sudo dnf install -y dnfdragora
-    flatpak install -y flathub org.fedoraproject.MediaWriter
-    flatpak install -y flathub org.kde.kleopatra
-	flatpak install -y flathub org.gtkhash.gtkhash
-	flatpak install -y flathub com.github.tchx84.Flatseal
-    flatpak install -y flathub org.raspberrypi.rpi-imager
 }
 
 get_fedora_version(){
