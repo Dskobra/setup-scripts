@@ -280,7 +280,7 @@ install_game_clients(){
 
 mango(){
     USER=$(whoami)
-    cd mangohud
+    cd $SCRIPTS_HOME/mangohud
     sudo chown $USER:$USER *.conf
     cp wine-GTA5.conf $HOME/.config/MangoHud/
     cp wine-NewWorld.conf $HOME/.config/MangoHud/
@@ -336,6 +336,7 @@ about(){
     main_menu
 }
 
+SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
 $fedoraVersion
 main_menu
