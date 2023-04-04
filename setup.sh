@@ -3,10 +3,9 @@
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Setup DE "
-    echo "5. Gaming 6. Extras"
-    echo "4.Coding/Servers"
-   echo "100. About script"
+    echo "1. Setup DE 2. Gaming"
+    echo "3.Coding/Servers 4. Extras" 
+    echo "100. About script"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -17,13 +16,13 @@ main_menu(){
         get_fedora_version
         install_basic_apps
         get_desktop_extras
-    elif [ "$input" -eq 4 ]
+    elif [ "$input" -eq 2 ]
+    then
+        gaming_menu 
+    elif [ "$input" -eq 3 ]
     then
         coding_servers_menu
-    elif [ "$input" -eq 5 ]
-    then
-        gaming_menu
-    elif [ "$input" -eq 6 ]
+    elif [ "$input" -eq 4 ]
     then
         extras_menu
     elif [ "$input" -eq 100 ]
@@ -38,39 +37,6 @@ main_menu(){
     echo $input
     unset input
     main_menu
-}
-
-media_menu(){
-    echo "================================================"
-    echo "Media"
-    echo "1. Codecs/Playback 2. Editing Tools"
-    echo "3. OBS Studio"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo dnf install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-	    flatpak install -y flathub org.videolan.VLC
-    elif [ "$input" -eq 2 ]
-    then
-        av_editing
-    elif [ "$input" -eq 3 ]
-    then
-  
-    elif [ "$input" -eq 0 ]
-    then
-        main_menu
-    else
-        echo "error."
-    fi
-    echo $input
-    unset input
-    media_menu
 }
 
 gaming_menu(){
@@ -146,8 +112,8 @@ coding_servers_menu(){
 extras_menu(){
     echo "================================================"
     echo "Extras"
-    echo "1. Utilities. 2. Virtualization"
-    echo "3. Corectrl 4. Cleanup"
+    echo "1. Virtualization 2. Corectrl"
+    echo "3. Extra Apps 4. Cleanup"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -155,17 +121,17 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        install_utilities
-    elif [ "$input" -eq 2 ]
-    then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
         sudo dnf groupinstall -y "Virtualization"
 	    sudo dnf install -y virtio-win
-    elif [ "$input" -eq 3 ]
+    elif [ "$input" -eq 2 ]
     then
         sudo dnf install -y corectrl
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
+    elif [ "$input" -eq 3 ]
+    then
+        extra_apps
     elif [ "$input" -eq 4 ]
     then
         cleanup
@@ -182,6 +148,9 @@ extras_menu(){
 
 extra_apps(){
     
+    sudo dnf install -y dolphin-plugins ark kate kate-plugins\
+    k3b v4l2loopback
+    
     flatpak install -y flathub org.openshot.OpenShot
     flatpak install -y flathub org.gimp.GIMP
     flatpak install -y flathub org.kde.kolourpaint
@@ -195,7 +164,8 @@ extra_apps(){
 	flatpak install -y flathub org.gtkhash.gtkhash
 	flatpak install -y flathub com.github.tchx84.Flatseal
     flatpak install -y flathub org.raspberrypi.rpi-imager
-    
+    flatpak install -y flathub org.videolan.VLC
+    flatpak install -y flathub com.obsproject.Studio
 
 }
 
@@ -221,23 +191,25 @@ install_basic_apps(){
 
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-    bluecurve-icon-theme p7zip p7zip-plugins hplip-gui k3b \
-    dnfdragora                      # note bluecurve seems to have been removed.
+    bluecurve-icon-theme p7zip p7zip-plugins hplip-gui  \
+    dnfdragora                       # note bluecurve seems to have been removed.
+    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+    sudo dnf install -y gstreamer1-plugin-openh264 \
+	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
     sudo dnf groupinstall -y "Firefox Web Browser"
 	sudo plymouth-set-default-theme spinfinity -R
+    
 	flatpak install -y flathub org.keepassxc.KeePassXC
     flatpak install -y flathub com.transmissionbt.Transmission
     flatpak install -y flathub com.dropbox.Client
+
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
+
+
 }
 
 get_desktop_extras(){
-	if [ "$DESKTOP" = "KDE" ]
-	then
-        echo "Now setting up some extra kde features."
-		sudo dnf install -y dolphin-plugins ark \
-        kate kate-plugins
-	elif [ "$DESKTOP" = "MATE" ]
+	if [ "$DESKTOP" = "MATE" ]
 	then
 		echo "Now setting up some extra mate features."
 		sudo dnf install -y caja-share mate-menu \
