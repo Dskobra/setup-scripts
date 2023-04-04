@@ -18,7 +18,8 @@ main_menu(){
         get_desktop_extras
     elif [ "$input" -eq 2 ]
     then
-        gaming_menu 
+        install_game_clients
+        mango 
     elif [ "$input" -eq 3 ]
     then
         coding_servers_menu
@@ -39,32 +40,6 @@ main_menu(){
     main_menu
 }
 
-gaming_menu(){
-    echo "================================================"
-    echo "Gaming"
-    echo "1. Game Clients 2. Steam Deck"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        install_game_clients
-        mango
-    elif [ "$input" -eq 4 ]
-    then
-        setup_deck
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    gaming_menu
-}
 
 coding_servers_menu(){
     echo "================================================"
