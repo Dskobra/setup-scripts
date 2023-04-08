@@ -103,7 +103,7 @@ install_basic_apps(){
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
-    lm_sensors bluecurve-icon-theme kate-plugins p7zip   # note bluecurve seems to have been removed.
+    kate-plugins p7zip   # note bluecurve seems to have been removed.
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
     libavformat-free libavutil-free libpostproc-free \
@@ -125,8 +125,7 @@ install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
-    sudo rpm-ostree install -y mangohud gamemode.i686 \
-    steam steam-devices
+    sudo rpm-ostree install -y mangohud steam
 
     flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
