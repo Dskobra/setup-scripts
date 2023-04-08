@@ -126,7 +126,7 @@ install_game_clients(){
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
     sudo rpm-ostree install -y mangohud gamemode.i686 \
-    steam steam-devices xpad
+    steam steam-devices
 
     flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
