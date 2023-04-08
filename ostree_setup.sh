@@ -14,19 +14,16 @@ main_menu(){
     if [ "$input" -eq 1 ]
     then
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        sudo systemctl reboot
+        sudo systemctl reboot   # only needed to enable rpmfusion layer to install rest of packages. Everything else can be loaded later.
     elif [ "$input" -eq 2 ]
     then
         install_basic_apps
-        sudo systemctl reboot
     elif [ "$input" -eq 3 ]
     then
         install_game_clients
-        sudo systemctl reboot
     elif [ "$input" -eq 4 ]
     then
         install_coding_tools
-        sudo systemctl reboot
     elif [ "$input" -eq 5 ]
     then
         extras_menu
@@ -57,15 +54,12 @@ extras_menu(){
     if [ "$input" -eq 1 ]
     then
 	    sudo rpm-ostree install virt-manager
-        sudo systemctl reboot
     elif [ "$input" -eq 2 ]
     then
         sudo rpm-ostree install corectrl
-        sudo systemctl reboot
     elif [ "$input" -eq 3 ]
     then
         extra_apps
-        sudo systemctl reboot
     elif [ "$input" -eq 4 ]
     then
         post_install
@@ -99,6 +93,7 @@ extra_apps(){
     flatpak install -y flathub org.raspberrypi.rpi-imager
     flatpak install -y flathub org.videolan.VLC
     flatpak install -y flathub com.obsproject.Studio
+    flatpak install -y flathub org.soundconverter.SoundConverter
 
 }
 
@@ -176,7 +171,6 @@ coding_servers_menu(){
     if [ "$input" -eq 1 ]
     then
         install_coding_tools
-        sudo systemctl reboot
     elif [ "$input" -eq 0 ]
     then
 	    main_menu
