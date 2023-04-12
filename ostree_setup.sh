@@ -14,7 +14,7 @@ main_menu(){
     if [ "$input" -eq 1 ]
     then
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        check_for_reboot
+        ask_for_reboot # rpmfusion line is long and i dont feel like scrolling to add a pipe
     elif [ "$input" -eq 2 ]
     then
         install_basic_apps
