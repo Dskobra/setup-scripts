@@ -259,7 +259,6 @@ check_for_reboot(){
         echo "Restart needed."
         ask_for_reboot
     else
-
         echo "No restart needed."
         exit
     fi
@@ -274,10 +273,10 @@ ask_for_reboot(){
     printf "Option: "
     read -r input
     
-    if [ "$input" == "Y" || "$input" == "y" ]
+    if [ "$input" == "Y" ] || [ "$input" == "y" ]
     then
         sudo systemctl reboot
-    elif [ "$input" == "N" || "$input" == "n" ]
+    elif [ "$input" == "N"] || [ "$input" == "n" ]
     then
         echo "Reboot declined"
 	    exit
