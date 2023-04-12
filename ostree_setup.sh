@@ -13,8 +13,9 @@ main_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        sudo systemctl reboot   # only needed to enable rpmfusion layer to install rest of packages. Everything else can be loaded later.
+        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm >> ostree.txt
+        #sudo systemctl reboot   # only needed to enable rpmfusion layer to install rest of packages. Everything else can be loaded later.
+        check_for_reboot
     elif [ "$input" -eq 2 ]
     then
         install_basic_apps
@@ -249,6 +250,40 @@ post_install(){
     echo $input
     unset input
     post_install
+}
+
+check_for_reboot(){
+    RESTART_TEST=$(grep -F 'Run "systemctl reboot" to start a reboot' ostree.txt)
+    if [ "$RESTART_TEST" = 'Run "systemctl reboot" to start a reboot' ]
+    then
+        echo "Restart needed."
+        ask_for_reboot
+    else
+
+        echo "No restart needed."
+        exit
+    fi
+}
+
+ask_for_reboot(){
+    echo "================================================"
+    echo "System has requested a reboot."
+    echo "Type Y/N to confirm or decline"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    if [ "$input" == "Y" || "$input" == "y" ]
+    then
+        sudo systemctl reboot
+    elif [ "$input" == "N" || "$input" == "n" ]
+    then
+        echo "Reboot declined"
+	    exit
+    else
+	    echo "error."
+    fi
+    ask_for_reboot
 }
 
 SCRIPTS_HOME=$(pwd)
