@@ -13,12 +13,12 @@ main_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm >> ostree.txt
-        #sudo systemctl reboot   # only needed to enable rpmfusion layer to install rest of packages. Everything else can be loaded later.
-        check_for_reboot
+        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+        sudo systemctl reboot   # only needed to enable rpmfusion layer to install rest of packages. Everything else can be loaded later.
     elif [ "$input" -eq 2 ]
     then
         install_basic_apps
+        check_for_reboot
     elif [ "$input" -eq 3 ]
     then
         install_game_clients
@@ -104,13 +104,13 @@ install_basic_apps(){
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
-    kate-plugins p7zip   # note bluecurve seems to have been removed.
+    kate-plugins p7zip >> ostree.txt
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
     libavformat-free libavutil-free libpostproc-free \
     libswresample-free libswscale-free --install ffmpeg
     sudo rpm-ostree install -y gstreamer1-plugin-openh264 \
-	mozilla-openh264 ffmpeg-libs.i686
+	mozilla-openh264 ffmpeg-libs.i686 
 
 
     flatpak install -y flathub io.podman_desktop.PodmanDesktop
@@ -266,6 +266,7 @@ check_for_reboot(){
 }
 
 ask_for_reboot(){
+    rm ostree.txt
     echo "================================================"
     echo "System has requested a reboot."
     echo "Type Y/N to confirm or decline"
