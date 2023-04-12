@@ -14,7 +14,7 @@ main_menu(){
     if [ "$input" -eq 1 ]
     then
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        sudo systemctl reboot   # only needed to enable rpmfusion layer to install rest of packages. Everything else can be loaded later.
+        check_for_reboot
     elif [ "$input" -eq 2 ]
     then
         install_basic_apps
@@ -22,9 +22,11 @@ main_menu(){
     elif [ "$input" -eq 3 ]
     then
         install_game_clients
+        check_for_reboot
     elif [ "$input" -eq 4 ]
     then
         install_coding_tools
+        check_for_reboot
     elif [ "$input" -eq 5 ]
     then
         extras_menu
@@ -55,12 +57,15 @@ extras_menu(){
     if [ "$input" -eq 1 ]
     then
 	    sudo rpm-ostree install virt-manager
+        check_for_reboot
     elif [ "$input" -eq 2 ]
     then
         sudo rpm-ostree install corectrl
+        check_for_reboot
     elif [ "$input" -eq 3 ]
     then
         extra_apps
+        check_for_reboot
     elif [ "$input" -eq 4 ]
     then
         post_install
@@ -253,8 +258,8 @@ post_install(){
 }
 
 check_for_reboot(){
-    RESTART_TEST=$(grep -F 'Run "systemctl reboot" to start a reboot' ostree.txt)
-    if [ "$RESTART_TEST" = 'Run "systemctl reboot" to start a reboot' ]
+    RESTART_TEST=$(grep -F 'Added:' ostree.txt)
+    if [ "$RESTART_TEST" = 'Added:' ]
     then
         echo "Restart needed."
         ask_for_reboot
@@ -287,6 +292,4 @@ ask_for_reboot(){
 }
 
 SCRIPTS_HOME=$(pwd)
-DESKTOP=$XDG_CURRENT_DESKTOP
-$fedoraVersion
 main_menu
