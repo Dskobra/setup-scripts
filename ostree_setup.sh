@@ -56,11 +56,11 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
-	    sudo rpm-ostree install virt-manager >> ostree.txt
+	    sudo rpm-ostree install virt-manager >> $SCRIPTS_HOME/ostree.txt
         check_for_reboot
     elif [ "$input" -eq 2 ]
     then
-        sudo rpm-ostree install corectrl >> ostree.txt
+        sudo rpm-ostree install corectrl >> $SCRIPTS_HOME/ostree.txt
         check_for_reboot
     elif [ "$input" -eq 3 ]
     then
@@ -82,7 +82,7 @@ extras_menu(){
 
 extra_apps(){
     
-    sudo rpm-ostree install k3b v4l2loopback >> ostree.txt
+    sudo rpm-ostree install k3b v4l2loopback >> $SCRIPTS_HOME/ostree.txt
     
     flatpak install -y flathub org.openshot.OpenShot
     flatpak install -y flathub org.gimp.GIMP
@@ -109,7 +109,7 @@ install_basic_apps(){
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
-    kate-plugins p7zip >> ostree.txt
+    kate-plugins p7zip >> $SCRIPTS_HOME/ostree.txt
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
     libavformat-free libavutil-free libpostproc-free \
@@ -131,7 +131,7 @@ install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
-    sudo rpm-ostree install -y mangohud steam >> ostree.txt
+    sudo rpm-ostree install -y mangohud steam >> $SCRIPTS_HOME/ostree.txt
 
     flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
@@ -191,7 +191,7 @@ install_coding_tools(){
     echo "Currently only installs a small subset of tools."
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-	sudo rpm-ostree install codium github-desktop >> ostree.txt
+	sudo rpm-ostree install codium github-desktop >> $SCRIPTS_HOME/ostree.txt
 
 }
 
@@ -258,7 +258,7 @@ post_install(){
 }
 
 check_for_reboot(){
-    RESTART_TEST=$(grep -F 'Added:' ostree.txt)
+    RESTART_TEST=$(grep -F 'Added:' $SCRIPTS_HOME/ostree.txt)
     if [ "$RESTART_TEST" = 'Added:' ]
     then
         echo "Restart needed."
@@ -270,7 +270,7 @@ check_for_reboot(){
 }
 
 ask_for_reboot(){
-    rm ostree.txt
+    rm $SCRIPTS_HOME/ostree.txt
     echo "================================================"
     echo "System has requested a reboot."
     echo "Type Y/N to confirm or decline"
