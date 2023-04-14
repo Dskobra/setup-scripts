@@ -56,11 +56,11 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
-	    sudo rpm-ostree install virt-manager
+	    sudo rpm-ostree install virt-manager >> ostree.txt
         check_for_reboot
     elif [ "$input" -eq 2 ]
     then
-        sudo rpm-ostree install corectrl
+        sudo rpm-ostree install corectrl >> ostree.txt
         check_for_reboot
     elif [ "$input" -eq 3 ]
     then
@@ -82,7 +82,7 @@ extras_menu(){
 
 extra_apps(){
     
-    sudo rpm-ostree install k3b v4l2loopback
+    sudo rpm-ostree install k3b v4l2loopback >> ostree.txt
     
     flatpak install -y flathub org.openshot.OpenShot
     flatpak install -y flathub org.gimp.GIMP
