@@ -124,7 +124,7 @@ install_basic_apps(){
     flatpak install -y flathub com.dropbox.Client
     flatpak install -y flathub com.brave.Browser
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    toolbox create -y coding-apps
+    toolbox create -y clamav
 }
 
 install_game_clients(){

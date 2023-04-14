@@ -3,7 +3,7 @@
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1.Brave Browser 2. Coding Tools"
+    echo "1. Coding Tools 2. ClamAV"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -11,10 +11,10 @@ main_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        install_brave
+        coding_servers_menu
     elif [ "$input" -eq 2 ]
     then
-        coding_servers_menu
+        ./install_clamav
     elif [ "$input" -eq 100 ]
     then
         about
@@ -75,24 +75,6 @@ coding_servers_menu(){
     coding_servers_menu
 }
 
-install_brave(){
-    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-	sudo dnf update -y
-    
-
-    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-	sudo dnf update -y
-
-    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-    sudo dnf install -y gstreamer1-plugin-openh264 \
-	ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-	sudo dnf install -y brave-browser
-}
-
 install_coding_tools(){
     sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
@@ -110,14 +92,15 @@ install_coding_tools(){
 
 }
 
-about(){
-    VERSION="dev branch"
-    echo "================================================"
-    echo "Copyright (c) 2023 Jordan Bottoms"
-    echo "Released under the MIT license"
-    echo "Version: $VERSION"
-    echo "================================================"
-    main_menu
+install_clamav(){
+    mkdir ~/container_temp/
+    cd ~/container_temp/
+    git clone https://github.com/Dskobra/clamav-setup.git -b dev
+    cd clamav-setup
+    ./setup.sh
+    cd ~/container_temp/
+    rm -r -f clamav-setup
+    exit
 }
 
 main_menu
