@@ -11,7 +11,7 @@ main_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        coding_servers_menu
+        install_coding_tools
     elif [ "$input" -eq 2 ]
     then
         install_clamav
@@ -29,52 +29,6 @@ main_menu(){
     main_menu
 }
 
-coding_servers_menu(){
-    echo "================================================"
-    echo "Coding and Servers"
-    echo "1. Coding Tools 2. Lamp Stack" 
-    echo "3. Fedora Cockpit 4. Samba Share"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        install_coding_tools
-    elif [ "$input" -eq 2 ]
-    then
-        sudo dnf install -y systemd
-        sudo dnf install -y httpd php mariadb mariadb-server
-	    sudo dnf install -y phpmyadmin
-	    sudo systemctl enable --now httpd mariadb
-    elif [ "$input" -eq 3 ]
-    then
-        sudo dnf install -y systemd
-        sudo dnf install -y cockpit
-	    sudo systemctl enable --now cockpit.socket
-	    sudo firewall-cmd --add-service=cockpit
-	    sudo firewall-cmd --add-service=cockpit --permanent
-    elif [ "$input" -eq 4 ]
-    then
-        sudo dnf install -y systemd
-        sudo dnf install -y samba
-        sudo systemctl enable smb nmb
-        sudo firewall-cmd --add-service=samba --permanent
-        sudo firewall-cmd --reload
-        mkdir "$HOME"/FILES1
-        mkdir "$HOME"/FILES2
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    coding_servers_menu
-}
-
 install_coding_tools(){
     sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     sudo dnf groupinstall -y "C Development Tools and libraries"
@@ -83,8 +37,7 @@ install_coding_tools(){
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
-	sudo dnf install -y python python3-tools python3-devel \
-	java-17-openjdk-devel systemd
+	sudo dnf install -y python python3-devel java-17-openjdk-devel systemd
 
 }
 

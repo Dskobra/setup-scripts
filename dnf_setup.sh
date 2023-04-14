@@ -205,7 +205,7 @@ install_coding_tools(){
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
-	sudo dnf install -y python3-tools python3-devel git-gui \
+	sudo dnf install -y python3-idle python3-devel git-gui \
 	java-17-openjdk-devel codium github-desktop
 
 }
