@@ -31,7 +31,7 @@ main_menu(){
 }
 
 about(){
-    VERSION="dev branch"
+    VERSION="4.16.2023"
     echo "================================================"
     echo "Copyright (c) 2023 Jordan Bottoms"
     echo "Released under the MIT license"
