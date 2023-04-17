@@ -17,7 +17,6 @@ main_menu(){
         get_desktop_extras
     elif [ "$input" -eq 2 ]
     then
-        gaming_menu
         install_game_clients
         mango
     elif [ "$input" -eq 3 ]
@@ -148,8 +147,9 @@ install_basic_apps(){
     flatpak remote-modify --disable fedora
     if [ "$fedoraVersion" = "38" ]
     then
-        echo "Fedora Version: $fedoraVersion includes flathub, but disabled by default."
-        flatpak remote-modify --enable flathub
+        #echo "Fedora Version: $fedoraVersion includes flathub, but disabled by default."
+        #flatpak remote-modify --enable flathub
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 	elif [ "$fedoraVersion" = "37" ]
 	then
 		echo "Fedora Version: $fedoraVersion which requires adding remote flathub."
@@ -165,8 +165,8 @@ install_basic_apps(){
 
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-    bluecurve-icon-theme p7zip p7zip-plugins hplip-gui  \
-    dnfdragora                       # note bluecurve seems to have been removed.
+    p7zip p7zip-plugins hplip-gui dnfdragora             
+    
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
 	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
@@ -190,7 +190,7 @@ get_desktop_extras(){
         dconf-editor humanity-icon-theme \
         gnome-icon-theme pavucontrol
     else
-        echo "Unknown desktop"
+        echo "Not running Mate."
 	fi
 }
 
@@ -205,7 +205,7 @@ install_coding_tools(){
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
-	sudo dnf install -y python3-tools python3-devel git-gui \
+	sudo dnf install -y python3-idle python3-devel git-gui \
 	java-17-openjdk-devel codium github-desktop
 
 }
@@ -214,8 +214,7 @@ install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y mangohud gamemode gamemode.i686 \
-    steam steam-devices kernel-modules-extra
+    sudo dnf install -y mangohud steam goverlay
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
@@ -240,8 +239,8 @@ install_game_clients(){
 
     flatpak install -y flathub org.kde.kpat
 
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.2/WowUp-CF-2.9.4-beta.2.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.4-beta.2.AppImage
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.3/WowUp-CF-2.9.4-beta.3.AppImage
+    WOWUPBINARY=WowUp-CF-2.9.4-beta.3.AppImage
     cd "$HOME"/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
@@ -284,7 +283,7 @@ cleanup(){
 	gnome-shell-extension-gamemode gnome-text-editor \
 	kmahjongg kmines systemd-oomd-defaults \
 	transmission-gtk transmission-qt \
-	compiz
+	compiz kpat
 }
 
 SCRIPTS_HOME=$(pwd)

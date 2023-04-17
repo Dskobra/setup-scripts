@@ -33,7 +33,7 @@ main_menu(){
 about(){
     VERSION="4.16.2023"
     echo "================================================"
-    echo "Copyright (c) 2023 Jordan Bottoms"
+    echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"
     echo "Version: $VERSION"
     echo "================================================"
