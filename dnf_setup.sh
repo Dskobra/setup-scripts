@@ -17,7 +17,6 @@ main_menu(){
         get_desktop_extras
     elif [ "$input" -eq 2 ]
     then
-        gaming_menu
         install_game_clients
         mango
     elif [ "$input" -eq 3 ]
@@ -191,7 +190,7 @@ get_desktop_extras(){
         dconf-editor humanity-icon-theme \
         gnome-icon-theme pavucontrol
     else
-        echo "Unknown desktop"
+        echo "Not running Mate."
 	fi
 }
 
@@ -215,8 +214,7 @@ install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y mangohud gamemode gamemode.i686 \
-    steam steam-devices kernel-modules-extra goverlay
+    sudo dnf install -y mangohud steam goverlay
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
@@ -285,7 +283,7 @@ cleanup(){
 	gnome-shell-extension-gamemode gnome-text-editor \
 	kmahjongg kmines systemd-oomd-defaults \
 	transmission-gtk transmission-qt \
-	compiz
+	compiz kpat
 }
 
 SCRIPTS_HOME=$(pwd)
