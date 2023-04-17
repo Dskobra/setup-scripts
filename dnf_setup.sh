@@ -215,7 +215,7 @@ install_game_clients(){
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
     sudo dnf install -y mangohud gamemode gamemode.i686 \
-    steam steam-devices kernel-modules-extra
+    steam steam-devices kernel-modules-extra goverlay
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
@@ -240,8 +240,8 @@ install_game_clients(){
 
     flatpak install -y flathub org.kde.kpat
 
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.2/WowUp-CF-2.9.4-beta.2.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.4-beta.2.AppImage
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.3/WowUp-CF-2.9.4-beta.3.AppImage
+    WOWUPBINARY=WowUp-CF-2.9.4-beta.3.AppImage
     cd "$HOME"/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
