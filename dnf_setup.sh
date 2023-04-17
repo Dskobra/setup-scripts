@@ -148,8 +148,9 @@ install_basic_apps(){
     flatpak remote-modify --disable fedora
     if [ "$fedoraVersion" = "38" ]
     then
-        echo "Fedora Version: $fedoraVersion includes flathub, but disabled by default."
-        flatpak remote-modify --enable flathub
+        #echo "Fedora Version: $fedoraVersion includes flathub, but disabled by default."
+        #flatpak remote-modify --enable flathub
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 	elif [ "$fedoraVersion" = "37" ]
 	then
 		echo "Fedora Version: $fedoraVersion which requires adding remote flathub."
@@ -165,8 +166,8 @@ install_basic_apps(){
 
 	sudo dnf install -y  java-17-openjdk brave-browser \
 	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-    bluecurve-icon-theme p7zip p7zip-plugins hplip-gui  \
-    dnfdragora                       # note bluecurve seems to have been removed.
+    p7zip p7zip-plugins hplip-gui dnfdragora             
+    
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
 	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
