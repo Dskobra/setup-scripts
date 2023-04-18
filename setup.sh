@@ -288,7 +288,7 @@ cleanup(){
 }
 
 about(){
-    VERSION="4.17.2023"
+    VERSION="4.18.2023"
     echo "================================================"
     echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"
