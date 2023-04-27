@@ -215,7 +215,7 @@ install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y mangohud steam goverlay
+    sudo dnf install -y steam goverlay
     sudo modprobe xpad
 	flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
