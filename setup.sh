@@ -240,8 +240,8 @@ install_game_clients(){
 
     flatpak install -y flathub org.kde.kpat
 
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4-beta.3/WowUp-CF-2.9.4-beta.3.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.4-beta.3.AppImage
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2/WowUp-CF-2.9.2.AppImage
+    WOWUPBINARY=WowUp-CF-2.9.2.AppImage
     cd "$HOME"/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
