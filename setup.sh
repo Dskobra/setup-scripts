@@ -252,7 +252,6 @@ mango(){
     # link bottles/lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
-    USER=$(whoami)
     cd $SCRIPTS_HOME/mangohud
     ./setup.sh
 
