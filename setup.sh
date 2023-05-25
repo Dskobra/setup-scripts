@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-main_menu(){
+fed_main_menu(){
     echo "================================================"
     echo "Main Menu"
     echo "1. Setup DE 2. Gaming"
@@ -37,7 +37,7 @@ main_menu(){
     fi
     echo $input
     unset input
-    main_menu
+    fed_main_menu
 }
 
 coding_servers_menu(){
@@ -74,7 +74,7 @@ coding_servers_menu(){
         mkdir "$HOME"/FILES2
     elif [ "$input" -eq 0 ]
     then
-	    main_menu
+	    fed_main_menu
     else
 	    echo "error."
     fi
@@ -111,7 +111,7 @@ extras_menu(){
         cleanup
     elif [ "$input" -eq 0 ]
     then
-	    main_menu
+	    fed_main_menu
     else
 	    echo "error."
     fi
@@ -284,10 +284,23 @@ about(){
     echo "Released under the MIT license"
     echo "Version: $VERSION"
     echo "================================================"
-    main_menu
+    fed_main_menu
 }
 
+distro_check(){
+    ID=$(grep 'ID' -w /etc/os-release)
+
+    if [ "$input" -eq 1 "ID=fedora" ]
+    then
+        fed_fed_main_menu
+    elif [ "$input" -eq "ID=opensuse-tumbleweed" ]
+    then
+        echo "placeholder"
+    else
+	    echo "error."
+    fi
+}
 SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
 $fedoraVersion
-main_menu
+distro_check
