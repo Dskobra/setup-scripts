@@ -2,7 +2,7 @@
 
 fed_main_menu(){
     echo "================================================"
-    echo "Main Menu"
+    echo "Fedora Menu"
     echo "1. Setup DE 2. Gaming"
     echo "3. Coding/Servers 4. Extras"
     echo "100. About" 
@@ -256,7 +256,7 @@ fed_cleanup(){
 
 suse_main_menu(){
     echo "================================================"
-    echo "Main Menu"
+    echo "openSUSE Menu"
     echo "1. Setup DE 2. Gaming"
     echo "3. Coding/Servers 4. Extras"
     echo "100. About" 
