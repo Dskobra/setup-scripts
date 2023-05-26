@@ -13,9 +13,7 @@ main_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        get_fedora_version
         install_basic_apps
-        get_desktop_extras
     elif [ "$input" -eq 2 ]
     then
         install_game_clients
