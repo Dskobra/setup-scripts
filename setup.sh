@@ -40,16 +40,7 @@ main_menu(){
 
 install_basic_apps(){
 	echo "Setting up rpmfusion and flathub."
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	if [ "$DESKTOP" = "MATE" ]
-	then
-		echo "Now setting up some extra mate features."
-		sudo dnf install -y caja-share mate-menu \
-        dconf-editor humanity-icon-theme \
-        gnome-icon-theme pavucontrol
-    else
-        echo "Not running Mate."
-	fi
+    bash -c "source flatpak.sh; fbasic"
 	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
@@ -66,9 +57,7 @@ install_basic_apps(){
     sudo dnf groupinstall -y "Firefox Web Browser"
 	sudo plymouth-set-default-theme spinfinity -R
     
-	flatpak install -y flathub org.keepassxc.KeePassXC
-    flatpak install -y flathub com.transmissionbt.Transmission
-    flatpak install -y flathub com.dropbox.Client
+	bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
 
@@ -84,6 +73,7 @@ install_game_clients(){
 	flatpak install -y flathub net.davidotek.pupgui2
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
     flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+    flatpak install -y flathub org.kde.kpat
 
     flatpak install -y flathub com.usebottles.bottles
     flatpak install -y flathub net.lutris.Lutris 
@@ -102,7 +92,7 @@ install_game_clients(){
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
 
-    flatpak install -y flathub org.kde.kpat
+    
 
     WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2/WowUp-CF-2.9.2.AppImage
     WOWUPBINARY=WowUp-CF-2.9.2.AppImage
