@@ -124,14 +124,6 @@ coding_servers_menu(){
 	    sudo systemctl enable --now cockpit.socket
 	    sudo firewall-cmd --add-service=cockpit
 	    sudo firewall-cmd --add-service=cockpit --permanent
-    elif [ "$input" -eq 4 ]
-    then
-        sudo dnf install -y samba
-        sudo systemctl enable smb nmb
-        sudo firewall-cmd --add-service=samba --permanent
-        sudo firewall-cmd --reload
-        mkdir "$HOME"/FILES1
-        mkdir "$HOME"/FILES2
     elif [ "$input" -eq 0 ]
     then
 	    main_menu
