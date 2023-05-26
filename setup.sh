@@ -13,19 +13,17 @@ fed_main_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        get_fedora_version
-        install_basic_apps
-        get_desktop_extras
+        fed_install_basic_apps
     elif [ "$input" -eq 2 ]
     then
-        install_game_clients
+        fed_install_game_clients
         mango
     elif [ "$input" -eq 3 ]
     then
-        coding_servers_menu
+        fed_coding_servers_menu
     elif [ "$input" -eq 4 ]
     then
-        extras_menu
+        fed_extras_menu
     elif [ "$input" -eq 100 ]
     then
         about
@@ -40,7 +38,7 @@ fed_main_menu(){
     fed_main_menu
 }
 
-install_basic_apps(){
+fed_install_basic_apps(){
 	echo "Setting up rpmfusion and flathub."
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 	if [ "$DESKTOP" = "MATE" ]
@@ -77,7 +75,7 @@ install_basic_apps(){
 
 }
 
-install_game_clients(){
+fed_install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
@@ -114,7 +112,7 @@ install_game_clients(){
     
 }
 
-coding_servers_menu(){
+fed_coding_servers_menu(){
     echo "================================================"
     echo "Coding and Servers"
     echo "1. Coding Tools 2. Lamp Stack" 
@@ -126,7 +124,7 @@ coding_servers_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        install_coding_tools
+        fed_install_coding_tools
     elif [ "$input" -eq 2 ]
     then
         sudo dnf install -y httpd php mariadb mariadb-server
@@ -157,7 +155,7 @@ coding_servers_menu(){
     coding_servers_menu
 }
 
-install_coding_tools(){
+fed_install_coding_tools(){
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
@@ -173,7 +171,7 @@ install_coding_tools(){
 
 }
 
-extras_menu(){
+fed_extras_menu(){
     echo "================================================"
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
@@ -195,10 +193,10 @@ extras_menu(){
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 3 ]
     then
-        extra_apps
+        fed_extra_apps
     elif [ "$input" -eq 4 ]
     then
-        cleanup
+        fed_cleanup
     elif [ "$input" -eq 0 ]
     then
 	    fed_main_menu
@@ -210,7 +208,7 @@ extras_menu(){
     extras_menu
 }
 
-extra_apps(){
+fed_extra_apps(){
     
     sudo dnf install -y dolphin-plugins ark kate kate-plugins\
     k3b v4l2loopback
@@ -243,7 +241,7 @@ mango(){
     
 }
 
-cleanup(){
+fed_cleanup(){
 	# Installing Fedora 36 using the everything installer to install the mate desktop with my normal package groups "Development Tools", 
 	# "C Development Tools and libraries" and "RPM Development Tools" results in systemd-oomd-defaults also being installed.
 	# This creates a package conflict with mate-desktop and mate-desktop-configs when updating. Research shows this is an 
@@ -254,6 +252,106 @@ cleanup(){
 	kmahjongg kmines systemd-oomd-defaults \
 	transmission-gtk transmission-qt \
 	compiz kpat
+}
+
+suse_main_menu(){
+    echo "================================================"
+    echo "Main Menu"
+    echo "1. Setup DE 2. Gaming"
+    echo "3. Coding/Servers 4. Extras"
+    echo "100. About" 
+    echo "0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    if [ "$input" -eq 1 ]
+    then
+        suse_install_basic_apps
+    elif [ "$input" -eq 2 ]
+    then
+        suse_install_game_clients
+        mango
+    elif [ "$input" -eq 3 ]
+    then
+        #suse_coding_servers_menu
+    elif [ "$input" -eq 4 ]
+    then
+        #suse_extras_menu
+    elif [ "$input" -eq 100 ]
+    then
+        about
+    elif [ "$input" -eq 0 ]
+    then
+	    exit
+    else
+	    echo "error."
+    fi
+    echo $input
+    unset input
+    suse_main_menu
+}
+
+suse_install_basic_apps(){
+	echo "Setting up packman essentials and flathub."
+    sudo zypper ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials    # using essentials for ffmpeg etc
+    sudo zypper dup --from packman-essentials --allow-vendor-change     # update system packages with essentials
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    sudo zypper install curl
+    sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+
+	sudo zypper install -y  java-17-openjdk brave-browser \
+	plymouth-theme-spinfinity vim-enhanced p7zip p7zip-plugins hplip             
+
+    sudo zypper install -y gstreamer1-plugin-openh264 mozilla-openh264
+	sudo plymouth-set-default-theme spinfinity -R
+    
+	flatpak install -y flathub org.keepassxc.KeePassXC
+    flatpak install -y flathub com.transmissionbt.Transmission
+    flatpak install -y flathub com.dropbox.Client
+
+    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
+
+
+}
+
+suse_install_game_clients(){
+    mkdir "$HOME"/Games
+	mkdir "$HOME"/Games/bottles
+    mkdir "$HOME"/.config/MangoHud/
+    sudo zypper install -y steam goverlay gamemode
+    sudo modprobe xpad
+	flatpak install -y flathub net.davidotek.pupgui2
+    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
+    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+
+    flatpak install -y flathub com.usebottles.bottles
+    flatpak install -y flathub net.lutris.Lutris 
+    
+    # run once to ensure folders/runtimes are setup
+    flatpak run com.usebottles.bottles
+    flatpak run net.lutris.Lutris
+
+    cd "$HOME"/Downloads
+    wget https://launcher.mojang.com/download/Minecraft.tar.gz
+    tar -xvf Minecraft.tar.gz
+    cd minecraft-launcher
+    chmod +x minecraft-launcher
+    mv minecraft-launcher "$HOME"/Desktop
+    cd "$HOME"/Downloads
+    rm -r minecraft-launcher
+    rm Minecraft.tar.gz
+
+    flatpak install -y flathub org.kde.kpat
+
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2/WowUp-CF-2.9.2.AppImage
+    WOWUPBINARY=WowUp-CF-2.9.2.AppImage
+    cd "$HOME"/Desktop
+    wget $WOWUPLINK
+    chmod +x $WOWUPBINARY
+    
 }
 
 about(){
@@ -274,7 +372,7 @@ distro_check(){
         fed_fed_main_menu
     elif [ "$input" -eq "ID=opensuse-tumbleweed" ]
     then
-        echo "placeholder"
+        suse_install_basic_apps
     else
 	    echo "error."
     fi
