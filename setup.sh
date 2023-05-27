@@ -2,11 +2,12 @@
 
 distro_check(){
     ID=$(grep 'ID' -w /etc/os-release)
+    echo $ID
 
-    if [ "$input" -eq 1 "ID=fedora" ]
+    if [ "$ID" == "ID=fedora" ]
     then
         $SCRIPTS_HOME/modules/fedora.sh
-    elif [ "$input" -eq "ID=opensuse-tumbleweed" ]
+    elif [ "$ID" == "ID=opensuse-tumbleweed" ]
     then
         $SCRIPTS_HOME/modules/suse.sh
     else
