@@ -21,12 +21,14 @@ main_menu(){
     elif [ "$input" -eq 3 ]
     then
         #coding_servers_menu
+        echo "disabled"
     elif [ "$input" -eq 4 ]
     then
         #extras_menu
+        echo "disabled"
     elif [ "$input" -eq 100 ]
     then
-        about
+        echo "disabled"
     elif [ "$input" -eq 0 ]
     then
 	    exit
