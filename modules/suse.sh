@@ -44,17 +44,19 @@ install_basic_apps(){
 	echo "Setting up packman essentials and flathub."
     sudo zypper ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials    # using essentials for ffmpeg etc
     sudo zypper dup --from packman-essentials --allow-vendor-change     # update system packages with essentials
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
     sudo zypper install curl
     sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
 	sudo zypper install -y  java-17-openjdk brave-browser \
-	plymouth-theme-spinfinity vim-enhanced p7zip p7zip-plugins hplip             
+	plymouth-theme-spinfinity vim-enhanced p7zip p7zip-plugins hplip\
+    konsole kate discover        
 
     sudo zypper install -y gstreamer-plugin-openh264 mozilla-openh264
 	sudo plymouth-set-default-theme spinfinity -R
+
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
 
@@ -90,3 +92,4 @@ install_game_clients(){
 
 
 DESKTOP=$XDG_CURRENT_DESKTOP
+main_menu
