@@ -104,7 +104,7 @@ coding_servers_menu(){
     echo "================================================"
     echo "Coding and Servers"
     echo "1. Coding Tools 2. Lamp Stack" 
-    echo "3. Fedora Cockpit 4. Samba Share"
+    echo "3. Fedora Cockpit"
     echo "0. Back to main menu"
     echo "================================================"
     printf "Option: "
@@ -118,12 +118,6 @@ coding_servers_menu(){
         sudo dnf install -y httpd php mariadb mariadb-server
 	    sudo dnf install -y phpmyadmin
 	    sudo systemctl enable --now httpd mariadb
-    elif [ "$input" -eq 3 ]
-    then
-        sudo dnf install -y cockpit
-	    sudo systemctl enable --now cockpit.socket
-	    sudo firewall-cmd --add-service=cockpit
-	    sudo firewall-cmd --add-service=cockpit --permanent
     elif [ "$input" -eq 0 ]
     then
 	    main_menu
