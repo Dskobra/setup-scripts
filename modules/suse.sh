@@ -105,7 +105,7 @@ extras_menu(){
     then
         sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
         sudo zypper refresh
-        sudo zypper install corectrl
+        sudo zypper install -y corectrl
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 3 ]
     then
