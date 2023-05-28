@@ -21,7 +21,6 @@ main_menu(){
     elif [ "$input" -eq 3 ]
     then
         install_coding_tools
-        echo "disabled"
     elif [ "$input" -eq 4 ]
     then
         #extras_menu
@@ -89,8 +88,47 @@ install_coding_tools(){
 	nvm install lts/*
 }
 
+extras_menu(){
+    echo "================================================"
+    echo "Extras"
+    echo "1. Virtualization 2. Corectrl"
+    echo "3. Extra Apps 4. Cleanup"
+    echo "0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    if [ "$input" -eq 1 ]
+    then
+        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+        -O /etc/yum.repos.d/virtio-win.repo
+        sudo dnf groupinstall -y "Virtualization"
+	    sudo dnf install -y virtio-win
+    elif [ "$input" -eq 2 ]
+    then
+        sudo dnf install -y corectrl
+	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
+    elif [ "$input" -eq 3 ]
+    then
+        extra_apps
+        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+    elif [ "$input" -eq 4 ]
+    then
+        cleanup
+    elif [ "$input" -eq 0 ]
+    then
+	    main_menu
+    else
+	    echo "error."
+    fi
+    echo $input
+    unset input
+    extras_menu
+}
+
 cleanup(){
     echo ""
+    #sudo zypper remove -y icewm
 }
 
 SCRIPTS_HOME=$(pwd)

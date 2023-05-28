@@ -25,5 +25,4 @@ about(){
     echo "Released under the MIT license"
     echo "Version: $VERSION"
     echo "================================================"
-    main_menu
 }
