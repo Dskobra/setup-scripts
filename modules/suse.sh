@@ -42,7 +42,7 @@ main_menu(){
 
 install_basic_apps(){
 	echo "Setting up packman essentials and flathub."
-    sudo zypper ar -cfp -a 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials    # using essentials for ffmpeg etc
+    sudo zypper ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials    # using essentials for ffmpeg etc
     sudo zypper dup -y --from packman-essentials --allow-vendor-change     # update system packages with essentials
 
     sudo zypper install curl
@@ -55,7 +55,7 @@ install_basic_apps(){
        
 	sudo plymouth-set-default-theme spinfinity -R
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
+    bash -c "source "$SCRIPTS_HOME"/modules/flatpak.sh; fbasic"
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
 
