@@ -23,8 +23,7 @@ main_menu(){
         install_coding_tools
     elif [ "$input" -eq 4 ]
     then
-        #extras_menu
-        echo "disabled"
+        extras_menu
     elif [ "$input" -eq 100 ]
     then
         bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
@@ -68,6 +67,7 @@ install_game_clients(){
     sudo zypper install -y steam goverlay gamemode
     sudo modprobe xpad
 
+    bash -c "source "$SCRIPTS_HOME"/modules/flatpak.sh; fgames"
     bash -c "source "$SCRIPTS_HOME"/modules/misc.sh; extra_games"
     
 }
@@ -125,11 +125,16 @@ extras_menu(){
     extras_menu
 }
 
-extra_apps(){
+mango(){
+    # link bottles/lutris to mangohud configuration folder
+    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
+    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
+    cd $SCRIPTS_HOME/mangohud
+    ./setup.sh
+
     
-    sudo dnf install -y dolphin-plugins ark kate kate-plugins\
-    k3b v4l2loopback-autoload
 }
+
 cleanup(){
     sudo zypper remove -y icewm
 }
