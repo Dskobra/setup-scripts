@@ -48,7 +48,7 @@ install_basic_apps(){
     sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
-	sudo zypper install -y konsole kate discover dolphin-plugins\
+	sudo zypper install -y konsole kate ark discover dolphin-plugins\
 	plymouth-theme-spinfinity 7zip hplip java-17-openjdk brave-browser\
     mozilla-openh264 gstreamer-plugin-openh264 
        
@@ -100,17 +100,16 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-        -O /etc/yum.repos.d/virtio-win.repo
-        sudo dnf groupinstall -y "Virtualization"
-	    sudo dnf install -y virtio-win
+        echo "Use Yast -> "Virtualization" -> "Install Hypervisor and Tools" to install"
     elif [ "$input" -eq 2 ]
     then
-        sudo dnf install -y corectrl
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+        sudo zypper refresh
+        sudo zypper install corectrl
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 3 ]
     then
-        extra_apps
+        sudo zypper install -y k3b v4l2loopback-autoload
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
     elif [ "$input" -eq 4 ]
     then
@@ -126,9 +125,13 @@ extras_menu(){
     extras_menu
 }
 
+extra_apps(){
+    
+    sudo dnf install -y dolphin-plugins ark kate kate-plugins\
+    k3b v4l2loopback-autoload
+}
 cleanup(){
-    echo ""
-    #sudo zypper remove -y icewm
+    sudo zypper remove -y icewm
 }
 
 SCRIPTS_HOME=$(pwd)
