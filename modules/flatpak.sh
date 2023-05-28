@@ -22,19 +22,19 @@ fgames(){
 }
 
 fextras(){
-    flatpak install -y flathub org.openshot.OpenShot
-    flatpak install -y flathub org.gimp.GIMP
-    flatpak install -y flathub org.kde.kolourpaint
-    flatpak install -y flathub com.discordapp.Discord
-	flatpak install -y flathub im.pidgin.Pidgin
-    flatpak install -y flathub org.libreoffice.LibreOffice
-	flatpak install -y flathub org.qownnotes.QOwnNotes
+    flatpak install --user -y flathub org.openshot.OpenShot
+    flatpak install --user -y flathub org.gimp.GIMP
+    flatpak install --user -y flathub org.kde.kolourpaint
+    flatpak install --user -y flathub com.discordapp.Discord
+	flatpak install --user -y  flathub im.pidgin.Pidgin
+    flatpak install --user -y  flathub org.libreoffice.LibreOffice
+	flatpak install --user -y  flathub org.qownnotes.QOwnNotes
 
-    flatpak install -y flathub org.fedoraproject.MediaWriter
-    flatpak install -y flathub org.kde.kleopatra
-	flatpak install -y flathub org.gtkhash.gtkhash
-	flatpak install -y flathub com.github.tchx84.Flatseal
-    flatpak install -y flathub org.raspberrypi.rpi-imager
-    flatpak install -y flathub org.videolan.VLC
-    flatpak install -y flathub com.obsproject.Studio
+    flatpak install --user -y  flathub org.fedoraproject.MediaWriter
+    flatpak install --user -y  flathub org.kde.kleopatra
+	flatpak install --user -y  flathub org.gtkhash.gtkhash
+	flatpak install --user -y  flathub com.github.tchx84.Flatseal
+    flatpak install --user -y flathub org.raspberrypi.rpi-imager
+    flatpak install --user -y flathub org.videolan.VLC
+    flatpak install --user -y flathub com.obsproject.Studio
 }

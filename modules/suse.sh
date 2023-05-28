@@ -69,23 +69,7 @@ install_game_clients(){
     sudo zypper install -y steam goverlay gamemode
     sudo modprobe xpad
 
-    cd "$HOME"/Downloads
-    wget https://launcher.mojang.com/download/Minecraft.tar.gz
-    tar -xvf Minecraft.tar.gz
-    cd minecraft-launcher
-    chmod +x minecraft-launcher
-    mv minecraft-launcher "$HOME"/Desktop
-    cd "$HOME"/Downloads
-    rm -r minecraft-launcher
-    rm Minecraft.tar.gz
-
-    flatpak install -y flathub org.kde.kpat
-
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2/WowUp-CF-2.9.2.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.2.AppImage
-    cd "$HOME"/Desktop
-    wget $WOWUPLINK
-    chmod +x $WOWUPBINARY
+    bash -c "source "$SCRIPTS_HOME"/modules/misc.sh; extra_games"
     
 }
 
