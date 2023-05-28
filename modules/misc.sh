@@ -19,7 +19,7 @@ extra_games(){
 }
 
 about(){
-    VERSION="dev branch"
+    VERSION="tumbleweed branch"
     echo "================================================"
     echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"

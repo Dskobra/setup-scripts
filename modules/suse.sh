@@ -4,7 +4,7 @@ main_menu(){
     echo "================================================"
     echo "openSUSE Menu"
     echo "1. Setup DE 2. Gaming"
-    echo "3. Coding/Servers 4. Extras"
+    echo "3. Coding Tools 4. Extras"
     echo "100. About" 
     echo "0. Exit"
     echo "================================================"
@@ -20,7 +20,7 @@ main_menu(){
         mango
     elif [ "$input" -eq 3 ]
     then
-        #coding_servers_menu
+        install_coding_tools
         echo "disabled"
     elif [ "$input" -eq 4 ]
     then
@@ -28,7 +28,7 @@ main_menu(){
         echo "disabled"
     elif [ "$input" -eq 100 ]
     then
-        echo "disabled"
+        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
     elif [ "$input" -eq 0 ]
     then
 	    exit
@@ -73,9 +73,26 @@ install_game_clients(){
     
 }
 
+install_coding_tools(){
+	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+    sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/zypp/repos.d/vscodium.repo
+    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/zypp/repos.d/shiftkey-packages.repo'
+
+    sudo zypper install -y patterns-devel-C-C++-devel_C_C++ patterns-devel-python-devel_python3 patterns-devel-base-devel_rpm_build\
+    patterns-containers-container_runtime
+    sudo zypper install -y python310-idle git-gui java-17-openjdk-devel codium github-desktop distrobox
+
+
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	source ~/.bashrc
+	nvm install lts/*
+}
+
 cleanup(){
     echo ""
 }
 
+SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
 main_menu

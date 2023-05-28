@@ -4,7 +4,7 @@ main_menu(){
     echo "================================================"
     echo "Main Menu"
     echo "1. Setup DE 2. Gaming"
-    echo "3. Coding/Servers 4. Extras"
+    echo "3. Coding Tools 4. Extras"
     echo "100. About" 
     echo "0. Exit"
     echo "================================================"
@@ -20,13 +20,13 @@ main_menu(){
         mango
     elif [ "$input" -eq 3 ]
     then
-        coding_servers_menu
+        install_coding_tools
     elif [ "$input" -eq 4 ]
     then
         extras_menu
     elif [ "$input" -eq 100 ]
     then
-        about
+        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
     elif [ "$input" -eq 0 ]
     then
 	    exit
@@ -68,65 +68,9 @@ install_game_clients(){
     mkdir "$HOME"/.config/MangoHud/
     sudo dnf install -y steam goverlay
     sudo modprobe xpad
-	flatpak install -y flathub net.davidotek.pupgui2
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
-    flatpak install -y flathub org.kde.kpat
 
-    flatpak install -y flathub com.usebottles.bottles
-    flatpak install -y flathub net.lutris.Lutris 
-    
-    # run once to ensure folders/runtimes are setup
-    flatpak run com.usebottles.bottles
-    flatpak run net.lutris.Lutris
-
-    cd "$HOME"/Downloads
-    wget https://launcher.mojang.com/download/Minecraft.tar.gz
-    tar -xvf Minecraft.tar.gz
-    cd minecraft-launcher
-    chmod +x minecraft-launcher
-    mv minecraft-launcher "$HOME"/Desktop
-    cd "$HOME"/Downloads
-    rm -r minecraft-launcher
-    rm Minecraft.tar.gz
-
-    
-
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2/WowUp-CF-2.9.2.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.2.AppImage
-    cd "$HOME"/Desktop
-    wget $WOWUPLINK
-    chmod +x $WOWUPBINARY
-    
-}
-
-coding_servers_menu(){
-    echo "================================================"
-    echo "Coding and Servers"
-    echo "1. Coding Tools 2. Lamp Stack" 
-    echo "3. Fedora Cockpit"
-    echo "0. Back to main menu"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        install_coding_tools
-    elif [ "$input" -eq 2 ]
-    then
-        sudo dnf install -y httpd php mariadb mariadb-server
-	    sudo dnf install -y phpmyadmin
-	    sudo systemctl enable --now httpd mariadb
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    coding_servers_menu
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"  
 }
 
 install_coding_tools(){
@@ -187,7 +131,6 @@ extra_apps(){
     
     sudo dnf install -y dolphin-plugins ark kate kate-plugins\
     k3b v4l2loopback
-
 }
 
 mango(){
