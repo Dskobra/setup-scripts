@@ -41,7 +41,7 @@ main_menu(){
 }
 
 install_basic_apps(){
-	echo "Setting up packman essentials and flathub."
+	echo "Setting up packman essentials and brave browser"
     sudo zypper ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials    # using essentials for ffmpeg etc
     sudo zypper dup -y --from packman-essentials --allow-vendor-change     # update system packages with essentials
 
