@@ -1,20 +1,20 @@
 #!/usr/bin/bash
 
 fbasic(){
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install -y flathub org.keepassxc.KeePassXC
-    flatpak install -y flathub com.transmissionbt.Transmission
-    flatpak install -y flathub com.dropbox.Client
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak install --user -y flathub org.keepassxc.KeePassXC
+    flatpak install --user -y flathub com.transmissionbt.Transmission
+    flatpak install --user -y flathub com.dropbox.Client
 }
 
 fgames(){
-    flatpak install -y flathub net.davidotek.pupgui2
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
-    flatpak install -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
-    flatpak install -y flathub org.kde.kpat
+    flatpak install --user -y flathub net.davidotek.pupgui2
+    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
+    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+    flatpak install --user -y flathub org.kde.kpat
 
-    flatpak install -y flathub com.usebottles.bottles
-    flatpak install -y flathub net.lutris.Lutris 
+    flatpak install --user -y flathub com.usebottles.bottles
+    flatpak install --user -y flathub net.lutris.Lutris 
     
     # run once to ensure folders/runtimes are setup
     flatpak run com.usebottles.bottles
