@@ -46,9 +46,10 @@ install_basic_apps(){
 	sudo dnf update -y
 
 
-	sudo dnf install -y  java-17-openjdk brave-browser \
-	plymouth-theme-spinfinity vim-enhanced lm_sensors \
-    p7zip p7zip-plugins hplip-gui dnfdragora             
+	sudo dnf install -y  dolphin-plugins ark kate kate-plugins\
+    java-17-openjdk brave-browser plymouth-theme-spinfinity\
+    vim-enhanced lm_sensors p7zip p7zip-plugins hplip-gui\
+    dnfdragora           
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
@@ -116,6 +117,7 @@ extras_menu(){
     elif [ "$input" -eq 3 ]
     then
         extra_apps
+        sudo dnf install -y k3b v4l2loopback
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
     elif [ "$input" -eq 4 ]
     then
@@ -133,8 +135,7 @@ extras_menu(){
 
 extra_apps(){
     
-    sudo dnf install -y dolphin-plugins ark kate kate-plugins\
-    k3b v4l2loopback
+
 }
 
 mango(){
