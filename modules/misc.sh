@@ -17,3 +17,12 @@ extra_games(){
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
 }
+
+about(){
+    VERSION="tumbleweed branch"
+    echo "================================================"
+    echo "Copyright (c) 2021-2023 Jordan Bottoms"
+    echo "Released under the MIT license"
+    echo "Version: $VERSION"
+    echo "================================================"
+}
