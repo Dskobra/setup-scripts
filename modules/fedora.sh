@@ -133,11 +133,6 @@ extras_menu(){
     extras_menu
 }
 
-extra_apps(){
-    
-
-}
-
 mango(){
     # link bottles/lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
@@ -160,8 +155,6 @@ cleanup(){
 	transmission-gtk transmission-qt \
 	compiz kpat
 }
-
-
 
 SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
