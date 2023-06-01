@@ -116,7 +116,6 @@ extras_menu(){
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 3 ]
     then
-        extra_apps
         sudo dnf install -y k3b v4l2loopback
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
     elif [ "$input" -eq 4 ]
