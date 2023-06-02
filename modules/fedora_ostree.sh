@@ -17,15 +17,18 @@ main_menu(){
         confirm_reboot  # rpmfusion line is long so calling reboot directly instead of piping
     elif [ "$input" -eq 2 ]
     then
+        slow_warning
         install_basic_apps
         check_if_reboot_needed
     elif [ "$input" -eq 3 ]
     then
+        slow_warning
         install_game_clients
         mango
         check_if_reboot_needed
     elif [ "$input" -eq 4 ]
     then
+        slow_warning
         install_coding_tools
         check_if_reboot_needed
     elif [ "$input" -eq 5 ]
@@ -49,7 +52,7 @@ install_basic_apps(){
 	echo "Setting up rpmfusion."
 
 	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
-    lm_sensors kate-plugins p7zip >> $SCRIPTS_HOME/fedora_ostree.txt
+    lm_sensors kate-plugins p7zip dos2unix >> $SCRIPTS_HOME/fedora_ostree.txt
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
     libavformat-free libavutil-free libpostproc-free \
@@ -93,14 +96,17 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
+        slow_warning
 	    sudo rpm-ostree install virt-manager >> $SCRIPTS_HOME/fedora_ostree.txt
         check_if_reboot_needed
     elif [ "$input" -eq 2 ]
     then
+        slow_warning
         sudo rpm-ostree install corectrl >> $SCRIPTS_HOME/fedora_ostree.txt
         check_if_reboot_needed
     elif [ "$input" -eq 3 ]
     then
+        slow_warning
         sudo rpm-ostree install k3b v4l2loopback >> $SCRIPTS_HOME/fedora_ostree.txt
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
         check_if_reboot_needed
@@ -130,7 +136,6 @@ post_install(){
     echo "================================================"
     echo "Main Menu"
     echo "1. Corectrl 2. Setup xpad"
-    echo "3. MangoHud Profiles"
     echo "0. Back"
     echo "================================================"
     printf "Option: "
@@ -139,12 +144,6 @@ post_install(){
     if [ "$input" -eq 1 ]
     then
         cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
-    elif [ "$input" -eq 2 ]
-    then
-        sudo modprobe xpad
-    elif [ "$input" -eq 3 ]
-    then
-        mango
     elif [ "$input" -eq 0 ]
     then
 	    main_menu
@@ -158,6 +157,7 @@ post_install(){
 
 check_if_reboot_needed(){
     RESTART_TEST=$(grep -F 'Added:' $SCRIPTS_HOME/fedora_ostree.txt)
+    rm $SCRIPTS_HOME/fedora_ostree.txt  #moved here to be cleaner and running confirm_reboot after rpmfusion the log doesnt exist.
     if [ "$RESTART_TEST" = 'Added:' ]
     then
         confirm_reboot
@@ -167,7 +167,6 @@ check_if_reboot_needed(){
 }
 
 confirm_reboot(){
-    rm $SCRIPTS_HOME/fedora_ostree.txt
     echo "================================================"
     echo "Script determined a reboot is required."
     echo "Do you wish to reboot now?"
@@ -188,6 +187,11 @@ confirm_reboot(){
     else
 	    menu
     fi
+}
+
+slow_warning(){
+    echo "Reminder due to piping a log file and checkouts being slow, terminal may not display output for a min."
+    echo "view setup-scripts/fedora_ostree.txt to see actual progress."
 }
 
 SCRIPTS_HOME=$(pwd)
