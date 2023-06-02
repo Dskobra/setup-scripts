@@ -86,6 +86,7 @@ install_coding_tools(){
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
 }
 
 extras_menu(){
@@ -129,9 +130,7 @@ mango(){
     # link bottles/lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
-    cd $SCRIPTS_HOME/mangohud
-    ./setup.sh
-
+    $SCRIPTS_HOME/modules/mangohud.sh
     
 }
 

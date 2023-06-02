@@ -21,6 +21,10 @@ fgames(){
     flatpak run net.lutris.Lutris
 }
 
+
+fdev(){
+    flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+}
 fextras(){
     flatpak install --user -y flathub org.openshot.OpenShot
     flatpak install --user -y flathub org.gimp.GIMP

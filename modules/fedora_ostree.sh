@@ -81,6 +81,8 @@ install_coding_tools(){
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
 	sudo rpm-ostree install codium github-desktop >> $SCRIPTS_HOME/fedora_ostree.txt
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
+    
 
 }
 
@@ -128,8 +130,7 @@ mango(){
     # link bottles/lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
-    cd $SCRIPTS_HOME/mangohud
-    ./setup.sh
+    $SCRIPTS_HOME/modules/mangohud.sh
 }
 
 post_install(){

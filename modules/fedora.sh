@@ -84,13 +84,16 @@ install_coding_tools(){
     sudo dnf groupinstall -y "C Development Tools and libraries"
     sudo dnf groupinstall -y "Development Tools"
     sudo dnf groupinstall -y "RPM Development Tools"
+    sudo dnf groupinstall -y "Container Management"
 
 	sudo dnf install -y python3-idle python3-devel git-gui \
-	java-17-openjdk-devel codium github-desktop
+	java-17-openjdk-devel codium github-desktop distrobox\
+    toolbox
 
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
 
 }
 
@@ -136,8 +139,7 @@ mango(){
     # link bottles/lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
-    cd $SCRIPTS_HOME/mangohud
-    ./setup.sh
+    $SCRIPTS_HOME/modules/mangohud.sh
 
     
 }
