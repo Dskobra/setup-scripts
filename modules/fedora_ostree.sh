@@ -61,6 +61,7 @@ install_basic_apps(){
 	mozilla-openh264 ffmpeg-libs.i686
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
+    flatpak install --user -y flathub com.brave.Browser
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     toolbox create -y coding-apps
 }
