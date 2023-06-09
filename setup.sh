@@ -25,7 +25,7 @@ fedora_variant_check(){
     echo "Normal dnf based Fedora"
         $SCRIPTS_HOME/modules/fedora.sh
     fi
-}
+    }
 
 SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
