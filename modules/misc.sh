@@ -11,15 +11,15 @@ extra_games(){
     rm -r minecraft-launcher
     rm Minecraft.tar.gz
 
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2/WowUp-CF-2.9.2.AppImage
-    WOWUPBINARY=WowUp-CF-2.9.2.AppImage
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4/WowUp-CF-2.9.4.AppImage
+    WOWUPBINARY=v2.9.4/WowUp-CF-2.9.4.AppImage
     cd "$HOME"/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
 }
 
 about(){
-    VERSION="tumbleweed branch"
+    VERSION="dev branch"
     echo "================================================"
     echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"
