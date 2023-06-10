@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
-cd $SCRIPTS_HOME/modules
+pwd
+cd $SCRIPTS_HOME/modules/
 git clone https://github.com/Dskobra/setup-scripts -b mangohud
 
 mv setup-scripts mango_conf

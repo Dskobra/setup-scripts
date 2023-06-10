@@ -2,8 +2,6 @@
 
 distro_check(){
     ID=$(grep 'ID' -w /etc/os-release)
-    echo $ID
-
     if [ "$ID" == 'ID=fedora' ]
     then
         fedora_variant_check
