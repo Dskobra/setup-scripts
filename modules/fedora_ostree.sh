@@ -2,7 +2,7 @@
 
 main_menu(){
     echo "================================================"
-    echo "Main Menu"
+    echo "Fedora (ostree)"
     echo "1. Setup Repos 2. Setup DE"
     echo "3. Gaming 4. Coding Tools"
     echo "5. Extras"

@@ -2,7 +2,7 @@
 
 main_menu(){
     echo "================================================"
-    echo "openSUSE Menu"
+    echo "openSUSE (tumbleweed)"
     echo "1. Setup DE 2. Gaming"
     echo "3. Coding Tools 4. Extras"
     echo "100. About" 

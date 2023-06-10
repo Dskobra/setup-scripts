@@ -2,7 +2,7 @@
 
 main_menu(){
     echo "================================================"
-    echo "Main Menu"
+    echo "Fedora (dnf)"
     echo "1. Setup DE 2. Gaming"
     echo "3. Coding Tools 4. Extras"
     echo "100. About" 
@@ -98,7 +98,7 @@ install_coding_tools(){
 }
 
 extras_menu(){
-    echo "================================================"SCRIPTS_HOME=$(pwd)
+    echo "================================================"
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
     echo "3. Extra Apps 4. Cleanup"

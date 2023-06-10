@@ -17,10 +17,8 @@ fedora_variant_check(){
     PNAME=$(grep 'PRETTY_NAME' -w /etc/os-release)
     if [[ "$PNAME" == *"(Kinoite)"* ]]
     then
-        echo "kinoite"
         $SCRIPTS_HOME/modules/fedora_ostree.sh
     else
-    echo "Normal dnf based Fedora"
         $SCRIPTS_HOME/modules/fedora.sh
     fi
 }
