@@ -65,14 +65,14 @@ install_basic_apps(){
 }
 
 install_game_clients(){
-    mkdir "$HOME"/Games
-	mkdir "$HOME"/Games/bottles
+    #mkdir "$HOME"/Games
+	#mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
     sudo dnf install -y steam goverlay
-    sudo modprobe xpad
+    #sudo modprobe xpad
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"  
+    #bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
+    #bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"  
 }
 
 install_coding_tools(){

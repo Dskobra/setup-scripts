@@ -12,7 +12,7 @@ extra_games(){
     rm Minecraft.tar.gz
 
     WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.9.4/WowUp-CF-2.9.4.AppImage
-    WOWUPBINARY=v2.9.4/WowUp-CF-2.9.4.AppImage
+    WOWUPBINARY=WowUp-CF-2.9.4.AppImage
     cd "$HOME"/Desktop
     wget $WOWUPLINK
     chmod +x $WOWUPBINARY
