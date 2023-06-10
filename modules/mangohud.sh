@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-SCRIPTS_HOME=$(pwd)
+
 cd $SCRIPTS_HOME/modules/
 git clone https://github.com/Dskobra/setup-scripts -b mangohud
 

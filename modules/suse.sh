@@ -138,6 +138,5 @@ cleanup(){
     sudo zypper remove -y icewm
 }
 
-SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
 main_menu

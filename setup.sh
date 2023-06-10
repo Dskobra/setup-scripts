@@ -25,6 +25,6 @@ fedora_variant_check(){
     fi
 }
 
-SCRIPTS_HOME=$(pwd)
+export SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
 distro_check
