@@ -73,7 +73,7 @@ install_game_clients(){
     sudo rpm-ostree install -y goverlay steam >> $SCRIPTS_HOME/fedora_ostree.txt
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; extra_games"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
     
 }
 
