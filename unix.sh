@@ -5,5 +5,3 @@ SCRIPTS_HOME=$(pwd)
 dos2unix *
 cd $SCRIPTS_HOME/modules
 dos2unix *
-cd $SCRIPTS_HOME/modules/mango_conf
-dos2unix *

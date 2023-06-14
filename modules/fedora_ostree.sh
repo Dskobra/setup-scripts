@@ -2,7 +2,7 @@
 
 main_menu(){
     echo "================================================"
-    echo "Main Menu"
+    echo "Fedora (ostree)"
     echo "1. Setup Repos 2. Setup DE"
     echo "3. Gaming 4. Coding Tools"
     echo "5. Extras"
@@ -73,7 +73,7 @@ install_game_clients(){
     sudo rpm-ostree install -y goverlay steam >> $SCRIPTS_HOME/fedora_ostree.txt
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; extra_games"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
     
 }
 
@@ -196,7 +196,6 @@ slow_warning(){
     echo "view setup-scripts/fedora_ostree.txt to see actual progress."
 }
 
-SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
 $fedoraVersion
 main_menu

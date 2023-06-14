@@ -2,7 +2,7 @@
 
 main_menu(){
     echo "================================================"
-    echo "Main Menu"
+    echo "Fedora (dnf)"
     echo "1. Setup DE 2. Gaming"
     echo "3. Coding Tools 4. Extras"
     echo "100. About" 
@@ -157,6 +157,5 @@ cleanup(){
 	compiz kpat
 }
 
-SCRIPTS_HOME=$(pwd)
 DESKTOP=$XDG_CURRENT_DESKTOP
 main_menu
