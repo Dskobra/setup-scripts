@@ -192,8 +192,7 @@ confirm_reboot(){
 }
 
 slow_warning(){
-    echo "Reminder due to piping a log file and checkouts being slow, terminal may not display output for a min."
-    echo "view setup-scripts/fedora_ostree.txt to see actual progress."
+    echo "View setup-scripts/fedora_ostree.txt to see progress."
 }
 
 DESKTOP=$XDG_CURRENT_DESKTOP
