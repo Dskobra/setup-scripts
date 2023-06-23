@@ -19,7 +19,7 @@ extra_games(){
 }
 
 about(){
-    VERSION="6.14.2023"
+    VERSION="6.23.2023"
     echo "================================================"
     echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"
