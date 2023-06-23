@@ -89,12 +89,12 @@ install_coding_tools(){
 	sudo dnf install -y python3-idle python3-devel git-gui \
 	java-17-openjdk-devel codium github-desktop distrobox\
     toolbox
+    sudo systemctl enable podman
 
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
-
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"  
 }
 
 extras_menu(){
