@@ -12,12 +12,11 @@ fgames(){
     flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
     flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
     flatpak install --user -y flathub org.kde.kpat
+    flatpak install --user -y flathub com.github.Matoking.protontricks
 
-    flatpak install --user -y flathub com.usebottles.bottles
     flatpak install --user -y flathub net.lutris.Lutris 
     
     # run once to ensure folders/runtimes are setup
-    flatpak run com.usebottles.bottles
     flatpak run net.lutris.Lutris
 }
 

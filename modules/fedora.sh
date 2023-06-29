@@ -66,7 +66,6 @@ install_basic_apps(){
 
 install_game_clients(){
     mkdir "$HOME"/Games
-	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
     sudo dnf install -y steam goverlay
     sudo modprobe xpad

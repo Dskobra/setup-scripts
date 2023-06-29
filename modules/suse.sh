@@ -127,8 +127,7 @@ extras_menu(){
 }
 
 mango(){
-    # link bottles/lutris to mangohud configuration folder
-    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
+    # link lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
     $SCRIPTS_HOME/modules/mangohud.sh
     

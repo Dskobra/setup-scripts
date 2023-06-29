@@ -68,7 +68,6 @@ install_basic_apps(){
 
 install_game_clients(){
     mkdir "$HOME"/Games
-	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
     sudo rpm-ostree install -y goverlay steam >> $SCRIPTS_HOME/fedora_ostree.txt
 
@@ -128,8 +127,7 @@ extras_menu(){
 }
 
 mango(){
-    # link bottles/lutris to mangohud configuration folder
-    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
+    # link lutris to mangohud configuration folder
     ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
     $SCRIPTS_HOME/modules/mangohud.sh
 }
