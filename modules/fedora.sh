@@ -67,7 +67,7 @@ install_basic_apps(){
 install_game_clients(){
     mkdir "$HOME"/Games
     mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y steam goverlay
+    sudo dnf install -y steam goverlay gamescope # latest update for gta doesnt seem to work without running under gamescope
     sudo modprobe xpad
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"

@@ -26,10 +26,8 @@ fdev(){
 
 fextras(){
     flatpak install --user -y flathub org.openshot.OpenShot
-    flatpak install --user -y flathub org.gimp.GIMP
     flatpak install --user -y flathub org.kde.kolourpaint
     flatpak install --user -y flathub com.discordapp.Discord
-	flatpak install --user -y  flathub im.pidgin.Pidgin
     flatpak install --user -y  flathub org.libreoffice.LibreOffice
 	flatpak install --user -y  flathub org.qownnotes.QOwnNotes
 
