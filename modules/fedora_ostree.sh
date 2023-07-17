@@ -24,7 +24,7 @@ main_menu(){
         install_game_clients
         mango
         confirm_reboot
-    elif [ "$input" -eq 4 ]
+    elif [ "$input" -eq 4 ]stree
     then
         install_coding_tools
         confirm_reboot
@@ -77,7 +77,7 @@ install_coding_tools(){
     echo "Currently only installs a small subset of tools."
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-	sudo rpm-ostree install codium github-desktop >> $SCRIPTS_HOME/fedora_ostree.txt
+	sudo rpm-ostree install codium github-desktop
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
     
 
