@@ -28,13 +28,14 @@ fextras(){
     flatpak install --user -y flathub org.openshot.OpenShot
     flatpak install --user -y flathub org.kde.kolourpaint
     flatpak install --user -y flathub com.discordapp.Discord
-    flatpak install --user -y  flathub org.libreoffice.LibreOffice
-	flatpak install --user -y  flathub org.qownnotes.QOwnNotes
+    flatpak install --user -y flathub org.libreoffice.LibreOffice
+	flatpak install --user -y flathub org.qownnotes.QOwnNotes
 
-    flatpak install --user -y  flathub org.fedoraproject.MediaWriter
-    flatpak install --user -y  flathub org.kde.kleopatra
-	flatpak install --user -y  flathub org.gtkhash.gtkhash
-	flatpak install --user -y  flathub com.github.tchx84.Flatseal
+    flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    flatpak install --user -y flathub org.kde.isoimagewriter
+    flatpak install --user -y flathub org.kde.kleopatra
+	flatpak install --user -y flathub org.gtkhash.gtkhash
+	flatpak install --user -y flathub com.github.tchx84.Flatseal
     flatpak install --user -y flathub org.raspberrypi.rpi-imager
     flatpak install --user -y flathub org.videolan.VLC
     flatpak install --user -y flathub com.obsproject.Studio

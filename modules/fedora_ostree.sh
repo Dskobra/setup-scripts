@@ -14,23 +14,20 @@ main_menu(){
     if [ "$input" -eq 1 ]
     then
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        confirm_reboot  # rpmfusion line is long so calling reboot directly instead of piping
+        confirm_reboot
     elif [ "$input" -eq 2 ]
     then
-        slow_warning
         install_basic_apps
-        check_if_reboot_needed
+        confirm_reboot
     elif [ "$input" -eq 3 ]
     then
-        slow_warning
         install_game_clients
         mango
-        check_if_reboot_needed
+        confirm_reboot
     elif [ "$input" -eq 4 ]
     then
-        slow_warning
         install_coding_tools
-        check_if_reboot_needed
+        confirm_reboot
     elif [ "$input" -eq 5 ]
     then
         extras_menu
@@ -52,7 +49,7 @@ install_basic_apps(){
 	echo "Setting up rpmfusion."
 
 	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
-    lm_sensors kate-plugins p7zip dos2unix >> $SCRIPTS_HOME/fedora_ostree.txt
+    lm_sensors kate-plugins p7zip dos2unix
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
     libavformat-free libavutil-free libpostproc-free \
@@ -69,7 +66,7 @@ install_basic_apps(){
 install_game_clients(){
     mkdir "$HOME"/Games
     mkdir "$HOME"/.config/MangoHud/
-    sudo rpm-ostree install -y goverlay steam >> $SCRIPTS_HOME/fedora_ostree.txt
+    sudo rpm-ostree install -y goverlay steam
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
     bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
@@ -98,20 +95,17 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        slow_warning
-	    sudo rpm-ostree install virt-manager >> $SCRIPTS_HOME/fedora_ostree.txt
-        check_if_reboot_needed
+	    sudo rpm-ostree install virt-manager 
+        confirm_reboot
     elif [ "$input" -eq 2 ]
     then
-        slow_warning
-        sudo rpm-ostree install corectrl >> $SCRIPTS_HOME/fedora_ostree.txt
-        check_if_reboot_needed
+        sudo rpm-ostree install corectrl
+        confirm_reboot
     elif [ "$input" -eq 3 ]
     then
-        slow_warning
-        sudo rpm-ostree install k3b v4l2loopback >> $SCRIPTS_HOME/fedora_ostree.txt
+        sudo rpm-ostree install k3b v4l2loopback
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
-        check_if_reboot_needed
+        confirm_reboot
     elif [ "$input" -eq 4 ]
     then
         post_install
@@ -168,7 +162,7 @@ check_if_reboot_needed(){
 
 confirm_reboot(){
     echo "================================================"
-    echo "Script determined a reboot is required."
+    echo "Reboots are required to enable the new layers."
     echo "Do you wish to reboot now?"
     echo "Type y/n or exit"
     echo "================================================"

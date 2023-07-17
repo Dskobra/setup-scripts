@@ -3,7 +3,7 @@
 main_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Coding Tools 2. ClamAV"
+    echo "1. Coding Tools"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -12,9 +12,6 @@ main_menu(){
     if [ "$input" -eq 1 ]
     then
         install_coding_tools
-    elif [ "$input" -eq 2 ]
-    then
-        install_clamav
     elif [ "$input" -eq 100 ]
     then
         about
@@ -37,19 +34,8 @@ install_coding_tools(){
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
-	sudo dnf install -y python python3-devel java-17-openjdk-devel systemd
+	sudo dnf install -y python python3-devel java-17-openjdk-devel
 
-}
-
-install_clamav(){
-    mkdir ~/container_temp/
-    cd ~/container_temp/
-    git clone https://github.com/Dskobra/clamav-setup.git -b dev
-    cd clamav-setup
-    ./setup.sh
-    cd ~/container_temp/
-    rm -r -f clamav-setup
-    exit
 }
 
 main_menu
