@@ -5,7 +5,6 @@ main_menu(){
     echo "openSUSE (tumbleweed)"
     echo "1. Setup DE 2. Gaming"
     echo "3. Coding Tools 4. Extras"
-    echo "100. About" 
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -24,9 +23,6 @@ main_menu(){
     elif [ "$input" -eq 4 ]
     then
         extras_menu
-    elif [ "$input" -eq 100 ]
-    then
-        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
     elif [ "$input" -eq 0 ]
     then
 	    exit

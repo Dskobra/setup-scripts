@@ -24,9 +24,6 @@ main_menu(){
     elif [ "$input" -eq 4 ]
     then
         extras_menu
-    elif [ "$input" -eq 100 ]
-    then
-        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
     elif [ "$input" -eq 0 ]
     then
 	    exit

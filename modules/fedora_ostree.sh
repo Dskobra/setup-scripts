@@ -31,9 +31,6 @@ main_menu(){
     elif [ "$input" -eq 5 ]
     then
         extras_menu
-    elif [ "$input" -eq 100 ]
-    then
-        about
     elif [ "$input" -eq 0 ]
     then
 	    exit

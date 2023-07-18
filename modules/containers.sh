@@ -12,9 +12,6 @@ main_menu(){
     if [ "$input" -eq 1 ]
     then
         install_coding_tools
-    elif [ "$input" -eq 100 ]
-    then
-        about
     elif [ "$input" -eq 0 ]
     then
 	    exit
