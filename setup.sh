@@ -27,7 +27,7 @@ launch_menu(){
     echo "================================================"
     echo "Choose Distro"
     echo "1. Fedora (dnf). 2. Fedora (ostree)"
-    echo "3. openSUSE"
+    echo "3. openSUSE      4. Containers"
     echo "100. About" 
     echo "0. Exit"
     echo "================================================"
@@ -43,6 +43,8 @@ launch_menu(){
     elif [ "$input" -eq 3 ]
     then
         $SCRIPTS_HOME/modules/suse.sh
+    elif [ "$input" -eq 4 ]
+        $SCRIPTS_HOME/modules/containers.sh
     elif [ "$input" -eq 100 ]
     then
         bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
