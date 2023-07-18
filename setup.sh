@@ -44,6 +44,7 @@ launch_menu(){
     then
         $SCRIPTS_HOME/modules/suse.sh
     elif [ "$input" -eq 4 ]
+    then
         $SCRIPTS_HOME/modules/containers.sh
     elif [ "$input" -eq 100 ]
     then
