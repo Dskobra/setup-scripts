@@ -55,6 +55,7 @@ install_basic_apps(){
 	mozilla-openh264 ffmpeg-libs.i686
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
     flatpak install --user -y flathub com.brave.Browser
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     toolbox create -y coding-apps
@@ -75,7 +76,6 @@ install_coding_tools(){
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
 	sudo rpm-ostree install codium github-desktop
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
     
 
 }
@@ -101,6 +101,7 @@ extras_menu(){
     elif [ "$input" -eq 3 ]
     then
         sudo rpm-ostree install k3b v4l2loopback
+        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
         confirm_reboot
     elif [ "$input" -eq 4 ]

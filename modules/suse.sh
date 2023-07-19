@@ -50,6 +50,7 @@ install_basic_apps(){
 	sudo plymouth-set-default-theme spinfinity -R
 
     bash -c "source "$SCRIPTS_HOME"/modules/flatpak.sh; fbasic"
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
 
@@ -82,7 +83,6 @@ install_coding_tools(){
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
 }
 
 extras_menu(){
@@ -107,6 +107,7 @@ extras_menu(){
     elif [ "$input" -eq 3 ]
     then
         sudo zypper install -y k3b v4l2loopback-autoload
+        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
     elif [ "$input" -eq 4 ]
     then
