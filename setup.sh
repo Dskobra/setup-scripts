@@ -36,7 +36,7 @@ launch_menu(){
     
     if [ "$input" -eq 1 ]
     then
-        $SCRIPTS_HOME/modules/fedora.sh
+        $SCRIPTS_HOME/modules/fedora_dnf.sh
     elif [ "$input" -eq 2 ]
     then
         $SCRIPTS_HOME/modules/fedora_ostree.sh
