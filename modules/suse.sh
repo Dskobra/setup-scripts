@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-main_menu(){
+suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
     echo "1. Setup DE 2. Gaming"
@@ -31,7 +31,7 @@ main_menu(){
     fi
     echo $input
     unset input
-    main_menu
+    suse_menu
 }
 
 install_basic_apps(){
@@ -113,7 +113,7 @@ extras_menu(){
         cleanup
     elif [ "$input" -eq 0 ]
     then
-	    main_menu
+	    suse_menu
     else
 	    echo "error."
     fi
@@ -134,4 +134,4 @@ cleanup(){
 }
 
 DESKTOP=$XDG_CURRENT_DESKTOP
-main_menu
+suse_menu

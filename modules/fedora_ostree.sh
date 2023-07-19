@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-main_menu(){
+fedora_ostree_menu(){
     echo "================================================"
     echo "Fedora (ostree)"
     echo "1. Setup Repos 2. Setup DE"
@@ -39,7 +39,7 @@ main_menu(){
     fi
     echo $input
     unset input
-    main_menu
+    fedora_ostree_menu
 }
 
 install_basic_apps(){
@@ -108,7 +108,7 @@ extras_menu(){
         post_install
     elif [ "$input" -eq 0 ]
     then
-	    main_menu
+	    fedora_ostree_menu
     else
 	    echo "error."
     fi
@@ -137,7 +137,7 @@ post_install(){
         cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 0 ]
     then
-	    main_menu
+	    fedora_ostree_menu
     else
 	    echo "error."
     fi
@@ -186,4 +186,4 @@ slow_warning(){
 
 DESKTOP=$XDG_CURRENT_DESKTOP
 $fedoraVersion
-main_menu
+fedora_ostree_menu

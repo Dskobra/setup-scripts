@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-main_menu(){
+containers_menu(){
     echo "================================================"
     echo "Main Menu"
     echo "1. Coding Tools"
@@ -20,7 +20,7 @@ main_menu(){
     fi
     echo $input
     unset input
-    main_menu
+    containers_menu
 }
 
 install_coding_tools(){
@@ -35,4 +35,4 @@ install_coding_tools(){
 
 }
 
-main_menu
+containers_menu
