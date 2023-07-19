@@ -24,7 +24,7 @@ main_menu(){
         install_game_clients
         mango
         confirm_reboot
-    elif [ "$input" -eq 4 ]stree
+    elif [ "$input" -eq 4 ]
     then
         install_coding_tools
         confirm_reboot
