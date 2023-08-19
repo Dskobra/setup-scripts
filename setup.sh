@@ -1,28 +1,5 @@
 #!/usr/bin/bash
 
-distro_check(){
-    ID=$(grep 'ID' -w /etc/os-release)
-    if [ "$ID" == 'ID=fedora' ]
-    then
-        fedora_variant_check
-    elif [ "$ID" == 'ID="opensuse-tumbleweed"' ]
-    then
-        $SCRIPTS_HOME/modules/suse.sh
-    else
-	    echo "error."
-    fi
-}
-
-fedora_variant_check(){
-    PNAME=$(grep 'PRETTY_NAME' -w /etc/os-release)
-    if [[ "$PNAME" == *"(Kinoite)"* ]]
-    then
-        $SCRIPTS_HOME/modules/fedora_ostree.sh
-    else
-        $SCRIPTS_HOME/modules/fedora.sh
-    fi
-}
-
 launch_menu(){
     echo "================================================"
     echo "Choose Distro"
