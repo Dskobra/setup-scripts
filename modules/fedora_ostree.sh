@@ -185,6 +185,4 @@ slow_warning(){
     echo "View setup-scripts/fedora_ostree.txt to see progress."
 }
 
-DESKTOP=$XDG_CURRENT_DESKTOP
-$fedoraVersion
 fedora_ostree_menu

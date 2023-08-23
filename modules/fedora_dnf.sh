@@ -154,5 +154,4 @@ cleanup(){
 	compiz kpat
 }
 
-DESKTOP=$XDG_CURRENT_DESKTOP
 fedora_dnf_menu

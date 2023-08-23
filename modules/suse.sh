@@ -134,5 +134,4 @@ cleanup(){
     sudo zypper remove -y icewm
 }
 
-DESKTOP=$XDG_CURRENT_DESKTOP
 suse_menu
