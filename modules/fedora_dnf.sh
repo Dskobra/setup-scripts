@@ -46,12 +46,11 @@ install_basic_apps(){
 	sudo dnf install -y  dolphin-plugins ark kate kate-plugins\
     java-17-openjdk brave-browser plymouth-theme-spinfinity\
     vim-enhanced lm_sensors p7zip p7zip-plugins hplip-gui\
-    dnfdragora           
+    dnfdragora git                # git is needed to pull from my mangohud profiles branch.        
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
 	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-    sudo dnf groupinstall -y "Firefox Web Browser"
 	sudo plymouth-set-default-theme spinfinity -R
     
 	bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
@@ -77,11 +76,6 @@ install_coding_tools(){
     sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-    
-    sudo dnf groupinstall -y "C Development Tools and libraries"
-    sudo dnf groupinstall -y "Development Tools"
-    sudo dnf groupinstall -y "RPM Development Tools"
-    sudo dnf groupinstall -y "Container Management"
 
 	sudo dnf install -y python3-idle python3-devel git-gui \
 	java-17-openjdk-devel codium github-desktop distrobox\
