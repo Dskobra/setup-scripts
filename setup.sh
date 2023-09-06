@@ -5,8 +5,7 @@ launch_menu(){
     echo "Choose Distro"
     echo "1. Fedora (dnf). 2. Fedora (ostree)"
     echo "3. openSUSE      4. Dev Tools"
-    echo "100. About" 
-    echo "0. Exit"
+    echo "100. About 0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input

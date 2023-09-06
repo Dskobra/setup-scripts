@@ -5,7 +5,6 @@ fedora_dnf_menu(){
     echo "Fedora (dnf)"
     echo "1. Setup DE 2. Gaming"
     echo "3. Coding Tools 4. Extras"
-    echo "100. About" 
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -77,9 +76,8 @@ install_coding_tools(){
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
 
-	sudo dnf install -y python3-idle python3-devel git-gui \
-	java-17-openjdk-devel codium github-desktop distrobox\
-    toolbox
+	sudo dnf install -y codium git-gui github-desktop\
+    toolbox distrobox 
     sudo systemctl enable podman
 
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash

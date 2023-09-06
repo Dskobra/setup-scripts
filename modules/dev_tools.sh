@@ -30,7 +30,6 @@ fedora_vm_menu(){
     echo "================================================"
     echo "Fedora (dnf)"
     echo "1. Setup DE 2. Dev Tools"
-    echo "100. About" 
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
