@@ -11,7 +11,8 @@ dev_menu(){
     
     if [ "$input" -eq 1 ]
     then
-       fedora_vm_menu
+       install_vm_basic_apps
+       install_vm_dev_tools(
     elif [ "$input" -eq 2 ]
     then
         container_dev_tools
@@ -23,33 +24,7 @@ dev_menu(){
     fi
     echo $input
     unset input
-    containers_menu
-}
-
-fedora_vm_menu(){
-    echo "================================================"
-    echo "Fedora (dnf)"
-    echo "1. Setup DE 2. Dev Tools"
-    echo "0. Exit"
-    echo "================================================"
-    printf "Option: "
-    read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        install_vm_basic_apps
-    elif [ "$input" -eq 2 ]
-    then
-        install_vm_dev_tools
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    fedora_vm_menu
+    dev_menu
 }
 
 install_vm_basic_apps(){
@@ -62,7 +37,7 @@ install_vm_basic_apps(){
 
 	sudo dnf install -y  dolphin-plugins ark java-17-openjdk\
     brave-browser plymouth-theme-spinfinity vim-enhanced\
-    lm_sensors p7zip p7zip-plugins hplip-gui dnfdragora           
+    p7zip p7zip-plugins hplip-gui dnfdragora           
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
@@ -100,7 +75,7 @@ container_dev_tools(){
     sudo dnf groupinstall -y "C Development Tools and libraries"
     sudo dnf groupinstall -y "Development Tools"
     sudo dnf groupinstall -y "RPM Development Tools"
-    
+
     sudo dnf install -y python python3-devel java-17-openjdk-devel
 
 
