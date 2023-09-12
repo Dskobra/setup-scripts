@@ -86,12 +86,9 @@ install_vm_dev_tools(){
     sudo dnf groupinstall -y "C Development Tools and libraries"
     sudo dnf groupinstall -y "Development Tools"
     sudo dnf groupinstall -y "RPM Development Tools"
-    sudo dnf groupinstall -y "Container Management"
 
 	sudo dnf install -y python3-idle python3-devel git-gui \
-	java-17-openjdk-devel codium github-desktop distrobox\
-    toolbox
-    sudo systemctl enable podman
+	java-17-openjdk-devel codium github-desktop
 
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
@@ -103,10 +100,14 @@ container_dev_tools(){
     sudo dnf groupinstall -y "C Development Tools and libraries"
     sudo dnf groupinstall -y "Development Tools"
     sudo dnf groupinstall -y "RPM Development Tools"
+    
+    sudo dnf install -y python python3-devel java-17-openjdk-devel
+
+
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
-	sudo dnf install -y python python3-devel java-17-openjdk-devel
+	
 
 }
 

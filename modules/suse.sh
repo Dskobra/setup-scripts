@@ -4,7 +4,7 @@ suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
     echo "1. Setup DE 2. Gaming"
-    echo "3. Coding Tools 4. Extras"
+    echo "3. Dev Tools 4. Extras"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -19,7 +19,7 @@ suse_menu(){
         mango
     elif [ "$input" -eq 3 ]
     then
-        install_coding_tools
+        install_dev_tools
     elif [ "$input" -eq 4 ]
     then
         extras_menu
@@ -69,7 +69,7 @@ install_game_clients(){
     
 }
 
-install_coding_tools(){
+install_dev_tools(){
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
     printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/zypp/repos.d/vscodium.repo

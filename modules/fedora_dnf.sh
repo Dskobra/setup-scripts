@@ -4,7 +4,7 @@ fedora_dnf_menu(){
     echo "================================================"
     echo "Fedora (dnf)"
     echo "1. Setup DE 2. Gaming"
-    echo "3. Coding Tools 4. Extras"
+    echo "3. Dev Tools 4. Extras"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -19,7 +19,7 @@ fedora_dnf_menu(){
         mango
     elif [ "$input" -eq 3 ]
     then
-        install_coding_tools
+        install_dev_tools
     elif [ "$input" -eq 4 ]
     then
         extras_menu
@@ -70,7 +70,7 @@ install_game_clients(){
     bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"  
 }
 
-install_coding_tools(){
+install_dev_tools(){
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
@@ -79,10 +79,6 @@ install_coding_tools(){
 	sudo dnf install -y codium git-gui github-desktop\
     toolbox distrobox 
     sudo systemctl enable podman
-
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
 }
 
 extras_menu(){

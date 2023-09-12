@@ -4,7 +4,7 @@ fedora_ostree_menu(){
     echo "================================================"
     echo "Fedora (ostree)"
     echo "1. Setup Repos 2. Setup DE"
-    echo "3. Gaming 4. Coding Tools"
+    echo "3. Gaming 4. Dev Tools"
     echo "5. Extras"
     echo "0. Exit"
     echo "================================================"
@@ -26,7 +26,7 @@ fedora_ostree_menu(){
         confirm_reboot
     elif [ "$input" -eq 4 ]
     then
-        install_coding_tools
+        install_dev_tools
         confirm_reboot
     elif [ "$input" -eq 5 ]
     then
@@ -71,11 +71,10 @@ install_game_clients(){
     
 }
 
-install_coding_tools(){
-    echo "Currently only installs a small subset of tools."
+install_dev_tools(){
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-	sudo rpm-ostree install codium github-desktop
+	sudo rpm-ostree install codium git-gui github-desktop distrobox
     
 
 }
@@ -147,17 +146,6 @@ post_install(){
     post_install
 }
 
-check_if_reboot_needed(){
-    RESTART_TEST=$(grep -F 'Added:' $SCRIPTS_HOME/fedora_ostree.txt)
-    rm $SCRIPTS_HOME/fedora_ostree.txt  #moved here to be cleaner and running confirm_reboot after rpmfusion the log doesnt exist.
-    if [ "$RESTART_TEST" = 'Added:' ]
-    then
-        confirm_reboot
-    else
-        echo "No restart needed."
-    fi
-}
-
 confirm_reboot(){
     echo "================================================"
     echo "Reboots are required to enable the new layers."
@@ -179,10 +167,6 @@ confirm_reboot(){
     else
 	    menu
     fi
-}
-
-slow_warning(){
-    echo "View setup-scripts/fedora_ostree.txt to see progress."
 }
 
 fedora_ostree_menu
