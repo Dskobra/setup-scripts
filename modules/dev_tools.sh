@@ -12,7 +12,7 @@ dev_menu(){
     if [ "$input" -eq 1 ]
     then
        install_vm_basic_apps
-       install_vm_dev_tools(
+       install_vm_dev_tools
     elif [ "$input" -eq 2 ]
     then
         container_dev_tools
