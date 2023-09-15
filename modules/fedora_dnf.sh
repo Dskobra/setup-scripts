@@ -16,7 +16,8 @@ fedora_dnf_menu(){
     elif [ "$input" -eq 2 ]
     then
         install_game_clients
-        mango
+        #game_profiles
+        $SCRIPTS_HOME/modules/game_profiles.sh
     elif [ "$input" -eq 3 ]
     then
         install_dev_tools
@@ -120,14 +121,6 @@ extras_menu(){
     echo $input
     unset input
     extras_menu
-}
-
-mango(){
-    # link lutris to mangohud configuration folder
-    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
-    $SCRIPTS_HOME/modules/mangohud.sh
-
-    
 }
 
 cleanup(){
