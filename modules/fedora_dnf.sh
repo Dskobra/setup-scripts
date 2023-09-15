@@ -16,7 +16,6 @@ fedora_dnf_menu(){
     elif [ "$input" -eq 2 ]
     then
         install_game_clients
-        #game_profiles
         $SCRIPTS_HOME/modules/game_profiles.sh
     elif [ "$input" -eq 3 ]
     then
