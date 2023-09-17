@@ -64,7 +64,7 @@ install_basic_apps(){
 install_game_clients(){
     mkdir "$HOME"/Games
     mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y goverlay # latest update for gta doesnt seem to work without running under gamescope
+    sudo dnf install -y steam-devices goverlay # latest update for gta doesnt seem to work without running under gamescope
     sudo modprobe xpad          # changed back to flatpak steam. Crashes on laptop and now cant install 
                                 # it due to a libcurl dep issue
 
