@@ -25,8 +25,8 @@ fedora_dnf_menu(){
         extras_menu
     elif [ "$input" -eq 0 ]
     then
+        echo "Killing launch script. Exiting will now completely exit."
         killall -9 setup.sh
-        echo "Killed launch script. Exiting will now completely exit."
 	    exit
     else
 	    echo "error."
@@ -66,7 +66,10 @@ install_game_clients(){
     mkdir "$HOME"/.config/MangoHud/
     sudo dnf install -y steam-devices goverlay # latest update for gta doesnt seem to work without running under gamescope
     sudo modprobe xpad          # changed back to flatpak steam. Crashes on laptop and now cant install 
-                                # it due to a libcurl dep issue
+                                # it due to a libcurl dep issue. Seems to have fixed itself overnight. Possible bad meta data
+                                # from repo so can install again.
+
+    #sudo dnf install -y steam goverlay
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
     bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"  
@@ -88,7 +91,7 @@ extras_menu(){
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
     echo "3. Extra Apps 4. Cleanup"
-    echo "0. Exit"
+    echo "0. Main Menu"
     echo "================================================"
     printf "Option: "
     read -r input
