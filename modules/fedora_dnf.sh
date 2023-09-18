@@ -14,15 +14,18 @@ fedora_dnf_menu(){
 
         1)
             install_basic_apps
+            fedora_dnf_menu
             ;;
 
         2)
             install_game_clients
             $SCRIPTS_HOME/modules/game_profiles.sh
+            fedora_dnf_menu
             ;;
 
         3)
         install_dev_tools
+        fedora_dnf_menu
         ;;
 
         4)
@@ -71,12 +74,8 @@ install_basic_apps(){
 install_game_clients(){
     mkdir "$HOME"/Games
     mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y steam-devices goverlay # latest update for gta doesnt seem to work without running under gamescope
-    sudo modprobe xpad          # changed back to flatpak steam. Crashes on laptop and now cant install 
-                                # it due to a libcurl dep issue. Seems to have fixed itself overnight. Possible bad meta data
-                                # from repo so can install again.
-
-    #sudo dnf install -y steam goverlay
+    sudo dnf install -y steam goverlay
+    sudo modprobe xpad
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
     bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"  

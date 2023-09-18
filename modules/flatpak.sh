@@ -16,7 +16,6 @@ fgames(){
 
     flatpak install --user -y flathub com.discordapp.Discord
     flatpak install --user -y flathub org.kde.kpat
-    flatpak install --user -y flathub com.valvesoftware.Steam
     flatpak install --user -y flathub net.lutris.Lutris 
     
     # run once to ensure folders/runtimes are setup
