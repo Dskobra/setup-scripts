@@ -11,32 +11,43 @@ fedora_ostree_menu(){
     printf "Option: "
     read -r input
     
-    if [ "$input" -eq 1 ]
-    then
+    case $input in
+
+        1)
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         confirm_reboot
-    elif [ "$input" -eq 2 ]
-    then
+        ;;
+
+        2)
         install_basic_apps
         confirm_reboot
-    elif [ "$input" -eq 3 ]
-    then
+        ;;
+
+        3)
         install_game_clients
         $SCRIPTS_HOME/modules/game_profiles.sh
         confirm_reboot
-    elif [ "$input" -eq 4 ]
-    then
+        ;;
+
+        4)
         install_dev_tools
         confirm_reboot
-    elif [ "$input" -eq 5 ]
-    then
+        ;;
+
+        5)
         extras_menu
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
+        ;;
+
+        0)
+        exit
+        ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
     unset input
     fedora_ostree_menu
 }

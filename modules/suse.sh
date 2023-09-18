@@ -10,25 +10,35 @@ suse_menu(){
     printf "Option: "
     read -r input
     
-    if [ "$input" -eq 1 ]
-    then
+    case $input in
+
+        1)
         install_basic_apps
-    elif [ "$input" -eq 2 ]
-    then
+        ;;
+
+        2)
         install_game_clients
-        $SCRIPTS_HOME/modules/game_profiles.sh
-    elif [ "$input" -eq 3 ]
-    then
+        $SCRIPTS_HOME/modules/game_profiles.sh 
+        ;;
+
+        3)
         install_dev_tools
-    elif [ "$input" -eq 4 ]
-    then
+        ;;
+
+        4)
         extras_menu
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
+        ;;
+
+        0)
+        exit
+        ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
     unset input
     suse_menu
 }

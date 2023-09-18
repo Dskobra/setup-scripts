@@ -22,6 +22,27 @@ dev_menu(){
     else
 	    echo "error."
     fi
+    case $input in
+
+        1)
+        install_vm_basic_apps
+        install_vm_dev_tools
+        ;;
+
+        2)
+        container_dev_tools
+        ;;
+
+        0)
+        exit
+        ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
     unset input
     dev_menu
 }
