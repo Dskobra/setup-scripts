@@ -83,7 +83,7 @@ extras_menu(){
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
     echo "3. Extra Apps 4. Post install"
-    echo "0. Exit"
+    echo "0. Main Menu"
     echo "================================================"
     printf "Option: "
     read -r input
@@ -107,7 +107,7 @@ extras_menu(){
         post_install
     elif [ "$input" -eq 0 ]
     then
-	    fedora_ostree_menu
+	    exit
     else
 	    echo "error."
     fi

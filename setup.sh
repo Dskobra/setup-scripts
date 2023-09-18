@@ -41,30 +41,35 @@ other_menu(){
     echo "Extras"
     echo "1. Fedora (ostree) 2. openSUSE"
     echo "3. Dev Tools"
-    echo "100. About 0. Exit"
+    echo "0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
+
+    case $input in
+
+        1)
         $SCRIPTS_HOME/modules/fedora_ostree.sh
-    elif [ "$input" -eq 2 ]
-    then
+        ;;
+
+        2)
         $SCRIPTS_HOME/modules/suse.sh
-    elif [ "$input" -eq 3 ]
-    then
-        $SCRIPTS_HOME/modules/dev_tools.sh
-    elif [ "$input" -eq 100 ]
-    then
-        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
-    echo $input
+        ;;
+
+        3)
+        $SCRIPTS_HOME/modules/dev_tools.sh 
+        ;;
+
+        0)
+        exit
+        ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        other_menu
+        ;;
+    esac
     unset input
     other_menu
 }
