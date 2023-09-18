@@ -9,28 +9,37 @@ fedora_dnf_menu(){
     echo "================================================"
     printf "Option: "
     read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        install_basic_apps
-    elif [ "$input" -eq 2 ]
-    then
-        install_game_clients
-        $SCRIPTS_HOME/modules/game_profiles.sh
-    elif [ "$input" -eq 3 ]
-    then
+
+    case $input in
+
+        1)
+            install_basic_apps
+            ;;
+
+        2)
+            install_game_clients
+            $SCRIPTS_HOME/modules/game_profiles.sh
+            ;;
+
+        3)
         install_dev_tools
-    elif [ "$input" -eq 4 ]
-    then
-        extras_menu
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
+        ;;
+
+        4)
+            extras_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
     unset input
-    fedora_dnf_menu
 }
 
 install_basic_apps(){
