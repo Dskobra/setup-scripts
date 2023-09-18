@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-launch_menu(){
+#launch_menu(){
     echo "================================================"
     echo "Choose Distro"
     echo "1. Fedora (dnf). 2. Other"
@@ -24,6 +24,43 @@ launch_menu(){
     else
 	    echo "error."
     fi
+    echo $input
+    unset input
+    launch_menu
+#}
+
+launch_menu(){
+    echo "================================================"
+    echo "Choose Distro"
+    echo "1. Fedora (dnf). 2. Other"
+    echo "100. About 0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+        1)
+        $SCRIPTS_HOME/modules/fedora_dnf.sh
+        ;;
+
+        2)
+        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
+        ;;
+
+        100)
+        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about" 
+        ;;
+
+        0)
+        exit
+        ;;
+
+    *)
+        echo -n "Unknown entry"
+        ;;
+    esac
+
     echo $input
     unset input
     launch_menu
@@ -64,3 +101,7 @@ other_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 launch_menu
+
+
+#$SCRIPTS_HOME/modules/fedora_dnf.sh
+#bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
