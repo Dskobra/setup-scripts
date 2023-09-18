@@ -25,8 +25,6 @@ suse_menu(){
         extras_menu
     elif [ "$input" -eq 0 ]
     then
-        killall -9 setup.sh
-        echo "Killed launch script. Exiting will now completely exit."
 	    exit
     else
 	    echo "error."

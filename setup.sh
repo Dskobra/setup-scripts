@@ -8,25 +8,32 @@ launch_menu(){
     echo "================================================"
     printf "Option: "
     read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
+
+    case $input in
+
+        1)
         $SCRIPTS_HOME/modules/fedora_dnf.sh
-    elif [ "$input" -eq 2 ]
-    then
-        other_menu
-    elif [ "$input" -eq 100 ]
-    then
-        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
-    echo $input
+        ;;
+
+        2)
+        other_menu 
+        ;;
+
+        100)
+        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about" 
+        ;;
+
+        0)
+        exit
+        ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
     unset input
-    launch_menu
 }
 
 other_menu(){
@@ -64,3 +71,7 @@ other_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 launch_menu
+
+
+#$SCRIPTS_HOME/modules/fedora_dnf.sh
+#bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
