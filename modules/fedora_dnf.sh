@@ -25,8 +25,6 @@ fedora_dnf_menu(){
         extras_menu
     elif [ "$input" -eq 0 ]
     then
-        echo "Killing launch script. Exiting will now completely exit."
-        killall -9 setup.sh
 	    exit
     else
 	    echo "error."
