@@ -76,7 +76,3 @@ other_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 launch_menu
-
-
-#$SCRIPTS_HOME/modules/fedora_dnf.sh
-#bash -c "source $SCRIPTS_HOME/modules/misc.sh; about"  
