@@ -110,7 +110,6 @@ extras_menu(){
         sudo dnf groupinstall -y "Virtualization"
 	    sudo dnf install -y virtio-win
     elif [ "$input" -eq 2 ]
-    elif [ "$input" -eq 2 ]
     then
         sudo dnf install -y corectrl
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
