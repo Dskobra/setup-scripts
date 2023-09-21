@@ -39,8 +39,8 @@ launch_menu(){
 other_menu(){
     echo "================================================"
     echo "Extras"
-    echo "1. Fedora (ostree) 2. openSUSE"
-    echo "3. Dev Tools"
+    echo "1. Dev Tools 2. Fedora (ostree)"
+    echo "3. openSUSE"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -49,15 +49,15 @@ other_menu(){
     case $input in
 
         1)
-        $SCRIPTS_HOME/modules/fedora_ostree.sh
+        $SCRIPTS_HOME/modules/dev_tools.sh
         ;;
 
         2)
-        $SCRIPTS_HOME/modules/suse.sh
+        $SCRIPTS_HOME/modules/fedora_ostree.sh
         ;;
 
         3)
-        $SCRIPTS_HOME/modules/dev_tools.sh 
+        $SCRIPTS_HOME/modules/suse.sh
         ;;
 
         0)

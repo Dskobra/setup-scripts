@@ -62,6 +62,7 @@ install_basic_apps(){
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
+    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
 
 
 }
@@ -116,6 +117,9 @@ extras_menu(){
     elif [ "$input" -eq 3 ]
     then
         sudo zypper install -y k3b v4l2loopback-autoload
+        flatpak --user remote-add --if-not-exists kde-applications https://raw.githubusercontent.com/KDE/flatpak-kde-applications/master/kdeapps.flatpakrepo
+        flatpak --user install -y org.kde.xwaylandvideobridge
+        cp /home/$USER/.local/share/flatpak/exports/share/applications/org.kde.xwaylandvideobridge.desktop /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
     elif [ "$input" -eq 4 ]

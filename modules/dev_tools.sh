@@ -3,25 +3,12 @@
 dev_menu(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Virtual Machine 2. Containers"
+    echo "1. Virtual Machine (fedora) 2. Containers"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
     
-    if [ "$input" -eq 1 ]
-    then
-       install_vm_basic_apps
-       install_vm_dev_tools
-    elif [ "$input" -eq 2 ]
-    then
-        container_dev_tools
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
     case $input in
 
         1)
