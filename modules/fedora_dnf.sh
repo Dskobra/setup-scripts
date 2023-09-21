@@ -67,7 +67,7 @@ install_basic_apps(){
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client /home/$USER/.config/autostart/com.dropbox.Client
+    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
 
 
 }
@@ -110,13 +110,14 @@ extras_menu(){
         sudo dnf groupinstall -y "Virtualization"
 	    sudo dnf install -y virtio-win
     elif [ "$input" -eq 2 ]
+    elif [ "$input" -eq 2 ]
     then
         sudo dnf install -y corectrl
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 3 ]
     then
         sudo dnf install -y k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
-        cp /usr/share/applications/org.kde.xwaylandvideobridge /home/$USER/.config/autostart/org.kde.xwaylandvideobridge
+        cp /usr/share/applications/org.kde.xwaylandvideobridge.desktop /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.destop
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
         
