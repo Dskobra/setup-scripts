@@ -74,7 +74,7 @@ install_basic_apps(){
 install_game_clients(){
     mkdir "$HOME"/Games
     mkdir "$HOME"/.config/MangoHud/
-    sudo rpm-ostree install -y goverlay steam
+    sudo rpm-ostree install -y steam goverlay gamescope
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
     bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"

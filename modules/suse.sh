@@ -71,7 +71,7 @@ install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
-    sudo zypper install -y steam goverlay gamemode
+    sudo zypper install -y steam goverlay gamescope gamemode
     sudo modprobe xpad
 
     bash -c "source "$SCRIPTS_HOME"/modules/flatpak.sh; fgames"
