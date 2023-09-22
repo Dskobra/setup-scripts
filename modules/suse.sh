@@ -53,7 +53,7 @@ install_basic_apps(){
     sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
 	sudo zypper install -y konsole kate ark discover dolphin-plugins\
-	plymouth-theme-spinfinity 7zip hplip java-17-openjdk brave-browser\
+	plymouth-theme-spinfinity 7zip java-17-openjdk brave-browser\
     mozilla-openh264 gstreamer-plugin-openh264 
        
 	sudo plymouth-set-default-theme spinfinity -R

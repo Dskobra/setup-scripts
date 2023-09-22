@@ -53,8 +53,6 @@ fedora_ostree_menu(){
 }
 
 install_basic_apps(){
-	echo "Setting up rpmfusion."
-
 	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
     lm_sensors kate-plugins p7zip dos2unix
 

@@ -35,7 +35,6 @@ dev_menu(){
 }
 
 install_vm_basic_apps(){
-    echo "Setting up rpmfusion and brave browser"
 	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
@@ -44,7 +43,7 @@ install_vm_basic_apps(){
 
 	sudo dnf install -y  dolphin-plugins ark java-17-openjdk\
     brave-browser plymouth-theme-spinfinity vim-enhanced\
-    p7zip p7zip-plugins hplip-gui dnfdragora           
+    p7zip p7zip-plugins dnfdragora           
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
