@@ -55,7 +55,8 @@ install_basic_apps(){
 
 	sudo dnf install -y  dolphin-plugins ark kate kate-plugins\
     java-17-openjdk brave-browser plymouth-theme-spinfinity\
-    vim-enhanced lm_sensors p7zip p7zip-plugins dnfdragora git # git is needed to pull from my mangohud profiles branch.        
+    vim-enhanced lm_sensors p7zip p7zip-plugins gwenview \
+    dnfdragora git # git is needed to pull from my mangohud profiles branch.        
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
