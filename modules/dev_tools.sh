@@ -41,9 +41,12 @@ install_vm_basic_apps(){
 	sudo dnf update -y
 
 
-	sudo dnf install -y  dolphin-plugins ark java-17-openjdk\
+	sudo dnf install -y  xarchiver java-17-openjdk\
     brave-browser plymouth-theme-spinfinity vim-enhanced\
-    p7zip p7zip-plugins dnfdragora           
+    p7zip p7zip-plugins dnfdragora
+
+    sudo dnf groupinstall -y "Firefox Web Browser"
+    sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
