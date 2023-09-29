@@ -87,7 +87,7 @@ install_mugshot(){
     tar -xvf $MUGSHOT_FOLDER.tar.gz
     cd $MUGSHOT_FOLDER
     sudo dnf install -y typelib-1_0-Retro-1-0 clutter-gtk gst-devtools\
-    python3-gobject gdkpixbuf2 python3-distutils-extra
+    python3-gobject gdk-pixbuf2 python3-distutils-extra
     sudo python3 setup.py install
     sudo mkdir /usr/local/share/glib-2.0/schemas
     cd data/glib-2.0/schemas/
