@@ -3,7 +3,6 @@
 fbasic(){
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     flatpak install --user -y flathub org.keepassxc.KeePassXC
-    flatpak install --user -y flathub com.transmissionbt.Transmission
     flatpak install --user -y flathub com.dropbox.Client
 
 }
@@ -40,6 +39,7 @@ futils(){
 fextras(){
     flatpak install --user -y flathub org.libreoffice.LibreOffice
 	flatpak install --user -y flathub org.qownnotes.QOwnNotes
+    flatpak install --user -y flathub com.transmissionbt.Transmission
 
     flatpak install --user -y flathub org.fedoraproject.MediaWriter
     flatpak install --user -y flathub org.kde.isoimagewriter

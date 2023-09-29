@@ -44,7 +44,8 @@ install_vm_basic_apps(){
 
 	sudo dnf install -y  flatpak xarchiver java-17-openjdk\
     brave-browser plymouth-theme-spinfinity vim-enhanced\
-    p7zip p7zip-plugins dnfdragora python3-distutils-extra
+    p7zip dnfdragora python3-distutils-extra\
+    menulibre
 
     sudo dnf groupinstall -y "Firefox Web Browser"
     sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
