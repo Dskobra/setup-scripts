@@ -41,11 +41,8 @@ install_vm_basic_apps(){
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 	sudo dnf update -y
 
-
-	sudo dnf install -y  flatpak xarchiver java-17-openjdk\
-    brave-browser plymouth-theme-spinfinity vim-enhanced\
-    p7zip dnfdragora python3-distutils-extra\
-    menulibre
+    sudo dnf install -y xarchiver menulibre flatpak vim-enhanced\
+    brave-browser plymouth-theme-spinfinity python3-distutils-extra     # distutils is needed for mugshot
 
     sudo dnf groupinstall -y "Firefox Web Browser"
     sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
