@@ -129,6 +129,7 @@ post_install(){
     echo "================================================"
     echo "Main Menu"
     echo "1. Corectrl 2. Setup xpad"
+    echo "3. Setup autostart apps"
     echo "0. Back"
     echo "================================================"
     printf "Option: "
@@ -137,6 +138,12 @@ post_install(){
     if [ "$input" -eq 1 ]
     then
         cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
+    elif [ "$input" -eq 2 ]
+    then
+        sudo modprobe xpad
+    elif [ "$input" -eq 3 ]
+    then
+        autostart
     elif [ "$input" -eq 0 ]
     then
 	    fedora_ostree_menu
@@ -146,6 +153,15 @@ post_install(){
     echo $input
     unset input
     post_install
+}
+
+autostart(){
+    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
+    DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
+    STEAM="/usr/share/applications/steam.desktop"
+    [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
+    [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
+
 }
 
 confirm_reboot(){
