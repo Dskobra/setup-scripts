@@ -75,7 +75,6 @@ install_game_clients(){
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
     bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
-    setup_games=1
 }
 
 install_dev_tools(){
@@ -144,24 +143,11 @@ cleanup(){
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
-    if [ "$setup_games" == "0" ]
-    then
-        echo "Not setting up steam and discord for autostart."
-    elif [ "$setup_games" == "1" ]
-    then
-        echo "Setting up steam and discord for autostart."
-        DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
-        STEAM="/usr/share/applications/steam.desktop"
-
-        # Check if steam and discord are present then copy them to the autostart folder.
-        [ -f $DISCORD ] && { echo "$DISCORD exist."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
-        [ -f $STEAM ] && { echo "$STEAM exist."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
-    else
-        echo "Unable to determine if steam or discord was installed"
-        
-    fi
+    DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
+    STEAM="/usr/share/applications/steam.desktop"
+    [ -f $DISCORD ] && { echo "$DISCORD exist."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
+    [ -f $STEAM ] && { echo "$STEAM exist."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
 
 }
 
-setup_games=0
 fedora_dnf_menu
