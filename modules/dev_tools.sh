@@ -70,8 +70,8 @@ install_vm_dev_tools(){
     sudo dnf groupinstall -y "Development Tools"
     sudo dnf groupinstall -y "RPM Development Tools"
 
-	sudo dnf install -y python3-idle python3-devel git-gui \
-	java-17-openjdk-devel codium github-desktop
+	sudo dnf install -y java-17-openjdk-devel openjfx python3-devel \
+	codium github-desktop git-gui python3-idle 
 
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
     curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
@@ -81,6 +81,8 @@ install_vm_dev_tools(){
     CURL -O $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
 
     tar -xvf $ECLIPSE
+    ./eclipse-installer/eclipse-inst
+    
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
