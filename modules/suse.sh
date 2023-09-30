@@ -3,6 +3,7 @@
 suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
+    echo "!!!EXPERIMENTAL!!!"
     echo "1. Setup DE 2. Gaming"
     echo "3. Dev Tools 4. Extras"
     echo "0. Exit"
