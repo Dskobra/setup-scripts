@@ -145,8 +145,8 @@ cleanup(){
     cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
     DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
     STEAM="/usr/share/applications/steam.desktop"
-    [ -f $DISCORD ] && { echo "$DISCORD exist."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
-    [ -f $STEAM ] && { echo "$STEAM exist."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
+    [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
+    [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
 
 }
 
