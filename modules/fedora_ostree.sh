@@ -53,8 +53,8 @@ fedora_ostree_menu(){
 }
 
 install_basic_apps(){
-	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
-    lm_sensors kate-plugins p7zip dos2unix
+	sudo rpm-ostree install -y kate-plugins vim-enhanced \
+    lm_sensors java-17-openjdk dos2unix
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
     libavformat-free libavutil-free libpostproc-free \

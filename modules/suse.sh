@@ -52,9 +52,9 @@ install_basic_apps(){
     sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
-	sudo zypper install -y konsole kate ark discover dolphin-plugins\
-	plymouth-theme-spinfinity 7zip java-17-openjdk brave-browser\
-    mozilla-openh264 gstreamer-plugin-openh264 
+	sudo zypper install -y konsole kate ark discover dolphin-plugins \
+    mozilla-openh264 gstreamer-plugin-openh264 p7zip-full java-17-openjdk\
+    brave-browser plymouth-theme-spinfinity
        
 	sudo plymouth-set-default-theme spinfinity -R
 
@@ -63,6 +63,9 @@ install_basic_apps(){
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
+    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord /home/$USER/.config/autostart/com.discordapp.Discord
+    cp /usr/share/applications/steam.desktop /home/$USER/.config/autostart/steam.desktop
+    
 
 
 }
