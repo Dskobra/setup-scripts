@@ -53,10 +53,9 @@ install_basic_apps(){
 	sudo dnf update -y
 
 
-	sudo dnf install -y  dolphin-plugins ark kate kate-plugins\
-    java-17-openjdk brave-browser plymouth-theme-spinfinity\
-    vim-enhanced lm_sensors p7zip p7zip-plugins gwenview \
-    dnfdragora git # git is needed to pull from my mangohud profiles branch.        
+	sudo dnf install -y  ark gwenview kate kate-plugins dolphin-plugins \
+    vim-enhanced java-17-openjdk brave-browser plymouth-theme-spinfinity\
+    lm_sensors dnfdragora git # git is needed to pull from my mangohud profiles branch.        
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
@@ -65,10 +64,6 @@ install_basic_apps(){
     
 	bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
-
-    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
-
 
 }
 
@@ -79,7 +74,8 @@ install_game_clients(){
     sudo modprobe xpad
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"  
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
+    setup_games=1
 }
 
 install_dev_tools(){
@@ -145,6 +141,27 @@ cleanup(){
 	kmahjongg kmines systemd-oomd-defaults \
 	transmission-gtk transmission-qt \
 	compiz kpat
+
+    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
+    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
+    if [ "$setup_games" == "0" ]
+    then
+        echo "Not setting up steam and discord for autostart."
+    elif [ "$setup_games" == "1" ]
+    then
+        echo "Setting up steam and discord for autostart."
+        DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
+        STEAM="/usr/share/applications/steam.desktop"
+
+        # Check if steam and discord are present then copy them to the autostart folder.
+        [ -f $DISCORD ] && { echo "$DISCORD exist."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
+        [ -f $STEAM ] && { echo "$STEAM exist."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
+    else
+        echo "Unable to determine if steam or discord was installed"
+        
+    fi
+
 }
 
+setup_games=0
 fedora_dnf_menu
