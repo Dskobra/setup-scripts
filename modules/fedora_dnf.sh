@@ -53,9 +53,8 @@ install_basic_apps(){
 	sudo dnf update -y
 
 
-	sudo dnf install -y  ark gwenview kate kate-plugins dolphin-plugins \
-    vim-enhanced java-17-openjdk brave-browser plymouth-theme-spinfinity\
-    lm_sensors dnfdragora git # git is needed to pull from my game-profiles branch.        
+	sudo dnf install -y  ark gwenview kate vim-enhanced java-17-openjdk \
+    brave-browser plymouth-theme-spinfinity lm_sensors dnfdragora git # git is needed to pull from my game-profiles branch.        
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
