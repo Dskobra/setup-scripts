@@ -4,7 +4,7 @@ launch_menu(){
     echo "================================================"
     echo "Choose Distro"
     echo "1. Fedora (dnf). 2. Fedora (ostree)"
-    echo "3. Dev Tools (fedora) 4. openSUSE"
+    echo "3. Dev Tools"
     echo "100. About 0. Exit"
     echo "================================================"
     printf "Option: "
@@ -22,10 +22,6 @@ launch_menu(){
 
         3)
         $SCRIPTS_HOME/modules/dev_tools.sh
-        ;;
-
-        4)
-        $SCRIPTS_HOME/modules/suse.sh
         ;;
 
         100)

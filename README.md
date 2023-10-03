@@ -1,5 +1,5 @@
 # setup-scripts
-Personal scripts for quickly setting up normal packages i use on fedora/openSUSE.
+Personal scripts for quickly setting up normal packages i use on fedora.
 Ignore the mess. :P
 
 folder layout
