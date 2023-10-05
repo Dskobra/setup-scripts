@@ -109,7 +109,7 @@ extras_menu(){
 	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
     elif [ "$input" -eq 3 ]
     then
-        sudo dnf install -y k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
+        sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
         cp /usr/share/applications/org.kde.xwaylandvideobridge.desktop /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
