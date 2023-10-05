@@ -53,7 +53,7 @@ fedora_ostree_menu(){
 }
 
 install_basic_apps(){
-	sudo rpm-ostree install -y kate-plugins vim-enhanced \
+	sudo rpm-ostree install -y gwenview kate vim-enhanced \
     lm_sensors java-17-openjdk dos2unix
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
@@ -107,7 +107,7 @@ extras_menu(){
         confirm_reboot
     elif [ "$input" -eq 3 ]
     then
-        sudo rpm-ostree install k3b v4l2loopback
+        sudo rpm-ostree install okular k3b v4l2loopback
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
         confirm_reboot
