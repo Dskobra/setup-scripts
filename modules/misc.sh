@@ -8,17 +8,20 @@ wowup(){
         echo "WoWUp already downloaded."
     elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
         cd "$HOME"/Desktop
-        wget $WOWUPLINK
+        curl -L -o $WOWUPBINARY $WOWUPLINK 
         chmod +x $WOWUPBINARY
     fi
 }
 
 minecraft(){
+    MINECRAFT_LINK=https://launcher.mojang.com/download/Minecraft.tar.gz
+    MINECRAFT_ARCHIVE=Minecraft.tar.gz
+    
     if test -f /home/$USER/Desktop/minecraft-launcher; then
         echo "WoWUp already downloaded."
     elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
         cd "$HOME"/Downloads
-        wget https://launcher.mojang.com/download/Minecraft.tar.gz
+        curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
         tar -xvf Minecraft.tar.gz
         cd minecraft-launcher
         chmod +x minecraft-launcher
