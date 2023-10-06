@@ -75,7 +75,8 @@ install_game_clients(){
     sudo rpm-ostree install -y steam goverlay gamescope
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; wowup"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; minecraft"
     
 }
 

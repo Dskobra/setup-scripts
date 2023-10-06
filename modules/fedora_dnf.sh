@@ -73,7 +73,8 @@ install_game_clients(){
     sudo modprobe xpad
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; wowup"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; minecraft"
 }
 
 install_dev_tools(){
