@@ -5,7 +5,7 @@ fedora_ostree_menu(){
     echo "Fedora (ostree)"
     echo "1. Setup Repos 2. Setup DE"
     echo "3. Gaming 4. Dev Tools"
-    echo "5. Extras"
+    echo "5. Extras 6. Upgrade"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -36,6 +36,10 @@ fedora_ostree_menu(){
 
         5)
         extras_menu
+        ;;
+
+        6)
+        upgrade_menu
         ;;
 
         0)
@@ -163,6 +167,41 @@ autostart(){
     [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
     [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
 
+}
+
+upgrade_menu(){
+    echo "================================================"
+    echo "Upgrade Steps"
+    echo "1. Wipe layers/overrides 2. Upgrade"
+    echo "0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+        1)
+            sudo rpm-ostree reset
+            sudo sytemctl reboot
+            ;;
+
+        2)
+            sudo ostree admin pin 0
+            sudo  rpm-ostree rebase fedora:fedora/39/x86_64/kinoite
+            sudo systemctl reboot
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
+    unset input
 }
 
 confirm_reboot(){
