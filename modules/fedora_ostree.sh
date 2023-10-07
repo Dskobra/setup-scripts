@@ -78,6 +78,7 @@ install_basic_apps(){
 
     curl -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
     sudo mv brave-browser.repo /etc/yum.repos.d/brave-browser.repo
+    sudo rpm-ostree install brave-browser
 
 
 install_game_clients(){
