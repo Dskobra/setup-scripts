@@ -72,7 +72,7 @@ install_basic_apps(){
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     toolbox create -y coding-apps
     
-    cd $HOME/Downloads
+    cd "$HOME"/Downloads
     curl -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     sudo mv brave-core.asc /etc/pki/rpm-gpg/brave-core.asc
 
@@ -80,6 +80,7 @@ install_basic_apps(){
     sudo mv brave-browser.repo /etc/yum.repos.d/brave-browser.repo
     sudo rpm-ostree install brave-browser
 
+}
 
 install_game_clients(){
     mkdir "$HOME"/Games
