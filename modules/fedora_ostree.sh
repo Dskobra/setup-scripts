@@ -68,9 +68,7 @@ install_basic_apps(){
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
-    #flatpak install --user -y flathub com.brave.Browser
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    toolbox create -y coding-apps
     
     cd "$HOME"/Downloads
     curl -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
