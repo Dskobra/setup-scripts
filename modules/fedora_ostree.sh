@@ -14,22 +14,26 @@ fedora_ostree_menu(){
     case $input in
 
         1)
+        sudo rpm-ostree refresh-md
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         confirm_reboot
         ;;
 
         2)
+        sudo rpm-ostree refresh-md
         install_basic_apps
         confirm_reboot
         ;;
 
         3)
+        sudo rpm-ostree refresh-md
         install_game_clients
         $SCRIPTS_HOME/modules/game_profiles.sh
         confirm_reboot
         ;;
 
         4)
+        sudo rpm-ostree refresh-md
         install_dev_tools
         confirm_reboot
         ;;
@@ -57,7 +61,7 @@ fedora_ostree_menu(){
 }
 
 install_basic_apps(){
-	sudo rpm-ostree install -y gwenview kate vim-enhanced \
+	sudo rpm-ostree install -y kate vim-enhanced \
     lm_sensors java-17-openjdk dos2unix
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
@@ -77,7 +81,7 @@ install_basic_apps(){
     curl -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
     sudo mv brave-browser.repo /etc/yum.repos.d/brave-browser.repo
     sudo rpm-ostree install brave-browser
-
+    sudo rpm-ostree install gwenview    # installing separate as if package is present none of the other packages install
 }
 
 install_game_clients(){
@@ -111,15 +115,20 @@ extras_menu(){
     
     if [ "$input" -eq 1 ]
     then
+        sudo rpm-ostree refresh-md
 	    sudo rpm-ostree install virt-manager 
         confirm_reboot
     elif [ "$input" -eq 2 ]
     then
+        sudo rpm-ostree refresh-md
         sudo rpm-ostree install corectrl
         confirm_reboot
     elif [ "$input" -eq 3 ]
     then
-        sudo rpm-ostree install okular k3b v4l2loopback
+        sudo rpm-ostree refresh-md
+        sudo rpm-ostree install k3b v4l2loopback
+        sudo rpm-ostree install okular # installing separate as if package is present none of the other packages installed
+        sudo rpm-ostree install xwaylandvideobridge
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
         bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
         confirm_reboot
