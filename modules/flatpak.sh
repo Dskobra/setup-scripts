@@ -10,8 +10,7 @@ fbasic(){
 fgames(){
     flatpak install --user -y flathub net.davidotek.pupgui2
     flatpak install --user -y flathub com.github.Matoking.protontricks
-    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/21.08
-    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08
+    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
 
     flatpak install --user -y flathub com.discordapp.Discord
     flatpak install --user -y flathub org.kde.kpat
