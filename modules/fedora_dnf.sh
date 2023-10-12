@@ -44,8 +44,9 @@ fedora_dnf_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        launch_menu
+        fedora_dnf_menu
         ;;
+
     esac
     unset input
 }
@@ -98,38 +99,47 @@ extras_menu(){
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
     echo "3. Extra Apps 4. Cleanup"
-    echo "0. Main Menu"
+    echo "9. Main Menu 0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-        -O /etc/yum.repos.d/virtio-win.repo
-        sudo dnf groupinstall -y "Virtualization"
-	    sudo dnf install -y virtio-win
-    elif [ "$input" -eq 2 ]
-    then
-        sudo dnf install -y corectrl
-	    cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
-    elif [ "$input" -eq 3 ]
-    then
-        sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
-        cp /usr/share/applications/org.kde.xwaylandvideobridge.desktop /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop
-        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
-        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+    case $input in
+
+        1)
+            sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+            -O /etc/yum.repos.d/virtio-win.repo
+            sudo dnf groupinstall -y "Virtualization"
+            sudo dnf install -y virtio-win
+            ;;
+
+        2)
+            sudo dnf install -y corectrl
+            cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
+            ;;
+        3)
+            sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
+            cp /usr/share/applications/org.kde.xwaylandvideobridge.desktop /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop
+            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
+            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+            ;;
+        4)
+            cleanup
+            ;;
+
         
-    elif [ "$input" -eq 4 ]
-    then
-        cleanup
-    elif [ "$input" -eq 0 ]
-    then
-	    fedora_dnf_menu
-    else
-	    echo "error."
-    fi
-    echo $input
+        9)
+            fedora_dnf_menu
+            ;;
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
     unset input
     extras_menu
 }
