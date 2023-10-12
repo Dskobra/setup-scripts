@@ -5,6 +5,7 @@ fedora_dnf_menu(){
     echo "Fedora (dnf)"
     echo "1. Setup DE 2. Gaming"
     echo "3. Dev Tools 4. Extras"
+    echo "5. Upgrade"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
@@ -24,12 +25,15 @@ fedora_dnf_menu(){
             ;;
 
         3)
-        install_dev_tools
-        fedora_dnf_menu
-        ;;
+            install_dev_tools
+            fedora_dnf_menu
+            ;;
 
         4)
             extras_menu
+            ;;
+        5)
+            upgrade_menu
             ;;
 
         0)
@@ -127,6 +131,46 @@ extras_menu(){
     echo $input
     unset input
     extras_menu
+}
+
+upgrade_menu(){
+    echo "================================================"
+    echo "Upgrade Steps"
+    echo "1. Remove RPMFusion 2. Upgrade"
+    echo "0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+        1)
+            sudo dnf remove -y steam steam-devices
+            sudo dnf swap -y ffmpeg ffmpeg-free --allowerasing
+            sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
+            sudo dnf clean all
+            sudo dnf update -y
+            sudo systemctl reboot
+            ;;
+
+        2)
+            sudo dnf upgrade --refresh
+            sudo dnf install dnf-plugin-system-upgrade
+            sudo dnf system-upgrade download --releasever=39
+            sudo dnf system-upgrade reboot
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
+    unset input
 }
 
 cleanup(){
