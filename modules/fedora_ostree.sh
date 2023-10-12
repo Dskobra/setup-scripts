@@ -53,9 +53,9 @@ fedora_ostree_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        launch_menu
+        fedora_ostree_menu
         ;;
-        
+
     esac
     unset input
     fedora_ostree_menu
@@ -107,42 +107,51 @@ extras_menu(){
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
     echo "3. Extra Apps 4. Post install"
-    echo "0. Main Menu"
+    echo "9. Main Menu 0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        sudo rpm-ostree refresh-md
-	    sudo rpm-ostree install virt-manager 
-        confirm_reboot
-    elif [ "$input" -eq 2 ]
-    then
-        sudo rpm-ostree refresh-md
-        sudo rpm-ostree install corectrl
-        confirm_reboot
-    elif [ "$input" -eq 3 ]
-    then
-        sudo rpm-ostree refresh-md
-        sudo rpm-ostree install k3b v4l2loopback
-        sudo rpm-ostree install okular # installing separate as if package is present none of the other packages installed
-        sudo rpm-ostree install xwaylandvideobridge
-        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
-        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
-        confirm_reboot
-    elif [ "$input" -eq 4 ]
-    then
-        post_install
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    extras_menu
+
+        case $input in
+
+        1)
+            sudo rpm-ostree refresh-md
+	        sudo rpm-ostree install virt-manager 
+            confirm_reboot
+            ;;
+
+        2)
+            sudo rpm-ostree refresh-md
+            sudo rpm-ostree install corectrl
+            confirm_reboot
+            ;;
+
+        3)
+            sudo rpm-ostree refresh-md
+            sudo rpm-ostree install k3b v4l2loopback
+            sudo rpm-ostree install okular # installing separate as if package is present none of the other packages installed
+            sudo rpm-ostree install xwaylandvideobridge
+            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
+            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+            confirm_reboot
+            ;;
+
+        4)
+            post_install
+            ;;
+
+        9)
+            fedora_ostree_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        extras_menu
 }
 
 post_install(){
@@ -154,25 +163,33 @@ post_install(){
     echo "================================================"
     printf "Option: "
     read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
-    elif [ "$input" -eq 2 ]
-    then
-        sudo modprobe xpad
-    elif [ "$input" -eq 3 ]
-    then
-        autostart
-    elif [ "$input" -eq 0 ]
-    then
-	    fedora_ostree_menu
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    post_install
+
+    case $input in
+
+        1)
+            cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
+            ;;
+
+        2)
+            sudo modprobe xpad
+            ;;
+
+        3)
+            autostart
+            ;;
+
+        9)
+            fedora_ostree_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            extras_menu
 }
 
 autostart(){
@@ -210,11 +227,12 @@ upgrade_menu(){
             exit
             ;;
 
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        launch_menu
-        ;;
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            upgrade_menu
+            ;;
+
     esac
     unset input
 }
