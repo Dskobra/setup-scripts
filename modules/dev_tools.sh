@@ -12,24 +12,25 @@ dev_menu(){
     case $input in
 
         1)
-        install_vm_basic_apps
-        install_vm_dev_tools
-        install_mugshot
-        ;;
+            install_vm_basic_apps
+            install_vm_dev_tools
+            install_mugshot
+            ;;
 
         2)
-        container_dev_tools
-        ;;
+            container_dev_tools
+            ;;
 
         0)
-        exit
-        ;;
+            exit
+            ;;
 
     *)
         echo -n "Unknown entry"
         echo ""
         launch_menu
         ;;
+        
     esac
     unset input
     dev_menu
