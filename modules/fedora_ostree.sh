@@ -14,47 +14,48 @@ fedora_ostree_menu(){
     case $input in
 
         1)
-        sudo rpm-ostree refresh-md
-        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        confirm_reboot
-        ;;
+            sudo rpm-ostree refresh-md
+            sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            confirm_reboot
+            ;;
 
         2)
-        sudo rpm-ostree refresh-md
-        install_basic_apps
-        confirm_reboot
-        ;;
+            sudo rpm-ostree refresh-md
+            install_basic_apps
+            confirm_reboot
+            ;;
 
         3)
-        sudo rpm-ostree refresh-md
-        install_game_clients
-        $SCRIPTS_HOME/modules/game_profiles.sh
-        confirm_reboot
-        ;;
+            sudo rpm-ostree refresh-md
+            install_game_clients
+            $SCRIPTS_HOME/modules/game_profiles.sh
+            confirm_reboot
+            ;;
 
         4)
-        sudo rpm-ostree refresh-md
-        install_dev_tools
-        confirm_reboot
-        ;;
+            sudo rpm-ostree refresh-md
+            install_dev_tools
+            confirm_reboot
+            ;;
 
         5)
-        extras_menu
-        ;;
+            extras_menu
+            ;;
 
         6)
-        upgrade_menu
-        ;;
+            upgrade_menu
+            ;;
 
         0)
-        exit
-        ;;
+            exit
+            ;;
 
     *)
         echo -n "Unknown entry"
         echo ""
         launch_menu
         ;;
+        
     esac
     unset input
     fedora_ostree_menu
