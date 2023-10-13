@@ -193,7 +193,12 @@ post_install(){
         *)
             echo -n "Unknown entry"
             echo ""
-            extras_menu
+            post_install
+
+    
+    esac
+    unset input
+    post_install
 }
 
 autostart(){
