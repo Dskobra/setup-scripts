@@ -244,9 +244,9 @@ upgrade_menu(){
 confirm_reset(){
     echo "================================================"
     echo "In order to upgrade and prevent issues a reset"
-    echo "is recommended. This will removal all, but"
-    echo "flatpak provided applications, appimages and" 
-    echo "settings (including steam games)."
+    echo "is recommended. This will removal all apps, but"
+    echo "perserve flatpak apps, appimages and" 
+    echo "settings (including steam library)."
     echo "Do you wish to do a reset now?"
     echo "Type y/n or exit"
     echo "================================================"
