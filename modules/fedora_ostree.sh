@@ -112,7 +112,7 @@ extras_menu(){
     printf "Option: "
     read -r input
 
-        case $input in
+    case $input in
 
         1)
             sudo rpm-ostree refresh-md
@@ -152,6 +152,10 @@ extras_menu(){
         echo -n "Unknown entry"
         echo ""
         extras_menu
+    
+    esac
+    unset input
+    extras_menu
 }
 
 post_install(){

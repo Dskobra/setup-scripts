@@ -49,6 +49,7 @@ fedora_dnf_menu(){
 
     esac
     unset input
+    fedora_dnf_menu
 }
 
 install_basic_apps(){
