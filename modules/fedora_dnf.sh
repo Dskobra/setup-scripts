@@ -123,6 +123,7 @@ extras_menu(){
             ;;
         4)
             cleanup
+            autostart
             ;;
 
         
@@ -183,6 +184,17 @@ upgrade_menu(){
     unset input
 }
 
+autostart(){
+    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
+    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
+    DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
+    STEAM="/usr/share/applications/steam.desktop"
+    CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
+    [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
+    [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
+    [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
+}
+
 cleanup(){
 	# Installing Fedora 36 using the everything installer to install the mate desktop with my normal package groups "Development Tools", 
 	# "C Development Tools and libraries" and "RPM Development Tools" results in systemd-oomd-defaults also being installed.
@@ -194,16 +206,6 @@ cleanup(){
 	kmahjongg kmines systemd-oomd-defaults \
 	transmission-gtk transmission-qt \
 	compiz kpat
-
-    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
-    DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
-    STEAM="/usr/share/applications/steam.desktop"
-    CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
-    [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
-    [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
-    [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
-
 }
 
 fedora_dnf_menu
