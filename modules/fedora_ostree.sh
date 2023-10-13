@@ -220,14 +220,11 @@ upgrade_menu(){
     case $input in
 
         1)
-            sudo rpm-ostree reset
-            sudo systemctl reboot
+            confirm_reset
             ;;
 
         2)
-            sudo ostree admin pin 0
-            sudo  rpm-ostree rebase fedora:fedora/39/x86_64/kinoite
-            sudo systemctl reboot
+            confirm_upgrade
             ;;
 
         0)
@@ -242,6 +239,61 @@ upgrade_menu(){
 
     esac
     unset input
+}
+
+confirm_reset(){
+    echo "================================================"
+    echo "In order to upgrade and prevent issues a reset"
+    echo "is recommended. This will removal all, but"
+    echo "flatpak provided applications, appimages and" 
+    echo "settings (including steam games)."
+    echo "Do you wish to do a reset now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo rpm-ostree reset
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reset."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    upgrade_menu
+    fi
+}
+
+confirm_upgrade(){
+    echo "================================================"
+    echo "ENSURE YOU DO A RESET BEFORE THIS OR IT WILL FAIL."
+    echo "RPMFusion etc will not get redirected to the next"
+    echo "fedora version. They will need to be removed"
+    echo "beforehand"
+    echo "Do you wish to upgrade now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo ostree admin pin 0
+        sudo  rpm-ostree rebase fedora:fedora/39/x86_64/kinoite
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reboot."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    menu
+    fi
 }
 
 confirm_reboot(){

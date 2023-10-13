@@ -158,12 +158,7 @@ upgrade_menu(){
     case $input in
 
         1)
-            sudo dnf remove -y steam steam-devices
-            sudo dnf swap -y ffmpeg ffmpeg-free --allowerasing
-            sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
-            sudo dnf clean all
-            sudo dnf update -y
-            sudo systemctl reboot
+            confirm_removal
             ;;
 
         2)
@@ -186,6 +181,37 @@ upgrade_menu(){
         esac
         unset input
 }
+
+confirm_removal(){
+    echo "================================================"
+    echo "This will remove RPMFusion and packages from there"
+    echo "including steam and swap back to the fedora provided"
+    echo "ffmpeg. This ensures the upgrade goes smoothly."
+    echo "Are you sure you wish to remove them?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo dnf remove -y steam steam-devices
+        sudo dnf swap -y ffmpeg ffmpeg-free --allowerasing
+        sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
+        sudo dnf clean all
+        sudo dnf update -y
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to remove."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    upgrade_menu
+    fi
+}
+
 
 autostart(){
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
