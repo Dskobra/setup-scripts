@@ -187,7 +187,7 @@ confirm_removal(){
     echo "This will remove RPMFusion and packages from"
     echo "there including steam and swap back to the"
     echo "fedora provided ffmpeg. This ensures the" 
-    echo "upgrade goes smoothly. Any settings, "
+    echo "upgrade goes smoothly. Any settings,"
     echo "appimages and steam games should remain."
     echo "Are you sure you wish to remove them?"
     echo "Type y/n or exit"
