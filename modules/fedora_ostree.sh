@@ -1,58 +1,69 @@
 #!/usr/bin/bash
 
-main_menu(){
+fedora_ostree_menu(){
     echo "================================================"
     echo "Fedora (ostree)"
     echo "1. Setup Repos 2. Setup DE"
-    echo "3. Gaming 4. Coding Tools"
-    echo "5. Extras"
+    echo "3. Gaming 4. Dev Tools"
+    echo "5. Extras 6. Upgrade"
     echo "0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
     
-    if [ "$input" -eq 1 ]
-    then
-        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        confirm_reboot  # rpmfusion line is long so calling reboot directly instead of piping
-    elif [ "$input" -eq 2 ]
-    then
-        slow_warning
-        install_basic_apps
-        check_if_reboot_needed
-    elif [ "$input" -eq 3 ]
-    then
-        slow_warning
-        install_game_clients
-        mango
-        check_if_reboot_needed
-    elif [ "$input" -eq 4 ]
-    then
-        slow_warning
-        install_coding_tools
-        check_if_reboot_needed
-    elif [ "$input" -eq 5 ]
-    then
-        extras_menu
-    elif [ "$input" -eq 100 ]
-    then
-        about
-    elif [ "$input" -eq 0 ]
-    then
-	    exit
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    main_menu
+    case $input in
+
+        1)
+            sudo rpm-ostree refresh-md
+            sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            confirm_reboot
+            ;;
+
+        2)
+            sudo rpm-ostree refresh-md
+            install_basic_apps
+            confirm_reboot
+            ;;
+
+        3)
+            sudo rpm-ostree refresh-md
+            install_game_clients
+            $SCRIPTS_HOME/modules/game_profiles.sh
+            confirm_reboot
+            ;;
+
+        4)
+            sudo rpm-ostree refresh-md
+            install_dev_tools
+            confirm_reboot
+            ;;
+
+        5)
+            extras_menu
+            ;;
+
+        6)
+            upgrade_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            fedora_ostree_menu
+            ;;
+
+        esac
+        unset input
+        fedora_ostree_menu
 }
 
 install_basic_apps(){
-	echo "Setting up rpmfusion."
-
-	sudo rpm-ostree install -y java-17-openjdk vim-enhanced \
-    lm_sensors kate-plugins p7zip dos2unix >> $SCRIPTS_HOME/fedora_ostree.txt
+	sudo rpm-ostree install -y kate vim-enhanced \
+    lm_sensors java-17-openjdk dos2unix
 
     sudo rpm-ostree override remove libavcodec-free libavfilter-free \
     libavformat-free libavutil-free libpostproc-free \
@@ -61,30 +72,34 @@ install_basic_apps(){
 	mozilla-openh264 ffmpeg-libs.i686
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
-    flatpak install --user -y flathub com.brave.Browser
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    toolbox create -y coding-apps
+    
+    cd "$HOME"/Downloads
+    curl -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    sudo mv brave-core.asc /etc/pki/rpm-gpg/brave-core.asc
+
+    curl -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    sudo mv brave-browser.repo /etc/yum.repos.d/brave-browser.repo
+    sudo rpm-ostree install brave-browser
+    sudo rpm-ostree install gwenview    # installing separate as if package is present none of the other packages install
 }
 
 install_game_clients(){
     mkdir "$HOME"/Games
-	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
-    sudo rpm-ostree install -y goverlay steam >> $SCRIPTS_HOME/fedora_ostree.txt
+    sudo rpm-ostree install -y steam goverlay gamescope
 
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; extra_games"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; wowup"
+    bash -c "source $SCRIPTS_HOME/modules/misc.sh; minecraft"
     
 }
 
-install_coding_tools(){
-    echo "Currently only installs a small subset of tools."
+install_dev_tools(){
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-	sudo rpm-ostree install codium github-desktop >> $SCRIPTS_HOME/fedora_ostree.txt
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fdev"
-    
-
+	sudo rpm-ostree install codium git-gui github-desktop distrobox
 }
 
 extras_menu(){
@@ -92,85 +107,199 @@ extras_menu(){
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
     echo "3. Extra Apps 4. Post install"
-    echo "0. Exit"
+    echo "9. Main Menu 0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
-    
-    if [ "$input" -eq 1 ]
-    then
-        slow_warning
-	    sudo rpm-ostree install virt-manager >> $SCRIPTS_HOME/fedora_ostree.txt
-        check_if_reboot_needed
-    elif [ "$input" -eq 2 ]
-    then
-        slow_warning
-        sudo rpm-ostree install corectrl >> $SCRIPTS_HOME/fedora_ostree.txt
-        check_if_reboot_needed
-    elif [ "$input" -eq 3 ]
-    then
-        slow_warning
-        sudo rpm-ostree install k3b v4l2loopback >> $SCRIPTS_HOME/fedora_ostree.txt
-        bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
-        check_if_reboot_needed
-    elif [ "$input" -eq 4 ]
-    then
-        post_install
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    echo $input
-    unset input
-    extras_menu
-}
 
-mango(){
-    # link bottles/lutris to mangohud configuration folder
-    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/com.usebottles.bottles/config/"
-    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
-    $SCRIPTS_HOME/modules/mangohud.sh
+    case $input in
+
+        1)
+            sudo rpm-ostree refresh-md
+	        sudo rpm-ostree install virt-manager 
+            confirm_reboot
+            ;;
+
+        2)
+            sudo rpm-ostree refresh-md
+            sudo rpm-ostree install corectrl
+            confirm_reboot
+            ;;
+
+        3)
+            sudo rpm-ostree refresh-md
+            sudo rpm-ostree install k3b v4l2loopback
+            sudo rpm-ostree install okular # installing separate as if package is present none of the other packages installed
+            sudo rpm-ostree install xwaylandvideobridge
+            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
+            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+            confirm_reboot
+            ;;
+
+        4)
+            post_install
+            ;;
+
+        9)
+            fedora_ostree_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            extras_menu
+            ;;
+        
+        esac
+        unset input
+        extras_menu
 }
 
 post_install(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Corectrl 2. Setup xpad"
+    echo "1. Autostarts 2. Setup xpad"
     echo "0. Back"
     echo "================================================"
     printf "Option: "
     read -r input
+
+    case $input in
+
+        1)
+            autostart
+            ;;
+
+        2)
+            sudo modprobe xpad
+            ;;
+
+        9)
+            fedora_ostree_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            post_install
+            ;;
     
-    if [ "$input" -eq 1 ]
-    then
-        cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
-    elif [ "$input" -eq 0 ]
-    then
-	    main_menu
-    else
-	    echo "error."
-    fi
-    echo $input
+    esac
     unset input
     post_install
 }
 
-check_if_reboot_needed(){
-    RESTART_TEST=$(grep -F 'Added:' $SCRIPTS_HOME/fedora_ostree.txt)
-    rm $SCRIPTS_HOME/fedora_ostree.txt  #moved here to be cleaner and running confirm_reboot after rpmfusion the log doesnt exist.
-    if [ "$RESTART_TEST" = 'Added:' ]
+autostart(){
+    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
+    DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
+    STEAM="/usr/share/applications/steam.desktop"
+    CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
+    [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
+    [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
+    [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
+
+}
+
+upgrade_menu(){
+    echo "================================================"
+    echo "Upgrade Steps"
+    echo "1. Wipe layers/overrides 2. Upgrade"
+    echo "0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+        1)
+            confirm_reset
+            ;;
+
+        2)
+            confirm_upgrade
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            upgrade_menu
+            ;;
+
+    esac
+    unset input
+}
+
+confirm_reset(){
+    echo "================================================"
+    echo "In order to upgrade and prevent issues a reset"
+    echo "is recommended. This will remove EVERYTHING that"
+    echo "isn't in the kinoite image, but still perserve"
+    echo "flatpak apps, appimages, settings and steam"
+    echo "library."
+    echo "Do you wish to do a reset now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
     then
-        confirm_reboot
+        sudo rpm-ostree reset
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reset."
+    elif [ $input == "exit" ]
+    then
+	    exit
     else
-        echo "No restart needed."
+	    upgrade_menu
+    fi
+}
+
+confirm_upgrade(){
+    echo "================================================"
+    echo "ENSURE YOU DO A RESET BEFORE THIS OR IT WILL FAIL."
+    echo "RPMFusion etc will not get redirected to the next"
+    echo "fedora version. They will need to be removed"
+    echo "beforehand and reinstalled after the upgrade."
+    echo "Do you wish to upgrade now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo ostree admin pin 0
+        sudo  rpm-ostree rebase fedora:fedora/39/x86_64/kinoite
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reboot."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    menu
     fi
 }
 
 confirm_reboot(){
     echo "================================================"
-    echo "Script determined a reboot is required."
+    echo "Reboots are required to enable the new layers."
     echo "Do you wish to reboot now?"
     echo "Type y/n or exit"
     echo "================================================"
@@ -191,10 +320,4 @@ confirm_reboot(){
     fi
 }
 
-slow_warning(){
-    echo "View setup-scripts/fedora_ostree.txt to see progress."
-}
-
-DESKTOP=$XDG_CURRENT_DESKTOP
-$fedoraVersion
-main_menu
+fedora_ostree_menu
