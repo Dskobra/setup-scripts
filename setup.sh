@@ -1,28 +1,46 @@
 #!/usr/bin/bash
 
-distro_check(){
-    ID=$(grep 'ID' -w /etc/os-release)
-    if [ "$ID" == 'ID=fedora' ]
-    then
-        fedora_variant_check
-    elif [ "$ID" == 'ID="opensuse-tumbleweed"' ]
-    then
-        $SCRIPTS_HOME/modules/suse.sh
-    else
-	    echo "error."
-    fi
+launch_menu(){
+    echo "================================================"
+    echo "Choose Distro"
+    echo "1. Fedora (dnf). 2. Fedora (ostree)"
+    echo "3. Dev Tools"
+    echo "100. About 0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+        1)
+        $SCRIPTS_HOME/modules/fedora_dnf.sh
+        ;;
+
+        2)
+        $SCRIPTS_HOME/modules/fedora_ostree.sh
+        ;;
+
+        3)
+        $SCRIPTS_HOME/modules/dev_tools.sh
+        ;;
+
+        100)
+        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about" 
+        ;;
+
+        0)
+        exit
+        ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+    esac
+    unset input
 }
 
-fedora_variant_check(){
-    PNAME=$(grep 'PRETTY_NAME' -w /etc/os-release)
-    if [[ "$PNAME" == *"(Kinoite)"* ]]
-    then
-        $SCRIPTS_HOME/modules/fedora_ostree.sh
-    else
-        $SCRIPTS_HOME/modules/fedora.sh
-    fi
-}
 
 export SCRIPTS_HOME=$(pwd)
-DESKTOP=$XDG_CURRENT_DESKTOP
-distro_check
+launch_menu
