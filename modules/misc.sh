@@ -18,7 +18,7 @@ minecraft(){
     MINECRAFT_ARCHIVE=Minecraft.tar.gz
     
     if test -f /home/$USER/Desktop/minecraft-launcher; then
-        echo "WoWUp already downloaded."
+        echo "Minecraft already downloaded."
     elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
         cd "$HOME"/Downloads
         curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK

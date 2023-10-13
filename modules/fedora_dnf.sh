@@ -184,9 +184,11 @@ upgrade_menu(){
 
 confirm_removal(){
     echo "================================================"
-    echo "This will remove RPMFusion and packages from there"
-    echo "including steam and swap back to the fedora provided"
-    echo "ffmpeg. This ensures the upgrade goes smoothly."
+    echo "This will remove RPMFusion and packages from"
+    echo "there including steam and swap back to the"
+    echo "fedora provided ffmpeg. This ensures the" 
+    echo "upgrade goes smoothly. Any settings, "
+    echo "appimages and steam games should remain."
     echo "Are you sure you wish to remove them?"
     echo "Type y/n or exit"
     echo "================================================"
@@ -211,7 +213,6 @@ confirm_removal(){
 	    upgrade_menu
     fi
 }
-
 
 autostart(){
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
