@@ -55,7 +55,7 @@ install_vm_basic_apps(){
     
 	bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
-    flatpak install --user flathub io.missioncenter.MissionCenter
+    flatpak install --user -y flathub io.missioncenter.MissionCenter
 
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
 
