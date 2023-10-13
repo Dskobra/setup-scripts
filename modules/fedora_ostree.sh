@@ -273,7 +273,7 @@ confirm_upgrade(){
     echo "ENSURE YOU DO A RESET BEFORE THIS OR IT WILL FAIL."
     echo "RPMFusion etc will not get redirected to the next"
     echo "fedora version. They will need to be removed"
-    echo "beforehand"
+    echo "beforehand and reinstalled after the upgrade."
     echo "Do you wish to upgrade now?"
     echo "Type y/n or exit"
     echo "================================================"
