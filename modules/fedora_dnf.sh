@@ -114,7 +114,6 @@ extras_menu(){
 
         2)
             sudo dnf install -y corectrl
-            cp /usr/share/applications/org.corectrl.corectrl.desktop /home/$USER/.config/autostart/org.corectrl.corectrl.desktop
             ;;
         3)
             sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
@@ -137,7 +136,7 @@ extras_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        launch_menu
+        extras_menu
         ;;
     esac
     unset input
@@ -200,8 +199,10 @@ cleanup(){
     cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
     DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
     STEAM="/usr/share/applications/steam.desktop"
+    CORECTRL="usr/share/applications/org.corectrl.corectrl.desktop"
     [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
     [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
+    [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$corectrl"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
 
 }
 
