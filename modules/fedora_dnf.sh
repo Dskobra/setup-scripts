@@ -41,15 +41,15 @@ fedora_dnf_menu(){
             exit
             ;;
 
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        fedora_dnf_menu
-        ;;
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            fedora_dnf_menu
+            ;;
 
-    esac
-    unset input
-    fedora_dnf_menu
+        esac
+        unset input
+        fedora_dnf_menu
 }
 
 install_basic_apps(){
@@ -135,14 +135,15 @@ extras_menu(){
             exit
             ;;
 
-    *)
-        echo -n "Unknown entry"
-        echo ""
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            extras_menu
+            ;;
+
+        esac
+        unset input
         extras_menu
-        ;;
-    esac
-    unset input
-    extras_menu
 }
 
 upgrade_menu(){
@@ -176,13 +177,14 @@ upgrade_menu(){
             exit
             ;;
 
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        launch_menu
-        ;;
-    esac
-    unset input
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            launch_menu
+            ;;
+            
+        esac
+        unset input
 }
 
 autostart(){

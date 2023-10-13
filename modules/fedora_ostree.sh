@@ -50,15 +50,15 @@ fedora_ostree_menu(){
             exit
             ;;
 
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        fedora_ostree_menu
-        ;;
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            fedora_ostree_menu
+            ;;
 
-    esac
-    unset input
-    fedora_ostree_menu
+        esac
+        unset input
+        fedora_ostree_menu
 }
 
 install_basic_apps(){
@@ -148,21 +148,21 @@ extras_menu(){
             exit
             ;;
 
-    *)
-        echo -n "Unknown entry"
-        echo ""
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            extras_menu
+            ;;
+        
+        esac
+        unset input
         extras_menu
-    
-    esac
-    unset input
-    extras_menu
 }
 
 post_install(){
     echo "================================================"
     echo "Main Menu"
-    echo "1. Corectrl 2. Setup xpad"
-    echo "3. Setup autostart apps"
+    echo "1. Autostarts 2. Setup xpad"
     echo "0. Back"
     echo "================================================"
     printf "Option: "
@@ -171,15 +171,11 @@ post_install(){
     case $input in
 
         1)
-            cp /usr/share/applications/org.corectrl.corectrl.desktop "$HOME"/.config/autostart/org.corectrl.corectrl.desktop
+            autostart
             ;;
 
         2)
             sudo modprobe xpad
-            ;;
-
-        3)
-            autostart
             ;;
 
         9)
@@ -194,7 +190,7 @@ post_install(){
             echo -n "Unknown entry"
             echo ""
             post_install
-
+            ;;
     
     esac
     unset input
@@ -225,7 +221,7 @@ upgrade_menu(){
 
         1)
             sudo rpm-ostree reset
-            sudo sytemctl reboot
+            sudo systemctl reboot
             ;;
 
         2)
