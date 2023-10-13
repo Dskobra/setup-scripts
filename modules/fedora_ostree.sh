@@ -244,9 +244,10 @@ upgrade_menu(){
 confirm_reset(){
     echo "================================================"
     echo "In order to upgrade and prevent issues a reset"
-    echo "is recommended. This will removal all apps, but"
-    echo "perserve flatpak apps, appimages and" 
-    echo "settings (including steam library)."
+    echo "is recommended. This will remove EVERYTHING that"
+    echo "isn't in the kinoite image, but still perserve"
+    echo "flatpak apps, appimages, settings and steam"
+    echo "library."
     echo "Do you wish to do a reset now?"
     echo "Type y/n or exit"
     echo "================================================"
