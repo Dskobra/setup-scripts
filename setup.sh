@@ -27,7 +27,7 @@ launch_menu(){
         3)
         bash -c "source $SCRIPTS_HOME/modules/fedora_dnf.sh; install_dev_basic_apps"
         bash -c "source $SCRIPTS_HOME/modules/fedora_dnf.sh; install_full_dev_tools"
-        bash -c "source $SCRIPTS_HOME/modules/fedora_dnf.sh; install_mugshot"   install_container_dev_tools 
+        bash -c "source $SCRIPTS_HOME/modules/fedora_dnf.sh; install_mugshot"
         ;;
 
         4)
