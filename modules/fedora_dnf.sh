@@ -89,7 +89,7 @@ install_basic_apps(){
 
 install_mugshot(){
     MUGSHOT_FOLDER="mugshot-0.4.3"
-    cd $SCRIPTS_HOME/modules/
+    cd $SCRIPTS_HOME/temp/
     curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
     tar -xvf $MUGSHOT_FOLDER.tar.gz
     cd $MUGSHOT_FOLDER
@@ -98,7 +98,6 @@ install_mugshot(){
     cd data/glib-2.0/schemas/
     sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
     sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
-
 }
 
 install_game_clients(){
@@ -174,6 +173,7 @@ install_full_dev_tools(){
 	sudo dnf install -y java-17-openjdk-devel openjfx python3-devel \
 	codium github-desktop git-gui python3-idle 
 
+    cd $SCRIPTS_HOME/temp
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
     curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
     sudo rpm -i $SCENE_BUILDER

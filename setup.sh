@@ -20,7 +20,7 @@ launch_menu(){
         2)
         $SCRIPTS_HOME/modules/fedora_ostree.sh
         ;;
-        
+
         100)
         bash -c "source $SCRIPTS_HOME/modules/misc.sh; about" 
         ;;
@@ -40,4 +40,5 @@ launch_menu(){
 
 
 export SCRIPTS_HOME=$(pwd)
+mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to
 launch_menu

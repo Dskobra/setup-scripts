@@ -20,15 +20,12 @@ minecraft(){
     if test -f /home/$USER/Desktop/minecraft-launcher; then
         echo "Minecraft already downloaded."
     elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
-        cd "$HOME"/Downloads
+        cd $SCRIPTS_HOME/temp
         curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
         tar -xvf Minecraft.tar.gz
         cd minecraft-launcher
         chmod +x minecraft-launcher
         mv minecraft-launcher "$HOME"/Desktop
-        cd "$HOME"/Downloads
-        rm -r minecraft-launcher
-        rm Minecraft.tar.gz
     fi
 }
 
