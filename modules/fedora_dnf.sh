@@ -25,7 +25,7 @@ fedora_dnf_menu(){
             ;;
 
         3)
-            install_dev_tools
+            dev_menu
             fedora_dnf_menu
             ;;
 
@@ -59,44 +59,30 @@ install_basic_apps(){
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 	sudo dnf update -y
 
-
-	sudo dnf install -y  ark gwenview kate vim-enhanced java-17-openjdk \
-    brave-browser plymouth-theme-spinfinity lm_sensors dnfdragora git # git is needed to pull from my game-profiles branch.        
+    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser plymouth-theme-spinfinity \
+    lm_sensors dnfdragora flatpak git     
     
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
 	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 	sudo plymouth-set-default-theme spinfinity -R
-    
-	bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
+
+    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
     bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
 
-}
-
-install_dev_basic_apps(){
-	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-	sudo dnf update -y
-
-    sudo dnf install -y xarchiver menulibre flatpak vim-enhanced\
-    brave-browser plymouth-theme-spinfinity python3-distutils-extra     # distutils is needed for mugshot
-
-    sudo dnf groupinstall -y "Firefox Web Browser"
-    sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-    
-    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-    sudo dnf install -y gstreamer1-plugin-openh264 \
-	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-	sudo plymouth-set-default-theme spinfinity -R
-    
-	bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
-    flatpak install --user -y flathub io.missioncenter.MissionCenter
-
-    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-
-
+    test -f /usr/bin/plasma_session && DESKTOP=kde
+    test -f /usr/bin/xfce4-panel && DESKTOP=xfce
+    if [ "$DESKTOP" = "kde" ];
+        then
+            sudo dnf install -y  ark gwenview kate 
+    elif [ "$DESKTOP" = "xfce" ];
+        then
+            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
+            sudo dnf groupinstall -y "Firefox Web Browser"
+            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            
+    fi
 }
 
 install_mugshot(){
@@ -124,7 +110,47 @@ install_game_clients(){
     bash -c "source $SCRIPTS_HOME/modules/misc.sh; minecraft"
 }
 
-install_dev_tools(){
+dev_menu(){
+    echo "================================================"
+    echo "Dev Menu"
+    echo "1. Limited Tools 2. Full Tools"
+    echo "3. Containers"
+    echo "0. Exit"
+    echo "================================================"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            install_limited_dev_tools
+            ;;
+
+        2)
+            container_dev_tools
+            ;;
+        3)
+            install_dev_basic_apps
+            install_full_dev_tools
+            install_mugshot
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        launch_menu
+        ;;
+        
+    esac
+    unset input
+    dev_menu
+}
+
+install_limited_dev_tools(){
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
 	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
