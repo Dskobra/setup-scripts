@@ -4,12 +4,9 @@ launch_menu(){
     echo "            ---------------------"
     echo "            |DSK's Setup Scripts|"
     echo "            ---------------------"
-    echo "                 Main Options"
     echo "________________________________________________"
     echo "1. Fedora (dnf).              2. Fedora (ostree)"
     echo "________________________________________________"
-    echo "                 Extra Options"
-    echo "3. Virtual Machine            4. Containers"
     echo "100. About                    0. Exit"
     printf "Option: "
     read -r input
