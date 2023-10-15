@@ -1,13 +1,15 @@
 #!/usr/bin/bash
 
 fedora_ostree_menu(){
-    echo "================================================"
-    echo "Fedora (ostree)"
-    echo "1. Setup Repos 2. Setup DE"
-    echo "3. Gaming 4. Dev Tools"
-    echo "5. Extras 6. Upgrade"
+    echo "            ---------------------"
+    echo "            |       Fedora      |"
+    echo "            ---------------------"
+    echo "________________________________________________"
+    echo "1. Setup Repos             2. Setup DE"
+    echo "3. Gaming                  4. Dev Tools"
+    echo "________________________________________________"
+    echo "5. Extras                  6. Upgrade"
     echo "0. Exit"
-    echo "================================================"
     printf "Option: "
     read -r input
     
