@@ -81,7 +81,7 @@ install_basic_apps(){
             sudo dnf groupinstall -y "Firefox Web Browser"
             sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
             flatpak install --user -y flathub io.missioncenter.MissionCenter
-            
+            install_mugshot         
     fi
 }
 
@@ -127,12 +127,10 @@ dev_menu(){
             ;;
 
         2)
-            container_dev_tools
+            install_full_dev_tools
             ;;
         3)
-            install_dev_basic_apps
-            install_full_dev_tools
-            install_mugshot
+            install_container_dev_tools
             ;;
 
         0)
@@ -142,7 +140,7 @@ dev_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        launch_menu
+        dev_menu
         ;;
         
     esac
