@@ -1,13 +1,15 @@
 #!/usr/bin/bash
 
 fedora_dnf_menu(){
-    echo "================================================"
-    echo "Fedora (dnf)"
-    echo "1. Setup DE 2. Gaming"
-    echo "3. Dev Tools 4. Extras"
-    echo "5. Upgrade"
+    echo "            ---------------------"
+    echo "            |       Fedora      |"
+    echo "            ---------------------"
+    echo "________________________________________________"
+    echo "1. Setup DE.              2. Gaming"
+    echo "3. Dev Tools"             
+    echo "________________________________________________"
+    echo "4. Extras                 5. Upgrade"
     echo "0. Exit"
-    echo "================================================"
     printf "Option: "
     read -r input
 
