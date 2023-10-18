@@ -42,3 +42,4 @@ launch_menu(){
 export SCRIPTS_HOME=$(pwd)
 mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to
 launch_menu
+rm -r -f $SCRIPTS_HOME/temp
