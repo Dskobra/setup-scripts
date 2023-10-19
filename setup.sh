@@ -1,13 +1,16 @@
 #!/usr/bin/bash
 
 launch_menu(){
-    echo "            ---------------------"
-    echo "            |DSK's Setup Scripts|"
-    echo "            ---------------------"
+    echo "---------------------"
+    echo "|DSK's Setup Scripts|"
+    echo "---------------------"   
+    echo "Version: $VERSION"
+    echo "Copyright (c) 2021-2023 Jordan Bottoms"
+    echo "Released under the MIT license"
     echo "________________________________________________"
     echo "1. Fedora (dnf).              2. Fedora (ostree)"
     echo "________________________________________________"
-    echo "100. About                    0. Exit"
+    echo "0. Exit"
     printf "Option: "
     read -r input
 
@@ -15,14 +18,12 @@ launch_menu(){
 
         1)
         $SCRIPTS_HOME/modules/fedora_dnf.sh
+        rm -r -f $SCRIPTS_HOME/temp
         ;;
 
         2)
         $SCRIPTS_HOME/modules/fedora_ostree.sh
-        ;;
-
-        100)
-        source $SCRIPTS_HOME/modules/shared.sh; "about" 
+        rm -r -f $SCRIPTS_HOME/temp
         ;;
 
         0)
@@ -38,8 +39,7 @@ launch_menu(){
     unset input
 }
 
-
+VERSION="dev branch"
 export SCRIPTS_HOME=$(pwd)
 mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to
 launch_menu
-rm -r -f $SCRIPTS_HOME/temp
