@@ -307,12 +307,10 @@ upgrade_menu(){
 
 confirm_removal(){
     echo "================================================"
-    echo "This will remove RPMFusion and packages from"
-    echo "there including steam and swap back to the"
-    echo "fedora provided ffmpeg. This ensures the" 
-    echo "upgrade goes smoothly. Any settings,"
-    echo "appimages and steam library should remain."
-    echo "Are you sure you wish to remove them?"
+    echo "RPMFusion and packages from there should be"
+    echo "removed prior to an upgrade. Personal settings"
+    echo "won't be removed (including steam library)."
+    echo "Do you sure you wish to remove them now?"
     echo "Type y/n or exit"
     echo "================================================"
     printf "Option: "
