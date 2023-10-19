@@ -277,7 +277,8 @@ upgrade_menu(){
             ;;
 
         2)
-            $SCRIPTS_HOME/modules/upgrade_check.sh
+            bash -c "source $SCRIPTS_HOME/modules/misc.sh; upgrade_check" 
+            #$SCRIPTS_HOME/modules/upgrade_check.sh
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
                 sudo dnf upgrade --refresh
