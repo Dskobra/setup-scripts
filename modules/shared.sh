@@ -126,12 +126,3 @@ upgrade_check(){
             echo "Check failed. Please make sure to run the "Remove RPMFusion" or "Wipe layers/overrides" option from the Upgrade steps."
     fi
 }
-
-about(){
-    VERSION="dev branch"
-    echo "================================================"
-    echo "Copyright (c) 2021-2023 Jordan Bottoms"
-    echo "Released under the MIT license"
-    echo "Version: $VERSION"
-    echo "================================================"
-}
