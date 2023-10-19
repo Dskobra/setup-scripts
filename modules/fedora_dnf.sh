@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 fedora_dnf_menu(){
-    echo "            ---------------------"
-    echo "            |       Fedora      |"
-    echo "            ---------------------"
+    echo "---------------------"
+    echo "|       Fedora      |"
+    echo "---------------------"
     echo "________________________________________________"
     echo "1. Setup DE.              2. Gaming"
     echo "3. Dev Tools"             
