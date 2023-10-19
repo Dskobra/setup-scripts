@@ -23,10 +23,10 @@ echo "Steam:                $IS_STEAM_PRESENT"
 
 if [ "$IS_RPMFUSION_FREE_PRESENT" = "ABSENT" ] ||  [ "$IS_RPMFUSION_NONFREE_PRESENT" = "ABSENT" ] || [ "$IS_FFMPEG_NONFREE_PRESENT" = "ABSENT" ]  || [ "$IS_STEAM_PRESENT" = "ABSENT" ];
     then
-        $IS_UPGRADE_SAFE="YES"
+        IS_UPGRADE_SAFE="YES"
         echo "Check passed. Will now run the upgrade."
 elif [ "$IS_RPMFUSION_FREE_PRESENT" = "PRESENT" ] || [ "$IS_RPMFUSION_NONFREE_PRESENT" = "PRESENT" ] || [ "$IS_FFMPEG_NONFREE_PRESENT" = "PRESENT" ] || [ "$IS_STEAM_PRESENT" = "PRESENT" ];
     then
-        $IS_UPGRADE_SAFE="NO"
+        IS_UPGRADE_SAFE="NO"
         echo "Check failed. Please make sure to run the "Remove RPMFusion" or "Wipe layers/overrides" option from the Upgrade steps."
 fi
