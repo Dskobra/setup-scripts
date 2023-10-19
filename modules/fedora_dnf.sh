@@ -134,8 +134,11 @@ dev_menu(){
             install_container_dev_tools
             ;;
 
-        0)
+        9)
             fedora_dnf_menu
+            ;;
+
+        0)
             exit
             ;;
 
