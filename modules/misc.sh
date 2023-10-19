@@ -31,7 +31,7 @@ minecraft(){
 
 
 about(){
-    VERSION="dev branch"
+    VERSION="10.19.2023"
     echo "================================================"
     echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"
