@@ -30,7 +30,7 @@ fedora_ostree_menu(){
         3)
             sudo rpm-ostree refresh-md
             install_game_clients
-            $SCRIPTS_HOME/modules/game_profiles.sh
+            source $SCRIPTS_HOME/modules/shared.sh; "game_profiles"
             confirm_reboot
             ;;
 
@@ -73,8 +73,8 @@ install_basic_apps(){
     sudo rpm-ostree install -y gstreamer1-plugin-openh264 \
 	mozilla-openh264 ffmpeg-libs.i686
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
+    source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
+    source $SCRIPTS_HOME/modules/shared.sh; "futils"
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     
     cd "$HOME"/Downloads
@@ -92,9 +92,9 @@ install_game_clients(){
     mkdir "$HOME"/.config/MangoHud/
     sudo rpm-ostree install -y steam goverlay gamescope
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; wowup"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; minecraft"
+    source $SCRIPTS_HOME/modules/shared.sh; "fgames"
+    source $SCRIPTS_HOME/modules/shared.sh; "wowup"
+    source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
     
 }
 
@@ -133,8 +133,8 @@ extras_menu(){
             sudo rpm-ostree install k3b v4l2loopback
             sudo rpm-ostree install okular # installing separate as if package is present none of the other packages installed
             sudo rpm-ostree install xwaylandvideobridge
-            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
-            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
+            source $SCRIPTS_HOME/modules/shared.sh; "fextras"
             confirm_reboot
             ;;
 

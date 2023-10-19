@@ -22,7 +22,7 @@ fedora_dnf_menu(){
 
         2)
             install_game_clients
-            $SCRIPTS_HOME/modules/game_profiles.sh
+            source $SCRIPTS_HOME/modules/shared.sh; "game_profiles"
             fedora_dnf_menu
             ;;
 
