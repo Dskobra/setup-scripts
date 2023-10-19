@@ -116,7 +116,7 @@ dev_menu(){
     echo "Dev Menu"
     echo "1. Limited Tools 2. Full Tools"
     echo "3. Containers"
-    echo "0. Exit"
+    echo "9. Main Menu      0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
@@ -135,6 +135,7 @@ dev_menu(){
             ;;
 
         0)
+            fedora_dnf_menu
             exit
             ;;
 
@@ -335,7 +336,7 @@ autostart(){
     [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
     [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
     [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
-    [ -f $XWVIDEO_BRIDGE ] && { echo "XWaylandVideoBridge was found. Adding to startup."; cp "$XWVIDEOBRIDGE"  /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop; }
+    [ -f $XWVIDEO_BRIDGE ] && { echo "XWaylandVideoBridge was found. Adding to startup."; cp "$XWVIDEO_BRIDGE"  /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop; }
 }
 
 cleanup(){
