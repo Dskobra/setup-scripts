@@ -268,6 +268,7 @@ upgrade_menu(){
     echo "================================================"
     printf "Option: "
     read -r input
+    IS_UPGRADE_SAFE="NO"
 
     case $input in
 
@@ -276,10 +277,18 @@ upgrade_menu(){
             ;;
 
         2)
-            sudo dnf upgrade --refresh
-            sudo dnf install dnf-plugin-system-upgrade
-            sudo dnf system-upgrade download --releasever=39
-            sudo dnf system-upgrade reboot
+            $SCRIPTS_HOME/modules/upgrade_check.sh
+            if [ "$IS_UPGRADE_SAFE" = "YES" ];
+                then
+                sudo dnf upgrade --refresh
+                sudo dnf install dnf-plugin-system-upgrade
+                sudo dnf system-upgrade download --releasever=39
+                sudo dnf system-upgrade reboot
+            elif [ "$IS_UPGRADE_SAFE" = "NO" ];
+                then
+                    upgrade_menu
+            fi
+
             ;;
 
         0)
@@ -289,7 +298,7 @@ upgrade_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            launch_menu
+            upgrade_menu
             ;;
             
         esac
