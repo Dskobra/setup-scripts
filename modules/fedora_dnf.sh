@@ -277,19 +277,18 @@ upgrade_menu(){
             ;;
 
         2)
-            bash -c "source $SCRIPTS_HOME/modules/misc.sh; upgrade_check" 
+            source $SCRIPTS_HOME/modules/misc.sh; "upgrade_check" 
             #$SCRIPTS_HOME/modules/upgrade_check.sh
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
-                sudo dnf upgrade --refresh
-                sudo dnf install dnf-plugin-system-upgrade
-                sudo dnf system-upgrade download --releasever=39
-                sudo dnf system-upgrade reboot
+                    sudo dnf upgrade --refresh
+                    sudo dnf install dnf-plugin-system-upgrade
+                    sudo dnf system-upgrade download --releasever=39
+                    sudo dnf system-upgrade reboot
             elif [ "$IS_UPGRADE_SAFE" = "NO" ];
                 then
                     upgrade_menu
             fi
-
             ;;
 
         0)
