@@ -22,7 +22,7 @@ launch_menu(){
         ;;
 
         100)
-        bash -c "source $SCRIPTS_HOME/modules/misc.sh; about" 
+        source $SCRIPTS_HOME/modules/shared.sh; "about" 
         ;;
 
         0)

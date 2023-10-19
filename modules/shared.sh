@@ -76,6 +76,23 @@ minecraft(){
     fi
 }
 
+game_profiles(){
+    ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
+
+    if test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
+        echo "MangoHud.conf exists. Not copying profiles over."
+    elif ! test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
+        cd $SCRIPTS_HOME/temp/
+        git clone https://github.com/Dskobra/setup-scripts -b game-profiles
+
+        mv setup-scripts game-profiles
+        cd game-profiles
+        dos2unix *.conf
+        sudo chown $USER:$USER *.conf
+        cp *.conf $HOME/.config/MangoHud/
+    fi
+}
+
 upgrade_check(){
     # This script checks if rpmfusion, steam and ffmpeg are present.
     # Will print back PRESENT if installed or ABSENT not. Default is

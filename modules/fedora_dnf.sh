@@ -69,8 +69,8 @@ install_basic_apps(){
 	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 	sudo plymouth-set-default-theme spinfinity -R
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
+    source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
+    source $SCRIPTS_HOME/modules/shared.sh; "futils"
 
     test -f /usr/bin/plasma_session && DESKTOP=kde
     test -f /usr/bin/xfce4-panel && DESKTOP=xfce
@@ -106,9 +106,9 @@ install_game_clients(){
     sudo dnf install -y steam goverlay gamescope
     sudo modprobe xpad
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; wowup"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; minecraft"
+    source $SCRIPTS_HOME/modules/shared.sh; "fgames"
+    source $SCRIPTS_HOME/modules/shared.sh; "wowup"
+    source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
 }
 
 dev_menu(){
@@ -233,8 +233,8 @@ extras_menu(){
         3)
             sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
             cp 
-            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
-            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
+            source $SCRIPTS_HOME/modules/shared.sh; "fextras"
             ;;
         4)
             cleanup
@@ -277,7 +277,7 @@ upgrade_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/misc.sh; "upgrade_check" 
+            source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
             #$SCRIPTS_HOME/modules/upgrade_check.sh
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
@@ -321,7 +321,7 @@ confirm_removal(){
     if [ $input == "y" ] || [ $input == "Y" ]
     then
         sudo dnf remove -y steam steam-devices
-        sudo dnf swap -y ffmpeg ffmpeg-free --allowerasing
+        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
         sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
         sudo dnf clean all
         sudo dnf update -y
