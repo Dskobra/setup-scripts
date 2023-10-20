@@ -227,7 +227,7 @@ upgrade_menu(){
     case $input in
 
         1)
-            confirm_reset
+            perform_reset
             ;;
 
         2)
