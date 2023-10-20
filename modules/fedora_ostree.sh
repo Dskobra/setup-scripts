@@ -234,10 +234,10 @@ upgrade_menu(){
             source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
-                    confirm_upgrade
+                    perform_upgrade
             elif [ "$IS_UPGRADE_SAFE" = "NO" ];
                 then
-                    confirm_reset
+                    perform_reset
             fi
             ;;
         
@@ -259,7 +259,7 @@ upgrade_menu(){
     unset input
 }
 
-confirm_reset(){
+perform_reset(){
     echo "================================================"
     echo "In order to upgrade and prevent issues a reset"
     echo "is recommended. This will remove EVERYTHING that"
@@ -287,7 +287,7 @@ confirm_reset(){
     fi
 }
 
-confirm_upgrade(){
+perform_upgrade(){
     echo "================================================"
     echo "ENSURE YOU DO A RESET BEFORE THIS OR IT WILL FAIL."
     echo "RPMFusion etc will not get redirected to the next"
