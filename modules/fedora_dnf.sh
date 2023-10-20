@@ -287,7 +287,7 @@ upgrade_menu(){
                     sudo dnf system-upgrade reboot
             elif [ "$IS_UPGRADE_SAFE" = "NO" ];
                 then
-                    upgrade_menu
+                    remove_rpmfusion
             fi
             ;;
 
@@ -305,7 +305,7 @@ upgrade_menu(){
         unset input
 }
 
-confirm_removal(){
+remove_rpmfusion(){
     echo "================================================"
     echo "RPMFusion and packages from there should be"
     echo "removed prior to an upgrade. Personal settings"
