@@ -278,7 +278,6 @@ upgrade_menu(){
 
         2)
             source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
-            #$SCRIPTS_HOME/modules/upgrade_check.sh
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
                     sudo dnf upgrade --refresh
