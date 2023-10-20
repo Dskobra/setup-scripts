@@ -222,6 +222,7 @@ upgrade_menu(){
     echo "================================================"
     printf "Option: "
     read -r input
+    IS_UPGRADE_SAFE="NO"
 
     case $input in
 
@@ -230,7 +231,14 @@ upgrade_menu(){
             ;;
 
         2)
-            confirm_upgrade
+            source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
+            if [ "$IS_UPGRADE_SAFE" = "YES" ];
+                then
+                    confirm_upgrade
+            elif [ "$IS_UPGRADE_SAFE" = "NO" ];
+                then
+                    confirm_reset
+            fi
             ;;
 
         0)
