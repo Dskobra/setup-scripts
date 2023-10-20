@@ -106,7 +106,7 @@ install_dev_tools(){
 
 extras_menu(){
     echo "================================================"
-    echo "Extras"
+    echo "Extras Menu"
     echo "1. Virtualization 2. Corectrl"
     echo "3. Extra Apps 4. Post install"
     echo "9. Main Menu 0. Exit"
@@ -163,9 +163,9 @@ extras_menu(){
 
 post_install(){
     echo "================================================"
-    echo "Main Menu"
+    echo "Post Install Menu"
     echo "1. Autostarts 2. Setup xpad"
-    echo "0. Back"
+    echo "9. Main Menu  0. Back"
     echo "================================================"
     printf "Option: "
     read -r input
@@ -218,7 +218,7 @@ upgrade_menu(){
     echo "================================================"
     echo "Upgrade Steps"
     echo "1. Wipe layers/overrides 2. Upgrade"
-    echo "0. Exit"
+    echo "9. Main Menu             0. Exit"
     echo "================================================"
     printf "Option: "
     read -r input
@@ -239,6 +239,10 @@ upgrade_menu(){
                 then
                     confirm_reset
             fi
+            ;;
+        
+        9)
+            fedora_ostree_menu
             ;;
 
         0)
