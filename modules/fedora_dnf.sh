@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 fedora_dnf_menu(){
-    echo "---------------------"
-    echo "|       Fedora      |"
+    echo " ---------------------"
+    echo "        |       Fedora      |"
     echo "---------------------"
     echo "________________________________________________"
     echo "1. Setup DE.              2. Gaming"
@@ -114,7 +114,7 @@ install_game_clients(){
 dev_menu(){
     echo "================================================"
     echo "Dev Menu"
-    echo "1. Limited Tools 2. Full Tools"
+    echo "1. Limited Tools  2. Full Tools"
     echo "3. Containers"
     echo "9. Main Menu      0. Exit"
     echo "================================================"
@@ -359,6 +359,7 @@ cleanup(){
 	kmahjongg kmines systemd-oomd-defaults \
 	transmission-gtk transmission-qt \
 	compiz kpat
+    sudo rm -r -f $SCRIPTS_HOME/temp
 }
 
 fedora_dnf_menu

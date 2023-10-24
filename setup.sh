@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 launch_menu(){
-    echo "---------------------"
-    echo "|DSK's Setup Scripts|"
-    echo "---------------------"   
+    echo "------------------------------------------------"   
+    echo "          |DSK's Setup Scripts|"
+    echo "------------------------------------------------"   
     echo "Version: $VERSION"
     echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"
@@ -18,12 +18,11 @@ launch_menu(){
 
         1)
         $SCRIPTS_HOME/modules/fedora_dnf.sh
-        rm -r -f $SCRIPTS_HOME/temp
         ;;
 
         2)
         $SCRIPTS_HOME/modules/fedora_ostree.sh
-        rm -r -f $SCRIPTS_HOME/temp
+        sudo rm -r -f $SCRIPTS_HOME/temp
         ;;
 
         0)
