@@ -10,6 +10,7 @@ launch_menu(){
     echo "         Released under the MIT license"
     echo ""
     echo "                  Menu"
+    echo ""
     echo "1. Fedora (dnf)              2. Fedora (ostree)"
     echo "0. Exit"
     printf "Option: "

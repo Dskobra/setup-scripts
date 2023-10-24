@@ -6,6 +6,7 @@ fedora_ostree_menu(){
     echo "          ---------------------"
     echo ""
     echo "                  Menu"
+    echo ""
     echo "1. Setup Repos             2. Setup DE"
     echo "3. Gaming                  4. Dev Tools"
     echo "5. Extras                  6. Upgrade"
@@ -105,12 +106,15 @@ install_dev_tools(){
 }
 
 extras_menu(){
-    echo "================================================"
-    echo "Extras Menu"
-    echo "1. Virtualization 2. Corectrl"
-    echo "3. Extra Apps 4. Post install"
-    echo "9. Main Menu 0. Exit"
-    echo "================================================"
+    echo "              --------"
+    echo "              |Extras|"
+    echo "              --------"
+    echo ""
+    echo "                Menu"
+    echo ""
+    echo "1. Virtualization     2. Corectrl"
+    echo "3. Extra Apps         4. Post install"
+    echo "9. Main Menu          0. Exit"
     printf "Option: "
     read -r input
 
@@ -162,11 +166,14 @@ extras_menu(){
 }
 
 post_install(){
-    echo "================================================"
-    echo "Post Install Menu"
-    echo "1. Autostarts 2. Setup xpad"
-    echo "9. Main Menu  0. Back"
-    echo "================================================"
+    echo "          --------------"
+    echo "          |Post Install|"
+    echo "          --------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "1. Autostarts     2. Setup xpad"
+    echo "9. Main Menu      0. Back"
     printf "Option: "
     read -r input
 
@@ -215,11 +222,14 @@ autostart(){
 }
 
 upgrade_menu(){
-    echo "================================================"
-    echo "Upgrade Steps"
-    echo "1. Wipe layers/overrides 2. Upgrade"
-    echo "9. Main Menu             0. Exit"
-    echo "================================================"
+    echo "               ---------------"
+    echo "               |Upgrade Steps|"
+    echo "               ---------------"
+    echo ""
+    echo "                   Menu"
+    echo ""
+    echo "1. Full Reset                 2. Upgrade"
+    echo "9. Main Menu                  0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -306,7 +316,7 @@ perform_upgrade(){
         sudo systemctl reboot
     elif [ $input == "n" ] || [ $input == "N" ]
     then
-        echo "Chose not to reboot."
+        echo "Chose not to upgrade."
     elif [ $input == "exit" ]
     then
 	    exit

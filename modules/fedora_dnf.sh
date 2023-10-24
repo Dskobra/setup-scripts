@@ -6,6 +6,7 @@ fedora_dnf_menu(){
     echo "        ---------------------"
     echo ""
     echo "                 Menu"
+    echo ""
     echo "1. Setup DE.              2. Gaming"
     echo "3. Dev Tools              4. Extras"
     echo "5. Upgrade                0. Exit"
@@ -111,12 +112,15 @@ install_game_clients(){
 }
 
 dev_menu(){
-    echo "================================================"
-    echo "Dev Menu"
+    echo "          -----------"
+    echo "          |Dev Tools|"
+    echo "          -----------"
+    echo ""
+    echo "              Menu"
+    echo ""
     echo "1. Limited Tools  2. Full Tools"
     echo "3. Containers"
     echo "9. Main Menu      0. Exit"
-    echo "================================================"
     printf "Option: "
     read -r input
     
@@ -209,12 +213,15 @@ install_container_dev_tools(){
 }
 
 extras_menu(){
-    echo "================================================"
-    echo "Extras"
-    echo "1. Virtualization 2. Corectrl"
-    echo "3. Extra Apps 4. Cleanup"
-    echo "9. Main Menu 0. Exit"
-    echo "================================================"
+    echo "              --------"
+    echo "              |Extras|"
+    echo "              --------"
+    echo ""
+    echo "                Menu"
+    echo ""
+    echo "1. Virtualization     2. Corectrl"
+    echo "3. Extra Apps         4. Cleanup"
+    echo "9. Main Menu          0. Exit"
     printf "Option: "
     read -r input
     case $input in
@@ -260,11 +267,14 @@ extras_menu(){
 }
 
 upgrade_menu(){
-    echo "================================================"
-    echo "Upgrade Steps"
-    echo "1. Remove RPMFusion 2. Upgrade"
+    echo "              ---------------"
+    echo "              |Upgrade Steps|"
+    echo "              ---------------"
+    echo ""
+    echo "                   Menu"
+    echo ""
+    echo "1. Remove RPMFusion       2. Upgrade"
     echo "0. Exit"
-    echo "================================================"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
