@@ -1,15 +1,16 @@
 #!/usr/bin/bash
 
 launch_menu(){
-    echo "------------------------------------------------"   
+    echo "          ---------------------"   
     echo "          |DSK's Setup Scripts|"
-    echo "------------------------------------------------"   
-    echo "Version: $VERSION"
-    echo "Copyright (c) 2021-2023 Jordan Bottoms"
-    echo "Released under the MIT license"
-    echo "________________________________________________"
-    echo "1. Fedora (dnf).              2. Fedora (ostree)"
-    echo "________________________________________________"
+    echo "          ---------------------" 
+    echo ""
+    echo "            Version: $VERSION"
+    echo "     Copyright (c) 2021-2023 Jordan Bottoms"
+    echo "         Released under the MIT license"
+    echo ""
+    echo "                  Menu"
+    echo "1. Fedora (dnf)              2. Fedora (ostree)"
     echo "0. Exit"
     printf "Option: "
     read -r input
