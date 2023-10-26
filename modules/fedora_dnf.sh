@@ -221,7 +221,8 @@ extras_menu(){
     echo ""
     echo "1. Virtualization     2. Corectrl"
     echo "3. Extra Apps         4. Cleanup"
-    echo "9. Main Menu          0. Exit"
+    echo "5. Autostart          9. Main Menu"
+    echo "0. Exit"
     printf "Option: "
     read -r input
     case $input in
@@ -244,6 +245,9 @@ extras_menu(){
             ;;
         4)
             cleanup
+            ;;
+
+        5)
             autostart
             ;;
 
