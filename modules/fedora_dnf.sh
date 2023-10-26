@@ -282,7 +282,7 @@ upgrade_menu(){
     case $input in
 
         1)
-            confirm_removal
+            remove_rpmfusion
             ;;
 
         2)
