@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-fedora_ostree_menu(){
+ostree_menu(){
     echo "          ---------------------"
     echo "          |       Fedora      |"
     echo "          ---------------------"
@@ -56,12 +56,12 @@ fedora_ostree_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            fedora_ostree_menu
+            ostree_menu
             ;;
 
         esac
         unset input
-        fedora_ostree_menu
+        ostree_menu
 }
 
 install_basic_apps(){
@@ -147,7 +147,7 @@ extras_menu(){
             ;;
 
         9)
-            fedora_ostree_menu
+            ostree_menu
             ;;
 
         0)
@@ -188,7 +188,7 @@ post_install(){
             ;;
 
         9)
-            fedora_ostree_menu
+            ostree_menu
             ;;
 
         0)
@@ -252,7 +252,7 @@ upgrade_menu(){
             ;;
         
         9)
-            fedora_ostree_menu
+            ostree_menu
             ;;
 
         0)
@@ -348,4 +348,4 @@ confirm_reboot(){
     fi
 }
 
-fedora_ostree_menu
+ostree_menu

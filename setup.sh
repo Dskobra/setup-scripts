@@ -11,7 +11,7 @@ launch_menu(){
     echo ""
     echo "                  Menu"
     echo ""
-    echo "1. Fedora (dnf)              2. Fedora (ostree)"
+    echo "1. dnf                    2. ostree"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -19,11 +19,11 @@ launch_menu(){
     case $input in
 
         1)
-        $SCRIPTS_HOME/modules/fedora_dnf.sh
+        $SCRIPTS_HOME/modules/dnf.sh
         ;;
 
         2)
-        $SCRIPTS_HOME/modules/fedora_ostree.sh
+        $SCRIPTS_HOME/modules/ostree.sh
         sudo rm -r -f $SCRIPTS_HOME/temp
         ;;
 

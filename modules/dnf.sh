@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-fedora_dnf_menu(){
+dnf_menu(){
     echo "        ---------------------"
     echo "        |       Fedora      |"
     echo "        ---------------------"
@@ -17,18 +17,18 @@ fedora_dnf_menu(){
 
         1)
             install_basic_apps
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         2)
             install_game_clients
             source $SCRIPTS_HOME/modules/shared.sh; "game_profiles"
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         3)
             dev_menu
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         4)
@@ -46,12 +46,12 @@ fedora_dnf_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         esac
         unset input
-        fedora_dnf_menu
+        dnf_menu
 }
 
 install_basic_apps(){
@@ -138,7 +138,7 @@ dev_menu(){
             ;;
 
         9)
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         0)
@@ -253,7 +253,7 @@ extras_menu(){
 
         
         9)
-            fedora_dnf_menu
+            dnf_menu
             ;;
         0)
             exit
@@ -375,4 +375,4 @@ cleanup(){
     sudo rm -r -f $SCRIPTS_HOME/temp
 }
 
-fedora_dnf_menu
+dnf_menu
