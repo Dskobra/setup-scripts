@@ -7,7 +7,7 @@ dnf_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. Setup DE.              2. Gaming"
+    echo "1. Setup DE              2. Gaming"
     echo "3. Dev Tools              4. Extras"
     echo "5. Upgrade                0. Exit"
     printf "Option: "
@@ -64,9 +64,7 @@ install_basic_apps(){
     sudo dnf install -y vim-enhanced java-17-openjdk brave-browser plymouth-theme-spinfinity \
     lm_sensors dnfdragora flatpak git     
     
-    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-    sudo dnf install -y gstreamer1-plugin-openh264 \
-	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+    install_codecs
 	sudo plymouth-set-default-theme spinfinity -R
 
     source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
@@ -85,6 +83,12 @@ install_basic_apps(){
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             install_mugshot         
     fi
+}
+
+install_codecs(){
+    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+    sudo dnf install -y gstreamer1-plugin-openh264 \
+	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 }
 
 install_mugshot(){
@@ -278,7 +282,8 @@ upgrade_menu(){
     echo "                   Menu"
     echo ""
     echo "1. Remove RPMFusion       2. Upgrade"
-    echo "0. Exit"
+    echo "3. Reinstall RPMFusion    4. Reinstall Codecs"
+    echo "5. Reinstall Steam        0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -301,6 +306,21 @@ upgrade_menu(){
                 then
                     remove_rpmfusion
             fi
+            ;;
+
+        3)
+            sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            upgrade_menu
+            ;;
+
+        4)
+            install_codecs
+            upgrade_menu
+            ;;
+
+        5)
+            sudo dnf install -y steam steam-devices
+            upgrade_menu
             ;;
 
         0)
