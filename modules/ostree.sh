@@ -17,26 +17,22 @@ ostree_menu(){
     case $input in
 
         1)
-            sudo rpm-ostree refresh-md
             sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
             confirm_reboot
             ;;
 
         2)
-            sudo rpm-ostree refresh-md
             install_basic_apps
             confirm_reboot
             ;;
 
         3)
-            sudo rpm-ostree refresh-md
             install_game_clients
             source $SCRIPTS_HOME/modules/shared.sh; "game_profiles"
             confirm_reboot
             ;;
 
         4)
-            sudo rpm-ostree refresh-md
             install_dev_tools
             confirm_reboot
             ;;
@@ -121,19 +117,16 @@ extras_menu(){
     case $input in
 
         1)
-            sudo rpm-ostree refresh-md
 	        sudo rpm-ostree install virt-manager 
             confirm_reboot
             ;;
 
         2)
-            sudo rpm-ostree refresh-md
             sudo rpm-ostree install corectrl
             confirm_reboot
             ;;
 
         3)
-            sudo rpm-ostree refresh-md
             sudo rpm-ostree install k3b v4l2loopback
             sudo rpm-ostree install okular # installing separate as if package is present none of the other packages installed
             sudo rpm-ostree install xwaylandvideobridge
