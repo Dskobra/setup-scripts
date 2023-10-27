@@ -8,8 +8,8 @@ dnf_menu(){
     echo "                 Menu"
     echo ""
     echo "1. Setup DE              2. Gaming"
-    echo "3. Dev Tools              4. Extras"
-    echo "5. Upgrade                0. Exit"
+    echo "3. Dev Tools             4. Extras"
+    echo "5. Upgrade               0. Exit"
     printf "Option: "
     read -r input
 
