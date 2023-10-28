@@ -283,7 +283,8 @@ upgrade_menu(){
     echo ""
     echo "1. Remove RPMFusion       2. Upgrade"
     echo "3. Reinstall RPMFusion    4. Reinstall Codecs"
-    echo "5. Reinstall Steam        0. Exit"
+    echo "5. Reinstall Steam        6. Reinstall mugshot"
+    echo "9. Main Menu              0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -323,6 +324,14 @@ upgrade_menu(){
             upgrade_menu
             ;;
 
+        6)
+            install_mugshot
+            ;;
+
+        9)
+            dnf_menu
+            ;;
+            
         0)
             exit
             ;;
