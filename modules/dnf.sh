@@ -1,15 +1,15 @@
 #!/usr/bin/bash
 
-fedora_dnf_menu(){
-    echo "            ---------------------"
-    echo "            |       Fedora      |"
-    echo "            ---------------------"
-    echo "________________________________________________"
-    echo "1. Setup DE.              2. Gaming"
-    echo "3. Dev Tools"             
-    echo "________________________________________________"
-    echo "4. Extras                 5. Upgrade"
-    echo "0. Exit"
+dnf_menu(){
+    echo "        ---------------------"
+    echo "        |       Fedora      |"
+    echo "        ---------------------"
+    echo ""
+    echo "                 Menu"
+    echo ""
+    echo "1. Setup DE              2. Gaming"
+    echo "3. Dev Tools             4. Extras"
+    echo "5. Upgrade               0. Exit"
     printf "Option: "
     read -r input
 
@@ -17,18 +17,18 @@ fedora_dnf_menu(){
 
         1)
             install_basic_apps
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         2)
             install_game_clients
-            $SCRIPTS_HOME/modules/game_profiles.sh
-            fedora_dnf_menu
+            source $SCRIPTS_HOME/modules/shared.sh; "game_profiles"
+            dnf_menu
             ;;
 
         3)
             dev_menu
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         4)
@@ -46,12 +46,12 @@ fedora_dnf_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         esac
         unset input
-        fedora_dnf_menu
+        dnf_menu
 }
 
 install_basic_apps(){
@@ -64,13 +64,11 @@ install_basic_apps(){
     sudo dnf install -y vim-enhanced java-17-openjdk brave-browser plymouth-theme-spinfinity \
     lm_sensors dnfdragora flatpak git     
     
-    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-    sudo dnf install -y gstreamer1-plugin-openh264 \
-	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+    install_codecs
 	sudo plymouth-set-default-theme spinfinity -R
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fbasic"
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; futils"
+    source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
+    source $SCRIPTS_HOME/modules/shared.sh; "futils"
 
     test -f /usr/bin/plasma_session && DESKTOP=kde
     test -f /usr/bin/xfce4-panel && DESKTOP=xfce
@@ -85,6 +83,12 @@ install_basic_apps(){
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             install_mugshot         
     fi
+}
+
+install_codecs(){
+    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+    sudo dnf install -y gstreamer1-plugin-openh264 \
+	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 }
 
 install_mugshot(){
@@ -106,18 +110,21 @@ install_game_clients(){
     sudo dnf install -y steam goverlay gamescope
     sudo modprobe xpad
 
-    bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fgames"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; wowup"
-    bash -c "source $SCRIPTS_HOME/modules/misc.sh; minecraft"
+    source $SCRIPTS_HOME/modules/shared.sh; "fgames"
+    source $SCRIPTS_HOME/modules/shared.sh; "wowup"
+    source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
 }
 
 dev_menu(){
-    echo "================================================"
-    echo "Dev Menu"
-    echo "1. Limited Tools 2. Full Tools"
+    echo "          -----------"
+    echo "          |Dev Tools|"
+    echo "          -----------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "1. Limited Tools  2. Full Tools"
     echo "3. Containers"
     echo "9. Main Menu      0. Exit"
-    echo "================================================"
     printf "Option: "
     read -r input
     
@@ -135,7 +142,7 @@ dev_menu(){
             ;;
 
         9)
-            fedora_dnf_menu
+            dnf_menu
             ;;
 
         0)
@@ -210,12 +217,16 @@ install_container_dev_tools(){
 }
 
 extras_menu(){
-    echo "================================================"
-    echo "Extras"
-    echo "1. Virtualization 2. Corectrl"
-    echo "3. Extra Apps 4. Cleanup"
-    echo "9. Main Menu 0. Exit"
-    echo "================================================"
+    echo "              --------"
+    echo "              |Extras|"
+    echo "              --------"
+    echo ""
+    echo "                Menu"
+    echo ""
+    echo "1. Virtualization     2. Corectrl"
+    echo "3. Extra Apps         4. Cleanup"
+    echo "5. Autostart          9. Main Menu"
+    echo "0. Exit"
     printf "Option: "
     read -r input
     case $input in
@@ -233,17 +244,20 @@ extras_menu(){
         3)
             sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
             cp 
-            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fmedia"
-            bash -c "source $SCRIPTS_HOME/modules/flatpak.sh; fextras"
+            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
+            source $SCRIPTS_HOME/modules/shared.sh; "fextras"
             ;;
         4)
             cleanup
+            ;;
+
+        5)
             autostart
             ;;
 
         
         9)
-            fedora_dnf_menu
+            dnf_menu
             ;;
         0)
             exit
@@ -261,27 +275,63 @@ extras_menu(){
 }
 
 upgrade_menu(){
-    echo "================================================"
-    echo "Upgrade Steps"
-    echo "1. Remove RPMFusion 2. Upgrade"
-    echo "0. Exit"
-    echo "================================================"
+    echo "              ---------------"
+    echo "              |Upgrade Steps|"
+    echo "              ---------------"
+    echo ""
+    echo "                   Menu"
+    echo ""
+    echo "1. Remove RPMFusion       2. Upgrade"
+    echo "3. Reinstall RPMFusion    4. Reinstall Codecs"
+    echo "5. Reinstall Steam        6. Reinstall mugshot"
+    echo "9. Main Menu              0. Exit"
     printf "Option: "
     read -r input
+    IS_UPGRADE_SAFE="NO"
 
     case $input in
 
         1)
-            confirm_removal
+            remove_rpmfusion
             ;;
 
         2)
-            sudo dnf upgrade --refresh
-            sudo dnf install dnf-plugin-system-upgrade
-            sudo dnf system-upgrade download --releasever=39
-            sudo dnf system-upgrade reboot
+            source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
+            if [ "$IS_UPGRADE_SAFE" = "YES" ];
+                then
+                    sudo dnf upgrade --refresh
+                    sudo dnf install dnf-plugin-system-upgrade
+                    sudo dnf system-upgrade download --releasever=39
+                    sudo dnf system-upgrade reboot
+            elif [ "$IS_UPGRADE_SAFE" = "NO" ];
+                then
+                    remove_rpmfusion
+            fi
             ;;
 
+        3)
+            sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            upgrade_menu
+            ;;
+
+        4)
+            install_codecs
+            upgrade_menu
+            ;;
+
+        5)
+            sudo dnf install -y steam steam-devices
+            upgrade_menu
+            ;;
+
+        6)
+            install_mugshot
+            ;;
+
+        9)
+            dnf_menu
+            ;;
+            
         0)
             exit
             ;;
@@ -289,21 +339,19 @@ upgrade_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            launch_menu
+            upgrade_menu
             ;;
             
         esac
         unset input
 }
 
-confirm_removal(){
+remove_rpmfusion(){
     echo "================================================"
-    echo "This will remove RPMFusion and packages from"
-    echo "there including steam and swap back to the"
-    echo "fedora provided ffmpeg. This ensures the" 
-    echo "upgrade goes smoothly. Any settings,"
-    echo "appimages and steam library should remain."
-    echo "Are you sure you wish to remove them?"
+    echo "RPMFusion and packages from there should be"
+    echo "removed prior to an upgrade. Personal settings"
+    echo "won't be removed (including steam library)."
+    echo "Do you sure you wish to remove them now?"
     echo "Type y/n or exit"
     echo "================================================"
     printf "Option: "
@@ -312,7 +360,7 @@ confirm_removal(){
     if [ $input == "y" ] || [ $input == "Y" ]
     then
         sudo dnf remove -y steam steam-devices
-        sudo dnf swap -y ffmpeg ffmpeg-free --allowerasing
+        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
         sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
         sudo dnf clean all
         sudo dnf update -y
@@ -353,6 +401,7 @@ cleanup(){
 	kmahjongg kmines systemd-oomd-defaults \
 	transmission-gtk transmission-qt \
 	compiz kpat
+    sudo rm -r -f $SCRIPTS_HOME/temp
 }
 
-fedora_dnf_menu
+dnf_menu
