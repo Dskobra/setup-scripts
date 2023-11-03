@@ -135,6 +135,7 @@ dev_menu(){
             ;;
 
         2)
+            install_limited_dev_tools
             install_full_dev_tools
             ;;
         3)
@@ -172,17 +173,12 @@ install_limited_dev_tools(){
 }
 
 install_full_dev_tools(){
-	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-    sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-    
     sudo dnf groupinstall -y "C Development Tools and libraries"
     sudo dnf groupinstall -y "Development Tools"
     sudo dnf groupinstall -y "RPM Development Tools"
 
 	sudo dnf install -y java-17-openjdk-devel openjfx python3-devel \
-	codium github-desktop git-gui python3-idle 
+    python3-idle 
 
     cd $SCRIPTS_HOME/temp
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
