@@ -61,8 +61,8 @@ install_basic_apps(){
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 	sudo dnf update -y
 
-    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser plymouth-theme-spinfinity \
-    lm_sensors dnfdragora flatpak git     
+    sudo dnf install -y dropbox vim-enhanced java-17-openjdk brave-browser \
+    plymouth-theme-spinfinity lm_sensors dnfdragora flatpak git     
     
     install_codecs
 	sudo plymouth-set-default-theme spinfinity -R
@@ -374,7 +374,7 @@ remove_rpmfusion(){
 
 autostart(){
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
+    #cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
     DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
     STEAM="/usr/share/applications/steam.desktop"
     CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
