@@ -4,7 +4,7 @@ fbasic(){
     echo "Setting up flathub for user"
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     flatpak install --user -y flathub org.keepassxc.KeePassXC
-    #flatpak install --user -y flathub com.dropbox.Client
+    flatpak install --user -y flathub com.dropbox.Client
 
 }
 
