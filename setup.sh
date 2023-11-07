@@ -12,7 +12,7 @@ launch_menu(){
    $SCRIPTS_HOME/modules/dnf.sh
 }
 
-VERSION="11.7.2023"
+VERSION="11.7.2023.1"
 export SCRIPTS_HOME=$(pwd)
 mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to
 launch_menu
