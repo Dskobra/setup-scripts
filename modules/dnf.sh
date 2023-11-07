@@ -61,8 +61,8 @@ install_basic_apps(){
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 	sudo dnf update -y
 
-    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser plymouth-theme-spinfinity \
-    lm_sensors dnfdragora flatpak git     
+    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser \
+    plymouth-theme-spinfinity lm_sensors dnfdragora flatpak git     
     
     install_codecs
 	sudo plymouth-set-default-theme spinfinity -R
@@ -135,6 +135,7 @@ dev_menu(){
             ;;
 
         2)
+            install_limited_dev_tools
             install_full_dev_tools
             ;;
         3)
@@ -172,17 +173,12 @@ install_limited_dev_tools(){
 }
 
 install_full_dev_tools(){
-	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-    sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-    
     sudo dnf groupinstall -y "C Development Tools and libraries"
     sudo dnf groupinstall -y "Development Tools"
     sudo dnf groupinstall -y "RPM Development Tools"
 
 	sudo dnf install -y java-17-openjdk-devel openjfx python3-devel \
-	codium github-desktop git-gui python3-idle 
+    python3-idle 
 
     cd $SCRIPTS_HOME/temp
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
@@ -380,14 +376,17 @@ autostart(){
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
     DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
+    GOVERLAY="/home/$USER/.local/share/flatpak/exports/share/applications/io.github.trigg.discover_overlay.desktop"
     STEAM="/usr/share/applications/steam.desktop"
     CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
     XWVIDEO_BRIDGE="/usr/share/applications/org.kde.xwaylandvideobridge.desktop"
 
     [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
+    [ -f $GOVERLAY ] && { echo "GOverlay was found. Adding to startup."; cp "$GOVERLAY"  /home/$USER/.config/autostart/io.github.trigg.discover_overlay.desktop; }
     [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
     [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
     [ -f $XWVIDEO_BRIDGE ] && { echo "XWaylandVideoBridge was found. Adding to startup."; cp "$XWVIDEO_BRIDGE"  /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop; }
+
 }
 
 cleanup(){

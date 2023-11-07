@@ -4,6 +4,7 @@ fbasic(){
     echo "Setting up flathub for user"
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     flatpak install --user -y flathub org.keepassxc.KeePassXC
+    flatpak install --user -y flathub com.bitwarden.desktop
     flatpak install --user -y flathub com.dropbox.Client
 
 }
@@ -15,7 +16,8 @@ fgames(){
 
     flatpak install --user -y flathub com.discordapp.Discord
     flatpak install --user -y flathub org.kde.kpat
-    flatpak install --user -y flathub net.lutris.Lutris 
+    flatpak install --user -y flathub net.lutris.Lutris
+    flatpak install --user -y flathub io.github.trigg.discover_overlay
     
     # run once to ensure folders/runtimes are setup
     flatpak run net.lutris.Lutris
