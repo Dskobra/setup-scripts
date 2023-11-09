@@ -277,10 +277,10 @@ upgrade_menu(){
     echo ""
     echo "                   Menu"
     echo ""
-    echo "1. Remove RPMFusion       2. Upgrade"
-    echo "3. Reinstall RPMFusion    4. Reinstall Codecs"
-    echo "5. Reinstall Steam        6. Reinstall mugshot"
-    echo "9. Main Menu              0. Exit"
+    echo "1. Upgrade                2. Reinstall RPMFusion"
+    echo "3. Reinstall Codecs       4. Reinstall Steam"
+    echo "5. Reinstall mugshot      9. Main Menu"
+    echo "0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -288,10 +288,6 @@ upgrade_menu(){
     case $input in
 
         1)
-            remove_rpmfusion
-            ;;
-
-        2)
             source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
@@ -305,22 +301,22 @@ upgrade_menu(){
             fi
             ;;
 
-        3)
+        2)
             sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
             upgrade_menu
             ;;
 
-        4)
+        3)
             install_codecs
             upgrade_menu
             ;;
 
-        5)
+        4)
             sudo dnf install -y steam steam-devices
             upgrade_menu
             ;;
 
-        6)
+        5)
             install_mugshot
             ;;
 
