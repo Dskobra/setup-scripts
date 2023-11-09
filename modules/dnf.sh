@@ -344,10 +344,10 @@ upgrade_menu(){
 
 remove_rpmfusion(){
     echo "================================================"
-    echo "RPMFusion and packages from there should be"
-    echo "removed prior to an upgrade. Personal settings"
-    echo "won't be removed (including steam library)."
-    echo "Do you sure you wish to remove them now?"
+    echo "In order for a successful upgrade to occur" 
+    echo "RPMFusion and packages from there need to be "
+    echo "removed. Settings will be left intact."
+    echo "Would you like to do this now?"
     echo "Type y/n or exit"
     echo "================================================"
     printf "Option: "
