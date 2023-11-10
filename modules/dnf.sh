@@ -279,8 +279,8 @@ upgrade_menu(){
     echo ""
     echo "1. Upgrade                2. Reinstall RPMFusion"
     echo "3. Reinstall Codecs       4. Reinstall Steam"
-    echo "5. Reinstall mugshot      9. Main Menu"
-    echo "0. Exit"
+    echo "5. Update Rescue Kernel   6. Reinstall mugshot"
+    echo "9. Main Menu              0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -317,6 +317,10 @@ upgrade_menu(){
             ;;
 
         5)
+            update_rescue_kernel
+            ;;
+
+        6)
             install_mugshot
             ;;
 
@@ -366,6 +370,16 @@ remove_rpmfusion(){
     else
 	    upgrade_menu
     fi
+}
+
+update_rescue_kernel(){
+    # For some reason the rescue kernel when updating to a newer Fedora release
+    # still lists as the last release in the boot menu. For example f38 after upgrading
+    # to f39. This will delete it then reinstall the kernel which will force a rebuild
+    # of the rescue image.
+    sudo rm /boot/initramfs-0-rescue*.img
+    sudo rm /boot/vmlinuz-0-rescue*
+    sudo dnf reinstall -y kernel*
 }
 
 autostart(){
