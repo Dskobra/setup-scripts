@@ -232,13 +232,14 @@ extras_menu(){
             -O /etc/yum.repos.d/virtio-win.repo
             sudo dnf groupinstall -y "Virtualization"
             sudo dnf install -y virtio-win
+            sudo usermod -aG libvirt $USER      # add self to group so i can run without admin. Needed for remotely connecting with qemu
             ;;
 
         2)
             sudo dnf install -y corectrl
             ;;
         3)
-            sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
+            sudo dnf install -y okular k3b xwaylandvideobridge # needed for video sharing with discord on wayland
             cp 
             source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
             source $SCRIPTS_HOME/modules/shared.sh; "fextras"
