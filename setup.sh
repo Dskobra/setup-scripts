@@ -9,7 +9,18 @@ launch_menu(){
     echo "     Copyright (c) 2021-2023 Jordan Bottoms"
     echo "         Released under the MIT license"
     echo ""
-   $SCRIPTS_HOME/modules/dnf.sh
+    distro_check
+}
+
+distro_check(){
+    DISTRO=$(source /etc/os-release ; echo $ID)
+    if [ $DISTRO == "fedora" ]
+    then
+        $SCRIPTS_HOME/modules/dnf.sh
+    else
+        echo "Unsupported distro"
+    fi
+
 }
 
 VERSION="dev branch"
