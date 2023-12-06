@@ -232,13 +232,14 @@ extras_menu(){
             -O /etc/yum.repos.d/virtio-win.repo
             sudo dnf groupinstall -y "Virtualization"
             sudo dnf install -y virtio-win
+            sudo usermod -aG libvirt $USER      # add self to group so i can run without admin. Needed for remotely connecting with qemu
             ;;
 
         2)
             sudo dnf install -y corectrl
             ;;
         3)
-            sudo dnf install -y okular k3b v4l2loopback xwaylandvideobridge # needed for video sharing with discord on wayland without obs etc
+            sudo dnf install -y okular k3b xwaylandvideobridge # needed for video sharing with discord on wayland
             cp 
             source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
             source $SCRIPTS_HOME/modules/shared.sh; "fextras"
@@ -277,9 +278,9 @@ upgrade_menu(){
     echo ""
     echo "                   Menu"
     echo ""
-    echo "1. Remove RPMFusion       2. Upgrade"
-    echo "3. Reinstall RPMFusion    4. Reinstall Codecs"
-    echo "5. Reinstall Steam        6. Reinstall mugshot"
+    echo "1. Upgrade                2. Reinstall RPMFusion"
+    echo "3. Reinstall Codecs       4. Reinstall Steam"
+    echo "5. Update Rescue Kernel   6. Reinstall mugshot"
     echo "9. Main Menu              0. Exit"
     printf "Option: "
     read -r input
@@ -288,10 +289,6 @@ upgrade_menu(){
     case $input in
 
         1)
-            remove_rpmfusion
-            ;;
-
-        2)
             source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
@@ -305,19 +302,23 @@ upgrade_menu(){
             fi
             ;;
 
-        3)
+        2)
             sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
             upgrade_menu
             ;;
 
-        4)
+        3)
             install_codecs
             upgrade_menu
             ;;
 
-        5)
+        4)
             sudo dnf install -y steam steam-devices
             upgrade_menu
+            ;;
+
+        5)
+            update_rescue_kernel
             ;;
 
         6)
@@ -344,10 +345,10 @@ upgrade_menu(){
 
 remove_rpmfusion(){
     echo "================================================"
-    echo "RPMFusion and packages from there should be"
-    echo "removed prior to an upgrade. Personal settings"
-    echo "won't be removed (including steam library)."
-    echo "Do you sure you wish to remove them now?"
+    echo "In order for a successful upgrade to occur" 
+    echo "RPMFusion and packages from there need to be "
+    echo "removed. Settings will be left intact."
+    echo "Would you like to do this now?"
     echo "Type y/n or exit"
     echo "================================================"
     printf "Option: "
@@ -370,6 +371,16 @@ remove_rpmfusion(){
     else
 	    upgrade_menu
     fi
+}
+
+update_rescue_kernel(){
+    # For some reason the rescue kernel when updating to a newer Fedora release
+    # still lists as the last release in the boot menu. For example f38 after upgrading
+    # to f39. This will delete it then reinstall the kernel which will force a rebuild
+    # of the rescue image.
+    sudo rm /boot/initramfs-0-rescue*.img
+    sudo rm /boot/vmlinuz-0-rescue*
+    sudo dnf reinstall -y kernel*
 }
 
 autostart(){

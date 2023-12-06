@@ -3,8 +3,6 @@
 fbasic(){
     echo "Setting up flathub for user"
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install --user -y flathub org.keepassxc.KeePassXC
-    flatpak install --user -y flathub com.bitwarden.desktop
     flatpak install --user -y flathub com.dropbox.Client
 
 }
@@ -125,6 +123,5 @@ upgrade_check(){
     elif [ "$IS_RPMFUSION_FREE_PRESENT" = "PRESENT" ] && [ "$IS_RPMFUSION_NONFREE_PRESENT" = "PRESENT" ] && [ "$IS_FFMPEG_NONFREE_PRESENT" = "PRESENT" ] && [ "$IS_STEAM_PRESENT" = "PRESENT" ];
         then
             IS_UPGRADE_SAFE="NO"
-            echo "Check failed. Please make sure to run the "Remove RPMFusion" or "Wipe layers/overrides" option from the Upgrade steps."
     fi
 }
