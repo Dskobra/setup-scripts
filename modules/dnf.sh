@@ -292,13 +292,11 @@ upgrade_menu(){
             source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
-                    sudo dnf upgrade --refresh
-                    sudo dnf install dnf-plugin-system-upgrade
-                    sudo dnf system-upgrade download --releasever=39
-                    sudo dnf system-upgrade reboot
+                    upgrade_steps
             elif [ "$IS_UPGRADE_SAFE" = "NO" ];
                 then
                     remove_rpmfusion
+                    upgrade_distro
             fi
             ;;
 
@@ -361,7 +359,6 @@ remove_rpmfusion(){
         sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
         sudo dnf clean all
         sudo dnf update -y
-        sudo systemctl reboot
     elif [ $input == "n" ] || [ $input == "N" ]
     then
         echo "Chose not to remove."
@@ -372,6 +369,13 @@ remove_rpmfusion(){
 	    upgrade_menu
     fi
 }
+
+upgrade_distro(
+    sudo dnf upgrade --refresh
+    sudo dnf install dnf-plugin-system-upgrade
+    sudo dnf system-upgrade download --releasever=39
+    sudo dnf system-upgrade reboot
+)
 
 update_rescue_kernel(){
     # For some reason the rescue kernel when updating to a newer Fedora release
