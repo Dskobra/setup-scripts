@@ -104,7 +104,46 @@ install_mugshot(){
     sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
 }
 
+gaming_menu(){
+    echo "              --------"
+    echo "              |Gaming|"
+    echo "              --------"
+    echo ""
+    echo "                Menu"
+    echo "1. Game clients       2. Tools"
+    echo "9. Main Menu"
+    echo "0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            install_game_clients
+            ;;
+
+        2)
+            ;;
+
+        3)
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_menu
+            ;;
+            
+        esac
+        unset input
+}
+
 install_game_clients(){
+    echo "This will install lutris and steam."
     mkdir "$HOME"/Games
     mkdir "$HOME"/.config/MangoHud/
     sudo dnf install -y steam goverlay gamescope
@@ -418,4 +457,27 @@ cleanup(){
     sudo rm -r -f $SCRIPTS_HOME/temp
 }
 
+variant_check(){
+    VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
+    if [ $VARIANT == "" ]
+    then
+        echo "variant_id in os-release not set. Likely used the net/server install."
+        echo "Setting package manager to dnf."
+        PKMGR="dnf"
+    elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        echo "Fedora spin detected as $VARIANT"
+        echo "Setting package manager to dnf."
+        PKMGR="dnf"
+    elif [ $VARIANT == "kinoite" ]
+    then
+        echo "Fedora spin detected as $VARIANT"
+        echo "Setting package manager to rpm-ostree."
+        PKMGR="rpm-ostree"
+    fi
+    echo $variant
+}
+
+export VARIANT=""
+export PKMGR=""
 dnf_menu
