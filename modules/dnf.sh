@@ -7,7 +7,7 @@ dnf_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. Setup DE              2. Gaming"
+    echo "1. Basic Apps            2. Gaming"
     echo "3. Dev Tools             4. Extras"
     echo "5. Upgrade               0. Exit"
     printf "Option: "
@@ -83,6 +83,51 @@ install_basic_apps(){
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             install_mugshot         
     fi
+}
+
+basic_menu(){
+    echo "              --------------------"
+    echo "              |Basic Desktop Apps|"
+    echo "              --------------------"
+    echo ""
+    echo "Selection of apps for normal computer use."
+    echo ""
+    echo "                Menu"
+    echo "1. Office Apps    2. Media Playback"
+    echo "3. Nvidia Driver"
+    echo "9. Main Menu"
+    echo "0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            echo "This installs LibreOffice and QOwnNotes. Note will replace"
+            echo "the fedora provided LibreOffice with the flatpak version."
+            source $SCRIPTS_HOME/modules/shared.sh; "foffice"
+            ;;
+
+        2)
+            install_codecs      
+            ;;
+
+        3)
+            sudo $PKMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            basic_menu
+            ;;
+            
+        esac
+        unset input
 }
 
 install_codecs(){

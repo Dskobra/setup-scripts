@@ -36,6 +36,12 @@ futils(){
     flatpak install --user -y flathub com.github.tchx84.Flatseal
 }
 
+foffice(){
+    flatpak install --user -y flathub org.libreoffice.LibreOffice
+	flatpak install --user -y flathub org.qownnotes.QOwnNotes
+
+}
+
 fextras(){
     flatpak install --user -y flathub org.libreoffice.LibreOffice
 	flatpak install --user -y flathub org.qownnotes.QOwnNotes
