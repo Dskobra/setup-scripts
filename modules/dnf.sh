@@ -158,7 +158,7 @@ basic_menu(){
 install_xfce_features(){
     if [ "$PKMGR" = "rpm-ostree" ];
         then
-            echo ""
+            echo "Immutable variants are unsupported"
     elif [ "$PKMGR" = "dnf" ];
         then
             sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
