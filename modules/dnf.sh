@@ -498,12 +498,14 @@ remove_rpmfusion(){
     fi
 }
 
-upgrade_distro(
+upgrade_distro(){
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
     sudo dnf system-upgrade download --releasever=39
     sudo dnf system-upgrade reboot
-)
+}
+
+
 
 update_rescue_kernel(){
     # For some reason the rescue kernel when updating to a newer Fedora release
