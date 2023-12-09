@@ -7,9 +7,10 @@ dnf_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. Basic Apps            2. Gaming"
-    echo "3. Dev Tools             4. Extras"
-    echo "5. Upgrade               0. Exit"
+    echo "1. Basic Apps            2. Multimedia"
+    echo "3. Gaming                4. Dev Tools"
+    echo "5. Extras                6. Upgrade"
+    echo "0. Exit"
     printf "Option: "
     read -r input
 
@@ -21,20 +22,25 @@ dnf_menu(){
             ;;
 
         2)
-            gaming_menu
+            multimedia_menu
             dnf_menu
             ;;
 
         3)
-            dev_menu
+            gaming_menu
             dnf_menu
             ;;
 
         4)
-            extras_menu
+            dev_menu
+            dnf_menu
             ;;
 
         5)
+            extras_menu
+            ;;
+
+        6)
             upgrade_menu
             ;;
 
@@ -91,10 +97,9 @@ basic_menu(){
     echo "Selection of apps for normal computer use."
     echo ""
     echo "                Menu"
-    echo "1. Office Apps        2. VLC/Codecs"
-    echo "3. Kolourpaint        4. OBS Studio/OpenShot"
-    echo "5. KDE Extras         6. XFCE Extras"
-    echo "7. Corectrl(amd)      8. Nvidia Driver"
+    echo "1. Office Apps        5. KDE Extras"         
+    echo "6. XFCE Extras        7. Corectrl(amd)"
+    echo "8. Nvidia Driver"
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
     printf "Option: "
@@ -110,7 +115,7 @@ basic_menu(){
             ;;
 
         2)
-            install_codecs
+            install_codecs_dnf
             source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             source $SCRIPTS_HOME/modules/shared.sh; "fvlc"
             ;;
@@ -155,6 +160,53 @@ basic_menu(){
         unset input
 }
 
+multimedia_menu(){
+    echo "              ----------------"
+    echo "              |MultimediaApps|"
+    echo "              ----------------"
+    echo ""
+    echo "Selection of apps for normal computer use."
+    echo ""
+    echo "                   Menu"
+    echo "1. Codecs (non ostree)    2. Codecs (ostree)"
+    echo "3. Kolourpaint        4. OBS Studio/OpenShot"
+    echo "99. Help"
+    echo "100. Main Menu        0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            install_codecs_dnf
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            source $SCRIPTS_HOME/modules/shared.sh; "fvlc"
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            source $SCRIPTS_HOME/modules/shared.sh; "fpaint"
+            ;;
+        
+        3)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            basic_menu
+            ;;
+            
+        esac
+        unset input
+}
+
 install_xfce_features(){
     if [ "$PKMGR" = "rpm-ostree" ];
         then
@@ -168,13 +220,27 @@ install_xfce_features(){
     fi
 }
 
-install_codecs(){
+install_codecs_dnf(){
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
 	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
 
     sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
     sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+
+
+}
+
+install_codecs_ostree(){
+    sudo $PKMGR override remove libavcodec-free libavfilter-free \
+        libavformat-free libavutil-free libpostproc-free \
+        libswresample-free libswscale-free --install ffmpeg
+    
+    sudo $PKMGR install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg-libs.i686
+
+    sudo $PKMGR override remove mesa-va-drivers mesa-va-drivers-freeworld
+    sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
 
 
 }
