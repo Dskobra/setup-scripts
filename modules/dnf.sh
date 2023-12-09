@@ -504,8 +504,6 @@ upgrade_distro(){
     sudo dnf system-upgrade reboot
 }
 
-
-
 update_rescue_kernel(){
     # For some reason the rescue kernel when updating to a newer Fedora release
     # still lists as the last release in the boot menu. For example f38 after upgrading
@@ -571,4 +569,5 @@ variant_check(){
 
 export VARIANT=""
 export PKMGR=""
+variant_check
 dnf_menu
