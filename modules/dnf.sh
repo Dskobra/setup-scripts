@@ -8,8 +8,9 @@ dnf_menu(){
     echo "                 Menu"
     echo ""
     echo "1. Basic Apps            2. Multimedia"
-    echo "3. Gaming                4. Dev Tools"
-    echo "5. Extras                6. Upgrade"
+    echo "3. Internet              4. Gaming"
+    echo "5. Dev Tools             6. Extras"
+    echo "7. Upgrade"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -27,20 +28,23 @@ dnf_menu(){
             ;;
 
         3)
+            ;;
+
+        4)
             gaming_menu
             dnf_menu
             ;;
 
-        4)
+        5)
             dev_menu
             dnf_menu
             ;;
 
-        5)
+        6)
             extras_menu
             ;;
 
-        6)
+        7)
             upgrade_menu
             ;;
 
@@ -162,16 +166,16 @@ basic_menu(){
 
 multimedia_menu(){
     echo "              ----------------"
-    echo "              |MultimediaApps|"
+    echo "              |   Multimedia |"
     echo "              ----------------"
     echo ""
-    echo "Selection of apps for normal computer use."
+    echo "Various multimedia apps, codecs etc."
     echo ""
     echo "                   Menu"
     echo "1. Codecs (non ostree)    2. Codecs (ostree)"
-    echo "3. Kolourpaint        4. OBS Studio/OpenShot"
+    echo "3. Kolourpaint            4. OBS Studio/OpenShot"
     echo "99. Help"
-    echo "100. Main Menu        0. Exit"
+    echo "100. Main Menu            0. Exit"
     printf "Option: "
     read -r input
     
@@ -200,62 +204,49 @@ multimedia_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            basic_menu
+            multimedia_menu
             ;;
             
         esac
         unset input
 }
 
-install_xfce_features(){
-    if [ "$PKMGR" = "rpm-ostree" ];
-        then
-            echo "Immutable variants are unsupported"
-    elif [ "$PKMGR" = "dnf" ];
-        then
-            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
-            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot         
-    fi
-}
-
-install_codecs_dnf(){
-    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-    sudo dnf install -y gstreamer1-plugin-openh264 \
-	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-
-    sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
-    sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-
-
-}
-
-install_codecs_ostree(){
-    sudo $PKMGR override remove libavcodec-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free \
-        libswresample-free libswscale-free --install ffmpeg
+internet_menu(){
+    echo "              ----------------"
+    echo "              |   Internet   |"
+    echo "              ----------------"
+    echo ""
+    echo "placeholder"
+    echo ""
+    echo "                   Menu"
+    echo "99. Help"
+    echo "100. Main Menu            0. Exit"
+    printf "Option: "
+    read -r input
     
-    sudo $PKMGR install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg-libs.i686
+    case $input in
 
-    sudo $PKMGR override remove mesa-va-drivers mesa-va-drivers-freeworld
-    sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
+        1)
+            ;;
 
+        2)
+            ;;
+        
+        3)
+            ;;
 
-}
+        0)
+            exit
+            ;;
 
-install_mugshot(){
-    MUGSHOT_FOLDER="mugshot-0.4.3"
-    cd $SCRIPTS_HOME/temp/
-    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
-    tar -xvf $MUGSHOT_FOLDER.tar.gz
-    cd $MUGSHOT_FOLDER
-    sudo python3 setup.py install
-    sudo mkdir /usr/local/share/glib-2.0/schemas
-    cd data/glib-2.0/schemas/
-    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
-    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            internet_menu
+            ;;
+            
+        esac
+        unset input
 }
 
 gaming_menu(){
@@ -295,6 +286,69 @@ gaming_menu(){
         esac
         unset input
 }
+
+install_xfce_features(){
+    if [ "$PKMGR" = "rpm-ostree" ];
+        then
+            echo "Immutable variants are unsupported"
+    elif [ "$PKMGR" = "dnf" ];
+        then
+            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
+            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            install_mugshot         
+    fi
+}
+
+install_codecs_dnf(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+        sudo dnf install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+        sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
+        sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+    else
+    then
+        echo "Please use the codecs (ostree) option for immutable variants."
+    fi
+}
+
+install_codecs_ostree(){
+    if [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKMGR override remove libavcodec-free libavfilter-free \
+        libavformat-free libavutil-free libpostproc-free \
+        libswresample-free libswscale-free --install ffmpeg
+    
+        sudo $PKMGR install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg-libs.i686
+
+        sudo $PKMGR override remove mesa-va-drivers mesa-va-drivers-freeworld
+        sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
+    else
+    then
+        echo "Please use the codecs (dnf) option for regular Fedora spins."
+    fi
+
+
+
+}
+
+install_mugshot(){
+    MUGSHOT_FOLDER="mugshot-0.4.3"
+    cd $SCRIPTS_HOME/temp/
+    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
+    tar -xvf $MUGSHOT_FOLDER.tar.gz
+    cd $MUGSHOT_FOLDER
+    sudo python3 setup.py install
+    sudo mkdir /usr/local/share/glib-2.0/schemas
+    cd data/glib-2.0/schemas/
+    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
+    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
+}
+
+
 
 install_game_clients(){
     echo "This will install lutris and steam."
