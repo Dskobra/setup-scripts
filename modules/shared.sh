@@ -21,12 +21,17 @@ fgames(){
     flatpak run net.lutris.Lutris
 }
 
-fmedia(){
-    flatpak install --user -y flathub org.kde.kolourpaint
+fvlc(){
     flatpak install --user -y flathub org.videolan.VLC
+}
+
+fpaint(){
+    flatpak install --user -y flathub org.kde.kolourpaint
+}
+
+fmedia(){
     flatpak install --user -y flathub org.openshot.OpenShot
     flatpak install --user -y flathub com.obsproject.Studio
-
 }
 
 futils(){

@@ -56,7 +56,6 @@ dnf_menu(){
 
 install_basic_apps(){
     echo "Setting up rpmfusion and brave browser"
-	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 	sudo dnf update -y
@@ -93,10 +92,12 @@ basic_menu(){
     echo "Selection of apps for normal computer use."
     echo ""
     echo "                Menu"
-    echo "1. Office Apps    2. Media Playback"
-    echo "3. Nvidia Driver"
-    echo "9. Main Menu"
-    echo "0. Exit"
+    echo "1. Office Apps        2. VLC/Codecs"
+    echo "3. Kolourpaint        4. OBS Studio/OpenShot"
+    echo "5. KDE Extras         6. XFCE Extras"
+    echo "7. Corectrl(amd)      8. Nvidia Driver"
+    echo "99. Help"
+    echo "100. Main Menu        0. Exit"
     printf "Option: "
     read -r input
     
@@ -109,10 +110,31 @@ basic_menu(){
             ;;
 
         2)
-            install_codecs      
+            install_codecs
+            source $SCRIPTS_HOME/modules/shared.sh; "fvlc"
             ;;
 
         3)
+            source $SCRIPTS_HOME/modules/shared.sh; "fpaint"
+            ;;
+        
+        4)
+            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
+            ;;
+
+        5)
+            sudo $PKMGR install -y  ark gwenview kate
+            ;;
+        
+        6)
+            install_xfce_features
+            ;;
+
+        7)
+            sudo $PKMGR install -y corectrl
+            ;;
+
+        8)
             sudo $PKMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
             ;;
 
@@ -130,10 +152,28 @@ basic_menu(){
         unset input
 }
 
+install_xfce_features(){
+    if [ "$PKMGR" = "rpm-ostree" ];
+        then
+            echo ""
+    elif [ "$PKMGR" = "dnf" ];
+        then
+            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
+            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            install_mugshot         
+    fi
+}
+
 install_codecs(){
     sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
     sudo dnf install -y gstreamer1-plugin-openh264 \
 	mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+
+    sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
+    sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+
+
 }
 
 install_mugshot(){
@@ -320,7 +360,6 @@ extras_menu(){
             ;;
 
         2)
-            sudo dnf install -y corectrl
             ;;
         3)
             sudo dnf install -y okular k3b xwaylandvideobridge # needed for video sharing with discord on wayland
@@ -425,6 +464,11 @@ upgrade_menu(){
         unset input
 }
 
+install_rpmfusion(){
+    sudo $PKMGR -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+}
+
 remove_rpmfusion(){
     echo "================================================"
     echo "In order for a successful upgrade to occur" 
@@ -506,9 +550,9 @@ variant_check(){
     VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
     if [ $VARIANT == "" ]
     then
-        echo "variant_id in os-release not set. Likely used the net/server install."
-        echo "Setting package manager to dnf."
         PKMGR="dnf"
+        echo "variant_id in os-release not set. Likely used the net/server install."
+        echo "Package manager to $PKMGR."
     elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         echo "Fedora spin detected as $VARIANT"
@@ -516,9 +560,10 @@ variant_check(){
         PKMGR="dnf"
     elif [ $VARIANT == "kinoite" ]
     then
-        echo "Fedora spin detected as $VARIANT"
-        echo "Setting package manager to rpm-ostree."
         PKMGR="rpm-ostree"
+        echo "Fedora spin detected as $VARIANT"
+        echo "Package manager to $PKMGR."
+        echo "Please note this is experimental atm"
     fi
     echo $variant
 }
