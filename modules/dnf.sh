@@ -103,21 +103,25 @@ basic_menu(){
     case $input in
 
         1)
-            echo "This installs LibreOffice and QOwnNotes. Note will replace"
+            echo "This installs LibreOffice QOwnNotes and dropbox. Note will replace"
             echo "the fedora provided LibreOffice with the flatpak version."
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             source $SCRIPTS_HOME/modules/shared.sh; "foffice"
             ;;
 
         2)
             install_codecs
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             source $SCRIPTS_HOME/modules/shared.sh; "fvlc"
             ;;
 
         3)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             source $SCRIPTS_HOME/modules/shared.sh; "fpaint"
             ;;
         
         4)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
             ;;
 

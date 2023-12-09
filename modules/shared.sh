@@ -1,10 +1,8 @@
 #!/usr/bin/bash
 
-fbasic(){
+frepo(){
     echo "Setting up flathub for user"
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install --user -y flathub com.dropbox.Client
-
 }
 
 fgames(){
@@ -44,6 +42,7 @@ futils(){
 foffice(){
     flatpak install --user -y flathub org.libreoffice.LibreOffice
 	flatpak install --user -y flathub org.qownnotes.QOwnNotes
+    flatpak install --user -y flathub com.dropbox.Client
 
 }
 
