@@ -16,13 +16,12 @@ dnf_menu(){
     case $input in
 
         1)
-            install_basic_apps
+            basic_menu
             dnf_menu
             ;;
 
         2)
-            install_game_clients
-            source $SCRIPTS_HOME/modules/shared.sh; "game_profiles"
+            gaming_menu
             dnf_menu
             ;;
 
