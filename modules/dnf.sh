@@ -458,7 +458,7 @@ install_brave_browser(){
             cd $SCRIPTS_HOME/temp
             curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
             sudo chown root:root brave-browser.repo
-            sudo mv brave-browser.repo /etc/yum.repos/
+            sudo mv brave-browser.repo /etc/yum.repos.d/
 
             curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
             sudo chown root:root brave-core.asc
