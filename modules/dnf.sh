@@ -317,8 +317,9 @@ office_menu(){
     case $input in
 
         1)
-            echo "This installs LibreOffice QOwnNotes and dropbox. Note will replace"
-            echo "the fedora provided LibreOffice with the flatpak version."
+            echo "This installs replaces the fedora providede LibreOffice with"
+            echo "the flatpak version."
+            sudo $PKMGR remove -y libreoffice
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             ;;
 
