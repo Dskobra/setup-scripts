@@ -138,7 +138,8 @@ internet_menu(){
     echo ""
     echo ""
     echo "                   Menu"
-    echo "1. Brave Browser          2. Transmissionbt"
+    echo "1. Brave Browser          2. Dropbox"
+    echo "3. Transmissionbt"
     echo "99. Help"
     echo "100. Main Menu            0. Exit"
     printf "Option: "
@@ -152,6 +153,10 @@ internet_menu(){
             ;;
 
         2)
+            flatpak install --user -y flathub com.dropbox.Client
+            ;;
+
+        3)
             flatpak install --user -y flathub com.transmissionbt.Transmission
             internet_menu
             ;;
@@ -308,7 +313,7 @@ office_menu(){
     echo "Selection of apps for normal computer use."
     echo ""
     echo "                Menu"
-    echo "1. Libreoffice        5. QOwnNotes"         
+    echo "1. Libreoffice        2. QOwnNotes"         
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
     printf "Option: "
