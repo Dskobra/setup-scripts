@@ -97,7 +97,7 @@ basic_menu(){
     case $input in
 
         1)
-            sudo $PKMGR install -y  ark gwenview kate
+            sudo $PKMGR install -y gwenview kate
             ;;
         
         2)
