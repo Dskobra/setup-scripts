@@ -7,50 +7,60 @@ dnf_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. Basic Apps            2. Internet"
-    echo "3. Multimedia            4. Gaming"
-    echo "5. Office                6. Dev Tools"
-    echo "7. Extras                8. Upgrade"
+    echo "1. RPMFusion             2. Flatpak"
+    echo "3. Basic Apps            4. Internet"
+    echo "5. Multimedia            6. Gaming"
+    echo "7. Office                8. Dev Tools"
+    echo "9. Extras                10. Upgrade"
     echo "0. Exit"
     printf "Option: "
     read -r input
 
     case $input in
 
+
         1)
+            install_rpmfusion
+            ;;
+
+        2)
+            install_flatpak
+            ;;
+        
+        3)
             basic_menu
             dnf_menu
             ;;
 
-        2)
+        4)
             internet_menu
             dnf_menu
             ;;
 
-        3)
+        5)
             multimedia_menu
             dnf_menu
             ;;
 
-        4)
+        6)
             gaming_menu
             dnf_menu
             ;;
 
-        5)
+        7)
             office_menu
             dnf_menu
             ;;
-        5)
+        8)
             dev_menu
             dnf_menu
             ;;
 
-        6)
+        9)
             extras_menu
             ;;
 
-        7)
+        10)
             upgrade_menu
             ;;
 
@@ -121,7 +131,7 @@ internet_menu(){
     echo "              |   Internet   |"
     echo "              ----------------"
     echo ""
-    echo "placeholder"
+    echo ""
     echo ""
     echo "                   Menu"
     echo "1. Brave Browser          2. Transmissionbt"
@@ -138,9 +148,6 @@ internet_menu(){
 
         2)
             flatpak install --user -y flathub com.transmissionbt.Transmission
-            ;;
-        
-        3)
             ;;
 
         0)
@@ -176,16 +183,14 @@ multimedia_menu(){
     case $input in
 
         1)
-            install_codecs_dnf
+            install_codecs
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             flatpak install --user -y flathub org.videolan.VLC
             ;;
         
         3)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             flatpak install --user -y flathub com.obsproject.Studio
             ;;
 
@@ -218,7 +223,11 @@ gaming_menu(){
     echo "              --------"
     echo ""
     echo "                Menu"
-    echo "1. Game clients       2. Tools"
+    echo "1. Steam                  2. Lutris"
+    echo "3. Mangohud               4. Protontricks"
+    echo "5. ProtonUp Qt            6. Discord"
+    echo "7. Solitare               8. Minecraft"
+    echo "9. WoWUp"
     echo "9. Main Menu"
     echo "0. Exit"
     printf "Option: "
@@ -227,15 +236,46 @@ gaming_menu(){
     case $input in
 
         1)  
-            install_game_clients
+            sudo $PKMGR install -y steam gamescope
+            sudo modprobe xpad
             ;;
 
         2)
+            flatpak install --user -y flathub net.lutris.Lutris
+            flatpak run net.lutris.Lutris
+            mkdir "$HOME"/Games
+            
             ;;
 
         3)
+            mkdir "$HOME"/.config/MangoHud/
+            sudo $PKMGR install -y mangohud goverlay
+            flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
             ;;
 
+        4)
+            flatpak install --user -y flathub com.github.Matoking.protontricks
+            ;;
+        
+        5)
+            flatpak install --user -y flathub net.davidotek.pupgui2
+            ;;
+
+        6)
+            flatpak install --user -y flathub com.discordapp.Discord
+            ;;
+
+        7)
+            flatpak install --user -y flathub org.kde.kpat
+            ;;
+        
+        8)
+            source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
+            ;;
+
+        9)
+            source $SCRIPTS_HOME/modules/shared.sh; "wowup"
+            ;;
         0)
             exit
             ;;
@@ -440,18 +480,6 @@ install_mugshot(){
     sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
 }
 
-install_game_clients(){
-    echo "This will install lutris and steam."
-    mkdir "$HOME"/Games
-    mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y steam goverlay gamescope
-    sudo modprobe xpad
-
-    source $SCRIPTS_HOME/modules/shared.sh; "fgames"
-    source $SCRIPTS_HOME/modules/shared.sh; "wowup"
-    source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
-}
-
 install_limited_dev_tools(){
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
@@ -634,6 +662,11 @@ upgrade_menu(){
 install_rpmfusion(){
     sudo $PKMGR -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+}
+
+install_flatpak(){
+    sudo $PKMGR install -y flatpak
+    source $SCRIPTS_HOME/modules/shared.sh; "frepo"
 }
 
 remove_rpmfusion(){
