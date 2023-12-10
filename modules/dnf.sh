@@ -462,7 +462,6 @@ install_codecs(){
         sudo $PKMGR override remove mesa-va-drivers mesa-va-drivers-freeworld
         sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
     else
-    then
         echo "Unkown error has occured."
     fi
 }
@@ -660,7 +659,7 @@ upgrade_menu(){
 }
 
 install_rpmfusion(){
-    sudo $PKMGR -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    sudo $PKMGR install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 }
 
