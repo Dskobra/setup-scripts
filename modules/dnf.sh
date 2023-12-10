@@ -98,18 +98,22 @@ basic_menu(){
 
         1)
             sudo $PKMGR install -y gwenview kate
+            basic_menu
             ;;
         
         2)
             install_xfce_features
+             basic_menu
             ;;
 
         3)
             sudo $PKMGR install -y corectrl
+             basic_menu
             ;;
 
         4)
             sudo $PKMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+            basic_menu
             ;;
 
         0)
@@ -144,10 +148,12 @@ internet_menu(){
 
         1)
             install_brave_browser
+            internet_menu
             ;;
 
         2)
             flatpak install --user -y flathub com.transmissionbt.Transmission
+            internet_menu
             ;;
 
         0)
@@ -184,23 +190,27 @@ multimedia_menu(){
 
         1)
             install_codecs
+            multimedia_menu
             ;;
 
         2)
             flatpak install --user -y flathub org.videolan.VLC
+            multimedia_menu
             ;;
         
         3)
             flatpak install --user -y flathub com.obsproject.Studio
+            multimedia_menu
             ;;
 
         4)
             flatpak install --user -y flathub org.openshot.OpenShot
+            multimedia_menu
             ;;
 
         5)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             flatpak install --user -y flathub org.kde.kolourpaint
+            multimedia_menu
             ;;
 
         0)
@@ -309,12 +319,10 @@ office_menu(){
         1)
             echo "This installs LibreOffice QOwnNotes and dropbox. Note will replace"
             echo "the fedora provided LibreOffice with the flatpak version."
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
             flatpak install --user -y flathub org.qownnotes.QOwnNotes
             ;;
 
