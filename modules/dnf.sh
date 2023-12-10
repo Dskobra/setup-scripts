@@ -65,6 +65,7 @@ dnf_menu(){
             ;;
 
         0)
+            check_if_kinoite_on_exit
             exit
             ;;
 
@@ -777,6 +778,36 @@ cleanup(){
 	transmission-gtk transmission-qt \
 	compiz kpat
     sudo rm -r -f $SCRIPTS_HOME/temp
+}
+
+check_if_kinoite_on_exit(){
+    if [ $VARIANT == "kinoite" ]
+    then
+        confirm_reboot
+    fi
+}
+
+confirm_reboot(){
+    echo "================================================"
+    echo "Reboots are required to enable the new layers."
+    echo "Do you wish to reboot now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reboot."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    menu
+    fi
 }
 
 variant_check(){
