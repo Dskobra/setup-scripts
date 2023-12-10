@@ -450,7 +450,7 @@ install_codecs(){
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
         sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
         sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-    if [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "kinoite" ]
     then
         sudo $PKMGR override remove libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
