@@ -700,8 +700,14 @@ install_rpmfusion(){
 }
 
 install_flatpak(){
-    sudo $PKMGR install -y flatpak
-    source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "kinoite" ]
+    then
+        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+    elif [ $VARIANT == "xfce" ]
+    then
+        sudo $PKMGR install -y flatpak
+        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+    fi
 }
 
 remove_rpmfusion(){
