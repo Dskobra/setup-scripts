@@ -7,10 +7,10 @@ dnf_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. Basic Apps            2. Multimedia"
-    echo "3. Internet              4. Gaming"
-    echo "5. Dev Tools             6. Extras"
-    echo "7. Upgrade"
+    echo "1. Basic Apps            2. Internet"
+    echo "3. Multimedia            4. Gaming"
+    echo "5. Office                6. Dev Tools"
+    echo "7. Extras                8. Upgrade"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -23,11 +23,13 @@ dnf_menu(){
             ;;
 
         2)
-            multimedia_menu
+            internet_menu
             dnf_menu
             ;;
 
         3)
+            multimedia_menu
+            dnf_menu
             ;;
 
         4)
@@ -35,6 +37,10 @@ dnf_menu(){
             dnf_menu
             ;;
 
+        5)
+            office_menu
+            dnf_menu
+            ;;
         5)
             dev_menu
             dnf_menu
@@ -63,36 +69,6 @@ dnf_menu(){
         dnf_menu
 }
 
-install_basic_apps(){
-    echo "Setting up rpmfusion and brave browser"
-	sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-	sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-	sudo dnf update -y
-
-    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser \
-    plymouth-theme-spinfinity lm_sensors dnfdragora flatpak git     
-    
-    install_codecs
-	sudo plymouth-set-default-theme spinfinity -R
-
-    source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
-    source $SCRIPTS_HOME/modules/shared.sh; "futils"
-
-    test -f /usr/bin/plasma_session && DESKTOP=kde
-    test -f /usr/bin/xfce4-panel && DESKTOP=xfce
-    if [ "$DESKTOP" = "kde" ];
-        then
-            sudo dnf install -y  ark gwenview kate 
-    elif [ "$DESKTOP" = "xfce" ];
-        then
-            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
-            sudo dnf groupinstall -y "Firefox Web Browser"
-            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot         
-    fi
-}
-
 basic_menu(){
     echo "              --------------------"
     echo "              |Basic Desktop Apps|"
@@ -101,9 +77,8 @@ basic_menu(){
     echo "Selection of apps for normal computer use."
     echo ""
     echo "                Menu"
-    echo "1. Office Apps        5. KDE Extras"         
-    echo "6. XFCE Extras        7. Corectrl(amd)"
-    echo "8. Nvidia Driver"
+    echo "1. KDE Extras         2. XFCE Extras"        
+    echo "3. Corectrl(amd)      4. Nvidia Driver"
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
     printf "Option: "
@@ -112,41 +87,18 @@ basic_menu(){
     case $input in
 
         1)
-            echo "This installs LibreOffice QOwnNotes and dropbox. Note will replace"
-            echo "the fedora provided LibreOffice with the flatpak version."
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-            source $SCRIPTS_HOME/modules/shared.sh; "foffice"
-            ;;
-
-        2)
-            install_codecs_dnf
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-            source $SCRIPTS_HOME/modules/shared.sh; "fvlc"
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-            source $SCRIPTS_HOME/modules/shared.sh; "fpaint"
-            ;;
-        
-        4)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
-            ;;
-
-        5)
             sudo $PKMGR install -y  ark gwenview kate
             ;;
         
-        6)
+        2)
             install_xfce_features
             ;;
 
-        7)
+        3)
             sudo $PKMGR install -y corectrl
             ;;
 
-        8)
+        4)
             sudo $PKMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
             ;;
 
@@ -164,53 +116,6 @@ basic_menu(){
         unset input
 }
 
-multimedia_menu(){
-    echo "              ----------------"
-    echo "              |   Multimedia |"
-    echo "              ----------------"
-    echo ""
-    echo "Various multimedia apps, codecs etc."
-    echo ""
-    echo "                   Menu"
-    echo "1. Codecs (non ostree)    2. Codecs (ostree)"
-    echo "3. Kolourpaint            4. OBS Studio/OpenShot"
-    echo "99. Help"
-    echo "100. Main Menu            0. Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            install_codecs_dnf
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-            source $SCRIPTS_HOME/modules/shared.sh; "fvlc"
-            ;;
-
-        2)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-            source $SCRIPTS_HOME/modules/shared.sh; "fpaint"
-            ;;
-        
-        3)
-            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            multimedia_menu
-            ;;
-            
-        esac
-        unset input
-}
-
 internet_menu(){
     echo "              ----------------"
     echo "              |   Internet   |"
@@ -219,6 +124,7 @@ internet_menu(){
     echo "placeholder"
     echo ""
     echo "                   Menu"
+    echo "1. Brave Browser          2. Transmissionbt"
     echo "99. Help"
     echo "100. Main Menu            0. Exit"
     printf "Option: "
@@ -227,9 +133,11 @@ internet_menu(){
     case $input in
 
         1)
+            install_brave_browser
             ;;
 
         2)
+            flatpak install --user -y flathub com.transmissionbt.Transmission
             ;;
         
         3)
@@ -243,6 +151,61 @@ internet_menu(){
             echo -n "Unknown entry"
             echo ""
             internet_menu
+            ;;
+            
+        esac
+        unset input
+}
+
+multimedia_menu(){
+    echo "              -----------------------"
+    echo "              |   Multimedia Apps   |"
+    echo "              -----------------------"
+    echo ""
+    echo "Various multimedia apps, codecs etc."
+    echo ""
+    echo "                   Menu"
+    echo "1. Codecs                 2. VLC Media Player" 
+    echo "3. OBS Studio             4. OpenShot" 
+    echo "5. Kolourpaint"
+    echo "99. Help"
+    echo "100. Main Menu            0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            install_codecs_dnf
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            flatpak install --user -y flathub org.videolan.VLC
+            ;;
+        
+        3)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            flatpak install --user -y flathub com.obsproject.Studio
+            ;;
+
+        4)
+            flatpak install --user -y flathub org.openshot.OpenShot
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            flatpak install --user -y flathub org.kde.kolourpaint
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            multimedia_menu
             ;;
             
         esac
@@ -287,79 +250,46 @@ gaming_menu(){
         unset input
 }
 
-install_xfce_features(){
-    if [ "$PKMGR" = "rpm-ostree" ];
-        then
-            echo "Immutable variants are unsupported"
-    elif [ "$PKMGR" = "dnf" ];
-        then
-            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
-            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot         
-    fi
-}
-
-install_codecs_dnf(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
-    then
-        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo dnf install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-        sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
-        sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-    else
-    then
-        echo "Please use the codecs (ostree) option for immutable variants."
-    fi
-}
-
-install_codecs_ostree(){
-    if [ $VARIANT == "kinoite" ]
-    then
-        sudo $PKMGR override remove libavcodec-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free \
-        libswresample-free libswscale-free --install ffmpeg
+office_menu(){
+    echo "              -------------------"
+    echo "              |   Office Apps   |"
+    echo "              -------------------"
+    echo ""
+    echo "Selection of apps for normal computer use."
+    echo ""
+    echo "                Menu"
+    echo "1. Libreoffice        5. QOwnNotes"         
+    echo "99. Help"
+    echo "100. Main Menu        0. Exit"
+    printf "Option: "
+    read -r input
     
-        sudo $PKMGR install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg-libs.i686
+    case $input in
 
-        sudo $PKMGR override remove mesa-va-drivers mesa-va-drivers-freeworld
-        sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
-    else
-    then
-        echo "Please use the codecs (dnf) option for regular Fedora spins."
-    fi
+        1)
+            echo "This installs LibreOffice QOwnNotes and dropbox. Note will replace"
+            echo "the fedora provided LibreOffice with the flatpak version."
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            flatpak install --user -y flathub org.libreoffice.LibreOffice
+            ;;
 
+        2)
+            source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+            flatpak install --user -y flathub org.qownnotes.QOwnNotes
+            ;;
 
+        0)
+            exit
+            ;;
 
-}
-
-install_mugshot(){
-    MUGSHOT_FOLDER="mugshot-0.4.3"
-    cd $SCRIPTS_HOME/temp/
-    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
-    tar -xvf $MUGSHOT_FOLDER.tar.gz
-    cd $MUGSHOT_FOLDER
-    sudo python3 setup.py install
-    sudo mkdir /usr/local/share/glib-2.0/schemas
-    cd data/glib-2.0/schemas/
-    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
-    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
-}
-
-
-
-install_game_clients(){
-    echo "This will install lutris and steam."
-    mkdir "$HOME"/Games
-    mkdir "$HOME"/.config/MangoHud/
-    sudo dnf install -y steam goverlay gamescope
-    sudo modprobe xpad
-
-    source $SCRIPTS_HOME/modules/shared.sh; "fgames"
-    source $SCRIPTS_HOME/modules/shared.sh; "wowup"
-    source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            basic_menu
+            ;;
+            
+        esac
+        unset input
 }
 
 dev_menu(){
@@ -406,6 +336,120 @@ dev_menu(){
     esac
     unset input
     dev_menu
+}
+
+install_basic_apps(){
+    echo "Setting up rpmfusion and brave browser"
+
+    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser \
+    plymouth-theme-spinfinity lm_sensors dnfdragora flatpak git     
+    
+    install_codecs
+	sudo plymouth-set-default-theme spinfinity -R
+
+    source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
+    source $SCRIPTS_HOME/modules/shared.sh; "futils"
+
+    test -f /usr/bin/plasma_session && DESKTOP=kde
+    test -f /usr/bin/xfce4-panel && DESKTOP=xfce
+    if [ "$DESKTOP" = "kde" ];
+        then
+            sudo dnf install -y  ark gwenview kate 
+    elif [ "$DESKTOP" = "xfce" ];
+        then
+            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
+            sudo dnf groupinstall -y "Firefox Web Browser"
+            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            install_mugshot         
+    fi
+}
+
+install_xfce_features(){
+    if [ "$PKMGR" = "rpm-ostree" ];
+        then
+            echo "Immutable variants are unsupported"
+    elif [ "$PKMGR" = "dnf" ];
+        then
+            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
+            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            install_mugshot         
+    fi
+}
+
+install_brave_browser(){
+    if [ "$PKMGR" = "rpm-ostree" ];
+        then
+            cd $SCRIPTS_HOME/temp
+            curl -L -o https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+            sudo chmod root:root brave-browser.repo
+            sudo mv brave-browser.repo /etc/yum.repos/
+
+            curl -L -o https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+            sudo chmod root:root brave-core.asc
+            sudo mv brave-core.asc /etc/pki/rpm-gpg/
+
+            sudo $PKMGR refresh-md
+            sudo $PKMGR install -y brave-browser
+    elif [ "$PKMGR" = "dnf" ];
+        then
+            sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+            sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+            sudo dnf update -y
+            sudo $PKMGR install -y brave-browser
+   
+    fi
+}
+
+install_codecs(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+        sudo dnf install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+        sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
+        sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+    if [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKMGR override remove libavcodec-free libavfilter-free \
+        libavformat-free libavutil-free libpostproc-free \
+        libswresample-free libswscale-free --install ffmpeg
+    
+        sudo $PKMGR install -y gstreamer1-plugin-openh264 \
+	    mozilla-openh264 ffmpeg-libs.i686
+
+        sudo $PKMGR override remove mesa-va-drivers mesa-va-drivers-freeworld
+        sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
+    else
+    then
+        echo "Unkown error has occured."
+    fi
+}
+
+install_mugshot(){
+    MUGSHOT_FOLDER="mugshot-0.4.3"
+    cd $SCRIPTS_HOME/temp/
+    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
+    tar -xvf $MUGSHOT_FOLDER.tar.gz
+    cd $MUGSHOT_FOLDER
+    sudo python3 setup.py install
+    sudo mkdir /usr/local/share/glib-2.0/schemas
+    cd data/glib-2.0/schemas/
+    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
+    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
+}
+
+install_game_clients(){
+    echo "This will install lutris and steam."
+    mkdir "$HOME"/Games
+    mkdir "$HOME"/.config/MangoHud/
+    sudo dnf install -y steam goverlay gamescope
+    sudo modprobe xpad
+
+    source $SCRIPTS_HOME/modules/shared.sh; "fgames"
+    source $SCRIPTS_HOME/modules/shared.sh; "wowup"
+    source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
 }
 
 install_limited_dev_tools(){
