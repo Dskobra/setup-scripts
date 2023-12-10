@@ -116,6 +116,10 @@ basic_menu(){
             basic_menu
             ;;
 
+        100)
+            dnf_menu
+            ;;
+
         0)
             exit
             ;;
@@ -159,6 +163,10 @@ internet_menu(){
         3)
             flatpak install --user -y flathub com.transmissionbt.Transmission
             internet_menu
+            ;;
+
+        100)
+            dnf_menu
             ;;
 
         0)
@@ -216,6 +224,10 @@ multimedia_menu(){
         5)
             flatpak install --user -y flathub org.kde.kolourpaint
             multimedia_menu
+            ;;
+        
+        100)
+            dnf_menu
             ;;
 
         0)
@@ -291,6 +303,10 @@ gaming_menu(){
         9)
             source $SCRIPTS_HOME/modules/shared.sh; "wowup"
             ;;
+
+        100)
+            dnf_menu
+            ;;
         0)
             exit
             ;;
@@ -330,6 +346,10 @@ office_menu(){
 
         2)
             flatpak install --user -y flathub org.qownnotes.QOwnNotes
+            ;;
+
+        100)
+            dnf_menu
             ;;
 
         0)
@@ -436,12 +456,12 @@ install_brave_browser(){
     if [ "$PKMGR" = "rpm-ostree" ];
         then
             cd $SCRIPTS_HOME/temp
-            curl -L -o https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-            sudo chmod root:root brave-browser.repo
+            curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+            sudo chown root:root brave-browser.repo
             sudo mv brave-browser.repo /etc/yum.repos/
 
-            curl -L -o https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-            sudo chmod root:root brave-core.asc
+            curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+            sudo chown root:root brave-core.asc
             sudo mv brave-core.asc /etc/pki/rpm-gpg/
 
             sudo $PKMGR refresh-md
