@@ -483,6 +483,7 @@ install_codecs(){
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+
         sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
         sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
     elif [ $VARIANT == "kinoite" ]
@@ -490,11 +491,11 @@ install_codecs(){
         sudo $PKMGR override remove libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
         libswresample-free libswscale-free --install ffmpeg
-    
+        
         sudo $PKMGR install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg-libs.i686
+        mozilla-openh264
 
-        sudo $PKMGR override remove mesa-va-drivers mesa-va-drivers-freeworld
+        sudo $PKMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
         sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
     else
         echo "Unkown error has occured."
