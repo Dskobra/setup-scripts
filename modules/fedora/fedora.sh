@@ -11,7 +11,7 @@ fedora_menu(){
     echo "3. Basic Apps            4. Internet"
     echo "5. Multimedia            6. Gaming"
     echo "7. Office                8. Coding"
-    echo "9. Extras                10. Upgrade"
+    echo "15. Extras               16. Upgrade"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -65,6 +65,11 @@ fedora_menu(){
             ;;
 
         9)
+            utils_menu
+            fedora_menu
+            ;;
+
+        16)
             extras_menu
             ;;
 
@@ -541,6 +546,43 @@ ides_menu(){
     esac
     unset input
     coding_menu
+}
+
+utils_menu(){
+    echo "          -----------"
+    echo "          |Utilities|"
+    echo "          -----------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "1.            2. "
+    echo "100. Main Menu      0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            echo ""
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        cutils_menu
+        ;;
+        
+    esac
+    unset input
+    utils_menu
 }
 
 extras_menu(){
