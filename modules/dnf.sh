@@ -72,7 +72,7 @@ dnf_menu(){
             ;;
 
         0)
-            check_if_kinoite_on_exit
+            check_if_kinoite
             exit
             ;;
 
