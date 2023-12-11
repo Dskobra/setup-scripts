@@ -400,7 +400,7 @@ coding_menu(){
             ;;
 
         2)
-            ide
+            ides_menu
             ;;
         3)
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_github_desktop"
