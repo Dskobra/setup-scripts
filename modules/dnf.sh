@@ -10,7 +10,7 @@ dnf_menu(){
     echo "1. RPMFusion             2. Flatpak"
     echo "3. Basic Apps            4. Internet"
     echo "5. Multimedia            6. Gaming"
-    echo "7. Office                8. Dev Tools"
+    echo "7. Office                8. Coding"
     echo "9. Extras                10. Upgrade"
     echo "0. Exit"
     printf "Option: "
@@ -59,7 +59,7 @@ dnf_menu(){
             dnf_menu
             ;;
         8)
-            dev_menu
+            coding_menu
             dnf_menu
             ;;
 
@@ -346,7 +346,7 @@ office_menu(){
     case $input in
 
         1)
-            echo "This installs replaces the fedora providede LibreOffice with"
+            echo "This replaces the fedora providede LibreOffice with"
             echo "the flatpak version."
             sudo $PKMGR remove -y libreoffice
             flatpak install --user -y flathub org.libreoffice.LibreOffice
@@ -374,15 +374,15 @@ office_menu(){
         unset input
 }
 
-dev_menu(){
+coding_menu(){
     echo "          -----------"
-    echo "          |Dev Tools|"
+    echo "          | Coding  |"
     echo "          -----------"
     echo ""
     echo "              Menu"
     echo ""
-    echo "1. Limited Tools  2. Full Tools"
-    echo "3. Containers"
+    echo "1. C/C++           2. openJDK 17"
+    echo "3. GitHub Desktop"
     echo "9. Main Menu      0. Exit"
     printf "Option: "
     read -r input
@@ -394,11 +394,10 @@ dev_menu(){
             ;;
 
         2)
-            install_limited_dev_tools
-            install_full_dev_tools
+            sudo $PKMGR install -y java-17-openjdk-devel
             ;;
         3)
-            install_container_dev_tools
+            install_github_desktop
             ;;
 
         9)
@@ -484,6 +483,41 @@ install_brave_browser(){
     fi
 }
 
+install_github_desktop(){
+    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
+
+	sudo $PKMGR install -y git-gui github-desktop
+    if [ "$PKMGR" = "rpm-ostree" ];
+        then
+            cd $SCRIPTS_HOME/temp
+            curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
+            chown root:root shiftkey-gpg.key
+            sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
+            
+    elif [ "$PKMGR" = "dnf" ];
+        then
+            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+   
+    fi
+}
+
+install_vscodium(){
+    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
+	sudo $PKMGR install -y codium
+    if [ "$PKMGR" = "rpm-ostree" ];
+        then
+            cd $SCRIPTS_HOME/temp
+            
+            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+            chown root:root vscodium.gpg
+            sudo mv vscodium.gpg /etc/pki/rpm-gpg/       
+    elif [ "$PKMGR" = "dnf" ];
+        then
+            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+   
+    fi
+}
+
 install_codecs(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
@@ -536,12 +570,6 @@ install_mugshot(){
 }
 
 install_limited_dev_tools(){
-	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-    sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-	sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-
-	sudo dnf install -y codium git-gui github-desktop\
     toolbox distrobox 
     sudo systemctl enable podman
 }
