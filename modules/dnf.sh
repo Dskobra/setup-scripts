@@ -111,7 +111,7 @@ basic_menu(){
         
         2)
             install_xfce_features
-             basic_menu
+            basic_menu
             ;;
 
         3)
@@ -271,18 +271,19 @@ gaming_menu(){
     case $input in
 
         1)  
-            sudo $PKMGR install -y steam gamescope
+            install_steam
             sudo modprobe xpad
             ;;
 
         2)
+            mkdir "$HOME"/Games
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak run net.lutris.Lutris
-            mkdir "$HOME"/Games
+            mkdir "$HOME"/.config/MangoHud/
+            ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
         3)
-            mkdir "$HOME"/.config/MangoHud/
             sudo $PKMGR install -y mangohud goverlay
             flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
             ;;
@@ -503,6 +504,19 @@ install_codecs(){
 
         sudo $PKMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
         sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_steam(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKMGR install -y steam gamescope
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub com.valvesoftware.Steam
+        flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope
     else
         echo "Unkown error has occured."
     fi
