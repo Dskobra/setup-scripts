@@ -553,8 +553,6 @@ upgrade_menu(){
         unset input
 }
 
-
-
 export VARIANT=""
 export PKMGR=""
 source $SCRIPTS_HOME/modules/fedora/shared.sh; "variant_check"
