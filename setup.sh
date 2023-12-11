@@ -16,7 +16,7 @@ distro_check(){
     DISTRO=$(source /etc/os-release ; echo $ID)
     if [ $DISTRO == "fedora" ]
     then
-        $SCRIPTS_HOME/modules/dnf.sh
+        $SCRIPTS_HOME/modules/fedora/fedora.sh
     else
         echo "Unsupported distro"
     fi

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-dnf_menu(){
+fedora_menu(){
     echo "        ---------------------"
     echo "        |       Fedora      |"
     echo "        ---------------------"
@@ -20,47 +20,49 @@ dnf_menu(){
 
 
         1)
-            install_rpmfusion
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_rpmfusion"
             check_if_kinoite
-            dnf_menu
+            fedora_menu
             ;;
 
         2)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_rpmfusion"
             install_flatpak
-            dnf_menu
+            fedora_menu
             ;;
         
         3)
+            
             basic_menu
             check_if_kinoite
-            dnf_menu
+            fedora_menu
             ;;
 
         4)
             internet_menu
             check_if_kinoite
-            dnf_menu
+            fedora_menu
             ;;
 
         5)
             multimedia_menu
             check_if_kinoite
-            dnf_menu
+            fedora_menu
             ;;
 
         6)
             gaming_menu
             check_if_kinoite
-            dnf_menu
+            fedora_menu
             ;;
 
         7)
             office_menu
-            dnf_menu
+            fedora_menu
             ;;
         8)
             coding_menu
-            dnf_menu
+            fedora_menu
             ;;
 
         9)
@@ -79,12 +81,12 @@ dnf_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            dnf_menu
+            fedora_menu
             ;;
 
         esac
         unset input
-        dnf_menu
+        fedora_menu
 }
 
 basic_menu(){
@@ -125,7 +127,7 @@ basic_menu(){
             ;;
 
         100)
-            dnf_menu
+            fedora_menu
             ;;
 
         0)
@@ -174,7 +176,7 @@ internet_menu(){
             ;;
 
         100)
-            dnf_menu
+            fedora_menu
             ;;
 
         0)
@@ -235,7 +237,7 @@ multimedia_menu(){
             ;;
         
         100)
-            dnf_menu
+            fedora_menu
             ;;
 
         0)
@@ -313,7 +315,7 @@ gaming_menu(){
             ;;
 
         100)
-            dnf_menu
+            fedora_menu
             ;;
         0)
             exit
@@ -357,7 +359,7 @@ office_menu(){
             ;;
 
         100)
-            dnf_menu
+            fedora_menu
             ;;
 
         0)
@@ -381,9 +383,9 @@ coding_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "1. C/C++           2. openJDK 17"
+    echo "1. Runtimes/Compilers     2. IDEs"
     echo "3. GitHub Desktop"
-    echo "9. Main Menu      0. Exit"
+    echo "100. Main Menu      0. Exit"
     printf "Option: "
     read -r input
     
@@ -400,8 +402,8 @@ coding_menu(){
             install_github_desktop
             ;;
 
-        9)
-            dnf_menu
+        100)
+            fedora_menu
             ;;
 
         0)
@@ -417,201 +419,6 @@ coding_menu(){
     esac
     unset input
     dev_menu
-}
-
-install_basic_apps(){
-    echo "Setting up rpmfusion and brave browser"
-
-    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser \
-    plymouth-theme-spinfinity lm_sensors dnfdragora flatpak git     
-    
-    install_codecs
-	sudo plymouth-set-default-theme spinfinity -R
-
-    source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
-    source $SCRIPTS_HOME/modules/shared.sh; "futils"
-
-    test -f /usr/bin/plasma_session && DESKTOP=kde
-    test -f /usr/bin/xfce4-panel && DESKTOP=xfce
-    if [ "$DESKTOP" = "kde" ];
-        then
-            sudo dnf install -y  ark gwenview kate 
-    elif [ "$DESKTOP" = "xfce" ];
-        then
-            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
-            sudo dnf groupinstall -y "Firefox Web Browser"
-            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot         
-    fi
-}
-
-install_xfce_features(){
-    if [ "$PKMGR" = "rpm-ostree" ];
-        then
-            echo "Immutable variants are unsupported"
-    elif [ "$PKMGR" = "dnf" ];
-        then
-            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
-            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot         
-    fi
-}
-
-install_brave_browser(){
-    if [ "$PKMGR" = "rpm-ostree" ];
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-            sudo chown root:root brave-browser.repo
-            sudo mv brave-browser.repo /etc/yum.repos.d/
-
-            curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-            sudo chown root:root brave-core.asc
-            sudo mv brave-core.asc /etc/pki/rpm-gpg/
-
-            sudo $PKMGR refresh-md
-            sudo $PKMGR install -y brave-browser
-    elif [ "$PKMGR" = "dnf" ];
-        then
-            sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-            sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-            sudo dnf update -y
-            sudo $PKMGR install -y brave-browser
-   
-    fi
-}
-
-install_github_desktop(){
-    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-
-	sudo $PKMGR install -y git-gui github-desktop
-    if [ "$PKMGR" = "rpm-ostree" ];
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
-            chown root:root shiftkey-gpg.key
-            sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
-            
-    elif [ "$PKMGR" = "dnf" ];
-        then
-            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-   
-    fi
-}
-
-install_vscodium(){
-    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-	sudo $PKMGR install -y codium
-    if [ "$PKMGR" = "rpm-ostree" ];
-        then
-            cd $SCRIPTS_HOME/temp
-            
-            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            chown root:root vscodium.gpg
-            sudo mv vscodium.gpg /etc/pki/rpm-gpg/       
-    elif [ "$PKMGR" = "dnf" ];
-        then
-            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-   
-    fi
-}
-
-install_codecs(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
-    then
-        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo dnf install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-
-        sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
-        sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-    elif [ $VARIANT == "kinoite" ]
-    then
-        sudo $PKMGR override remove libavcodec-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free \
-        libswresample-free libswscale-free --install ffmpeg
-        
-        sudo $PKMGR install -y gstreamer1-plugin-openh264 \
-        mozilla-openh264
-
-        sudo $PKMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
-        sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_steam(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
-    then
-        sudo $PKMGR install -y steam gamescope
-    elif [ $VARIANT == "kinoite" ]
-    then
-        flatpak install --user -y flathub com.valvesoftware.Steam
-        flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_mugshot(){
-    MUGSHOT_FOLDER="mugshot-0.4.3"
-    cd $SCRIPTS_HOME/temp/
-    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
-    tar -xvf $MUGSHOT_FOLDER.tar.gz
-    cd $MUGSHOT_FOLDER
-    sudo python3 setup.py install
-    sudo mkdir /usr/local/share/glib-2.0/schemas
-    cd data/glib-2.0/schemas/
-    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
-    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
-}
-
-install_limited_dev_tools(){
-    toolbox distrobox 
-    sudo systemctl enable podman
-}
-
-install_full_dev_tools(){
-    sudo dnf groupinstall -y "C Development Tools and libraries"
-    sudo dnf groupinstall -y "Development Tools"
-    sudo dnf groupinstall -y "RPM Development Tools"
-
-	sudo dnf install -y java-17-openjdk-devel openjfx python3-devel \
-    python3-idle 
-
-    cd $SCRIPTS_HOME/temp
-    SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
-    curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    sudo rpm -i $SCENE_BUILDER
-
-    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
-    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
-
-    tar -xvf $ECLIPSE
-    ./eclipse-installer/eclipse-inst
-    
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
-}
-
-install_container_dev_tools(){
-    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-    sudo dnf groupinstall -y "C Development Tools and libraries"
-    sudo dnf groupinstall -y "Development Tools"
-    sudo dnf groupinstall -y "RPM Development Tools"
-
-    sudo dnf install -y python python3-devel java-17-openjdk-devel
-
-
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
-	
-
 }
 
 extras_menu(){
@@ -655,7 +462,7 @@ extras_menu(){
 
         
         9)
-            dnf_menu
+            fedora_menu
             ;;
         0)
             exit
@@ -725,7 +532,7 @@ upgrade_menu(){
             ;;
 
         9)
-            dnf_menu
+            fedora_menu
             ;;
             
         0)
@@ -740,99 +547,6 @@ upgrade_menu(){
             
         esac
         unset input
-}
-
-install_rpmfusion(){
-    sudo $PKMGR install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
-}
-
-install_flatpak(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "kinoite" ]
-    then
-        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-    elif [ $VARIANT == "xfce" ]
-    then
-        sudo $PKMGR install -y flatpak
-        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-    fi
-}
-
-remove_rpmfusion(){
-    echo "================================================"
-    echo "In order for a successful upgrade to occur" 
-    echo "RPMFusion and packages from there need to be "
-    echo "removed. Settings will be left intact."
-    echo "Would you like to do this now?"
-    echo "Type y/n or exit"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input == "y" ] || [ $input == "Y" ]
-    then
-        sudo dnf remove -y steam steam-devices
-        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
-        sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
-        sudo dnf clean all
-        sudo dnf update -y
-    elif [ $input == "n" ] || [ $input == "N" ]
-    then
-        echo "Chose not to remove."
-    elif [ $input == "exit" ]
-    then
-	    exit
-    else
-	    upgrade_menu
-    fi
-}
-
-upgrade_distro(){
-    sudo dnf upgrade --refresh
-    sudo dnf install dnf-plugin-system-upgrade
-    sudo dnf system-upgrade download --releasever=39
-    sudo dnf system-upgrade reboot
-}
-
-update_rescue_kernel(){
-    # For some reason the rescue kernel when updating to a newer Fedora release
-    # still lists as the last release in the boot menu. For example f38 after upgrading
-    # to f39. This will delete it then reinstall the kernel which will force a rebuild
-    # of the rescue image.
-    sudo rm /boot/initramfs-0-rescue*.img
-    sudo rm /boot/vmlinuz-0-rescue*
-    sudo dnf reinstall -y kernel*
-}
-
-autostart(){
-    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
-    DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
-    DOVERLAY="/home/$USER/.local/share/flatpak/exports/share/applications/io.github.trigg.discover_overlay.desktop"
-    STEAM="/usr/share/applications/steam.desktop"
-    CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
-    XWVIDEO_BRIDGE="/usr/share/applications/org.kde.xwaylandvideobridge.desktop"
-
-    [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
-    [ -f $DOVERLAY ] && { echo "Discord Overlay was found. Adding to startup."; cp "$DOVERLAY"  /home/$USER/.config/autostart/io.github.trigg.discover_overlay.desktop; }
-    [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
-    [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
-    [ -f $XWVIDEO_BRIDGE ] && { echo "XWaylandVideoBridge was found. Adding to startup."; cp "$XWVIDEO_BRIDGE"  /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop; }
-
-}
-
-cleanup(){
-	# Installing Fedora 36 using the everything installer to install the mate desktop with my normal package groups "Development Tools", 
-	# "C Development Tools and libraries" and "RPM Development Tools" results in systemd-oomd-defaults also being installed.
-	# This creates a package conflict with mate-desktop and mate-desktop-configs when updating. Research shows this is an 
-	# uneeded/extra package as Fedora uses earlyoom. So removing systemd-oomd-defaults is perfectly safe. Unsure what causes this
-	# to be installed.
-	sudo dnf remove -y libreoffice-core \
-	gnome-shell-extension-gamemode gnome-text-editor \
-	kmahjongg kmines systemd-oomd-defaults \
-	transmission-gtk transmission-qt \
-	compiz kpat
-    sudo rm -r -f $SCRIPTS_HOME/temp
 }
 
 check_if_kinoite(){
@@ -890,4 +604,4 @@ variant_check(){
 export VARIANT=""
 export PKMGR=""
 variant_check
-dnf_menu
+fedora_menu
