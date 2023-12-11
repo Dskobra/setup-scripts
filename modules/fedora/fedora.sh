@@ -26,13 +26,12 @@ fedora_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_rpmfusion"
-            install_flatpak
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_flatpak"
             fedora_menu
             ;;
         
         3)
-            
+
             basic_menu
             check_if_kinoite
             fedora_menu
@@ -112,7 +111,7 @@ basic_menu(){
             ;;
         
         2)
-            install_xfce_features
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_xfce_features"
             basic_menu
             ;;
 
@@ -142,6 +141,7 @@ basic_menu(){
             
         esac
         unset input
+        basic_menu
 }
 
 internet_menu(){
@@ -162,7 +162,7 @@ internet_menu(){
     case $input in
 
         1)
-            install_brave_browser
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_brave_browser"
             internet_menu
             ;;
 
@@ -191,6 +191,7 @@ internet_menu(){
             
         esac
         unset input
+        internet_menu
 }
 
 multimedia_menu(){
@@ -212,7 +213,7 @@ multimedia_menu(){
     case $input in
 
         1)
-            install_codecs
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_codecs"
             multimedia_menu
             ;;
 
@@ -252,6 +253,7 @@ multimedia_menu(){
             
         esac
         unset input
+        multimedia_menu
 }
 
 gaming_menu(){
@@ -273,15 +275,15 @@ gaming_menu(){
     case $input in
 
         1)  
-            install_steam
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_steam"
             sudo modprobe xpad
             ;;
 
         2)
             mkdir "$HOME"/Games
+            mkdir "$HOME"/.config/MangoHud/
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak run net.lutris.Lutris
-            mkdir "$HOME"/.config/MangoHud/
             ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
@@ -329,6 +331,7 @@ gaming_menu(){
             
         esac
         unset input
+        gaming_menu
 }
 
 office_menu(){
@@ -369,11 +372,12 @@ office_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            basic_menu
+            office_menu
             ;;
             
         esac
         unset input
+        office_menu
 }
 
 coding_menu(){
@@ -399,7 +403,7 @@ coding_menu(){
             sudo $PKMGR install -y java-17-openjdk-devel
             ;;
         3)
-            install_github_desktop
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_github_desktop"
             ;;
 
         100)
@@ -413,12 +417,12 @@ coding_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        dev_menu
+        coding_menu
         ;;
         
     esac
     unset input
-    dev_menu
+    coding_menu
 }
 
 extras_menu(){
