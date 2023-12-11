@@ -21,29 +21,36 @@ dnf_menu(){
 
         1)
             install_rpmfusion
+            check_if_kinoite
+            dnf_menu
             ;;
 
         2)
             install_flatpak
+            dnf_menu
             ;;
         
         3)
             basic_menu
+            check_if_kinoite
             dnf_menu
             ;;
 
         4)
             internet_menu
+            check_if_kinoite
             dnf_menu
             ;;
 
         5)
             multimedia_menu
+            check_if_kinoite
             dnf_menu
             ;;
 
         6)
             gaming_menu
+            check_if_kinoite
             dnf_menu
             ;;
 
@@ -256,7 +263,7 @@ gaming_menu(){
     echo "5. ProtonUp Qt            6. Discord"
     echo "7. Solitare               8. Minecraft"
     echo "9. WoWUp"
-    echo "9. Main Menu"
+    echo "100. Main Menu"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -272,7 +279,6 @@ gaming_menu(){
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak run net.lutris.Lutris
             mkdir "$HOME"/Games
-            
             ;;
 
         3)
@@ -787,7 +793,7 @@ cleanup(){
     sudo rm -r -f $SCRIPTS_HOME/temp
 }
 
-check_if_kinoite_on_exit(){
+check_if_kinoite(){
     if [ $VARIANT == "kinoite" ]
     then
         confirm_reboot
