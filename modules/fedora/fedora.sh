@@ -387,7 +387,7 @@ coding_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "1. Runtimes/Compilers     2. IDEs"
+    echo "1. Languages        2. IDEs"
     echo "3. GitHub Desktop"
     echo "100. Main Menu      0. Exit"
     printf "Option: "
@@ -396,7 +396,7 @@ coding_menu(){
     case $input in
 
         1)
-            install_limited_dev_tools
+            languages_menu
             ;;
 
         2)
@@ -404,6 +404,57 @@ coding_menu(){
             ;;
         3)
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_github_desktop"
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        coding_menu
+        ;;
+        
+    esac
+    unset input
+    coding_menu
+}
+
+languages_menu(){
+    echo "          -----------"
+    echo "          | Coding  |"
+    echo "          -----------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "1. C/C++            2. openJDK 17"
+    echo "3. NodejS LTS       4. Python"
+    echo "100. Main Menu      0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_c_cpp"
+            ;;
+
+        2)
+            sudo $PKMGR install -y java-17-openjdk-devel
+            ;;
+        3)
+            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	        source ~/.bashrc
+	        nvm install lts/*
+            ;;
+
+        4)
+            sudo $PKMGR install -y python3-devel
             ;;
 
         100)

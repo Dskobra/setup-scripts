@@ -179,6 +179,20 @@ install_full_dev_tools(){
 	nvm install lts/*
 }
 
+install_c_cpp(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo dnf groupinstall -y "C Development Tools and libraries"
+    elif [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKMGR install -y gcc-g++ autoconf automake bison\
+        flex libtool m4 valgrind byacc ccache cscope indent\
+        ltrace perf strace
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_eclipse(){
     cd $SCRIPTS_HOME/temp
     ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
