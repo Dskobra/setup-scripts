@@ -486,7 +486,7 @@ ides_menu(){
     echo "1. VSCodium         2. Geany"
     echo "3. Eclipse          4. Python IDLE"
     echo "5. Eric             6. Bluefish"
-    echo "7. C"
+    echo "7. Codeblocks       8. Scene Builder"
     echo "100. Main Menu      0. Exit"
     printf "Option: "
     read -r input
@@ -518,6 +518,13 @@ ides_menu(){
 
         7)
             sudo $PKMGR install -y codeblocks codeblocoks-contrib-devel
+            ;;
+
+        8)
+            cd $SCRIPTS_HOME/temp
+            SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
+            curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
+            sudo rpm -i $SCENE_BUILDER
             ;;
 
         100)
