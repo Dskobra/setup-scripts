@@ -193,6 +193,21 @@ install_c_cpp(){
     fi
 }
 
+install_scene_builder(){
+    cd $SCRIPTS_HOME/temp
+    SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
+    curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo rpm -i $SCENE_BUILDER
+    elif [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKMGR install -y $SCENE_BUILDER
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_eclipse(){
     cd $SCRIPTS_HOME/temp
     ECLIPSE="eclipse-inst-jre-linux64.tar.gz"

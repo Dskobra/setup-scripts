@@ -517,14 +517,11 @@ ides_menu(){
             ;;
 
         7)
-            sudo $PKMGR install -y codeblocks codeblocoks-contrib-devel
+            sudo $PKMGR install -y codeblocks codeblocks-contrib-devel
             ;;
 
         8)
-            cd $SCRIPTS_HOME/temp
-            SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
-            curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-            sudo rpm -i $SCENE_BUILDER
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_scene_builder"
             ;;
 
         100)
