@@ -553,59 +553,9 @@ upgrade_menu(){
         unset input
 }
 
-check_if_kinoite(){
-    if [ $VARIANT == "kinoite" ]
-    then
-        confirm_reboot
-    fi
-}
 
-confirm_reboot(){
-    echo "================================================"
-    echo "Reboots are required to enable the new layers."
-    echo "Do you wish to reboot now?"
-    echo "Type y/n or exit"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input == "y" ] || [ $input == "Y" ]
-    then
-        sudo systemctl reboot
-    elif [ $input == "n" ] || [ $input == "N" ]
-    then
-        echo "Chose not to reboot."
-    elif [ $input == "exit" ]
-    then
-	    exit
-    else
-	    menu
-    fi
-}
-
-variant_check(){
-    VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
-    if [ $VARIANT == "" ]
-    then
-        PKMGR="dnf"
-        echo "variant_id in os-release not set. Likely used the net/server install."
-        echo "Package manager to $PKMGR."
-    elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
-    then
-        echo "Fedora spin detected as $VARIANT"
-        echo "Setting package manager to dnf."
-        PKMGR="dnf"
-    elif [ $VARIANT == "kinoite" ]
-    then
-        PKMGR="rpm-ostree"
-        echo "Fedora spin detected as $VARIANT"
-        echo "Package manager to $PKMGR."
-        echo "Please note this is experimental atm"
-    fi
-    echo $variant
-}
 
 export VARIANT=""
 export PKMGR=""
-variant_check
+source $SCRIPTS_HOME/modules/fedora/shared.sh; "variant_check"
 fedora_menu
