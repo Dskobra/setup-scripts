@@ -516,7 +516,7 @@ install_steam(){
     elif [ $VARIANT == "kinoite" ]
     then
         flatpak install --user -y flathub com.valvesoftware.Steam
-        flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope
+        flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
     else
         echo "Unkown error has occured."
     fi
