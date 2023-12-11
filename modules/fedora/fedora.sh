@@ -11,6 +11,7 @@ fedora_menu(){
     echo "3. Basic Apps            4. Internet"
     echo "5. Multimedia            6. Gaming"
     echo "7. Office                8. Coding"
+    echo "9. Utilities"
     echo "15. Extras               16. Upgrade"
     echo "0. Exit"
     printf "Option: "
