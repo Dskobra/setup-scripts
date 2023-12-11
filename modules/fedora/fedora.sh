@@ -400,7 +400,7 @@ coding_menu(){
             ;;
 
         2)
-            sudo $PKMGR install -y java-17-openjdk-devel
+            ide
             ;;
         3)
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_github_desktop"
@@ -455,6 +455,69 @@ languages_menu(){
 
         4)
             sudo $PKMGR install -y python3-devel
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        coding_menu
+        ;;
+        
+    esac
+    unset input
+    coding_menu
+}
+
+ides_menu(){
+    echo "          -----------"
+    echo "          |  IDE's  |"
+    echo "          -----------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "1. VSCodium         2. Geany"
+    echo "3. Eclipse          4. Python IDLE"
+    echo "5. Eric             6. Bluefish"
+    echo "7. C"
+    echo "100. Main Menu      0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_vscodium"
+            ;;
+
+        2)
+            flatpak install --user -y flathub org.geany.Geany
+            ;;
+        3)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_eclipse"
+            ;;
+
+        4)
+            sudo $PKMGR install -y python3-idle
+            ;;
+
+        5)
+            sudo $PKMGR install -y eric
+            ;;
+
+        6)
+            sudo $PKMGR install -y bluefish
+            ;;
+
+        7)
+            sudo $PKMGR install -y codeblocks codeblocoks-contrib-devel
             ;;
 
         100)
