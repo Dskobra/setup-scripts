@@ -484,9 +484,9 @@ ides_menu(){
     echo "              Menu"
     echo ""
     echo "1. VSCodium         2. Geany"
-    echo "3. Eclipse          4. Python IDLE"
-    echo "5. Eric             6. Bluefish"
-    echo "7. Codeblocks       8. Scene Builder"
+    echo "3. Python IDLE      4.Eric "
+    echo "5. Bluefish         6. Eclipse" 
+    echo "7. Scene Builder    8. Codeblocks"
     echo "100. Main Menu      0. Exit"
     printf "Option: "
     read -r input
@@ -501,27 +501,27 @@ ides_menu(){
             flatpak install --user -y flathub org.geany.Geany
             ;;
         3)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_eclipse"
-            ;;
-
-        4)
             sudo $PKMGR install -y python3-idle
             ;;
 
-        5)
+        4)
             sudo $PKMGR install -y eric
             ;;
 
+        5)
+            sudo $PKMGR install -y bluefish  
+            ;;
+
         6)
-            sudo $PKMGR install -y bluefish
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_eclipse"
             ;;
 
         7)
-            sudo $PKMGR install -y codeblocks codeblocks-contrib-devel
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_scene_builder"
             ;;
 
         8)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_scene_builder"
+            sudo $PKMGR install -y codeblocks codeblocks-contrib-devel
             ;;
 
         100)
