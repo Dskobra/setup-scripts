@@ -84,17 +84,17 @@ install_github_desktop(){
 
 install_vscodium(){
     printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-	sudo $PKMGR install -y codium
     if [ "$PKMGR" = "rpm-ostree" ];
         then
             cd $SCRIPTS_HOME/temp
-            
             curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
             chown root:root vscodium.gpg
-            sudo mv vscodium.gpg /etc/pki/rpm-gpg/       
+            sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
+            sudo $PKMGR install -y codium      
     elif [ "$PKMGR" = "dnf" ];
         then
             sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+            sudo $PKMGR install -y codium
    
     fi
 }
