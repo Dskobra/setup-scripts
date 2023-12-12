@@ -601,11 +601,15 @@ utils_menu(){
             ;;
 
         5)
-            	flatpak install --user -y flathub org.gtkhash.gtkhash
+            flatpak install --user -y flathub org.gtkhash.gtkhash
             ;;
 
         6)
-                flatpak install --user -y flathub com.github.tchx84.Flatseal
+            flatpak install --user -y flathub com.github.tchx84.Flatseal
+            ;;
+        
+        7)
+            install_virtualization
             ;;
 
         100)
