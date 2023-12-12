@@ -12,7 +12,6 @@ fedora_menu(){
     echo "5. Multimedia            6. Gaming"
     echo "7. Office                8. Coding"
     echo "9. Utilities"
-    echo "15. Personalization               16. Upgrade"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -586,7 +585,7 @@ utils_menu(){
     case $input in
 
         1)
-            echo ""
+            flatpak install --user -y flathub org.fedoraproject.MediaWriter
             ;;
 
         2)
@@ -626,76 +625,6 @@ utils_menu(){
     esac
     unset input
     utils_menu
-}
-
-upgrade_menu(){
-    echo "              ---------------"
-    echo "              |Upgrade Steps|"
-    echo "              ---------------"
-    echo ""
-    echo "                   Menu"
-    echo ""
-    echo "1. Upgrade                2. Reinstall RPMFusion"
-    echo "3. Reinstall Codecs       4. Reinstall Steam"
-    echo "5. Update Rescue Kernel   6. Reinstall mugshot"
-    echo "9. Main Menu              0. Exit"
-    printf "Option: "
-    read -r input
-    IS_UPGRADE_SAFE="NO"
-
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
-            if [ "$IS_UPGRADE_SAFE" = "YES" ];
-                then
-                    upgrade_steps
-            elif [ "$IS_UPGRADE_SAFE" = "NO" ];
-                then
-                    remove_rpmfusion
-                    upgrade_distro
-            fi
-            ;;
-
-        2)
-            sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-            upgrade_menu
-            ;;
-
-        3)
-            install_codecs
-            upgrade_menu
-            ;;
-
-        4)
-            sudo dnf install -y steam steam-devices
-            upgrade_menu
-            ;;
-
-        5)
-            update_rescue_kernel
-            ;;
-
-        6)
-            install_mugshot
-            ;;
-
-        9)
-            fedora_menu
-            ;;
-            
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            upgrade_menu
-            ;;
-            
-        esac
-        unset input
 }
 
 export VARIANT=""

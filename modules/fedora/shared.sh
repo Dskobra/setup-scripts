@@ -36,7 +36,7 @@ install_xfce_features(){
             sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
             sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
             flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot         
+            install_mugshot    
     fi
 }
 
@@ -150,11 +150,6 @@ install_mugshot(){
     sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
 }
 
-install_limited_dev_tools(){
-    toolbox distrobox 
-    sudo systemctl enable podman
-}
-
 install_c_cpp(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
@@ -235,52 +230,6 @@ install_flatpak(){
         sudo $PKMGR install -y flatpak
         source $SCRIPTS_HOME/modules/shared.sh; "frepo"
     fi
-}
-
-remove_rpmfusion(){
-    echo "================================================"
-    echo "In order for a successful upgrade to occur" 
-    echo "RPMFusion and packages from there need to be "
-    echo "removed. Settings will be left intact."
-    echo "Would you like to do this now?"
-    echo "Type y/n or exit"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input == "y" ] || [ $input == "Y" ]
-    then
-        sudo dnf remove -y steam steam-devices
-        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
-        sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
-        sudo dnf clean all
-        sudo dnf update -y
-    elif [ $input == "n" ] || [ $input == "N" ]
-    then
-        echo "Chose not to remove."
-    elif [ $input == "exit" ]
-    then
-	    exit
-    else
-	    upgrade_menu
-    fi
-}
-
-upgrade_distro(){
-    sudo dnf upgrade --refresh
-    sudo dnf install dnf-plugin-system-upgrade
-    sudo dnf system-upgrade download --releasever=39
-    sudo dnf system-upgrade reboot
-}
-
-update_rescue_kernel(){
-    # For some reason the rescue kernel when updating to a newer Fedora release
-    # still lists as the last release in the boot menu. For example f38 after upgrading
-    # to f39. This will delete it then reinstall the kernel which will force a rebuild
-    # of the rescue image.
-    sudo rm /boot/initramfs-0-rescue*.img
-    sudo rm /boot/vmlinuz-0-rescue*
-    sudo dnf reinstall -y kernel*
 }
 
 check_if_kinoite(){
