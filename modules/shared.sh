@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+frepo(){
+    echo "Setting up flathub for user"
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+}
 wowup(){
     WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.10.0/WowUp-CF-2.10.0.AppImage
     WOWUPBINARY=WowUp-CF-2.10.0.AppImage
