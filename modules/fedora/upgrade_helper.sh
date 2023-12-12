@@ -19,14 +19,14 @@ dnf_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
+            upgrade_check
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
                     upgrade_steps
             elif [ "$IS_UPGRADE_SAFE" = "NO" ];
                 then
                     remove_rpmfusion
-                    upgrade_distro
+                    dnf_upgrade
             fi
             ;;
 
@@ -61,44 +61,15 @@ dnf_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            upgrade_menu
+            dnf_menu
             ;;
             
         esac
         unset input
-        upgrade_menu
+        dnf_menu
 }
 
-remove_rpmfusion(){
-    echo "================================================"
-    echo "In order for a successful upgrade to occur" 
-    echo "RPMFusion and packages from there need to be "
-    echo "removed. Settings will be left intact."
-    echo "Would you like to do this now?"
-    echo "Type y/n or exit"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input == "y" ] || [ $input == "Y" ]
-    then
-        sudo dnf remove -y steam steam-devices
-        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
-        sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
-        sudo dnf clean all
-        sudo dnf update -y
-    elif [ $input == "n" ] || [ $input == "N" ]
-    then
-        echo "Chose not to remove."
-    elif [ $input == "exit" ]
-    then
-	    exit
-    else
-	    upgrade_menu
-    fi
-}
-
-dnf_upgrade_(){
+dnf_upgrade(){
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
     sudo dnf system-upgrade download --releasever=39
@@ -135,7 +106,7 @@ kinoite_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
+            upgrade_check 
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
                     perform_upgrade
@@ -146,7 +117,7 @@ kinoite_menu(){
             ;;
         
         9)
-            ostree_menu
+            kinoite_menu
             ;;
 
         0)
@@ -156,11 +127,45 @@ kinoite_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            upgrade_menu
+            kinoite_menu
             ;;
 
     esac
     unset input
+    kinoite_menu
+}
+
+upgrade_check(){
+    # This script checks if rpmfusion, steam and ffmpeg are present.
+    # Will print back PRESENT if installed or ABSENT not. Default is
+    # to assume they are PRESENT.
+
+
+
+
+    IS_RPMFUSION_FREE_PRESENT="ABSENT"
+    IS_RPMFUSION_NONFREE_PRESENT="ABSENT"
+    IS_FFMPEG_NONFREE_PRESENT="ABSENT"
+    IS_STEAM_PRESENT="ABSENT"
+
+    test -f /etc/yum.repos.d/rpmfusion-free.repo && IS_RPMFUSION_FREE_PRESENT="PRESENT"
+    test -f /etc/yum.repos.d/rpmfusion-nonfree.repo && IS_RPMFUSION_NONFREE_PRESENT="PRESENT"
+    test -f /usr/bin/ffmpeg && IS_FFMPEG_NONFREE_PRESENT="PRESENT"
+    test -f /usr/bin/steam && IS_STEAM_PRESENT="PRESENT"
+
+    echo "RPMFusion Free:       $IS_RPMFUSION_FREE_PRESENT"
+    echo "RPMFusion NonFree:    $IS_RPMFUSION_NONFREE_PRESENT"
+    echo "FFMPEG:               $IS_FFMPEG_NONFREE_PRESENT"
+    echo "Steam:                $IS_STEAM_PRESENT"
+
+    if [ "$IS_RPMFUSION_FREE_PRESENT" = "ABSENT" ] && [ "$IS_RPMFUSION_NONFREE_PRESENT" = "ABSENT" ] && [ "$IS_FFMPEG_NONFREE_PRESENT" = "ABSENT" ] && [ "$IS_STEAM_PRESENT" = "ABSENT" ];
+        then
+            IS_UPGRADE_SAFE="YES"
+            echo "Check passed. Will now run the upgrade."
+    elif [ "$IS_RPMFUSION_FREE_PRESENT" = "PRESENT" ] && [ "$IS_RPMFUSION_NONFREE_PRESENT" = "PRESENT" ] && [ "$IS_FFMPEG_NONFREE_PRESENT" = "PRESENT" ] && [ "$IS_STEAM_PRESENT" = "PRESENT" ];
+        then
+            IS_UPGRADE_SAFE="NO"
+    fi
 }
 
 perform_reset(){
@@ -219,6 +224,35 @@ perform_upgrade(){
     fi
 }
 
+remove_rpmfusion(){
+    echo "================================================"
+    echo "In order for a successful upgrade to occur" 
+    echo "RPMFusion and packages from there need to be "
+    echo "removed. Settings will be left intact."
+    echo "Would you like to do this now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo dnf remove -y steam steam-devices
+        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
+        sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
+        sudo dnf clean all
+        sudo dnf update -y
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to remove."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    upgrade_menu
+    fi
+}
+
 confirm_reboot(){
     echo "================================================"
     echo "Reboots are required to enable the new layers."
@@ -255,4 +289,5 @@ variant_check(){
 }
 
 export VARIANT=""
+export IS_UPGRADE_SAFE="NO"
 variant_check
