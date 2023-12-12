@@ -40,12 +40,13 @@ variant_check(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         PKMGR="dnf"
-        sudo $PKGMR install -y dnfdragora
+        sudo $PKMGR install -y dnfdragora
     elif [ $VARIANT == "kinoite" ]
     then
         PKMGR="rpm-ostree"
     fi
     echo $VARIANT
+    
 }
 
 export SCRIPTS_HOME=$(pwd)
