@@ -39,11 +39,11 @@ variant_check(){
     VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
-        PKMGR="dnf"
-        sudo $PKMGR install -y dnfdragora
+        PKGMGR="dnf"
+        sudo $PKGMGR install -y dnfdragora
     elif [ $VARIANT == "kinoite" ]
     then
-        PKMGR="rpm-ostree"
+        PKGMGR="rpm-ostree"
     fi
     echo $VARIANT
     
@@ -51,7 +51,7 @@ variant_check(){
 
 export SCRIPTS_HOME=$(pwd)
 export VARIANT=""
-export PKMGR=""
+export PKGMGR=""
 echo "Personal script with extra stuff user may not want. Copies over my mangohud profiles, sets prefered plymouth boot screen"
 echo "and sets some apps to autostart with desktop."
 tasks

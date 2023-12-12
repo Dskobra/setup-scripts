@@ -20,7 +20,7 @@ fedora_menu(){
 
 
         1)  
-            sudo $PKMGR install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            sudo $PKGMGR install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
             check_if_kinoite
             fedora_menu
             ;;
@@ -111,7 +111,7 @@ basic_menu(){
     case $input in
 
         1)
-            sudo $PKMGR install -y gwenview kate
+            sudo $PKGMGR install -y gwenview kate
             basic_menu
             ;;
         
@@ -121,12 +121,12 @@ basic_menu(){
             ;;
 
         3)
-            sudo $PKMGR install -y corectrl
+            sudo $PKGMGR install -y corectrl
             basic_menu
             ;;
 
         4)
-            sudo $PKMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+            sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
             basic_menu
             ;;
 
@@ -238,7 +238,7 @@ multimedia_menu(){
             ;;
 
         5)
-            sudo $PKMGR install -y k3b
+            sudo $PKGMGR install -y k3b
             multimedia_menu
             ;;
         6)
@@ -297,7 +297,7 @@ gaming_menu(){
             ;;
 
         3)
-            sudo $PKMGR install -y mangohud goverlay
+            sudo $PKGMGR install -y mangohud goverlay
             flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
             ;;
 
@@ -362,7 +362,7 @@ office_menu(){
         1)
             echo "This replaces the fedora providede LibreOffice with"
             echo "the flatpak version."
-            sudo $PKMGR remove -y libreoffice
+            sudo $PKGMGR remove -y libreoffice
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             ;;
 
@@ -416,12 +416,12 @@ coding_menu(){
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_github_desktop"
             ;;
         4)
-            sudo $PKMGR install -y toolbox
-            sudo $PKMGR install -y distrobox
+            sudo $PKGMGR install -y toolbox
+            sudo $PKGMGR install -y distrobox
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
         5)
-            sudo $PKMGR install -y vim-enhanced
+            sudo $PKGMGR install -y vim-enhanced
             ;;
 
         100)
@@ -464,7 +464,7 @@ languages_menu(){
             ;;
 
         2)
-            sudo $PKMGR install -y java-17-openjdk-devel
+            sudo $PKGMGR install -y java-17-openjdk-devel
             ;;
         3)
             wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -473,7 +473,7 @@ languages_menu(){
             ;;
 
         4)
-            sudo $PKMGR install -y python3-devel
+            sudo $PKGMGR install -y python3-devel
             ;;
 
         5)
@@ -524,15 +524,15 @@ ides_menu(){
             flatpak install --user -y flathub org.geany.Geany
             ;;
         3)
-            sudo $PKMGR install -y python3-idle
+            sudo $PKGMGR install -y python3-idle
             ;;
 
         4)
-            sudo $PKMGR install -y eric
+            sudo $PKGMGR install -y eric
             ;;
 
         5)
-            sudo $PKMGR install -y bluefish  
+            sudo $PKGMGR install -y bluefish  
             ;;
 
         6)
@@ -540,12 +540,12 @@ ides_menu(){
             ;;
 
         7)
-            sudo $PKMGR install -y openjfx
+            sudo $PKGMGR install -y openjfx
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_scene_builder"
             ;;
 
         8)
-            sudo $PKMGR install -y codeblocks codeblocks-contrib-devel
+            sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
             ;;
 
         100)
@@ -632,6 +632,6 @@ utils_menu(){
 }
 
 export VARIANT=""
-export PKMGR=""
+export PKGMGR=""
 source $SCRIPTS_HOME/modules/fedora/shared.sh; "variant_check"
 fedora_menu

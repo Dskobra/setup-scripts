@@ -28,10 +28,10 @@ install_basic_apps(){
 }
 
 install_xfce_features(){
-    if [ "$PKMGR" = "rpm-ostree" ];
+    if [ "$PKGMGR" = "rpm-ostree" ];
         then
             echo "Immutable variants are unsupported"
-    elif [ "$PKMGR" = "dnf" ];
+    elif [ "$PKGMGR" = "dnf" ];
         then
             sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
             sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
@@ -41,7 +41,7 @@ install_xfce_features(){
 }
 
 install_brave_browser(){
-    if [ "$PKMGR" = "rpm-ostree" ];
+    if [ "$PKGMGR" = "rpm-ostree" ];
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -52,14 +52,14 @@ install_brave_browser(){
             sudo chown root:root brave-core.asc
             sudo mv brave-core.asc /etc/pki/rpm-gpg/
 
-            sudo $PKMGR refresh-md
-            sudo $PKMGR install -y brave-browser
-    elif [ "$PKMGR" = "dnf" ];
+            sudo $PKGMGR refresh-md
+            sudo $PKGMGR install -y brave-browser
+    elif [ "$PKGMGR" = "dnf" ];
         then
             sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
             sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
             sudo dnf update -y
-            sudo $PKMGR install -y brave-browser
+            sudo $PKGMGR install -y brave-browser
    
     fi
 }
@@ -67,15 +67,15 @@ install_brave_browser(){
 install_github_desktop(){
     sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
 
-	sudo $PKMGR install -y git-gui github-desktop
-    if [ "$PKMGR" = "rpm-ostree" ];
+	sudo $PKGMGR install -y git-gui github-desktop
+    if [ "$PKGMGR" = "rpm-ostree" ];
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
             chown root:root shiftkey-gpg.key
             sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
             
-    elif [ "$PKMGR" = "dnf" ];
+    elif [ "$PKGMGR" = "dnf" ];
         then
             sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
    
@@ -84,17 +84,17 @@ install_github_desktop(){
 
 install_vscodium(){
     printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-    if [ "$PKMGR" = "rpm-ostree" ];
+    if [ "$PKGMGR" = "rpm-ostree" ];
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
             chown root:root vscodium.gpg
             sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
-            sudo $PKMGR install -y codium      
-    elif [ "$PKMGR" = "dnf" ];
+            sudo $PKGMGR install -y codium      
+    elif [ "$PKGMGR" = "dnf" ];
         then
             sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            sudo $PKMGR install -y codium
+            sudo $PKGMGR install -y codium
    
     fi
 }
@@ -110,15 +110,15 @@ install_codecs(){
         sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
     elif [ $VARIANT == "kinoite" ]
     then
-        sudo $PKMGR override remove libavcodec-free libavfilter-free \
+        sudo $PKGMGR override remove libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
         libswresample-free libswscale-free --install ffmpeg
         
-        sudo $PKMGR install -y gstreamer1-plugin-openh264 \
+        sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
         mozilla-openh264
 
-        sudo $PKMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
-        sudo $PKMGR install -y mesa-vdpau-drivers-freeworld
+        sudo $PKGMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
+        sudo $PKGMGR install -y mesa-vdpau-drivers-freeworld
     else
         echo "Unkown error has occured."
     fi
@@ -127,7 +127,7 @@ install_codecs(){
 install_steam(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
-        sudo $PKMGR install -y steam gamescope
+        sudo $PKGMGR install -y steam gamescope
     elif [ $VARIANT == "kinoite" ]
     then
         flatpak install --user -y flathub com.valvesoftware.Steam
@@ -156,7 +156,7 @@ install_c_cpp(){
         sudo dnf groupinstall -y "C Development Tools and libraries"
     elif [ $VARIANT == "kinoite" ]
     then
-        sudo $PKMGR install -y gcc-g++ autoconf automake bison\
+        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
         flex libtool m4 valgrind byacc ccache cscope indent\
         ltrace perf strace
     else
@@ -170,7 +170,7 @@ install_rpm_tools(){
         sudo dnf groupinstall -y "RPM Development Tools"
     elif [ $VARIANT == "kinoite" ]
     then
-        sudo $PKMGR install -y koji mock redhat-rpm-config\
+        sudo $PKGMGR install -y koji mock redhat-rpm-config\
         rpm-build rpmdevtools
 
     else
@@ -184,7 +184,7 @@ install_virtualization(){
         sudo dnf groupinstall -y "Virtualization"
     elif [ $VARIANT == "kinoite" ]
     then
-        sudo $PKMGR install -y libvirt-daemon-config-network\
+        sudo $PKGMGR install -y libvirt-daemon-config-network\
         libvirt-daemon-daemon-kvm qemu-kvm virt-install\
         virt-manager virt-viewer
 
@@ -206,7 +206,7 @@ install_scene_builder(){
         sudo rpm -i $SCENE_BUILDER
     elif [ $VARIANT == "kinoite" ]
     then
-        sudo $PKMGR install -y $SCENE_BUILDER
+        sudo $PKGMGR install -y $SCENE_BUILDER
     else
         echo "Unkown error has occured."
     fi
@@ -227,7 +227,7 @@ install_flatpak(){
         source $SCRIPTS_HOME/modules/shared.sh; "frepo"
     elif [ $VARIANT == "xfce" ]
     then
-        sudo $PKMGR install -y flatpak
+        sudo $PKGMGR install -y flatpak
         source $SCRIPTS_HOME/modules/shared.sh; "frepo"
     fi
 }
@@ -266,19 +266,19 @@ variant_check(){
     VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
     if [ $VARIANT == "" ]
     then
-        PKMGR="dnf"
+        PKGMGR="dnf"
         echo "variant_id in os-release not set. Likely used the net/server install."
-        echo "Package manager to $PKMGR."
+        echo "Package manager to $PKGMGR."
     elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         echo "Fedora spin detected as $VARIANT"
         echo "Setting package manager to dnf."
-        PKMGR="dnf"
+        PKGMGR="dnf"
     elif [ $VARIANT == "kinoite" ]
     then
-        PKMGR="rpm-ostree"
+        PKGMGR="rpm-ostree"
         echo "Fedora spin detected as $VARIANT"
-        echo "Package manager to $PKMGR."
+        echo "Package manager to $PKGMGR."
         echo "Please note this is experimental atm"
     fi
     echo $variant
