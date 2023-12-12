@@ -1,7 +1,7 @@
 
 #!/usr/bin/bash
 
-upgrade_menu(){
+dnf_menu(){
     echo "              ---------------"
     echo "              |Upgrade Steps|"
     echo "              ---------------"
@@ -98,7 +98,7 @@ remove_rpmfusion(){
     fi
 }
 
-upgrade_distro(){
+dnf_upgrade_(){
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
     sudo dnf system-upgrade download --releasever=39
@@ -115,4 +115,144 @@ update_rescue_kernel(){
     sudo dnf reinstall -y kernel*
 }
 
-upgrade_menu
+kinoite_menu(){
+    echo "               ---------------"
+    echo "               |Upgrade Steps|"
+    echo "               ---------------"
+    echo ""
+    echo "                   Menu"
+    echo ""
+    echo "1. Full Reset                 2. Upgrade"
+    echo "9. Main Menu                  0. Exit"
+    printf "Option: "
+    read -r input
+    IS_UPGRADE_SAFE="NO"
+
+    case $input in
+
+        1)
+            perform_reset
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/shared.sh; "upgrade_check" 
+            if [ "$IS_UPGRADE_SAFE" = "YES" ];
+                then
+                    perform_upgrade
+            elif [ "$IS_UPGRADE_SAFE" = "NO" ];
+                then
+                    perform_reset
+            fi
+            ;;
+        
+        9)
+            ostree_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            upgrade_menu
+            ;;
+
+    esac
+    unset input
+}
+
+perform_reset(){
+    echo "================================================"
+    echo "In order to upgrade and prevent issues a reset"
+    echo "is recommended. This will remove EVERYTHING that"
+    echo "isn't in the kinoite image, but still perserve"
+    echo "flatpak apps, appimages, settings and steam"
+    echo "library."
+    echo "Do you wish to do a reset now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo rpm-ostree reset
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reset."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    upgrade_menu
+    fi
+}
+
+perform_upgrade(){
+    echo "================================================"
+    echo "ENSURE YOU DO A RESET BEFORE THIS OR IT WILL FAIL."
+    echo "RPMFusion etc will not get redirected to the next"
+    echo "fedora version. They will need to be removed"
+    echo "beforehand and reinstalled after the upgrade."
+    echo "Do you wish to upgrade now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo ostree admin pin 0
+        sudo  rpm-ostree rebase fedora:fedora/39/x86_64/kinoite
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to upgrade."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    menu
+    fi
+}
+
+confirm_reboot(){
+    echo "================================================"
+    echo "Reboots are required to enable the new layers."
+    echo "Do you wish to reboot now?"
+    echo "Type y/n or exit"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reboot."
+    elif [ $input == "exit" ]
+    then
+	    exit
+    else
+	    menu
+    fi
+}
+
+variant_check(){
+    VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        dnf_menu
+    elif [ $VARIANT == "kinoite" ]
+    then
+        kinoite_menu
+    fi
+    echo $variant
+}
+
+export VARIANT=""
+variant_check
