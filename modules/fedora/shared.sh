@@ -269,17 +269,20 @@ variant_check(){
         PKGMGR="dnf"
         echo "variant_id in os-release not set. Likely used the net/server install."
         echo "Package manager to $PKGMGR."
+        sudo $PKGMGR update -y
     elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
+        PKGMGR="dnf"
         echo "Fedora spin detected as $VARIANT"
         echo "Setting package manager to dnf."
-        PKGMGR="dnf"
+        sudo dnf clean all && sudo dnf update -y
     elif [ $VARIANT == "kinoite" ]
     then
         PKGMGR="rpm-ostree"
         echo "Fedora spin detected as $VARIANT"
         echo "Package manager to $PKGMGR."
         echo "Please note this is experimental atm"
+        sudo $PKGMGR refresh-md
     fi
-    echo $variant
+    echo $VARIANT
 }
