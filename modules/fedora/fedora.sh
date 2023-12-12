@@ -21,7 +21,7 @@ fedora_menu(){
 
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_rpmfusion"
+            sudo $PKGMR install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
             check_if_kinoite
             fedora_menu
             ;;
