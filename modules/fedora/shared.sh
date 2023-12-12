@@ -1,5 +1,15 @@
 #!/usr/bin/bash
 
+install_flatpak(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "kinoite" ]
+    then
+        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+    elif [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y flatpak
+        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+    fi
+}
 
 install_xfce_features(){
     if [ "$PKGMGR" = "rpm-ostree" ];
@@ -12,6 +22,19 @@ install_xfce_features(){
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             install_mugshot    
     fi
+}
+
+install_mugshot(){
+    MUGSHOT_FOLDER="mugshot-0.4.3"
+    cd $SCRIPTS_HOME/temp/
+    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
+    tar -xvf $MUGSHOT_FOLDER.tar.gz
+    cd $MUGSHOT_FOLDER
+    sudo python3 setup.py install
+    sudo mkdir /usr/local/share/glib-2.0/schemas
+    cd data/glib-2.0/schemas/
+    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
+    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
 }
 
 install_brave_browser(){
@@ -34,41 +57,6 @@ install_brave_browser(){
             sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
             sudo dnf update -y
             sudo $PKGMGR install -y brave-browser
-   
-    fi
-}
-
-install_github_desktop(){
-    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-
-	sudo $PKGMGR install -y git-gui github-desktop
-    if [ "$PKGMGR" = "rpm-ostree" ];
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
-            chown root:root shiftkey-gpg.key
-            sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
-            
-    elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-   
-    fi
-}
-
-install_vscodium(){
-    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-    if [ "$PKGMGR" = "rpm-ostree" ];
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            chown root:root vscodium.gpg
-            sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
-            sudo $PKGMGR install -y codium      
-    elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            sudo $PKGMGR install -y codium
    
     fi
 }
@@ -111,19 +99,6 @@ install_steam(){
     fi
 }
 
-install_mugshot(){
-    MUGSHOT_FOLDER="mugshot-0.4.3"
-    cd $SCRIPTS_HOME/temp/
-    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
-    tar -xvf $MUGSHOT_FOLDER.tar.gz
-    cd $MUGSHOT_FOLDER
-    sudo python3 setup.py install
-    sudo mkdir /usr/local/share/glib-2.0/schemas
-    cd data/glib-2.0/schemas/
-    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
-    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
-}
-
 install_c_cpp(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
@@ -152,23 +127,48 @@ install_rpm_tools(){
     fi
 }
 
-install_virtualization(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
-    then
-        sudo dnf groupinstall -y "Virtualization"
-    elif [ $VARIANT == "kinoite" ]
-    then
-        sudo $PKGMGR install -y libvirt-daemon-config-network\
-        libvirt-daemon-daemon-kvm qemu-kvm virt-install\
-        virt-manager virt-viewer
+install_github_desktop(){
+    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
 
-    else
-        echo "Unkown error has occured."
+	sudo $PKGMGR install -y git-gui github-desktop
+    if [ "$PKGMGR" = "rpm-ostree" ];
+        then
+            cd $SCRIPTS_HOME/temp
+            curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
+            chown root:root shiftkey-gpg.key
+            sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
+            
+    elif [ "$PKGMGR" = "dnf" ];
+        then
+            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+   
     fi
-    sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-    -O /etc/yum.repos.d/virtio-win.repo
-    sudo dnf install -y virtio-win
-    sudo usermod -aG libvirt $USER
+}
+
+install_vscodium(){
+    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
+    if [ "$PKGMGR" = "rpm-ostree" ];
+        then
+            cd $SCRIPTS_HOME/temp
+            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+            chown root:root vscodium.gpg
+            sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
+            sudo $PKGMGR install -y codium      
+    elif [ "$PKGMGR" = "dnf" ];
+        then
+            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+            sudo $PKGMGR install -y codium
+   
+    fi
+}
+
+install_eclipse(){
+    cd $SCRIPTS_HOME/temp
+    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
+    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
+
+    tar -xvf $ECLIPSE
+    ./eclipse-installer/eclipse-inst
 }
 
 install_scene_builder(){
@@ -186,24 +186,23 @@ install_scene_builder(){
     fi
 }
 
-install_eclipse(){
-    cd $SCRIPTS_HOME/temp
-    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
-    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
-
-    tar -xvf $ECLIPSE
-    ./eclipse-installer/eclipse-inst
-}
-
-install_flatpak(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "kinoite" ]
+install_virtualization(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
-        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-    elif [ $VARIANT == "xfce" ]
+        sudo dnf groupinstall -y "Virtualization"
+    elif [ $VARIANT == "kinoite" ]
     then
-        sudo $PKGMGR install -y flatpak
-        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+        sudo $PKGMGR install -y libvirt-daemon-config-network\
+        libvirt-daemon-daemon-kvm qemu-kvm virt-install\
+        virt-manager virt-viewer
+
+    else
+        echo "Unkown error has occured."
     fi
+    sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+    -O /etc/yum.repos.d/virtio-win.repo
+    sudo dnf install -y virtio-win
+    sudo usermod -aG libvirt $USER
 }
 
 check_if_kinoite(){
