@@ -15,7 +15,6 @@ game_profiles(){
     fi
 }
 
-
 variant_check(){
     VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
@@ -30,7 +29,8 @@ variant_check(){
 }
 
 echo "Personal script with extra stuff user may not want. Such as copying my mangohud profiles or setting some autostart apps."
-PKMGR=""
+export VARIANT=""
+export PKMGR=""
 variant_check
 sudo $PKGMR install -y plymouth-theme-spinfinity
 sudo plymouth-set-default-theme spinfinity -R
