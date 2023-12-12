@@ -1,31 +1,5 @@
 #!/usr/bin/bash
 
-install_basic_apps(){
-    echo "Setting up rpmfusion and brave browser"
-
-    sudo dnf install -y vim-enhanced java-17-openjdk brave-browser \
-    plymouth-theme-spinfinity lm_sensors dnfdragora flatpak git     
-    
-    install_codecs
-	sudo plymouth-set-default-theme spinfinity -R
-
-    source $SCRIPTS_HOME/modules/shared.sh; "fbasic"
-    source $SCRIPTS_HOME/modules/shared.sh; "futils"
-
-    test -f /usr/bin/plasma_session && DESKTOP=kde
-    test -f /usr/bin/xfce4-panel && DESKTOP=xfce
-    if [ "$DESKTOP" = "kde" ];
-        then
-            sudo dnf install -y  ark gwenview kate 
-    elif [ "$DESKTOP" = "xfce" ];
-        then
-            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
-            sudo dnf groupinstall -y "Firefox Web Browser"
-            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot         
-    fi
-}
 
 install_xfce_features(){
     if [ "$PKGMGR" = "rpm-ostree" ];
