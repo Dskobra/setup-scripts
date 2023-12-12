@@ -27,10 +27,11 @@ variant_check(){
     fi
     echo $variant
 }
-
-echo "Personal script with extra stuff user may not want. Such as copying my mangohud profiles or setting some autostart apps."
+export SCRIPTS_HOME=$(pwd)
 export VARIANT=""
 export PKMGR=""
+echo "Personal script with extra stuff user may not want. Such as copying my mangohud profiles or setting some autostart apps."
+
 variant_check
 sudo $PKGMR install -y plymouth-theme-spinfinity
 sudo plymouth-set-default-theme spinfinity -R
