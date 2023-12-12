@@ -12,7 +12,7 @@ fedora_menu(){
     echo "5. Multimedia            6. Gaming"
     echo "7. Office                8. Coding"
     echo "9. Utilities"
-    echo "15. Extras               16. Upgrade"
+    echo "15. Personalization               16. Upgrade"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -123,7 +123,7 @@ basic_menu(){
 
         3)
             sudo $PKMGR install -y corectrl
-             basic_menu
+            basic_menu
             ;;
 
         4)
@@ -210,7 +210,7 @@ multimedia_menu(){
     echo "                   Menu"
     echo "1. Codecs                 2. VLC Media Player" 
     echo "3. OBS Studio             4. OpenShot" 
-    echo "5. Kolourpaint"
+    echo "5. K3b                    6. Kolourpaint"
     echo "99. Help"
     echo "100. Main Menu            0. Exit"
     printf "Option: "
@@ -239,6 +239,10 @@ multimedia_menu(){
             ;;
 
         5)
+            sudo $PKMGR install -y k3b
+            multimedia_menu
+            ;;
+        6)
             flatpak install --user -y flathub org.kde.kolourpaint
             multimedia_menu
             ;;
@@ -394,7 +398,8 @@ coding_menu(){
     echo "              Menu"
     echo ""
     echo "1. Languages        2. IDEs"
-    echo "3. GitHub Desktop"
+    echo "3. GitHub Desktop   4. Containers"
+    echo "5. VIM"
     echo "100. Main Menu      0. Exit"
     printf "Option: "
     read -r input
@@ -410,6 +415,14 @@ coding_menu(){
             ;;
         3)
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_github_desktop"
+            ;;
+        4)
+            sudo $PKMGR install -y toolbox
+            sudo $PKMGR install -y distrobox
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+            ;;
+        5)
+            sudo $PKMGR install -y vim-enhanced
             ;;
 
         100)
@@ -440,6 +453,7 @@ languages_menu(){
     echo ""
     echo "1. C/C++            2. openJDK 17"
     echo "3. NodejS LTS       4. Python"
+    echo "5. RPM Build Tools"
     echo "100. Main Menu      0. Exit"
     printf "Option: "
     read -r input
@@ -463,6 +477,10 @@ languages_menu(){
             sudo $PKMGR install -y python3-devel
             ;;
 
+        5)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_rpm_tools"
+            ;;
+
         100)
             fedora_menu
             ;;
@@ -474,12 +492,12 @@ languages_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        coding_menu
+        languages_menu
         ;;
         
     esac
     unset input
-    coding_menu
+    languages_menu
 }
 
 ides_menu(){
@@ -523,6 +541,7 @@ ides_menu(){
             ;;
 
         7)
+            sudo $PKMGR install -y openjfx
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_scene_builder"
             ;;
 
@@ -541,12 +560,12 @@ ides_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        coding_menu
+        ides_menu
         ;;
         
     esac
     unset input
-    coding_menu
+    ides_menu
 }
 
 utils_menu(){
@@ -554,10 +573,13 @@ utils_menu(){
     echo "          |Utilities|"
     echo "          -----------"
     echo ""
-    echo "              Menu"
+    echo "                       Menu"
     echo ""
-    echo "1.            2. "
-    echo "100. Main Menu      0. Exit"
+    echo "1. Fedora Media Writer        2. KDE ISO Image Writer"
+    echo "3. Raspberry Pi Imager        4. Kleopatra"
+    echo "5. GtkHash                    6 Flatseal"
+    echo "7. Virtualization"
+    echo "100. Main Menu                0. Exit"
     printf "Option: "
     read -r input
     
@@ -565,6 +587,26 @@ utils_menu(){
 
         1)
             echo ""
+            ;;
+
+        2)
+            flatpak install --user -y flathub org.kde.isoimagewriter
+            ;;
+
+        3)
+            flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            ;;
+
+        4)
+            flatpak install --user -y flathub org.kde.kleopatra
+            ;;
+
+        5)
+            	flatpak install --user -y flathub org.gtkhash.gtkhash
+            ;;
+
+        6)
+                flatpak install --user -y flathub com.github.tchx84.Flatseal
             ;;
 
         100)
@@ -578,70 +620,12 @@ utils_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        cutils_menu
+        utils_menu
         ;;
         
     esac
     unset input
     utils_menu
-}
-
-extras_menu(){
-    echo "              --------"
-    echo "              |Extras|"
-    echo "              --------"
-    echo ""
-    echo "                Menu"
-    echo ""
-    echo "1. Virtualization     2. Corectrl"
-    echo "3. Extra Apps         4. Cleanup"
-    echo "5. Autostart          9. Main Menu"
-    echo "0. Exit"
-    printf "Option: "
-    read -r input
-    case $input in
-
-        1)
-            sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-            -O /etc/yum.repos.d/virtio-win.repo
-            sudo dnf groupinstall -y "Virtualization"
-            sudo dnf install -y virtio-win
-            sudo usermod -aG libvirt $USER      # add self to group so i can run without admin. Needed for remotely connecting with qemu
-            ;;
-
-        2)
-            ;;
-        3)
-            sudo dnf install -y okular k3b xwaylandvideobridge # needed for video sharing with discord on wayland
-            cp 
-            source $SCRIPTS_HOME/modules/shared.sh; "fmedia"
-            source $SCRIPTS_HOME/modules/shared.sh; "fextras"
-            ;;
-        4)
-            cleanup
-            ;;
-
-        5)
-            autostart
-            ;;
-
-        
-        9)
-            fedora_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            extras_menu
-            ;;
-
-        esac
-        unset input
-        extras_menu
 }
 
 upgrade_menu(){

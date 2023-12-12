@@ -155,30 +155,6 @@ install_limited_dev_tools(){
     sudo systemctl enable podman
 }
 
-install_full_dev_tools(){
-    sudo dnf groupinstall -y "C Development Tools and libraries"
-    sudo dnf groupinstall -y "Development Tools"
-    sudo dnf groupinstall -y "RPM Development Tools"
-
-	sudo dnf install -y java-17-openjdk-devel openjfx python3-devel \
-    python3-idle 
-
-    cd $SCRIPTS_HOME/temp
-    SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
-    curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    sudo rpm -i $SCENE_BUILDER
-
-    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
-    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
-
-    tar -xvf $ECLIPSE
-    ./eclipse-installer/eclipse-inst
-    
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
-}
-
 install_c_cpp(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
@@ -191,6 +167,39 @@ install_c_cpp(){
     else
         echo "Unkown error has occured."
     fi
+}
+
+install_rpm_tools(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo dnf groupinstall -y "RPM Development Tools"
+    elif [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKMGR install -y koji mock redhat-rpm-config\
+        rpm-build rpmdevtools
+
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_virtualization(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo dnf groupinstall -y "Virtualization"
+    elif [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKMGR install -y libvirt-daemon-config-network\
+        libvirt-daemon-daemon-kvm qemu-kvm virt-install\
+        virt-manager virt-viewer
+
+    else
+        echo "Unkown error has occured."
+    fi
+    sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+    -O /etc/yum.repos.d/virtio-win.repo
+    sudo dnf install -y virtio-win
+    sudo usermod -aG libvirt $USER
 }
 
 install_scene_builder(){
@@ -215,27 +224,6 @@ install_eclipse(){
 
     tar -xvf $ECLIPSE
     ./eclipse-installer/eclipse-inst
-}
-
-install_container_dev_tools(){
-    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-    sudo dnf groupinstall -y "C Development Tools and libraries"
-    sudo dnf groupinstall -y "Development Tools"
-    sudo dnf groupinstall -y "RPM Development Tools"
-
-    sudo dnf install -y python python3-devel java-17-openjdk-devel
-
-
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
-	
-
-}
-
-install_rpmfusion(){
-    sudo $PKMGR install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
 }
 
 install_flatpak(){
@@ -293,37 +281,6 @@ update_rescue_kernel(){
     sudo rm /boot/initramfs-0-rescue*.img
     sudo rm /boot/vmlinuz-0-rescue*
     sudo dnf reinstall -y kernel*
-}
-
-autostart(){
-    mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
-    cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
-    DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
-    DOVERLAY="/home/$USER/.local/share/flatpak/exports/share/applications/io.github.trigg.discover_overlay.desktop"
-    STEAM="/usr/share/applications/steam.desktop"
-    CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
-    XWVIDEO_BRIDGE="/usr/share/applications/org.kde.xwaylandvideobridge.desktop"
-
-    [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
-    [ -f $DOVERLAY ] && { echo "Discord Overlay was found. Adding to startup."; cp "$DOVERLAY"  /home/$USER/.config/autostart/io.github.trigg.discover_overlay.desktop; }
-    [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
-    [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
-    [ -f $XWVIDEO_BRIDGE ] && { echo "XWaylandVideoBridge was found. Adding to startup."; cp "$XWVIDEO_BRIDGE"  /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop; }
-
-}
-
-cleanup(){
-	# Installing Fedora 36 using the everything installer to install the mate desktop with my normal package groups "Development Tools", 
-	# "C Development Tools and libraries" and "RPM Development Tools" results in systemd-oomd-defaults also being installed.
-	# This creates a package conflict with mate-desktop and mate-desktop-configs when updating. Research shows this is an 
-	# uneeded/extra package as Fedora uses earlyoom. So removing systemd-oomd-defaults is perfectly safe. Unsure what causes this
-	# to be installed.
-	sudo dnf remove -y libreoffice-core \
-	gnome-shell-extension-gamemode gnome-text-editor \
-	kmahjongg kmines systemd-oomd-defaults \
-	transmission-gtk transmission-qt \
-	compiz kpat
-    sudo rm -r -f $SCRIPTS_HOME/temp
 }
 
 check_if_kinoite(){
