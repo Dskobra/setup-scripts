@@ -2,7 +2,7 @@
 
 tasks(){
     variant_check
-    sudo $PKGMR install -y plymouth-theme-spinfinity
+    sudo $PKGMGR install -y plymouth-theme-spinfinity
     sudo plymouth-set-default-theme spinfinity -R
 }
 
