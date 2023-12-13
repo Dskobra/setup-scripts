@@ -94,14 +94,14 @@ fedora_menu(){
 }
 
 basic_menu(){
-    echo "              --------------------"
-    echo "              |Basic Desktop Apps|"
-    echo "              --------------------"
+    echo "              --------------------------"
+    echo "              |   Basic Desktop Apps   |"
+    echo "              --------------------------"
     echo ""
     echo "Selection of apps for normal computer use."
     echo ""
     echo "                Menu"
-    echo "1. KDE Extras         2. XFCE Extras"        
+    echo "1 Kate/Gwenview       2. XFCE Plugins"        
     echo "3. Corectrl(amd)      4. Nvidia Driver"
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
@@ -130,6 +130,11 @@ basic_menu(){
             basic_menu
             ;;
 
+        99)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+            echo "placeholder"
+            ;;
+
         100)
             fedora_menu
             ;;
@@ -150,9 +155,9 @@ basic_menu(){
 }
 
 internet_menu(){
-    echo "              ----------------"
-    echo "              |   Internet   |"
-    echo "              ----------------"
+    echo "              ---------------------"
+    echo "              |   Internet Apps   |"
+    echo "              --------------------"
     echo ""
     echo ""
     echo ""
@@ -178,6 +183,10 @@ internet_menu(){
         3)
             flatpak install --user -y flathub com.transmissionbt.Transmission
             internet_menu
+            ;;
+
+        99) 
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Internet
             ;;
 
         100)
@@ -245,6 +254,10 @@ multimedia_menu(){
             flatpak install --user -y flathub org.kde.kolourpaint
             multimedia_menu
             ;;
+
+        99)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Multimedia-Apps
+            ;;
         
         100)
             fedora_menu
@@ -266,9 +279,9 @@ multimedia_menu(){
 }
 
 gaming_menu(){
-    echo "              --------"
-    echo "              |Gaming|"
-    echo "              --------"
+    echo "              -------------------"
+    echo "              |   Gaming Apps   |"
+    echo "              -------------------"
     echo ""
     echo "                Menu"
     echo "1. Steam                  2. Lutris"
@@ -324,6 +337,10 @@ gaming_menu(){
         9)
             source $SCRIPTS_HOME/modules/shared.sh; "wowup"
             ;;
+        
+        99)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Gaming-Apps
+            ;;
 
         100)
             fedora_menu
@@ -348,7 +365,7 @@ office_menu(){
     echo "              |   Office Apps   |"
     echo "              -------------------"
     echo ""
-    echo "Selection of apps for normal computer use."
+    echo "Office and note taking apps."
     echo ""
     echo "                Menu"
     echo "1. Libreoffice        2. QOwnNotes"         
@@ -368,6 +385,10 @@ office_menu(){
 
         2)
             flatpak install --user -y flathub org.qownnotes.QOwnNotes
+            ;;
+        
+        99) 
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Office-Apps
             ;;
 
         100)
@@ -390,9 +411,9 @@ office_menu(){
 }
 
 coding_menu(){
-    echo "          -----------"
-    echo "          | Coding  |"
-    echo "          -----------"
+    echo "          -------------------"
+    echo "          |   Coding Apps   |"
+    echo "          -------------------"
     echo ""
     echo "              Menu"
     echo ""
@@ -424,6 +445,10 @@ coding_menu(){
             sudo $PKGMGR install -y vim-enhanced
             ;;
 
+        99)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Coding-Apps
+            ;;
+
         100)
             fedora_menu
             ;;
@@ -444,9 +469,9 @@ coding_menu(){
 }
 
 languages_menu(){
-    echo "          -----------"
-    echo "          | Coding  |"
-    echo "          -----------"
+    echo "          ------------------"
+    echo "          | Language Tools |"
+    echo "          ------------------"
     echo ""
     echo "              Menu"
     echo ""
@@ -500,17 +525,17 @@ languages_menu(){
 }
 
 ides_menu(){
-    echo "          -----------"
-    echo "          |  IDE's  |"
-    echo "          -----------"
+    echo "          -------------------------------"
+    echo "          |   Development Environments   |"
+    echo "          --------------------------------"
     echo ""
-    echo "              Menu"
+    echo "                      Menu"
     echo ""
-    echo "1. VSCodium         2. Geany"
-    echo "3. Python IDLE      4.Eric "
-    echo "5. Bluefish         6. Eclipse" 
-    echo "7. Scene Builder    8. Codeblocks"
-    echo "100. Main Menu      0. Exit"
+    echo "1. VSCodium                       2. Geany"
+    echo "3. Python IDLE                    4.Eric "
+    echo "5. Bluefish                       6. Eclipse" 
+    echo "7. Scene Builder                  8. Codeblocks"
+    echo "100. Main Menu                    0. Exit"
     printf "Option: "
     read -r input
     
