@@ -4,6 +4,8 @@ tasks(){
     variant_check
     sudo $PKGMGR install -y plymouth-theme-spinfinity
     sudo plymouth-set-default-theme spinfinity -R
+    autostart
+    game_profiles
 }
 
 game_profiles(){
@@ -49,6 +51,7 @@ variant_check(){
     
 }
 
+cd ../../
 export SCRIPTS_HOME=$(pwd)
 export VARIANT=""
 export PKGMGR=""
