@@ -610,11 +610,11 @@ utils_menu(){
     case $input in
 
         1)
-            flatpak install --user -y flathub org.fedoraproject.MediaWriter
+            sudo $PKGMGR install -y mediawriter
             ;;
 
         2)
-            flatpak install --user -y flathub org.kde.isoimagewriter
+            sudo $PKGMGR install -y isoimagewriter
             ;;
 
         3)
@@ -622,7 +622,7 @@ utils_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub org.kde.kleopatra
+            sudo $PKGMGR install -y kleopatra
             ;;
 
         5)
