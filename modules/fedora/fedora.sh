@@ -329,6 +329,7 @@ gaming_menu(){
             ;;
 
         7)
+            sudo $PKGMGR install -y kpat
             flatpak install --user -y flathub org.kde.kpat
             ;;
         
