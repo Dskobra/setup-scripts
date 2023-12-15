@@ -377,9 +377,7 @@ office_menu(){
     case $input in
 
         1)
-            echo "This replaces the fedora providede LibreOffice with"
-            echo "the flatpak version."
-            sudo $PKGMGR remove -y libreoffice
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "remove_libreoffice"
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             ;;
 

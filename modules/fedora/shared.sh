@@ -99,6 +99,16 @@ install_steam(){
     fi
 }
 
+remove_libreoffice(){
+    if [ "$PKGMGR" = "rpm-ostree" ];
+        then
+            sudo $PKGMGR remove -y libreoffice
+    elif [ "$PKGMGR" = "dnf" ];
+        then
+            sudo $PKGMGR remove -y libreoffice*
+    fi
+}
+
 install_c_cpp(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
