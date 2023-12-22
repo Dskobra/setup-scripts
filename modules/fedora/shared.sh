@@ -86,6 +86,66 @@ install_codecs(){
     fi
 }
 
+install_openshot(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y openshot
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.openshot.OpenShot
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kolourpaint(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y kolourpaint
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.kde.kolourpaint
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kpat(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y kpat
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.kde.kpat
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_bluefish(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+         sudo $PKGMGR install -y bluefish
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub nl.openoffice.bluefish
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_codeblocks(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+         sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.codeblocks.codeblocks
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_steam(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then

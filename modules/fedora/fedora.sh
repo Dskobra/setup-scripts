@@ -184,7 +184,7 @@ internet_menu(){
             ;;
 
         99) 
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Internet
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Flatpak-substitutes#internet-apps
             ;;
 
         100)
@@ -240,7 +240,7 @@ multimedia_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub org.openshot.OpenShot
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_openshot"
             multimedia_menu
             ;;
 
@@ -249,12 +249,12 @@ multimedia_menu(){
             multimedia_menu
             ;;
         6)
-            flatpak install --user -y flathub org.kde.kolourpaint
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_kolourpaint"
             multimedia_menu
             ;;
 
         99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Multimedia-Apps
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Flatpak-substitutes#multimedia-apps
             ;;
         
         100)
@@ -326,8 +326,7 @@ gaming_menu(){
             ;;
 
         7)
-            sudo $PKGMGR install -y kpat
-            flatpak install --user -y flathub org.kde.kpat
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_kpat"
             ;;
         
         8)
@@ -570,7 +569,7 @@ ides_menu(){
             ;;
 
         6)
-            sudo $PKGMGR install -y bluefish  
+              
             ides_menu
             ;;
 
@@ -586,7 +585,7 @@ ides_menu(){
             ;;
 
         9)
-            sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_codeblocks"
             ides_menu
             ;;
 
