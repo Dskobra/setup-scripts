@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 dnf_menu(){
-    echo "              ---------------"
-    echo "              |Upgrade Steps|"
-    echo "              ---------------"
+    echo "              ---------------------"
+    echo "              |   Upgrade Steps   |"
+    echo "              ---------------------"
     echo ""
     echo "                   Menu"
     echo ""
@@ -86,9 +86,9 @@ update_rescue_kernel(){
 }
 
 kinoite_menu(){
-    echo "               ---------------"
-    echo "               |Upgrade Steps|"
-    echo "               ---------------"
+    echo "               ---------------------"
+    echo "               |   Upgrade Steps   |"
+    echo "               ---------------------"
     echo ""
     echo "                   Menu"
     echo ""

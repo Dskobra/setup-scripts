@@ -203,7 +203,7 @@ install_virtualization(){
     elif [ $VARIANT == "kinoite" ]
     then
         sudo $PKGMGR install -y libvirt-daemon-config-network\
-        libvirt-daemon-daemon-kvm qemu-kvm virt-install\
+        libvirt-daemon-kvm qemu-kvm virt-install\
         virt-manager virt-viewer
 
     else
@@ -211,7 +211,7 @@ install_virtualization(){
     fi
     sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
     -O /etc/yum.repos.d/virtio-win.repo
-    sudo dnf install -y virtio-win
+    sudo $PKGMGR install -y virtio-win
     sudo usermod -aG libvirt $USER
 }
 
