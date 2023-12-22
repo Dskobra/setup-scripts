@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 launch_menu(){
-    echo "          ---------------------"   
-    echo "          |DSK's Setup Scripts|"
-    echo "          ---------------------" 
+    echo "          ---------------------------"   
+    echo "          |   DSK's Setup Scripts   |"
+    echo "          ---------------------------" 
     echo ""
     echo "            Version: $VERSION"
     echo "     Copyright (c) 2021-2023 Jordan Bottoms"
