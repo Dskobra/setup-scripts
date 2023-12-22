@@ -1,11 +1,53 @@
 #!/usr/bin/bash
 
-tasks(){
-    variant_check
-    sudo $PKGMGR install -y plymouth-theme-spinfinity
-    sudo plymouth-set-default-theme spinfinity -R
-    autostart
-    game_profiles
+mystuff_menu(){
+    echo "        -----------------------"
+    echo "        |   My custom stuff   |"
+    echo "        -----------------------"
+    echo ""
+    echo "Stuff for myself. Feel free to use or not."
+    echo ""
+    echo "                 Menu"
+    echo ""
+    echo "1. Boot theme           2. Game profiles"
+    echo "3. Autostart"
+    echo "0. Exit"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+
+        1)  
+            sudo $PKGMGR install -y plymouth-theme-spinfinity
+            sudo plymouth-set-default-theme spinfinity -R
+            mystuff_menu
+            ;;
+
+        2)
+            game_profiles
+            mystuff_menu
+            ;;
+        
+        3)
+            autostart
+            mystufffedora_menu
+            ;;
+
+        0)
+            check_if_kinoite
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            fedora_menu
+            ;;
+
+        esac
+        unset input
+        mystuff_menu
 }
 
 game_profiles(){
@@ -36,25 +78,3 @@ autostart(){
     [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
     [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
 }
-
-variant_check(){
-    VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
-    then
-        PKGMGR="dnf"
-        sudo $PKGMGR install -y dnfdragora
-    elif [ $VARIANT == "kinoite" ]
-    then
-        PKGMGR="rpm-ostree"
-    fi
-    echo $VARIANT
-    
-}
-
-cd ../../
-export SCRIPTS_HOME=$(pwd)
-export VARIANT=""
-export PKGMGR=""
-echo "Personal script with extra stuff user may not want. Copies over my mangohud profiles, sets prefered plymouth boot screen"
-echo "and sets some apps to autostart with desktop."
-tasks

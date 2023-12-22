@@ -253,41 +253,18 @@ remove_rpmfusion(){
     fi
 }
 
-confirm_reboot(){
-    echo "================================================"
-    echo "Reboots are required to enable the new layers."
-    echo "Do you wish to reboot now?"
-    echo "Type y/n or exit"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input == "y" ] || [ $input == "Y" ]
+menu_launch(){
+    if [ $VARIANT == "" ]
     then
-        sudo systemctl reboot
-    elif [ $input == "n" ] || [ $input == "N" ]
-    then
-        echo "Chose not to reboot."
-    elif [ $input == "exit" ]
-    then
-	    exit
-    else
-	    menu
-    fi
-}
-
-variant_check(){
-    VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+        dnf_menu
+    elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         dnf_menu
     elif [ $VARIANT == "kinoite" ]
     then
         kinoite_menu
     fi
-    echo $variant
 }
 
-export VARIANT=""
 export IS_UPGRADE_SAFE="NO"
-variant_check
+menu_launch

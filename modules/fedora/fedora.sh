@@ -11,7 +11,7 @@ fedora_menu(){
     echo "3. Basic Apps            4. Internet"
     echo "5. Multimedia            6. Gaming"
     echo "7. Office                8. Coding"
-    echo "9. Utilities"
+    echo "9. Utilities             10. Extras"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -69,12 +69,9 @@ fedora_menu(){
             fedora_menu
             ;;
 
-        16)
-            extras_menu
-            ;;
-
         10)
-            upgrade_menu
+            extras_menu
+            fedora_menu
             ;;
 
         0)
@@ -654,6 +651,48 @@ utils_menu(){
     esac
     unset input
     utils_menu
+}
+
+extras_menu(){
+    echo "          --------------"
+    echo "          |   Extras   |"
+    echo "          --------------"
+    echo ""
+    echo "Upgrade helper and script for my personal configurations"
+    echo "                       Menu"
+    echo ""
+    echo "1. Upgrade Helper             2. Mystuff"
+    echo "100. Main Menu                0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/upgrade_helper.sh; "launch_menu"
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/fedora/mystuff.sh; "mystuff_menu"
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        utils_menu
+        ;;
+        
+    esac
+    unset input
+    extras_menu
 }
 
 export VARIANT=""
