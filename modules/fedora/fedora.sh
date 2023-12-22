@@ -95,7 +95,7 @@ basic_menu(){
     echo "              |   Basic Desktop Apps   |"
     echo "              --------------------------"
     echo ""
-    echo "Selection of apps for normal computer use."
+    echo "Extra desktop apps and drivers."
     echo ""
     echo "                Menu"
     echo "1. Kate/Gwenview       2. XFCE Plugins"        
@@ -157,7 +157,7 @@ internet_menu(){
     echo "              |   Internet Apps   |"
     echo "              --------------------"
     echo ""
-    echo ""
+    echo "Web browser, cloud storage and bitorrent client."
     echo ""
     echo "                   Menu"
     echo "1. Brave Browser          2. Dropbox"
@@ -280,6 +280,8 @@ gaming_menu(){
     echo "              -------------------"
     echo "              |   Gaming Apps   |"
     echo "              -------------------"
+    echo ""
+    echo "Steam, lutris and other game related apps/games."
     echo ""
     echo "                Menu"
     echo "1. Steam                  2. Lutris"
@@ -412,11 +414,12 @@ coding_menu(){
     echo "          |   Coding Apps   |"
     echo "          -------------------"
     echo ""
+    echo "Mostly IDEs and compilers."
+    echo ""
     echo "              Menu"
     echo ""
     echo "1. Languages        2. IDEs"
     echo "3. GitHub Desktop   4. Containers"
-    echo "5. VIM"
     echo "100. Main Menu      0. Exit"
     printf "Option: "
     read -r input
@@ -437,9 +440,6 @@ coding_menu(){
             sudo $PKGMGR install -y toolbox
             sudo $PKGMGR install -y distrobox
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-            ;;
-        5)
-            sudo $PKGMGR install -y vim-enhanced
             ;;
 
         99)
@@ -466,9 +466,9 @@ coding_menu(){
 }
 
 languages_menu(){
-    echo "          ------------------"
-    echo "          | Language Tools |"
-    echo "          ------------------"
+    echo "          ----------------------"
+    echo "          |   Language Tools   |"
+    echo "          ----------------------"
     echo ""
     echo "              Menu"
     echo ""
@@ -483,23 +483,30 @@ languages_menu(){
 
         1)
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_c_cpp"
+            languages_menu
             ;;
 
         2)
             sudo $PKGMGR install -y java-17-openjdk-devel
+            languages_menu
             ;;
         3)
+            echo "This downloads the nvm or Node Version Manager script to install"
+            echo "the latest nodejs long term support release."
             wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	        source ~/.bashrc
 	        nvm install lts/*
+            languages_menu
             ;;
 
         4)
             sudo $PKGMGR install -y python3-devel
+            languages_menu
             ;;
 
         5)
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_rpm_tools"
+            languages_menu
             ;;
 
         100)
@@ -528,10 +535,11 @@ ides_menu(){
     echo ""
     echo "                      Menu"
     echo ""
-    echo "1. VSCodium                       2. Geany"
-    echo "3. Python IDLE                    4. Eric "
-    echo "5. Bluefish                       6. Eclipse" 
-    echo "7. Scene Builder                  8. Codeblocks"
+    echo "1. VIM                            2. VSCodium"
+    echo "3. Geany                          4. Python IDLE"
+    echo "5. Eric                           6. Bluefish"
+    echo "7. Eclipse                        8. Scene Builder" 
+    echo "9. Codeblocks"
     echo "100. Main Menu                    0. Exit"
     printf "Option: "
     read -r input
@@ -539,35 +547,48 @@ ides_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_vscodium"
+            sudo $PKGMGR install -y vim-enhanced
+            ides_menu
             ;;
 
         2)
-            flatpak install --user -y flathub org.geany.Geany
-            ;;
-        3)
-            sudo $PKGMGR install -y python3-idle
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_vscodium"
+            ides_menu
             ;;
 
+        3)
+            flatpak install --user -y flathub org.geany.Geany
+            ides_menu
+            ;;
         4)
-            sudo $PKGMGR install -y eric
+            sudo $PKGMGR install -y python3-idle
+            ides_menu
             ;;
 
         5)
-            sudo $PKGMGR install -y bluefish  
+            sudo $PKGMGR install -y eric
+            ides_menu
             ;;
 
         6)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_eclipse"
+            sudo $PKGMGR install -y bluefish  
+            ides_menu
             ;;
 
         7)
-            sudo $PKGMGR install -y openjfx
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_scene_builder"
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_eclipse"
+            ides_menu
             ;;
 
         8)
+            sudo $PKGMGR install -y openjfx
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_scene_builder"
+            ides_menu
+            ;;
+
+        9)
             sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
+            ides_menu
             ;;
 
         100)
@@ -590,9 +611,12 @@ ides_menu(){
 }
 
 utils_menu(){
-    echo "          -----------"
-    echo "          |Utilities|"
-    echo "          -----------"
+    echo "          -----------------"
+    echo "          |   Utilities   |"
+    echo "          -----------------"
+    echo ""
+    echo "Largely apps for image writing and file security."
+    echo "Plus virtual machine client."
     echo ""
     echo "                       Menu"
     echo ""
@@ -608,30 +632,37 @@ utils_menu(){
 
         1)
             sudo $PKGMGR install -y mediawriter
+            utils_menu
             ;;
 
         2)
             sudo $PKGMGR install -y isoimagewriter
+            utils_menu
             ;;
 
         3)
             flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            utils_menu
             ;;
 
         4)
             sudo $PKGMGR install -y kleopatra
+            utils_menu
             ;;
 
         5)
             flatpak install --user -y flathub org.gtkhash.gtkhash
+            utils_menu
             ;;
 
         6)
             flatpak install --user -y flathub com.github.tchx84.Flatseal
+            utils_menu
             ;;
         
         7)
             install_virtualization
+            utils_menu
             ;;
 
         100)
@@ -670,10 +701,12 @@ extras_menu(){
 
         1)
             source $SCRIPTS_HOME/modules/fedora/upgrade_helper.sh; "launch_menu"
+            extras_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/modules/fedora/mystuff.sh; "mystuff_menu"
+            extras_menu
             ;;
 
         100)

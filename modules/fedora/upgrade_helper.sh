@@ -1,4 +1,3 @@
-
 #!/usr/bin/bash
 
 dnf_menu(){

@@ -11,7 +11,7 @@ mystuff_menu(){
     echo ""
     echo "1. Boot theme           2. Game profiles"
     echo "3. Autostart"
-    echo "0. Exit"
+    echo "100. Main Menu          0. Exit"
     printf "Option: "
     read -r input
 
@@ -31,7 +31,11 @@ mystuff_menu(){
         
         3)
             autostart
-            mystufffedora_menu
+            mystuff_menu
+            ;;
+            
+        100)
+            fedora_menu
             ;;
 
         0)
@@ -42,7 +46,7 @@ mystuff_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            fedora_menu
+            mystuff_menu
             ;;
 
         esac
