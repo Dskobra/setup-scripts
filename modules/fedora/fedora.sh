@@ -101,8 +101,8 @@ basic_menu(){
     echo "Selection of apps for normal computer use."
     echo ""
     echo "                Menu"
-    echo "1 Kate/Gwenview       2. XFCE Plugins"        
-    echo "3. Corectrl(amd)      4. Nvidia Driver"
+    echo "1. Kate/Gwenview       2. XFCE Plugins"        
+    echo "3. Corectrl(amd)       4. Nvidia Driver"
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
     printf "Option: "
@@ -134,7 +134,6 @@ basic_menu(){
 
         99)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
-            echo "placeholder"
             ;;
 
         100)
@@ -533,7 +532,7 @@ ides_menu(){
     echo "                      Menu"
     echo ""
     echo "1. VSCodium                       2. Geany"
-    echo "3. Python IDLE                    4.Eric "
+    echo "3. Python IDLE                    4. Eric "
     echo "5. Bluefish                       6. Eclipse" 
     echo "7. Scene Builder                  8. Codeblocks"
     echo "100. Main Menu                    0. Exit"
