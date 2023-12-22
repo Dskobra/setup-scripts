@@ -267,5 +267,4 @@ variant_check(){
         echo "Please note this is experimental atm"
         sudo $PKGMGR refresh-md
     fi
-    echo $VARIANT
 }
