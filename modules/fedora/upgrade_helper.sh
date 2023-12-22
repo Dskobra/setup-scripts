@@ -10,7 +10,7 @@ dnf_menu(){
     echo "1. Upgrade                2. Reinstall RPMFusion"
     echo "3. Reinstall Codecs       4. Reinstall Steam"
     echo "5. Reinstall mugshot      6. Update Rescue Kernel"
-    echo "9. Main Menu              0. Exit"
+    echo "100. Main Menu            0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -51,6 +51,10 @@ dnf_menu(){
 
         6)
             update_rescue_kernel
+            ;;
+
+        100)
+            fedora_menu
             ;;
             
         0)
@@ -93,7 +97,7 @@ kinoite_menu(){
     echo "                   Menu"
     echo ""
     echo "1. Full Reset                 2. Upgrade"
-    echo "9. Main Menu                  0. Exit"
+    echo "100. Main Menu                  0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -115,8 +119,8 @@ kinoite_menu(){
             fi
             ;;
         
-        9)
-            kinoite_menu
+        100)
+            fedora_menu
             ;;
 
         0)
