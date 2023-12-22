@@ -289,8 +289,7 @@ gaming_menu(){
     echo "5. ProtonUp Qt            6. Discord"
     echo "7. Solitare               8. Minecraft"
     echo "9. WoWUp"
-    echo "100. Main Menu"
-    echo "0. Exit"
+    echo "100. Main Menu            0. Exit"
     printf "Option: "
     read -r input
     
