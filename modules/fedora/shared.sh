@@ -256,6 +256,42 @@ install_scene_builder(){
     fi
 }
 
+install_fmedia_writer(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y mediawriter
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kde_iso_image_writer(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y isoimagewriter
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.kde.isoimagewriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kleopatra(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y kleopatra
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.kde.kleopatra
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_virtualization(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then

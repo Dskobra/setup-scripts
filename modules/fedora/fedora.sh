@@ -629,12 +629,12 @@ utils_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y mediawriter
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_fmedia_writer"
             utils_menu
             ;;
 
         2)
-            sudo $PKGMGR install -y isoimagewriter
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_kde_iso_image_writer"
             utils_menu
             ;;
 
@@ -644,7 +644,7 @@ utils_menu(){
             ;;
 
         4)
-            sudo $PKGMGR install -y kleopatra
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_kleopatra"
             utils_menu
             ;;
 
