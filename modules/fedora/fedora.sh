@@ -108,7 +108,8 @@ basic_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y gwenview kate
+            sudo $PKGMGR install -y gwenview
+            sudo $PKGMGR install -y kate
             basic_menu
             ;;
         
@@ -570,7 +571,7 @@ ides_menu(){
             ;;
 
         6)
-              
+            install_bluefish
             ides_menu
             ;;
 
