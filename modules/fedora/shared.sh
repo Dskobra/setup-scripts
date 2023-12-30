@@ -199,18 +199,19 @@ install_rpm_tools(){
 
 install_github_desktop(){
     sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-
-	sudo $PKGMGR install -y git-gui github-desktop
     if [ "$PKGMGR" = "rpm-ostree" ];
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
             sudo chown root:root shiftkey-gpg.key
             sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
+            sudo $PKGMGR install -y git-gui 
+            sudo $PKGMGR install -y github-desktop
             
     elif [ "$PKGMGR" = "dnf" ];
         then
             sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+            sudo $PKGMGR install -y git-gui github-desktop
    
     fi
 }
