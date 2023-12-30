@@ -376,7 +376,7 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "remove_libreoffice"
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "remove_office"
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             ;;
 
@@ -555,6 +555,7 @@ ides_menu(){
             ;;
 
         3)
+            sudo $PKGMGR remove -y geany
             flatpak install --user -y flathub org.geany.Geany
             ides_menu
             ;;

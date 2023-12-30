@@ -159,13 +159,13 @@ install_steam(){
     fi
 }
 
-remove_libreoffice(){
+remove_office(){
     if [ "$PKGMGR" = "rpm-ostree" ];
         then
             sudo $PKGMGR remove -y libreoffice
     elif [ "$PKGMGR" = "dnf" ];
         then
-            sudo $PKGMGR remove -y libreoffice*
+            sudo $PKGMGR remove -y gnumeric libreoffice*
     fi
 }
 
