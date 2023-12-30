@@ -205,7 +205,7 @@ install_github_desktop(){
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
-            chown root:root shiftkey-gpg.key
+            sudo chown root:root shiftkey-gpg.key
             sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
             
     elif [ "$PKGMGR" = "dnf" ];
