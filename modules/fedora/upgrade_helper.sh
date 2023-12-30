@@ -97,7 +97,7 @@ kinoite_menu(){
     echo "                   Menu"
     echo ""
     echo "1. Full Reset                 2. Upgrade"
-    echo "100. Main Menu                  0. Exit"
+    echo "100. Main Menu                0. Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
