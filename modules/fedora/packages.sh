@@ -91,7 +91,7 @@ install_xfcemm(){
         echo "Immutable variants are unsupported"
     elif [ "$PKGMGR" = "dnf" ];
     then
-        sudo $PKGMGR groupinstall -y "Multimedia support for XFCE" 
+        sudo $PKGMGR install -yt asunder pavucontrol pragha xfburn
     fi
 }
 
