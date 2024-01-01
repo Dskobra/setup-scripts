@@ -84,6 +84,16 @@ install_xfce_plugins(){
     fi
 }
 
+install_xfcemm(){
+    if [ "$PKGMGR" = "rpm-ostree" ];
+        then
+            echo "Immutable variants are unsupported"
+    elif [ "$PKGMGR" = "dnf" ];
+        then
+            sudo $PKGMGR groupinstall -y "Multimedia support for XFCE" 
+    fi
+}
+
 install_mugshot(){
     MUGSHOT_FOLDER="mugshot-0.4.3"
     cd $SCRIPTS_HOME/temp/

@@ -157,7 +157,8 @@ desktop_features_menu(){
     echo "                Menu"
     echo "1. KDE Applications   2. KDE Email/Contacts"
     echo "3. KDE Multimedia "    
-    echo "4. XFCE Applications  5. XFCE Plugins"        
+    echo "4. XFCE Applications  5. XFCE Plugins"
+    echo "6. XFCE Multimedia"        
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
     printf "Option: "
@@ -188,6 +189,11 @@ desktop_features_menu(){
 
         5)
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_xfce_plugins"
+            desktop_features_menu
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_xfcemm"
             desktop_features_menu
             ;;
 
