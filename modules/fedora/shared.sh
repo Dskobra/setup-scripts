@@ -22,7 +22,7 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.ktorrent
         flatpak install --user -y flathub org.kde.okular
         flatpak install --user -y flathub org.kde.konversation
-        flatpak install flathub org.kde.kcalc
+        flatpak install --user -y flathub org.kde.kcalc
     else
         echo "Unkown error has occured."
     fi
