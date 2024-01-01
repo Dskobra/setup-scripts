@@ -11,7 +11,67 @@ install_flatpak(){
     fi
 }
 
-install_xfce_features(){
+install_kdeapps(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y kcalc kconversation krdc krusader ktorrent okular kmouth
+        sudo $PKGMGR install -y signon-kwallet-extension kate
+    elif [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKGMGR install -y krusader kmouth krdc signon-kwallet-extension
+        flatpak install --user -y flathub org.kde.ktorrent
+        flatpak install --user -y flathub org.kde.okular
+        flatpak install --user -y flathub org.kde.konversation
+        flatpak install flathub org.kde.kcalc
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kdemm(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR install -y digikam elisa-player gwenview k3b\
+        kamera kamoso kf5-kipi-plugins kolourpaint 
+    elif [ $VARIANT == "kinoite" ]
+    then
+        sudo $PKGMGR install -y k3b
+        flatpak install --user -y flathub org.kde.digikam
+        flatpak install --user -y flathub org.kde.elisa
+        flatpak install --user -y flathub org.kde.gwenview
+        flatpak install --user -y flathub org.kde.kamoso
+        flatpak install --user -y flathub org.kde.kolourpaint
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kdeemail(){
+    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    then
+        sudo $PKGMGR groupinstall -y "KDE PIM"
+    elif [ $VARIANT == "kinoite" ]
+    then
+        flatpak install --user -y flathub org.kde.kontact
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_xfce_apps(){
+    if [ "$PKGMGR" = "rpm-ostree" ];
+        then
+            echo "Immutable variants are unsupported"
+    elif [ "$PKGMGR" = "dnf" ];
+        then
+            sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
+            sudo $PKGMGR remove -y geany transmission
+            flatpak install --user -y flathub org.geany.Geany
+            flatpak install --user -y flathub com.transmissionbt.Transmission
+    fi
+}
+
+install_xfce_plugins(){
     if [ "$PKGMGR" = "rpm-ostree" ];
         then
             echo "Immutable variants are unsupported"

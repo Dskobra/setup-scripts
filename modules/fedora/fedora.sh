@@ -7,11 +7,12 @@ fedora_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. RPMFusion             2. Flatpak"
-    echo "3. Basic Apps            4. Internet"
-    echo "5. Multimedia            6. Gaming"
-    echo "7. Office                8. Coding"
-    echo "9. Utilities             10. Extras"
+    echo "1. Setup RPMFusion       2. Setup Flatpak"
+    echo "3. Drivers               4. Desktop Features"      
+    echo "5. Internet              6. Multimedia"
+    echo "7. Gaming                8. Office"
+    echo "9. Coding                10. Utilities"
+    echo "11. Extras"
     echo "0. Exit"
     printf "Option: "
     read -r input
@@ -29,47 +30,52 @@ fedora_menu(){
             source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_flatpak"
             fedora_menu
             ;;
-        
-        3)
 
-            basic_menu
+
+        3)
+            drivers_menu
             check_if_kinoite
             fedora_menu
             ;;
-
         4)
-            internet_menu
+            desktop_features_menu
             check_if_kinoite
             fedora_menu
             ;;
 
         5)
-            multimedia_menu
+            internet_menu
             check_if_kinoite
             fedora_menu
             ;;
 
         6)
-            gaming_menu
+            multimedia_menu
             check_if_kinoite
             fedora_menu
             ;;
 
         7)
+            gaming_menu
+            check_if_kinoite
+            fedora_menu
+            ;;
+
+        8)
             office_menu
             fedora_menu
             ;;
-        8)
+        9)
             coding_menu
             fedora_menu
             ;;
 
-        9)
+        10)
             utils_menu
             fedora_menu
             ;;
 
-        10)
+        11)
             extras_menu
             fedora_menu
             ;;
@@ -90,16 +96,15 @@ fedora_menu(){
         fedora_menu
 }
 
-basic_menu(){
-    echo "              --------------------------"
-    echo "              |   Basic Desktop Apps   |"
-    echo "              --------------------------"
+drivers_menu(){
+    echo "              ---------------"
+    echo "              |   Drivers   |"
+    echo "              ---------------"
     echo ""
-    echo "Extra desktop apps and drivers."
+    echo "AMD/Nvidia drivers"
     echo ""
-    echo "                Menu"
-    echo "1. Kate/Gwenview       2. XFCE Plugins"        
-    echo "3. Corectrl(amd)       4. Nvidia Driver"
+    echo "                Menu"     
+    echo "1. Corectrl(amd)       2. Nvidia Driver"
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
     printf "Option: "
@@ -108,17 +113,6 @@ basic_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y gwenview
-            sudo $PKGMGR install -y kate
-            basic_menu
-            ;;
-        
-        2)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_xfce_features"
-            basic_menu
-            ;;
-
-        3)
             sudo $PKGMGR install -y corectrl
             xdg-open xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#corectrl
             basic_menu
@@ -129,6 +123,74 @@ basic_menu(){
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#nvidia
             basic_menu
             ;;
+
+        99)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            basic_menu
+            ;;
+            
+        esac
+        unset input
+        basic_menu
+}
+
+desktop_features_menu(){
+    echo "              ------------------------"
+    echo "              |   Desktop Features   |"
+    echo "              ------------------------"
+    echo ""
+    echo "Extra apps and plugins for KDE/XFCE"
+    echo ""
+    echo "                Menu"
+    echo "1. KDE Applications   2. KDE Email/Contacts"
+    echo "3. KDE Multimedia "    
+    echo "4. XFCE Applications  5. XFCE Plugins"        
+    echo "99. Help"
+    echo "100. Main Menu        0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_kdeapps"
+            desktop_features_menu
+            ;;
+        
+        2)
+
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_kdeemail"
+            desktop_features_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_kdemm"
+            desktop_features_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_xfce_apps"
+            desktop_features_menu
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_xfce_plugins"
+            desktop_features_menu
+            ;;
+
 
         99)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
