@@ -114,13 +114,13 @@ drivers_menu(){
 
         1)
             sudo $PKGMGR install -y corectrl
-            xdg-open xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#corectrl
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#corectrl
             drivers_menu
             ;;
 
-        4)
+        2)
             sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#nvidia
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
             drivers_menu
             ;;
 
