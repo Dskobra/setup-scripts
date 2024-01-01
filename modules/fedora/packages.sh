@@ -65,9 +65,12 @@ install_xfce_apps(){
     elif [ "$PKGMGR" = "dnf" ];
     then
         sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
+        sudo $PKGMGR install -y menulibre python3-distutils-extra
         sudo $PKGMGR remove -y geany transmission
         flatpak install --user -y flathub org.geany.Geany
         flatpak install --user -y flathub com.transmissionbt.Transmission
+        flatpak install --user -y flathub io.missioncenter.MissionCenter
+        install_mugshot
     fi
 }
 
@@ -77,10 +80,8 @@ install_xfce_plugins(){
         echo "Immutable variants are unsupported"
     elif [ "$PKGMGR" = "dnf" ];
     then
-        sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
         sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-        flatpak install --user -y flathub io.missioncenter.MissionCenter
-        install_mugshot    
+            
     fi
 }
 
