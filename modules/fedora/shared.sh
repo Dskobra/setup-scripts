@@ -60,37 +60,37 @@ install_kdeemail(){
 
 install_xfce_apps(){
     if [ "$PKGMGR" = "rpm-ostree" ];
-        then
-            echo "Immutable variants are unsupported"
+    then
+        echo "Immutable variants are unsupported"
     elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
-            sudo $PKGMGR remove -y geany transmission
-            flatpak install --user -y flathub org.geany.Geany
-            flatpak install --user -y flathub com.transmissionbt.Transmission
+    then
+        sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
+        sudo $PKGMGR remove -y geany transmission
+        flatpak install --user -y flathub org.geany.Geany
+        flatpak install --user -y flathub com.transmissionbt.Transmission
     fi
 }
 
 install_xfce_plugins(){
     if [ "$PKGMGR" = "rpm-ostree" ];
-        then
-            echo "Immutable variants are unsupported"
+    then
+        echo "Immutable variants are unsupported"
     elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
-            sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            install_mugshot    
+    then
+        sudo dnf install -y  xarchiver menulibre flatpak python3-distutils-extra
+        sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
+        flatpak install --user -y flathub io.missioncenter.MissionCenter
+        install_mugshot    
     fi
 }
 
 install_xfcemm(){
     if [ "$PKGMGR" = "rpm-ostree" ];
-        then
-            echo "Immutable variants are unsupported"
+    then
+        echo "Immutable variants are unsupported"
     elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo $PKGMGR groupinstall -y "Multimedia support for XFCE" 
+    then
+        sudo $PKGMGR groupinstall -y "Multimedia support for XFCE" 
     fi
 }
 
