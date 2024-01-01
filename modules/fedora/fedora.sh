@@ -793,6 +793,6 @@ extras_menu(){
 }
 
 export VARIANT=""
-export PKGMGR=""
-source $SCRIPTS_HOME/modules/fedora/shared.sh; "variant_check"
+export PKGMGR="dnf"
+#source $SCRIPTS_HOME/modules/fedora/shared.sh; "variant_check"
 fedora_menu

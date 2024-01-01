@@ -413,6 +413,7 @@ confirm_reboot(){
 }
 
 variant_check(){
+    echo "running variant_check"
     VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
     if [ $VARIANT == "" ]
     then
