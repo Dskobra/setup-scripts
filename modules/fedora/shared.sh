@@ -11,7 +11,7 @@ install_flatpak(){
     fi
 }
 
-#install_kdeapps(){
+install_kdeapps(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y kcalc kconversation krdc krusader ktorrent okular kmouth
@@ -26,9 +26,9 @@ install_flatpak(){
     else
         echo "Unkown error has occured."
     fi
-#}
+}
 
-#install_kdemm(){
+install_kdemm(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y digikam elisa-player gwenview k3b\
@@ -44,9 +44,9 @@ install_flatpak(){
     else
         echo "Unkown error has occured."
     fi
-#}
+}
 
-#install_kdeemail(){
+install_kdeemail(){
     if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR groupinstall -y "KDE PIM"
@@ -56,9 +56,9 @@ install_flatpak(){
     else
         echo "Unkown error has occured."
     fi
-#}
+}
 
-#install_xfce_apps(){
+install_xfce_apps(){
     if [ "$PKGMGR" = "rpm-ostree" ];
     then
         echo "Immutable variants are unsupported"
@@ -69,9 +69,9 @@ install_flatpak(){
         flatpak install --user -y flathub org.geany.Geany
         flatpak install --user -y flathub com.transmissionbt.Transmission
     fi
-#}
+}
 
-#install_xfce_plugins(){
+install_xfce_plugins(){
     if [ "$PKGMGR" = "rpm-ostree" ];
     then
         echo "Immutable variants are unsupported"
@@ -82,9 +82,9 @@ install_flatpak(){
         flatpak install --user -y flathub io.missioncenter.MissionCenter
         install_mugshot    
     fi
-#}
+}
 
-#install_xfcemm(){
+install_xfcemm(){
     if [ "$PKGMGR" = "rpm-ostree" ];
     then
         echo "Immutable variants are unsupported"
@@ -92,7 +92,7 @@ install_flatpak(){
     then
         sudo $PKGMGR groupinstall -y "Multimedia support for XFCE" 
     fi
-#}
+}
 
 install_mugshot(){
     MUGSHOT_FOLDER="mugshot-0.4.3"
