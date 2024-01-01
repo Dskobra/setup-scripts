@@ -793,7 +793,7 @@ extras_menu(){
 }
 
 check_if_kinoite(){
-    if [ $VARIANT == "kinoite" ]
+    if [ "$VARIANT" == "kinoite" ]
     then
         confirm_reboot
     fi

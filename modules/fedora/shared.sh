@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 install_flatpak(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "kinoite" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "kinoite" ]
     then
         source $SCRIPTS_HOME/modules/shared.sh; "frepo"
     elif [ $VARIANT == "xfce" ]
@@ -12,7 +12,7 @@ install_flatpak(){
 }
 
 install_kdeapps(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y kcalc kconversation krdc krusader ktorrent okular kmouth
         sudo $PKGMGR install -y signon-kwallet-extension kate
@@ -29,7 +29,7 @@ install_kdeapps(){
 }
 
 install_kdemm(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y digikam elisa-player gwenview k3b\
         kamera kamoso kf5-kipi-plugins kolourpaint 
@@ -47,7 +47,7 @@ install_kdemm(){
 }
 
 install_kdeemail(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR groupinstall -y "KDE PIM"
     elif [ $VARIANT == "kinoite" ]
@@ -132,7 +132,7 @@ install_brave_browser(){
 }
 
 install_codecs(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y gstreamer1-plugin-openh264 \
@@ -157,7 +157,7 @@ install_codecs(){
 }
 
 install_openshot(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y openshot
     elif [ $VARIANT == "kinoite" ]
@@ -169,7 +169,7 @@ install_openshot(){
 }
 
 install_kolourpaint(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y kolourpaint
     elif [ $VARIANT == "kinoite" ]
@@ -181,7 +181,7 @@ install_kolourpaint(){
 }
 
 install_kpat(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y kpat
     elif [ $VARIANT == "kinoite" ]
@@ -193,7 +193,7 @@ install_kpat(){
 }
 
 install_bluefish(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
          sudo $PKGMGR install -y bluefish
     elif [ $VARIANT == "kinoite" ]
@@ -205,7 +205,7 @@ install_bluefish(){
 }
 
 install_codeblocks(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
          sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
     elif [ $VARIANT == "kinoite" ]
@@ -217,7 +217,7 @@ install_codeblocks(){
 }
 
 install_steam(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y steam gamescope
     elif [ $VARIANT == "kinoite" ]
@@ -240,7 +240,7 @@ remove_office(){
 }
 
 install_c_cpp(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo dnf groupinstall -y "C Development Tools and libraries"
     elif [ $VARIANT == "kinoite" ]
@@ -254,7 +254,7 @@ install_c_cpp(){
 }
 
 install_rpm_tools(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo dnf groupinstall -y "RPM Development Tools"
     elif [ $VARIANT == "kinoite" ]
@@ -316,7 +316,7 @@ install_scene_builder(){
     cd $SCRIPTS_HOME/temp
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
     curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo rpm -i $SCENE_BUILDER
     elif [ $VARIANT == "kinoite" ]
@@ -328,7 +328,7 @@ install_scene_builder(){
 }
 
 install_fmedia_writer(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y mediawriter
     elif [ $VARIANT == "kinoite" ]
@@ -340,7 +340,7 @@ install_fmedia_writer(){
 }
 
 install_kde_iso_image_writer(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y isoimagewriter
     elif [ $VARIANT == "kinoite" ]
@@ -352,7 +352,7 @@ install_kde_iso_image_writer(){
 }
 
 install_kleopatra(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo $PKGMGR install -y kleopatra
     elif [ $VARIANT == "kinoite" ]
@@ -364,7 +364,7 @@ install_kleopatra(){
 }
 
 install_virtualization(){
-    if [ $VARIANT == "" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         sudo dnf groupinstall -y "Virtualization"
     elif [ $VARIANT == "kinoite" ]
