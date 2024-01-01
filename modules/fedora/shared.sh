@@ -3,10 +3,10 @@
 install_flatpak(){
     if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "kinoite" ]
     then
-        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
-    elif [ $VARIANT == "xfce" ]
-    then
         sudo $PKGMGR install -y flatpak
+        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+    elif [ $VARIANT == "kinoite" ]
+    then
         source $SCRIPTS_HOME/modules/shared.sh; "frepo"
     fi
 }
