@@ -14,8 +14,8 @@ install_flatpak(){
 install_kdeapps(){
     if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
-        sudo $PKGMGR install -y kcalc kconversation krdc krusader ktorrent okular kmouth
-        sudo $PKGMGR install -y signon-kwallet-extension kate
+        sudo $PKGMGR install -y kcalc konversation krdc krusader ktorrent okular kmouth
+        sudo $PKGMGR install -y signon-kwallet-extension kate firefox fedora-bookmarks
     elif [ $VARIANT == "kinoite" ]
     then
         sudo $PKGMGR install -y krusader kmouth krdc signon-kwallet-extension
