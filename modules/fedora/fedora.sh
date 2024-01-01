@@ -31,12 +31,12 @@ fedora_menu(){
             fedora_menu
             ;;
 
-
         3)
             drivers_menu
             check_if_kinoite
             fedora_menu
             ;;
+
         4)
             desktop_features_menu
             check_if_kinoite
@@ -115,17 +115,13 @@ drivers_menu(){
         1)
             sudo $PKGMGR install -y corectrl
             xdg-open xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#corectrl
-            basic_menu
+            drivers_menu
             ;;
 
         4)
             sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#nvidia
-            basic_menu
-            ;;
-
-        99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+            drivers_menu
             ;;
 
         100)
@@ -139,7 +135,7 @@ drivers_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            basic_menu
+            drivers_menu
             ;;
             
         esac
