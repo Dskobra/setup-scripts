@@ -148,13 +148,10 @@ desktop_features_menu(){
     echo "              |   Desktop Features   |"
     echo "              ------------------------"
     echo ""
-    echo "Extra apps and plugins for KDE/XFCE"
+    echo "Select desktop to install features for"
     echo ""
     echo "                Menu"
-    echo "1. KDE Applications   2. KDE Email/Contacts"
-    echo "3. KDE Multimedia "    
-    echo "4. XFCE Applications  5. XFCE Plugins"
-    echo "6. XFCE Multimedia"        
+    echo "1. KDE                2. XFCE"     
     echo "99. Help"
     echo "100. Main Menu        0. Exit"
     printf "Option: "
@@ -163,34 +160,12 @@ desktop_features_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdeapps"
-            desktop_features_menu
+            kde_features_menu
             ;;
         
         2)
 
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdeemail"
-            desktop_features_menu
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdemm"
-            desktop_features_menu
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfce_apps"
-            desktop_features_menu
-            ;;
-
-        5)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfce_plugins"
-            desktop_features_menu
-            ;;
-
-        6)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfcemm"
-            desktop_features_menu
+            xfce_features_menu
             ;;
 
 
@@ -209,12 +184,125 @@ desktop_features_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            basic_menu
+            desktop_features_menu
             ;;
             
         esac
         unset input
-        basic_menu
+        desktop_features_menu
+}
+
+kde_features_menu(){
+    echo "              -----------"
+    echo "              |   KDE   |"
+    echo "              -----------"
+    echo ""
+    echo "Extra apps and plugins for KDE"
+    echo ""
+    echo "                Menu"
+    echo "1. KDE Applications   2. KDE Email/Contacts"
+    echo "3. KDE Multimedia "     
+    echo "99. Help"
+    echo "100. Main Menu        0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdeapps"
+            kde_features_menu
+            ;;
+        
+        2)
+
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdeemail"
+            kde_features_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdemm"
+            kde_features_menu
+            ;;
+
+        99)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            kde_features_menu
+            ;;
+            
+        esac
+        unset input
+        kde_features_menu
+}
+
+xfce_features_menu(){
+    echo "              ------------"
+    echo "              |   XFCE   |"
+    echo "              ------------"
+    echo ""
+    echo "Extra apps and plugins for KDE/XFCE"
+    echo ""
+    echo "                Menu"
+    echo "1. XFCE Applications  2. XFCE Plugins"
+    echo "3. XFCE Multimedia"        
+    echo "99. Help"
+    echo "100. Main Menu        0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfce_apps"
+            xfce_features_menu
+            ;;
+        
+        2)
+
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfce_plugins"
+            xfce_features_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfcemm"
+            xfce_features_menu
+            ;;
+
+
+        99)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            xfce_features_menu
+            ;;
+            
+        esac
+        unset input
+        xfce_features_menu
 }
 
 internet_menu(){
