@@ -847,7 +847,8 @@ web_dev_menu(){
     echo ""
     echo "(1) NodejS LTS            (2) XAMPP"
     echo "(3) Bluefish              "
-    echo "(m) Main Menu             (0) Exit"
+    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -908,7 +909,8 @@ python_menu(){
     echo ""
     echo "(1) Python IDLE           (2) Eric"
     echo "(3) Pycharm"
-    echo "(m) Main Menu             (0) Exit"
+    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -927,6 +929,14 @@ python_menu(){
         3)
             flatpak install --user -y flathub com.jetbrains.PyCharm-Community
             python_menu
+            ;;
+
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
             ;;
 
         m)
