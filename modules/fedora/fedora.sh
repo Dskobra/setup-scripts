@@ -569,12 +569,13 @@ gaming_menu(){
         9)
             source $SCRIPTS_HOME/modules/shared.sh; "wowup"
             ;;
-        
-        99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Gaming-Apps
+
+
+        m)
+            fedora_menu
             ;;
 
-        100)
+        M)
             fedora_menu
             ;;
         0)
@@ -600,9 +601,8 @@ office_menu(){
     echo "Office and note taking apps."
     echo ""
     echo "                Menu"
-    echo "1. Libreoffice        2. QOwnNotes"         
-    echo "99. Help"
-    echo "100. Main Menu        0. Exit"
+    echo "(1) Libreoffice        (2) QOwnNotes"         
+    echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -621,7 +621,11 @@ office_menu(){
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Office-Apps
             ;;
 
-        100)
+        m)
+            fedora_menu
+            ;;
+
+        M)
             fedora_menu
             ;;
 
@@ -649,9 +653,9 @@ coding_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "1. Languages        2. IDEs"
-    echo "3. GitHub Desktop   4. Containers"
-    echo "100. Main Menu      0. Exit"
+    echo "(1) Languages         (2) IDEs"
+    echo "(3) GitHub Desktop    (4) Containers"
+    echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
     
@@ -673,11 +677,11 @@ coding_menu(){
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
-        99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Coding-Apps
+        m)
+            fedora_menu
             ;;
-
-        100)
+            
+        M)
             fedora_menu
             ;;
 
