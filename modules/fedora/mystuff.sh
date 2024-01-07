@@ -9,9 +9,9 @@ mystuff_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. Boot theme           2. Game profiles"
-    echo "3. Autostart"
-    echo "100. Main Menu          0. Exit"
+    echo "(1) Boot theme           (2) Game profiles"
+    echo "(3) Autostart"
+    echo "(m) Main Menu            (0) Exit"
     printf "Option: "
     read -r input
 

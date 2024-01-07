@@ -7,10 +7,10 @@ dnf_menu(){
     echo ""
     echo "                   Menu"
     echo ""
-    echo "1. Upgrade                2. Reinstall RPMFusion"
-    echo "3. Reinstall Codecs       4. Reinstall Steam"
-    echo "5. Reinstall mugshot      6. Update Rescue Kernel"
-    echo "100. Main Menu            0. Exit"
+    echo "(1) Upgrade                (2) Reinstall RPMFusion"
+    echo "(3) Reinstall Codecs       (4) Reinstall Steam"
+    echo "(5) Reinstall mugshot      (6) Update Rescue Kernel"
+    echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -30,31 +30,34 @@ dnf_menu(){
             ;;
 
         2)
-            sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-            upgrade_menu
+            sudo $PKGMGR -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            dnf_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/modules/fedora/shared.sh; "install_codecs"
-            upgrade_menu
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codecs"
+            dnf_menu
             ;;
 
         4)
-            sudo dnf install -y steam steam-devices
-            upgrade_menu
+            sudo $PKGMGR install -y steam steam-devices
+            dnf_menu
             ;;
 
         5)
-            install_mugshot
-            
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_mugshot"
             ;;
 
         6)
             update_rescue_kernel
             ;;
 
-        100)
-            fedora_menu
+        m)
+            dnf_menu
+            ;;
+        
+        M)
+            dnf_menu
             ;;
             
         0)
@@ -89,15 +92,15 @@ update_rescue_kernel(){
     sudo dnf reinstall -y kernel*
 }
 
-kinoite_menu(){
+immutable_menu(){
     echo "               ---------------------"
     echo "               |   Upgrade Steps   |"
     echo "               ---------------------"
     echo ""
     echo "                   Menu"
     echo ""
-    echo "1. Full Reset                 2. Upgrade"
-    echo "100. Main Menu                0. Exit"
+    echo "(1) Full Reset                 (2) Upgrade"
+    echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -119,8 +122,12 @@ kinoite_menu(){
             fi
             ;;
         
-        100)
-            fedora_menu
+        m)
+            immutable_menu
+            ;;
+
+        M)
+            immutable_menu
             ;;
 
         0)
@@ -135,7 +142,7 @@ kinoite_menu(){
 
     esac
     unset input
-    kinoite_menu
+    immutable_menu
 }
 
 upgrade_check(){
@@ -257,13 +264,13 @@ remove_rpmfusion(){
 }
 
 menu_launch(){
-    if [ $VARIANT == "" ]
+    if [ ! -n "$VARIANT" ]
     then
         dnf_menu
-    elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ] || [ $VARIANT == "mate" ]
     then
         dnf_menu
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "kinoite" ] || [ $VARIANT == "silverblue" ]
     then
         kinoite_menu
     fi
