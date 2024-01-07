@@ -675,12 +675,16 @@ coding_menu(){
             web_dev_menu
             ;;
         4)
-            sudo $PKGMGR install -y toolbox
-            sudo $PKGMGR install -y distrobox
-            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+            python_menu
             ;;
         5)
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_github_desktop"
+            ;;
+
+        6)
+            sudo $PKGMGR install -y toolbox
+            sudo $PKGMGR install -y distrobox
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
         7)
@@ -860,7 +864,7 @@ web_dev_menu(){
             ;;
 
         3)
-            install_bluefish
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_bluefish"
             web_dev_menu
             ;;
         
@@ -870,6 +874,59 @@ web_dev_menu(){
 
         P)
             coding_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+        
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        cpp_menu
+        ;;
+        
+    esac
+    unset input
+    cpp_menu
+}
+
+python_menu(){
+    echo "          --------------"
+    echo "          |   Python   |"
+    echo "          --------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) Python IDLE           (2) Eric"
+    echo "(3) Pycharm"
+    echo "(m) Main Menu             (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            sudo $PKGMGR install -y python3-idle python3-devel
+            python_menu
+            ;;
+
+        2)
+            sudo $PKGMGR install -y eric
+            python_menu
+            ;;
+
+        3)
+            flatpak install --user -y flathub com.jetbrains.PyCharm-Community
+            python_menu
             ;;
 
         m)
@@ -961,59 +1018,6 @@ ides_menu(){
     esac
     unset input
     ides_menu
-}
-
-python_menu(){
-    echo "          --------------"
-    echo "          |   Python   |"
-    echo "          --------------"
-    echo ""
-    echo "              Menu"
-    echo ""
-    echo "(1) Python IDLE           (2) Eric"
-    echo "(3) Pycharm"
-    echo "(m) Main Menu             (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            sudo $PKGMGR install -y python3-idle python3-devel
-            python_menu
-            ;;
-
-        2)
-            sudo $PKGMGR install -y eric
-            python_menu
-            ;;
-
-        3)
-            flatpak install --user -y flathub com.jetbrains.PyCharm-Community
-            python_menu
-            ;;
-
-        m)
-            fedora_menu
-            ;;
-        
-        M)
-            fedora_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        cpp_menu
-        ;;
-        
-    esac
-    unset input
-    cpp_menu
 }
 
 utils_menu(){
