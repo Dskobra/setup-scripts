@@ -53,11 +53,11 @@ dnf_menu(){
             ;;
 
         m)
-            dnf_menu
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
             ;;
         
         M)
-            dnf_menu
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
             ;;
             
         0)
@@ -123,11 +123,11 @@ immutable_menu(){
             ;;
         
         m)
-            immutable_menu
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
             ;;
 
         M)
-            immutable_menu
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
             ;;
 
         0)
