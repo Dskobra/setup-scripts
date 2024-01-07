@@ -719,7 +719,8 @@ cpp_menu(){
     echo ""
     echo "(1) GCC            (2) RPM Build Tools"
     echo "(3) Codeblocks"
-    echo "(m) Main Menu      (0) Exit"
+    echo "(p) Previous Menu  (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -739,7 +740,15 @@ cpp_menu(){
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codeblocks"
             cpp_menu
             ;;
-
+        
+        p)
+            coding_menu
+            ;;
+        
+        P)
+            coding_menu
+            ;;
+        
         m)
             fedora_menu
             ;;
@@ -772,7 +781,8 @@ java_menu(){
     echo ""
     echo "(1) openJDK 17      (2) Intellij"
     echo "(3) Scene Builder"
-    echo "100. Main Menu      0. Exit"
+    echo "(p) Previous Menu   (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -792,6 +802,13 @@ java_menu(){
             sudo $PKGMGR install -y openjfx
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_scene_builder"
             java_menu
+            ;;
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
             ;;
 
         m)
@@ -846,6 +863,14 @@ web_dev_menu(){
             install_bluefish
             web_dev_menu
             ;;
+        
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
+            ;;
 
         m)
             fedora_menu
@@ -879,7 +904,8 @@ ides_menu(){
     echo ""
     echo "(1) VIM                            (2) VSCodium"
     echo "(3) Geany                          (4) Eclipse"
-    echo "(m) Main Menu                      (0) Exit"
+    echo "(p) Previous Menu                  (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -906,7 +932,19 @@ ides_menu(){
             ides_menu
             ;;
 
-        100)
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+
+        M)
             fedora_menu
             ;;
 
