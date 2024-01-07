@@ -653,8 +653,10 @@ coding_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "(1) Languages         (2) IDEs"
-    echo "(3) GitHub Desktop    (4) Containers"
+    echo "(1) C/C++             (2) Java"
+    echo "(3) Web Devlopment    (4) Python"
+    echo "(5) GitHub Desktop"
+    echo "(6) Containers        (7) Misc IDEs"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -662,19 +664,27 @@ coding_menu(){
     case $input in
 
         1)
-            languages_menu
+            cpp_menu
             ;;
 
         2)
-            ides_menu
+            java_menu
             ;;
+
         3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_github_desktop"
+            web_dev_menu
             ;;
         4)
             sudo $PKGMGR install -y toolbox
             sudo $PKGMGR install -y distrobox
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+            ;;
+        5)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_github_desktop"
+            ;;
+
+        8)
+            ides_menu
             ;;
 
         m)
@@ -700,69 +710,6 @@ coding_menu(){
     coding_menu
 }
 
-languages_menu(){
-    echo "          ----------------------"
-    echo "          |   Language Tools   |"
-    echo "          ----------------------"
-    echo ""
-    echo "              Menu"
-    echo ""
-    echo "1. C/C++            2. openJDK 17"
-    echo "3. NodejS LTS       4. Python"
-    echo "5. RPM Build Tools"
-    echo "100. Main Menu      0. Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
-            languages_menu
-            ;;
-
-        2)
-            sudo $PKGMGR install -y java-17-openjdk-devel
-            languages_menu
-            ;;
-        3)
-            echo "This downloads the nvm or Node Version Manager script to install"
-            echo "the latest nodejs long term support release."
-            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	        source ~/.bashrc
-	        nvm install lts/*
-            languages_menu
-            ;;
-
-        4)
-            sudo $PKGMGR install -y python3-devel
-            languages_menu
-            ;;
-
-        5)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_rpm_tools"
-            languages_menu
-            ;;
-
-        100)
-            fedora_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        languages_menu
-        ;;
-        
-    esac
-    unset input
-    languages_menu
-}
-
 cpp_menu(){
     echo "          -------------"
     echo "          |   C/C++   |"
@@ -770,8 +717,9 @@ cpp_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "1. Compilers           2. CodeBLocks"
-    echo "100. Main Menu      0. Exit"
+    echo "(1) GCC            (2) RPM Build Tools"
+    echo "(3) Codeblocks"
+    echo "(m) Main Menu      (0) Exit"
     printf "Option: "
     read -r input
     
@@ -779,10 +727,15 @@ cpp_menu(){
 
         1)
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
-            cpp_menu_menu
+            cpp_menu
             ;;
 
         2)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_rpm_tools"
+            cpp_menu
+            ;;
+
+        3)
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codeblocks"
             cpp_menu
             ;;
@@ -802,12 +755,124 @@ cpp_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        languages_menu
+        cpp_menu
         ;;
         
     esac
     unset input
-    languages_menu
+    cpp_menu
+}
+
+java_menu(){
+    echo "          ---------------"
+    echo "          |   openJDK   |"
+    echo "          ---------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) openJDK 17      (2) Intellij"
+    echo "(3) Scene Builder"
+    echo "100. Main Menu      0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            sudo $PKGMGR install -y java-17-openjdk-devel
+            java_menu
+            ;;
+
+        2)
+            
+            flatpak install --user -y flathub com.jetbrains.IntelliJ-IDEA-Community
+            java_menu
+            ;;
+        3)
+            sudo $PKGMGR install -y openjfx
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_scene_builder"
+            java_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        java_menu
+        ;;
+        
+    esac
+    unset input
+    java_menu
+}
+
+web_dev_menu(){
+    echo "          -----------------------"
+    echo "          |   Web Development   |"
+    echo "          -----------------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) NodejS LTS            (2) XAMPP"
+    echo "(3) Bluefish              (4) XAMPP"
+    echo "(m) Main Menu             (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
+            web_dev_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_rpm_tools"
+            web_dev_menu
+            ;;
+
+        3)
+            install_bluefish
+            web_dev_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/shared.sh; "install_xampp"
+            web_dev_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+        
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        cpp_menu
+        ;;
+        
+    esac
+    unset input
+    cpp_menu
 }
 
 ides_menu(){
@@ -891,6 +956,69 @@ ides_menu(){
     esac
     unset input
     ides_menu
+}
+
+languages_menu(){
+    echo "          ----------------------"
+    echo "          |   Language Tools   |"
+    echo "          ----------------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "1. C/C++            2. openJDK 17"
+    echo "3. NodejS LTS       4. Python"
+    echo "5. RPM Build Tools"
+    echo "100. Main Menu      0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
+            languages_menu
+            ;;
+
+        2)
+            sudo $PKGMGR install -y java-17-openjdk-devel
+            languages_menu
+            ;;
+        3)
+            echo "This downloads the nvm or Node Version Manager script to install"
+            echo "the latest nodejs long term support release."
+            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	        source ~/.bashrc
+	        nvm install lts/*
+            languages_menu
+            ;;
+
+        4)
+            sudo $PKGMGR install -y python3-devel
+            languages_menu
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_rpm_tools"
+            languages_menu
+            ;;
+
+        100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        languages_menu
+        ;;
+        
+    esac
+    unset input
+    languages_menu
 }
 
 utils_menu(){
