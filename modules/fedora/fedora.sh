@@ -81,7 +81,7 @@ fedora_menu(){
             ;;
 
         0)
-            check_if_kinoite
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -142,6 +142,7 @@ drivers_menu(){
             fedora_menu
             ;;
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -189,6 +190,7 @@ desktop_features_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -251,6 +253,7 @@ kde_features_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -316,6 +319,7 @@ xfce_features_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -426,6 +430,7 @@ internet_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -495,6 +500,7 @@ multimedia_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -579,6 +585,7 @@ gaming_menu(){
             fedora_menu
             ;;
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -630,6 +637,7 @@ office_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -700,6 +708,7 @@ coding_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -762,6 +771,7 @@ cpp_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -824,6 +834,7 @@ java_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -886,6 +897,7 @@ web_dev_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -948,6 +960,7 @@ python_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -1016,6 +1029,7 @@ ides_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -1094,6 +1108,7 @@ utils_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -1142,6 +1157,7 @@ extras_menu(){
             ;;
 
         0)
+            sudo rm -r -f $SCRIPTS_HOME/temp
             exit
             ;;
 
@@ -1182,7 +1198,7 @@ confirm_reboot(){
     then
 	    exit
     else
-	    menu
+	    fedora_menu
     fi
 }
 
