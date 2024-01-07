@@ -55,3 +55,12 @@ install_nodejs(){
 	source ~/.bashrc
 	nvm install lts/*
 }
+
+install_eclipse(){
+    cd $SCRIPTS_HOME/temp
+    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
+    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
+
+    tar -xvf $ECLIPSE
+    ./eclipse-installer/eclipse-inst
+}

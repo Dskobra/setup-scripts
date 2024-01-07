@@ -247,11 +247,11 @@ remove_rpmfusion(){
     
     if [ $input == "y" ] || [ $input == "Y" ]
     then
-        sudo dnf remove -y steam steam-devices
-        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
-        sudo dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release
-        sudo dnf clean all
-        sudo dnf update -y
+        sudo $PKGMGR remove -y steam steam-devices
+        sudo $PKGMGR swap -y ffmpeg libavcodec-free --allowerasing
+        sudo $PKGMGR remove -y rpmfusion-free-release rpmfusion-nonfree-release
+        sudo $PKGMGR clean all
+        sudo $PKGMGR update -y
     elif [ $input == "n" ] || [ $input == "N" ]
     then
         echo "Chose not to remove."

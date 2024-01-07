@@ -23,6 +23,8 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.okular
         flatpak install --user -y flathub org.kde.konversation
         flatpak install --user -y flathub org.kde.kcalc
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi
@@ -41,6 +43,8 @@ install_kdemm(){
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kolourpaint
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi
@@ -122,6 +126,8 @@ install_brave_browser(){
 
             sudo $PKGMGR refresh-md
             sudo $PKGMGR install -y brave-browser
+
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     elif [ "$PKGMGR" = "dnf" ];
         then
             sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -152,6 +158,8 @@ install_codecs(){
 
         sudo $PKGMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
         sudo $PKGMGR install -y mesa-vdpau-drivers-freeworld
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi
@@ -249,6 +257,8 @@ install_c_cpp(){
         sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
         flex libtool m4 valgrind byacc ccache cscope indent\
         ltrace perf strace
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi
@@ -262,6 +272,8 @@ install_rpm_tools(){
     then
         sudo $PKGMGR install -y koji mock redhat-rpm-config\
         rpm-build rpmdevtools
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
 
     else
         echo "Unkown error has occured."
@@ -278,6 +290,8 @@ install_github_desktop(){
             sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
             sudo $PKGMGR install -y git-gui 
             sudo $PKGMGR install -y github-desktop
+
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
             
     elif [ "$PKGMGR" = "dnf" ];
         then
@@ -295,22 +309,15 @@ install_vscodium(){
             curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
             chown root:root vscodium.gpg
             sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
-            sudo $PKGMGR install -y codium      
+            sudo $PKGMGR install -y codium  
+
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"    
     elif [ "$PKGMGR" = "dnf" ];
         then
             sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
             sudo $PKGMGR install -y codium
    
     fi
-}
-
-install_eclipse(){
-    cd $SCRIPTS_HOME/temp
-    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
-    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
-
-    tar -xvf $ECLIPSE
-    ./eclipse-installer/eclipse-inst
 }
 
 install_scene_builder(){
@@ -323,6 +330,8 @@ install_scene_builder(){
     elif [ $VARIANT == "kinoite" ]
     then
         sudo $PKGMGR install -y $SCENE_BUILDER
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi
@@ -373,6 +382,8 @@ install_virtualization(){
         sudo $PKGMGR install -y libvirt-daemon-config-network\
         libvirt-daemon-kvm qemu-kvm virt-install\
         virt-manager virt-viewer
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
 
     else
         echo "Unkown error has occured."

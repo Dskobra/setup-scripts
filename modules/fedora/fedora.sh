@@ -22,7 +22,7 @@ fedora_menu(){
 
         1)  
             sudo $PKGMGR install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-            check_if_kinoite 
+            check_if_immutable 
             fedora_menu
             ;;
 
@@ -33,31 +33,28 @@ fedora_menu(){
 
         3)
             drivers_menu
-            check_if_kinoite
+            check_if_immutable
             fedora_menu
             ;;
 
         4)
             desktop_features_menu
-            check_if_kinoite
+            check_if_immutable
             fedora_menu
             ;;
 
         5)
             internet_menu
-            check_if_kinoite
             fedora_menu
             ;;
 
         6)
             multimedia_menu
-            check_if_kinoite
             fedora_menu
             ;;
 
         7)
             gaming_menu
-            check_if_kinoite
             fedora_menu
             ;;
 
@@ -115,12 +112,14 @@ drivers_menu(){
         1)
             sudo $PKGMGR install -y corectrl
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
+            check_if_immutable
             drivers_menu
             ;;
 
         2)
             sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
+            check_if_immutable
             drivers_menu
             ;;
         
@@ -1007,8 +1006,8 @@ ides_menu(){
             ides_menu
             ;;
 
-        7)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_eclipse"
+        4)
+            source $SCRIPTS_HOME/modules/shared.sh; "install_eclipse"
             ides_menu
             ;;
 
@@ -1172,7 +1171,7 @@ extras_menu(){
     extras_menu
 }
 
-check_if_kinoite(){
+check_if_immutable(){
     if [ "$VARIANT" == "kinoite" ]
     then
         confirm_reboot
@@ -1181,9 +1180,11 @@ check_if_kinoite(){
 
 confirm_reboot(){
     echo "================================================"
-    echo "Reboots are required to enable the new layers."
-    echo "Do you wish to reboot now?"
-    echo "Type y/n or exit"
+    echo "New RPM packages won't be availble until a "
+    echo "restart is performed. Not doing so may"
+    echo "result in errors."
+    echo "Do you wish to restart now?"
+    echo "Type y/n"
     echo "================================================"
     printf "Option: "
     read input
@@ -1194,9 +1195,6 @@ confirm_reboot(){
     elif [ $input == "n" ] || [ $input == "N" ]
     then
         echo "Chose not to reboot."
-    elif [ $input == "exit" ]
-    then
-	    exit
     else
 	    fedora_menu
     fi

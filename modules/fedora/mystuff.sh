@@ -34,12 +34,16 @@ mystuff_menu(){
             mystuff_menu
             ;;
             
-        100)
-            fedora_menu
+        m)
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
+            ;;
+
+        M)
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
             ;;
 
         0)
-            check_if_kinoite
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
             exit
             ;;
 
