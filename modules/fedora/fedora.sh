@@ -7,13 +7,13 @@ fedora_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "1. Setup RPMFusion       2. Setup Flatpak"
-    echo "3. Drivers               4. Desktop Features"      
-    echo "5. Internet              6. Multimedia"
-    echo "7. Gaming                8. Office"
-    echo "9. Coding                10. Utilities"
-    echo "11. Extras"
-    echo "0. Exit"
+    echo "(1) Setup RPMFusion       (2) Setup Flatpak"
+    echo "(3) Drivers               (4) Desktop Features"      
+    echo "(5) Internet              (6) Multimedia"
+    echo "(7) Gaming                (8) Office"
+    echo "(9) Coding                (10) Utilities"
+    echo "(11) Extras"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
 
@@ -104,9 +104,9 @@ drivers_menu(){
     echo "AMD/Nvidia drivers"
     echo ""
     echo "                Menu"     
-    echo "1. Corectrl(amd)       2. Nvidia Driver"
-    echo "99. Help"
-    echo "100. Main Menu        0. Exit"
+    echo "(1) Corectrl(amd)       (2) Nvidia Driver"
+    echo "(h) Help"
+    echo "(m) Main Menu           (0) Exit"
     printf "Option: "
     read -r input
     
@@ -114,7 +114,7 @@ drivers_menu(){
 
         1)
             sudo $PKGMGR install -y corectrl
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps#corectrl
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
             drivers_menu
             ;;
 
@@ -123,11 +123,24 @@ drivers_menu(){
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
             drivers_menu
             ;;
-
-        100)
-            fedora_menu
+        
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
+            drivers_menu
             ;;
 
+        H)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
+            drivers_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+            
+        M)
+            fedora_menu
+            ;;
         0)
             exit
             ;;
@@ -151,9 +164,8 @@ desktop_features_menu(){
     echo "Select desktop to install features for"
     echo ""
     echo "                Menu"
-    echo "1. KDE                2. XFCE"     
-    echo "99. Help"
-    echo "100. Main Menu        0. Exit"
+    echo "(1) KDE                (2) XFCE"     
+    echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -168,12 +180,11 @@ desktop_features_menu(){
             xfce_features_menu
             ;;
 
-
-        99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+        m)
+            fedora_menu
             ;;
 
-        100)
+        M)
             fedora_menu
             ;;
 
@@ -200,10 +211,10 @@ kde_features_menu(){
     echo "Extra apps and plugins for KDE"
     echo ""
     echo "                Menu"
-    echo "1. KDE Applications   2. KDE Email/Contacts"
-    echo "3. KDE Multimedia "     
-    echo "99. Help"
-    echo "100. Main Menu        0. Exit"
+    echo "(1) KDE Applications   (2) KDE Email/Contacts"
+    echo "(3) KDE Multimedia "     
+    echo "(p) Previous Menu      (m) Main Menu"
+    echo "0. Exit"
     printf "Option: "
     read -r input
     
@@ -225,11 +236,17 @@ kde_features_menu(){
             kde_features_menu
             ;;
 
-        99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+        p)
+            desktop_features_menu
+            ;;
+        P)
+            desktop_features_menu
             ;;
 
-        100)
+        m)
+            fedora_menu
+            ;;
+        M)
             fedora_menu
             ;;
 
@@ -253,13 +270,13 @@ xfce_features_menu(){
     echo "              |   XFCE   |"
     echo "              ------------"
     echo ""
-    echo "Extra apps and plugins for KDE/XFCE"
+    echo "Extra apps and plugins for XFCE"
     echo ""
     echo "                Menu"
-    echo "1. XFCE Applications  2. XFCE Plugins"
-    echo "3. XFCE Multimedia"        
-    echo "99. Help"
-    echo "100. Main Menu        0. Exit"
+    echo "(1) XFCE Applications  (2) XFCE Plugins"
+    echo "(3) XFCE Multimedia"        
+    echo "(p) Previous Menu      (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -282,8 +299,73 @@ xfce_features_menu(){
             ;;
 
 
+        p)
+            desktop_features_menu
+            ;;
+        
+        P)
+            desktop_features_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+        
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            xfce_features_menu
+            ;;
+            
+        esac
+        unset input
+        xfce_features_menu
+}
+
+mate_features_menu(){
+    echo "              ------------"
+    echo "              |   Mate   |"
+    echo "              ------------"
+    echo ""
+    echo "Extra apps and plugins for Mate"
+    echo ""
+    echo "                Menu"
+    echo "1.  2."
+    echo "3."        
+    echo "p. Previous Menu     m. Main Menu"
+    echo "0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+           
+            mate_features_menu
+            ;;
+        
+        2)
+
+           
+            mate_features_menu
+            ;;
+
+        3)
+            
+            mate_features_menu
+            ;;
+
+
         99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Basic-Apps
+            desktop_features_menu
             ;;
 
         100)
@@ -911,7 +993,6 @@ confirm_reboot(){
 }
 
 variant_check(){
-    echo "running variant_check"
     VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
     if [ ! -n "$VARIANT" ]
     then

@@ -91,7 +91,7 @@ install_xfcemm(){
         echo "Immutable variants are unsupported"
     elif [ "$PKGMGR" = "dnf" ];
     then
-        sudo $PKGMGR install -yt asunder pavucontrol pragha xfburn
+        sudo $PKGMGR install -y asunder pavucontrol pragha xfburn
     fi
 }
 
