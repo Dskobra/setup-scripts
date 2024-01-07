@@ -656,7 +656,7 @@ coding_menu(){
     echo "(1) C/C++             (2) Java"
     echo "(3) Web Devlopment    (4) Python"
     echo "(5) GitHub Desktop"
-    echo "(6) Containers        (7) Misc IDEs"
+    echo "(6) Containers        (7) Other IDEs"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -1040,11 +1040,11 @@ utils_menu(){
     echo ""
     echo "                       Menu"
     echo ""
-    echo "1. Fedora Media Writer        2. KDE ISO Image Writer"
-    echo "3. Raspberry Pi Imager        4. Kleopatra"
-    echo "5. GtkHash                    6 Flatseal"
-    echo "7. Virtualization"
-    echo "100. Main Menu                0. Exit"
+    echo "(1) Fedora Media Writer        (2) KDE ISO Image Writer"
+    echo "(3) Raspberry Pi Imager        (4) Kleopatra"
+    echo "(5) GtkHash                    (6) Flatseal"
+    echo "(8) Virtualization"
+    echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
     
@@ -1085,7 +1085,11 @@ utils_menu(){
             utils_menu
             ;;
 
-        100)
+        m)
+            fedora_menu
+            ;;
+
+        M)
             fedora_menu
             ;;
 
@@ -1185,7 +1189,7 @@ variant_check(){
         PKGMGR="dnf"
         echo "variant_id in os-release not set. Likely used the net/server install."
         echo "Setting package manager to $PKGMGR."
-        #sudo $PKGMGR update -y
+        #sudo $PKGMGR clean all && sudo $PKGMGR update -y
     elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
     then
         PKGMGR="dnf"
