@@ -1043,7 +1043,7 @@ utils_menu(){
     echo "(1) Fedora Media Writer        (2) KDE ISO Image Writer"
     echo "(3) Raspberry Pi Imager        (4) Kleopatra"
     echo "(5) GtkHash                    (6) Flatseal"
-    echo "(8) Virtualization"
+    echo "(7) Virtualization"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1116,8 +1116,8 @@ extras_menu(){
     echo "Upgrade helper and script for my personal configurations"
     echo "                       Menu"
     echo ""
-    echo "1. Upgrade Helper             2. Mystuff"
-    echo "100. Main Menu                0. Exit"
+    echo "(1) Upgrade Helper             (2) Mystuff"
+    echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
     
@@ -1133,7 +1133,11 @@ extras_menu(){
             extras_menu
             ;;
 
-        100)
+        m)
+            fedora_menu
+            ;;
+
+        M)
             fedora_menu
             ;;
 
