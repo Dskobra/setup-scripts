@@ -214,7 +214,7 @@ kde_features_menu(){
     echo "(1) KDE Applications   (2) KDE Email/Contacts"
     echo "(3) KDE Multimedia "     
     echo "(p) Previous Menu      (m) Main Menu"
-    echo "0. Exit"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -338,10 +338,10 @@ mate_features_menu(){
     echo "Extra apps and plugins for Mate"
     echo ""
     echo "                Menu"
-    echo "1.  2."
-    echo "3."        
-    echo "p. Previous Menu     m. Main Menu"
-    echo "0. Exit"
+    echo "(1)  (2) "
+    echo "(3)"        
+    echo "(p) Previous Menu     (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -395,10 +395,9 @@ internet_menu(){
     echo "Web browser, cloud storage and bitorrent client."
     echo ""
     echo "                   Menu"
-    echo "1. Brave Browser          2. Dropbox"
-    echo "3. Transmissionbt"
-    echo "99. Help"
-    echo "100. Main Menu            0. Exit"
+    echo "(1) Brave Browser          (2) Dropbox"
+    echo "(3) Transmissionbt"
+    echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
     
@@ -418,11 +417,11 @@ internet_menu(){
             internet_menu
             ;;
 
-        99) 
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Flatpak-substitutes#internet-apps
+        m)
+            fedora_menu
             ;;
 
-        100)
+        M)
             fedora_menu
             ;;
 
@@ -449,11 +448,10 @@ multimedia_menu(){
     echo "Various multimedia apps, codecs etc."
     echo ""
     echo "                   Menu"
-    echo "1. Codecs                 2. VLC Media Player" 
-    echo "3. OBS Studio             4. OpenShot" 
-    echo "5. K3b                    6. Kolourpaint"
-    echo "99. Help"
-    echo "100. Main Menu            0. Exit"
+    echo "(1) Codecs                (2) VLC Media Player" 
+    echo "(3) OBS Studio            (4) OpenShot" 
+    echo "(5) K3b                   (6) Kolourpaint"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
@@ -487,12 +485,12 @@ multimedia_menu(){
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kolourpaint"
             multimedia_menu
             ;;
-
-        99)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Flatpak-substitutes#multimedia-apps
+        
+        m)
+            fedora_menu
             ;;
         
-        100)
+        M)
             fedora_menu
             ;;
 
@@ -519,12 +517,12 @@ gaming_menu(){
     echo "Steam, lutris and other game related apps/games."
     echo ""
     echo "                Menu"
-    echo "1. Steam                  2. Lutris"
-    echo "3. Mangohud               4. Protontricks"
-    echo "5. ProtonUp Qt            6. Discord"
-    echo "7. Solitare               8. Minecraft"
-    echo "9. WoWUp"
-    echo "100. Main Menu            0. Exit"
+    echo "(1) Steam                  (2) Lutris"
+    echo "(3) Mangohud               (4) Protontricks"
+    echo "(5) ProtonUp Qt            (6) Discord"
+    echo "(7) Solitare               (8) Minecraft"
+    echo "(9) WoWUp"
+    echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
     
