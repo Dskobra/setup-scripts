@@ -680,7 +680,7 @@ coding_menu(){
         m)
             fedora_menu
             ;;
-            
+
         M)
             fedora_menu
             ;;
@@ -745,6 +745,53 @@ languages_menu(){
             ;;
 
         100)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        languages_menu
+        ;;
+        
+    esac
+    unset input
+    languages_menu
+}
+
+cpp_menu(){
+    echo "          -------------"
+    echo "          |   C/C++   |"
+    echo "          -------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "1. Compilers           2. CodeBLocks"
+    echo "100. Main Menu      0. Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
+            cpp_menu_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codeblocks"
+            cpp_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+        
+        M)
             fedora_menu
             ;;
 
