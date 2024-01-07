@@ -683,7 +683,7 @@ coding_menu(){
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_github_desktop"
             ;;
 
-        8)
+        7)
             ides_menu
             ;;
 
@@ -825,7 +825,7 @@ web_dev_menu(){
     echo "              Menu"
     echo ""
     echo "(1) NodejS LTS            (2) XAMPP"
-    echo "(3) Bluefish              (4) XAMPP"
+    echo "(3) Bluefish              "
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -833,22 +833,17 @@ web_dev_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_nodejs"
             web_dev_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_rpm_tools"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_xampp"
             web_dev_menu
             ;;
 
         3)
             install_bluefish
-            web_dev_menu
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/modules/shared.sh; "install_xampp"
             web_dev_menu
             ;;
 
@@ -882,12 +877,9 @@ ides_menu(){
     echo ""
     echo "                      Menu"
     echo ""
-    echo "1. VIM                            2. VSCodium"
-    echo "3. Geany                          4. Python IDLE"
-    echo "5. Eric                           6. Bluefish"
-    echo "7. Eclipse                        8. Scene Builder" 
-    echo "9. Codeblocks"
-    echo "100. Main Menu                    0. Exit"
+    echo "(1) VIM                            (2) VSCodium"
+    echo "(3) Geany                          (4) Eclipse"
+    echo "(m) Main Menu                      (0) Exit"
     printf "Option: "
     read -r input
     
@@ -908,34 +900,9 @@ ides_menu(){
             flatpak install --user -y flathub org.geany.Geany
             ides_menu
             ;;
-        4)
-            sudo $PKGMGR install -y python3-idle
-            ides_menu
-            ;;
-
-        5)
-            sudo $PKGMGR install -y eric
-            ides_menu
-            ;;
-
-        6)
-            install_bluefish
-            ides_menu
-            ;;
 
         7)
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_eclipse"
-            ides_menu
-            ;;
-
-        8)
-            sudo $PKGMGR install -y openjfx
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_scene_builder"
-            ides_menu
-            ;;
-
-        9)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codeblocks"
             ides_menu
             ;;
 
@@ -958,51 +925,41 @@ ides_menu(){
     ides_menu
 }
 
-languages_menu(){
-    echo "          ----------------------"
-    echo "          |   Language Tools   |"
-    echo "          ----------------------"
+python_menu(){
+    echo "          --------------"
+    echo "          |   Python   |"
+    echo "          --------------"
     echo ""
     echo "              Menu"
     echo ""
-    echo "1. C/C++            2. openJDK 17"
-    echo "3. NodejS LTS       4. Python"
-    echo "5. RPM Build Tools"
-    echo "100. Main Menu      0. Exit"
+    echo "(1) Python IDLE           (2) Eric"
+    echo "(3) Pycharm"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
-            languages_menu
+            sudo $PKGMGR install -y python3-idle python3-devel
+            python_menu
             ;;
 
         2)
-            sudo $PKGMGR install -y java-17-openjdk-devel
-            languages_menu
+            sudo $PKGMGR install -y eric
+            python_menu
             ;;
+
         3)
-            echo "This downloads the nvm or Node Version Manager script to install"
-            echo "the latest nodejs long term support release."
-            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	        source ~/.bashrc
-	        nvm install lts/*
-            languages_menu
+            flatpak install --user -y flathub com.jetbrains.PyCharm-Community
+            python_menu
             ;;
 
-        4)
-            sudo $PKGMGR install -y python3-devel
-            languages_menu
+        m)
+            fedora_menu
             ;;
-
-        5)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_rpm_tools"
-            languages_menu
-            ;;
-
-        100)
+        
+        M)
             fedora_menu
             ;;
 
@@ -1013,12 +970,12 @@ languages_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        languages_menu
+        cpp_menu
         ;;
         
     esac
     unset input
-    languages_menu
+    cpp_menu
 }
 
 utils_menu(){
