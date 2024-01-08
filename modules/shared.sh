@@ -96,7 +96,7 @@ install_netbeans(){
         rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o $NETBEANS_ARCHIVE $NETBEANS_LINK
-        tar -xvf $NETBEANS_ARCHIVE
+        unzip $NETBEANS_ARCHIVE
         chmod +x $NETBEANS_FOLDER
         sudo mv $NETBEANS_FOLDER /opt/$NETBEANS_FOLDER
         ln -s "/opt/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
