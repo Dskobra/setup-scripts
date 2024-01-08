@@ -80,7 +80,7 @@ install_intellij(){
         tar -xvf $INTELLIJ_ARCHIVE
         chmod +x $INTELLIJ_OLD_FOLDER
         sudo mv $INTELLIJ_OLD_FOLDER /opt/$INTELLIJ_FOLDER
-        ln -s "/opt/ideaIC" "$HOME/Desktop/ideaIC"
+        ln -s "/opt/ideaIC/bin/idea.sh" "$HOME/Desktop/intellij"
 
     fi
 }
@@ -100,7 +100,7 @@ install_pycharm(){
         tar -xvf $PYCHARM_ARCHIVE
         chmod +x $PYCHARM_OLD_FOLDER
         sudo mv $PYCHARM_OLD_FOLDER /opt/$PYCHARM_FOLDER
-        ln -s "/opt/pycharm" "$HOME/Desktop/pycharm"
+        ln -s "/opt/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
 
     fi
 }
