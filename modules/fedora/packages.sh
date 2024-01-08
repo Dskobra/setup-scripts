@@ -131,6 +131,7 @@ install_compiz(){
         sudo $PKGMGR groupinstall -y "Compiz"
     fi
 }
+
 install_brave_browser(){
     if [ "$PKGMGR" = "rpm-ostree" ];
         then
