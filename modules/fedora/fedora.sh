@@ -792,7 +792,7 @@ java_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "(1) openJDK 17      (2) Intellij"
+    echo "(1) openJDK 17      (2) Intellij IDEA"
     echo "(3) Scene Builder"
     echo "(p) Previous Menu   (m) Main Menu"
     echo "(0) Exit"
