@@ -69,7 +69,7 @@ install_intellij(){
     INTELLIJ_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
     INTELLIJ_ARCHIVE=ideaIC-2023.3.2.tar.gz
     INTELLIJ_OLD_FOLDER=idea-IC-233.13135.103
-    INTELLIJ_FOLDER=ideaIC
+    INTELLIJ_FOLDER=idea
     
     if test -d /opt/$INTELLIJ_FOLDER; then
         echo "Intellij already downloaded."
@@ -80,7 +80,7 @@ install_intellij(){
         tar -xvf $INTELLIJ_ARCHIVE
         chmod +x $INTELLIJ_OLD_FOLDER
         sudo mv $INTELLIJ_OLD_FOLDER /opt/$INTELLIJ_FOLDER
-        ln -s "/opt/ideaIC/bin/idea.sh" "$HOME/Desktop/idea"
+        ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
 
     fi
 }
