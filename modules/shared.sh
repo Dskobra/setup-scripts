@@ -67,8 +67,8 @@ install_eclipse(){
 
 install_intellij(){
     INTELLIJ_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
-    INTELLIJ_ARCHIVE=idea-IC-233.13135.103
-    INTELLIJ_OLD_FOLDER=ideaIC-2023.3.2
+    INTELLIJ_ARCHIVE=ideaIC-2023.3.2.tar.gz
+    INTELLIJ_OLD_FOLDER=idea-IC-233.13135.103
     INTELLIJ_FOLDER=ideaIC
     
     if test -d /opt/$INTELLIJ_FOLDER; then
