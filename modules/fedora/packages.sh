@@ -112,6 +112,25 @@ install_mugshot(){
     sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
 }
 
+install_mate_apps(){
+    if [ "$PKGMGR" = "rpm-ostree" ];
+    then
+        echo "Immutable variants are unsupported"
+    elif [ "$PKGMGR" = "dnf" ];
+    then
+        sudo $PKGMGR groupinstall -y "Mate Applications"
+    fi
+}
+
+install_compiz(){
+    if [ "$PKGMGR" = "rpm-ostree" ];
+    then
+        echo "Immutable variants are unsupported"
+    elif [ "$PKGMGR" = "dnf" ];
+    then
+        sudo $PKGMGR groupinstall -y "Compiz"
+    fi
+}
 install_brave_browser(){
     if [ "$PKGMGR" = "rpm-ostree" ];
         then

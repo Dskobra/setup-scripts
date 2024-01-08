@@ -162,7 +162,8 @@ desktop_features_menu(){
     echo "Select desktop to install features for"
     echo ""
     echo "                Menu"
-    echo "(1) KDE                (2) XFCE"     
+    echo "(1) KDE                (2) XFCE"
+    echo "(3) Mate"     
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -176,6 +177,10 @@ desktop_features_menu(){
         2)
 
             xfce_features_menu
+            ;;
+
+        3)
+            mate_features_menu
             ;;
 
         m)
@@ -336,7 +341,7 @@ mate_features_menu(){
     echo "Extra apps and plugins for Mate"
     echo ""
     echo "                Menu"
-    echo "(1)  (2) "
+    echo "(1) Mate Applications (2) Compiz"
     echo "(3)"        
     echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
@@ -346,13 +351,13 @@ mate_features_menu(){
     case $input in
 
         1)
-           
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_mate_apps"
             mate_features_menu
             ;;
         
         2)
 
-           
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_compiz"
             mate_features_menu
             ;;
 
