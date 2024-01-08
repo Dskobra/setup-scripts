@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 install_flatpak(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ] || [ $VARIANT == "mate-compiz" ]
+    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ] || [ $VARIANT == "matecompiz" ]
     then
         sudo $PKGMGR install -y flatpak
         source $SCRIPTS_HOME/modules/shared.sh; "frepo"
