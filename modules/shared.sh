@@ -65,7 +65,7 @@ install_eclipse(){
     ./eclipse-installer/eclipse-inst
 }
 
-install_intellij(){
+install_idea(){
     INTELLIJ_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
     INTELLIJ_ARCHIVE=ideaIC-2023.3.2.tar.gz
     INTELLIJ_OLD_FOLDER=idea-IC-233.13135.103
@@ -81,6 +81,25 @@ install_intellij(){
         chmod +x $INTELLIJ_OLD_FOLDER
         sudo mv $INTELLIJ_OLD_FOLDER /opt/$INTELLIJ_FOLDER
         ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
+
+    fi
+}
+
+install_netbeans(){
+    NETBEANS_LINK=https://www.apache.org/dyn/closer.lua/netbeans/netbeans/20/netbeans-20-bin.zip
+    NETBEANS_ARCHIVE=netbeans-20-bin.zip
+    NETBEANS_FOLDER=netbeans
+    
+    if test -d /opt/$NETBEANS_FOLDER; then
+        echo "Netbeans already downloaded."
+    elif ! test -d /opt/$$NETBEANS_FOLDER; then
+        rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $NETBEANS_ARCHIVE $NETBEANS_LINK
+        tar -xvf $NETBEANS_ARCHIVE
+        chmod +x $NETBEANS_FOLDER
+        sudo mv $NETBEANS_FOLDER /opt/$NETBEANS_FOLDER
+        ln -s "/opt/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
 
     fi
 }

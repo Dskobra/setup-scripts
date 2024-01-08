@@ -793,7 +793,7 @@ java_menu(){
     echo "              Menu"
     echo ""
     echo "(1) openJDK 17      (2) Intellij IDEA"
-    echo "(3) Scene Builder"
+    echo "(3) Netbeans        (4) Scene Builder"
     echo "(p) Previous Menu   (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -808,10 +808,16 @@ java_menu(){
 
         2)
             
-            source $SCRIPTS_HOME/modules/shared.sh; "install_intellij"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_idea"
             java_menu
             ;;
-        3)
+
+        3)  
+            source $SCRIPTS_HOME/modules/shared.sh; "install_netbeans"
+            java_menu
+            ;;
+
+        4)
             sudo $PKGMGR install -y openjfx
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_scene_builder"
             java_menu
