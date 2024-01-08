@@ -74,13 +74,13 @@ install_intellij(){
     if test -d /opt/$INTELLIJ_FOLDER; then
         echo "Intellij already downloaded."
     elif ! test -d /opt/$INTELLIJ_FOLDER; then
-        rm "$HOME/Desktop/ideaIC"       # symlink gets put in intellij folder if its present on desktop
+        rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o $INTELLIJ_ARCHIVE $INTELLIJ_LINK
         tar -xvf $INTELLIJ_ARCHIVE
         chmod +x $INTELLIJ_OLD_FOLDER
         sudo mv $INTELLIJ_OLD_FOLDER /opt/$INTELLIJ_FOLDER
-        ln -s "/opt/ideaIC/bin/idea.sh" "$HOME/Desktop/intellij"
+        ln -s "/opt/ideaIC/bin/idea.sh" "$HOME/Desktop/idea"
 
     fi
 }
@@ -94,7 +94,7 @@ install_pycharm(){
     if test -d /opt/$PYCHARM_FOLDER; then
         echo "Pycharm already downloaded."
     elif ! test -d /opt/$PYCHARM_FOLDER; then
-        rm "$HOME/Desktop/pycharm"       # symlink gets put in intellij folder if its present on desktop
+        rm "$HOME/Desktop/pycharm"       # symlink gets put in pycharm folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o $PYCHARM_ARCHIVE $PYCHARM_LINK
         tar -xvf $PYCHARM_ARCHIVE
