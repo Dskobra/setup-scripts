@@ -938,7 +938,7 @@ python_menu(){
             ;;
 
         3)
-            flatpak install --user -y flathub com.jetbrains.PyCharm-Community
+            source $SCRIPTS_HOME/modules/shared.sh; "install_pycharm"
             python_menu
             ;;
 
