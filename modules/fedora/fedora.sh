@@ -367,11 +367,19 @@ mate_features_menu(){
             ;;
 
 
-        99)
+        p)
             desktop_features_menu
             ;;
 
-        100)
+        P)
+            desktop_features_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+
+        M)
             fedora_menu
             ;;
 
@@ -382,12 +390,12 @@ mate_features_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            xfce_features_menu
+            mate_features_menu
             ;;
             
         esac
         unset input
-        xfce_features_menu
+        mate_features_menu
 }
 
 internet_menu(){
