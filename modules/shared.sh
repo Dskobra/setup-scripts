@@ -64,3 +64,22 @@ install_eclipse(){
     tar -xvf $ECLIPSE
     ./eclipse-installer/eclipse-inst
 }
+
+install_intellij(){
+    INTELLIJ_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
+    INTELLIJ_ARCHIVE=idea-IC-233.13135.103
+    INTELLIJ_OLD_FOLDER=ideaIC-2023.3.2
+    INTELLIJ_FOLDER=ideaIC
+    
+    if test -d /opt/$INTELLIJ_FOLDER; then
+        echo "Intellij already downloaded."
+    elif ! test -d /opt/$INTELLIJ_FOLDER; then
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $INTELLIJ_ARCHIVE $INTELLIJ_LINK
+        tar -xvf $INTELLIJ_ARCHIVE
+        chmod +x $INTELLIJ_OLD_FOLDER
+        sudo mv $INTELLIJ_OLD_FOLDER /opt/$INTELLIJ_FOLDER
+        ln -s "/opt/ideaIC" "$HOME/Desktop/ideaIC"
+
+    fi
+}

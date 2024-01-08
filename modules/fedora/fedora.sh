@@ -808,7 +808,7 @@ java_menu(){
 
         2)
             
-            flatpak install --user -y flathub com.jetbrains.IntelliJ-IDEA-Community
+            source $SCRIPTS_HOME/modules/shared.sh; "install_intellij"
             java_menu
             ;;
         3)
