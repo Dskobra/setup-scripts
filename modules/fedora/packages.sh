@@ -12,11 +12,11 @@ install_flatpak(){
 }
 
 install_kdeapps(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y kcalc konversation krdc krusader ktorrent okular kmouth
         sudo $PKGMGR install -y signon-kwallet-extension kate firefox fedora-bookmarks
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y krusader kmouth krdc signon-kwallet-extension
         flatpak install --user -y flathub org.kde.ktorrent
@@ -31,11 +31,11 @@ install_kdeapps(){
 }
 
 install_kdemm(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y digikam elisa-player gwenview k3b\
         kamera kamoso kf5-kipi-plugins kolourpaint 
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ];
     then
         sudo $PKGMGR install -y k3b
         flatpak install --user -y flathub org.kde.digikam
@@ -51,10 +51,10 @@ install_kdemm(){
 }
 
 install_kdeemail(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR groupinstall -y "KDE PIM"
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ];
     then
         flatpak install --user -y flathub org.kde.kontact
     else
@@ -63,10 +63,7 @@ install_kdeemail(){
 }
 
 install_xfce_apps(){
-    if [ "$PKGMGR" = "rpm-ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    elif [ "$PKGMGR" = "dnf" ];
+    if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
         sudo $PKGMGR install -y menulibre python3-distutils-extra
@@ -75,27 +72,31 @@ install_xfce_apps(){
         flatpak install --user -y flathub com.transmissionbt.Transmission
         flatpak install --user -y flathub io.missioncenter.MissionCenter
         install_mugshot
+    elif [ $VARIANT == "ostree" ];
+    then
+        echo "Immutable variants are unsupported"
+
     fi
 }
 
 install_xfce_plugins(){
-    if [ "$PKGMGR" = "rpm-ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    elif [ "$PKGMGR" = "dnf" ];
+    if [ ! -n "$VARIANT" ];
     then
         sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
-            
+        
+    elif [ $VARIANT == "ostree" ];
+    then
+        echo "Immutable variants are unsupported"    
     fi
 }
 
 install_xfcemm(){
-    if [ "$PKGMGR" = "rpm-ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    elif [ "$PKGMGR" = "dnf" ];
+    if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y asunder pavucontrol pragha xfburn
+    elif [ $VARIANT == "ostree" ];
+    then
+        echo "Immutable variants are unsupported"
     fi
 }
 
@@ -113,22 +114,22 @@ install_mugshot(){
 }
 
 install_mate_apps(){
-    if [ "$PKGMGR" = "rpm-ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    elif [ "$PKGMGR" = "dnf" ];
+    if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR groupinstall -y "Mate Applications"
+    elif [ $VARIANT == "ostree" ];
+    then
+        echo "Immutable variants are unsupported"
     fi
 }
 
 install_compiz(){
     if [ "$PKGMGR" = "rpm-ostree" ];
     then
-        echo "Immutable variants are unsupported"
+        sudo $PKGMGR groupinstall -y "Compiz"
     elif [ "$PKGMGR" = "dnf" ];
     then
-        sudo $PKGMGR groupinstall -y "Compiz"
+        echo "Immutable variants are unsupported"
     fi
 }
 
