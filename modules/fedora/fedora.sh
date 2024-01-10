@@ -1201,6 +1201,24 @@ confirm_reboot(){
     fi
 }
 
+variant_test(){
+    test -f /run/ostree-booted && VARIANT=ostree
+    if [ $VARIANT == "" ]
+    then
+        PKGMGR="dnf"
+        echo "variant_id in os-release not set. Likely used the net/server install."
+        echo "Setting package manager to $PKGMGR."
+        #sudo $PKGMGR clean all && sudo $PKGMGR update -y
+    elif [ $VARIANT == "ostree" ]
+    then
+        PKGMGR="rpm-ostree"
+        echo "Fedora spin detected as $VARIANT"
+        echo "Setting package manager to $PKGMGR."
+        echo "Please note this is experimental atm"
+        #sudo $PKGMGR refresh-md
+    fi
+}
+
 variant_check(){
     VARIANT=$(source /etc/os-release ; echo $VARIANT_ID)
     if [ ! -n "$VARIANT" ]
@@ -1224,8 +1242,8 @@ variant_check(){
         #sudo $PKGMGR refresh-md
     fi
 }
-
 export VARIANT=""
 export PKGMGR=""
-variant_check
+#variant_check
+variant_test
 fedora_menu
