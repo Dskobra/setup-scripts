@@ -124,10 +124,10 @@ install_mate_apps(){
 }
 
 install_compiz(){
-    if [ "$PKGMGR" = "rpm-ostree" ];
+   if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR groupinstall -y "Compiz"
-    elif [ "$PKGMGR" = "dnf" ];
+    elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
     fi
