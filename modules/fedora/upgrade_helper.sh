@@ -267,12 +267,9 @@ menu_launch(){
     if [ ! -n "$VARIANT" ]
     then
         dnf_menu
-    elif [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ] || [ $VARIANT == "mate" ]
+    elif [ $VARIANT == "ostree" ]
     then
-        dnf_menu
-    elif [ $VARIANT == "kinoite" ] || [ $VARIANT == "silverblue" ]
-    then
-        kinoite_menu
+        immutable_menu
     fi
 }
 
