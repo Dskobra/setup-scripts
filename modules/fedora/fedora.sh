@@ -1173,7 +1173,7 @@ extras_menu(){
 }
 
 check_if_immutable(){
-    if [ "$VARIANT" == "kinoite" ]
+    if [ "$VARIANT" == "ostree" ]
     then
         confirm_reboot
     fi
