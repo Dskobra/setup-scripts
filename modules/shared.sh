@@ -1,10 +1,4 @@
 #!/usr/bin/bash
-
-frepo(){
-    echo "Setting up flathub for user"
-    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-}
-
 wowup(){
     WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.10.0/WowUp-CF-2.10.0.AppImage
     WOWUPBINARY=WowUp-CF-2.10.0.AppImage
@@ -122,4 +116,61 @@ install_pycharm(){
         ln -s "/opt/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
 
     fi
+}
+
+fpk_repo(){
+    echo "Setting up flathub for user"
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+}
+
+fpk_ktorrent(){
+    flatpak install --user -y flathub org.kde.ktorrent
+}
+
+fpk_kdeokular(){
+    flatpak install --user -y flathub org.kde.okular
+}
+        
+fpk_konversation(){
+    flatpak install --user -y flathub org.kde.konversation
+}
+
+fpk_kcalc(){
+    flatpak install --user -y flathub org.kde.kcalc
+}
+
+fpk_kdedigikam(){
+    flatpak install --user -y flathub org.kde.digikam
+}
+
+fpk_kdeelisa(){
+    flatpak install --user -y flathub org.kde.elisa
+}
+
+fpk_kdegwenview(){
+    flatpak install --user -y flathub org.kde.gwenview
+}     
+
+fpk_kdekamoso(){
+    flatpak install --user -y flathub org.kde.kamoso
+}    
+
+fpk_kpaint(){
+    flatpak install --user -y flathub org.kde.kolourpaint
+}     
+        
+fpk_kontact(){
+    flatpak install --user -y flathub org.kde.kontact
+}
+
+fpk_geany(){
+    flatpak install --user -y flathub org.geany.Geany
+}
+
+fpk_transmission(){
+    flatpak install --user -y flathub com.transmissionbt.Transmission
+}
+
+fpk_missioncenter(){
+    flatpak install --user -y flathub io.missioncenter.MissionCenter
 }

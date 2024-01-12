@@ -7,7 +7,7 @@ install_flatpak(){
         source $SCRIPTS_HOME/modules/shared.sh; "frepo"
     elif [ $VARIANT == "kinoite" ]
     then
-        source $SCRIPTS_HOME/modules/shared.sh; "frepo"
+        source $SCRIPTS_HOME/modules/shared.sh; "fpk_repo"
     fi
 }
 
@@ -19,10 +19,10 @@ install_kdeapps(){
     elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y krusader kmouth krdc signon-kwallet-extension
-        flatpak install --user -y flathub org.kde.ktorrent
-        flatpak install --user -y flathub org.kde.okular
-        flatpak install --user -y flathub org.kde.konversation
-        flatpak install --user -y flathub org.kde.kcalc
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_ktorrent"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kconversation"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kcalc"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdeokular"
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
@@ -38,11 +38,11 @@ install_kdemm(){
     elif [ $VARIANT == "ostree" ];
     then
         sudo $PKGMGR install -y k3b
-        flatpak install --user -y flathub org.kde.digikam
-        flatpak install --user -y flathub org.kde.elisa
-        flatpak install --user -y flathub org.kde.gwenview
-        flatpak install --user -y flathub org.kde.kamoso
-        flatpak install --user -y flathub org.kde.kolourpaint
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdedigikam"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdeelisa"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdegwenview"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdekamoso"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpaint"
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
@@ -56,7 +56,7 @@ install_kdeemail(){
         sudo $PKGMGR groupinstall -y "KDE PIM"
     elif [ $VARIANT == "ostree" ];
     then
-        flatpak install --user -y flathub org.kde.kontact
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kontact"
     else
         echo "Unkown error has occured."
     fi
@@ -68,9 +68,9 @@ install_xfce_apps(){
         sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
         sudo $PKGMGR install -y menulibre python3-distutils-extra
         sudo $PKGMGR remove -y geany transmission
-        flatpak install --user -y flathub org.geany.Geany
-        flatpak install --user -y flathub com.transmissionbt.Transmission
-        flatpak install --user -y flathub io.missioncenter.MissionCenter
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_geany"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_transmission"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_missioncenter"
         install_mugshot
     elif [ $VARIANT == "ostree" ];
     then
@@ -82,7 +82,7 @@ install_xfce_apps(){
 install_xfce_plugins(){
     if [ ! -n "$VARIANT" ];
     then
-        sudo dnf groupinstall -y "Extra plugins for the Xfce panel"
+        sudo $PKGMGR install -y xfce4-*-plugin
         
     elif [ $VARIANT == "ostree" ];
     then
