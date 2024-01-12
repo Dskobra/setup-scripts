@@ -116,7 +116,9 @@ install_mugshot(){
 install_mate_apps(){
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR groupinstall -y "Mate Applications"
+        sudo $PKGMGR install -y caja-beesu caja-share firewall-applet mate-menu\
+        mate sensors-applet mate-utils multimedia-menus pidgin pluma-plugins\
+        tigervnc
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
