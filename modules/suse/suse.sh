@@ -1,6 +1,108 @@
 #!/usr/bin/bash
 
 suse_menu(){
+    echo "        ----------------"
+    echo "        |   openSUSE   |"
+    echo "        ----------------"
+    echo ""
+    echo "                 Menu"
+    echo ""
+    echo "(1)Packman Essentials     (2) Setup Flatpak"
+    echo "(3) Drivers               (4) Desktop Features"      
+    echo "(5) Internet              (6) Multimedia"
+    echo "(7) Gaming                (8) Office"
+    echo "(9) Coding                (10) Utilities"
+    echo "(11) Extras"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+
+        1)  
+            sudo zypper ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials
+            sudo zypper dup -y --from packman-essentials --allow-vendor-change
+            suse_menu
+            ;;
+
+        2)
+            #source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_flatpak"
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        3)
+            #drivers_menu
+            #check_if_immutable
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        4)
+            #desktop_features_menu
+            #check_if_immutable
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        5)
+            #internet_menu
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        6)
+            #multimedia_menu
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        7)
+            #gaming_menu
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        8)
+            #office_menu
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+        9)
+            #coding_menu
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        10)
+            #utils_menu
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        11)
+            #extras_menu
+            echo "This menu is disabled atm"
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            suse_menu
+            ;;
+
+        esac
+        unset input
+        fedora_menu
+}
+
+old_suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
     echo "1. Setup DE 2. Gaming"
@@ -43,7 +145,7 @@ suse_menu(){
     suse_menu
 }
 
-install_basic_apps(){
+old_install_basic_apps(){
 	echo "Setting up packman essentials and brave browser"
     sudo zypper ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials    # using essentials for ffmpeg etc
     sudo zypper dup -y --from packman-essentials --allow-vendor-change     # update system packages with essentials
@@ -65,7 +167,7 @@ install_basic_apps(){
 
 }
 
-install_game_clients(){
+old_install_game_clients(){
     mkdir "$HOME"/Games
 	mkdir "$HOME"/Games/bottles
     mkdir "$HOME"/.config/MangoHud/
@@ -79,7 +181,7 @@ install_game_clients(){
     
 }
 
-install_dev_tools(){
+old_install_dev_tools(){
 	sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
     printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/zypp/repos.d/vscodium.repo
@@ -95,7 +197,7 @@ install_dev_tools(){
 	nvm install lts/*
 }
 
-extras_menu(){
+old_extras_menu(){
     echo "================================================"
     echo "Extras"
     echo "1. Virtualization 2. Corectrl"
@@ -151,7 +253,7 @@ extras_menu(){
         extras_menu
 }
 
-autostart(){
+old_autostart(){
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
     DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
@@ -165,7 +267,7 @@ autostart(){
     [ -f $XWVIDEO_BRIDGE ] && { echo "XWaylandVideoBridge was found. Adding to startup."; cp "$XWVIDEO_BRIDGE"  /home/$USER/.config/autostart/org.kde.xwaylandvideobridge.desktop; }
 }
 
-cleanup(){
+old_cleanup(){
     sudo zypper remove -y icewm
 }
 
