@@ -194,7 +194,7 @@ install_openshot(){
         sudo $PKGMGR install -y openshot
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub org.openshot.OpenShot
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_openshot"
     else
         echo "Unkown error has occured."
     fi
@@ -206,7 +206,8 @@ install_kolourpaint(){
         sudo $PKGMGR install -y kolourpaint
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub org.kde.kolourpaint
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpaint"
+        
     else
         echo "Unkown error has occured."
     fi
@@ -218,7 +219,7 @@ install_kpat(){
         sudo $PKGMGR install -y kpat
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub org.kde.kpat
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_openshot"
     else
         echo "Unkown error has occured."
     fi
@@ -230,7 +231,8 @@ install_bluefish(){
          sudo $PKGMGR install -y bluefish
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub nl.openoffice.bluefish
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_bluefish"
+        
     else
         echo "Unkown error has occured."
     fi
@@ -242,7 +244,7 @@ install_codeblocks(){
          sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub org.codeblocks.codeblocks
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_codeblocks"
     else
         echo "Unkown error has occured."
     fi
@@ -254,8 +256,8 @@ install_steam(){
         sudo $PKGMGR install -y steam gamescope
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub com.valvesoftware.Steam
-        flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_steam"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_gamescope"
     else
         echo "Unkown error has occured."
     fi
@@ -366,7 +368,7 @@ install_fmedia_writer(){
         sudo $PKGMGR install -y mediawriter
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
     else
         echo "Unkown error has occured."
     fi
@@ -378,7 +380,7 @@ install_kde_iso_image_writer(){
         sudo $PKGMGR install -y isoimagewriter
     elif [ $VARIANT == "kinoite" ]
     then
-        flatpak install --user -y flathub org.kde.isoimagewriter
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
     else
         echo "Unkown error has occured."
     fi

@@ -163,6 +163,9 @@ fpk_kontact(){
     flatpak install --user -y flathub org.kde.kontact
 }
 
+fpk_kpat(){
+    flatpak install --user -y flathub org.kde.kpat
+}
 fpk_geany(){
     flatpak install --user -y flathub org.geany.Geany
 }
@@ -173,4 +176,36 @@ fpk_transmission(){
 
 fpk_missioncenter(){
     flatpak install --user -y flathub io.missioncenter.MissionCenter
+}
+
+fpk_openshot(){
+    flatpak install --user -y flathub org.openshot.OpenShot
+}
+
+fpk_bluefish(){
+    flatpak install --user -y flathub nl.openoffice.bluefish
+}
+
+fpk_codeblocks(){
+    flatpak install --user -y flathub org.codeblocks.codeblocks
+}
+
+fpk_steam(){
+    flatpak install --user -y flathub com.valvesoftware.Steam
+}
+
+fpk_gamescope(){
+    flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
+}
+
+fpk_fedora_mediawriter(){
+    flatpak install --user -y flathub org.fedoraproject.MediaWriter
+}
+
+fpk_kdeisowriter(){
+    flatpak install --user -y flathub org.kde.isoimagewriter
+}
+
+fpk_kleopatra(){
+    flatpak install --user -y flathub org.kde.kleopatra
 }
