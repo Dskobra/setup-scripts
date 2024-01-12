@@ -136,7 +136,13 @@ install_compiz(){
 }
 
 install_brave_browser(){
-    if [ "$PKGMGR" = "rpm-ostree" ];
+    if [ ! -n "$VARIANT" ]
+        then
+            sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+            sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+            sudo dnf update -y
+            sudo $PKGMGR install -y brave-browser
+    elif [ $VARIANT == "ostree" ]
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -151,18 +157,11 @@ install_brave_browser(){
             sudo $PKGMGR install -y brave-browser
 
             source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-            sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-            sudo dnf update -y
-            sudo $PKGMGR install -y brave-browser
-   
     fi
 }
 
 install_codecs(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y gstreamer1-plugin-openh264 \
@@ -170,7 +169,7 @@ install_codecs(){
 
         sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
         sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR override remove libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
@@ -189,10 +188,10 @@ install_codecs(){
 }
 
 install_openshot(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y openshot
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_openshot"
     else
@@ -201,10 +200,10 @@ install_openshot(){
 }
 
 install_kolourpaint(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y kolourpaint
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpaint"
         
@@ -214,22 +213,22 @@ install_kolourpaint(){
 }
 
 install_kpat(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y kpat
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_openshot"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpat"
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_bluefish(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
          sudo $PKGMGR install -y bluefish
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_bluefish"
         
@@ -239,10 +238,10 @@ install_bluefish(){
 }
 
 install_codeblocks(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
          sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_codeblocks"
     else
@@ -251,10 +250,10 @@ install_codeblocks(){
 }
 
 install_steam(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y steam gamescope
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_steam"
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_gamescope"
@@ -264,20 +263,20 @@ install_steam(){
 }
 
 remove_office(){
-    if [ "$PKGMGR" = "rpm-ostree" ];
+    if [ ! -n "$VARIANT" ]
         then
             sudo $PKGMGR remove -y libreoffice
-    elif [ "$PKGMGR" = "dnf" ];
+    elif [ $VARIANT == "ostree" ]
         then
             sudo $PKGMGR remove -y gnumeric libreoffice*
     fi
 }
 
 install_c_cpp(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo dnf groupinstall -y "C Development Tools and libraries"
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
         flex libtool m4 valgrind byacc ccache cscope indent\
@@ -290,10 +289,10 @@ install_c_cpp(){
 }
 
 install_rpm_tools(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo dnf groupinstall -y "RPM Development Tools"
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y koji mock redhat-rpm-config\
         rpm-build rpmdevtools
@@ -307,7 +306,12 @@ install_rpm_tools(){
 
 install_github_desktop(){
     sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-    if [ "$PKGMGR" = "rpm-ostree" ];
+    if [ ! -n "$VARIANT" ]
+        then
+            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+            sudo $PKGMGR install -y git-gui github-desktop
+            
+    elif [ $VARIANT == "ostree" ]
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
@@ -317,30 +321,24 @@ install_github_desktop(){
             sudo $PKGMGR install -y github-desktop
 
             source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-            
-    elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-            sudo $PKGMGR install -y git-gui github-desktop
-   
     fi
 }
 
 install_vscodium(){
     printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-    if [ "$PKGMGR" = "rpm-ostree" ];
+    if [ ! -n "$VARIANT" ]
+        then
+            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+            sudo $PKGMGR install -y codium
+
+            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"    
+    elif [ $VARIANT == "ostree" ]
         then
             cd $SCRIPTS_HOME/temp
             curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
             chown root:root vscodium.gpg
             sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
             sudo $PKGMGR install -y codium  
-
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"    
-    elif [ "$PKGMGR" = "dnf" ];
-        then
-            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            sudo $PKGMGR install -y codium
    
     fi
 }
@@ -349,10 +347,10 @@ install_scene_builder(){
     cd $SCRIPTS_HOME/temp
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
     curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo rpm -i $SCENE_BUILDER
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y $SCENE_BUILDER
 
@@ -363,10 +361,10 @@ install_scene_builder(){
 }
 
 install_fmedia_writer(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y mediawriter
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
     else
@@ -375,10 +373,10 @@ install_fmedia_writer(){
 }
 
 install_kde_iso_image_writer(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y isoimagewriter
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
     else
@@ -387,22 +385,22 @@ install_kde_iso_image_writer(){
 }
 
 install_kleopatra(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y kleopatra
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
-        flatpak install --user -y flathub org.kde.kleopatra
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kleopatra"
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_virtualization(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo dnf groupinstall -y "Virtualization"
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y libvirt-daemon-config-network\
         libvirt-daemon-kvm qemu-kvm virt-install\
