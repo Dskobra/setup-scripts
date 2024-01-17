@@ -405,7 +405,7 @@ install_virtualization(){
     sudo usermod -aG libvirt $USER
 }
 
-### Reset packages
+### remove packages
 
 remove_codecs(){
     if [ ! -n "$VARIANT" ]
