@@ -1133,6 +1133,7 @@ extras_menu(){
     echo "                       Menu"
     echo ""
     echo "(1) Upgrade Helper             (2) Mystuff"
+    echo "(3) Remove Codecs"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input

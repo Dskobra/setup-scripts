@@ -163,23 +163,21 @@ install_brave_browser(){
 install_codecs(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo dnf install -y gstreamer1-plugin-openh264 \
+        sudo $PKGMGR swap -y ffmpeg-free ffmpeg --allowerasing
+        sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-
-        sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
-        sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+        sudo $PKGMGR swap -y mesa-va-drivers mesa-va-drivers-freeworld
+        sudo $PKGMGR swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
     elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR override remove libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
         libswresample-free libswscale-free --install ffmpeg
+        sudo $PKGMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
         
+        sudo $PKGMGR install -y mesa-vdpau-drivers-freeworld
         sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
         mozilla-openh264
-
-        sudo $PKGMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
-        sudo $PKGMGR install -y mesa-vdpau-drivers-freeworld
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
@@ -259,16 +257,6 @@ install_steam(){
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_gamescope"
     else
         echo "Unkown error has occured."
-    fi
-}
-
-remove_office(){
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo $PKGMGR remove -y libreoffice
-    elif [ $VARIANT == "ostree" ]
-        then
-            sudo $PKGMGR remove -y gnumeric libreoffice*
     fi
 }
 
@@ -415,4 +403,39 @@ install_virtualization(){
     -O /etc/yum.repos.d/virtio-win.repo
     sudo $PKGMGR install -y virtio-win
     sudo usermod -aG libvirt $USER
+}
+
+### Reset packages
+
+remove_codecs(){
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR swap -y ffmpeg libavcodec-free --allowerasing
+        sudo $PKGMGR swap -y mesa-va-drivers-freeworld mesa-va-drivers 
+        sudo $PKGMGR swap -y mesa-vdpau-drivers-freeworld mesa-vdpau-drivers 
+    elif [ $VARIANT == "ostree" ]
+    then
+        sudo $PKGMGR override reset libavcodec-free libavfilter-free \
+        libavformat-free libavutil-free libpostproc-free \
+        libswresample-free libswscale-free
+        sudo $PKGMGR override reset mesa-va-drivers mesa-vdpau-drivers-freeworld
+        
+        sudo $PKGMGR remove -y gstreamer1-plugin-openh264 \
+        mozilla-openh264
+
+        
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+remove_office(){
+    if [ ! -n "$VARIANT" ]
+        then
+            sudo $PKGMGR remove -y gnumeric libreoffice*
+    elif [ $VARIANT == "ostree" ]
+        then
+            sudo $PKGMGR remove -y libreoffice
+    fi
 }
