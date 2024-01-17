@@ -166,16 +166,16 @@ install_codecs(){
         sudo $PKGMGR swap -y ffmpeg-free ffmpeg --allowerasing
         sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-        sudo $PKGMGR swap -y mesa-va-drivers mesa-va-drivers-freeworld
-        sudo $PKGMGR swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+        #sudo $PKGMGR swap -y mesa-va-drivers mesa-va-drivers-freeworld
+        #sudo $PKGMGR swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
     elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR override remove libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
         libswresample-free libswscale-free --install ffmpeg
-        sudo $PKGMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
+        #sudo $PKGMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
         
-        sudo $PKGMGR install -y mesa-vdpau-drivers-freeworld
+        #sudo $PKGMGR install -y mesa-vdpau-drivers-freeworld
         sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
         mozilla-openh264
 
