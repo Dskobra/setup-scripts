@@ -402,7 +402,6 @@ install_virtualization(){
     sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
     -O /etc/yum.repos.d/virtio-win.repo
     sudo $PKGMGR install -y virtio-win
-    sudo usermod -aG libvirt $USER
 }
 
 ### remove packages
@@ -439,4 +438,15 @@ remove_office(){
         then
             sudo $PKGMGR remove -y libreoffice
     fi
+}
+
+### configurations
+
+check_for_libvirt_group(){
+    if [ $(getent group libvirt) ]; then
+        sudo usermod -aG libvirt $USER
+    else
+        echo "Group doesn't exist. Please run the "Virtualization" option "
+        echo "from the Extras menu and/or reboot first if using Kinoite etc."
+fi
 }

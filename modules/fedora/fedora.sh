@@ -1133,7 +1133,7 @@ extras_menu(){
     echo "                       Menu"
     echo ""
     echo "(1) Upgrade Helper             (2) Mystuff"
-    echo "(3) Remove Codecs"
+    echo "(3) Remove Codecs              (4) Add user to libvirt group"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1152,6 +1152,10 @@ extras_menu(){
 
         3)
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "remove_codecs"
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "check_for_libvirt_group"
             ;;
 
         m)
