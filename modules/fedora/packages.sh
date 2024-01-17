@@ -415,6 +415,7 @@ remove_codecs(){
         sudo $PKGMGR swap -y mesa-vdpau-drivers-freeworld mesa-vdpau-drivers 
     elif [ $VARIANT == "ostree" ]
     then
+        sudo $PKGMGR remove ffmpeg
         sudo $PKGMGR override reset libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
         libswresample-free libswscale-free
