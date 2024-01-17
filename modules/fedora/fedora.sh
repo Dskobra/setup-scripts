@@ -1150,6 +1150,10 @@ extras_menu(){
             extras_menu
             ;;
 
+        3)
+            source $SCRIPTS_HOME/modules/fedora/mystuff.sh; "remove_codecs"
+            ;;
+
         m)
             fedora_menu
             ;;
