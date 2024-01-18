@@ -862,7 +862,7 @@ web_dev_menu(){
     echo "              Menu"
     echo ""
     echo "(1) NodejS LTS            (2) XAMPP"
-    echo "(3) Bluefish              "
+    echo "(3)LAMP Stack             (4) Bluefish              "
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -881,6 +881,10 @@ web_dev_menu(){
             ;;
 
         3)
+            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_lamp_stack"
+            ;;
+
+        4)
             source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_bluefish"
             web_dev_menu
             ;;

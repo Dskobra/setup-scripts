@@ -11,6 +11,8 @@ install_flatpak(){
     fi
 }
 
+### desktop features
+
 install_kdeapps(){
     if [ ! -n "$VARIANT" ]
     then
@@ -135,6 +137,8 @@ install_compiz(){
     fi
 }
 
+### internet
+
 install_brave_browser(){
     if [ ! -n "$VARIANT" ]
         then
@@ -159,6 +163,8 @@ install_brave_browser(){
             source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     fi
 }
+
+### multimedia
 
 install_codecs(){
     if [ ! -n "$VARIANT" ]
@@ -210,6 +216,8 @@ install_kolourpaint(){
     fi
 }
 
+### games
+
 install_kpat(){
     if [ ! -n "$VARIANT" ]
     then
@@ -217,6 +225,39 @@ install_kpat(){
     elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpat"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_steam(){
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y steam gamescope
+    elif [ $VARIANT == "ostree" ]
+    then
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_steam"
+        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_gamescope"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+### coding apps
+
+install_c_cpp(){
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
+        flex libtool m4 valgrind byacc ccache cscope indent\
+        ltrace perf strace
+    elif [ $VARIANT == "ostree" ]
+    then
+        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
+        flex libtool m4 valgrind byacc ccache cscope indent\
+        ltrace perf strace
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi
@@ -247,39 +288,11 @@ install_codeblocks(){
     fi
 }
 
-install_steam(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y steam gamescope
-    elif [ $VARIANT == "ostree" ]
-    then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_steam"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_gamescope"
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_c_cpp(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo dnf groupinstall -y "C Development Tools and libraries"
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
-        flex libtool m4 valgrind byacc ccache cscope indent\
-        ltrace perf strace
-
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 install_rpm_tools(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo dnf groupinstall -y "RPM Development Tools"
+        sudo $PKGMGR install -y koji mock redhat-rpm-config\
+        rpm-build rpmdevtools
     elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y koji mock redhat-rpm-config\
@@ -347,6 +360,23 @@ install_scene_builder(){
         echo "Unkown error has occured."
     fi
 }
+
+install_lamp_stack(){
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y httpd php mariadb-server phpmyadmin
+    elif [ $VARIANT == "ostree" ]
+    then
+        sudo $PKGMGR install -y httpd php mariadb-server phpmyadmin
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+### utilities
 
 install_fmedia_writer(){
     if [ ! -n "$VARIANT" ]
@@ -448,5 +478,5 @@ check_for_libvirt_group(){
     else
         echo "Group doesn't exist. Please run the "Virtualization" option "
         echo "from the Extras menu and/or reboot first if using Kinoite etc."
-fi
+    fi
 }
