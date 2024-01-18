@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
 install_flatpak(){
-    if [ ! -n "$VARIANT" ] || [ $VARIANT == "kde" ] || [ $VARIANT == "xfce" ] || [ $VARIANT == "matecompiz" ]
+    if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y flatpak
         source $SCRIPTS_HOME/modules/shared.sh; "fpk_repo"
-    elif [ $VARIANT == "kinoite" ]
+    elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/shared.sh; "fpk_repo"
     fi

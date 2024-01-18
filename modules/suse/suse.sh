@@ -7,7 +7,7 @@ suse_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "(1)Packman Essentials     (2) Setup Flatpak"
+    echo "(1) Packman Essentials     (2) Setup Flatpak"
     echo "(3) Drivers               (4) Desktop Features"      
     echo "(5) Internet              (6) Multimedia"
     echo "(7) Gaming                (8) Office"
@@ -21,13 +21,13 @@ suse_menu(){
 
 
         1)  
-            sudo zypper ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials
-            sudo zypper dup -y --from packman-essentials --allow-vendor-change
+            sudo $PKGMGR ar -cfp 90 https://ftp.fau.de/packman/suse/openSUSE_Tumbleweed/Essentials packman-essentials
+            sudo $PKGMGR dup -y --from packman-essentials --allow-vendor-change
             suse_menu
             ;;
 
         2)
-            #source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_flatpak"
+            #source $SCRIPTS_HOME/modules/suse/packages.sh; "install_flatpak"
             echo "This menu is disabled atm"
             suse_menu
             ;;
@@ -279,4 +279,7 @@ pull_shared_code(){
     mv shared.sh $SCRIPTS_HOME/modules
 }
 
+export VARIANT=""
+export PKGMGR="zypper"
+variant_check
 suse_menu

@@ -27,7 +27,7 @@ fedora_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_flatpak"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_flatpak"
             fedora_menu
             ;;
 
@@ -224,18 +224,18 @@ kde_features_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdeapps"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kdeapps"
             kde_features_menu
             ;;
         
         2)
 
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdeemail"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kdeemail"
             kde_features_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kdemm"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kdemm"
             kde_features_menu
             ;;
 
@@ -286,18 +286,18 @@ xfce_features_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfce_apps"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_xfce_apps"
             xfce_features_menu
             ;;
         
         2)
 
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfce_plugins"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_xfce_plugins"
             xfce_features_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_xfcemm"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_xfcemm"
             xfce_features_menu
             ;;
 
@@ -350,13 +350,13 @@ mate_features_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_mate_apps"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_mate_apps"
             mate_features_menu
             ;;
         
         2)
 
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_compiz"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_compiz"
             mate_features_menu
             ;;
 
@@ -414,7 +414,7 @@ internet_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_brave_browser"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_brave_browser"
             internet_menu
             ;;
 
@@ -468,7 +468,7 @@ multimedia_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codecs"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_codecs"
             multimedia_menu
             ;;
 
@@ -483,7 +483,7 @@ multimedia_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_openshot"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_openshot"
             multimedia_menu
             ;;
 
@@ -492,7 +492,7 @@ multimedia_menu(){
             multimedia_menu
             ;;
         6)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kolourpaint"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kolourpaint"
             multimedia_menu
             ;;
         
@@ -539,7 +539,7 @@ gaming_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_steam"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_steam"
             sudo modprobe xpad
             ;;
 
@@ -569,7 +569,7 @@ gaming_menu(){
             ;;
 
         7)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kpat"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kpat"
             ;;
         
         8)
@@ -619,7 +619,7 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "remove_office"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "remove_office"
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             ;;
 
@@ -688,7 +688,7 @@ coding_menu(){
             python_menu
             ;;
         5)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_github_desktop"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_github_desktop"
             ;;
 
         6)
@@ -741,17 +741,17 @@ cpp_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_c_cpp"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_c_cpp"
             cpp_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_rpm_tools"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_rpm_tools"
             cpp_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codeblocks"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_codeblocks"
             cpp_menu
             ;;
         
@@ -820,7 +820,7 @@ java_menu(){
 
         4)
             sudo $PKGMGR install -y openjfx
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_scene_builder"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_scene_builder"
             java_menu
             ;;
         p)
@@ -881,11 +881,11 @@ web_dev_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_lamp_stack"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_lamp_stack"
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_bluefish"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_bluefish"
             web_dev_menu
             ;;
         
@@ -1004,7 +1004,7 @@ ides_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_vscodium"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_vscodium"
             ides_menu
             ;;
 
@@ -1071,12 +1071,12 @@ utils_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_fmedia_writer"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_fmedia_writer"
             utils_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kde_iso_image_writer"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kde_iso_image_writer"
             utils_menu
             ;;
 
@@ -1086,7 +1086,7 @@ utils_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_kleopatra"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kleopatra"
             utils_menu
             ;;
 
@@ -1155,11 +1155,11 @@ extras_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "remove_codecs"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "remove_codecs"
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "check_for_libvirt_group"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "check_for_libvirt_group"
             ;;
 
         m)

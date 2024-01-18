@@ -17,6 +17,10 @@ distro_check(){
     if [ $DISTRO == "fedora" ]
     then
         $SCRIPTS_HOME/modules/fedora/fedora.sh
+
+    elif [ $DISTRO == "opensuse-tumbleweed" ]
+    then
+        $SCRIPTS_HOME/modules/suse/suse.sh
     else
         echo "Unsupported distro"
     fi
