@@ -159,11 +159,11 @@ desktop_features_menu(){
     echo "              |   Desktop Features   |"
     echo "              ------------------------"
     echo ""
-    echo "Select desktop to install features for"
+    echo "Extra plugins and misc stuff for specific desktops"
     echo ""
     echo "                Menu"
     echo "(1) KDE                (2) XFCE"
-    echo "(3) Mate"     
+    echo "(3) Mate               (h) Help"     
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -181,6 +181,16 @@ desktop_features_menu(){
 
         3)
             mate_features_menu
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            fedora_menu
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            fedora_menu
             ;;
 
         m)
