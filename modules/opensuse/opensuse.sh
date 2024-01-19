@@ -28,7 +28,6 @@ suse_menu(){
 
         2)
             source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_flatpak"
-            echo "This menu is disabled atm"
             suse_menu
             ;;
 
