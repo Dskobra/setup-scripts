@@ -22,12 +22,12 @@ suse_menu(){
 
         1)  
             sudo $PKGMGR ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/' packman-essentials
-            sudo $PKGMGR dup -y --from packman-essentials --allow-vendor-change
+            sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
             suse_menu
             ;;
 
         2)
-            #source $SCRIPTS_HOME/modules/suse/packages.sh; "install_flatpak"
+            source $SCRIPTS_HOME/modules/suse/packages.sh; "install_flatpak"
             echo "This menu is disabled atm"
             suse_menu
             ;;
