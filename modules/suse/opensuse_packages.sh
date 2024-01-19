@@ -3,7 +3,7 @@
 install_flatpak(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y flatpak
+        sudo $PKGMGR -n install flatpak
         source $SCRIPTS_HOME/modules/shared.sh; "fpk_repo"
     elif [ $VARIANT == "ostree" ]
     then
@@ -16,11 +16,11 @@ install_flatpak(){
 install_kdeapps(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y kcalc konversation krdc krusader ktorrent okular kmouth
-        sudo $PKGMGR install -y signon-kwallet-extension kate firefox fedora-bookmarks
+        sudo $PKGMGR -n install kcalc konversation krdc krusader ktorrent okular kmouth
+        sudo $PKGMGR -n install signon-kwallet-extension kate MozillaFirefox
     elif [ $VARIANT == "ostree" ]
     then
-        sudo $PKGMGR install -y krusader kmouth krdc signon-kwallet-extension
+        sudo $PKGMGR -n install krusader kmouth krdc signon-kwallet-extension
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_ktorrent"
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kconversation"
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kcalc"

@@ -279,6 +279,26 @@ pull_shared_code(){
     mv shared.sh $SCRIPTS_HOME/modules
 }
 
+variant_check(){
+    test -f /run/ostree-booted && VARIANT=ostree
+    if [ ! -n "$VARIANT" ]
+    then
+        PKGMGR="zypper"
+        echo "openSUSE detected."
+        echo "Setting package manager to $PKGMGR."
+        #sudo $PKGMGR clean all && sudo $PKGMGR update -y
+    elif [ $VARIANT == "ostree" ]
+    then
+        PKGMGR="rpm-ostree"
+        ### Possibly reuse this for next openSUSE leap
+        # that will be immutable
+        #echo "openSUSE spin detected as immutable"
+        #echo "Setting package manager to $PKGMGR."
+        #echo "Please note this is experimental atm"
+        #sudo $PKGMGR refresh-md
+    fi
+}
+
 export VARIANT=""
 export PKGMGR="zypper"
 variant_check
