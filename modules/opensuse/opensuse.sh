@@ -101,6 +101,70 @@ suse_menu(){
         fedora_menu
 }
 
+drivers_menu(){
+    echo "              ---------------"
+    echo "              |   Drivers   |"
+    echo "              ---------------"
+    echo ""
+    echo "AMD/Nvidia drivers"
+    echo ""
+    echo "                Menu"     
+    echo "(1) Corectrl(amd)       (2) Nvidia Driver"
+    echo "(h) Help"
+    echo "(m) Main Menu           (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            sudo $PKGMGR addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+            sudo $PKGMGR refresh
+            sudo $PKGMGR -n install corectrl
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
+            #check_if_immutable
+            drivers_menu
+            ;;
+
+        2)
+            #sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+            #xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
+            #check_if_immutable
+            #drivers_menu
+            ;;
+        
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
+            drivers_menu
+            ;;
+
+        H)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
+            drivers_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+            
+        M)
+            suse_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            drivers_menu
+            ;;
+            
+        esac
+        unset input
+        drivers_menu
+}
+
 old_suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
