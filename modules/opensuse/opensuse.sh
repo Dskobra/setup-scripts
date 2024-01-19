@@ -15,6 +15,8 @@ suse_menu(){
     echo "(11) Extras"
     echo "(0) Exit"
     printf "Option: "
+    read -r input
+    
     case $input in
 
 
