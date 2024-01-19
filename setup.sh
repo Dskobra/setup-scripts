@@ -20,7 +20,7 @@ distro_check(){
 
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
-        $SCRIPTS_HOME/modules/suse/suse.sh
+        $SCRIPTS_HOME/modules/opensuse/opensuse.sh
     else
         echo "Unsupported distro"
     fi
