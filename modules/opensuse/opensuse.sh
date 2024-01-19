@@ -128,9 +128,9 @@ drivers_menu(){
         2)
             sudo $PKGMGR -n addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
             sudo $PKGMGR -n install-new-recommends --repo NVIDIA
-            #xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
             #check_if_immutable
-            #drivers_menu
+            drivers_menu
             ;;
         
         h)
