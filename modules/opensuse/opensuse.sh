@@ -16,7 +16,7 @@ suse_menu(){
     echo "(0) Exit"
     printf "Option: "
     read -r input
-    
+
     case $input in
 
 
@@ -27,7 +27,7 @@ suse_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/suse/opensuse_packages.sh; "install_flatpak"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_flatpak"
             echo "This menu is disabled atm"
             suse_menu
             ;;
