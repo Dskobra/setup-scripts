@@ -32,9 +32,8 @@ suse_menu(){
             ;;
 
         3)
-            #drivers_menu
+            drivers_menu
             #check_if_immutable
-            echo "This menu is disabled atm"
             suse_menu
             ;;
 
