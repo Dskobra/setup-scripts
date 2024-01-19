@@ -117,7 +117,8 @@ drivers_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR addrepo --refresh https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+            sudo $PKGMGR addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+            sudo $PKGMGR refresh
             sudo $PKGMGR -n install corectrl
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
             #check_if_immutable
