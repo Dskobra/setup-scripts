@@ -151,7 +151,7 @@ drivers_menu(){
             
         esac
         unset input
-        basic_menu
+        drivers_menu
 }
 
 desktop_features_menu(){
