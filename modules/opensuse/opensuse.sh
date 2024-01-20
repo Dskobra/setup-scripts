@@ -21,7 +21,7 @@ suse_menu(){
 
 
         1)  
-            source $SCRIPTS_HOME/modules/packages/3RD_PARTY_REPOS.txt
+            source $SCRIPTS_HOME/modules/packages/3RD_PARTY_REPOS.conf
             PACKMAN=$OPENSUSE_PACKMAN_ESSENTIALS
             sudo $PKGMGR ar -cfp 90 $PACKMAN packman-essentials
             sudo $PKGMGR dup --from packman-essentials --allow-vendor-change

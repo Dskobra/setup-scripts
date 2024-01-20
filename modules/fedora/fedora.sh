@@ -22,7 +22,7 @@ fedora_menu(){
 
         1)  
             cd $SCRIPTS_HOME/modules/packages
-            source $SCRIPTS_HOME/modules/packages/3RD_PARTY_REPOS.txt
+            source $SCRIPTS_HOME/modules/packages/3RD_PARTY_REPOS.conf
             RPMFUSION=$RPMFUSION_FEDORA
             sudo $PKGMGR install -y $RPMFUSION
             check_if_immutable 
