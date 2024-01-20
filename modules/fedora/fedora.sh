@@ -21,7 +21,10 @@ fedora_menu(){
 
 
         1)  
-            sudo $PKGMGR install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            cd $SCRIPTS_HOME/modules/packages
+            source $SCRIPTS_HOME/modules/packages/3RD_PARTY_REPOS.txt
+            RPMFUSION=$RPMFUSION_FEDORA
+            sudo $PKGMGR install -y $RPMFUSION
             check_if_immutable 
             fedora_menu
             ;;
