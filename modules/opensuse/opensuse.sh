@@ -21,8 +21,9 @@ suse_menu(){
 
 
         1)  
-            source
-            sudo $PKGMGR ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/' packman-essentials
+            source $SCRIPTS_HOME/packages/3RD_PARTY_REPOS.txt
+            PACKMAN=$OPENSUSE_PACKMAN_ESSENTIALS
+            sudo $PKGMGR ar -cfp 90 $PACKMAN
             sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
             suse_menu
             ;;
