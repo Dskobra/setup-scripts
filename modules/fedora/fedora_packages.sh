@@ -14,17 +14,23 @@ install_flatpak(){
 ### desktop features
 
 install_kdeapps(){
+    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y kcalc konversation krdc krusader ktorrent okular kmouth
-        sudo $PKGMGR install -y signon-kwallet-extension kate firefox fedora-bookmarks
+        KDE_APPS=$KDE_APPS_FEDORA
+        sudo $PKGMGR install -y $KDE_APPS
     elif [ $VARIANT == "ostree" ]
     then
-        sudo $PKGMGR install -y krusader kmouth krdc signon-kwallet-extension
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_ktorrent"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kconversation"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kcalc"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdeokular"
+        KDE_APPS=$KDE_APPS_FEDORA_OSTREE
+        KTORRENT=$FLATPAK_KTORRENT
+        KCALC=$FLATPAK_KCALC
+        KONVERSATION=$FLATPAK_KONVERSATION
+        OKULAR=$FLATPAK_OKULAR
+        sudo $PKGMGR install -y $KDE_APPS
+        flatpak install --user -y $KTORRENT
+        flatpak install --user -y $KCALC
+        flatpak install --user -y $KONVERSATION
+        flatpak install --user -y $OKULAR
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
