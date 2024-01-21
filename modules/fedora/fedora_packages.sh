@@ -17,20 +17,15 @@ install_kdeapps(){
     source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        KDE_APPS=$KDE_APPS_FEDORA
-        sudo $PKGMGR install -y $KDE_APPS
+        sudo $PKGMGR install -y $KDE_APPS_FEDORA
     elif [ $VARIANT == "ostree" ]
     then
-        KDE_APPS=$KDE_APPS_FEDORA_OSTREE
-        KTORRENT=$FLATPAK_KTORRENT
-        KCALC=$FLATPAK_KCALC
-        KONVERSATION=$FLATPAK_KONVERSATION
-        OKULAR=$FLATPAK_OKULAR
-        sudo $PKGMGR install -y $KDE_APPS
-        flatpak install --user -y $KTORRENT
-        flatpak install --user -y $KCALC
-        flatpak install --user -y $KONVERSATION
-        flatpak install --user -y $OKULAR
+        sudo $PKGMGR install -y $KDE_APPS_FEDORA_OSTREE
+
+        flatpak install --user -y $FLATPAK_KTORRENT
+        flatpak install --user -y $FLATPAK_KCALC
+        flatpak install --user -y $FLATPAK_KONVERSATION
+        flatpak install --user -y $FLATPAK_OKULAR
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
@@ -39,19 +34,19 @@ install_kdeapps(){
 }
 
 install_kdemm(){
+    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y digikam elisa-player gwenview k3b\
-        kamera kamoso kf5-kipi-plugins kolourpaint 
+        sudo $PKGMGR install -y $$KDE_MM_FEDORA
     elif [ $VARIANT == "ostree" ];
     then
-        sudo $PKGMGR install -y k3b
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdedigikam"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdeelisa"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdegwenview"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdekamoso"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpaint"
+        sudo $PKGMGR install -y $KDE_MM_OSTREE
 
+        flatpak install --user -y $FLATPAK_DIGIKAM
+        flatpak install --user -y $FLATPAK_ELISA
+        flatpak install --user -y $FLATPAK_GWENVIEW
+        flatpak install --user -y $FLATPAK_KAMOSO
+        flatpak install --user -y $FLATPAK_KPAINT
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
