@@ -56,10 +56,12 @@ install_kdemm(){
 install_kdeemail(){
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR groupinstall -y "KDE PIM"
+        source $SCRIPTS_HOME/modules/packages/kde_apps.conf
+        sudo $PKGMGR install -y $KDE_PIM_FEDORA
     elif [ $VARIANT == "ostree" ];
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kontact"
+        source $SCRIPTS_HOME/modules/packages/kde_apps.conf
+        flatpak install --user -y $FLATPAK_KONTACT
     else
         echo "Unkown error has occured."
     fi
