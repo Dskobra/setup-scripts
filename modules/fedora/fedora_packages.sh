@@ -73,9 +73,9 @@ install_xfce_apps(){
         sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
         sudo $PKGMGR install -y menulibre python3-distutils-extra
         sudo $PKGMGR remove -y geany transmission
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_geany"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_transmission"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_missioncenter"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_geany"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_transmission"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_missioncenter"
         install_mugshot
     elif [ $VARIANT == "ostree" ];
     then
@@ -200,7 +200,7 @@ install_openshot(){
         sudo $PKGMGR install -y openshot
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_openshot"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_openshot"
     else
         echo "Unkown error has occured."
     fi
@@ -212,7 +212,7 @@ install_kolourpaint(){
         sudo $PKGMGR install -y kolourpaint
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpaint"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_kpaint"
         
     else
         echo "Unkown error has occured."
@@ -227,7 +227,7 @@ install_kpat(){
         sudo $PKGMGR install -y kpat
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpat"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_kpat"
     else
         echo "Unkown error has occured."
     fi
@@ -239,8 +239,8 @@ install_steam(){
         sudo $PKGMGR install -y steam gamescope
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_steam"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_gamescope"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_steam"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_gamescope"
     else
         echo "Unkown error has occured."
     fi
@@ -272,7 +272,7 @@ install_bluefish(){
          sudo $PKGMGR install -y bluefish
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_bluefish"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_bluefish"
         
     else
         echo "Unkown error has occured."
@@ -285,7 +285,7 @@ install_codeblocks(){
          sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_codeblocks"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_codeblocks"
     else
         echo "Unkown error has occured."
     fi
@@ -387,7 +387,7 @@ install_fmedia_writer(){
         sudo $PKGMGR install -y mediawriter
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_fedora_mediawriter"
     else
         echo "Unkown error has occured."
     fi
@@ -399,7 +399,7 @@ install_kde_iso_image_writer(){
         sudo $PKGMGR install -y isoimagewriter
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_fedora_mediawriter"
     else
         echo "Unkown error has occured."
     fi
@@ -411,7 +411,7 @@ install_kleopatra(){
         sudo $PKGMGR install -y kleopatra
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kleopatra"
+        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_kleopatra"
     else
         echo "Unkown error has occured."
     fi
