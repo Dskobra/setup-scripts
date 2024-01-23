@@ -15,19 +15,20 @@ install_flatpak(){
 ### desktop features
 
 install_kdeapps(){
+    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR -n install kcalc konversation krdc krusader ktorrent okular kmouth
-        sudo $PKGMGR -n install signon-kwallet-extension kate MozillaFirefox
+        sudo $PKGMGR install -y $KDE_APPS_OPENSUSE
     elif [ $VARIANT == "ostree" ]
     then
-        sudo $PKGMGR -n install krusader kmouth krdc signon-kwallet-extension
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_ktorrent"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kconversation"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kcalc"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdeokular"
+        echo "Not yet supported"
+        #sudo $PKGMGR -n install krusader kmouth krdc signon-kwallet-extension
+        #flatpak install --user -y $FLATPAK_KTORRENT
+        #flatpak install --user -y $FLATPAK_KCALC
+        #flatpak install --user -y $FLATPAK_KONVERSATION
+        #flatpak install --user -y $FLATPAK_OKULAR
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        #source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi
@@ -40,14 +41,8 @@ install_kdemm(){
         kamera kamoso kf5-kipi-plugins kolourpaint 
     elif [ $VARIANT == "ostree" ];
     then
-        sudo $PKGMGR install -y k3b
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdedigikam"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdeelisa"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdegwenview"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kdekamoso"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpaint"
-
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        echo "Not yet supported"
+        #sudo $PKGMGR install -y k3b
     else
         echo "Unkown error has occured."
     fi
@@ -56,7 +51,8 @@ install_kdemm(){
 install_kdeemail(){
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR groupinstall -y "KDE PIM"
+        source $SCRIPTS_HOME/modules/packages/kde_apps.conf
+        sudo $PKGMGR install -y $KDE_PIM_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kontact"

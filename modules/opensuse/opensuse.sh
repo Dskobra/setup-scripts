@@ -21,9 +21,8 @@ suse_menu(){
 
 
         1)  
-            source $SCRIPTS_HOME/modules/packages/3RD_PARTY_REPOS.conf
-            PACKMAN=$OPENSUSE_PACKMAN_ESSENTIALS
-            sudo $PKGMGR ar -cfp 90 $PACKMAN packman-essentials
+            source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+            sudo $PKGMGR ar -cfp 90 $OPENSUSE_PACKMAN_ESSENTIALS packman-essentials
             sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
             suse_menu
             ;;
@@ -119,7 +118,8 @@ drivers_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+            source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+            sudo $PKGMGR addrepo $OPENSUSE_CORECTRL
             sudo $PKGMGR refresh
             sudo $PKGMGR -n install corectrl
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
@@ -128,7 +128,7 @@ drivers_menu(){
             ;;
 
         2)
-            sudo $PKGMGR addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+            sudo $PKGMGR addrepo --refresh $OPENSUSE_NVIDIA NVIDIA
             sudo $PKGMGR install-new-recommends --repo NVIDIA
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
             #check_if_immutable
@@ -165,6 +165,264 @@ drivers_menu(){
         esac
         unset input
         drivers_menu
+}
+
+desktop_features_menu(){
+    echo "              ------------------------"
+    echo "              |   Desktop Features   |"
+    echo "              ------------------------"
+    echo ""
+    echo "Extra plugins and misc stuff for specific desktops"
+    echo ""
+    echo "                Menu"
+    echo "(1) KDE                (2) XFCE"
+    echo "(3) Mate               (h) Help"     
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            kde_features_menu
+            ;;
+        
+        2)
+
+            xfce_features_menu
+            ;;
+
+        3)
+            mate_features_menu
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            fedora_menu
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            fedora_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            desktop_features_menu
+            ;;
+            
+        esac
+        unset input
+        desktop_features_menu
+}
+
+kde_features_menu(){
+    echo "              -----------"
+    echo "              |   KDE   |"
+    echo "              -----------"
+    echo ""
+    echo "Extra apps and plugins for KDE"
+    echo ""
+    echo "                Menu"
+    echo "(1) KDE Applications   (2) KDE Email/Contacts"
+    echo "(3) KDE Multimedia "     
+    echo "(p) Previous Menu      (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            echo "Disabled atm"
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdeapps"
+            kde_features_menu
+            ;;
+        
+        2)
+
+            echo "Disabled atm"
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdeemail"
+            kde_features_menu
+            ;;
+
+        3)
+            echo "Disabled atm"
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdemm"
+            kde_features_menu
+            ;;
+
+        p)
+            desktop_features_menu
+            ;;
+        P)
+            desktop_features_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            kde_features_menu
+            ;;
+            
+        esac
+        unset input
+        kde_features_menu
+}
+
+xfce_features_menu(){
+    echo "              ------------"
+    echo "              |   XFCE   |"
+    echo "              ------------"
+    echo ""
+    echo "Extra apps and plugins for XFCE"
+    echo ""
+    echo "                Menu"
+    echo "(1) XFCE Applications  (2) XFCE Plugins"
+    echo "(3) XFCE Multimedia"        
+    echo "(p) Previous Menu      (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            echo "Disabled atm"
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_xfce_apps"
+            xfce_features_menu
+            ;;
+        
+        2)
+
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_xfce_plugins"
+            xfce_features_menu
+            ;;
+
+        3)
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_xfcemm"
+            xfce_features_menu
+            ;;
+
+
+        p)
+            desktop_features_menu
+            ;;
+        
+        P)
+            desktop_features_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+        
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            xfce_features_menu
+            ;;
+            
+        esac
+        unset input
+        xfce_features_menu
+}
+
+mate_features_menu(){
+    echo "              ------------"
+    echo "              |   Mate   |"
+    echo "              ------------"
+    echo ""
+    echo "Extra apps and plugins for Mate"
+    echo ""
+    echo "                Menu"
+    echo "(1) Mate Applications (2) Compiz"      
+    echo "(p) Previous Menu     (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            echo "Disabled atm"
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_mate_apps"
+            mate_features_menu
+            ;;
+        
+        2)
+
+            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_compiz"
+            mate_features_menu
+            ;;
+
+        3)
+            
+            mate_features_menu
+            ;;
+
+
+        p)
+            desktop_features_menu
+            ;;
+
+        P)
+            desktop_features_menu
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            mate_features_menu
+            ;;
+            
+        esac
+        unset input
+        mate_features_menu
 }
 
 old_suse_menu(){

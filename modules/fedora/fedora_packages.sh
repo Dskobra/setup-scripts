@@ -55,28 +55,28 @@ install_kdemm(){
 }
 
 install_kdeemail(){
+    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-        sudo $PKGMGR install -y $KDE_PIM_FEDORA
+        sudo $PKGMGR install -y $KDE_PIM_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
-        source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-        flatpak install --user -y $FLATPAK_KONTACT
+        echo "Not yet supported."
+        #flatpak install --user -y $FLATPAK_KONTACT
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_xfce_apps(){
+    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
         sudo $PKGMGR install -y menulibre python3-distutils-extra
         sudo $PKGMGR remove -y geany transmission
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_geany"
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_transmission"
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_missioncenter"
+        flatpak install --user -y $GTK_MISSION_CENTER
+        flatpak install --user -y $GTK_GEANY
+        flatpak install --user -y $GTK_TRANSMISSION
         install_mugshot
     elif [ $VARIANT == "ostree" ];
     then
