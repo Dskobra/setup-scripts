@@ -1,13 +1,14 @@
 #!/usr/bin/bash
 
 install_flatpak(){
+    source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y flatpak
-        source $SCRIPTS_HOME/modules/shared.sh; "fpk_repo"
+        flatpak install --user -y $FLATPAK_FLATHUB
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/shared.sh; "fpk_repo"
+        flatpak install --user -y $FLATPAK_FLATHUB
     fi
 }
 
