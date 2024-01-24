@@ -246,20 +246,17 @@ kde_features_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdeapps"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdeapps"
             kde_features_menu
             ;;
         
         2)
-
-            echo "Disabled atm"
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdeemail"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdeemail"
             kde_features_menu
             ;;
 
         3)
-            echo "Disabled atm"
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdemm"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdemm"
             kde_features_menu
             ;;
 
@@ -310,19 +307,18 @@ xfce_features_menu(){
     case $input in
 
         1)
-            echo "Disabled atm"
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_xfce_apps"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_xfce_apps"
             xfce_features_menu
             ;;
         
         2)
 
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_xfce_plugins"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_xfce_plugins"
             xfce_features_menu
             ;;
 
         3)
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_xfcemm"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_xfcemm"
             xfce_features_menu
             ;;
 
@@ -336,11 +332,11 @@ xfce_features_menu(){
             ;;
 
         m)
-            fedora_menu
+            suse_menu
             ;;
         
         M)
-            fedora_menu
+            suse_menu
             ;;
 
         0)
@@ -375,14 +371,13 @@ mate_features_menu(){
     case $input in
 
         1)
-            echo "Disabled atm"
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_mate_apps"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_mate_apps"
             mate_features_menu
             ;;
         
         2)
 
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_compiz"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_compiz"
             mate_features_menu
             ;;
 
@@ -401,11 +396,11 @@ mate_features_menu(){
             ;;
 
         m)
-            fedora_menu
+            suse_menu
             ;;
 
         M)
-            fedora_menu
+            suse_menu
             ;;
 
         0)
