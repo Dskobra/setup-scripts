@@ -73,7 +73,7 @@ install_xfce_apps(){
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR remove -y geany transmission
-        sudo $PKGMGR -n install $XFCE_APPS_FEDORA
+        sudo $PKGMGR  install -y $XFCE_APPS_FEDORA
         flatpak install --user -y $GTK_MISSION_CENTER
         flatpak install --user -y $GTK_GEANY
         flatpak install --user -y $GTK_TRANSMISSION
