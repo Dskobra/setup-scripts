@@ -101,7 +101,7 @@ install_xfce_plugins(){
 install_xfcemm(){
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y asunder pavucontrol pragha xfburn
+        sudo $PKGMGR install -y $XFCE_MM_FEDORA
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
