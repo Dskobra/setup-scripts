@@ -21,7 +21,6 @@ fedora_menu(){
 
 
         1)  
-            cd $SCRIPTS_HOME/modules/packages
             source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
             sudo $PKGMGR install -y $RPMFUSION_FEDORA
             check_if_immutable 
