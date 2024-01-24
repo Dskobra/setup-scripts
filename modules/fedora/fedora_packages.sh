@@ -5,7 +5,7 @@ install_flatpak(){
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y flatpak
-        flatpak remote-add --if-not-exists $FLATPAK_FLATHUB
+        flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_FLATHUB
