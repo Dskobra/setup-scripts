@@ -74,7 +74,7 @@ install_xfce_apps(){
     then
         sudo $PKGMGR remove -y geany transmission
         sudo $PKGMGR  install -y $XFCE_APPS_FEDORA\
-        $GTK_CLAWS_MAIL_PLUGINS
+        $GTK_CLAWS_MAIL_PLUGINS_FEDORA
         flatpak install --user -y $GTK_MISSION_CENTER
         flatpak install --user -y $GTK_GEANY
         flatpak install --user -y $GTK_TRANSMISSION

@@ -63,15 +63,15 @@ install_kdeemail(){
 }
 
 install_xfce_apps(){
+    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR groupinstall -y "Applications for the xfce desktop"
-        sudo $PKGMGR install -y menulibre python3-distutils-extra
-        sudo $PKGMGR remove -y geany transmission
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_geany"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_transmission"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_missioncenter"
-        install_mugshot
+        sudo $PKGMGR -n remove geany transmission
+        sudo $PKGMGR install -y $XFCE_APPS_OPENSUSE\
+        $GTK_CLAWS_MAIL_PLUGINS_OPENSUSE
+        flatpak install --user -y $GTK_MISSION_CENTER
+        flatpak install --user -y $GTK_GEANY
+        flatpak install --user -y $GTK_TRANSMISSION
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
@@ -80,6 +80,7 @@ install_xfce_apps(){
 }
 
 install_xfce_plugins(){
+    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y xfce4-*-plugin
