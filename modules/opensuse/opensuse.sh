@@ -184,12 +184,10 @@ desktop_features_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdeapp"
             kde_features_menu
             ;;
         
         2)
-
             xfce_features_menu
             ;;
 
@@ -199,20 +197,20 @@ desktop_features_menu(){
 
         h)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
-            fedora_menu
+            kde_features_menu
             ;;
 
         H)  
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
-            fedora_menu
+            kde_features_menu
             ;;
 
         m)
-            fedora_menu
+            suse_menu
             ;;
 
         M)
-            fedora_menu
+            suse_menu
             ;;
 
         0)
@@ -248,8 +246,7 @@ kde_features_menu(){
     case $input in
 
         1)
-            echo "Disabled atm"
-            #source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdeapps"
+            source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kdeapps"
             kde_features_menu
             ;;
         
