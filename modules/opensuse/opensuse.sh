@@ -184,6 +184,7 @@ desktop_features_menu(){
     case $input in
 
         1)
+            source $SCRIPTS_HOME/modules/opensuse; "install_kdeapp"
             kde_features_menu
             ;;
         
