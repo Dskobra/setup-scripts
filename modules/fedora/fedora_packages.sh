@@ -87,9 +87,10 @@ install_xfce_apps(){
 }
 
 install_xfce_plugins(){
+    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y xfce4-*-plugin
+        sudo $PKGMGR instALL -y $XFCE_PLUGINS_FEDORA
         
     elif [ $VARIANT == "ostree" ];
     then
