@@ -39,7 +39,7 @@ suse_menu(){
             ;;
 
         4)
-            #desktop_features_menu
+            desktop_features_menu
             #check_if_immutable
             echo "This menu is disabled atm"
             suse_menu
