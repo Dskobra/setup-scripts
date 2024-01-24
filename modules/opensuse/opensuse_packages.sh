@@ -66,7 +66,8 @@ install_xfce_apps(){
     source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR -n remove geany transmission
+        sudo $PKGMGR -n remove geany transmission-gtk\
+        transmisison-qt transmission
         sudo $PKGMGR install -y $XFCE_APPS_OPENSUSE\
         $GTK_CLAWS_MAIL_PLUGINS_OPENSUSE
         flatpak install --user -y $GTK_MISSION_CENTER
