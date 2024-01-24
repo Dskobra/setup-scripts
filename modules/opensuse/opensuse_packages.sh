@@ -18,7 +18,7 @@ install_kdeapps(){
     source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $KDE_APPS_OPENSUSE
+        sudo $PKGMGR -n install $KDE_APPS_OPENSUSE
     elif [ $VARIANT == "ostree" ]
     then
         echo "Not yet supported"
@@ -35,10 +35,10 @@ install_kdeapps(){
 }
 
 install_kdemm(){
+    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y digikam elisa-player gwenview k3b\
-        kamera kamoso kf5-kipi-plugins kolourpaint 
+        sudo $PKGMGR -n install $KDE_MM_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
         echo "Not yet supported"
@@ -52,10 +52,11 @@ install_kdeemail(){
     if [ ! -n "$VARIANT" ];
     then
         source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-        sudo $PKGMGR install -y $KDE_PIM_OPENSUSE
+        sudo $PKGMGR -n install $KDE_PIM_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kontact"
+        echo "Not yet supported"
+        #source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kontact"
     else
         echo "Unkown error has occured."
     fi
