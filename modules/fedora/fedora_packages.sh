@@ -38,7 +38,7 @@ install_kdemm(){
     source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y $$KDE_MM_FEDORA
+        sudo $PKGMGR install -y $KDE_MM_FEDORA
     elif [ $VARIANT == "ostree" ];
     then
         sudo $PKGMGR install -y $KDE_MM_OSTREE
@@ -58,7 +58,7 @@ install_kdeemail(){
     source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y $KDE_PIM_OPENSUSE
+        sudo $PKGMGR install -y $KDE_PIM_FEDORA
     elif [ $VARIANT == "ostree" ];
     then
         echo "Not yet supported."
