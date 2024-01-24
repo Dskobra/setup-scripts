@@ -99,6 +99,7 @@ install_xfce_plugins(){
 }
 
 install_xfcemm(){
+    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y $XFCE_MM_FEDORA
