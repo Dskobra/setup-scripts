@@ -72,8 +72,8 @@ install_xfce_apps(){
     source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y menulibre python3-distutils-extra
         sudo $PKGMGR remove -y geany transmission
+        sudo $PKGMGR -n install $XFCE_APPS_FEDORA
         flatpak install --user -y $GTK_MISSION_CENTER
         flatpak install --user -y $GTK_GEANY
         flatpak install --user -y $GTK_TRANSMISSION
