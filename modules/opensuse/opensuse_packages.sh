@@ -129,27 +129,15 @@ install_compiz(){
 ### internet
 
 install_brave_browser(){
+    source $SCRIPTS_HOME/modules/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ]
         then
-            sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-            sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-            sudo dnf update -y
-            sudo $PKGMGR install -y brave-browser
+            sudo rpm --import $BRAVE_PKEY
+            sudo zypper addrepo $BRAVE_REPO
+            sudo $PKGMGR -n install brave-browser
     elif [ $VARIANT == "ostree" ]
         then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-            sudo chown root:root brave-browser.repo
-            sudo mv brave-browser.repo /etc/yum.repos.d/
-
-            curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-            sudo chown root:root brave-core.asc
-            sudo mv brave-core.asc /etc/pki/rpm-gpg/
-
-            sudo $PKGMGR refresh-md
-            sudo $PKGMGR install -y brave-browser
-
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+            echo "Not yet supported"
     fi
 }
 

@@ -159,10 +159,11 @@ install_firefox(){
 
 
 install_brave_browser(){
+    source $SCRIPTS_HOME/modules/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ]
         then
-            sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-            sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+            sudo dnf config-manager --add-repo $BRAVE_REPO
+            sudo rpm --import $BRAVE_PKEY
             sudo dnf update -y
             sudo $PKGMGR install -y brave-browser
     elif [ $VARIANT == "ostree" ]
