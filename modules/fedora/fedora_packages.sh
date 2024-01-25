@@ -123,7 +123,7 @@ install_mugshot(){
 }
 
 install_mate_apps(){
-    source $SCRIPTS_HOME/modules/packages/MATE_apps.conf
+    source $SCRIPTS_HOME/modules/packages/mate_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y $MATE_APPS_FEDORA
@@ -134,7 +134,7 @@ install_mate_apps(){
 }
 
 install_compiz(){
-    source $SCRIPTS_HOME/modules/packages/MATE_apps.conf
+    source $SCRIPTS_HOME/modules/packages/mate_apps.conf
    if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y $MATE_COMPIZ_FEDORA
@@ -145,6 +145,18 @@ install_compiz(){
 }
 
 ### internet
+
+install_firefox(){
+    source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+    if [ ! -n "$VARIANT" ];
+    then
+        sudo $PKGMGR install -y $FIREFOX_FEDORA
+    elif [ $VARIANT == "ostree" ];
+    then
+        echo "Immutable variants are unsupported"
+    fi
+}
+
 
 install_brave_browser(){
     if [ ! -n "$VARIANT" ]

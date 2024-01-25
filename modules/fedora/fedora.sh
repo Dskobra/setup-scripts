@@ -416,8 +416,8 @@ internet_menu(){
     echo "Web browser, cloud storage and bitorrent client."
     echo ""
     echo "                   Menu"
-    echo "(1) Brave Browser          (2) Dropbox"
-    echo "(3) Transmissionbt"
+    echo "(1) Firefox                (2) Brave Browser"
+    echo "(3) Dropbox                (4) Transmissionbt"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -425,15 +425,20 @@ internet_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_brave_browser"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_firefox"
             internet_menu
             ;;
 
         2)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_brave_browser"
+            internet_menu
+            ;;
+        
+        3)
             flatpak install --user -y flathub com.dropbox.Client
             ;;
 
-        3)
+        4)
             flatpak install --user -y flathub com.transmissionbt.Transmission
             internet_menu
             ;;
