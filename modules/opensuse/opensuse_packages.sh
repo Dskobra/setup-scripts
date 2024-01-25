@@ -93,9 +93,10 @@ install_xfce_plugins(){
 }
 
 install_xfcemm(){
+    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y asunder pavucontrol pragha xfburn
+        sudo $PKGMGR -n install $XFCE_MM_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
