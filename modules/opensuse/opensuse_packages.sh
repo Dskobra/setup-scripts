@@ -105,10 +105,10 @@ install_xfcemm(){
 }
 
 install_mate_apps(){
+    source $SCRIPTS_HOME/modules/packages/mate_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y caja-beesu caja-share firewall-applet mate-menu\
-        mate sensors-applet mate-utils multimedia-menus pidgin pluma-plugins\
+        sudo $PKGMGR -n install $MATE_APPS_OPENSUSE
         tigervnc
     elif [ $VARIANT == "ostree" ];
     then
@@ -117,9 +117,10 @@ install_mate_apps(){
 }
 
 install_compiz(){
+    source $SCRIPTS_HOME/modules/packages/mate_apps.conf
    if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR groupinstall -y "Compiz"
+        sudo $PKGMGR -n install $MATE_COMPIZ_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
