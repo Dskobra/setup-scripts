@@ -435,11 +435,14 @@ internet_menu(){
             ;;
         
         3)
-            flatpak install --user -y flathub com.dropbox.Client
+            source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+            flatpak install --user -y $DROPBOX
+            internet_menu
             ;;
 
         4)
-            flatpak install --user -y flathub com.transmissionbt.Transmission
+            source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+            flatpak install --user -y  $TRANSMISSION
             internet_menu
             ;;
 

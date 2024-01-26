@@ -169,11 +169,11 @@ install_brave_browser(){
     elif [ $VARIANT == "ostree" ]
         then
             cd $SCRIPTS_HOME/temp
-            curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+            curl -L -o brave-browser.repo $BRAVE_REPO
             sudo chown root:root brave-browser.repo
             sudo mv brave-browser.repo /etc/yum.repos.d/
 
-            curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+            curl -L -o brave-core.asc $BRAVE_PKEY
             sudo chown root:root brave-core.asc
             sudo mv brave-core.asc /etc/pki/rpm-gpg/
 

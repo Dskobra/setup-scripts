@@ -128,6 +128,17 @@ install_compiz(){
 
 ### internet
 
+install_firefox(){
+    source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+    if [ ! -n "$VARIANT" ];
+    then
+        sudo $PKGMGR -N install $FIREFOX_OPENSUSE
+    elif [ $VARIANT == "ostree" ];
+    then
+        echo "Immutable variants are unsupported"
+    fi
+}
+
 install_brave_browser(){
     source $SCRIPTS_HOME/modules/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ]

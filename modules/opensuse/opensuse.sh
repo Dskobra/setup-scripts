@@ -46,7 +46,7 @@ suse_menu(){
             ;;
 
         5)
-            #internet_menu
+            internet_menu
             echo "This menu is disabled atm"
             suse_menu
             ;;
@@ -418,6 +418,66 @@ mate_features_menu(){
         mate_features_menu
 }
 
+internet_menu(){
+    echo "              ---------------------"
+    echo "              |   Internet Apps   |"
+    echo "              --------------------"
+    echo ""
+    echo "Web browser, cloud storage and bitorrent client."
+    echo ""
+    echo "                   Menu"
+    echo "(1) Firefox                (2) Brave Browser"
+    echo "(3) Dropbox                (4) Transmissionbt"
+    echo "(m) Main Menu              (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_firefox"
+            internet_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_brave_browser"
+            internet_menu
+            ;;
+        
+        3)
+            source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+            flatpak install --user -y $DROPBOX
+            internet_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+            flatpak install --user -y  $TRANSMISSION
+            internet_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            internet_menu
+            ;;
+            
+        esac
+        unset input
+        internet_menu
+}
 old_suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
