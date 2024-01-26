@@ -132,7 +132,7 @@ install_firefox(){
     source $SCRIPTS_HOME/modules/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR -N install $FIREFOX_OPENSUSE
+        sudo $PKGMGR -n install $FIREFOX_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
