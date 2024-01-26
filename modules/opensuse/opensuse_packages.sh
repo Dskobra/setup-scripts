@@ -109,7 +109,6 @@ install_mate_apps(){
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR -n install $MATE_APPS_OPENSUSE
-        tigervnc
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
