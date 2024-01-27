@@ -492,12 +492,14 @@ multimedia_menu(){
             ;;
 
         2)
-            flatpak install --user -y flathub org.videolan.VLC
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+            flatpak install --user -y $VLC_FLATPAK
             multimedia_menu
             ;;
         
         3)
-            flatpak install --user -y flathub com.obsproject.Studio
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.sh
+            flatpak install --user -y $OBS_FLATPAK
             multimedia_menu
             ;;
 
@@ -507,6 +509,7 @@ multimedia_menu(){
             ;;
 
         5)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kthreeb"
             sudo $PKGMGR install -y k3b
             multimedia_menu
             ;;

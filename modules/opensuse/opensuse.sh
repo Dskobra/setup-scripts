@@ -52,8 +52,7 @@ suse_menu(){
             ;;
 
         6)
-            #multimedia_menu
-            echo "This menu is disabled atm"
+            multimedia_menu
             suse_menu
             ;;
 
@@ -478,6 +477,79 @@ internet_menu(){
         unset input
         internet_menu
 }
+
+multimedia_menu(){
+    echo "              -----------------------"
+    echo "              |   Multimedia Apps   |"
+    echo "              -----------------------"
+    echo ""
+    echo "Various multimedia apps, codecs etc."
+    echo ""
+    echo "                   Menu"
+    echo "(1) Codecs                (2) VLC Media Player" 
+    echo "(3) OBS Studio            (4) OpenShot" 
+    echo "(5) K3b                   (6) Kolourpaint"
+    echo "(m) Main Menu             (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
+            multimedia_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+            flatpak install --user -y $VLC_FLATPAK
+            multimedia_menu
+            ;;
+        
+        3)
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.sh
+            flatpak install --user -y $OBS_FLATPAK
+            multimedia_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_openshot"
+            multimedia_menu
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kthreeb"
+            sudo $PKGMGR install -y k3b
+            multimedia_menu
+            ;;
+        6)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kolourpaint"
+            multimedia_menu
+            ;;
+        
+        m)
+            suse_menu
+            ;;
+        
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            multimedia_menu
+            ;;
+            
+        esac
+        unset input
+        multimedia_menu
+}
+
 old_suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
