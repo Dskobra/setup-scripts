@@ -155,6 +155,7 @@ install_brave_browser(){
 ### multimedia
 
 install_codecs(){
+    source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR -n install ffmpeg-6 mozilla-openh264 gstreamer-plugin-openh264
