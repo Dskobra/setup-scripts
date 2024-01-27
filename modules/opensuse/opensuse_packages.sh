@@ -182,6 +182,19 @@ install_openshot(){
     fi
 }
 
+install_kthreeb(){
+    source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+    if [ ! -n "$VARIANT" ]
+        then
+            sudo $PKGMGR install -y $KTHREEB
+    elif [ $VARIANT == "ostree" ]
+        then
+            echo "Not yet supported"
+
+            #source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+    fi
+}
+
 install_kolourpaint(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
     if [ ! -n "$VARIANT" ]

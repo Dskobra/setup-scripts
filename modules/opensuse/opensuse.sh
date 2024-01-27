@@ -519,7 +519,6 @@ multimedia_menu(){
 
         5)
             source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kthreeb"
-            sudo $PKGMGR install -y k3b
             multimedia_menu
             ;;
         6)
