@@ -68,7 +68,8 @@ install_xfce_apps(){
     then
         sudo $PKGMGR -n remove geany transmission-gtk\
         transmisison-qt transmission
-        sudo $PKGMGR install -y $XFCE_APPS_OPENSUSE\
+        sudo $PKGMGR install -y $XFCE_APPS\
+        $GTK_CLAWS_MAIL_PLUGINS $XFCE_APPS_OPENSUSE\
         $GTK_CLAWS_MAIL_PLUGINS_OPENSUSE
         flatpak install --user -y $GTK_MISSION_CENTER
         flatpak install --user -y $GTK_GEANY
