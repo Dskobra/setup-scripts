@@ -68,9 +68,7 @@ install_xfce_apps(){
     then
         sudo $PKGMGR -n remove geany transmission-gtk\
         transmisison-qt transmission
-        sudo $PKGMGR install -y $XFCE_APPS\
-        $GTK_CLAWS_MAIL_PLUGINS $XFCE_APPS_OPENSUSE\
-        $GTK_CLAWS_MAIL_PLUGINS_OPENSUSE
+        sudo $PKGMGR install -y $XFCE_APPS $XFCE_APPS_OPENSUSE
         flatpak install --user -y $GTK_MISSION_CENTER
         flatpak install --user -y $GTK_GEANY
         flatpak install --user -y $GTK_TRANSMISSION
@@ -85,8 +83,7 @@ install_xfce_plugins(){
     source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR -n install $XFCE_PLUGINS_OPENSUSE
-        
+        sudo $PKGMGR -n install $XFCE_PLUGINS
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"    
