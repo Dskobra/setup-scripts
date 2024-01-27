@@ -157,7 +157,7 @@ install_brave_browser(){
 install_codecs(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR -n install ffmpeg-6
+        sudo $PKGMGR -n install ffmpeg-6 mozilla-openh264 gstreamer-plugin-openh264
     elif [ $VARIANT == "ostree" ]
     then
         echo "Not yet supported"
