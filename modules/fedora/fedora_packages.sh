@@ -18,7 +18,7 @@ install_kdeapps(){
     source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $KDE_APPS_FEDORA
+        sudo $PKGMGR install -y $KDE_APPS
     elif [ $VARIANT == "ostree" ]
     then
         sudo $PKGMGR install -y $KDE_APPS_FEDORA_OSTREE
