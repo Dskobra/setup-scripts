@@ -157,21 +157,10 @@ install_brave_browser(){
 install_codecs(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-        #sudo $PKGMGR swap -y mesa-va-drivers mesa-va-drivers-freeworld
-        #sudo $PKGMGR swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+        sudo $PKGMGR -n install ffmpeg-6
     elif [ $VARIANT == "ostree" ]
     then
-        sudo $PKGMGR override remove libavcodec-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free \
-        libswresample-free libswscale-free --install ffmpeg
-        #sudo $PKGMGR override remove mesa-va-drivers --install mesa-va-drivers-freeworld
-        
-        #sudo $PKGMGR install -y mesa-vdpau-drivers-freeworld
-        sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
-        mozilla-openh264
+        echo "Not yet supported"
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
@@ -180,25 +169,26 @@ install_codecs(){
 }
 
 install_openshot(){
+    source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y openshot
+        sudo $PKGMGR -n install $OPENSHOT_OPENSUSE
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_openshot"
+        echo "Not yet supported"
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kolourpaint(){
+    source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y kolourpaint
+        sudo $PKGMGR -n install -y $KOLOURPAINT
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpaint"
-        
+        echo "Not yet supported" 
     else
         echo "Unkown error has occured."
     fi
@@ -207,12 +197,13 @@ install_kolourpaint(){
 ### games
 
 install_kpat(){
+    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y kpat
+        sudo $PKGMGR -n install $KPAT_OPENSUSE
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kpat"
+        echo "Not yet supported."
     else
         echo "Unkown error has occured."
     fi

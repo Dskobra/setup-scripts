@@ -227,7 +227,7 @@ install_kthreeb(){
             sudo $PKGMGR install -y $KTHREEB
     elif [ $VARIANT == "ostree" ]
         then
-            sudo $PKGMGR install -y k3b
+            sudo $PKGMGR install -y $KTHREEB
 
             source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     fi
@@ -250,9 +250,10 @@ install_kolourpaint(){
 ### games
 
 install_kpat(){
+    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y kpat
+        sudo $PKGMGR install -y $KPAT_FEDORA
     elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_kpat"
