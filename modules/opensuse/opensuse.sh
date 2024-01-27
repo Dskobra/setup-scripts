@@ -496,7 +496,7 @@ multimedia_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
             multimedia_menu
             ;;
 
