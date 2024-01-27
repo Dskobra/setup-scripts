@@ -18,7 +18,7 @@ install_kdeapps(){
     source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR -n install $KDE_APPS_OPENSUSE
+        sudo $PKGMGR -n install $KDE_APPS
     elif [ $VARIANT == "ostree" ]
     then
         echo "Not yet supported"
@@ -38,7 +38,7 @@ install_kdemm(){
     source $SCRIPTS_HOME/modules/packages/kde_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR -n install $KDE_MM_OPENSUSE
+        sudo $PKGMGR -n install $KDE_MM $KDE_MM_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
         echo "Not yet supported"
@@ -52,7 +52,7 @@ install_kdeemail(){
     if [ ! -n "$VARIANT" ];
     then
         source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-        sudo $PKGMGR -n install $KDE_PIM_OPENSUSE
+        sudo $PKGMGR -n install $KDE_PIM
     elif [ $VARIANT == "ostree" ];
     then
         echo "Not yet supported"
