@@ -91,7 +91,7 @@ install_xfce_plugins(){
     source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y $XFCE_PLUGINS_FEDORA
+        sudo $PKGMGR install -y $XFCE_PLUGINS $XFCE_PLUGINS_FEDORA
         
     elif [ $VARIANT == "ostree" ];
     then
@@ -103,7 +103,7 @@ install_xfcemm(){
     source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y $XFCE_MM_FEDORA
+        sudo $PKGMGR install -y $XFCE_MM $XFCE_MM_FEDORA
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
