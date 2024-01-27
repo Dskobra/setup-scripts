@@ -496,7 +496,7 @@ multimedia_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_codecs"
             multimedia_menu
             ;;
 
