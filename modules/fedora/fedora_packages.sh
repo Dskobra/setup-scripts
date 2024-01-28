@@ -8,7 +8,7 @@ install_flatpak(){
         flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
     elif [ $VARIANT == "ostree" ]
     then
-        flatpak install remote-add --if-not-exists --user  $FLATPAK_FLATHUB
+        flatpak remote-add --if-not-exists --user  $FLATPAK_FLATHUB
     fi
 }
 
