@@ -8,7 +8,7 @@ fedora_menu(){
     echo "                 Menu"
     echo ""
     echo "(1) Setup RPMFusion       (2) Setup Flatpak"
-    echo "(3) Drivers               (4) Desktop Plugins"      
+    echo "(3) Hardware              (4) Desktop Plugins"      
     echo "(5) Internet              (6) Multimedia"
     echo "(7) Gaming                (8) Office"
     echo "(9) Coding                (10) Utilities"
@@ -33,7 +33,7 @@ fedora_menu(){
             ;;
 
         3)
-            drivers_menu
+            hardware_menu
             check_if_immutable
             fedora_menu
             ;;
@@ -93,15 +93,16 @@ fedora_menu(){
         fedora_menu
 }
 
-drivers_menu(){
+hardware_menu(){
     echo "              ---------------"
-    echo "              |   Drivers   |"
+    echo "              |   Hardware  |"
     echo "              ---------------"
     echo ""
     echo "AMD/Nvidia drivers"
     echo ""
     echo "                Menu"     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
+    echo "(3) Cheese(gtk)         (4) Kamoso (Qt)"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -111,26 +112,26 @@ drivers_menu(){
 
         1)
             sudo $PKGMGR install -y corectrl
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware#amd-cpus-andor-gpus-with-corectrl
             check_if_immutable
             drivers_menu
             ;;
 
         2)
             sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware#nvidia
             check_if_immutable
-            drivers_menu
+            hardware_menu
             ;;
         
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
-            drivers_menu
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware
+            hardware_menu
             ;;
 
         H)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
-            drivers_menu
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware
+            hardware_menu
             ;;
 
         m)
@@ -147,12 +148,12 @@ drivers_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            drivers_menu
+            hardware_menu
             ;;
             
         esac
         unset input
-        drivers_menu
+        hardware_menu
 }
 
 desktop_plugins_menu(){
