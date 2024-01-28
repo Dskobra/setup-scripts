@@ -24,7 +24,7 @@ install_kdeapps(){
 
 install_xfce_apps(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
-    sudo $PKGMGR -n remove geany transmission-gtk\
+    sudo $PKGMGR -n remove geany transmission-gtk
     sudo $PKGMGR install -y $XFCE_APPS $XFCE_APPS_OPENSUSE
 }
 
