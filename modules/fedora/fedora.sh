@@ -317,7 +317,7 @@ multimedia_menu(){
             ;;
         
         3)
-            source $SCRIPTS_HOME/modules/packages/multimedia_apps.sh
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
             flatpak install --user -y $FLATPAK_OBS
             multimedia_menu
             ;;
