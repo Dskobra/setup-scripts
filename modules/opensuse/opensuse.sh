@@ -53,8 +53,7 @@ suse_menu(){
             ;;
 
         7)
-            #gaming_menu
-            echo "This menu is disabled atm"
+            gaming_menu
             suse_menu
             ;;
 
