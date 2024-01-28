@@ -71,23 +71,20 @@ install_kolourpaint(){
 }
 
 ### games
+install_steam(){
+    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+    sudo $PKGMGR install -y $STEAM
+}
 
 install_kpat(){
     source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-    sudo $PKGMGR -n install $KPAT_OPENSUSE
+    sudo $PKGMGR install -y $KPAT
 }
 
-install_steam(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y steam gamescope
-    elif [ $VARIANT == "ostree" ]
-    then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_steam"
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_gamescope"
-    else
-        echo "Unkown error has occured."
-    fi
+install_mangohud(){
+    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+    sudo $PKGMGR install -y $MANGOHUD
+    flatpak install --user -y $FLATPAK_MANGOHUD
 }
 
 ### coding apps

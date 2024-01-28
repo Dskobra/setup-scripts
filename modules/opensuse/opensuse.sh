@@ -364,6 +364,95 @@ multimedia_menu(){
         multimedia_menu
 }
 
+gaming_menu(){
+    echo "              -------------------"
+    echo "              |   Gaming Apps   |"
+    echo "              -------------------"
+    echo ""
+    echo "Steam, lutris and other game related apps/games."
+    echo ""
+    echo "                Menu"
+    echo "(1) Steam                  (2) Lutris"
+    echo "(3) Mangohud               (4) Protontricks"
+    echo "(5) ProtonUp Qt            (6) Discord"
+    echo "(7) Solitare               (8) Minecraft"
+    echo "(9) WoWUp"
+    echo "(m) Main Menu              (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_steam"
+            sudo modprobe xpad
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            mkdir "$HOME"/Games
+            mkdir "$HOME"/.config/MangoHud/
+            
+            flatpak install --user -y $FLATPAK_LUTRIS
+            flatpak run net.lutris.Lutris
+            ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_mangohud"
+            gaming_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_PROTONTRICKS
+            ;;
+        
+        5)
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_PROTONUP
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_DISCORD
+            ;;
+
+        7)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kpat"
+            ;;
+        
+        8)
+            source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
+            ;;
+
+        9)
+            source $SCRIPTS_HOME/modules/shared.sh; "wowup"
+            ;;
+
+
+        m)
+            fedora_menu
+            ;;
+
+        M)
+            fedora_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_menu
+}
+
 old_suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
