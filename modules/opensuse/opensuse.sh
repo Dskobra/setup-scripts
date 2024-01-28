@@ -431,11 +431,11 @@ gaming_menu(){
 
 
         m)
-            fedora_menu
+            suse_menu
             ;;
 
         M)
-            fedora_menu
+            suse_menu
             ;;
         0)
             exit
