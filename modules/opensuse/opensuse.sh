@@ -8,7 +8,7 @@ suse_menu(){
     echo "                 Menu"
     echo ""
     echo "(1) Packman Essentials     (2) Setup Flatpak"
-    echo "(3) Drivers                (4) Desktop Plugins"      
+    echo "(3) Hardware               (4) Desktop Plugins"      
     echo "(5) Internet               (6) Multimedia"
     echo "(7) Gaming                 (8) Office"
     echo "(9) Coding                 (10) Utilities"
@@ -33,7 +33,7 @@ suse_menu(){
             ;;
 
         3)
-            drivers_menu
+            hardware_menu
             suse_menu
             ;;
 
@@ -119,14 +119,14 @@ hardware_menu(){
             sudo $PKGMGR refresh
             sudo $PKGMGR -n install corectrl
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
-            drivers_menu
+            hardware_menu
             ;;
 
         2)
             sudo $PKGMGR addrepo --refresh $OPENSUSE_NVIDIA NVIDIA
             sudo $PKGMGR install-new-recommends --repo NVIDIA
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
-            drivers_menu
+            hardware_menu
             ;;
         3)
             source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_cheese"
@@ -140,12 +140,12 @@ hardware_menu(){
         
         h)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
-            drivers_menu
+            hardware_menu
             ;;
 
         H)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
-            drivers_menu
+            hardware_menu
             ;;
 
         m)
@@ -162,12 +162,12 @@ hardware_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            drivers_menu
+            hardware_menu
             ;;
             
         esac
         unset input
-        drivers_menu
+        hardware_menu
 }
 
 desktop_plugins_menu(){
