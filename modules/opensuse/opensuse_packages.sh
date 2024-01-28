@@ -2,65 +2,27 @@
 
 install_flatpak(){
     source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR -n install flatpak
-        flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
-    elif [ $VARIANT == "ostree" ]
-    then
-        flatpak install --user -y $FLATPAK_FLATHUB
-    fi
+    sudo $PKGMGR -n install flatpak
+    flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
 }
 
 ### desktop features
 
 install_kdeapps(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR -n install $KDE_APPS
-    elif [ $VARIANT == "ostree" ]
-    then
-        echo "Not yet supported"
-        #sudo $PKGMGR -n install krusader kmouth krdc signon-kwallet-extension
-        #flatpak install --user -y $FLATPAK_KTORRENT
-        #flatpak install --user -y $FLATPAK_KCALC
-        #flatpak install --user -y $FLATPAK_KONVERSATION
-        #flatpak install --user -y $FLATPAK_OKULAR
-
-        #source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
+    sudo $PKGMGR -n install $KDE_APPS
 }
 
 install_xfce_apps(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR -n remove geany transmission-gtk\
-        transmisison-qt transmission
-        sudo $PKGMGR install -y $XFCE_APPS $XFCE_APPS_OPENSUSE
-        flatpak install --user -y $GTK_MISSION_CENTER
-        flatpak install --user -y $GTK_GEANY
-        flatpak install --user -y $GTK_TRANSMISSION
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-
-    fi
+    sudo $PKGMGR -n remove geany transmission-gtk\
+    sudo $PKGMGR install -y $XFCE_APPS $XFCE_APPS_OPENSUSE
 }
 
 install_mate_apps(){
     source $SCRIPTS_HOME/modules/packages/mate_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR -n install $MATE_APPS $MATE_APPS_OPENSUSE\
-        $MATE_COMPIZ $MATE_COMPIZ_OPENSUSE
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    fi
+    sudo $PKGMGR -n install $MATE_APPS $MATE_APPS_OPENSUSE\
+    $MATE_COMPIZ $MATE_COMPIZ_OPENSUSE
 }
 
 
@@ -68,97 +30,43 @@ install_mate_apps(){
 
 install_firefox(){
     source $SCRIPTS_HOME/modules/packages/internet_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR -n install $FIREFOX_OPENSUSE
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    fi
+    sudo $PKGMGR -n install $FIREFOX_OPENSUSE
 }
 
 install_brave_browser(){
     source $SCRIPTS_HOME/modules/packages/internet_apps.conf
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo rpm --import $BRAVE_PKEY
-            sudo zypper addrepo $BRAVE_REPO
-            sudo $PKGMGR -n install brave-browser
-    elif [ $VARIANT == "ostree" ]
-        then
-            echo "Not yet supported"
-    fi
+    sudo rpm --import $BRAVE_PKEY
+    sudo zypper addrepo $BRAVE_REPO
+    sudo $PKGMGR -n install brave-browser
 }
 
 ### multimedia
 
 install_codecs(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR -n install ffmpeg-6 mozilla-openh264 gstreamer-plugin-openh264
-    elif [ $VARIANT == "ostree" ]
-    then
-        echo "Not yet supported"
-
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
+    sudo $PKGMGR -n install ffmpeg-6 mozilla-openh264 gstreamer-plugin-openh264
 }
 
 install_openshot(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR -n install $OPENSHOT_OPENSUSE
-    elif [ $VARIANT == "ostree" ]
-    then
-        echo "Not yet supported"
-    else
-        echo "Unkown error has occured."
-    fi
+    sudo $PKGMGR -n install $OPENSHOT_OPENSUSE
 }
 
 install_kthreeb(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo $PKGMGR install -y $KTHREEB
-    elif [ $VARIANT == "ostree" ]
-        then
-            echo "Not yet supported"
-
-            #source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    fi
+    sudo $PKGMGR install -y $KTHREEB
 }
 
 install_kolourpaint(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR -n install -y $KOLOURPAINT
-    elif [ $VARIANT == "ostree" ]
-    then
-        echo "Not yet supported" 
-    else
-        echo "Unkown error has occured."
-    fi
+    sudo $PKGMGR -n install -y $KOLOURPAINT
 }
 
 ### games
 
 install_kpat(){
     source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR -n install $KPAT_OPENSUSE
-    elif [ $VARIANT == "ostree" ]
-    then
-        echo "Not yet supported."
-    else
-        echo "Unkown error has occured."
-    fi
+    sudo $PKGMGR -n install $KPAT_OPENSUSE
 }
 
 install_steam(){
