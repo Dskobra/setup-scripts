@@ -259,13 +259,13 @@ internet_menu(){
         
         3)
             source $SCRIPTS_HOME/modules/packages/internet_apps.conf
-            flatpak install --user -y $DROPBOX
+            flatpak install --user -y $FLATPAK_DROPBOX
             internet_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/modules/packages/internet_apps.conf
-            flatpak install --user -y  $TRANSMISSION
+            flatpak install --user -y  $FLATPAK_TRANSMISSION
             internet_menu
             ;;
 
