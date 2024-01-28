@@ -49,6 +49,7 @@ install_kdeapps(){
         sudo $PKGMGR install -y $KDE_APPS_FEDORA_OSTREE
 
         flatpak install --user -y $FLATPAK_KCALC
+        flatpak install --user -y $FLATPAK_GWENVIEW
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
