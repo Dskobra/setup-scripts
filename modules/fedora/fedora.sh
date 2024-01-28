@@ -102,7 +102,7 @@ hardware_menu(){
     echo ""
     echo "                Menu"     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) Cheese(gtk)         (4) Kamoso (Qt)"
+    echo "(3) Cheese(gtk)         (4) Kamoso(Qt)"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -121,6 +121,16 @@ hardware_menu(){
             sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware#nvidia
             check_if_immutable
+            hardware_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_cheese"
+            hardware_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kamoso"
             hardware_menu
             ;;
         

@@ -13,6 +13,31 @@ install_flatpak(){
 }
 
 ### desktop features
+install_cheese(){
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $CHEESE
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_CHEESE
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kamoso(){
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $KAMOSO
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_KAMOSO
+    else
+        echo "Unkown error has occured."
+    fi
+}
 
 install_kdeapps(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
@@ -30,6 +55,7 @@ install_kdeapps(){
         echo "Unkown error has occured."
     fi
 }
+
 
 install_xfce_apps(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf

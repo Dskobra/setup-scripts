@@ -96,7 +96,7 @@ suse_menu(){
         fedora_menu
 }
 
-drivers_menu(){
+hardware_menu(){
     echo "              ---------------"
     echo "              |   Drivers   |"
     echo "              ---------------"
@@ -105,6 +105,7 @@ drivers_menu(){
     echo ""
     echo "                Menu"     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
+    echo "(3) Cheese(gtk)        (4) Kamoso(Qt)"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -126,6 +127,15 @@ drivers_menu(){
             sudo $PKGMGR install-new-recommends --repo NVIDIA
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
             drivers_menu
+            ;;
+        3)
+            source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_cheese"
+            hardware_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kamoso"
+            hardware_menu
             ;;
         
         h)

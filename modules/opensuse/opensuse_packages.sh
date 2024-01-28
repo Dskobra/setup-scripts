@@ -7,6 +7,15 @@ install_flatpak(){
 }
 
 ### desktop features
+install_cheese(){
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
+    sudo $PKGMGR -n install $CHEESE
+}
+
+install_kamoso(){
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
+    sudo $PKGMGR -n install $KAMOSO
+}
 
 install_kdeapps(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
