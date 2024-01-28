@@ -15,7 +15,7 @@ install_flatpak(){
 ### desktop features
 
 install_kdeapps(){
-    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR -n install $KDE_APPS
@@ -35,7 +35,7 @@ install_kdeapps(){
 }
 
 install_xfce_apps(){
-    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR -n remove geany transmission-gtk\
@@ -48,29 +48,6 @@ install_xfce_apps(){
     then
         echo "Immutable variants are unsupported"
 
-    fi
-}
-
-install_xfce_plugins(){
-    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR -n install $XFCE_PLUGINS
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"    
-    fi
-}
-
-install_xfcemm(){
-    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR -n install $XFCE_MM_OPENSUSE
-        flatpak install --user -y $GTK_ASUNDER
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
     fi
 }
 

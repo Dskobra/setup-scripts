@@ -15,7 +15,7 @@ install_flatpak(){
 ### desktop features
 
 install_kdeapps(){
-    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $KDE_APPS
@@ -32,7 +32,7 @@ install_kdeapps(){
 }
 
 install_xfce_apps(){
-    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR remove -y geany transmission
@@ -60,7 +60,7 @@ install_mugshot(){
 }
 
 install_mate_apps(){
-    source $SCRIPTS_HOME/modules/packages/mate_apps.conf
+    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y $MATE_APPS $MATE_APPS_FEDORA\
