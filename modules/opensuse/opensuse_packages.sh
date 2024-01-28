@@ -67,7 +67,7 @@ install_kthreeb(){
 
 install_kolourpaint(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-    sudo $PKGMGR -n install $KOLOURPAINT
+    sudo $PKGMGR -n install $FLATPAK_KOLOURPAINT
 }
 
 ### games
