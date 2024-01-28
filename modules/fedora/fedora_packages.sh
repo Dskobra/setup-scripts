@@ -23,46 +23,9 @@ install_kdeapps(){
     then
         sudo $PKGMGR install -y $KDE_APPS_FEDORA_OSTREE
 
-        flatpak install --user -y $FLATPAK_KTORRENT
         flatpak install --user -y $FLATPAK_KCALC
-        flatpak install --user -y $FLATPAK_KONVERSATION
-        flatpak install --user -y $FLATPAK_OKULAR
 
         source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kdemm(){
-    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR install -y $KDE_MM $KDE_MM_FEDORA
-    elif [ $VARIANT == "ostree" ];
-    then
-        sudo $PKGMGR install -y $KDE_MM_OSTREE
-
-        flatpak install --user -y $FLATPAK_DIGIKAM
-        flatpak install --user -y $FLATPAK_ELISA
-        flatpak install --user -y $FLATPAK_GWENVIEW
-        flatpak install --user -y $FLATPAK_KAMOSO
-        flatpak install --user -y $FLATPAK_KPAINT
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kdeemail(){
-    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR install -y $KDE_PIM
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Not yet supported."
-        #flatpak install --user -y $FLATPAK_KONTACT
     else
         echo "Unkown error has occured."
     fi
@@ -73,39 +36,13 @@ install_xfce_apps(){
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR remove -y geany transmission
-        sudo $PKGMGR  install -y $XFCE_APPS\
-        $GTK_CLAWS_MAIL_PLUGINS $XFCE_APPS_FEDORA\
-        $GTK_CLAWS_MAIL_PLUGINS_FEDORA
-        flatpak install --user -y $GTK_MISSION_CENTER
-        flatpak install --user -y $GTK_GEANY
-        flatpak install --user -y $GTK_TRANSMISSION
+        sudo $PKGMGR  install -y $XFCE_APPS $XFCE_APPS_FEDORA\
+        $XFCE_PLUGINS $XFCE_PLUGINS_FEDORA
         install_mugshot
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
 
-    fi
-}
-
-install_xfce_plugins(){
-    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR install -y $XFCE_PLUGINS $XFCE_PLUGINS_FEDORA
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"    
-    fi
-}
-
-install_xfcemm(){
-    source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR install -y $XFCE_MM $XFCE_MM_FEDORA
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
     fi
 }
 
@@ -126,18 +63,8 @@ install_mate_apps(){
     source $SCRIPTS_HOME/modules/packages/mate_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR install -y $MATE_APPS_FEDORA
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    fi
-}
-
-install_compiz(){
-    source $SCRIPTS_HOME/modules/packages/mate_apps.conf
-   if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR install -y $MATE_COMPIZ_FEDORA
+        sudo $PKGMGR install -y $MATE_APPS $MATE_APPS_FEDORA\
+        $MATE_COMPIZ $MATE_COMPIZ_FEDORA
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
@@ -156,7 +83,6 @@ install_firefox(){
         echo "Immutable variants are unsupported"
     fi
 }
-
 
 install_brave_browser(){
     source $SCRIPTS_HOME/modules/packages/internet_apps.conf

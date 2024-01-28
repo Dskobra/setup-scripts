@@ -168,7 +168,7 @@ drivers_menu(){
 
 desktop_features_menu(){
     echo "              ------------------------"
-    echo "              |   Desktop Features   |"
+    echo "              |   Desktop Plugins    |"
     echo "              ------------------------"
     echo ""
     echo "Extra plugins and misc stuff for specific desktops"
@@ -183,15 +183,15 @@ desktop_features_menu(){
     case $input in
 
         1)
-            kde_features_menu
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdeapps"
             ;;
         
         2)
-            xfce_features_menu
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_xfce_apps"
             ;;
 
         3)
-            mate_features_menu
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_mate_apps"
             ;;
 
         h)
@@ -225,196 +225,6 @@ desktop_features_menu(){
         esac
         unset input
         desktop_features_menu
-}
-
-kde_features_menu(){
-    echo "              -----------"
-    echo "              |   KDE   |"
-    echo "              -----------"
-    echo ""
-    echo "Extra apps and plugins for KDE"
-    echo ""
-    echo "                Menu"
-    echo "(1) KDE Applications   (2) KDE Email/Contacts"
-    echo "(3) KDE Multimedia "     
-    echo "(p) Previous Menu      (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdeapps"
-            kde_features_menu
-            ;;
-        
-        2)
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdeemail"
-            kde_features_menu
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kdemm"
-            kde_features_menu
-            ;;
-
-        p)
-            desktop_features_menu
-            ;;
-        P)
-            desktop_features_menu
-            ;;
-
-        m)
-            fedora_menu
-            ;;
-        M)
-            fedora_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            kde_features_menu
-            ;;
-            
-        esac
-        unset input
-        kde_features_menu
-}
-
-xfce_features_menu(){
-    echo "              ------------"
-    echo "              |   XFCE   |"
-    echo "              ------------"
-    echo ""
-    echo "Extra apps and plugins for XFCE"
-    echo ""
-    echo "                Menu"
-    echo "(1) XFCE Applications  (2) XFCE Plugins"
-    echo "(3) XFCE Multimedia"        
-    echo "(p) Previous Menu      (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_xfce_apps"
-            xfce_features_menu
-            ;;
-        
-        2)
-
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_xfce_plugins"
-            xfce_features_menu
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_xfcemm"
-            xfce_features_menu
-            ;;
-
-
-        p)
-            desktop_features_menu
-            ;;
-        
-        P)
-            desktop_features_menu
-            ;;
-
-        m)
-            suse_menu
-            ;;
-        
-        M)
-            suse_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            xfce_features_menu
-            ;;
-            
-        esac
-        unset input
-        xfce_features_menu
-}
-
-mate_features_menu(){
-    echo "              ------------"
-    echo "              |   Mate   |"
-    echo "              ------------"
-    echo ""
-    echo "Extra apps and plugins for Mate"
-    echo ""
-    echo "                Menu"
-    echo "(1) Mate Applications (2) Compiz"      
-    echo "(p) Previous Menu     (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_mate_apps"
-            mate_features_menu
-            ;;
-        
-        2)
-
-            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_compiz"
-            mate_features_menu
-            ;;
-
-        3)
-            
-            mate_features_menu
-            ;;
-
-
-        p)
-            desktop_features_menu
-            ;;
-
-        P)
-            desktop_features_menu
-            ;;
-
-        m)
-            suse_menu
-            ;;
-
-        M)
-            suse_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            mate_features_menu
-            ;;
-            
-        esac
-        unset input
-        mate_features_menu
 }
 
 internet_menu(){

@@ -34,34 +34,6 @@ install_kdeapps(){
     fi
 }
 
-install_kdemm(){
-    source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR -n install $KDE_MM $KDE_MM_OPENSUSE
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Not yet supported"
-        #sudo $PKGMGR install -y k3b
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kdeemail(){
-    if [ ! -n "$VARIANT" ];
-    then
-        source $SCRIPTS_HOME/modules/packages/kde_apps.conf
-        sudo $PKGMGR -n install $KDE_PIM
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Not yet supported"
-        #source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kontact"
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 install_xfce_apps(){
     source $SCRIPTS_HOME/modules/packages/xfce_apps.conf
     if [ ! -n "$VARIANT" ];
@@ -106,23 +78,14 @@ install_mate_apps(){
     source $SCRIPTS_HOME/modules/packages/mate_apps.conf
     if [ ! -n "$VARIANT" ];
     then
-        sudo $PKGMGR -n install $MATE_APPS_OPENSUSE
+        sudo $PKGMGR -n install $MATE_APPS $MATE_APPS_OPENSUSE\
+        $MATE_COMPIZ $MATE_COMPIZ_OPENSUSE
     elif [ $VARIANT == "ostree" ];
     then
         echo "Immutable variants are unsupported"
     fi
 }
 
-install_compiz(){
-    source $SCRIPTS_HOME/modules/packages/mate_apps.conf
-   if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR -n install $MATE_COMPIZ_OPENSUSE
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-    fi
-}
 
 ### internet
 
