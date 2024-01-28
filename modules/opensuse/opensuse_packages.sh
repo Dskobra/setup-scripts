@@ -34,7 +34,6 @@ install_mate_apps(){
     $MATE_COMPIZ $MATE_COMPIZ_OPENSUSE
 }
 
-
 ### internet
 
 install_firefox(){
@@ -63,12 +62,12 @@ install_openshot(){
 
 install_kthreeb(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-    sudo $PKGMGR install -y $KTHREEB
+    sudo $PKGMGR -n install $KTHREEB
 }
 
 install_kolourpaint(){
     source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-    sudo $PKGMGR -n install -y $KOLOURPAINT
+    sudo $PKGMGR -n install $KOLOURPAINT
 }
 
 ### games

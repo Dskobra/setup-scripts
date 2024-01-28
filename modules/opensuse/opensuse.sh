@@ -335,6 +335,7 @@ multimedia_menu(){
             source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kthreeb"
             multimedia_menu
             ;;
+            
         6)
             source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kolourpaint"
             multimedia_menu
