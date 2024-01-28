@@ -167,7 +167,7 @@ install_openshot(){
         sudo $PKGMGR install -y $OPENSHOT_FEDORA
     elif [ $VARIANT == "ostree" ]
     then
-        flatpak install --user -y $OPENSHOT_FLATPAK
+        flatpak install --user -y $FLATPAK_OPENSHOT
     else
         echo "Unkown error has occured."
     fi
@@ -193,7 +193,7 @@ install_kolourpaint(){
         sudo $PKGMGR install -y $KOLOURPAINT
     elif [ $VARIANT == "ostree" ]
     then
-        flatpak install --user -y $KOLOURPAINT_FLATPAK
+        flatpak install --user -y $FLATPAK_KOLOURPAINT
         
     else
         echo "Unkown error has occured."

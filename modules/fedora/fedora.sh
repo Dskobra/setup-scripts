@@ -312,13 +312,13 @@ multimedia_menu(){
 
         2)
             source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-            flatpak install --user -y $VLC_FLATPAK
+            flatpak install --user -y $FLATPAK_VLC
             multimedia_menu
             ;;
         
         3)
             source $SCRIPTS_HOME/modules/packages/multimedia_apps.sh
-            flatpak install --user -y $OBS_FLATPAK
+            flatpak install --user -y $FLATPAK_OBS
             multimedia_menu
             ;;
 
