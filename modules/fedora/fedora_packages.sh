@@ -201,28 +201,45 @@ install_kolourpaint(){
 }
 
 ### games
-
-install_kpat(){
+install_steam(){
     source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $KPAT_FEDORA
+        sudo $PKGMGR install -y $STEAM
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_kpat"
+        flatpak install --user -y $FLATPAK_STEAM
+        flatpak install --user -y $FLATPAK_GAMESCOPE
     else
         echo "Unkown error has occured."
     fi
 }
 
-install_steam(){
+install_kpat(){
+    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y steam gamescope
+        sudo $PKGMGR install -y $KPAT
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_steam"
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_gamescope"
+        flatpak install --user -y $FLATPAK_KPAT
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_mangohud(){
+    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $MANGOHUD
+        flatpak install --user -y $FLATPAK_MANGOHUD
+    elif [ $VARIANT == "ostree" ]
+    then
+        sudo $PKGMGR install -y $MANGOHUD
+        flatpak install --user -y $FLATPAK_MANGOHUD
+
+        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
     else
         echo "Unkown error has occured."
     fi

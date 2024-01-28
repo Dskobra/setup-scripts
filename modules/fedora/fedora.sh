@@ -385,28 +385,33 @@ gaming_menu(){
             ;;
 
         2)
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
             mkdir "$HOME"/Games
             mkdir "$HOME"/.config/MangoHud/
-            flatpak install --user -y flathub net.lutris.Lutris
+            
+            flatpak install --user -y $FLATPAK_LUTRIS
             flatpak run net.lutris.Lutris
             ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
         3)
-            sudo $PKGMGR install -y mangohud goverlay
-            flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_mangohud"
+            gaming_menu
             ;;
 
         4)
-            flatpak install --user -y flathub com.github.Matoking.protontricks
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_PROTONTRICKS
             ;;
         
         5)
-            flatpak install --user -y flathub net.davidotek.pupgui2
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_PROTONUP
             ;;
 
         6)
-            flatpak install --user -y flathub com.discordapp.Discord
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_DISCORD
             ;;
 
         7)
