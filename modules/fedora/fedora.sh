@@ -329,12 +329,11 @@ multimedia_menu(){
 
         5)
             source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kthreeb"
-            sudo $PKGMGR install -y $KTHREEB_FEDORA
             multimedia_menu
             ;;
+            
         6)
-            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-            flatpak install --user -y $KOLOURPAINT_FLATPAK
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kolourpaint"
             multimedia_menu
             ;;
         
