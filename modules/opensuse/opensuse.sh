@@ -105,7 +105,7 @@ hardware_menu(){
     echo ""
     echo "                Menu"     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) Cheese(gtk)        (4) Kamoso(Qt)"
+    echo "(3) Cheese(gtk)         (4) Kamoso(Qt)"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
