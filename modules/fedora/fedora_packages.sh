@@ -51,7 +51,7 @@ install_kdeapps(){
         flatpak install --user -y $FLATPAK_KCALC
         flatpak install --user -y $FLATPAK_GWENVIEW
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
     else
         echo "Unkown error has occured."
     fi
@@ -133,7 +133,7 @@ install_brave_browser(){
             sudo $PKGMGR refresh-md
             sudo $PKGMGR install -y brave-browser
 
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+            check_if_immutable
     fi
 }
 
@@ -154,7 +154,7 @@ install_codecs(){
         sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
         mozilla-openh264
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
     else
         echo "Unkown error has occured."
     fi
@@ -182,7 +182,7 @@ install_kthreeb(){
         then
             sudo $PKGMGR install -y $KTHREEB
 
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+            check_if_immutable
     fi
 }
 
@@ -239,7 +239,7 @@ install_mangohud(){
         sudo $PKGMGR install -y $MANGOHUD
         flatpak install --user -y $FLATPAK_MANGOHUD
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
     else
         echo "Unkown error has occured."
     fi
@@ -259,7 +259,7 @@ install_c_cpp(){
         flex libtool m4 valgrind byacc ccache cscope indent\
         ltrace perf strace
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
     else
         echo "Unkown error has occured."
     fi
@@ -300,7 +300,7 @@ install_rpm_tools(){
         sudo $PKGMGR install -y koji mock redhat-rpm-config\
         rpm-build rpmdevtools
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
 
     else
         echo "Unkown error has occured."
@@ -323,7 +323,7 @@ install_github_desktop(){
             sudo $PKGMGR install -y git-gui 
             sudo $PKGMGR install -y github-desktop
 
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+            check_if_immutable
     fi
 }
 
@@ -332,9 +332,7 @@ install_vscodium(){
     if [ ! -n "$VARIANT" ]
         then
             sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            sudo $PKGMGR install -y codium
-
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"    
+            sudo $PKGMGR install -y codium 
     elif [ $VARIANT == "ostree" ]
         then
             cd $SCRIPTS_HOME/temp
@@ -342,6 +340,8 @@ install_vscodium(){
             chown root:root vscodium.gpg
             sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
             sudo $PKGMGR install -y codium  
+
+            check_if_immutable
    
     fi
 }
@@ -357,7 +357,7 @@ install_scene_builder(){
     then
         sudo $PKGMGR install -y $SCENE_BUILDER
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
     else
         echo "Unkown error has occured."
     fi
@@ -371,7 +371,7 @@ install_lamp_stack(){
     then
         sudo $PKGMGR install -y httpd php mariadb-server phpmyadmin
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
 
     else
         echo "Unkown error has occured."
@@ -426,7 +426,7 @@ install_virtualization(){
         libvirt-daemon-kvm qemu-kvm virt-install\
         virt-manager virt-viewer
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
 
     else
         echo "Unkown error has occured."
@@ -456,7 +456,7 @@ remove_codecs(){
         mozilla-openh264
 
         
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+        check_if_immutable
     else
         echo "Unkown error has occured."
     fi
@@ -469,6 +469,7 @@ remove_office(){
     elif [ $VARIANT == "ostree" ]
         then
             sudo $PKGMGR remove -y libreoffice
+            check_if_immutable
     fi
 }
 
