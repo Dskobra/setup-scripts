@@ -8,7 +8,7 @@ fedora_menu(){
     echo "                 Menu"
     echo ""
     echo "(1) Setup RPMFusion       (2) Setup Flatpak"
-    echo "(3) Drivers               (4) Desktop Features"      
+    echo "(3) Drivers               (4) Desktop Plugins"      
     echo "(5) Internet              (6) Multimedia"
     echo "(7) Gaming                (8) Office"
     echo "(9) Coding                (10) Utilities"
@@ -39,7 +39,7 @@ fedora_menu(){
             ;;
 
         4)
-            desktop_features_menu
+            desktop_plugins_menu
             check_if_immutable
             fedora_menu
             ;;
@@ -155,7 +155,7 @@ drivers_menu(){
         drivers_menu
 }
 
-desktop_features_menu(){
+desktop_plugins_menu(){
     echo "              ------------------------"
     echo "              |   Desktop Plugins  |"
     echo "              ------------------------"
@@ -208,12 +208,12 @@ desktop_features_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            desktop_features_menu
+            desktop_plugins_menu
             ;;
             
         esac
         unset input
-        desktop_features_menu
+        desktop_plugins_menu
 }
 
 internet_menu(){
