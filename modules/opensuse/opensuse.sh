@@ -118,33 +118,33 @@ hardware_menu(){
             sudo $PKGMGR addrepo $OPENSUSE_CORECTRL
             sudo $PKGMGR refresh
             sudo $PKGMGR -n install corectrl
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#amd-cpus-andor-gpus-with-corectrl
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/hardware#amd-cpus-andor-gpus-with-corectrl
             hardware_menu
             ;;
 
         2)
             sudo $PKGMGR addrepo --refresh $OPENSUSE_NVIDIA NVIDIA
             sudo $PKGMGR install-new-recommends --repo NVIDIA
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers#nvidia
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/hardware#nvidia
             hardware_menu
             ;;
         3)
-            source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_cheese"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_cheese"
             hardware_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/fedora/opensuse_packages.sh; "install_kamoso"
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kamoso"
             hardware_menu
             ;;
         
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/hardware
             hardware_menu
             ;;
 
         H)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Drivers
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/hardware
             hardware_menu
             ;;
 
