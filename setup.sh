@@ -21,6 +21,9 @@ distro_check(){
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
         $SCRIPTS_HOME/modules/opensuse/opensuse.sh
+    elif [ $DISTRO == "debian" ]
+    then
+        echo "Not yet supported."
     else
         echo "Unsupported distro"
     fi
