@@ -457,7 +457,7 @@ office_menu(){
     echo "Office and note taking apps."
     echo ""
     echo "                Menu"
-    echo "(2) QOwnNotes          (1) Libreoffice"
+    echo "(1) QOwnNotes          (2) Libreoffice"
     echo "(3) Abiword            (4) Gnumeric"
     echo "(5) KDE Okular         (6) Gnome Evince"
     echo "(7) KDE Ark            (8) Gnome File Roller"

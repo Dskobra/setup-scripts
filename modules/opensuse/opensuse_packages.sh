@@ -385,34 +385,10 @@ install_virtualization(){
 
 ### remove packages
 
-remove_codecs(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR swap -y ffmpeg libavcodec-free --allowerasing
-        sudo $PKGMGR swap -y mesa-va-drivers-freeworld mesa-va-drivers 
-        sudo $PKGMGR swap -y mesa-vdpau-drivers-freeworld mesa-vdpau-drivers 
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR remove ffmpeg
-        sudo $PKGMGR override reset libavcodec-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free \
-        libswresample-free libswscale-free
-        sudo $PKGMGR override reset mesa-va-drivers mesa-vdpau-drivers-freeworld
-        
-        sudo $PKGMGR remove -y gstreamer1-plugin-openh264 \
-        mozilla-openh264
-
-        
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 remove_office(){
     if [ ! -n "$VARIANT" ]
         then
-            sudo $PKGMGR remove -y gnumeric libreoffice*
+            sudo $PKGMGR remove -y libreoffice*
     elif [ $VARIANT == "ostree" ]
         then
             sudo $PKGMGR remove -y libreoffice

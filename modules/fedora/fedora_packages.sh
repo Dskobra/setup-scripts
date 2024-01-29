@@ -571,7 +571,7 @@ remove_codecs(){
 remove_office(){
     if [ ! -n "$VARIANT" ]
         then
-            sudo $PKGMGR remove -y gnumeric libreoffice*
+            sudo $PKGMGR remove -y libreoffice*
     elif [ $VARIANT == "ostree" ]
         then
             sudo $PKGMGR remove -y libreoffice
