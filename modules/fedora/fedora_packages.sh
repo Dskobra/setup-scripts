@@ -245,6 +245,112 @@ install_mangohud(){
     fi
 }
 
+### Office Apps
+
+install_abiword(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $GTK_ABIWORD
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_ABIWORD
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_gnumeric(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $GTK_GNUMERIC
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_GNUMERIC
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_okular(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $KDE_OKULAR
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_OKULAR
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_evince(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $GTK_EVINCE
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_EVINCE
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kde_ark(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $KDE_ARK
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_ARK
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_file_roller(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $GTK_FILE_ROLLER
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_FILE_ROLLER
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_claws_mail(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $GTK_CLAWS_MAIL
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_CLAWS_MAIL
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_thunderbird(){
+    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    if [ ! -n "$VARIANT" ]
+    then
+        sudo $PKGMGR install -y $THUNDERBIRD
+    elif [ $VARIANT == "ostree" ]
+    then
+        flatpak install --user -y $FLATPAK_THUNDERBIRD
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 ### coding apps
 
 install_c_cpp(){

@@ -457,7 +457,11 @@ office_menu(){
     echo "Office and note taking apps."
     echo ""
     echo "                Menu"
-    echo "(1) Libreoffice        (2) QOwnNotes"         
+    echo "(2) QOwnNotes          (1) Libreoffice"
+    echo "(3) Abiword            (4) Gnumeric"
+    echo "(5) KDE Okular         (6) Gnome Evince"
+    echo "(7) KDE Ark            (8) Gnome File Roller"
+    echo "(9) Claws-Mail         (10) Thunderbird"         
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -465,12 +469,56 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "remove_office"
-            flatpak install --user -y flathub org.libreoffice.LibreOffice
+            source $SCRIPTS_HOME/modules/packages/office_apps.conf
+            flatpak install --user -y $FLATPAK_QOWNNOTES
+            office_menu
             ;;
 
         2)
-            flatpak install --user -y flathub org.qownnotes.QOwnNotes
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "remove_office"
+            source $SCRIPTS_HOME/modules/packages/office_apps.conf
+            flatpak install --user -y $FLATPAK_LIBREOFFICE
+            office_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_abiword"
+            office_menu
+            ;;
+        
+        4)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_gnumeric"
+            office_menu
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_okular"
+            office_menu
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_evince"
+            office_menu
+            ;;
+        
+        7)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_ark"
+            office_menu
+            ;;
+
+        8)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_file_roller"
+            office_menu
+            ;;
+
+        9)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_claws_mail"
+            office_menu
+            ;;
+        
+        10)
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_thunderbird"
+            office_menu
             ;;
         
         99) 
