@@ -502,7 +502,7 @@ office_menu(){
             ;;
         
         7)
-            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_ark"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kde_ark"
             office_menu
             ;;
 
