@@ -425,22 +425,13 @@ install_eric_ide(){
 }
 
 install_vscodium(){
-    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            sudo $PKGMGR install -y codium 
-    elif [ $VARIANT == "ostree" ]
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            chown root:root vscodium.gpg
-            sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
-            sudo $PKGMGR install -y codium  
-
-            check_if_immutable
+    cd $SCRIPTS_HOME/modules/packages
+    cp vscodium.repo.txt vscodium.repo
+    sudo chown root:root vscodium.repo
+    sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
+    sudo $PKGMGR install -y codium
+    check_if_immutable
    
-    fi
 }
 
 install_github_desktop(){
