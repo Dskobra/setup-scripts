@@ -696,7 +696,7 @@ java_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y java-17-openjdk-devel
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_java_jdk"
             java_menu
             ;;
 
@@ -755,7 +755,7 @@ web_dev_menu(){
     echo "              Menu"
     echo ""
     echo "(1) NodejS LTS            (2) XAMPP"
-    echo "(3)LAMP Stack             (4) Bluefish              "
+    echo "(3) LAMP Stack            (4) Bluefish              "
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -830,12 +830,12 @@ python_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y python3-idle python3-devel
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_python_tools"
             python_menu
             ;;
 
         2)
-            sudo $PKGMGR install -y eric
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_eric_ide"
             python_menu
             ;;
 
@@ -903,7 +903,7 @@ ides_menu(){
 
         3)
             sudo $PKGMGR remove -y geany
-            flatpak install --user -y flathub org.geany.Geany
+            flatpak install --user -y $FLATPAK_GEANY
             ides_menu
             ;;
 

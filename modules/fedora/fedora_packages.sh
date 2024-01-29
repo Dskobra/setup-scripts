@@ -354,62 +354,92 @@ install_thunderbird(){
 ### coding apps
 
 install_c_cpp(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR install -y $FEDORA_GCC
+    check_if_immutable
+}
+
+install_rpm_tools(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR install -y $FEDORA_RPM_BUILD_TOOLS
+    check_if_immutable
+}
+
+install_codeblocks(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
-        flex libtool m4 valgrind byacc ccache cscope indent\
-        ltrace perf strace
+         sudo $PKGMGR install -y $CODEBLOCKS
     elif [ $VARIANT == "ostree" ]
     then
-        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
-        flex libtool m4 valgrind byacc ccache cscope indent\
-        ltrace perf strace
-
-        check_if_immutable
+        flatpak install --user -y $FLATPAK_CODEBLOCKS
     else
         echo "Unkown error has occured."
     fi
 }
 
+install_java_jdk(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR install -y $JAVA_JDK
+    check_if_immutable
+}
+
+install_scene_builder(){
+    cd $SCRIPTS_HOME/temp
+    SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
+    curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
+    sudo rpm -i $SCENE_BUILDER
+    check_if_immutable
+}
+
+install_lamp_stack(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR install -y $LAMP_STACK $FEDORA_LAMP_STACK
+    check_if_immutable
+}
+
 install_bluefish(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-         sudo $PKGMGR install -y bluefish
+         sudo $PKGMGR install -y $GTK_BLUEFISH
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_bluefish"
+        flatpak install --user -y $FLATPAK_BLUEFISH
         
     else
         echo "Unkown error has occured."
     fi
 }
 
-install_codeblocks(){
-    if [ ! -n "$VARIANT" ]
-    then
-         sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
-    elif [ $VARIANT == "ostree" ]
-    then
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_codeblocks"
-    else
-        echo "Unkown error has occured."
-    fi
+install_python_tools(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR install -y $FEDORA_PYTHON_TOOLS
+    check_if_immutable
 }
 
-install_rpm_tools(){
+install_eric_ide(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR install -y $QT_ERIC
+    check_if_immutable
+}
+
+install_vscodium(){
+    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
     if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y koji mock redhat-rpm-config\
-        rpm-build rpmdevtools
+        then
+            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+            sudo $PKGMGR install -y codium 
     elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y koji mock redhat-rpm-config\
-        rpm-build rpmdevtools
+        then
+            cd $SCRIPTS_HOME/temp
+            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+            chown root:root vscodium.gpg
+            sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
+            sudo $PKGMGR install -y codium  
 
-        check_if_immutable
-
-    else
-        echo "Unkown error has occured."
+            check_if_immutable
+   
     fi
 }
 
@@ -432,58 +462,6 @@ install_github_desktop(){
             check_if_immutable
     fi
 }
-
-install_vscodium(){
-    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            sudo $PKGMGR install -y codium 
-    elif [ $VARIANT == "ostree" ]
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            chown root:root vscodium.gpg
-            sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
-            sudo $PKGMGR install -y codium  
-
-            check_if_immutable
-   
-    fi
-}
-
-install_scene_builder(){
-    cd $SCRIPTS_HOME/temp
-    SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
-    curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo rpm -i $SCENE_BUILDER
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y $SCENE_BUILDER
-
-        check_if_immutable
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_lamp_stack(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y httpd php mariadb-server phpmyadmin
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y httpd php mariadb-server phpmyadmin
-
-        check_if_immutable
-
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 
 install_containers(){
     source $SCRIPTS_HOME/modules/packages/coding_apps.conf
