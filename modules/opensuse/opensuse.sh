@@ -452,6 +452,104 @@ gaming_menu(){
         gaming_menu
 }
 
+office_menu(){
+    echo "              -------------------"
+    echo "              |   Office Apps   |"
+    echo "              -------------------"
+    echo ""
+    echo "Office and note taking apps."
+    echo ""
+    echo "                Menu"
+    echo "(2) QOwnNotes          (1) Libreoffice"
+    echo "(3) Abiword            (4) Gnumeric"
+    echo "(5) KDE Okular         (6) Gnome Evince"
+    echo "(7) KDE Ark            (8) Gnome File Roller"
+    echo "(9) Claws-Mail         (10) Thunderbird"         
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/packages/office_apps.conf
+            flatpak install --user -y $FLATPAK_QOWNNOTES
+            office_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "remove_office"
+            source $SCRIPTS_HOME/modules/packages/office_apps.conf
+            flatpak install --user -y $FLATPAK_LIBREOFFICE
+            office_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_abiword"
+            office_menu
+            ;;
+        
+        4)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_gnumeric"
+            office_menu
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_okular"
+            office_menu
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_evince"
+            office_menu
+            ;;
+        
+        7)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kde_ark"
+            office_menu
+            ;;
+
+        8)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_file_roller"
+            office_menu
+            ;;
+
+        9)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_claws_mail"
+            office_menu
+            ;;
+        
+        10)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_thunderbird"
+            office_menu
+            ;;
+        
+        99) 
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Office-Apps
+            ;;
+
+        m)
+            fedora_menu
+            ;;
+
+        M)
+            fedora_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            office_menu
+            ;;
+            
+        esac
+        unset input
+        office_menu
+}
 old_suse_menu(){
     echo "================================================"
     echo "openSUSE (tumbleweed)"
