@@ -30,20 +30,6 @@ minecraft(){
     fi
 }
 
-install_xampp(){
-    XAMPP_LINK=https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.2.12/xampp-linux-x64-8.2.12-0-installer.run
-    XAMPP_INSTALLER=xampp-linux-x64-8.2.12-0-installer.run
-    
-    if test -d /opt/lampp; then
-        echo "XAMPP already installed."
-    elif ! test -d /opt/lampp; then
-        cd $SCRIPTS_HOME/temp
-        curl -L -o $XAMPP_INSTALLER $XAMPP_LINK
-        chmod +x $XAMPP_INSTALLER
-        sudo ./$XAMPP_INSTALLER
-    fi
-}
-
 install_nodejs(){
     echo "This downloads the nvm or Node Version Manager script to install"
     echo "the latest nodejs long term support release."
