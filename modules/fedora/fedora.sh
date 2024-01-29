@@ -559,8 +559,8 @@ coding_menu(){
     echo ""
     echo "(1) C/C++             (2) Java"
     echo "(3) Web Devlopment    (4) Python"
-    echo "(5) GitHub Desktop"
-    echo "(6) Containers        (7) Other IDEs"
+    echo "(5) GitHub Desktop    (6) Containers"
+    echo "(7) Other IDEs"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -586,9 +586,8 @@ coding_menu(){
             ;;
 
         6)
-            sudo $PKGMGR install -y toolbox
-            sudo $PKGMGR install -y distrobox
-            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_containers"
+            
             ;;
 
         7)

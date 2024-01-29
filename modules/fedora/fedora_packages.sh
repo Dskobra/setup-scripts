@@ -484,6 +484,15 @@ install_lamp_stack(){
     fi
 }
 
+
+install_containers(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR install -y toolbox
+    sudo $PKGMGR install -y distrobox
+    flatpak install --user -y $FLATPAK_PODMAN_DESKTOP
+    check_if_immutable
+}
+
 ### utilities
 
 install_fmedia_writer(){
