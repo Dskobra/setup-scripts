@@ -91,7 +91,7 @@ suse_menu(){
 
         esac
         unset input
-        fedora_menu
+        suse_menu
 }
 
 hardware_menu(){
@@ -528,11 +528,11 @@ office_menu(){
             ;;
 
         m)
-            fedora_menu
+            suse_menu
             ;;
 
         M)
-            fedora_menu
+            suse_menu
             ;;
 
         0)
@@ -548,6 +548,396 @@ office_menu(){
         esac
         unset input
         office_menu
+}
+
+coding_menu(){
+    echo "          -------------------"
+    echo "          |   Coding Apps   |"
+    echo "          -------------------"
+    echo ""
+    echo "Mostly IDEs and compilers."
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) C/C++             (2) Java"
+    echo "(3) Web Devlopment    (4) Python"
+    echo "(5) GitHub Desktop    (6) Containers"
+    echo "(7) Other IDEs"
+    echo "(m) Main Menu         (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            cpp_menu
+            ;;
+
+        2)
+            java_menu
+            ;;
+
+        3)
+            web_dev_menu
+            ;;
+        4)
+            python_menu
+            ;;
+        5)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_github_desktop"
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_containers"
+            
+            ;;
+
+        7)
+            ides_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        coding_menu
+        ;;
+        
+    esac
+    unset input
+    coding_menu
+}
+
+cpp_menu(){
+    echo "          -------------"
+    echo "          |   C/C++   |"
+    echo "          -------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) GCC            (2) RPM Build Tools"
+    echo "(3) Codeblocks"
+    echo "(p) Previous Menu  (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_c_cpp"
+            cpp_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_rpm_tools"
+            cpp_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_codeblocks"
+            cpp_menu
+            ;;
+        
+        p)
+            coding_menu
+            ;;
+        
+        P)
+            coding_menu
+            ;;
+        
+        m)
+            suse_menu
+            ;;
+        
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        cpp_menu
+        ;;
+        
+    esac
+    unset input
+    cpp_menu
+}
+
+java_menu(){
+    echo "          ---------------"
+    echo "          |   openJDK   |"
+    echo "          ---------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) openJDK 17      (2) Intellij IDEA"
+    echo "(3) Netbeans        (4) Scene Builder"
+    echo "(p) Previous Menu   (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_java_jdk"
+            java_menu
+            ;;
+
+        2)
+            
+            source $SCRIPTS_HOME/modules/shared.sh; "install_idea"
+            java_menu
+            ;;
+
+        3)  
+            source $SCRIPTS_HOME/modules/shared.sh; "install_netbeans"
+            java_menu
+            ;;
+
+        4)
+            sudo $PKGMGR install -y openjfx
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_scene_builder"
+            java_menu
+            ;;
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        java_menu
+        ;;
+        
+    esac
+    unset input
+    java_menu
+}
+
+web_dev_menu(){
+    echo "          -----------------------"
+    echo "          |   Web Development   |"
+    echo "          -----------------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) NodejS LTS            (3) LAMP Stack"
+    echo "(4) Bluefish"
+    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/shared.sh; "install_nodejs"
+            web_dev_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_lamp_stack"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_bluefish"
+            web_dev_menu
+            ;;
+        
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+        
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        cpp_menu
+        ;;
+        
+    esac
+    unset input
+    cpp_menu
+}
+
+python_menu(){
+    echo "          --------------"
+    echo "          |   Python   |"
+    echo "          --------------"
+    echo ""
+    echo "              Menu"
+    echo ""
+    echo "(1) Python IDLE           (2) Eric"
+    echo "(3) Pycharm"
+    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_python_tools"
+            python_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_eric_ide"
+            python_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/shared.sh; "install_pycharm"
+            python_menu
+            ;;
+
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+        
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        cpp_menu
+        ;;
+        
+    esac
+    unset input
+    cpp_menu
+}
+
+ides_menu(){
+    echo "          -------------------------------"
+    echo "          |   Development Environments   |"
+    echo "          --------------------------------"
+    echo ""
+    echo "                      Menu"
+    echo ""
+    echo "(1) VIM                            (2) VSCodium"
+    echo "(3) Geany                          (4) Eclipse"
+    echo "(p) Previous Menu                  (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            sudo $PKGMGR install -y vim-enhanced
+            ides_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_vscodium"
+            ides_menu
+            ;;
+
+        3)
+            sudo $PKGMGR remove -y geany
+            flatpak install --user -y $FLATPAK_GEANY
+            ides_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/shared.sh; "install_eclipse"
+            ides_menu
+            ;;
+
+        p)
+            coding_menu
+            ;;
+
+        P)
+            coding_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        ides_menu
+        ;;
+        
+    esac
+    unset input
+    ides_menu
 }
 
 old_suse_menu(){

@@ -25,7 +25,7 @@ install_kdeapps(){
 install_xfce_apps(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
     sudo $PKGMGR -n remove geany transmission-gtk
-    sudo $PKGMGR install -y $XFCE_APPS $XFCE_APPS_OPENSUSE
+    sudo $PKGMGR -n install $XFCE_APPS $XFCE_APPS_OPENSUSE
 }
 
 install_mate_apps(){
@@ -73,17 +73,17 @@ install_kolourpaint(){
 ### games
 install_steam(){
     source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-    sudo $PKGMGR install -y $STEAM
+    sudo $PKGMGR -n install $STEAM
 }
 
 install_kpat(){
     source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-    sudo $PKGMGR install -y $KPAT
+    sudo $PKGMGR -n install $KPAT
 }
 
 install_mangohud(){
     source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-    sudo $PKGMGR install -y $MANGOHUD
+    sudo $PKGMGR -n install $MANGOHUD
     flatpak install --user -y $FLATPAK_MANGOHUD
 }
 
@@ -93,7 +93,7 @@ install_abiword(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $GTK_ABIWORD
+        sudo $PKGMGR -n install $GTK_ABIWORD
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_ABIWORD
@@ -106,7 +106,7 @@ install_gnumeric(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $GTK_GNUMERIC
+        sudo $PKGMGR -n install $GTK_GNUMERIC
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_GNUMERIC
@@ -119,7 +119,7 @@ install_okular(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $KDE_OKULAR
+        sudo $PKGMGR -n install $KDE_OKULAR
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_OKULAR
@@ -132,7 +132,7 @@ install_evince(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $GTK_EVINCE
+        sudo $PKGMGR -n install $GTK_EVINCE
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_EVINCE
@@ -145,7 +145,7 @@ install_kde_ark(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $KDE_ARK
+        sudo $PKGMGR -n install $KDE_ARK
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_ARK
@@ -158,7 +158,7 @@ install_file_roller(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $GTK_FILE_ROLLER
+        sudo $PKGMGR -n install $GTK_FILE_ROLLER
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_FILE_ROLLER
@@ -171,7 +171,7 @@ install_claws_mail(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $GTK_CLAWS_MAIL
+        sudo $PKGMGR -n install $GTK_CLAWS_MAIL
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_CLAWS_MAIL
@@ -184,7 +184,7 @@ install_thunderbird(){
     source $SCRIPTS_HOME/modules/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y $THUNDERBIRD_OPENSUSE
+        sudo $PKGMGR -n install $THUNDERBIRD_OPENSUSE
     elif [ $VARIANT == "ostree" ]
     then
         flatpak install --user -y $FLATPAK_THUNDERBIRD
@@ -195,134 +195,73 @@ install_thunderbird(){
 ### coding apps
 
 install_c_cpp(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
-        flex libtool m4 valgrind byacc ccache cscope indent\
-        ltrace perf strace
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y gcc-g++ autoconf automake bison\
-        flex libtool m4 valgrind byacc ccache cscope indent\
-        ltrace perf strace
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install $OPENSUSE_GCC
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_bluefish(){
-    if [ ! -n "$VARIANT" ]
-    then
-         sudo $PKGMGR install -y bluefish
-    elif [ $VARIANT == "ostree" ]
-    then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_bluefish"
-        
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_codeblocks(){
-    if [ ! -n "$VARIANT" ]
-    then
-         sudo $PKGMGR install -y codeblocks codeblocks-contrib-devel
-    elif [ $VARIANT == "ostree" ]
-    then
-        source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_codeblocks"
-    else
-        echo "Unkown error has occured."
-    fi
 }
 
 install_rpm_tools(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y koji mock redhat-rpm-config\
-        rpm-build rpmdevtools
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y koji mock redhat-rpm-config\
-        rpm-build rpmdevtools
-
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-
-    else
-        echo "Unkown error has occured."
-    fi
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install $OPENSUSE_RPM_BUILD_TOOLS
 }
 
-install_github_desktop(){
-    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-            sudo $PKGMGR install -y git-gui github-desktop
-            
-    elif [ $VARIANT == "ostree" ]
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
-            sudo chown root:root shiftkey-gpg.key
-            sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
-            sudo $PKGMGR install -y git-gui 
-            sudo $PKGMGR install -y github-desktop
-
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    fi
+install_codeblocks(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    flatpak install --user -y $FLATPAK_CODEBLOCKS
 }
 
-install_vscodium(){
-    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            sudo $PKGMGR install -y codium
-
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"    
-    elif [ $VARIANT == "ostree" ]
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-            chown root:root vscodium.gpg
-            sudo mv vscodium.gpg /etc/pki/rpm-gpg/ 
-            sudo $PKGMGR install -y codium  
-   
-    fi
+install_java_jdk(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install $JAVA_JDK
 }
 
 install_scene_builder(){
     cd $SCRIPTS_HOME/temp
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
     curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo rpm -i $SCENE_BUILDER
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y $SCENE_BUILDER
-
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
-    else
-        echo "Unkown error has occured."
-    fi
+    sudo rpm -i $SCENE_BUILDER
 }
 
 install_lamp_stack(){
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y httpd php mariadb-server phpmyadmin
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y httpd php mariadb-server phpmyadmin
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install $LAMP_STACK $OPENSUSE_LAMP_STACK
+}
 
-        source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
+install_bluefish(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install $GTK_BLUEFISH
+}
 
-    else
-        echo "Unkown error has occured."
-    fi
+install_python_tools(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install $OPENSUSE_PYTHON_TOOLS
+}
+
+install_eric_ide(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install $QT_ERIC
+}
+
+install_vscodium(){
+    cd $SCRIPTS_HOME/modules/packages
+    cp vscodium.repo.txt vscodium.repo
+    sudo chown root:root vscodium.repo
+    sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
+    sudo $PKGMGR -n install codium
+
+
+}
+
+install_github_desktop(){
+    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/zypp/repos.d/shiftkey-packages.repo'
+    sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+    sudo $PKGMGR -n install git-gui github-desktop
+}
+
+install_containers(){
+    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    sudo $PKGMGR -n install toolbox distrobox containers-systemd
+    flatpak install --user -y $FLATPAK_PODMAN_DESKTOP
 }
 
 ### utilities
@@ -330,7 +269,7 @@ install_lamp_stack(){
 install_fmedia_writer(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y mediawriter
+        sudo $PKGMGR -n install mediawriter
     elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
@@ -342,7 +281,7 @@ install_fmedia_writer(){
 install_kde_iso_image_writer(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y isoimagewriter
+        sudo $PKGMGR -n install isoimagewriter
     elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_fedora_mediawriter"
@@ -354,7 +293,7 @@ install_kde_iso_image_writer(){
 install_kleopatra(){
     if [ ! -n "$VARIANT" ]
     then
-        sudo $PKGMGR install -y kleopatra
+        sudo $PKGMGR -n install kleopatra
     elif [ $VARIANT == "ostree" ]
     then
         source $SCRIPTS_HOME/modules/fedora/packages.sh; "fpk_kleopatra"
@@ -369,7 +308,7 @@ install_virtualization(){
         sudo dnf groupinstall -y "Virtualization"
     elif [ $VARIANT == "ostree" ]
     then
-        sudo $PKGMGR install -y libvirt-daemon-config-network\
+        sudo $PKGMGR -n install libvirt-daemon-config-network\
         libvirt-daemon-kvm qemu-kvm virt-install\
         virt-manager virt-viewer
 
@@ -380,7 +319,7 @@ install_virtualization(){
     fi
     sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
     -O /etc/yum.repos.d/virtio-win.repo
-    sudo $PKGMGR install -y virtio-win
+    sudo $PKGMGR -n install virtio-win
 }
 
 ### remove packages
