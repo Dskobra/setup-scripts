@@ -970,7 +970,8 @@ utils_menu(){
             ;;
 
         3)
-            flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_RPI_IMAGER
             utils_menu
             ;;
 
@@ -980,12 +981,14 @@ utils_menu(){
             ;;
 
         5)
-            flatpak install --user -y flathub org.gtkhash.gtkhash
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_GTKHASH
             utils_menu
             ;;
 
         6)
-            flatpak install --user -y flathub com.github.tchx84.Flatseal
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_FLATSEAL
             utils_menu
             ;;
         
