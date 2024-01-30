@@ -900,6 +900,7 @@ ides_menu(){
 
         3)
             sudo $PKGMGR remove -y geany
+            source $SCRIPTS_HOME/modules/packages/coding_apps.conf
             flatpak install --user -y $FLATPAK_GEANY
             ides_menu
             ;;
