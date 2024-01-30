@@ -470,7 +470,9 @@ install_fmedia_writer(){
         sudo $PKGMGR install -y mediawriter
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_fedora_mediawriter"
+        source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+        flatpak install --user -y $FLATPAK_FMEDIA_WRITER
+
     else
         echo "Unkown error has occured."
     fi
@@ -482,7 +484,8 @@ install_kde_iso_image_writer(){
         sudo $PKGMGR install -y isoimagewriter
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_fedora_mediawriter"
+        source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+        flatpak install --user -y $FLATPAK_KDE_ISO_IMAGE_WRITER
     else
         echo "Unkown error has occured."
     fi
@@ -494,21 +497,21 @@ install_kleopatra(){
         sudo $PKGMGR install -y kleopatra
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "fpk_kleopatra"
+        source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+        flatpak install --user -y $FLATPAK_KLEOPATRA
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_virtualization(){
+    source $SCRIPTS_HOME/modules/packages/utility_apps.conf
     if [ ! -n "$VARIANT" ]
     then
-        sudo dnf groupinstall -y "Virtualization"
+        sudo $PKGMGR install -y $VIRTUALIZATION
     elif [ $VARIANT == "ostree" ]
     then
-        sudo $PKGMGR install -y libvirt-daemon-config-network\
-        libvirt-daemon-kvm qemu-kvm virt-install\
-        virt-manager virt-viewer
+        sudo $PKGMGR install -y $VIRTUALIZATION
 
         check_if_immutable
 

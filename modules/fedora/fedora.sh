@@ -990,7 +990,7 @@ utils_menu(){
             ;;
         
         7)
-            install_virtualization
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_virtualization"
             utils_menu
             ;;
 
