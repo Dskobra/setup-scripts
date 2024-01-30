@@ -755,8 +755,8 @@ web_dev_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "(1) NodejS LTS            (3) LAMP Stack"
-    echo "(4) Bluefish"
+    echo "(1) NodejS LTS            (2) LAMP Stack"
+    echo "(3) Bluefish"
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -771,6 +771,7 @@ web_dev_menu(){
 
         2)
             source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_lamp_stack"
+            web_dev_menu
             ;;
 
         3)
@@ -888,7 +889,7 @@ ides_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y vim-enhanced
+            sudo $PKGMGR -n install vim
             ides_menu
             ;;
 
