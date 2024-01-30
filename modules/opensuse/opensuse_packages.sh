@@ -247,9 +247,8 @@ install_vscodium(){
     cp vscodium.repo.txt vscodium.repo
     sudo chown root:root vscodium.repo
     sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
+    sudo zypper refresh
     sudo $PKGMGR -n install codium
-
-
 }
 
 install_github_desktop(){
