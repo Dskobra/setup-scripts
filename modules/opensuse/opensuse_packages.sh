@@ -286,10 +286,11 @@ install_virtualization(){
     source $SCRIPTS_HOME/modules/packages/utility_apps.conf
     sudo $PKGMGR -n install libvirt-daemon-config-network\
     qemu-kvm virt-install virt-manager virt-viewer libvirt\
-    libvirt-daemon-driver-lxc libvirt-daemon-driver-storage-gluster\
-    libvirt-daemon-hooks libvirt-daemon-lxc\
-    libvirt-daemon-plugin-sanlock libvirt-daemon-qemu\
-    libvirt-daemon-xen
+    libvirt-daemon-driver-lxc libvirt-daemon-lxc\
+    libvirt-daemon-driver-storage-gluster\
+    libvirt-daemon-hooks libvirt-daemon-plugin-sanlock\
+    libvirt-daemon-qemu
+    
 
     sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
     -O /etc/zypp/repos.d/virtio-win.repo
