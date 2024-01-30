@@ -219,7 +219,9 @@ install_scene_builder(){
     cd $SCRIPTS_HOME/temp
     SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
     curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    sudo rpm -i $SCENE_BUILDER
+    #sudo rpm -i $SCENE_BUILDER
+    echo "Please use Yast to install this by going into the scripts main folder -> Temp and right clicking 'SceneBuilder-*.rpm'"
+    echo "and choosing to open with YaST Software. You'll need to hit ignore to allow the installation."
 }
 
 install_lamp_stack(){
