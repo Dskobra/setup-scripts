@@ -222,6 +222,7 @@ install_scene_builder(){
     #sudo rpm -i $SCENE_BUILDER
     echo "Please use Yast to install this by going into the scripts main folder -> Temp and right clicking 'SceneBuilder-*.rpm'"
     echo "and choosing to open with YaST Software. You'll need to hit ignore to allow the installation."
+    xdg-open $SCRIPTS_HOME/temp
 }
 
 install_lamp_stack(){
@@ -283,13 +284,13 @@ install_kleopatra(){
 
 install_virtualization(){
     source $SCRIPTS_HOME/modules/packages/utility_apps.conf
-    sudo $PKGMGR -n install $VIRTUALIZATION libvirt\
-    libvirt-daemon-driver-lxc libvirt-daemon-driver-gluster\
+    sudo $PKGMGR -n install libvirt-daemon-config-network\
+    qemu-kvm virt-install virt-manager virt-viewer libvirt\
+    libvirt-daemon-driver-lxc libvirt-daemon-storage-gluster\
     libvirt-daemon-hooks libvirt-daemon-lxc\
     libvirt-daemon-plugin-sanlock libvirt-daemon-qemu\
     libvirt-daemon-xen
 
-    wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo
     sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
     -O /etc/zypp/repos.d/virtio-win.repo
     sudo $PKGMGR install -y virtio-win
