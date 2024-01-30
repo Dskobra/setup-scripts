@@ -62,8 +62,7 @@ suse_menu(){
             suse_menu
             ;;
         9)
-            #coding_menu
-            echo "This menu is disabled atm"
+            coding_menu
             suse_menu
             ;;
 
