@@ -67,8 +67,7 @@ suse_menu(){
             ;;
 
         10)
-            #utils_menu
-            echo "This menu is disabled atm"
+            utils_menu
             suse_menu
             ;;
 
@@ -939,6 +938,87 @@ ides_menu(){
     esac
     unset input
     ides_menu
+}
+
+utils_menu(){
+    echo "          -----------------"
+    echo "          |   Utilities   |"
+    echo "          -----------------"
+    echo ""
+    echo "Largely apps for image writing and file security."
+    echo "Plus virtual machine client."
+    echo ""
+    echo "                       Menu"
+    echo ""
+    echo "(1) Fedora Media Writer        (2) KDE ISO Image Writer"
+    echo "(3) Raspberry Pi Imager        (4) Kleopatra"
+    echo "(5) GtkHash                    (6) Flatseal"
+    echo "(7) Virtualization"
+    echo "(m) Main Menu                  (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_fmedia_writer"
+            utils_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kde_iso_image_writer"
+            utils_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_RPI_IMAGER
+            utils_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_kleopatra"
+            utils_menu
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_GTKHASH
+            utils_menu
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_FLATSEAL
+            utils_menu
+            ;;
+        
+        7)
+            source $SCRIPTS_HOME/modules/opensuse/opensuse_packages.sh; "install_virtualization"
+            utils_menu
+            ;;
+
+        m)
+            suse_menu
+            ;;
+
+        M)
+            suse_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        utils_menu
+        ;;
+        
+    esac
+    unset input
+    utils_menu
 }
 
 old_suse_menu(){
