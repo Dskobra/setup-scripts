@@ -1,17 +1,17 @@
 #!/usr/bin/bash
 
 third_party_repos(){
-    if [ $PKGMGR == "dnf" ] || [ $PKGMGR == "rpm-ostree" ]
+    if [ "$PKGMGR" = "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
         sudo $PKGMGR install -y $RPMFUSION_FEDORA
         check_if_fedora_immutable
-    elif [ $VARIANT == "zypper" ]
+    elif [ "$PKGMGR" = "zypper" ]
     then
         source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
         sudo $PKGMGR ar -cfp 90 $OPENSUSE_PACKMAN_ESSENTIALS packman-essentials
         sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
-    elif [ $VARIANT == "apt-get" ]
+    elif [ "$PKGMGR" = "apt-get" ]
     then
         sudo $PKGMGR install -y software-properties-common
         sudo apt-add-repository -y --component contrib non-free
@@ -592,20 +592,28 @@ check_for_libvirt_group(){
 template(){
     if [ $PKGMGR == "dnf" ]
     then
+        echo "template"
     elif [ $PKGMGR == "rpm-ostree" ]
     then
+        echo "template"
     elif [ $PKGMGR == "zypper" ]
     then
+        echo "template"
     elif [ $PKGMGR == "apt-get" ]
     then
+        echo "template"
     fi
 }
 
 templatetwo(){
     if [ $PKGMGR == "dnf" ] || [ $PKGMGR == "rpm-ostree" ]
+    then
+        echo "template"
     elif [ $PKGMGR == "zypper" ]
     then
+        echo "template"
     elif [ $PKGMGR == "apt-get" ]
     then
+        echo "template"
     fi
 }
