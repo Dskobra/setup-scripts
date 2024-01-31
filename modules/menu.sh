@@ -3,10 +3,10 @@
 main_menu(){
     echo "OS Name: $OS_NAME"
     echo "Package Manager: $PKGMGR"
-    echo "3rd Party is: $THIRD_PARTY_REPO"
+    echo "3rd Party Repo is: $THIRD_PARTY_REPO"
     echo ""
     echo ""
-    echo "(1) 3rd Party Repo              (2) Setup Flatpak"
+    echo "(1) 3rd Party Repo                (2) Setup Flatpak"
     echo "(3) Hardware                      (4) Desktop Plugins"      
     echo "(5) Internet                      (6) Multimedia"
     echo "(7) Gaming                        (8) Office"
