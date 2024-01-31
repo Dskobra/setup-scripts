@@ -7,7 +7,7 @@ main_menu(){
     echo ""
     echo "                 Menu"
     echo ""
-    echo "(1) Setup RPMFusion       (2) Setup Flatpak"
+    echo "(1) $THIRD_PARTY_REPO     (2) Setup Flatpak"
     echo "(3) Hardware              (4) Desktop Plugins"      
     echo "(5) Internet              (6) Multimedia"
     echo "(7) Gaming                (8) Office"
@@ -1104,6 +1104,21 @@ confirm_reboot(){
     fi
 }
 
-PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
-echo $PKGMGR
+setup_third_party_repos(){
+    PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
+    echo $PKGMGR
+    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
+    then
+        THIRD_PARTY_REPO="RPMFusion"
+    elif [ $PKGMGR == "zypper" ]
+    then
+        THIRD_PARTY_REPO="Packman Essentials"
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        THIRD_PARTY_REPO="contrib non-free"
+    fi
+}
+PKGMGR=""
+THIRD_PARTY_REPO=""
+setup_third_party_repos
 main_menu

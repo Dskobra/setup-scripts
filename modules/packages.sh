@@ -2,6 +2,7 @@
 
 install_third_party_repos(){
     echo "PKGMGR = $PKGMGR"
+    source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
     if [ "$PKGMGR" = "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
