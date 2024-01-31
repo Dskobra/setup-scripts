@@ -13,6 +13,7 @@ launch_menu(){
 }
 
 distro_check(){
+    rm PKGMGR.txt
     DISTRO=$(source /etc/os-release ; echo $ID)
     if [ $DISTRO == "fedora" ]
     then
@@ -20,7 +21,8 @@ distro_check(){
         fedora_variant_check
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
-        PKGMGR="zypper"
+        $PKGMGR="zypper"
+        echo $PKGMGR >> PKGMGR.txt
         $SCRIPTS_HOME/modules/menu.sh
     elif [ $DISTRO == "debian" ]
     then

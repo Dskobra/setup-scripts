@@ -1104,6 +1104,6 @@ confirm_reboot(){
     fi
 }
 
-export VARIANT=""
-export PKGMGR=""
+PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
+echo $PKGMGR
 main_menu
