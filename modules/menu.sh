@@ -21,9 +21,7 @@ main_menu(){
 
 
         1)  
-            source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
-            sudo $PKGMGR install -y $RPMFUSION_FEDORA
-            check_if_immutable 
+            source $SCRIPTS_HOME/modules/packages.sh; "third_party_repos
             main_menu
             ;;
 
@@ -1077,8 +1075,8 @@ extras_menu(){
     extras_menu
 }
 
-check_if_immutable(){
-    if [ "$VARIANT" == "ostree" ]
+check_if_fedora_immutable(){
+    if [ "$PKGMGR" == "rpm-ostree" ]
     then
         confirm_reboot
     fi

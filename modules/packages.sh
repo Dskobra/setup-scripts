@@ -1,5 +1,23 @@
 #!/usr/bin/bash
 
+third_party_repos(){
+    if [ $PKGMGR == "dnf" ] || [ $PKGMGR == "rpm-ostree" ]
+        source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+        sudo $PKGMGR install -y $RPMFUSION_FEDORA
+        check_if_fedora_immutable
+    then
+    elif [ $VARIANT == "zypper" ]
+    then
+        source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+        sudo $PKGMGR ar -cfp 90 $OPENSUSE_PACKMAN_ESSENTIALS packman-essentials
+        sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
+    elif [ $VARIANT == "apt-get" ]
+    then
+        sudo $PKGMGR install -y software-properties-common
+        sudo apt-add-repository -y --component contrib non-free
+    fi
+}
+
 install_flatpak(){
     source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
     if [ ! -n "$VARIANT" ]
@@ -571,11 +589,21 @@ check_for_libvirt_group(){
     fi
 }
 
-templatek(){
-    if [ ! -n "$VARIANT" ]
+template(){
+    if [ $PKGMGR == "dnf" ]
     then
-    elif [ $VARIANT == "ostree" ]
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-    elif [ $VARIANT == "ostree" ]
+    elif [ $VARIANT == "zypper" ]
+    then
+    elif [ $VARIANT == "apt-get" ]
+    fi
+}
+
+templatetwo(){
+    if [ $PKGMGR == "dnf" ] || [ $PKGMGR == "rpm-ostree" ]
+    elif [ $VARIANT == "zypper" ]
+    then
+    elif [ $VARIANT == "apt-get" ]
     fi
 }
