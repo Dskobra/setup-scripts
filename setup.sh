@@ -20,7 +20,7 @@ distro_check(){
         fedora_variant_check
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
-        $PKGMGR = "zypper"
+        PKGMGR="zypper"
         $SCRIPTS_HOME/modules/menu.sh
     elif [ $DISTRO == "debian" ]
     then
@@ -48,9 +48,9 @@ fedora_variant_check(){
 }
 
 VERSION="menu-test branch"
-export DISTRO=""
-export PKGMGR=""
-export VARIANT=""
+DISTRO=""
+PKGMGR=""
+VARIANT=""
 export SCRIPTS_HOME=$(pwd)
 mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to
 launch_menu

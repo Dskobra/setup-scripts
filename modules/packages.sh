@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 install_third_party_repos(){
+    echo "PKGMGR = $PKGMGR"
     if [ "$PKGMGR" = "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
@@ -8,7 +9,6 @@ install_third_party_repos(){
         check_if_fedora_immutable
     elif [ "$PKGMGR" = "zypper" ]
     then
-        source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
         sudo $PKGMGR ar -cfp 90 $OPENSUSE_PACKMAN_ESSENTIALS packman-essentials
         sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
     elif [ "$PKGMGR" = "apt-get" ]
