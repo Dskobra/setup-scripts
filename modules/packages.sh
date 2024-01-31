@@ -2,10 +2,10 @@
 
 third_party_repos(){
     if [ $PKGMGR == "dnf" ] || [ $PKGMGR == "rpm-ostree" ]
+    then
         source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
         sudo $PKGMGR install -y $RPMFUSION_FEDORA
         check_if_fedora_immutable
-    then
     elif [ $VARIANT == "zypper" ]
     then
         source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
@@ -594,16 +594,18 @@ template(){
     then
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-    elif [ $VARIANT == "zypper" ]
+    elif [ $PKGMGR == "zypper" ]
     then
-    elif [ $VARIANT == "apt-get" ]
+    elif [ $PKGMGR == "apt-get" ]
+    then
     fi
 }
 
 templatetwo(){
     if [ $PKGMGR == "dnf" ] || [ $PKGMGR == "rpm-ostree" ]
-    elif [ $VARIANT == "zypper" ]
+    elif [ $PKGMGR == "zypper" ]
     then
-    elif [ $VARIANT == "apt-get" ]
+    elif [ $PKGMGR == "apt-get" ]
+    then
     fi
 }
