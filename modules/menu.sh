@@ -6,7 +6,7 @@ main_menu(){
     echo "3rd Party is: $THIRD_PARTY_REPO"
     echo ""
     echo ""
-    echo "(1) Third Party Repo              (2) Setup Flatpak"
+    echo "(1) 3rd Party Repo              (2) Setup Flatpak"
     echo "(3) Hardware                      (4) Desktop Plugins"      
     echo "(5) Internet                      (6) Multimedia"
     echo "(7) Gaming                        (8) Office"
