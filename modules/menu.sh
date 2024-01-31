@@ -1,17 +1,15 @@
 #!/usr/bin/bash
 
 main_menu(){
-    echo "        ---------------------"
-    echo "        |       Fedora      |"
-    echo "        ---------------------"
+    echo "OS Name: $OS_NAME"
+    echo "Package Manager: $PKGMGR"
+    echo " Menu"
     echo ""
-    echo "                 Menu"
-    echo ""
-    echo "(1) $THIRD_PARTY_REPO     (2) Setup Flatpak"
-    echo "(3) Hardware              (4) Desktop Plugins"      
-    echo "(5) Internet              (6) Multimedia"
-    echo "(7) Gaming                (8) Office"
-    echo "(9) Coding                (10) Utilities"
+    echo "(1) $THIRD_PARTY_REPO         (2) Setup Flatpak"
+    echo "(3) Hardware                  (4) Desktop Plugins"      
+    echo "(5) Internet                  (6) Multimedia"
+    echo "(7) Gaming                    (8) Office"
+    echo "(9) Coding                    (10) Utilities"
     echo "(11) Extras"
     echo "(0) Exit"
     printf "Option: "
@@ -1118,7 +1116,9 @@ setup_third_party_repos(){
         THIRD_PARTY_REPO="contrib non-free"
     fi
 }
+
 PKGMGR=""
 THIRD_PARTY_REPO=""
+OS_NAME=$(source /etc/os-release ; echo $NAME)
 setup_third_party_repos
 main_menu
