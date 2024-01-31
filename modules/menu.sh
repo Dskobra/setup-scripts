@@ -1104,7 +1104,6 @@ confirm_reboot(){
 
 setup_third_party_repos(){
     PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
-    echo $PKGMGR
     if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         THIRD_PARTY_REPO="RPMFusion"
