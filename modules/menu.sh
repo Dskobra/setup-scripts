@@ -3,8 +3,10 @@
 main_menu(){
     echo "OS Name: $OS_NAME"
     echo "Package Manager: $PKGMGR"
-    echo " Menu"
     echo ""
+    echo "-----------------"
+    echo "|   Main Menu   |"
+    echo "-----------------"
     echo "(1) $THIRD_PARTY_REPO         (2) Setup Flatpak"
     echo "(3) Hardware                  (4) Desktop Plugins"      
     echo "(5) Internet                  (6) Multimedia"
