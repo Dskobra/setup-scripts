@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-third_party_repos(){
+install_third_party_repos(){
     if [ "$PKGMGR" = "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
@@ -20,16 +20,21 @@ third_party_repos(){
 
 install_flatpak(){
     source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo $PKGMGR install -y flatpak
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
+    elif [ $PKGMGR == "zypper" ]
+    then
+        flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
+    elif [ $PKGMGR == "apt-get" ]
     then
         sudo $PKGMGR install -y flatpak
         flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
-    elif [ $VARIANT == "ostree" ]
-    then
-        flatpak remote-add --if-not-exists --user  $FLATPAK_FLATHUB
     fi
 }
-
 ### desktop features
 install_cheese(){
     source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
@@ -606,7 +611,7 @@ template(){
 }
 
 templatetwo(){
-    if [ $PKGMGR == "dnf" ] || [ $PKGMGR == "rpm-ostree" ]
+    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         echo "template"
     elif [ $PKGMGR == "zypper" ]

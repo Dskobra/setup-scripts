@@ -21,7 +21,7 @@ main_menu(){
 
 
         1)  
-            source $SCRIPTS_HOME/modules/packages.sh; "third_party_repos"
+            source $SCRIPTS_HOME/modules/packages.sh; "install_third_party_repos"
             main_menu
             ;;
 
