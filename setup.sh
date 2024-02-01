@@ -1176,6 +1176,7 @@ extras_menu(){
 }
 
 export SCRIPTS_HOME=$(pwd)
+OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION="menu-test branch"
 DISTRO=""
 PKGMGR=""
