@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 install_third_party_repos(){
-    source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+    source $SCRIPTS_HOME/packages/3rd_party_repos.conf
     if [ "$PKGMGR" = "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
-        source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
         sudo $PKGMGR install -y $RPMFUSION_FEDORA
         check_if_fedora_immutable
     elif [ "$PKGMGR" = "zypper" ]
@@ -15,11 +15,13 @@ install_third_party_repos(){
     then
         sudo $PKGMGR install -y software-properties-common
         sudo apt-add-repository -y --component contrib non-free
+    else
+        echo "Unkown error has occured."
     fi
 }
 
 install_flatpak(){
-    source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+    source $SCRIPTS_HOME/packages/3rd_party_repos.conf
     if [ $PKGMGR == "dnf" ]
     then
         sudo $PKGMGR install -y flatpak
@@ -33,37 +35,52 @@ install_flatpak(){
     then
         sudo $PKGMGR install -y flatpak
         flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
+    else
+        echo "Unkown error has occured."
     fi
 }
+
 ### desktop features
 install_cheese(){
-    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
-    if [ ! -n "$VARIANT" ]
+    source $SCRIPTS_HOME/packages/desktop_apps.conf
+    if [ $PKGMGR == "dnf" ]
     then
         sudo $PKGMGR install -y $CHEESE
-    elif [ $VARIANT == "ostree" ]
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y $FLATPAK_CHEESE
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo $PKGMGR -n install $CHEESE
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo $PKGMGR install -y $CHEESE
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kamoso(){
-    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
-    if [ ! -n "$VARIANT" ]
+    source $SCRIPTS_HOME/packages/desktop_apps.conf
+    if [ $PKGMGR == "dnf" ]
     then
         sudo $PKGMGR install -y $KAMOSO
-    elif [ $VARIANT == "ostree" ]
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y $FLATPAK_KAMOSO
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo $PKGMGR -n install $KAMOSO
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo $PKGMGR install -y $KAMOSO
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kdeapps(){
-    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
+    source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $KDE_APPS
@@ -80,9 +97,28 @@ install_kdeapps(){
     fi
 }
 
-
+install_kdeapps(){
+    source $SCRIPTS_HOME/packages/desktop_apps.conf
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo $PKGMGR install -y $KDE_APPS
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo $PKGMGR install -y $KDE_APPS_FEDORA_OSTREE
+        flatpak install --user -y $FLATPAK_KCALC
+        flatpak install --user -y $FLATPAK_GWENVIEW
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo $PKGMGR -n install $KDE_APPS
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        echo "template"
+    else
+        echo "Unkown error has occured."
+    fi
+}
 install_xfce_apps(){
-    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
+    source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR remove -y geany transmission
@@ -110,7 +146,7 @@ install_mugshot(){
 }
 
 install_mate_apps(){
-    source $SCRIPTS_HOME/modules/packages/desktop_apps.conf
+    source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y $MATE_APPS $MATE_APPS_FEDORA\
@@ -124,7 +160,7 @@ install_mate_apps(){
 ### internet
 
 install_firefox(){
-    source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+    source $SCRIPTS_HOME/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ];
     then
         sudo $PKGMGR install -y $FIREFOX_FEDORA
@@ -135,7 +171,7 @@ install_firefox(){
 }
 
 install_brave_browser(){
-    source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+    source $SCRIPTS_HOME/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ]
         then
             sudo dnf config-manager --add-repo $BRAVE_REPO
@@ -184,7 +220,7 @@ install_codecs(){
 }
 
 install_openshot(){
-    source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+    source $SCRIPTS_HOME/packages/multimedia_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $OPENSHOT_FEDORA
@@ -197,7 +233,7 @@ install_openshot(){
 }
 
 install_kthreeb(){
-    source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+    source $SCRIPTS_HOME/packages/multimedia_apps.conf
     if [ ! -n "$VARIANT" ]
         then
             sudo $PKGMGR install -y $KTHREEB
@@ -210,7 +246,7 @@ install_kthreeb(){
 }
 
 install_kolourpaint(){
-    source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+    source $SCRIPTS_HOME/packages/multimedia_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $KOLOURPAINT
@@ -225,7 +261,7 @@ install_kolourpaint(){
 
 ### games
 install_steam(){
-    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+    source $SCRIPTS_HOME/packages/gaming_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $STEAM
@@ -239,7 +275,7 @@ install_steam(){
 }
 
 install_kpat(){
-    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+    source $SCRIPTS_HOME/packages/gaming_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $KPAT
@@ -252,7 +288,7 @@ install_kpat(){
 }
 
 install_mangohud(){
-    source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+    source $SCRIPTS_HOME/packages/gaming_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $MANGOHUD
@@ -271,7 +307,7 @@ install_mangohud(){
 ### Office Apps
 
 install_abiword(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $GTK_ABIWORD
@@ -284,7 +320,7 @@ install_abiword(){
 }
 
 install_gnumeric(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $GTK_GNUMERIC
@@ -297,7 +333,7 @@ install_gnumeric(){
 }
 
 install_okular(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $KDE_OKULAR
@@ -310,7 +346,7 @@ install_okular(){
 }
 
 install_evince(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $GTK_EVINCE
@@ -323,7 +359,7 @@ install_evince(){
 }
 
 install_kde_ark(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $KDE_ARK
@@ -336,7 +372,7 @@ install_kde_ark(){
 }
 
 install_file_roller(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $GTK_FILE_ROLLER
@@ -349,7 +385,7 @@ install_file_roller(){
 }
 
 install_claws_mail(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $GTK_CLAWS_MAIL
@@ -362,7 +398,7 @@ install_claws_mail(){
 }
 
 install_thunderbird(){
-    source $SCRIPTS_HOME/modules/packages/office_apps.conf
+    source $SCRIPTS_HOME/packages/office_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $THUNDERBIRD
@@ -377,19 +413,19 @@ install_thunderbird(){
 ### coding apps
 
 install_c_cpp(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     sudo $PKGMGR install -y $FEDORA_GCC
     check_if_immutable
 }
 
 install_rpm_tools(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     sudo $PKGMGR install -y $FEDORA_RPM_BUILD_TOOLS
     check_if_immutable
 }
 
 install_codeblocks(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     if [ ! -n "$VARIANT" ]
     then
          sudo $PKGMGR install -y $CODEBLOCKS
@@ -402,7 +438,7 @@ install_codeblocks(){
 }
 
 install_java_jdk(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     sudo $PKGMGR install -y $JAVA_JDK
     check_if_immutable
 }
@@ -416,13 +452,13 @@ install_scene_builder(){
 }
 
 install_lamp_stack(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     sudo $PKGMGR install -y $LAMP_STACK $FEDORA_LAMP_STACK
     check_if_immutable
 }
 
 install_bluefish(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     if [ ! -n "$VARIANT" ]
     then
          sudo $PKGMGR install -y $GTK_BLUEFISH
@@ -436,13 +472,13 @@ install_bluefish(){
 }
 
 install_python_tools(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     sudo $PKGMGR install -y $FEDORA_PYTHON_TOOLS
     check_if_immutable
 }
 
 install_eric_ide(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     sudo $PKGMGR install -y $QT_ERIC
     check_if_immutable
 }
@@ -478,7 +514,7 @@ install_github_desktop(){
 }
 
 install_containers(){
-    source $SCRIPTS_HOME/modules/packages/coding_apps.conf
+    source $SCRIPTS_HOME/packages/coding_apps.conf
     sudo $PKGMGR install -y toolbox
     sudo $PKGMGR install -y distrobox
     flatpak install --user -y $FLATPAK_PODMAN_DESKTOP
@@ -493,7 +529,7 @@ install_fmedia_writer(){
         sudo $PKGMGR install -y mediawriter
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+        source $SCRIPTS_HOME/packages/utility_apps.conf
         flatpak install --user -y $FLATPAK_FMEDIA_WRITER
 
     else
@@ -507,7 +543,7 @@ install_kde_iso_image_writer(){
         sudo $PKGMGR install -y isoimagewriter
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+        source $SCRIPTS_HOME/packages/utility_apps.conf
         flatpak install --user -y $FLATPAK_KDE_ISO_IMAGE_WRITER
     else
         echo "Unkown error has occured."
@@ -520,7 +556,7 @@ install_kleopatra(){
         sudo $PKGMGR install -y kleopatra
     elif [ $VARIANT == "ostree" ]
     then
-        source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+        source $SCRIPTS_HOME/packages/utility_apps.conf
         flatpak install --user -y $FLATPAK_KLEOPATRA
     else
         echo "Unkown error has occured."
@@ -528,7 +564,7 @@ install_kleopatra(){
 }
 
 install_virtualization(){
-    source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+    source $SCRIPTS_HOME/packages/utility_apps.conf
     if [ ! -n "$VARIANT" ]
     then
         sudo $PKGMGR install -y $VIRTUALIZATION
@@ -607,6 +643,8 @@ template(){
     elif [ $PKGMGR == "apt-get" ]
     then
         echo "template"
+    else
+        echo "Unkown error has occured."
     fi
 }
 
@@ -620,5 +658,7 @@ templatetwo(){
     elif [ $PKGMGR == "apt-get" ]
     then
         echo "template"
+    else
+        echo "Unkown error has occured."
     fi
 }
