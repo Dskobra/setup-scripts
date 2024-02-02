@@ -41,6 +41,57 @@ install_flatpak(){
 }
 
 ### desktop features
+install_corectrl(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo $PKGMGR install -y corectrl
+        xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo $PKGMGR install -y corectrl
+        xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
+        sudo $PKGMGR addrepo $OPENSUSE_CORECTRL
+        sudo $PKGMGR refresh
+        sudo $PKGMGR -n install corectrl
+        xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo $PKGMGR install -y corectrl
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_nvidia(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+        xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+        xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo $PKGMGR addrepo --refresh $OPENSUSE_NVIDIA NVIDIA
+        sudo $PKGMGR install-new-recommends --repo NVIDIA
+        xdg-open https://en.opensuse.org/SDB:NVIDIA_drivers
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-add-repository -y --component non-free-firmware
+        sudo $PKGMGR install -y linux-headers-amd64 dkms
+        sudo $PKGMGR install -y nvidia-driver firmware-misc-nonfree
+        xdg-open https://wiki.debian.org/NvidiaGraphicsDrivers
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_cheese(){
     source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ $PKGMGR == "dnf" ]

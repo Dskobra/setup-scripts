@@ -209,16 +209,12 @@ hardware_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y corectrl
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware#amd-cpus-andor-gpus-with-corectrl
-            check_if_immutable
+            source $SCRIPTS_HOME/packages.sh; "install_corectrl"
             drivers_menu
             ;;
 
         2)
-            sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware#nvidia
-            check_if_immutable
+             source $SCRIPTS_HOME/packages.sh; "install_nvidia"
             hardware_menu
             ;;
 
