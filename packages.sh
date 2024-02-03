@@ -60,7 +60,10 @@ install_corectrl(){
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y corectrl
+        echo "deb http://deb.debian.org/debian bookworm-backports main" >> backports.list
+        sudo chown root:root backports.list
+        sudo mv backports.list /etc/apt/sources.list.d/backports.list
+        sudo $PKGMGR install -y corectrl/backports.list
     else
         echo "Unkown error has occured."
     fi
