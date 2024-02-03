@@ -785,17 +785,16 @@ java_menu(){
 
         2)
             
-            source $SCRIPTS_HOME/modules/shared.sh; "install_idea"
+            source $SCRIPTS_HOME/packages.sh; "install_idea"
             java_menu
             ;;
 
         3)  
-            source $SCRIPTS_HOME/modules/shared.sh; "install_netbeans"
+            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
             java_menu
             ;;
 
         4)
-            sudo $PKGMGR install -y openjfx
             source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
             java_menu
             ;;
@@ -847,7 +846,7 @@ web_dev_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/shared.sh; "install_nodejs"
+            source $SCRIPTS_HOME/packages.sh; "install_nodejs"
             web_dev_menu
             ;;
 
@@ -919,7 +918,7 @@ python_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/modules/shared.sh; "install_pycharm"
+            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
             python_menu
             ;;
 
@@ -971,7 +970,7 @@ ides_menu(){
     case $input in
 
         1)
-            sudo $PKGMGR install -y vim-enhanced
+            source $SCRIPTS_HOME/packages.sh; "install_vim"
             ides_menu
             ;;
 
@@ -981,13 +980,12 @@ ides_menu(){
             ;;
 
         3)
-            sudo $PKGMGR remove -y geany
-            flatpak install --user -y $FLATPAK_GEANY
+            source $SCRIPTS_HOME/packages.sh; "install_geany"
             ides_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/shared.sh; "install_eclipse"
+            source $SCRIPTS_HOME/packages.sh; "install_eclipse"
             ides_menu
             ;;
 

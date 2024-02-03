@@ -706,19 +706,23 @@ install_scene_builder(){
     SCENE_BUILDER_DEB_LINK="https://download2.gluonhq.com/scenebuilder/21.0.0/install/linux/SceneBuilder-21.0.0.deb"
     if [ $PKGMGR == "dnf" ]
     then
+        sudo dnf install -y openjfx
         curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
         sudo rpm -i $SCENE_BUILDER
     elif [ $PKGMGR == "rpm-ostree" ]
     then
+        sudo rpm-ostree install openjfx
         curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
         sudo rpm -i $SCENE_BUILDER
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
+        sudo zypper -n install openjfx
         curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
         sudo rpm -i $SCENE_BUILDER
     elif [ $PKGMGR == "apt-get" ]
     then
+        sudo apt-get install openjfx
         curl -o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
         sudo dpkg -i $SCENE_BUILDER_DEB
     else
@@ -833,6 +837,42 @@ install_vscodium(){
         sudo apt-add-repository 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main'
         sudo apt-get update && sudo apt-get install -y codium
         
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_vim(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y vim-enhanced
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install vim-enhanced
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install vim
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y vim
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_geany(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y geany
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.geany.Geany 
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install geany
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.geany.Geany 
     else
         echo "Unkown error has occured."
     fi
