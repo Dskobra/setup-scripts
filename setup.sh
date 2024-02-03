@@ -17,15 +17,12 @@ distro_check(){
     DISTRO=$(source /etc/os-release ; echo $ID)
     if [ $DISTRO == "fedora" ]
     then
-        #$SCRIPTS_HOME/modules/menu.sh
         fedora_variant_check
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
         PKGMGR="zypper"
-        setup_third_party_repos
+        display_third_party_repos
         main_menu
-        #echo $PKGMGR >> $SCRIPTS_HOME/PKGMGR.txt
-        #$SCRIPTS_HOME/modules/menu.sh
     elif [ $DISTRO == "debian" ]
     then
         echo "Not yet supported."
@@ -43,17 +40,12 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        setup_third_party_repos
-        echo "Fedora spin not detected as immutable."
-        echo "Setting package manager to $PKGMGR."
+        display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        setup_third_party_repos
-        echo "Fedora spin detected as immutable"
-        echo "Setting package manager to $PKGMGR."
-        echo "Please note this is experimental atm"
+        display_third_party_repos
         main_menu
     fi
 }
