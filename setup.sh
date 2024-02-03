@@ -132,13 +132,11 @@ main_menu(){
 
         3)
             hardware_menu
-            check_if_immutable
             main_menu
             ;;
 
         4)
             desktop_plugins_menu
-            check_if_immutable
             main_menu
             ;;
 
@@ -214,7 +212,7 @@ hardware_menu(){
             ;;
 
         2)
-             source $SCRIPTS_HOME/packages.sh; "install_nvidia"
+            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
             hardware_menu
             ;;
 

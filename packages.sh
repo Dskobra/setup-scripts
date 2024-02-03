@@ -21,19 +21,15 @@ install_third_party_repos(){
 }
 
 install_flatpak(){
-    source $SCRIPTS_HOME/packages/3rd_party_repos.conf
     if [ $PKGMGR == "dnf" ]
     then
-        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
         sudo $PKGMGR install -y flatpak
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "zypper" ]
     then
-        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "apt-get" ]
     then
