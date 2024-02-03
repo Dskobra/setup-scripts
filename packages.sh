@@ -295,8 +295,9 @@ install_brave_browser(){
         curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo chown root:root brave-core.asc
         sudo mv brave-core.asc /etc/pki/rpm-gpg/
-        sudo sudo rpm-ostree refresh-md
-        sudo sudo rpm-ostree install brave-browser
+        sudo rpm-ostree refresh-md
+        sudo rpm-ostree install brave-browser
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
@@ -316,62 +317,82 @@ install_brave_browser(){
 
 ### multimedia
 
-install_codecs(){
-    if [ ! -n "$VARIANT" ]
+install_codec(){
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
+        sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+        sudo dnf install -y gstreamer1-plugin-openh264 \
 	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
-    elif [ $VARIANT == "ostree" ]
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR override remove libavcodec-free libavfilter-free \
+        sudo rpm-ostree override remove libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
         libswresample-free libswscale-free --install ffmpeg
-        
-        sudo $PKGMGR install -y gstreamer1-plugin-openh264 \
-        mozilla-openh264
 
-        check_if_immutable
+        sudo rpm-ostree install gstreamer1-plugin-openh264 \
+        mozilla-openh264
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install ffmpeg-6 mozilla-openh264\
+        gstreamer-plugin-openh264
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y ffmpeg
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_openshot(){
-    source $SCRIPTS_HOME/packages/multimedia_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $OPENSHOT_FEDORA
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y openshot
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_OPENSHOT
+        flatpak install --user -y flathub org.openshot.OpenShot
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install openshot-qt
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y openshot
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kthreeb(){
-    source $SCRIPTS_HOME/packages/multimedia_apps.conf
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo $PKGMGR install -y $KTHREEB
-    elif [ $VARIANT == "ostree" ]
-        then
-            sudo $PKGMGR install -y $KTHREEB
-
-            check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y k3b
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install k3b
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install k3b
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y k3b
+    else
+        echo "Unkown error has occured."
     fi
 }
 
-install_kolourpaint(){
-    source $SCRIPTS_HOME/packages/multimedia_apps.conf
-    if [ ! -n "$VARIANT" ]
+install_kolourpain(){
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $KOLOURPAINT
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y kolourpaint
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_KOLOURPAINT
-        
+        flatpak install --user -y flathub org.kde.kolourpaint
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install kolourpaint
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kolourpaint
     else
         echo "Unkown error has occured."
     fi
@@ -379,98 +400,133 @@ install_kolourpaint(){
 
 ### games
 install_steam(){
-    source $SCRIPTS_HOME/packages/gaming_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $STEAM
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y steam
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_STEAM
-        flatpak install --user -y $FLATPAK_GAMESCOPE
+       flatpak install --user -y flathub com.valvesoftware.Steam 
+       flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install steam
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y steam
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kpat(){
-    source $SCRIPTS_HOME/packages/gaming_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $KPAT
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y kpat
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_KPAT
+        flatpak install --user -y flathub org.kde.kpat
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install kpat
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kpat
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_mangohud(){
-    source $SCRIPTS_HOME/packages/gaming_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $MANGOHUD
-        flatpak install --user -y $FLATPAK_MANGOHUD
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y mangohud goverlay
+        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR install -y $MANGOHUD
-        flatpak install --user -y $FLATPAK_MANGOHUD
-
-        check_if_immutable
+        sudo rpm-ostree install mangohud goverlay
+        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install mangohud goverlay
+        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y mangohud goverlay
+        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     else
         echo "Unkown error has occured."
     fi
 }
-
 ### Office Apps
 
 install_abiword(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $GTK_ABIWORD
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y abiword
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_ABIWORD
+        sudo rpm-ostree install 
+        flatpak install --user -y flathub com.abisource.AbiWord
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install abiword
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y abiword
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_gnumeric(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $GTK_GNUMERIC
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y gnumeric
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_GNUMERIC
+        flatpak install --user -y flathub org.gnumeric.Gnumeric
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install gnumeric
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y gnumeric
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_okular(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $KDE_OKULAR
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y okular
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_OKULAR
+        sudo rpm-ostree install 
+    elif [ $PKGMGR == "zypper" ]
+    then
+        flatpak install --user -y flathub org.kde.okular
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y okular
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_evince(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $GTK_EVINCE
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y evince
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_EVINCE
+        flatpak install --user -y flathub org.gnome.Evince
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install evince
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y evince
     else
         echo "Unkown error has occured."
     fi
@@ -489,45 +545,77 @@ install_kde_ark(){
     fi
 }
 
+install_kde_ark(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y ark
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.kde.ark
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install ark
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y ark
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_file_roller(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $GTK_FILE_ROLLER
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y file-roller
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_FILE_ROLLER
+        flatpak install --user -y flathub org.gnome.FileRoller
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install file-roller
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y file-roller
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_claws_mail(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $GTK_CLAWS_MAIL
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y claws-mail
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_CLAWS_MAIL
+        flatpak install --user -y flathub org.claws_mail.Claws-Mail
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install claws-mail
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y claws-mail
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_thunderbird(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $THUNDERBIRD
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y thunderbird
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_THUNDERBIRD
+        flatpak install --user -y flathub org.mozilla.Thunderbird
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install thunderbird
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y thunderbird
     else
         echo "Unkown error has occured."
     fi
 }
-
 ### coding apps
 
 install_c_cpp(){
@@ -700,6 +788,110 @@ install_virtualization(){
     sudo $PKGMGR install -y virtio-win
 }
 
+wowup(){
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.10.0/WowUp-CF-2.10.0.AppImage
+    WOWUPBINARY=WowUp-CF-2.10.0.AppImage
+
+    if test -f /home/$USER/Desktop/$WOWUPBINARY; then
+        echo "WoWUp already downloaded."
+    elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
+        cd "$HOME"/Desktop
+        curl -L -o $WOWUPBINARY $WOWUPLINK 
+        chmod +x $WOWUPBINARY
+    fi
+}
+
+minecraft(){
+    MINECRAFT_LINK=https://launcher.mojang.com/download/Minecraft.tar.gz
+    MINECRAFT_ARCHIVE=Minecraft.tar.gz
+    
+    if test -f /home/$USER/Desktop/minecraft-launcher; then
+        echo "Minecraft already downloaded."
+    elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
+        tar -xvf Minecraft.tar.gz
+        cd minecraft-launcher
+        chmod +x minecraft-launcher
+        mv minecraft-launcher "$HOME"/Desktop
+    fi
+}
+
+install_nodejs(){
+    echo "This downloads the nvm or Node Version Manager script to install"
+    echo "the latest nodejs long term support release."
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	source ~/.bashrc
+	nvm install lts/*
+}
+
+install_eclipse(){
+    cd $SCRIPTS_HOME/temp
+    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
+    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
+
+    tar -xvf $ECLIPSE
+    ./eclipse-installer/eclipse-inst
+}
+
+install_idea(){
+    IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
+    IDEA_ARCHIVE=ideaIC-2023.3.2.tar.gz
+    IDEA_OLD_FOLDER=idea-IC-233.13135.103
+    IDEA_FOLDER=idea
+    
+    if test -d /opt/$IDEA_FOLDER; then
+        echo "Intellij already downloaded."
+    elif ! test -d /opt/$IDEA_FOLDER; then
+        rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $IDEA_ARCHIVE $IDEA_LINK
+        tar -xvf $IDEA_ARCHIVE
+        chmod +x $IDEA_OLD_FOLDER
+        sudo mv $IDEA_OLD_FOLDER /opt/$IDEA_FOLDER
+        ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
+
+    fi
+}
+
+install_netbeans(){
+    NETBEANS_LINK=https://dlcdn.apache.org/netbeans/netbeans/20/netbeans-20-bin.zip
+    NETBEANS_ARCHIVE=netbeans-20-bin.zip
+    NETBEANS_FOLDER=netbeans
+    
+    if test -d /opt/$NETBEANS_FOLDER; then
+        echo "Netbeans already downloaded."
+    elif ! test -d /opt/$$NETBEANS_FOLDER; then
+        rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $NETBEANS_ARCHIVE $NETBEANS_LINK
+        unzip $NETBEANS_ARCHIVE
+        chmod +x $NETBEANS_FOLDER
+        sudo mv $NETBEANS_FOLDER /opt/$NETBEANS_FOLDER
+        ln -s "/opt/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
+
+    fi
+}
+
+install_pycharm(){
+    PYCHARM_LINK=https://download.jetbrains.com/python/pycharm-community-2023.3.2.tar.gz
+    PYCHARM_ARCHIVE=pycharm-community-2023.3.2.tar.gz
+    PYCHARM_OLD_FOLDER=pycharm-community-2023.3.2
+    PYCHARM_FOLDER=pycharm
+    
+    if test -d /opt/$PYCHARM_FOLDER; then
+        echo "Pycharm already downloaded."
+    elif ! test -d /opt/$PYCHARM_FOLDER; then
+        rm "$HOME/Desktop/pycharm"       # symlink gets put in pycharm folder if its present on desktop
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $PYCHARM_ARCHIVE $PYCHARM_LINK
+        tar -xvf $PYCHARM_ARCHIVE
+        chmod +x $PYCHARM_OLD_FOLDER
+        sudo mv $PYCHARM_OLD_FOLDER /opt/$PYCHARM_FOLDER
+        ln -s "/opt/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
+
+    fi
+}
 ### remove packages
 
 remove_codecs(){
@@ -727,13 +919,20 @@ remove_codecs(){
 }
 
 remove_office(){
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo $PKGMGR remove -y libreoffice*
-    elif [ $VARIANT == "ostree" ]
-        then
-            sudo $PKGMGR remove -y libreoffice
-            check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y libreoffice*
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree remove libreoffice
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install libreoffice*
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y libreoffice*
+    else
+        echo "Unkown error has occured."
     fi
 }
 

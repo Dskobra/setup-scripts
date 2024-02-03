@@ -401,14 +401,12 @@ multimedia_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-            flatpak install --user -y $FLATPAK_VLC
+            flatpak install --user -y flathub org.videolan.VLC
             multimedia_menu
             ;;
         
         3)
-            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
-            flatpak install --user -y $FLATPAK_OBS
+            flatpak install --user -y flathub org.openshot.OpenShot
             multimedia_menu
             ;;
 
@@ -475,11 +473,10 @@ gaming_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
             mkdir "$HOME"/Games
             mkdir "$HOME"/.config/MangoHud/
             
-            flatpak install --user -y $FLATPAK_LUTRIS
+            flatpak install --user -y flathub net.lutris.Lutris
             flatpak run net.lutris.Lutris
             ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
@@ -490,18 +487,15 @@ gaming_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-            flatpak install --user -y $FLATPAK_PROTONTRICKS
+            flatpak install --user -y com.github.Matoking.protontricks
             ;;
         
         5)
-            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-            flatpak install --user -y $FLATPAK_PROTONUP
+            flatpak install --user -y flathub net.davidotek.pupgui2
             ;;
 
         6)
-            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
-            flatpak install --user -y $FLATPAK_DISCORD
+            flatpak install --user -y flathub com.discordapp.Discord
             ;;
 
         7)
@@ -509,11 +503,11 @@ gaming_menu(){
             ;;
         
         8)
-            source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
+            source $SCRIPTS_HOME/packages.sh; "minecraft"
             ;;
 
         9)
-            source $SCRIPTS_HOME/modules/shared.sh; "wowup"
+            source $SCRIPTS_HOME/packages.sh; "wowup"
             ;;
 
 
@@ -559,15 +553,14 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/packages/office_apps.conf
-            flatpak install --user -y $FLATPAK_QOWNNOTES
+            flatpak install --user -y flathub org.qownnotes.QOwnNotes
             office_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "remove_office"
-            source $SCRIPTS_HOME/modules/packages/office_apps.conf
-            flatpak install --user -y $FLATPAK_LIBREOFFICE
+            flatpak install --user -y flathub org.libreoffice.LibreOffice
+            check_if_fedora_immutable
             office_menu
             ;;
 
