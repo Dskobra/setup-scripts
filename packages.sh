@@ -24,17 +24,21 @@ install_flatpak(){
     source $SCRIPTS_HOME/packages/3rd_party_repos.conf
     if [ $PKGMGR == "dnf" ]
     then
+        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
         sudo $PKGMGR install -y flatpak
+        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
+        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
+        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "zypper" ]
     then
-        flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
+        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
+        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo $PKGMGR install -y flatpak
-        flatpak remote-add --if-not-exists --user $FLATPAK_FLATHUB
+        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     else
         echo "Unkown error has occured."
     fi
@@ -155,23 +159,6 @@ install_kdeapps(){
         signon-kwallet-extension gwenview
     else
         echo "Unkown error has occured."
-    fi
-}
-
-install_xfce_apps(){
-    source $SCRIPTS_HOME/packages/desktop_apps.conf
-    if [ ! -n "$VARIANT" ];
-    then
-        sudo $PKGMGR remove -y geany transmission
-        sudo $PKGMGR  install -y $XFCE_APPS $XFCE_APPS_FEDORA\
-        $XFCE_PLUGINS $XFCE_PLUGINS_FEDORA
-
-
-        install_mugshot
-    elif [ $VARIANT == "ostree" ];
-    then
-        echo "Immutable variants are unsupported"
-
     fi
 }
 
