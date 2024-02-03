@@ -321,15 +321,15 @@ install_codecs(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-        sudo dnf install -y gstreamer1-plugin-openh264 \
-	    mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
+        sudo dnf install -y gstreamer1-plugin-openh264\
+        mozilla-openh264 ffmpeg ffmpeg-libs.i686 ffmpeg-libs
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree override remove libavcodec-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free \
+        sudo rpm-ostree override remove libavcodec-free libavfilter-free\
+        libavformat-free libavutil-free libpostproc-free\
         libswresample-free libswscale-free --install ffmpeg
 
-        sudo rpm-ostree install gstreamer1-plugin-openh264 \
+        sudo rpm-ostree install gstreamer1-plugin-openh264\
         mozilla-openh264
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
