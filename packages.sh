@@ -649,6 +649,7 @@ install_package_tools(){
     then
         sudo rpm-ostree install koji mock redhat-rpm-config\
         rpm-build rpmdevtools
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install rpm-build build inst-source-utils
@@ -849,6 +850,7 @@ install_vim(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install vim-enhanced
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install vim
@@ -891,6 +893,7 @@ install_github_desktop(){
         sudo chown root:root shiftkey-gpg.key
         sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
         sudo rpm-ostree install git-gui github-desktop
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install
