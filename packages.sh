@@ -221,6 +221,7 @@ install_xfce_apps(){
         echo "Unkown error has occured."
     fi
 }
+
 install_mugshot(){
     MUGSHOT_FOLDER="mugshot-0.4.3"
     cd $SCRIPTS_HOME/temp/
@@ -235,30 +236,65 @@ install_mugshot(){
 }
 
 install_mate_apps(){
-    source $SCRIPTS_HOME/packages/desktop_apps.conf
-    if [ ! -n "$VARIANT" ];
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $MATE_APPS $MATE_APPS_FEDORA\
-        $MATE_COMPIZ $MATE_COMPIZ_FEDORA
-    elif [ $VARIANT == "ostree" ];
+        sudo $PKGMGR install -y mate-menu mate-sensors-applet mate-utils\
+        multimedia-menus compiz-manager fusion-icon simple-ccsm\
+        compiz-plugins-experimental compiz-bcop
+
+        sudo $PKGMGR install -y caja-beesu caja-share ccsm \
+        compizconfig-python emerald emerald-themes simple-ccsm
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
         echo "Immutable variants are unsupported"
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo $PKGMGR install -y mate-menu mate-sensors-applet mate-utils\
+        multimedia-menus compiz-manager fusion-icon simple-ccsm\
+        compiz-plugins-experimental compiz-bcop
+
+        sudo $PKGMGR install -y caja-extension-share mate-menu\
+        libmate-sensors-applet-plugin0 compizconfig-settings-manager\
+        compiz-emerald compiz-emerald-themes
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo $PKGMGR install -y mate-menu mate-sensors-applet mate-utils\
+        fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop
+    else
+        echo "Unkown error has occured."
     fi
 }
 
 ### internet
-
 install_firefox(){
-    source $SCRIPTS_HOME/packages/internet_apps.conf
-    if [ ! -n "$VARIANT" ];
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $FIREFOX_FEDORA
-    elif [ $VARIANT == "ostree" ];
+        sudo $PKGMGR install -y firefox
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
         echo "Immutable variants are unsupported"
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo $PKGMGR -n install MozillaFirefox
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo install -d -m 0755 /etc/apt/keyrings
+        sudo $PKG install -y wget
+        wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+
+        gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | awk '/pub/{getline; gsub(/^ +| +$/,""); print "\n"$0"\n"}'
+
+        echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null
+        echo '
+        Package: *
+        Pin: origin packages.mozilla.org
+        Pin-Priority: 1000
+        ' | sudo tee /etc/apt/preferences.d/mozilla
+        sudo apt-get update && sudo apt-get install firefox
+    else
+        echo "Unkown error has occured."
     fi
 }
-
 install_brave_browser(){
     source $SCRIPTS_HOME/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ]
