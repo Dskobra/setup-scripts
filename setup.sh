@@ -30,7 +30,7 @@ distro_check(){
     then
         echo "Not yet supported."
         PKGMGR="apt-get"
-        setup_third_party_repos
+        display_third_party_reps
         main_menu
     else
         echo "Unsupported distro"
@@ -87,7 +87,7 @@ confirm_reboot(){
     fi
 }
 
-setup_third_party_repos(){
+display_third_party_repos(){
     #PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
     if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
