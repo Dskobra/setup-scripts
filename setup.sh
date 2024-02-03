@@ -210,7 +210,7 @@ hardware_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_corectrl"
-            drivers_menu
+            hardware_menu
             ;;
 
         2)
