@@ -50,7 +50,7 @@ install_corectrl(){
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install -y corectrl
+        sudo rpm-ostree install corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
@@ -78,7 +78,7 @@ install_nvidia(){
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+        sudo rpm-ostree install akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
@@ -140,7 +140,7 @@ install_kdeapps(){
         signon-kwallet-extension gwenview
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install -y kmouth krdc signon-kwallet-extension
+        sudo rpm-ostree install kmouth krdc signon-kwallet-extension
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
         check_if_fedora_immutable
@@ -163,7 +163,7 @@ install_xfce_apps(){
         sudo dnf install -y catfish orage galculator mousepad ristretto seahorse\
         xfce4-clipman-plugin menulibre
 
-        sudo dnf install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
+        sudo dnf install -y xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
         xfce4-cpugraph-plugin xfce4-diskperf-plugin xfce4-docklike-plugin xfce4-eyes-plugin\
         xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mount-plugin\
         xfce4-netload-plugin xfce4-notes-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin\
@@ -171,7 +171,7 @@ install_xfce_apps(){
         xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin\
         xfce4-mpc-plugin
 
-        sudo dnf install  xfce4-clipman-plugin xfce4-dict-plugin python3-distutils-extra\
+        sudo dnf install -y xfce4-clipman-plugin xfce4-dict-plugin python3-distutils-extra\
         xfce4-statusnotifier-plugin
         install_mugshot
     elif [ $PKGMGR == "rpm-ostree" ]
@@ -279,28 +279,38 @@ install_firefox(){
 }
 
 install_brave_browser(){
-    source $SCRIPTS_HOME/packages/internet_apps.conf
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo dnf config-manager --add-repo $BRAVE_REPO
-            sudo rpm --import $BRAVE_PKEY
-            sudo dnf update -y
-            sudo $PKGMGR install -y brave-browser
-    elif [ $VARIANT == "ostree" ]
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o brave-browser.repo $BRAVE_REPO
-            sudo chown root:root brave-browser.repo
-            sudo mv brave-browser.repo /etc/yum.repos.d/
+    cd $SCRIPTS_HOME/temp
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        sudo dnf update -y
+        sudo dnf install -y brave-browser
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo chown root:root brave-browser.repo
+        sudo mv brave-browser.repo /etc/yum.repos.d/
 
-            curl -L -o brave-core.asc $BRAVE_PKEY
-            sudo chown root:root brave-core.asc
-            sudo mv brave-core.asc /etc/pki/rpm-gpg/
-
-            sudo $PKGMGR refresh-md
-            sudo $PKGMGR install -y brave-browser
-
-            check_if_immutable
+        curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        sudo chown root:root brave-core.asc
+        sudo mv brave-core.asc /etc/pki/rpm-gpg/
+        sudo sudo rpm-ostree refresh-md
+        sudo sudo rpm-ostree install brave-browser
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo zypper -n install brave-browser
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y curl
+        sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+        sudo apt-get update
+        sudo apt-get install -y brave-browser
+    else
+        echo "Unkown error has occured."
     fi
 }
 
@@ -741,16 +751,16 @@ check_for_libvirt_group(){
 template(){
     if [ $PKGMGR == "dnf" ]
     then
-        echo "template"
+        sudo dnf install -y
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        echo "template"
+        sudo rpm-ostree install 
     elif [ $PKGMGR == "zypper" ]
     then
-        echo "template"
+        sudo zypper -n install
     elif [ $PKGMGR == "apt-get" ]
     then
-        echo "template"
+        sudo apt-get install -y
     else
         echo "Unkown error has occured."
     fi
