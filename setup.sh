@@ -1,19 +1,27 @@
 #!/usr/bin/bash
 
 launch(){
-    echo "---------------------------"   
-    echo "|   DSK's Setup Scripts   |"
-    echo "---------------------------" 
-    echo ""
-    echo "Version: $VERSION"
-    echo "Copyright (c) 2021-2023 Jordan Bottoms"
-    echo "Released under the MIT license"
-    echo ""
+    #echo "---------------------------"   
+    #echo "|   DSK's Setup Scripts   |"
+    #echo "---------------------------" 
+    #echo ""
+    #echo "Version: $VERSION"
+    #echo "Copyright (c) 2021-2023 Jordan Bottoms"
+    #echo "Released under the MIT license"
+    #echo ""
+    test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
+    if [ "$TEMP_FOLDER" = "exists" ];
+        then
+            
+    elif [ "$DESKTOP" = "missing" ];
+        then
+        mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to   
+    fi
+    
     distro_check
 }
 
 distro_check(){
-    #rm PKGMGR.txt
     DISTRO=$(source /etc/os-release ; echo $ID)
     if [ $DISTRO == "fedora" ]
     then
@@ -94,6 +102,14 @@ display_third_party_repos(){
 }
 
 main_menu(){
+    echo "---------------------------"   
+    echo "|   DSK's Setup Scripts   |"
+    echo "---------------------------" 
+    echo ""
+    echo "Version: $VERSION"
+    echo "Copyright (c) 2021-2023 Jordan Bottoms"
+    echo "Released under the MIT license"
+    echo ""
     echo "OS Name: $OS_NAME"
     echo "Package Manager: $PKGMGR"
     echo "3rd Party Repo is: $THIRD_PARTY_REPO"
@@ -1156,5 +1172,5 @@ VERSION="menu-test branch"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
-mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to
+TEMP_FOLDER="missing"
 launch
