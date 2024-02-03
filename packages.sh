@@ -119,59 +119,45 @@ install_kamoso(){
     source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $KAMOSO
+        sudo $PKGMGR install -y kamoso
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y $FLATPAK_KAMOSO
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR -n install $KAMOSO
+        sudo $PKGMGR -n install kamoso
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y $KAMOSO
+        sudo $PKGMGR install -y kamoso
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kdeapps(){
-    source $SCRIPTS_HOME/packages/desktop_apps.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y $KDE_APPS
-    elif [ $VARIANT == "ostree" ]
-    then
-        sudo $PKGMGR install -y $KDE_APPS_FEDORA_OSTREE
-
-        flatpak install --user -y $FLATPAK_KCALC
-        flatpak install --user -y $FLATPAK_GWENVIEW
-
-        check_if_immutable
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kdeapps(){
-    source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $KDE_APPS
+        sudo $PKGMGR install -y kate kmouth krdc kgpg kcalc kontact\
+        signon-kwallet-extension gwenview
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR install -y $KDE_APPS_FEDORA_OSTREE
+        sudo $PKGMGR install -y kmouth krdc signon-kwallet-extension
         flatpak install --user -y $FLATPAK_KCALC
         flatpak install --user -y $FLATPAK_GWENVIEW
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR -n install $KDE_APPS
+        sudo $PKGMGR -n install kate kmouth krdc kgpg kcalc kontact\
+        signon-kwallet-extension gwenview5
     elif [ $PKGMGR == "apt-get" ]
     then
-        echo "template"
+        sudo $PKGMGR install -y kate kmouth krdc kgpg kcalc kontact\
+        signon-kwallet-extension gwenview
     else
         echo "Unkown error has occured."
     fi
 }
+
 install_xfce_apps(){
     source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ ! -n "$VARIANT" ];
@@ -179,6 +165,8 @@ install_xfce_apps(){
         sudo $PKGMGR remove -y geany transmission
         sudo $PKGMGR  install -y $XFCE_APPS $XFCE_APPS_FEDORA\
         $XFCE_PLUGINS $XFCE_PLUGINS_FEDORA
+
+
         install_mugshot
     elif [ $VARIANT == "ostree" ];
     then
@@ -187,6 +175,52 @@ install_xfce_apps(){
     fi
 }
 
+install_xfce_apps(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo $PKGMGR install -y catfish orage galculator mousepad ristretto seahorse\
+        xfce4-clipman-plugin menulibre
+
+        sudo $PKGMGR -n install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
+        xfce4-cpugraph-plugin xfce4-diskperf-plugin xfce4-docklike-plugin xfce4-eyes-plugin\
+        xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mount-plugin\
+        xfce4-netload-plugin xfce4-notes-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin\
+        xfce4-systemload-plugin xfce4-time-out-plugin xfce4-timer-plugin xfce4-verve-plugin\
+        xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin\
+        xfce4-mpc-plugin
+
+        sudo $PKGMGR install -y xfce4-clipman-plugin xfce4-dict-plugin python3-distutils-extra\
+        xfce4-statusnotifier-plugin
+        install_mugshot
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        echo "Immutable variants are unsupported"
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo $PKGMGR -n install catfish orage galculator mousepad ristretto seahorse\
+        xfce4-clipman-plugin menulibre
+
+        sudo $PKGMGR -n install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
+        xfce4-cpugraph-plugin xfce4-diskperf-plugin xfce4-docklike-plugin xfce4-eyes-plugin\
+        xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mount-plugin\
+        xfce4-netload-plugin xfce4-notes-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin\
+        xfce4-systemload-plugin xfce4-time-out-plugin xfce4-timer-plugin xfce4-verve-plugin\
+        xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin\
+        xfce4-mpc-plugin
+
+        sudo $PKGMGR -n install xfce4-panel-plugin-dict mugshot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo $PKGMGR install -y catfish orage galculator mousepad ristretto seahorse xfce4-clipman-plugin menulibre
+        sudo $PKGMGR install -y xfce4-battery-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin\
+        xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin\
+        xfce4-mailwatch-plugin xfce4-mount-plugin xfce4-netload-plugin xfce4-sensors-plugin\
+        xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin\
+        xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin 
+    else
+        echo "Unkown error has occured."
+    fi
+}
 install_mugshot(){
     MUGSHOT_FOLDER="mugshot-0.4.3"
     cd $SCRIPTS_HOME/temp/
