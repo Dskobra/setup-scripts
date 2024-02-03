@@ -1,19 +1,20 @@
 #!/usr/bin/bash
 
 install_third_party_repos(){
-    if [ "$PKGMGR" = "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
-        sudo $PKGMGR install -y $RPMFUSION_FEDORA
+        sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         check_if_fedora_immutable
-    elif [ "$PKGMGR" = "zypper" ]
+    elif [ $PKGMGR == "zypper" ]
     then
-        source $SCRIPTS_HOME/packages/3rd_party_repos.conf
-        sudo $PKGMGR ar -cfp 90 $OPENSUSE_PACKMAN_ESSENTIALS packman-essentials
-        sudo $PKGMGR dup --from packman-essentials --allow-vendor-change
-    elif [ "$PKGMGR" = "apt-get" ]
+        sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/ packman-essentials
+        sudo zypper dup --from packman-essentials --allow-vendor-change
+    elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y software-properties-common
+        sudo apt-get install -y software-properties-common
         sudo apt-add-repository -y --component contrib non-free
     else
         echo "Unkown error has occured."
@@ -23,17 +24,18 @@ install_third_party_repos(){
 install_flatpak(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y flatpak
+        sudo dnf install -y flatpak
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "zypper" ]
     then
+        sudo zypper -n install flatpak
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y flatpak
+        sudo apt-get install -y flatpak
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     else
         echo "Unkown error has occured."
@@ -44,27 +46,26 @@ install_flatpak(){
 install_corectrl(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y corectrl
+        sudo dnf install -y corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR install -y corectrl
+        sudo rpm-ostree install -y corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        source $SCRIPTS_HOME/modules/packages/3rd_party_repos.conf
-        sudo $PKGMGR addrepo $OPENSUSE_CORECTRL
-        sudo $PKGMGR refresh
-        sudo $PKGMGR -n install corectrl
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+        sudo zypper refresh
+        sudo zypper -n install corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
     elif [ $PKGMGR == "apt-get" ]
     then
         echo "deb http://deb.debian.org/debian bookworm-backports main" >> backports.list
         sudo chown root:root backports.list
         sudo mv backports.list /etc/apt/sources.list.d/backports.list
-        sudo $PKGMGR update
-        sudo $PKGMGR install -y corectrl/bookworm-backports
+        sudo apt-get update
+        sudo apt-get install -y corectrl/bookworm-backports
     else
         echo "Unkown error has occured."
     fi
@@ -73,23 +74,23 @@ install_corectrl(){
 install_nvidia(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+        sudo dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+        sudo rpm-ostree install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR addrepo --refresh $OPENSUSE_NVIDIA NVIDIA
-        sudo $PKGMGR install-new-recommends --repo NVIDIA
+        sudo zypper addrepo --refresh $OPENSUSE_NVIDIA NVIDIA
+        sudo zypper install-new-recommends --repo NVIDIA
         xdg-open https://en.opensuse.org/SDB:NVIDIA_drivers
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-add-repository -y --component non-free-firmware
-        sudo $PKGMGR install -y linux-headers-amd64 dkms
-        sudo $PKGMGR install -y nvidia-driver firmware-misc-nonfree
+        sudo apt-get install -y linux-headers-amd64 dkms
+        sudo apt-get install -y nvidia-driver firmware-misc-nonfree
         xdg-open https://wiki.debian.org/NvidiaGraphicsDrivers
     else
         echo "Unkown error has occured."
@@ -97,38 +98,36 @@ install_nvidia(){
 }
 
 install_cheese(){
-    source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $CHEESE
+        sudo dnf install -y cheese
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_CHEESE
+        flatpak install --user -y flathub org.gnome.Cheese
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR -n install $CHEESE
+        sudo zypper -n install cheese
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y $CHEESE
+        sudo apt-get install -y cheese
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kamoso(){
-    source $SCRIPTS_HOME/packages/desktop_apps.conf
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y kamoso
+        sudo dnf install -y kamoso
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_KAMOSO
+        flatpak install --user -y flathub org.kde.kamoso
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR -n install kamoso
+        sudo zypper -n install kamoso
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y kamoso
+        sudo apt-get install -y kamoso
     else
         echo "Unkown error has occured."
     fi
@@ -137,21 +136,21 @@ install_kamoso(){
 install_kdeapps(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y kate kmouth krdc kgpg kcalc kontact\
+        sudo dnf install -y kate kmouth krdc kgpg kcalc kontact\
         signon-kwallet-extension gwenview
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR install -y kmouth krdc signon-kwallet-extension
-        flatpak install --user -y $FLATPAK_KCALC
-        flatpak install --user -y $FLATPAK_GWENVIEW
+        sudo rpm-ostree install -y kmouth krdc signon-kwallet-extension
+        flatpak install --user -y flathub org.kde.kcalc
+        flatpak install --user -y flathub org.kde.gwenview
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR -n install kate kmouth krdc kgpg kcalc kontact\
+        sudo zypper -n install kate kmouth krdc kgpg kcalc kontact\
         signon-kwallet-extension gwenview5
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y kate kmouth krdc kgpg kcalc kontact\
+        sudo apt-get install -y kate kmouth krdc kgpg kcalc kontact\
         signon-kwallet-extension gwenview
     else
         echo "Unkown error has occured."
@@ -161,10 +160,10 @@ install_kdeapps(){
 install_xfce_apps(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y catfish orage galculator mousepad ristretto seahorse\
+        sudo dnf install -y catfish orage galculator mousepad ristretto seahorse\
         xfce4-clipman-plugin menulibre
 
-        sudo $PKGMGR -n install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
+        sudo dnf install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
         xfce4-cpugraph-plugin xfce4-diskperf-plugin xfce4-docklike-plugin xfce4-eyes-plugin\
         xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mount-plugin\
         xfce4-netload-plugin xfce4-notes-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin\
@@ -172,7 +171,7 @@ install_xfce_apps(){
         xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin\
         xfce4-mpc-plugin
 
-        sudo $PKGMGR install -y xfce4-clipman-plugin xfce4-dict-plugin python3-distutils-extra\
+        sudo dnf install  xfce4-clipman-plugin xfce4-dict-plugin python3-distutils-extra\
         xfce4-statusnotifier-plugin
         install_mugshot
     elif [ $PKGMGR == "rpm-ostree" ]
@@ -180,10 +179,10 @@ install_xfce_apps(){
         echo "Immutable variants are unsupported"
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR -n install catfish orage galculator mousepad ristretto seahorse\
+        sudo zypper -n install catfish orage galculator mousepad ristretto seahorse\
         xfce4-clipman-plugin menulibre
 
-        sudo $PKGMGR -n install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
+        sudo zypper -n install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
         xfce4-cpugraph-plugin xfce4-diskperf-plugin xfce4-docklike-plugin xfce4-eyes-plugin\
         xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mount-plugin\
         xfce4-netload-plugin xfce4-notes-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin\
@@ -191,11 +190,11 @@ install_xfce_apps(){
         xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin\
         xfce4-mpc-plugin
 
-        sudo $PKGMGR -n install xfce4-panel-plugin-dict mugshot
+        sudo zypper -n install xfce4-panel-plugin-dict mugshot
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y catfish orage galculator mousepad ristretto seahorse xfce4-clipman-plugin menulibre
-        sudo $PKGMGR install -y xfce4-battery-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin\
+        sudo apt-get install -y catfish orage galculator mousepad ristretto seahorse xfce4-clipman-plugin menulibre
+        sudo apt-get install -y xfce4-battery-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin\
         xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin\
         xfce4-mailwatch-plugin xfce4-mount-plugin xfce4-netload-plugin xfce4-sensors-plugin\
         xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin\
@@ -221,27 +220,27 @@ install_mugshot(){
 install_mate_apps(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y mate-menu mate-sensors-applet mate-utils\
+        sudo dnf install -y mate-menu mate-sensors-applet mate-utils\
         multimedia-menus compiz-manager fusion-icon simple-ccsm\
         compiz-plugins-experimental compiz-bcop
 
-        sudo $PKGMGR install -y caja-beesu caja-share ccsm \
+        sudo dnf install -y caja-beesu caja-share ccsm \
         compizconfig-python emerald emerald-themes simple-ccsm
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         echo "Immutable variants are unsupported"
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR install -y mate-menu mate-sensors-applet mate-utils\
+        sudo zypper -n install mate-menu mate-sensors-applet mate-utils\
         multimedia-menus compiz-manager fusion-icon simple-ccsm\
         compiz-plugins-experimental compiz-bcop
 
-        sudo $PKGMGR install -y caja-extension-share mate-menu\
+        sudo zypper -n install caja-extension-share mate-menu\
         libmate-sensors-applet-plugin0 compizconfig-settings-manager\
         compiz-emerald compiz-emerald-themes
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo $PKGMGR install -y mate-menu mate-sensors-applet mate-utils\
+        sudo apt-get install -y mate-menu mate-sensors-applet mate-utils\
         fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop
     else
         echo "Unkown error has occured."
@@ -252,17 +251,17 @@ install_mate_apps(){
 install_firefox(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y firefox
+        sudo dnf install -y firefox
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         echo "Immutable variants are unsupported"
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo $PKGMGR -n install MozillaFirefox
+        sudo zypper -n install MozillaFirefox
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo install -d -m 0755 /etc/apt/keyrings
-        sudo $PKG install -y wget
+        sudo apt-get install -y wget
         wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 
         gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | awk '/pub/{getline; gsub(/^ +| +$/,""); print "\n"$0"\n"}'
@@ -278,6 +277,7 @@ install_firefox(){
         echo "Unkown error has occured."
     fi
 }
+
 install_brave_browser(){
     source $SCRIPTS_HOME/packages/internet_apps.conf
     if [ ! -n "$VARIANT" ]
