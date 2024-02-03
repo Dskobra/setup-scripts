@@ -380,7 +380,7 @@ install_kthreeb(){
     fi
 }
 
-install_kolourpain(){
+install_kolourpaint(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kolourpaint
@@ -465,7 +465,6 @@ install_abiword(){
         sudo dnf install -y abiword
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install 
         flatpak install --user -y flathub com.abisource.AbiWord
     elif [ $PKGMGR == "zypper" ]
     then
@@ -502,10 +501,10 @@ install_okular(){
         sudo dnf install -y okular
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install 
+        flatpak install --user -y flathub org.kde.okular
     elif [ $PKGMGR == "zypper" ]
     then
-        flatpak install --user -y flathub org.kde.okular
+        sudo zypper -n install okular
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y okular
@@ -619,112 +618,273 @@ install_thunderbird(){
 ### coding apps
 
 install_c_cpp(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    sudo $PKGMGR install -y $FEDORA_GCC
-    check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace perf strace
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace perf strace
+        check_if_fedora_immutable 
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace perf strace
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y automake gcc g++ bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace perf strace
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
-install_rpm_tools(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    sudo $PKGMGR install -y $FEDORA_RPM_BUILD_TOOLS
-    check_if_immutable
+install_package_tools(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y koji mock redhat-rpm-config\
+        rpm-build rpmdevtools
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install koji mock redhat-rpm-config\
+        rpm-build rpmdevtools
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install rpm-build build inst-source-utils
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y build-essential
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 install_codeblocks(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-         sudo $PKGMGR install -y $CODEBLOCKS
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y codeblocks codeblocks-contrib-devel
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_CODEBLOCKS
+        flatpak install --user -y flathub org.codeblocks.codeblocks
+    elif [ $PKGMGR == "zypper" ]
+    then
+        flatpak install --user -y flathub org.codeblocks.codeblocks
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y codeblocks
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_java_jdk(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    sudo $PKGMGR install -y $JAVA_JDK
-    check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y java-17-openjdk-devel
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install  java-17-openjdk-devel
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install java-17-openjdk-devel
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y openjdk-17-jdk
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 install_scene_builder(){
     cd $SCRIPTS_HOME/temp
-    SCENE_BUILDER="SceneBuilder-20.0.0.rpm"
-    curl -o $SCENE_BUILDER https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm
-    sudo rpm -i $SCENE_BUILDER
-    check_if_immutable
+    SCENE_BUILDER_RPM="SceneBuilder-20.0.0.rpm"
+    SCENE_BUILDER_RPM_LINK="https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm"
+
+    SCENE_BUILDER_DEB="SceneBuilder-21.0.0.deb"
+    SCENE_BUILDER_DEB_LINK="https://download2.gluonhq.com/scenebuilder/21.0.0/install/linux/SceneBuilder-21.0.0.deb"
+    if [ $PKGMGR == "dnf" ]
+    then
+        curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i $SCENE_BUILDER
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i $SCENE_BUILDER
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i $SCENE_BUILDER
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        curl -o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
+        sudo dpkg -i $SCENE_BUILDER_DEB
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 install_lamp_stack(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    sudo $PKGMGR install -y $LAMP_STACK $FEDORA_LAMP_STACK
-    check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y httpd mariadb mariadb-server\
+        php phpMyAdmin
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install httpd php phpMyAdmin mariadb\
+        mariadb-server
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install apache2 mariadb php phpMyAdmin
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y apache2 mariadb-client\
+        mariadb-server php phpMyAdmin
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 install_bluefish(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-         sudo $PKGMGR install -y $GTK_BLUEFISH
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y bluefish
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y $FLATPAK_BLUEFISH
-        
+        flatpak install --user -y flathub nl.openoffice.bluefish
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install bluefish
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y bluefish
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_python_tools(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    sudo $PKGMGR install -y $FEDORA_PYTHON_TOOLS
-    check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y python3-idle python3-devel
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install python3-idle python3-devel
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install python311-idle python311-devel
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y idle-python3.11 python3.11-dev
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 install_eric_ide(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    sudo $PKGMGR install -y $QT_ERIC
-    check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y eric
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install eric
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install eric
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y eric
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 install_vscodium(){
-    cd $SCRIPTS_HOME/modules/packages
-    cp vscodium.repo.txt vscodium.repo
-    sudo chown root:root vscodium.repo
-    sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
-    sudo $PKGMGR install -y codium
-    check_if_immutable
-   
+    if [ $PKGMGR == "dnf" ]
+    then
+        cd $SCRIPTS_HOME/modules/packages
+        cp vscodium.repo.txt vscodium.repo
+        sudo chown root:root vscodium.repo
+        sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
+        sudo dnf install -y codium
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        cd $SCRIPTS_HOME/modules/packages
+        cp vscodium.repo.txt vscodium.repo
+        sudo chown root:root vscodium.repo
+        sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
+        sudo rpm-ostree install codium
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        cd $SCRIPTS_HOME/modules/packages
+        cp vscodium.repo.txt vscodium.repo
+        sudo chown root:root vscodium.repo
+        sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
+        sudo zypper -n install codium
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
+        sudo apt-add-repository 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main'
+        sudo apt-get update && sudo apt-get install -y codium
+        
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 install_github_desktop(){
-    sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-    if [ ! -n "$VARIANT" ]
-        then
-            sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-            sudo $PKGMGR install -y git-gui github-desktop
-            
-    elif [ $VARIANT == "ostree" ]
-        then
-            cd $SCRIPTS_HOME/temp
-            curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
-            sudo chown root:root shiftkey-gpg.key
-            sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
-            sudo $PKGMGR install -y git-gui 
-            sudo $PKGMGR install -y github-desktop
-
-            check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
+        sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+        sudo dnf install -y git-gui github-desktop
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        cd $SCRIPTS_HOME/temp
+        curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
+        sudo chown root:root shiftkey-gpg.key
+        sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
+        sudo rpm-ostree install git-gui github-desktop
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
+        sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
+        sudo apt-get update && sudo apt-get install -y github-desktop
+    else
+        echo "Unkown error has occured."
     fi
 }
 
 install_containers(){
-    source $SCRIPTS_HOME/packages/coding_apps.conf
-    sudo $PKGMGR install -y toolbox
-    sudo $PKGMGR install -y distrobox
-    flatpak install --user -y $FLATPAK_PODMAN_DESKTOP
-    check_if_immutable
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y toolbox distrobox
+        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install distrobox
+        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install toolbox distrobox
+        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y distrobox
+        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+    else
+        echo "Unkown error has occured."
+    fi
 }
 
 ### utilities

@@ -707,7 +707,7 @@ cpp_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "(1) GCC            (2) RPM Build Tools"
+    echo "(1) GCC            (2) Package Build Tools"
     echo "(3) Codeblocks"
     echo "(p) Previous Menu  (m) Main Menu"
     echo "(0) Exit"
