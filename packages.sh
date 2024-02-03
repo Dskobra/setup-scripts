@@ -317,7 +317,7 @@ install_brave_browser(){
 
 ### multimedia
 
-install_codec(){
+install_codecs(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
