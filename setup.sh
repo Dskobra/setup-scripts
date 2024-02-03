@@ -224,7 +224,7 @@ hardware_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kamoso"
+            source $SCRIPTS_HOME/packages.sh; "install_kamoso"
             hardware_menu
             ;;
         
