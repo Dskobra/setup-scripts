@@ -63,7 +63,8 @@ install_corectrl(){
         echo "deb http://deb.debian.org/debian bookworm-backports main" >> backports.list
         sudo chown root:root backports.list
         sudo mv backports.list /etc/apt/sources.list.d/backports.list
-        sudo $PKGMGR install -y corectrl/backports.list
+        sudo $PKGMGR update
+        sudo $PKGMGR install -y corectrl/bookworm-backports
     else
         echo "Unkown error has occured."
     fi
