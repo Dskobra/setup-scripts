@@ -12,8 +12,8 @@ launch(){
     test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];
         then
-            
-    elif [ "$DESKTOP" = "missing" ];
+           TEMP_FOLDER=exists 
+    elif [ "$TEMP_FOLDER" = "missing" ];
         then
         mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to   
     fi
