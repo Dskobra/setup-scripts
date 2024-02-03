@@ -722,7 +722,7 @@ cpp_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_rpm_tools"
+            source $SCRIPTS_HOME/packages.sh; "install_package_tools"
             cpp_menu
             ;;
 
