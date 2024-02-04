@@ -931,64 +931,98 @@ install_containers(){
 }
 
 ### utilities
-
 install_fmedia_writer(){
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y mediawriter
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y mediawriter
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        source $SCRIPTS_HOME/packages/utility_apps.conf
-        flatpak install --user -y $FLATPAK_FMEDIA_WRITER
-
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    elif [ $PKGMGR == "zypper" ]
+    then
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_kde_iso_image_writer(){
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y isoimagewriter
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y isoimagewriter
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        source $SCRIPTS_HOME/packages/utility_apps.conf
-        flatpak install --user -y $FLATPAK_KDE_ISO_IMAGE_WRITER
+        flatpak install --user -y flathub org.kde.isoimagewriter
+    elif [ $PKGMGR == "zypper" ]
+    then
+        flatpak install --user -y flathub org.kde.isoimagewriter
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.kde.isoimagewriter
     else
         echo "Unkown error has occured."
     fi
 }
 
+
 install_kleopatra(){
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y kleopatra
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y kleopatra
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        source $SCRIPTS_HOME/packages/utility_apps.conf
-        flatpak install --user -y $FLATPAK_KLEOPATRA
+        flatpak install --user -y flathub org.kde.kleopatra
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install kleopatra
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kleopatra
     else
         echo "Unkown error has occured."
     fi
 }
 
 install_virtualization(){
-    source $SCRIPTS_HOME/packages/utility_apps.conf
-    if [ ! -n "$VARIANT" ]
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR install -y $VIRTUALIZATION
-    elif [ $VARIANT == "ostree" ]
+
+        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+        -O /etc/yum.repos.d/virtio-win.repo
+
+        sudo dnf update -y
+
+        sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
+        qemu-kvm virt-install virt-manager virt-viewer virtio-win
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR install -y $VIRTUALIZATION
-
-        check_if_immutable
-
+        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+        -O /etc/yum.repos.d/virtio-win.repo
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
+        -O /etc/zypp/repos.d/virtio-win.repo
+        
+        sudo zypper refresh
+        sudo zypper -n install libvirt-daemon-config-network\
+        qemu-kvm virt-install virt-manager virt-viewer libvirt\
+        libvirt-daemon-driver-lxc libvirt-daemon-lxc\
+        libvirt-daemon-driver-storage-gluster\
+        libvirt-daemon-hooks libvirt-daemon-plugin-sanlock\
+        libvirt-daemon-qemu libvirt-daemon-config-network libvirt-daemon-kvm\
+        saqemu-kvm virt-install virt-manager virt-viewer
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        cd ~/Downloads/
+        curl -L -o virtio-win.iso https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+        sudo apt-get install -y libvirt-daemon-config-network libvirt-daemon-kvm\
+        qemu-kvm virt-install virt-manager virt-viewer virtio-win
     else
         echo "Unkown error has occured."
     fi
-    sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-    -O /etc/yum.repos.d/virtio-win.repo
-    sudo $PKGMGR install -y virtio-win
 }
 
 wowup(){
