@@ -369,6 +369,7 @@ install_kthreeb(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install k3b
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install k3b
