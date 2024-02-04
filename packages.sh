@@ -446,6 +446,7 @@ install_mangohud(){
     then
         sudo rpm-ostree install mangohud goverlay
         flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install mangohud goverlay
