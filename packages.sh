@@ -834,6 +834,7 @@ install_vscodium(){
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
+        sudo zypper refresh
         sudo zypper -n install codium
     elif [ $PKGMGR == "apt-get" ]
     then
