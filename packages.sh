@@ -231,9 +231,8 @@ install_mate_apps(){
         echo "Immutable variants are unsupported"
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper -n install mate-menu mate-sensors-applet mate-utils\
-        multimedia-menus compiz-manager fusion-icon simple-ccsm\
-        compiz-plugins-experimental compiz-bcop
+        sudo zypper -n install mate-menu compiz-manager fusion-icon\
+        simple-ccsm compiz-plugins-experimental compiz-bcop
 
         sudo zypper -n install caja-extension-share mate-menu\
         libmate-sensors-applet-plugin0 compizconfig-settings-manager\
