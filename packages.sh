@@ -830,7 +830,7 @@ install_vscodium(){
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        cd $SCRIPTS_HOME/modules/packages
+        cd $SCRIPTS_HOME/packages
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
