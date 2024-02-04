@@ -812,7 +812,7 @@ install_eric_ide(){
 install_vscodium(){
     if [ $PKGMGR == "dnf" ]
     then
-        cd $SCRIPTS_HOME/modules/packages
+        cd $SCRIPTS_HOME/packages
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
@@ -866,6 +866,7 @@ install_geany(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf remove -y geany
+        flatpak install --user -y flathub org.geany.Geany
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.geany.Geany 
