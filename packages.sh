@@ -709,18 +709,18 @@ install_scene_builder(){
     then
         sudo dnf install -y openjfx
         curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER
+        sudo rpm -i $SCENE_BUILDER_RPM
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install openjfx
         curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER
+        sudo rpm -i $SCENE_BUILDER_RPM
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install openjfx
         curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER
+        sudo rpm -i $SCENE_BUILDER_RPM
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install openjfx
