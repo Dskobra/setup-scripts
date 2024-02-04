@@ -720,8 +720,9 @@ install_scene_builder(){
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install openjfx
-        curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER_RPM
+        echo "Please use Yast to install this by going into the scripts main folder -> Temp and right clicking 'SceneBuilder-*.rpm'"
+        echo "and choosing to open with YaST Software. You'll need to hit ignore to allow the installation."
+        xdg-open $SCRIPTS_HOME/temp
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install openjfx
@@ -744,7 +745,7 @@ install_lamp_stack(){
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper -n install apache2 mariadb php phpMyAdmin
+        sudo zypper -n install apache2 mariadb php8 phpMyAdmin
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y apache2 mariadb-client\
@@ -898,7 +899,10 @@ install_github_desktop(){
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper -n install
+        sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/zypp/repos.d/shiftkey-packages.repo'
+        sudo zypper refresh
+        sudo zypper -n install git-gui github-desktop
     elif [ $PKGMGR == "apt-get" ]
     then
         wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
