@@ -1019,8 +1019,8 @@ install_virtualization(){
         libvirt-daemon-driver-lxc libvirt-daemon-lxc\
         libvirt-daemon-driver-storage-gluster\
         libvirt-daemon-hooks libvirt-daemon-plugin-sanlock\
-        libvirt-daemon-qemu libvirt-daemon-config-network libvirt-daemon-kvm\
-        saqemu-kvm virt-install virt-manager virt-viewer
+        libvirt-daemon-qemu libvirt-daemon-config-network\
+        qemu-kvm virt-install virt-manager virt-viewer
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y curl
