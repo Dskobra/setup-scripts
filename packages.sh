@@ -1016,10 +1016,10 @@ install_virtualization(){
         saqemu-kvm virt-install virt-manager virt-viewer
     elif [ $PKGMGR == "apt-get" ]
     then
+        sudo apt-get install -y curl
         cd ~/Downloads/
         curl -L -o virtio-win.iso https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
-        sudo apt-get install -y libvirt-daemon-config-network libvirt-daemon-kvm\
-        qemu-kvm virt-install virt-manager virt-viewer virtio-win
+        sudo apt-get install -y libvirt-daemon-config-network qemu-kvm virt-manager virt-viewer
     else
         echo "Unkown error has occured."
     fi
