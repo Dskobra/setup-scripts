@@ -708,12 +708,12 @@ install_scene_builder(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openjfx
-        curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
+        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
         sudo rpm -i $SCENE_BUILDER
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install openjfx
-        curl -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
+        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
         sudo rpm -i $SCENE_BUILDER
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
@@ -724,7 +724,7 @@ install_scene_builder(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install openjfx
-        curl -o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
+        curl -L-o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
         sudo dpkg -i $SCENE_BUILDER_DEB
     else
         echo "Unkown error has occured."
