@@ -968,7 +968,6 @@ install_kde_iso_image_writer(){
     fi
 }
 
-
 install_kleopatra(){
     if [ $PKGMGR == "dnf" ]
     then

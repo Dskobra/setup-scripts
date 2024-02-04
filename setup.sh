@@ -1114,7 +1114,7 @@ extras_menu(){
     echo "Upgrade helper and script for my personal configurations"
     echo "                       Menu"
     echo ""
-    echo "(1) Upgrade Helper             (2) Mystuff"
+    echo "(1) Fedora Upgrade Helper      (2) Mystuff"
     echo "(3) Remove Codecs              (4) Add user to libvirt group"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
