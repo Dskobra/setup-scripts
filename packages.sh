@@ -83,7 +83,7 @@ install_nvidia(){
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper addrepo --refresh $OPENSUSE_NVIDIA NVIDIA
+        sudo zypper addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
         sudo zypper install-new-recommends --repo NVIDIA
         xdg-open https://en.opensuse.org/SDB:NVIDIA_drivers
     elif [ $PKGMGR == "apt-get" ]
