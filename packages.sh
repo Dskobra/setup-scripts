@@ -753,7 +753,7 @@ install_lamp_stack(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y apache2 mariadb-client\
-        mariadb-server php phpMyAdmin
+        mariadb-server php phpmyadmin
     else
         echo "Unkown error has occured."
     fi
