@@ -240,7 +240,8 @@ install_mate_apps(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y mate-menu mate-sensors-applet mate-utils\
-        fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop
+        fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop\
+        emerald emerald-themes
     else
         echo "Unkown error has occured."
     fi
