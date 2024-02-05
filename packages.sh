@@ -729,8 +729,8 @@ install_scene_builder(){
         xdg-open $SCRIPTS_HOME/temp
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install openjfx
-        curl -L-o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
+        sudo apt-get install -y openjfx
+        curl -L -o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
         sudo dpkg -i $SCENE_BUILDER_DEB
     else
         echo "Unkown error has occured."
