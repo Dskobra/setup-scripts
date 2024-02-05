@@ -98,6 +98,7 @@ check_for_git(){
            GITCHECK=exists 
     elif [ "$GITCHECK" = "missing" ];
         then
+        echo "git not found. Will install it."
         install_git
     fi
 }
@@ -109,6 +110,7 @@ check_for_wget(){
            WGETCHECK="exists" 
     elif [ "$WGETCHECK" = "missing" ];
         then
+        echo "wget not found. Will install it."
         install_wget
     fi
 }
@@ -120,6 +122,7 @@ check_for_curl(){
            CURLCHECK="exists" 
     elif [ "$CURLCHECK" = "missing" ];
         then
+        echo "curl not found. Will install it."
         install_curl
     fi
 }
@@ -131,7 +134,8 @@ check_for_dos2unix(){
            DOS2UNIXCHECK=exists 
     elif [ "$DOS2UNIXCHECK" = "missing" ];
         then
-        install_git
+        echo "dos2unix not found. Will install it."
+        install_dos2unix
     fi
 }
 
