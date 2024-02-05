@@ -29,12 +29,13 @@ distro_check(){
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
         PKGMGR="zypper"
+        sudo zypper -n install curl wget git
         display_third_party_repos
         main_menu
     elif [ $DISTRO == "debian" ]
     then
-        echo "Not yet supported."
         PKGMGR="apt-get"
+        sudo apt-get install -y curl wget git
         display_third_party_repos
         main_menu
     else
@@ -48,6 +49,7 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
+        sudo dnf install -y curl wget git
         display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
