@@ -1156,7 +1156,7 @@ utils_menu(){
     echo "(1) Fedora Media Writer        (2) KDE ISO Image Writer"
     echo "(3) Raspberry Pi Imager        (4) Kleopatra"
     echo "(5) GtkHash                    (6) Flatseal"
-    echo "(7) Virtualization"
+    echo "(7) MissionCenter              (8) Virtualization"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1192,8 +1192,13 @@ utils_menu(){
             flatpak install --user -y flathub com.github.tchx84.Flatseal
             utils_menu
             ;;
-        
+
         7)
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            utils_menu
+            ;;
+        
+        8)
             source $SCRIPTS_HOME/data/packages.sh; "install_virtualization"
             utils_menu
             ;;
