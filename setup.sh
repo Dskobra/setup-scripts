@@ -35,7 +35,7 @@ distro_check(){
     then
         echo "Not yet supported."
         PKGMGR="apt-get"
-        display_third_party_reps
+        display_third_party_repos
         main_menu
     else
         echo "Unsupported distro"
