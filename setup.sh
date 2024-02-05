@@ -9,7 +9,6 @@ launch(){
         then
         mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to   
     fi
-    
     distro_check
 }
 
@@ -21,13 +20,19 @@ distro_check(){
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
         PKGMGR="zypper"
-        sudo zypper -n install curl wget git
+        check_for_git
+        check_for_wget
+        check_for_curl
+        check_for_dos2unix
         display_third_party_repos
         main_menu
     elif [ $DISTRO == "debian" ]
     then
         PKGMGR="apt-get"
-        sudo apt-get install -y curl wget git
+        check_for_git
+        check_for_wget
+        check_for_curl
+        check_for_dos2unix
         display_third_party_repos
         main_menu
     else
@@ -41,12 +46,17 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        sudo dnf install -y curl wget git
+        check_for_git
+        check_for_wget
+        check_for_curl
+        check_for_dos2unix
         display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
+        sudo rpm-ostree install dos2unix
+        check_if_fedora_immutable
         display_third_party_repos
         main_menu
     fi
@@ -78,6 +88,118 @@ confirm_reboot(){
         echo "Chose not to reboot."
     else
 	    main_menu
+    fi
+}
+
+check_for_git(){
+    test -f /usr/bin/git && GITCHECK="exists"
+    if [ "$GITCHECK" = "exists" ];
+        then
+           GITCHECK=exists 
+    elif [ "$GITCHECK" = "missing" ];
+        then
+        install_git
+    fi
+}
+
+check_for_wget(){
+    test -f /usr/bin/wget && WGETCHECK="exists"
+    if [ "$WGETCHECK" = "exists" ];
+        then
+           WGETCHECK="exists" 
+    elif [ "$WGETCHECK" = "missing" ];
+        then
+        install_wget
+    fi
+}
+
+check_for_curl(){
+    test -f /usr/bin/curl && CURLCHECK="exists"
+    if [ "$CURLCHECK" = "exists" ];
+        then
+           CURLCHECK="exists" 
+    elif [ "$CURLCHECK" = "missing" ];
+        then
+        install_curl
+    fi
+}
+
+check_for_dos2unix(){
+    test -f /usr/bin/dos2unix && DOS2UNIXCHECK="exists"
+    if [ "$DOS2UNIXCHECK" = "exists" ];
+        then
+           DOS2UNIXCHECK=exists 
+    elif [ "$DOS2UNIXCHECK" = "missing" ];
+        then
+        install_git
+    fi
+}
+
+install_git(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y git
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install git
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y git
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_wget(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y wget
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install wget
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y wget
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_curl(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y curl
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install curl
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y curl
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_dos2unix(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y dos2unix
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install dos2unix
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install dos2unix
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y dos2unix
+    else
+        echo "Unkown error has occured."
     fi
 }
 
@@ -1222,4 +1344,8 @@ TEMP_FOLDER="missing"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
+GITCHECK="missing"
+WGETCHECK="missing"
+CURLCHECK="missing"
+DOS2UNIXCHECK="missing"
 launch
