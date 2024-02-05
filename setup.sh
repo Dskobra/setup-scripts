@@ -1157,7 +1157,7 @@ extras_menu(){
     extras_menu
 }
 
-extras_menu(){
+configurations_menu(){
     echo "--------------"
     echo "|   Extras   |"
     echo "--------------"
