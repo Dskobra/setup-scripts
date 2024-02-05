@@ -638,7 +638,7 @@ install_c_cpp(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y automake gcc g++ bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
+        m4 valgrind byacc ccache cscope indent ltrace linux-perf strace
     else
         echo "Unkown error has occured."
     fi
