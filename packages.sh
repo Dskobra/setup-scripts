@@ -413,6 +413,7 @@ install_steam(){
         sudo zypper -n install steam
     elif [ $PKGMGR == "apt-get" ]
     then
+        sudo dpkg --add-architecture i386
         sudo apt-get install -y steam
     else
         echo "Unkown error has occured."
