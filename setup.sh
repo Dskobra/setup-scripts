@@ -1145,7 +1145,7 @@ extras_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        utils_menu
+        extras_menu
         ;;
         
     esac
@@ -1172,12 +1172,12 @@ configurations_menu(){
 
         1)
             sudo modprobe xpad
-            extras_menu
+            configurations_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/data/packages.sh; "check_for_libvirt_group"
-            extras_menu
+            configurations_menu
             ;;
 
         3)
@@ -1208,12 +1208,12 @@ configurations_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        utils_menu
+        configurations_menu
         ;;
         
     esac
     unset input
-    extras_menu
+    configurations_menu
 }
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
