@@ -356,7 +356,7 @@ install_openshot(){
         sudo zypper -n install openshot-qt
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y openshot
+        sudo apt-get install -y openshot-qt
     else
         echo "Unkown error has occured."
     fi

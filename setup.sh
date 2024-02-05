@@ -414,7 +414,7 @@ multimedia_menu(){
             ;;
         
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_openshot"
+            flatpak install --user -y flathub com.obsproject.Studio
             install_openshot
             multimedia_menu
             ;;
