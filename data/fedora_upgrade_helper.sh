@@ -1,15 +1,13 @@
 #!/usr/bin/bash
 
-dnf_menu(){
-    echo "              ---------------------"
-    echo "              |   Upgrade Steps   |"
-    echo "              ---------------------"
+fedora_dnf_menu(){
+    echo "---------------------"
+    echo "|   Upgrade Steps   |"
+    echo "---------------------"
     echo ""
-    echo "                   Menu"
     echo ""
-    echo "(1) Upgrade                (2) Reinstall RPMFusion"
-    echo "(3) Reinstall Codecs       (4) Reinstall Steam"
-    echo "(5) Reinstall mugshot      (6) Update Rescue Kernel"
+    echo ""
+    echo "(1) Upgrade                (6) Update Rescue Kernel"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -30,25 +28,6 @@ dnf_menu(){
             ;;
 
         2)
-            sudo $PKGMGR -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-            dnf_menu
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_codecs"
-            dnf_menu
-            ;;
-
-        4)
-            sudo $PKGMGR install -y steam steam-devices
-            dnf_menu
-            ;;
-
-        5)
-            source $SCRIPTS_HOME/modules/fedora/packages.sh; "install_mugshot"
-            ;;
-
-        6)
             update_rescue_kernel
             ;;
 
@@ -75,7 +54,7 @@ dnf_menu(){
         dnf_menu
 }
 
-dnf_upgrade(){
+fedora_dnf_upgrade(){
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
     sudo dnf system-upgrade download --releasever=39
@@ -92,12 +71,12 @@ update_rescue_kernel(){
     sudo dnf reinstall -y kernel*
 }
 
-immutable_menu(){
-    echo "               ---------------------"
-    echo "               |   Upgrade Steps   |"
-    echo "               ---------------------"
+fedora_immutable_menu(){
+    echo "---------------------"
+    echo "|   Upgrade Steps   |"
+    echo "---------------------"
     echo ""
-    echo "                   Menu"
+    echo ""
     echo ""
     echo "(1) Full Reset                 (2) Upgrade"
     echo "(m) Main Menu                  (0) Exit"
@@ -147,7 +126,7 @@ immutable_menu(){
 
 upgrade_check(){
     # This script checks if rpmfusion, steam and ffmpeg are present.
-    # Will print back PRESENT if installed or ABSENT not. Default is
+    # Will print back PRESENT if installed or ABSENT if not. Default is
     # to assume they are PRESENT.
 
 
@@ -264,14 +243,16 @@ remove_rpmfusion(){
 }
 
 menu_launch(){
-    if [ ! -n "$VARIANT" ]
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
     then
-        dnf_menu
-    elif [ $VARIANT == "ostree" ]
+        fedora_dnf_menu
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        immutable_menu
+        fedora_immutable_menu
+    else
+        eecho "Only supports Fedora."
     fi
 }
-
 export IS_UPGRADE_SAFE="NO"
 menu_launch

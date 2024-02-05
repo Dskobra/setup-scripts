@@ -1117,6 +1117,63 @@ extras_menu(){
     case $input in
 
         1)
+            source $SCRIPTS_HOME/data/fedora_upgrade_helper.sh; "launch_menu"
+            extras_menu
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/data/dsksstuff.sh; "dsksstuff_menu"
+            extras_menu
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/data/packages.sh; "remove_codecs"
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/data/packages.sh; "check_for_libvirt_group"
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        utils_menu
+        ;;
+        
+    esac
+    unset input
+    extras_menu
+}
+
+extras_menu(){
+    echo "--------------"
+    echo "|   Extras   |"
+    echo "--------------"
+    echo ""
+    echo "Upgrade helper and script for my personal configurations"
+    echo ""
+    echo ""   
+    echo "(1) Fedora Upgrade Helper      (2) Mystuff"
+    echo "(3) Remove Codecs              (4) Add user to libvirt group"
+    echo "(m) Main Menu                  (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
             source $SCRIPTS_HOME/modules/fedora/upgrade_helper.sh; "launch_menu"
             extras_menu
             ;;
@@ -1156,7 +1213,6 @@ extras_menu(){
     unset input
     extras_menu
 }
-
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION="dev branch"

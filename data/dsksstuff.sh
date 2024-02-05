@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
-mystuff_menu(){
-    echo "        -----------------------"
-    echo "        |   My custom stuff   |"
-    echo "        -----------------------"
+dsksstuff_menu(){
+    echo "------------------"
+    echo "|   DSKs stuff   |"
+    echo "------------------"
     echo ""
     echo "Stuff for myself. Feel free to use or not."
     echo ""
-    echo "                 Menu"
+    echo ""
     echo ""
     echo "(1) Boot theme           (2) Game profiles"
     echo "(3) Autostart"
@@ -33,17 +33,8 @@ mystuff_menu(){
             autostart
             mystuff_menu
             ;;
-            
-        m)
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
-            ;;
-
-        M)
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
-            ;;
 
         0)
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "check_if_immutable"
             exit
             ;;
 
