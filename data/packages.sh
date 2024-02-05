@@ -440,6 +440,7 @@ install_kpat(){
 }
 
 install_mangohud(){
+    mkdir "$HOME"/.config/MangoHud/
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mangohud goverlay
@@ -1193,7 +1194,7 @@ check_for_libvirt_group(){
         echo "from the Extras menu and/or reboot first if using Kinoite etc."
     fi
 }
-
+ 
 template(){
     ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
