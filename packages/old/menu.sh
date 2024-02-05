@@ -1,115 +1,6 @@
 #!/usr/bin/bash
 
-launch(){
-    #echo "---------------------------"   
-    #echo "|   DSK's Setup Scripts   |"
-    #echo "---------------------------" 
-    #echo ""
-    #echo "Version: $VERSION"
-    #echo "Copyright (c) 2021-2023 Jordan Bottoms"
-    #echo "Released under the MIT license"
-    #echo ""
-    test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
-    if [ "$TEMP_FOLDER" = "exists" ];
-        then
-           TEMP_FOLDER=exists 
-    elif [ "$TEMP_FOLDER" = "missing" ];
-        then
-        mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to   
-    fi
-    
-    distro_check
-}
-
-distro_check(){
-    DISTRO=$(source /etc/os-release ; echo $ID)
-    if [ $DISTRO == "fedora" ]
-    then
-        fedora_variant_check
-    elif [ $DISTRO == "opensuse-tumbleweed" ]
-    then
-        PKGMGR="zypper"
-        display_third_party_repos
-        main_menu
-    elif [ $DISTRO == "debian" ]
-    then
-        echo "Not yet supported."
-        PKGMGR="apt-get"
-        display_third_party_repos
-        main_menu
-    else
-        echo "Unsupported distro"
-    fi
-
-}
-
-fedora_variant_check(){
-    test -f /run/ostree-booted && VARIANT=ostree
-    if [ ! -n "$VARIANT" ]
-    then
-        PKGMGR="dnf"
-        display_third_party_repos
-        main_menu
-    elif [ $VARIANT == "ostree" ]
-    then
-        PKGMGR="rpm-ostree"
-        display_third_party_repos
-        main_menu
-    fi
-}
-
-check_if_fedora_immutable(){
-    if [ "$PKGMGR" == "rpm-ostree" ]
-    then
-        confirm_reboot
-    fi
-}
-
-confirm_reboot(){
-    echo "================================================"
-    echo "New RPM packages won't be availble until a "
-    echo "restart is performed. Not doing so may"
-    echo "result in errors."
-    echo "Do you wish to restart now?"
-    echo "Type y/n"
-    echo "================================================"
-    printf "Option: "
-    read input
-    
-    if [ $input == "y" ] || [ $input == "Y" ]
-    then
-        sudo systemctl reboot
-    elif [ $input == "n" ] || [ $input == "N" ]
-    then
-        echo "Chose not to reboot."
-    else
-	    main_menu
-    fi
-}
-
-display_third_party_repos(){
-    #PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
-    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
-    then
-        THIRD_PARTY_REPO="RPMFusion"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        THIRD_PARTY_REPO="Packman Essentials"
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        THIRD_PARTY_REPO="contrib non-free"
-    fi
-}
-
 main_menu(){
-    echo "---------------------------"   
-    echo "|   DSK's Setup Scripts   |"
-    echo "---------------------------" 
-    echo ""
-    echo "Version: $VERSION"
-    echo "Copyright (c) 2021-2023 Jordan Bottoms"
-    echo "Released under the MIT license"
-    echo ""
     echo "OS Name: $OS_NAME"
     echo "Package Manager: $PKGMGR"
     echo "3rd Party Repo is: $THIRD_PARTY_REPO"
@@ -129,22 +20,24 @@ main_menu(){
 
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "install_third_party_repos"
+            source $SCRIPTS_HOME/modules/packages.sh; "install_third_party_repos"
             main_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_flatpak"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_flatpak"
             main_menu
             ;;
 
         3)
             hardware_menu
+            check_if_immutable
             main_menu
             ;;
 
         4)
             desktop_plugins_menu
+            check_if_immutable
             main_menu
             ;;
 
@@ -215,22 +108,26 @@ hardware_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_corectrl"
-            hardware_menu
+            sudo $PKGMGR install -y corectrl
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware#amd-cpus-andor-gpus-with-corectrl
+            check_if_immutable
+            drivers_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
+            sudo $PKGMGR install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware#nvidia
+            check_if_immutable
             hardware_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_cheese"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_cheese"
             hardware_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kamoso"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kamoso"
             hardware_menu
             ;;
         
@@ -283,15 +180,15 @@ desktop_plugins_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kdeapps"
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_xfce_apps"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_xfce_apps"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_mate_apps"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_mate_apps"
             ;;
 
         h)
@@ -344,22 +241,24 @@ internet_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_firefox"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_firefox"
             internet_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_brave_browser"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_brave_browser"
             internet_menu
             ;;
         
         3)
-            flatpak install --user -y flathub com.dropbox.Client
+            source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+            flatpak install --user -y $FLATPAK_DROPBOX
             internet_menu
             ;;
 
         4)
-            flatpak install --user -y  flathub com.transmissionbt.Transmission
+            source $SCRIPTS_HOME/modules/packages/internet_apps.conf
+            flatpak install --user -y  $FLATPAK_TRANSMISSION
             internet_menu
             ;;
 
@@ -404,33 +303,34 @@ multimedia_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_codecs"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_codecs"
             multimedia_menu
             ;;
 
         2)
-            flatpak install --user -y flathub org.videolan.VLC
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+            flatpak install --user -y $FLATPAK_VLC
             multimedia_menu
             ;;
         
         3)
-            flatpak install --user -y flathub com.obsproject.Studio
-            install_openshot
+            source $SCRIPTS_HOME/modules/packages/multimedia_apps.conf
+            flatpak install --user -y $FLATPAK_OBS
             multimedia_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_openshot"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_openshot"
             multimedia_menu
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kthreeb"
             multimedia_menu
             ;;
             
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kolourpaint"
             multimedia_menu
             ;;
         
@@ -477,46 +377,50 @@ gaming_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "install_steam"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_steam"
             sudo modprobe xpad
             ;;
 
         2)
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
             mkdir "$HOME"/Games
             mkdir "$HOME"/.config/MangoHud/
             
-            flatpak install --user -y flathub net.lutris.Lutris
+            flatpak install --user -y $FLATPAK_LUTRIS
             flatpak run net.lutris.Lutris
             ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_mangohud"
             gaming_menu
             ;;
 
         4)
-            flatpak install --user -y com.github.Matoking.protontricks
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_PROTONTRICKS
             ;;
         
         5)
-            flatpak install --user -y flathub net.davidotek.pupgui2
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_PROTONUP
             ;;
 
         6)
-            flatpak install --user -y flathub com.discordapp.Discord
+            source $SCRIPTS_HOME/modules/packages/gaming_apps.conf
+            flatpak install --user -y $FLATPAK_DISCORD
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kpat"
             ;;
         
         8)
-            source $SCRIPTS_HOME/packages.sh; "minecraft"
+            source $SCRIPTS_HOME/modules/shared.sh; "minecraft"
             ;;
 
         9)
-            source $SCRIPTS_HOME/packages.sh; "wowup"
+            source $SCRIPTS_HOME/modules/shared.sh; "wowup"
             ;;
 
 
@@ -562,54 +466,55 @@ office_menu(){
     case $input in
 
         1)
-            flatpak install --user -y flathub org.qownnotes.QOwnNotes
+            source $SCRIPTS_HOME/modules/packages/office_apps.conf
+            flatpak install --user -y $FLATPAK_QOWNNOTES
             office_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "remove_office"
-            flatpak install --user -y flathub org.libreoffice.LibreOffice
-            check_if_fedora_immutable
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "remove_office"
+            source $SCRIPTS_HOME/modules/packages/office_apps.conf
+            flatpak install --user -y $FLATPAK_LIBREOFFICE
             office_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_abiword"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_abiword"
             office_menu
             ;;
         
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_gnumeric"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_gnumeric"
             office_menu
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_okular"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_okular"
             office_menu
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_evince"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_evince"
             office_menu
             ;;
         
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_ark"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kde_ark"
             office_menu
             ;;
 
         8)
-            source $SCRIPTS_HOME/packages.sh; "install_file_roller"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_file_roller"
             office_menu
             ;;
 
         9)
-            source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_claws_mail"
             office_menu
             ;;
         
         10)
-            source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_thunderbird"
             office_menu
             ;;
         
@@ -674,11 +579,11 @@ coding_menu(){
             python_menu
             ;;
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_github_desktop"
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_containers"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_containers"
             
             ;;
 
@@ -716,7 +621,7 @@ cpp_menu(){
     echo ""
     echo "              Menu"
     echo ""
-    echo "(1) GCC            (2) Package Build Tools"
+    echo "(1) GCC            (2) RPM Build Tools"
     echo "(3) Codeblocks"
     echo "(p) Previous Menu  (m) Main Menu"
     echo "(0) Exit"
@@ -726,17 +631,17 @@ cpp_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_c_cpp"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_c_cpp"
             cpp_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_package_tools"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_rpm_tools"
             cpp_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_codeblocks"
             cpp_menu
             ;;
         
@@ -788,23 +693,24 @@ java_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_java_jdk"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_java_jdk"
             java_menu
             ;;
 
         2)
             
-            source $SCRIPTS_HOME/packages.sh; "install_idea"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_idea"
             java_menu
             ;;
 
         3)  
-            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_netbeans"
             java_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
+            sudo $PKGMGR install -y openjfx
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_scene_builder"
             java_menu
             ;;
         p)
@@ -855,17 +761,17 @@ web_dev_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_nodejs"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_nodejs"
             web_dev_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_lamp_stack"
             web_dev_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_bluefish"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_bluefish"
             web_dev_menu
             ;;
         
@@ -917,17 +823,17 @@ python_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_python_tools"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_python_tools"
             python_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_eric_ide"
             python_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_pycharm"
             python_menu
             ;;
 
@@ -979,22 +885,23 @@ ides_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_vim"
+            sudo $PKGMGR install -y vim-enhanced
             ides_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_vscodium"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_vscodium"
             ides_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_geany"
+            sudo $PKGMGR remove -y geany
+            flatpak install --user -y $FLATPAK_GEANY
             ides_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_eclipse"
+            source $SCRIPTS_HOME/modules/shared.sh; "install_eclipse"
             ides_menu
             ;;
 
@@ -1050,37 +957,40 @@ utils_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_fmedia_writer"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_fmedia_writer"
             utils_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kde_iso_image_writer"
             utils_menu
             ;;
 
         3)
-            flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_RPI_IMAGER
             utils_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_kleopatra"
             utils_menu
             ;;
 
         5)
-            flatpak install --user -y flathub org.gtkhash.gtkhash
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_GTKHASH
             utils_menu
             ;;
 
         6)
-            flatpak install --user -y flathub com.github.tchx84.Flatseal
+            source $SCRIPTS_HOME/modules/packages/utility_apps.conf
+            flatpak install --user -y $FLATPAK_FLATSEAL
             utils_menu
             ;;
         
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_virtualization"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "install_virtualization"
             utils_menu
             ;;
 
@@ -1115,7 +1025,7 @@ extras_menu(){
     echo "Upgrade helper and script for my personal configurations"
     echo "                       Menu"
     echo ""
-    echo "(1) Fedora Upgrade Helper      (2) Mystuff"
+    echo "(1) Upgrade Helper             (2) Mystuff"
     echo "(3) Remove Codecs              (4) Add user to libvirt group"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
@@ -1134,11 +1044,11 @@ extras_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "remove_codecs"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "remove_codecs"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
+            source $SCRIPTS_HOME/modules/fedora/fedora_packages.sh; "check_for_libvirt_group"
             ;;
 
         m)
@@ -1164,11 +1074,51 @@ extras_menu(){
     extras_menu
 }
 
-export SCRIPTS_HOME=$(pwd)
-OS_NAME=$(source /etc/os-release ; echo $NAME)
-VERSION="menu-test branch"
-DISTRO=""
+check_if_fedora_immutable(){
+    if [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        confirm_reboot
+    fi
+}
+
+confirm_reboot(){
+    echo "================================================"
+    echo "New RPM packages won't be availble until a "
+    echo "restart is performed. Not doing so may"
+    echo "result in errors."
+    echo "Do you wish to restart now?"
+    echo "Type y/n"
+    echo "================================================"
+    printf "Option: "
+    read input
+    
+    if [ $input == "y" ] || [ $input == "Y" ]
+    then
+        sudo systemctl reboot
+    elif [ $input == "n" ] || [ $input == "N" ]
+    then
+        echo "Chose not to reboot."
+    else
+	    main_menu
+    fi
+}
+
+setup_third_party_repos(){
+    PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
+    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
+    then
+        THIRD_PARTY_REPO="RPMFusion"
+    elif [ $PKGMGR == "zypper" ]
+    then
+        THIRD_PARTY_REPO="Packman Essentials"
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        THIRD_PARTY_REPO="contrib non-free"
+    fi
+}
+
 PKGMGR=""
-VARIANT=""
-TEMP_FOLDER="missing"
-launch
+THIRD_PARTY_REPO=""
+OS_NAME=$(source /etc/os-release ; echo $NAME)
+setup_third_party_repos
+main_menu
