@@ -414,6 +414,7 @@ install_steam(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo dpkg --add-architecture i386
+        sudo apt-get update
         sudo apt-get install -y steam
     else
         echo "Unkown error has occured."
