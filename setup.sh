@@ -129,12 +129,12 @@ main_menu(){
 
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "install_third_party_repos"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_third_party_repos"
             main_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_flatpak"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_flatpak"
             main_menu
             ;;
 
@@ -215,22 +215,22 @@ hardware_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_corectrl"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_corectrl"
             hardware_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_nvidia"
             hardware_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_cheese"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_cheese"
             hardware_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kamoso"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kamoso"
             hardware_menu
             ;;
         
@@ -283,15 +283,15 @@ desktop_plugins_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kdeapps"
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_xfce_apps"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_xfce_apps"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_mate_apps"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_mate_apps"
             ;;
 
         h)
@@ -344,12 +344,12 @@ internet_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_firefox"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_firefox"
             internet_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_brave_browser"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_brave_browser"
             internet_menu
             ;;
         
@@ -404,7 +404,7 @@ multimedia_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_codecs"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_codecs"
             multimedia_menu
             ;;
 
@@ -420,17 +420,17 @@ multimedia_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_openshot"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_openshot"
             multimedia_menu
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kthreeb"
             multimedia_menu
             ;;
             
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kolourpaint"
             multimedia_menu
             ;;
         
@@ -477,7 +477,7 @@ gaming_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "install_steam"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_steam"
             sudo modprobe xpad
             ;;
 
@@ -491,7 +491,7 @@ gaming_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_mangohud"
             gaming_menu
             ;;
 
@@ -508,15 +508,15 @@ gaming_menu(){
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kpat"
             ;;
         
         8)
-            source $SCRIPTS_HOME/packages.sh; "minecraft"
+            source $SCRIPTS_HOME/packages/packages.sh; "minecraft"
             ;;
 
         9)
-            source $SCRIPTS_HOME/packages.sh; "wowup"
+            source $SCRIPTS_HOME/packages/packages.sh; "wowup"
             ;;
 
 
@@ -567,49 +567,49 @@ office_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "remove_office"
+            source $SCRIPTS_HOME/packages/packages.sh; "remove_office"
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             check_if_fedora_immutable
             office_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_abiword"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_abiword"
             office_menu
             ;;
         
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_gnumeric"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_gnumeric"
             office_menu
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_okular"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_okular"
             office_menu
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_evince"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_evince"
             office_menu
             ;;
         
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_ark"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kde_ark"
             office_menu
             ;;
 
         8)
-            source $SCRIPTS_HOME/packages.sh; "install_file_roller"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_file_roller"
             office_menu
             ;;
 
         9)
-            source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_claws_mail"
             office_menu
             ;;
         
         10)
-            source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_thunderbird"
             office_menu
             ;;
         
@@ -674,11 +674,11 @@ coding_menu(){
             python_menu
             ;;
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_github_desktop"
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_containers"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_containers"
             
             ;;
 
@@ -726,17 +726,17 @@ cpp_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_c_cpp"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_c_cpp"
             cpp_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_package_tools"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_package_tools"
             cpp_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_codeblocks"
             cpp_menu
             ;;
         
@@ -788,23 +788,23 @@ java_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_java_jdk"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_java_jdk"
             java_menu
             ;;
 
         2)
             
-            source $SCRIPTS_HOME/packages.sh; "install_idea"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_idea"
             java_menu
             ;;
 
         3)  
-            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_netbeans"
             java_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_scene_builder"
             java_menu
             ;;
         p)
@@ -855,17 +855,17 @@ web_dev_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_nodejs"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_nodejs"
             web_dev_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_lamp_stack"
             web_dev_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_bluefish"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_bluefish"
             web_dev_menu
             ;;
         
@@ -917,17 +917,17 @@ python_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_python_tools"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_python_tools"
             python_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_eric_ide"
             python_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_pycharm"
             python_menu
             ;;
 
@@ -979,22 +979,22 @@ ides_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_vim"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_vim"
             ides_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_vscodium"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_vscodium"
             ides_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_geany"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_geany"
             ides_menu
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_eclipse"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_eclipse"
             ides_menu
             ;;
 
@@ -1050,12 +1050,12 @@ utils_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_fmedia_writer"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_fmedia_writer"
             utils_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kde_iso_image_writer"
             utils_menu
             ;;
 
@@ -1065,7 +1065,7 @@ utils_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_kleopatra"
             utils_menu
             ;;
 
@@ -1080,7 +1080,7 @@ utils_menu(){
             ;;
         
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_virtualization"
+            source $SCRIPTS_HOME/packages/packages.sh; "install_virtualization"
             utils_menu
             ;;
 
@@ -1134,11 +1134,11 @@ extras_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "remove_codecs"
+            source $SCRIPTS_HOME/packages/packages.sh; "remove_codecs"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
+            source $SCRIPTS_HOME/packages/packages.sh; "check_for_libvirt_group"
             ;;
 
         m)
