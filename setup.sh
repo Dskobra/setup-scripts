@@ -471,16 +471,11 @@ gaming_menu(){
 
         1)  
             source $SCRIPTS_HOME/data/packages.sh; "install_steam"
-            sudo modprobe xpad
             ;;
 
-        2)
-            mkdir "$HOME"/Games
-            mkdir "$HOME"/.config/MangoHud/
-            
+        2)          
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak run net.lutris.Lutris
-            ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
         3)
@@ -1158,15 +1153,15 @@ extras_menu(){
 }
 
 configurations_menu(){
-    echo "--------------"
-    echo "|   Extras   |"
-    echo "--------------"
+    echo "----------------------"
+    echo "|   Configurations   |"
+    echo "----------------------"
     echo ""
-    echo "Upgrade helper and script for my personal configurations"
+    echo ""
     echo ""
     echo ""   
-    echo "(1) Fedora Upgrade Helper      (2) Mystuff"
-    echo "(3) Remove Codecs              (4) Add user to libvirt group"
+    echo "(1) Setup xbox controller      (2) Add user to libvirt group"
+    echo "(3) Link Mangohud to Lutris"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1174,21 +1169,18 @@ configurations_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/modules/fedora/upgrade_helper.sh; "launch_menu"
+            sudo modprobe xpad
             extras_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/modules/fedora/mystuff.sh; "mystuff_menu"
+            source $SCRIPTS_HOME/data/packages.sh; "check_for_libvirt_group"
             extras_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/data/packages.sh; "remove_codecs"
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/data/packages.sh; "check_for_libvirt_group"
+            mkdir "$HOME"/.config/MangoHud/
+            ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
         m)
