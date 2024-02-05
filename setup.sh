@@ -1,14 +1,6 @@
 #!/usr/bin/bash
 
 launch(){
-    #echo "---------------------------"   
-    #echo "|   DSK's Setup Scripts   |"
-    #echo "---------------------------" 
-    #echo ""
-    #echo "Version: $VERSION"
-    #echo "Copyright (c) 2021-2023 Jordan Bottoms"
-    #echo "Released under the MIT license"
-    #echo ""
     test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];
         then
@@ -90,7 +82,6 @@ confirm_reboot(){
 }
 
 display_third_party_repos(){
-    #PKGMGR=$(<$SCRIPTS_HOME/PKGMGR.txt)
     if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         THIRD_PARTY_REPO="RPMFusion"
@@ -200,13 +191,13 @@ main_menu(){
 }
 
 hardware_menu(){
-    echo "              ---------------"
-    echo "              |   Hardware  |"
-    echo "              ---------------"
+    echo "----------------"
+    echo "|   Hardware   |"
+    echo "----------------"
     echo ""
     echo "AMD/Nvidia drivers"
     echo ""
-    echo "                Menu"     
+    echo ""     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
     echo "(3) Cheese(gtk)         (4) Kamoso(Qt)"
     echo "(h) Help"
@@ -269,13 +260,13 @@ hardware_menu(){
 }
 
 desktop_plugins_menu(){
-    echo "              ------------------------"
-    echo "              |   Desktop Plugins  |"
-    echo "              ------------------------"
+    echo "-----------------------"
+    echo "|   Desktop Plugins   |"
+    echo "-----------------------"
     echo ""
     echo "Extra plugins and misc stuff for specific desktops"
     echo ""
-    echo "                Menu"
+    echo ""   
     echo "(1) KDE                (2) XFCE"
     echo "(3) Mate               (h) Help"     
     echo "(m) Main Menu          (0) Exit"
@@ -330,13 +321,13 @@ desktop_plugins_menu(){
 }
 
 internet_menu(){
-    echo "              ---------------------"
-    echo "              |   Internet Apps   |"
-    echo "              --------------------"
+    echo "----------------"
+    echo "|   Internet   |"
+    echo "----------------"
     echo ""
-    echo "Web browser, cloud storage and bitorrent client."
+    echo "Web browsers, cloud storage and bitorrent client."
     echo ""
-    echo "                   Menu"
+    echo ""   
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
     echo "(m) Main Menu              (0) Exit"
@@ -389,13 +380,13 @@ internet_menu(){
 }
 
 multimedia_menu(){
-    echo "              -----------------------"
-    echo "              |   Multimedia Apps   |"
-    echo "              -----------------------"
+    echo "------------------"
+    echo "|   Multimedia   |"
+    echo "------------------"
     echo ""
     echo "Various multimedia apps, codecs etc."
     echo ""
-    echo "                   Menu"
+    echo ""   
     echo "(1) Codecs                (2) VLC Media Player" 
     echo "(3) OBS Studio            (4) OpenShot" 
     echo "(5) K3b                   (6) Kolourpaint"
@@ -460,13 +451,13 @@ multimedia_menu(){
 }
 
 gaming_menu(){
-    echo "              -------------------"
-    echo "              |   Gaming Apps   |"
-    echo "              -------------------"
+    echo "--------------"
+    echo "|   Gaming   |"
+    echo "--------------"
     echo ""
     echo "Steam, lutris and other game related apps/games."
     echo ""
-    echo "                Menu"
+    echo ""   
     echo "(1) Steam                  (2) Lutris"
     echo "(3) Mangohud               (4) Protontricks"
     echo "(5) ProtonUp Qt            (6) Discord"
@@ -545,13 +536,13 @@ gaming_menu(){
 }
 
 office_menu(){
-    echo "              -------------------"
-    echo "              |   Office Apps   |"
-    echo "              -------------------"
+    echo "--------------"
+    echo "|   Office   |"
+    echo "--------------"
     echo ""
     echo "Office and note taking apps."
     echo ""
-    echo "                Menu"
+    echo ""   
     echo "(1) QOwnNotes          (2) Libreoffice"
     echo "(3) Abiword            (4) Gnumeric"
     echo "(5) KDE Okular         (6) Gnome Evince"
@@ -643,15 +634,15 @@ office_menu(){
 }
 
 coding_menu(){
-    echo "          -------------------"
-    echo "          |   Coding Apps   |"
-    echo "          -------------------"
+    echo "--------------"
+    echo "|   Coding   |"
+    echo "--------------"
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
-    echo "              Menu"
+    echo ""   
     echo ""
-    echo "(1) C/C++             (2) Java"
+    echo "(1) C/C++             (2) openJDK"
     echo "(3) Web Devlopment    (4) Python"
     echo "(5) GitHub Desktop    (6) Containers"
     echo "(7) Other IDEs"
@@ -666,7 +657,7 @@ coding_menu(){
             ;;
 
         2)
-            java_menu
+            openjdk_menu
             ;;
 
         3)
@@ -712,11 +703,11 @@ coding_menu(){
 }
 
 cpp_menu(){
-    echo "          -------------"
-    echo "          |   C/C++   |"
-    echo "          -------------"
+    echo "-------------"
+    echo "|   C/C++   |"
+    echo "-------------"
     echo ""
-    echo "              Menu"
+    echo ""   
     echo ""
     echo "(1) GCC            (2) Package Build Tools"
     echo "(3) Codeblocks"
@@ -773,12 +764,12 @@ cpp_menu(){
     cpp_menu
 }
 
-java_menu(){
-    echo "          ---------------"
-    echo "          |   openJDK   |"
-    echo "          ---------------"
+openjdk_menu(){
+    echo "---------------"
+    echo "|   openJDK   |"
+    echo " --------------"
     echo ""
-    echo "              Menu"
+    echo ""   
     echo ""
     echo "(1) openJDK 17      (2) Intellij IDEA"
     echo "(3) Netbeans        (4) Scene Builder"
@@ -841,12 +832,12 @@ java_menu(){
 }
 
 web_dev_menu(){
-    echo "          -----------------------"
-    echo "          |   Web Development   |"
-    echo "          -----------------------"
+    echo "-----------------------"
+    echo "|   Web Development   |"
+    echo "-----------------------"
     echo ""
-    echo "              Menu"
     echo ""
+    echo ""   
     echo "(1) NodejS LTS            (2) LAMP Stack"
     echo "(3) Bluefish"
     echo "(p) Previous Menu         (m) Main Menu"
@@ -903,12 +894,12 @@ web_dev_menu(){
 }
 
 python_menu(){
-    echo "          --------------"
-    echo "          |   Python   |"
-    echo "          --------------"
+    echo "--------------"
+    echo "|   Python   |"
+    echo "--------------"
     echo ""
-    echo "              Menu"
     echo ""
+    echo ""   
     echo "(1) Python IDLE           (2) Eric"
     echo "(3) Pycharm"
     echo "(p) Previous Menu         (m) Main Menu"
@@ -965,12 +956,12 @@ python_menu(){
 }
 
 ides_menu(){
-    echo "          -------------------------------"
-    echo "          |   Development Environments   |"
-    echo "          --------------------------------"
+    echo "------------"
+    echo "|   IDEs   |"
+    echo "------------"
     echo ""
-    echo "                      Menu"
     echo ""
+    echo ""   
     echo "(1) VIM                            (2) VSCodium"
     echo "(3) Geany                          (4) Eclipse"
     echo "(p) Previous Menu                  (m) Main Menu"
@@ -1032,15 +1023,15 @@ ides_menu(){
 }
 
 utils_menu(){
-    echo "          -----------------"
-    echo "          |   Utilities   |"
-    echo "          -----------------"
+    echo "-----------------"
+    echo "|   Utilities   |"
+    echo "-----------------"
     echo ""
     echo "Largely apps for image writing and file security."
     echo "Plus virtual machine client."
     echo ""
-    echo "                       Menu"
     echo ""
+    echo ""   
     echo "(1) Fedora Media Writer        (2) KDE ISO Image Writer"
     echo "(3) Raspberry Pi Imager        (4) Kleopatra"
     echo "(5) GtkHash                    (6) Flatseal"
@@ -1110,13 +1101,13 @@ utils_menu(){
 }
 
 extras_menu(){
-    echo "          --------------"
-    echo "          |   Extras   |"
-    echo "          --------------"
+    echo "--------------"
+    echo "|   Extras   |"
+    echo "--------------"
     echo ""
     echo "Upgrade helper and script for my personal configurations"
-    echo "                       Menu"
     echo ""
+    echo ""   
     echo "(1) Fedora Upgrade Helper      (2) Mystuff"
     echo "(3) Remove Codecs              (4) Add user to libvirt group"
     echo "(m) Main Menu                  (0) Exit"
