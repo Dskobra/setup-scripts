@@ -1345,11 +1345,11 @@ export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION="dev branch"
 TEMP_FOLDER="missing"
-DISTRO=""
-PKGMGR=""
-VARIANT=""
 GITCHECK="missing"
 WGETCHECK="missing"
 CURLCHECK="missing"
 DOS2UNIXCHECK="missing"
+DISTRO=""
+PKGMGR=""
+VARIANT=""
 launch
