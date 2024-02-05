@@ -1159,9 +1159,9 @@ extras_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
-VERSION="menu-test branch"
+VERSION="dev branch"
+TEMP_FOLDER="missing"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
-TEMP_FOLDER="missing"
 launch
