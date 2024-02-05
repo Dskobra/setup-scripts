@@ -1195,6 +1195,7 @@ check_for_libvirt_group(){
 }
 
 template(){
+    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y
@@ -1207,21 +1208,6 @@ template(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-templatetwo(){
-    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
-    then
-        echo "template"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        echo "template"
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        echo "template"
     else
         echo "Unkown error has occured."
     fi
