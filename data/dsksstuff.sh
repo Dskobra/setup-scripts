@@ -21,17 +21,17 @@ dsksstuff_menu(){
         1)  
             sudo $PKGMGR install -y plymouth-theme-spinfinity
             sudo plymouth-set-default-theme spinfinity -R
-            mystuff_menu
+            dsksstuff_menu
             ;;
 
         2)
             game_profiles
-            mystuff_menu
+            dsksstuff_menu
             ;;
         
         3)
             autostart
-            mystuff_menu
+            dsksstuff_menu
             ;;
 
         0)
@@ -41,7 +41,7 @@ dsksstuff_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            mystuff_menu
+            dsksstuff_menu
             ;;
 
         esac
