@@ -55,7 +55,7 @@ fedora_variant_check(){
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        sudo rpm-ostree install dos2unix
+        check_for_dos2unix
         check_if_fedora_immutable
         display_third_party_repos
         main_menu
