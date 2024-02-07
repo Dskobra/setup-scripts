@@ -1,6 +1,5 @@
 # data
-Personal scripts for quickly setting up normal packages i use on fedora.
-Ignore the mess. :P
+Download links and mangohud profiles.
 
 folder layout
 -------------
