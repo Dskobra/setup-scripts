@@ -735,16 +735,16 @@ install_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
     
-    if test -d ~/.AppInstalls/idea; then
+    if test -d $HOME/.AppInstalls/idea; then
         echo "Intellij Idea already downloaded."
-    elif ! test -d ~/.AppInstalls/idea; then
+    elif ! test -d $HOME/.AppInstalls/idea; then
         rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o idea.tar.gz $IDEA_LINK
         tar -xvf idea.tar.gz
         rm idea.tar.gz
-        mv idea* ~/.AppInstalls/idea
-        ln -s "~/.AppInstalls/idea/bin/idea.sh" "~/Desktop/idea"
+        mv idea* $HOME/.AppInstalls/idea
+        ln -s "$HOME/.AppInstalls/idea/bin/idea.sh" "$HOME/Desktop/idea"
 
     fi
 }
