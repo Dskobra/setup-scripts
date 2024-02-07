@@ -153,12 +153,10 @@ check_for_dos2unix(){
 }
 
 get_data(){
-    echo "Downloading package links from data branch"
+    echo "Will need to download extra files from data branch"
     rm -r -f data
-    cd $SCRIPTS_HOME/temp
-    rm -r -f data setup-scripts
     git clone https://github.com/Dskobra/setup-scripts -b data
-    mv $SCRIPTS_HOME/temp/setup-scripts $SCRIPTS_HOME/data
+    mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
 }
 
 install_git(){
