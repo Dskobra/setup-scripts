@@ -752,8 +752,6 @@ install_idea(){
 install_netbeans(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
-    NETBEANS_ARCHIVE=netbeans.zip
-    
     if test -d $HOME/.AppInstalls/netbeans; then
         echo "Netbeans already downloaded."
     elif ! test -d $HOME/.AppInstalls/netbeans; then
@@ -859,20 +857,17 @@ install_python_tools(){
 
 install_pycharm(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf
-    PYCHARM_LINK=https://download.jetbrains.com/python/pycharm-community-2023.3.2.tar.gz
-    PYCHARM_ARCHIVE=pycharm.tar.gz
-    
-    if test -d ~/.AppInstalls/pycharm; then
+    source $SCRIPTS_HOME/temp/data/packages.conf    
+    if test -d $HOME/.AppInstalls/pycharm; then
         echo "Pycharm already downloaded."
-    elif ! test -d ~/.AppInstalls/pycharm; then
+    elif ! test -d $HOME/.AppInstalls/pycharm; then
         rm "$HOME/Desktop/pycharm"       # symlink gets put in pycharm folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o pycharm.tar.gz $PYCHARM_LINK
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
-        mv pycharm ~/.AppInstalls/pycharm
-        ln -s "~/.AppInstalls/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
+        mv pycharm $HOME/.AppInstalls/pycharm
+        ln -s "$HOME/.AppInstalls/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
 
     fi
 }
