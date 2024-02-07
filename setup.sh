@@ -152,6 +152,15 @@ check_for_dos2unix(){
     fi
 }
 
+get_data(){
+    echo "Downloading package links from data branch"
+    rm -r -f data
+    cd $SCRIPTS_HOME/temp
+    rm -r -f data setup-scripts
+    git clone https://github.com/Dskobra/setup-scripts -b data
+    mv $SCRIPTS_HOME/temp/setup-scripts $SCRIPTS_HOME/data
+}
+
 install_git(){
     ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
@@ -1358,14 +1367,6 @@ configurations_menu(){
     esac
     unset input
     configurations_menu
-}
-
-get_data(){
-    echo "Downloading package links from data branch"
-    cd $SCRIPTS_HOME/temp
-    rm -r -f data setup-scripts
-    git clone https://github.com/Dskobra/setup-scripts -b data
-    mv setup-scripts data
 }
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
