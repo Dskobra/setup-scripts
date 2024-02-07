@@ -462,6 +462,34 @@ install_mangohud(){
         echo "Unkown error has occured."
     fi
 }
+
+wowup(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf
+    if test -f /home/$USER/Desktop/$WOWUPBINARY; then
+        echo "WoWUp already downloaded."
+    elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
+        cd "$HOME"/Desktop
+        curl -L -o $WOWUPBINARY $WOWUPLINK 
+        chmod +x $WOWUPBINARY
+    fi
+}
+
+minecraft(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf    
+    if test -f /home/$USER/Desktop/minecraft-launcher; then
+        echo "Minecraft already downloaded."
+    elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
+        tar -xvf Minecraft.tar.gz
+        cd minecraft-launcher
+        chmod +x minecraft-launcher
+        mv minecraft-launcher "$HOME"/Desktop
+    fi
+}
+
 ### Office Apps
 
 install_abiword(){
@@ -707,7 +735,7 @@ install_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
     IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
-    IDEA_ARCHIVE="ideaIC-2023.3.2.tar.gz"
+    IDEA_ARCHIVE="ideaIC-*.tar.gz"
     IDEA_OLD_FOLDER="idea-IC*"
     IDEA_FOLDER="idea"
     
@@ -721,6 +749,26 @@ install_idea(){
         chmod +x $IDEA_OLD_FOLDER
         sudo mv $IDEA_OLD_FOLDER /opt/$IDEA_FOLDER
         ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
+
+    fi
+}
+
+install_netbeans(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf
+    NETBEANS_ARCHIVE=netbeans-*bin.zip
+    NETBEANS_FOLDER=netbeans
+    
+    if test -d /opt/$NETBEANS_FOLDER; then
+        echo "Netbeans already downloaded."
+    elif ! test -d /opt/$$NETBEANS_FOLDER; then
+        rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $NETBEANS_ARCHIVE $NETBEANS_LINK
+        unzip $NETBEANS_ARCHIVE
+        chmod +x $NETBEANS_FOLDER
+        sudo mv $NETBEANS_FOLDER /opt/$NETBEANS_FOLDER
+        ln -s "/opt/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
 
     fi
 }
@@ -1054,33 +1102,6 @@ install_virtualization(){
     fi
 }
 
-wowup(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf
-    if test -f /home/$USER/Desktop/$WOWUPBINARY; then
-        echo "WoWUp already downloaded."
-    elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
-        cd "$HOME"/Desktop
-        curl -L -o $WOWUPBINARY $WOWUPLINK 
-        chmod +x $WOWUPBINARY
-    fi
-}
-
-minecraft(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf    
-    if test -f /home/$USER/Desktop/minecraft-launcher; then
-        echo "Minecraft already downloaded."
-    elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
-        cd $SCRIPTS_HOME/temp
-        curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
-        tar -xvf Minecraft.tar.gz
-        cd minecraft-launcher
-        chmod +x minecraft-launcher
-        mv minecraft-launcher "$HOME"/Desktop
-    fi
-}
-
 install_nodejs(){
     echo "This downloads the nvm or Node Version Manager script to install"
     echo "the latest nodejs long term support release."
@@ -1097,25 +1118,6 @@ install_eclipse(){
 
     tar -xvf eclipse.tar.gz
     ./eclipse-installer/eclipse-inst
-}
-
-install_netbeans(){
-    NETBEANS_LINK=https://dlcdn.apache.org/netbeans/netbeans/20/netbeans-20-bin.zip
-    NETBEANS_ARCHIVE=netbeans-20-bin.zip
-    NETBEANS_FOLDER=netbeans
-    
-    if test -d /opt/$NETBEANS_FOLDER; then
-        echo "Netbeans already downloaded."
-    elif ! test -d /opt/$$NETBEANS_FOLDER; then
-        rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
-        cd $SCRIPTS_HOME/temp
-        curl -L -o $NETBEANS_ARCHIVE $NETBEANS_LINK
-        unzip $NETBEANS_ARCHIVE
-        chmod +x $NETBEANS_FOLDER
-        sudo mv $NETBEANS_FOLDER /opt/$NETBEANS_FOLDER
-        ln -s "/opt/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
-
-    fi
 }
 
 install_pycharm(){
