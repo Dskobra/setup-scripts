@@ -705,11 +705,7 @@ install_java_jdk(){
 
 install_scene_builder(){
     cd $SCRIPTS_HOME/temp
-    SCENE_BUILDER_RPM="SceneBuilder-20.0.0.rpm"
-    SCENE_BUILDER_RPM_LINK="https://download2.gluonhq.com/scenebuilder/20.0.0/install/linux/SceneBuilder-20.0.0.rpm"
-
-    SCENE_BUILDER_DEB="SceneBuilder-21.0.0.deb"
-    SCENE_BUILDER_DEB_LINK="https://download2.gluonhq.com/scenebuilder/21.0.0/install/linux/SceneBuilder-21.0.0.deb"
+    source $SCRIPTS_HOME/temp/data/packages.conf
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openjfx

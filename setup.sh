@@ -1345,6 +1345,11 @@ configurations_menu(){
     unset input
     configurations_menu
 }
+
+get_data(){
+    cd $SCRIPTS_HOME/temp
+    git clone https://github.com/Dskobra/setup-scripts -b data
+}
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION="dev branch"
