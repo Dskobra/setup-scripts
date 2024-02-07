@@ -907,23 +907,23 @@ openjdk_menu(){
 
         1)
             source $SCRIPTS_HOME/data/packages.sh; "install_openjdk"
-            openjdk-menu
+            openjdk_menu
             ;;
 
         2)
             
             source $SCRIPTS_HOME/data/packages.sh; "install_idea"
-            openjdk-menu
+            openjdk_menu
             ;;
 
         3)  
             source $SCRIPTS_HOME/data/packages.sh; "install_netbeans"
-            openjdk-menu
+            openjdk_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/data/packages.sh; "install_scene_builder"
-            openjdk-menu
+            openjdk_menu
             ;;
         p)
             coding_menu
@@ -948,12 +948,12 @@ openjdk_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        openjdk-menu
+        openjdk_menu
         ;;
         
     esac
     unset input
-    openjdk-menu
+    openjdk_menu
 }
 
 web_dev_menu(){
@@ -1351,6 +1351,7 @@ configurations_menu(){
 }
 
 get_data(){
+    echo "Downloading package links from data branch"
     cd $SCRIPTS_HOME/temp
     git clone https://github.com/Dskobra/setup-scripts -b data
     mv setup-scripts data
