@@ -1067,9 +1067,8 @@ wowup(){
 }
 
 minecraft(){
-    MINECRAFT_LINK=https://launcher.mojang.com/download/Minecraft.tar.gz
-    MINECRAFT_ARCHIVE=Minecraft.tar.gz
-    
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf    
     if test -f /home/$USER/Desktop/minecraft-launcher; then
         echo "Minecraft already downloaded."
     elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
@@ -1092,14 +1091,13 @@ install_nodejs(){
 
 install_eclipse(){
     cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf
     ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
-    curl -o $ECLIPSE https://eclipse.mirror.rafal.ca/oomph/epp/2023-09/R/eclipse-inst-jre-linux64.tar.gz
+    curl -o eclipse.tar.gz $ECLIPSE_LINK
 
-    tar -xvf $ECLIPSE
+    tar -xvf eclipse.tar.gz
     ./eclipse-installer/eclipse-inst
 }
-
-
 
 install_netbeans(){
     NETBEANS_LINK=https://dlcdn.apache.org/netbeans/netbeans/20/netbeans-20-bin.zip
