@@ -19,7 +19,7 @@ fedora_dnf_menu(){
             upgrade_check
             if [ "$IS_UPGRADE_SAFE" = "YES" ];
                 then
-                    upgrade_steps
+                    fedora_dnf_upgrade
             elif [ "$IS_UPGRADE_SAFE" = "NO" ];
                 then
                     remove_rpmfusion
