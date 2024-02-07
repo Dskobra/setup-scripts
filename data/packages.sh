@@ -736,9 +736,9 @@ install_idea(){
     source $SCRIPTS_HOME/temp/data/packages.conf
     IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
     
-    if test -d /opt/$IDEA_FOLDER; then
+    if test -d /opt/idea; then
         echo "Intellij already downloaded."
-    elif ! test -d /opt/$IDEA_FOLDER; then
+    elif ! test -d /opt/idea; then
         rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o idea-IC.tar.gz $IDEA_LINK
