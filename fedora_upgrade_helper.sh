@@ -8,7 +8,7 @@ fedora_dnf_menu(){
     echo ""
     echo ""
     echo "(1) Upgrade                (6) Update Rescue Kernel"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -29,16 +29,7 @@ fedora_dnf_menu(){
 
         2)
             update_rescue_kernel
-            ;;
-
-        m)
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
-            ;;
-        
-        M)
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
-            ;;
-            
+            ;;            
         0)
             exit
             ;;
@@ -46,12 +37,12 @@ fedora_dnf_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            dnf_menu
+            fedora_dnf_menu
             ;;
             
         esac
         unset input
-        dnf_menu
+        fedora_dnf_menu
 }
 
 fedora_dnf_upgrade(){
@@ -79,7 +70,7 @@ fedora_immutable_menu(){
     echo ""
     echo ""
     echo "(1) Full Reset                 (2) Upgrade"
-    echo "(m) Main Menu                  (0) Exit"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     IS_UPGRADE_SAFE="NO"
@@ -100,14 +91,6 @@ fedora_immutable_menu(){
                     perform_reset
             fi
             ;;
-        
-        m)
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
-            ;;
-
-        M)
-            source $SCRIPTS_HOME/modules/fedora/fedora.sh; "fedora_menu"
-            ;;
 
         0)
             exit
@@ -116,12 +99,12 @@ fedora_immutable_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            kinoite_menu
+           fedora_immutable_menu
             ;;
 
     esac
     unset input
-    immutable_menu
+    fedora_immutable_menu
 }
 
 upgrade_check(){
@@ -243,7 +226,6 @@ remove_rpmfusion(){
 }
 
 menu_launch(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         fedora_dnf_menu

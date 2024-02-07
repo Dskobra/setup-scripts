@@ -11,7 +11,7 @@ dsksstuff_menu(){
     echo ""
     echo "(1) Boot theme           (2) Game profiles"
     echo "(3) Autostart"
-    echo "(m) Main Menu            (0) Exit"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
 
@@ -46,18 +46,14 @@ dsksstuff_menu(){
 
         esac
         unset input
-        mystuff_menu
+        dsksstuff_menu
 }
 
 game_profiles(){
     if test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
         echo "MangoHud.conf exists. Not copying profiles over."
     elif ! test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
-        cd $SCRIPTS_HOME/temp/
-        git clone https://github.com/Dskobra/setup-scripts -b game-profiles
-
-        mv setup-scripts game-profiles
-        cd game-profiles
+        cd $SCRIPTS_HOME/data/game-profiles
         dos2unix *.conf
         sudo chown $USER:$USER *.conf
         cp *.conf $HOME/.config/MangoHud/
