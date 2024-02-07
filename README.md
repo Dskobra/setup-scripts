@@ -1,10 +1,11 @@
-# setup-scripts
+# data
 Personal scripts for quickly setting up normal packages i use on fedora.
 Ignore the mess. :P
 
 folder layout
 -------------
 root
-* modules           - stores all the package commands.
-* setup.sh          - launch script. everything is now in the modules folder.
-* unix.sh           - i sometimes use windows which causes the line endings to not be in unix format. this fixes it.
+* packages.conf     - stores links for tarballs, some appimages and deb/rpm packages.
+
+game-profiles
+optional mangohud files i made for myself. Nothing fancy just custom placement for mangohud and formatting it uses
