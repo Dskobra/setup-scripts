@@ -906,24 +906,24 @@ openjdk_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/data/packages.sh; "install_java_jdk"
-            java_menu
+            source $SCRIPTS_HOME/data/packages.sh; "install_openjdk"
+            openjdk-menu
             ;;
 
         2)
             
             source $SCRIPTS_HOME/data/packages.sh; "install_idea"
-            java_menu
+            openjdk-menu
             ;;
 
         3)  
             source $SCRIPTS_HOME/data/packages.sh; "install_netbeans"
-            java_menu
+            openjdk-menu
             ;;
 
         4)
             source $SCRIPTS_HOME/data/packages.sh; "install_scene_builder"
-            java_menu
+            openjdk-menu
             ;;
         p)
             coding_menu
@@ -948,12 +948,12 @@ openjdk_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        java_menu
+        openjdk-menu
         ;;
         
     esac
     unset input
-    java_menu
+    openjdk-menu
 }
 
 web_dev_menu(){

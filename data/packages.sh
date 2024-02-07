@@ -684,7 +684,7 @@ install_codeblocks(){
     fi
 }
 
-install_java_jdk(){
+install_openjdk(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y java-17-openjdk-devel
@@ -703,6 +703,27 @@ install_java_jdk(){
     fi
 }
 
+install_idea(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf
+    IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
+    IDEA_ARCHIVE="ideaIC-2023.3.2.tar.gz"
+    IDEA_OLD_FOLDER="idea-IC*"
+    IDEA_FOLDER="idea"
+    
+    if test -d /opt/$IDEA_FOLDER; then
+        echo "Intellij already downloaded."
+    elif ! test -d /opt/$IDEA_FOLDER; then
+        rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $IDEA_ARCHIVE $IDEA_LINK
+        tar -xvf $IDEA_ARCHIVE
+        chmod +x $IDEA_OLD_FOLDER
+        sudo mv $IDEA_OLD_FOLDER /opt/$IDEA_FOLDER
+        ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
+
+    fi
+}
 install_scene_builder(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
@@ -1078,25 +1099,7 @@ install_eclipse(){
     ./eclipse-installer/eclipse-inst
 }
 
-install_idea(){
-    IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
-    IDEA_ARCHIVE=ideaIC-2023.3.2.tar.gz
-    IDEA_OLD_FOLDER=idea-IC-233.13135.103
-    IDEA_FOLDER=idea
-    
-    if test -d /opt/$IDEA_FOLDER; then
-        echo "Intellij already downloaded."
-    elif ! test -d /opt/$IDEA_FOLDER; then
-        rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
-        cd $SCRIPTS_HOME/temp
-        curl -L -o $IDEA_ARCHIVE $IDEA_LINK
-        tar -xvf $IDEA_ARCHIVE
-        chmod +x $IDEA_OLD_FOLDER
-        sudo mv $IDEA_OLD_FOLDER /opt/$IDEA_FOLDER
-        ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
 
-    fi
-}
 
 install_netbeans(){
     NETBEANS_LINK=https://dlcdn.apache.org/netbeans/netbeans/20/netbeans-20-bin.zip
