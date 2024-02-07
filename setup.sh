@@ -24,6 +24,7 @@ distro_check(){
         check_for_wget
         check_for_curl
         check_for_dos2unix
+        get_data
         display_third_party_repos
         main_menu
     elif [ $DISTRO == "debian" ]
@@ -33,6 +34,7 @@ distro_check(){
         check_for_wget
         check_for_curl
         check_for_dos2unix
+        get_data
         display_third_party_repos
         main_menu
     else
@@ -50,12 +52,14 @@ fedora_variant_check(){
         check_for_wget
         check_for_curl
         check_for_dos2unix
+        get_data
         display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
         check_for_dos2unix
+        get_data
         display_third_party_repos
         main_menu
     fi
