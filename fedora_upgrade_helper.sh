@@ -164,7 +164,7 @@ perform_reset(){
     then
 	    exit
     else
-	    upgrade_menu
+	    fedora_immutable_menu
     fi
 }
 
@@ -221,7 +221,7 @@ remove_rpmfusion(){
     then
 	    exit
     else
-	    upgrade_menu
+	    fedora_dnf_menu
     fi
 }
 
