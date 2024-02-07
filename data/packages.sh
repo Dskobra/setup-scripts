@@ -1037,8 +1037,8 @@ install_virtualization(){
 }
 
 wowup(){
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.10.0/WowUp-CF-2.10.0.AppImage
-    WOWUPBINARY=WowUp-CF-2.10.0.AppImage
+    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.11.0/WowUp-CF-2.11.0.AppImage
+    WOWUPBINARY=WowUp-CF-2.11.0.AppImage
 
     if test -f /home/$USER/Desktop/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
