@@ -735,19 +735,15 @@ install_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
     IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
-    IDEA_ARCHIVE="ideaIC-*.tar.gz"
-    IDEA_OLD_FOLDER="idea-IC*"
-    IDEA_FOLDER="idea"
     
     if test -d /opt/$IDEA_FOLDER; then
         echo "Intellij already downloaded."
     elif ! test -d /opt/$IDEA_FOLDER; then
         rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
-        curl -L -o $IDEA_ARCHIVE $IDEA_LINK
-        tar -xvf $IDEA_ARCHIVE
-        chmod +x $IDEA_OLD_FOLDER
-        sudo mv $IDEA_OLD_FOLDER /opt/$IDEA_FOLDER
+        curl -L -o idea-IC.tar.gz $IDEA_LINK
+        tar -xvf idea-IC.tar.gz 
+        sudo mv idea* /opt/idea
         ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
 
     fi
@@ -756,7 +752,7 @@ install_idea(){
 install_netbeans(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
-    NETBEANS_ARCHIVE=netbeans-*bin.zip
+    NETBEANS_ARCHIVE=netbeans.zip
     NETBEANS_FOLDER=netbeans
     
     if test -d /opt/$NETBEANS_FOLDER; then
