@@ -8,4 +8,4 @@ root
 * packages.conf     - stores download links for easier updating
 
 ## game-profiles
-optional mangohud files i made for myself. Nothing fancy just custom placement for mangohud and formatting it uses
+Optional mangohud files i made for myself. Nothing fancy just custom placement for mangohud, data to display, formating like rounded corners, font size and scale etc.
