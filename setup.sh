@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-launch(){
+make_temp(){
     test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];
         then
@@ -9,7 +9,17 @@ launch(){
         then
         mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to   
     fi
-    distro_check
+}
+
+make_app_folder(){
+    test -d "$HOME"/.AppInstalls/ && APP_FOLDER=exists
+    if [ "$APP_FOLDER" = "exists" ];
+        then
+           APP_FOLDER=exists 
+    elif [ "$APP_FOLDER" = "missing" ];
+        then
+        mkdir  "$HOME"/.AppInstalls/ # store idea, pycharm etc in
+    fi
 }
 
 distro_check(){
@@ -1364,7 +1374,10 @@ GITCHECK="missing"
 WGETCHECK="missing"
 CURLCHECK="missing"
 DOS2UNIXCHECK="missing"
+APP_FOLDER="missing"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
-launch
+make_temp
+make_app_folder
+distro_check

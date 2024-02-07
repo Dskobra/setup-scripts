@@ -736,15 +736,16 @@ install_idea(){
     source $SCRIPTS_HOME/temp/data/packages.conf
     IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
     
-    if test -d /opt/idea; then
+    if test -d ~/.AppInstalls/idea; then
         echo "Intellij already downloaded."
-    elif ! test -d /opt/idea; then
+    elif ! test -d ~/.AppInstalls/idea; then
         rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o idea-IC.tar.gz $IDEA_LINK
-        tar -xvf idea-IC.tar.gz 
+        tar -xvf idea-IC.tar.gz
+        rm idea-IC.tar.gz
         sudo mv idea* /opt/idea
-        ln -s "/opt/idea/bin/idea.sh" "$HOME/Desktop/idea"
+        ln -s "~/.AppInstalls/idea/bin/idea.sh" "$HOME/Desktop/idea"
 
     fi
 }
@@ -859,6 +860,25 @@ install_python_tools(){
     fi
 }
 
+install_pycharm(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf
+    PYCHARM_LINK=https://download.jetbrains.com/python/pycharm-community-2023.3.2.tar.gz
+    PYCHARM_ARCHIVE=pycharm.tar.gz
+    
+    if test -d ~/.AppInstalls/pycharm; then
+        echo "Pycharm already downloaded."
+    elif ! test -d ~/.AppInstalls/pycharm; then
+        rm "$HOME/Desktop/pycharm"       # symlink gets put in pycharm folder if its present on desktop
+        cd $SCRIPTS_HOME/temp
+        curl -L -o pycharm.tar.gz $PYCHARM_LINK
+        tar -xvf pycharm.tar.gz
+        rm pycharm.tar.gz
+        sudo mv pycharm ~/.AppInstalls/pycharm
+        ln -s "~/.AppInstalls/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
+
+    fi
+}
 install_eric_ide(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -1116,25 +1136,6 @@ install_eclipse(){
     ./eclipse-installer/eclipse-inst
 }
 
-install_pycharm(){
-    PYCHARM_LINK=https://download.jetbrains.com/python/pycharm-community-2023.3.2.tar.gz
-    PYCHARM_ARCHIVE=pycharm-community-2023.3.2.tar.gz
-    PYCHARM_OLD_FOLDER=pycharm-community-2023.3.2
-    PYCHARM_FOLDER=pycharm
-    
-    if test -d /opt/$PYCHARM_FOLDER; then
-        echo "Pycharm already downloaded."
-    elif ! test -d /opt/$PYCHARM_FOLDER; then
-        rm "$HOME/Desktop/pycharm"       # symlink gets put in pycharm folder if its present on desktop
-        cd $SCRIPTS_HOME/temp
-        curl -L -o $PYCHARM_ARCHIVE $PYCHARM_LINK
-        tar -xvf $PYCHARM_ARCHIVE
-        chmod +x $PYCHARM_OLD_FOLDER
-        sudo mv $PYCHARM_OLD_FOLDER /opt/$PYCHARM_FOLDER
-        ln -s "/opt/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
-
-    fi
-}
 ### remove packages
 
 remove_codecs(){
