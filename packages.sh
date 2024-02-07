@@ -894,14 +894,14 @@ install_eric_ide(){
 install_vscodium(){
     if [ $PKGMGR == "dnf" ]
     then
-        cd $SCRIPTS_HOME/packages
+        cd $SCRIPTS_HOME/data
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
         sudo dnf install -y codium
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        cd $SCRIPTS_HOME/modules/packages
+        cd $SCRIPTS_HOME/data
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
@@ -909,7 +909,7 @@ install_vscodium(){
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        cd $SCRIPTS_HOME/packages
+        cd $SCRIPTS_HOME/data
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
