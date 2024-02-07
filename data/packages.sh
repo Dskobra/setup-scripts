@@ -741,7 +741,7 @@ install_idea(){
     elif ! test -d ~/.AppInstalls/idea; then
         rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
-        curl -L -o idea-IC.tar.gz $IDEA_LINK
+        curl -L -o idea.tar.gz $IDEA_LINK
         tar -xvf idea.tar.gz
         rm idea.tar.gz
         mv idea* ~/.AppInstalls/idea
