@@ -724,6 +724,7 @@ install_idea(){
 
     fi
 }
+
 install_scene_builder(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
@@ -1054,9 +1055,8 @@ install_virtualization(){
 }
 
 wowup(){
-    WOWUPLINK=https://github.com/WowUp/WowUp.CF/releases/download/v2.11.0/WowUp-CF-2.11.0.AppImage
-    WOWUPBINARY=WowUp-CF-2.11.0.AppImage
-
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/temp/data/packages.conf
     if test -f /home/$USER/Desktop/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
     elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
