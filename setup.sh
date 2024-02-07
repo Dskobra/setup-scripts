@@ -1363,6 +1363,7 @@ configurations_menu(){
 get_data(){
     echo "Downloading package links from data branch"
     cd $SCRIPTS_HOME/temp
+    rm -r -f data setup-scripts
     git clone https://github.com/Dskobra/setup-scripts -b data
     mv setup-scripts data
 }
