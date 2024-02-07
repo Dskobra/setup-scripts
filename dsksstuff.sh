@@ -63,11 +63,13 @@ game_profiles(){
 autostart(){
     mkdir "$HOME"/.config/autostart # some desktops like mate dont have this created by default.
     cp /home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop /home/$USER/.config/autostart/com.dropbox.Client.desktop
+    DROPBOX="/home/$USER/.local/share/flatpak/exports/share/applications/com.dropbox.Client.desktop "
     DISCORD="/home/$USER/.local/share/flatpak/exports/share/applications/com.discordapp.Discord.desktop"
     DOVERLAY="/home/$USER/.local/share/flatpak/exports/share/applications/io.github.trigg.discover_overlay.desktop"
     STEAM="/usr/share/applications/steam.desktop"
     CORECTRL="/usr/share/applications/org.corectrl.corectrl.desktop"
 
+    [ -f $DROPBOX ] && { echo "Dropbox was found. Adding to startup."; cp "$DROPBOX"  /home/$USER/.config/autostart/com.dropbox.Client.desktop; }
     [ -f $DISCORD ] && { echo "Discord was found. Adding to startup."; cp "$DISCORD"  /home/$USER/.config/autostart/com.discordapp.Discord.desktop; }
     [ -f $DOVERLAY ] && { echo "Discord Overlay was found. Adding to startup."; cp "$DOVERLAY"  /home/$USER/.config/autostart/io.github.trigg.discover_overlay.desktop; }
     [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }

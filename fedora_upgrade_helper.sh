@@ -7,7 +7,7 @@ fedora_dnf_menu(){
     echo ""
     echo ""
     echo ""
-    echo "(1) Upgrade                (6) Update Rescue Kernel"
+    echo "(1) Upgrade                (2) Update Rescue Kernel"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -23,7 +23,7 @@ fedora_dnf_menu(){
             elif [ "$IS_UPGRADE_SAFE" = "NO" ];
                 then
                     remove_rpmfusion
-                    dnf_upgrade
+                    fedora_dnf_upgrade
             fi
             ;;
 
