@@ -734,7 +734,6 @@ install_openjdk(){
 install_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
-    IDEA_LINK=https://download.jetbrains.com/idea/ideaIC-2023.3.2.tar.gz
     
     if test -d ~/.AppInstalls/idea; then
         echo "Intellij Idea already downloaded."
@@ -745,7 +744,7 @@ install_idea(){
         tar -xvf idea.tar.gz
         rm idea.tar.gz
         mv idea* ~/.AppInstalls/idea
-        ln -s "~/.AppInstalls/idea/bin/idea.sh" "$HOME/Desktop/idea"
+        ln -s "~/.AppInstalls/idea/bin/idea.sh" "~/Desktop/idea"
 
     fi
 }
@@ -874,7 +873,7 @@ install_pycharm(){
         curl -L -o pycharm.tar.gz $PYCHARM_LINK
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
-        sudo mv pycharm ~/.AppInstalls/pycharm
+        mv pycharm ~/.AppInstalls/pycharm
         ln -s "~/.AppInstalls/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
 
     fi
