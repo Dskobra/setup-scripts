@@ -465,7 +465,7 @@ install_mangohud(){
 
 wowup(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf
+    source $SCRIPTS_HOME/data/packages.conf
     if test -f /home/$USER/Desktop/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
     elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
@@ -477,7 +477,7 @@ wowup(){
 
 minecraft(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf    
+    source $SCRIPTS_HOME/data/packages.conf    
     if test -f /home/$USER/Desktop/minecraft-launcher; then
         echo "Minecraft already downloaded."
     elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
@@ -733,7 +733,7 @@ install_openjdk(){
 
 install_idea(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf
+    source $SCRIPTS_HOME/data/packages.conf
     
     if test -d $HOME/.AppInstalls/idea; then
         echo "Intellij Idea already downloaded."
@@ -751,7 +751,7 @@ install_idea(){
 
 install_netbeans(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf
+    source $SCRIPTS_HOME/data/packages.conf
     if test -d $HOME/.AppInstalls/netbeans; then
         echo "Netbeans already downloaded."
     elif ! test -d $HOME/.AppInstalls/netbeans; then
@@ -767,7 +767,7 @@ install_netbeans(){
 
 install_scene_builder(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf
+    source $SCRIPTS_HOME/data/packages.conf
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openjfx
@@ -857,7 +857,7 @@ install_python_tools(){
 
 install_pycharm(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf    
+    source $SCRIPTS_HOME/data/packages.conf    
     if test -d $HOME/.AppInstalls/pycharm; then
         echo "Pycharm already downloaded."
     elif ! test -d $HOME/.AppInstalls/pycharm; then
@@ -1121,7 +1121,7 @@ install_nodejs(){
 
 install_eclipse(){
     cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/temp/data/packages.conf
+    source $SCRIPTS_HOME/data/packages.conf
     ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
     curl -o eclipse.tar.gz $ECLIPSE_LINK
 
