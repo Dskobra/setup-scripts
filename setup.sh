@@ -1332,7 +1332,6 @@ configurations_menu(){
             ;;
 
         3)
-            mkdir "$HOME"/.config/MangoHud/
             ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
