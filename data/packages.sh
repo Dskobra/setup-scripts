@@ -744,7 +744,7 @@ install_idea(){
         curl -L -o idea-IC.tar.gz $IDEA_LINK
         tar -xvf idea-IC.tar.gz
         rm idea-IC.tar.gz
-        sudo mv idea* /opt/idea
+        sudo mv idea* ~/.AppInstalls/idea
         ln -s "~/.AppInstalls/idea/bin/idea.sh" "$HOME/Desktop/idea"
 
     fi
@@ -879,6 +879,7 @@ install_pycharm(){
 
     fi
 }
+
 install_eric_ide(){
     if [ $PKGMGR == "dnf" ]
     then
