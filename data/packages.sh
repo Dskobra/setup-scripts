@@ -753,18 +753,16 @@ install_netbeans(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/temp/data/packages.conf
     NETBEANS_ARCHIVE=netbeans.zip
-    NETBEANS_FOLDER=netbeans
     
-    if test -d /opt/$NETBEANS_FOLDER; then
+    if test -d $HOME/.AppInstalls/netbeans; then
         echo "Netbeans already downloaded."
-    elif ! test -d /opt/$$NETBEANS_FOLDER; then
+    elif ! test -d $HOME/.AppInstalls/netbeans; then
         rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
         cd $SCRIPTS_HOME/temp
-        curl -L -o $NETBEANS_ARCHIVE $NETBEANS_LINK
-        unzip $NETBEANS_ARCHIVE
-        chmod +x $NETBEANS_FOLDER
-        sudo mv $NETBEANS_FOLDER /opt/$NETBEANS_FOLDER
-        ln -s "/opt/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
+        curl -L -o netbeans.zip $NETBEANS_LINK
+        unzip netbeans.zip
+        mv $SCRIPTS_HOME/temp/netbeans $HOME/.AppInstalls/netbeans
+        ln -s "$HOME/.AppInstalls/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
 
     fi
 }
