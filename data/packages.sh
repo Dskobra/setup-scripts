@@ -866,7 +866,7 @@ install_pycharm(){
         curl -L -o pycharm.tar.gz $PYCHARM_LINK
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
-        mv pycharm $HOME/.AppInstalls/pycharm
+        mv pycharm* $HOME/.AppInstalls/pycharm
         ln -s "$HOME/.AppInstalls/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
 
     fi
