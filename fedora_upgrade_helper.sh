@@ -235,12 +235,11 @@ launch_menu(){
     elif [ $PKGMGR == "zypper" ]
     then
         zenity --warning --text="This feature is only for Fedora."
-        exit
+        main_menu
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --warning --text="This feature is only for Fedora."
         main_menu
-        #exit
     else
         echo "Unkown error has occured."
     fi
