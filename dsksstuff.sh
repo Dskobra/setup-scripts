@@ -54,8 +54,7 @@ game_profiles(){
         echo "MangoHud.conf exists. Not copying profiles over."
     elif ! test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
         cd $SCRIPTS_HOME/data/game-profiles
-        dos2unix *.conf
-        sudo chown $USER:$USER *.conf
+        chown $USER:$USER *.conf
         cp *.conf $HOME/.config/MangoHud/
     fi
 }
