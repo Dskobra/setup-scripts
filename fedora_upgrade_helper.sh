@@ -232,9 +232,14 @@ launch_menu(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         fedora_immutable_menu
-    else
-        #echo "Only supports Fedora."
+    elif [ $PKGMGR == "zypper" ]
+    then
         zenity --warning --text="This feature is only for Fedora."
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        zenity --warning --text="This feature is only for Fedora."
+    else
+        echo "Unkown error has occured."
     fi
 }
 export IS_UPGRADE_SAFE="NO"
