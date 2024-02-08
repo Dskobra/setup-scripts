@@ -19,8 +19,7 @@ dsksstuff_menu(){
 
 
         1)  
-            sudo $PKGMGR install -y plymouth-theme-spinfinity
-            sudo plymouth-set-default-theme spinfinity -R
+            install_plymouth_theme
             dsksstuff_menu
             ;;
 
@@ -72,4 +71,42 @@ autostart(){
     [ -f $DOVERLAY ] && { echo "Discord Overlay was found. Adding to startup."; cp "$DOVERLAY"  /home/$USER/.config/autostart/io.github.trigg.discover_overlay.desktop; }
     [ -f $STEAM ] && { echo "Steam was found. Adding to startup."; cp "$STEAM"  /home/$USER/.config/autostart/steam.desktop; }
     [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
+}
+
+install_plymouth_theme(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y plymouth-theme-spinfinity
+        sudo plymouth-set-default-theme spinfinity -R
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install plymouth-theme-spinfinity
+        sudo plymouth-set-default-theme spinfinity -R
+        check_for_spinfinity
+    elif [ $PKGMGR == "zypper" ]
+    then
+       echo "Not supported"
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        echo "Not supported"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+check_for_spinfinity(){
+    ## template function for adding more packages
+    THEME="missing"
+    test -d /usr/share/plymouth/themes/spinfinity/ && THEME="exists"
+    if [ "$THEME" = "exists" ]
+    then
+        sudo plymouth-set-default-theme spinfinity -R
+    elif [ "$THEME" = "missing" ]
+    then
+        zenity --warning --text="Immutable variants requries rebooting first to load the package layer then you'll
+        have to rerun this option to set the theme."
+        check_if_fedora_immutable
+    else
+        echo "Unkown error has occured."
+    fi
 }
