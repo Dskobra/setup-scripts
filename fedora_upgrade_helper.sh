@@ -239,7 +239,7 @@ launch_menu(){
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --warning --text="This feature is only for Fedora."
-        .$SCRIPTS_HOME/setup.sh
+        main_menu
         #exit
     else
         echo "Unkown error has occured."
