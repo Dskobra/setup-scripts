@@ -94,6 +94,7 @@ install_plymouth_theme(){
         echo "Unkown error has occured."
     fi
 }
+
 check_for_spinfinity(){
     ## template function for adding more packages
     THEME="missing"
@@ -103,8 +104,9 @@ check_for_spinfinity(){
         sudo plymouth-set-default-theme spinfinity -R
     elif [ "$THEME" = "missing" ]
     then
-        zenity --warning --text="Immutable variants requries rebooting first to load the package layer then you'll
-        have to rerun this option to set the theme."
+        SPINFINITY="Immutable variants will need to reboot first to load the package layer then rerun\n
+        this option to apply the theme."
+        zenity --warning --text="$SPINFINITY"
         check_if_fedora_immutable
     else
         echo "Unkown error has occured."
