@@ -233,7 +233,8 @@ launch_menu(){
     then
         fedora_immutable_menu
     else
-        echo "Only supports Fedora."
+        #echo "Only supports Fedora."
+        zenity --warning --text="Only supports Fedora."
     fi
 }
 export IS_UPGRADE_SAFE="NO"
