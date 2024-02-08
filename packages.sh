@@ -1150,6 +1150,7 @@ remove_codecs(){
         
         sudo rpm-ostree remove -y gstreamer1-plugin-openh264 \
         mozilla-openh264
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n remove ffmpeg-6 mozilla-openh264\
