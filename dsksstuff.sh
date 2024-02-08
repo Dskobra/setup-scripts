@@ -19,7 +19,7 @@ dsksstuff_menu(){
 
 
         1)  
-            install_plymouth_theme
+            install_spinfinity_theme
             dsksstuff_menu
             ;;
 
@@ -73,8 +73,7 @@ autostart(){
     [ -f $CORECTRL ] && { echo "Corectrl was found. Adding to startup."; cp "$CORECTRL"  /home/$USER/.config/autostart/org.corectrl.corectrl.desktop; }
 }
 
-install_plymouth_theme(){
-    ## template function for adding more packages
+install_spinfinity_theme(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y plymouth-theme-spinfinity
@@ -96,7 +95,6 @@ install_plymouth_theme(){
 }
 
 check_for_spinfinity(){
-    ## template function for adding more packages
     THEME="missing"
     test -d /usr/share/plymouth/themes/spinfinity/ && THEME="exists"
     if [ "$THEME" = "exists" ]
