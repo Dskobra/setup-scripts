@@ -1079,15 +1079,16 @@ install_virtualization(){
 
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
-
         sudo dnf update -y
-
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer virtio-win
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
+        sudo rpm-ostree refresh-md
+        sudo rpm-ostree instal libvirt-daemon-config-network libvirt-daemon-kvm\
+        qemu-kvm virt-install virt-manager virt-viewer virtio-win
     elif [ $PKGMGR == "zypper" ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
