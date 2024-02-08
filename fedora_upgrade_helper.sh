@@ -225,7 +225,7 @@ remove_rpmfusion(){
     fi
 }
 
-menu_launch(){
+launch_menu(){
     if [ $PKGMGR == "dnf" ]
     then
         fedora_dnf_menu
@@ -237,4 +237,4 @@ menu_launch(){
     fi
 }
 export IS_UPGRADE_SAFE="NO"
-menu_launch
+launch_menu
