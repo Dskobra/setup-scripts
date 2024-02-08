@@ -33,7 +33,6 @@ distro_check(){
         check_for_git
         check_for_wget
         check_for_curl
-        check_for_dos2unix
         check_for_zenity
         get_data
         display_third_party_repos
@@ -44,7 +43,6 @@ distro_check(){
         check_for_git
         check_for_wget
         check_for_curl
-        check_for_dos2unix
         check_for_zenity
         get_data
         display_third_party_repos
@@ -71,7 +69,7 @@ fedora_variant_check(){
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        check_for_dos2unix
+        check_for_zenity
         get_data
         display_third_party_repos
         main_menu
