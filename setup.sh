@@ -34,6 +34,7 @@ distro_check(){
         check_for_wget
         check_for_curl
         check_for_dos2unix
+        check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -44,6 +45,7 @@ distro_check(){
         check_for_wget
         check_for_curl
         check_for_dos2unix
+        check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -62,6 +64,7 @@ fedora_variant_check(){
         check_for_wget
         check_for_curl
         check_for_dos2unix
+        check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -152,6 +155,18 @@ check_for_dos2unix(){
     fi
 }
 
+check_for_zenity(){
+    test -f /usr/bin/zenity && ZENITYCHECK="exists"
+    if [ "$ZENITYCHECK" = "exists" ];
+        then
+           ZENITYCHECK=exists 
+    elif [ "$ZENITYCHECK" = "missing" ];
+        then
+        echo "zenity not found. Will install it."
+        install_zenity
+    fi
+}
+
 get_data(){
     echo "Will need to download extra files from data branch"
     rm -r -f data
@@ -160,7 +175,6 @@ get_data(){
 }
 
 install_git(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y git
@@ -176,7 +190,6 @@ install_git(){
 }
 
 install_wget(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y wget
@@ -192,7 +205,6 @@ install_wget(){
 }
 
 install_curl(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y curl
@@ -208,7 +220,6 @@ install_curl(){
 }
 
 install_dos2unix(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y dos2unix
@@ -222,6 +233,25 @@ install_dos2unix(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y dos2unix
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_zenity(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y zenity
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install zenity
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install zenity
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y zenity
     else
         echo "Unkown error has occured."
     fi
@@ -1373,6 +1403,7 @@ GITCHECK="missing"
 WGETCHECK="missing"
 CURLCHECK="missing"
 DOS2UNIXCHECK="missing"
+ZENITYCHECK="missing"
 APP_FOLDER="missing"
 DISTRO=""
 PKGMGR=""
