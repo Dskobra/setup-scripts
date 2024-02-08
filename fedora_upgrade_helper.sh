@@ -233,7 +233,7 @@ menu_launch(){
     then
         fedora_immutable_menu
     else
-        eecho "Only supports Fedora."
+        echo "Only supports Fedora."
     fi
 }
 export IS_UPGRADE_SAFE="NO"
