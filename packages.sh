@@ -1132,26 +1132,31 @@ install_eclipse(){
 }
 
 ### remove packages
-
 remove_codecs(){
-    if [ ! -n "$VARIANT" ]
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
     then
-        sudo $PKGMGR swap -y ffmpeg libavcodec-free --allowerasing
-        sudo $PKGMGR swap -y mesa-va-drivers-freeworld mesa-va-drivers 
-        sudo $PKGMGR swap -y mesa-vdpau-drivers-freeworld mesa-vdpau-drivers 
-    elif [ $VARIANT == "ostree" ]
+        sudo dnf install -y
+        sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
+        sudo dnf remove -y gstreamer1-plugin-openh264 \
+        mozilla-openh264
+    elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo $PKGMGR remove ffmpeg
-        sudo $PKGMGR override reset libavcodec-free libavfilter-free \
+        sudo rpm-ostree remove ffmpeg
+        sudo rpm-ostree override reset libavcodec-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free \
         libswresample-free libswscale-free
-        sudo $PKGMGR override reset mesa-va-drivers mesa-vdpau-drivers-freeworld
+        sudo rpm-ostree override reset mesa-va-drivers mesa-vdpau-drivers-freeworld
         
-        sudo $PKGMGR remove -y gstreamer1-plugin-openh264 \
+        sudo rpm-ostree remove -y gstreamer1-plugin-openh264 \
         mozilla-openh264
-
-        
-        check_if_immutable
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n remove ffmpeg-6 mozilla-openh264\
+        gstreamer-plugin-openh264
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y ffmpeg
     else
         echo "Unkown error has occured."
     fi
