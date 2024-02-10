@@ -787,9 +787,7 @@ install_scene_builder(){
     then
         sudo zypper -n install openjfx
         curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        echo "Please use Yast to install this by going into the scripts main folder -> Temp and right clicking 'SceneBuilder-*.rpm'"
-        echo "and choosing to open with YaST Software. You'll need to hit ignore to allow the installation."
-        xdg-open $SCRIPTS_HOME/temp
+        sudo rpm -i --force $SCENE_BUILDER_RPM
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openjfx
