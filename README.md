@@ -1,10 +1,9 @@
 # setup-scripts
-Personal scripts for quickly setting up normal packages i use on fedora.
-Ignore the mess. :P
+Set of scripts for installing several popular applications and drivers for Fedora (including atomic desktops), openSUSE Tumbleweed and Debian 12.
 
-folder layout
+structure
 -------------
-root
-* modules           - stores all the package commands. Organized by distro.
-* setup.sh          - launch script. Checks what distro it's running on.
-* unix.sh           - i sometimes use windows which causes the line endings to not be in unix format. this fixes it.
+setup.sh        -       Main file
+packages.sh     -       Contains all the install commands.
+
+data folder     -       When main script is run it pulls extra scripts and customizations from the data branch.

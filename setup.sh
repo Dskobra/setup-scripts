@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+### This is the main script that contians all the menus,
+### and code for determining the distro.
 make_temp(){
     test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];

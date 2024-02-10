@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+### All the packages are here. packages.conf from the data
+### branch includes the links for pycharm, intellij idea
+### community edition, netbeans, scenebuilder, eclipse 
+### and wowup
 install_third_party_repos(){
     if [ $PKGMGR == "dnf" ]
     then
