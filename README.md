@@ -2,7 +2,7 @@
 Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
-* Fedora 38/39 (with dnf and atomic) with rpm-ostree)
+* Fedora 38/39 (with dnf and atomic with rpm-ostree)
 * Debian 12
 * openSUSE Tumbleweed
 
