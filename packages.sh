@@ -838,6 +838,14 @@ install_bluefish(){
     fi
 }
 
+install_nodejs(){
+    echo "This downloads the nvm or Node Version Manager script to install"
+    echo "the latest nodejs long term support release."
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	source ~/.bashrc
+	nvm install lts/*
+}
+
 install_python_tools(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -964,6 +972,16 @@ install_geany(){
     else
         echo "Unkown error has occured."
     fi
+}
+
+install_eclipse(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
+    curl -o eclipse.tar.gz $ECLIPSE_LINK
+
+    tar -xvf eclipse.tar.gz
+    ./eclipse-installer/eclipse-inst
 }
 
 install_github_desktop(){
@@ -1115,23 +1133,6 @@ install_virtualization(){
     fi
 }
 
-install_nodejs(){
-    echo "This downloads the nvm or Node Version Manager script to install"
-    echo "the latest nodejs long term support release."
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
-}
-
-install_eclipse(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
-    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
-    curl -o eclipse.tar.gz $ECLIPSE_LINK
-
-    tar -xvf eclipse.tar.gz
-    ./eclipse-installer/eclipse-inst
-}
 
 ### remove packages
 remove_codecs(){
