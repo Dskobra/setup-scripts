@@ -804,8 +804,7 @@ install_lamp_stack(){
         php phpMyAdmin
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install httpd php phpMyAdmin mariadb\
-        mariadb-server
+        sudo rpm-ostree install httpd php phpMyAdmin mariadb-server
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
