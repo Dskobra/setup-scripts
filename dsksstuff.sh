@@ -85,10 +85,12 @@ install_spinfinity_theme(){
         check_for_spinfinity
     elif [ $PKGMGR == "zypper" ]
     then
-       echo "Not supported"
+       sudo zypper -n install plymouth-theme-spinfinity
+       sudo plymouth-set-default-theme spinfinity -R
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y plymouth-themes
+         sudo plymouth-set-default-theme spinfinity -R
     else
         echo "Unkown error has occured."
     fi
