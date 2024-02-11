@@ -309,7 +309,6 @@ install_brave_browser(){
         sudo zypper -n install brave-browser
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y curl
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
         sudo apt-get update
@@ -1124,7 +1123,6 @@ install_virtualization(){
         qemu-kvm virt-install virt-manager virt-viewer
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y curl
         cd ~/Downloads/
         curl -L -o virtio-win.iso https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
         sudo apt-get install -y libvirt-daemon-config-network qemu-kvm virt-manager virt-viewer
