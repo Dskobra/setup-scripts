@@ -815,8 +815,9 @@ coding_menu(){
     echo ""
     echo "(1) C/C++             (2) openJDK"
     echo "(3) Web Devlopment    (4) Python"
-    echo "(5) GitHub Desktop    (6) Containers"
-    echo "(7) Other IDEs"
+    echo "(5) Other IDEs        (6) GitHub Desktop"
+    echo "(7) Containers"
+    
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -838,16 +839,17 @@ coding_menu(){
             python_menu
             ;;
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            ides_menu
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_containers"
-            
+            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            coding_menu
             ;;
 
         7)
-            ides_menu
+            source $SCRIPTS_HOME/packages.sh; "install_containers"
+            coding_menu
             ;;
 
         m)
