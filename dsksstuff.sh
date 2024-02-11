@@ -88,7 +88,7 @@ install_spinfinity_theme(){
        echo "Not supported"
     elif [ $PKGMGR == "apt-get" ]
     then
-        echo "Not supported"
+        sudo apt-get install -y plymouth-themes
     else
         echo "Unkown error has occured."
     fi
@@ -102,7 +102,7 @@ check_for_spinfinity(){
         sudo plymouth-set-default-theme spinfinity -R
     elif [ "$THEME" = "missing" ]
     then
-        SPINFINITY="Immutable variants will need to reboot first to load the package layer then rerun\n
+        SPINFINITY="Immutable variants will need to reboot first to load the package layer then rerun
         this option to apply the theme."
         zenity --warning --text="$SPINFINITY"
         check_if_fedora_immutable
