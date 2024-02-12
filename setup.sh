@@ -364,6 +364,7 @@ main_menu(){
         unset input
         main_menu
 }
+
 hardware_menu(){
     echo "----------------"
     echo "|   Hardware   |"
@@ -1398,7 +1399,7 @@ configurations_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
-VERSION="dev branch"
+VERSION="2.11.2024"
 TEMP_FOLDER="missing"
 GITCHECK="missing"
 WGETCHECK="missing"
