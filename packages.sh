@@ -671,7 +671,6 @@ download_bitwarden(){
 }
 
 install_keepassxc(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         flatpak install --user -y flathub org.keepassxc.KeePassXC
@@ -1166,7 +1165,6 @@ install_virtualization(){
 
 ### remove packages
 remove_codecs(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y
