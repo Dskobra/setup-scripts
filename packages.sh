@@ -469,10 +469,10 @@ install_mangohud(){
 wowup(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/Desktop/$WOWUPBINARY; then
+    if test -f /home/$USER/.AppInstalls/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
-    elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
-        cd "$HOME"/Desktop
+    elif ! test -f /home/$USER/.AppInstalls/$WOWUPBINARY; then
+        cd /home/$USER/.AppInstalls
         curl -L -o $WOWUPBINARY $WOWUPLINK 
         chmod +x $WOWUPBINARY
     fi
