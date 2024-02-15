@@ -800,7 +800,7 @@ install_scene_builder(){
     then
         sudo rpm-ostree install openjfx
         curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i scenebuilder.rpm
+        sudo rpm-ostree install scenebuilder.rpm
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
