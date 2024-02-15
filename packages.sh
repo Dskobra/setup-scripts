@@ -705,8 +705,7 @@ install_package_tools(){
         #rpm-build rpmdevtools
         #check_if_fedora_immutable
         #install_package_tools_containers 
-        CONTAINER_WARNING="Highly discourged to install outside of a container
-        on Fedora atomic editions."
+        CONTAINER_WARNING="Highly discourged to install outside of a container on Fedora atomic editions."
         zenity --warning --text="$CONTAINER_WARNING"
     elif [ $PKGMGR == "zypper" ]
     then
@@ -720,18 +719,6 @@ install_package_tools(){
         build-essential
     else
         echo "Unkown error has occured."
-    fi
-}
-
-
-install_package_tools_containers(){  
-    if test -f /usr/bin/dnf; then
-        sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
-    elif ! test -f /usr/bin/dnf; then
-        CONTAINER_WARNING="Highly discourged to install outside of a container
-        on Fedora atomic editions."
-        zenity --warning --text="$CONTAINER_WARNING"
     fi
 }
 
