@@ -20,7 +20,7 @@ make_app_folder(){
            APP_FOLDER=exists 
     elif [ "$APP_FOLDER" = "missing" ];
         then
-        mkdir  "$HOME"/.AppInstalls/ # store idea, pycharm etc in
+        mkdir  -p "$HOME"/.AppInstalls/launchers # store idea, pycharm etc in
     fi
 }
 
@@ -718,7 +718,8 @@ office_menu(){
     echo "(3) Abiword            (4) Gnumeric"
     echo "(5) KDE Okular         (6) Gnome Evince"
     echo "(7) KDE Ark            (8) Gnome File Roller"
-    echo "(9) Claws-Mail         (10) Thunderbird"         
+    echo "(9) Claws-Mail         (10) Thunderbird"
+    echo "(11) Bitwarden         (12) KeePassXC"         
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -776,9 +777,15 @@ office_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
             office_menu
             ;;
-        
-        99) 
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Office-Apps
+
+        11)
+            source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
+            office_menu
+            ;;
+
+        12)
+            source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
+            office_menu
             ;;
 
         m)
@@ -882,9 +889,8 @@ cpp_menu(){
     echo ""
     echo ""   
     echo ""
-    echo "(1) GCC            (2) Package Build Tools"
-    echo "(3) Codeblocks"
-    echo "(p) Previous Menu  (m) Main Menu"
+    echo "(1) GCC/Package Tools (2) Codeblocks"
+    echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -892,16 +898,11 @@ cpp_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_c_cpp"
-            cpp_menu
-            ;;
-
-        2)
             source $SCRIPTS_HOME/packages.sh; "install_package_tools"
             cpp_menu
             ;;
-
-        3)
+        
+        2)
             source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
             cpp_menu
             ;;

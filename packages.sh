@@ -469,27 +469,31 @@ install_mangohud(){
 wowup(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/Desktop/$WOWUPBINARY; then
+    if test -f /home/$USER/.AppInstalls/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
-    elif ! test -f /home/$USER/Desktop/$WOWUPBINARY; then
-        cd "$HOME"/Desktop
+    elif ! test -f /home/$USER/.AppInstalls/$WOWUPBINARY; then
+        cd /home/$USER/.AppInstalls
         curl -L -o $WOWUPBINARY $WOWUPLINK 
         chmod +x $WOWUPBINARY
+        cp $SCRIPTS_HOME/data/launchers/wowup.sh /home/$USER/.AppInstalls/launchers/wowup.sh
+        ln -s "$HOME/.AppInstalls/launchers/wowup.sh" "$HOME/Desktop/wowup"
     fi
 }
 
 minecraft(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
-    if test -f /home/$USER/Desktop/minecraft-launcher; then
+    if test -f /home/$USER/.AppInstalls/minecraft-launcher; then
         echo "Minecraft already downloaded."
-    elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
+    elif ! test -f /home/$USER/.AppInstalls/minecraft-launcher; then
         cd $SCRIPTS_HOME/temp
         curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
         tar -xvf Minecraft.tar.gz
         cd minecraft-launcher
         chmod +x minecraft-launcher
-        mv minecraft-launcher "$HOME"/Desktop
+        mv minecraft-launcher /home/$USER/.AppInstalls
+        cp $SCRIPTS_HOME/data/launchers/minecraft.sh /home/$USER/.AppInstalls/launchers/minecraft.sh
+        ln -s "$HOME/.AppInstalls/launchers/minecraft.sh" "$HOME/Desktop/minecraft"
     fi
 }
 
@@ -651,47 +655,63 @@ install_thunderbird(){
         echo "Unkown error has occured."
     fi
 }
-### coding apps
 
-install_c_cpp(){
+download_bitwarden(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -f /home/$USER/.AppInstalls/$BITWARDEN_BINARY; then
+        echo "Bitwarden already downloaded."
+    elif ! test -f /home/$USER/.AppInstalls/$BITWARDEN_BINARY; then
+        cd /home/$USER/.AppInstalls
+        curl -L -o $BITWARDEN_BINARY $BITWARDEN_LINK 
+        chmod +x $BITWARDEN_BINARY
+        cp $SCRIPTS_HOME/data/launchers/bitwarden.sh /home/$USER/.AppInstalls/launchers/bitwarden.sh
+        ln -s "$HOME/.AppInstalls/launchers/bitwarden.sh" "$HOME/Desktop/bitwarden"
+    fi
+}
+
+install_keepassxc(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
+        flatpak install --user -y flathub org.keepassxc.KeePassXC
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
-        check_if_fedora_immutable 
+        flatpak install --user -y flathub org.keepassxc.KeePassXC
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
+        sudo zypper -n install keepassxc
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y automake gcc g++ bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace linux-perf strace
+        flatpak install --user -y flathub org.keepassxc.KeePassXC
     else
         echo "Unkown error has occured."
     fi
 }
 
+### coding apps
+
 install_package_tools(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y koji mock redhat-rpm-config\
-        rpm-build rpmdevtools
+        sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace perf strace koji\
+        mock redhat-rpm-config rpm-build rpmdevtools
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install koji mock redhat-rpm-config\
-        rpm-build rpmdevtools
-        check_if_fedora_immutable
+        WARNING_ONE="Installing gcc and package build tools is not supported"
+        WARNING_TWO="outside of containers on"
+        WARNING_THREE="Fedora Atomic editions."
+        zenity --warning --text="$WARNING_ONE $WARNING_TWO $WARNING_THREE"
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper -n install rpm-build build inst-source-utils
+        sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace perf strace rpm-build\
+        build inst-source-utils
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y build-essential
+        sudo apt-get install -y automake gcc g++ bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace linux-perf strace\
+        build-essential
     else
         echo "Unkown error has occured."
     fi
@@ -774,24 +794,24 @@ install_scene_builder(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openjfx
-        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER_RPM
+        curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i scenebuilder.rpm
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install openjfx
-        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER_RPM
+        curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
+        sudo rpm-ostree install scenebuilder.rpm
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install openjfx
-        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i --force $SCENE_BUILDER_RPM
+        curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i --force scenebuilder.rpm
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openjfx
-        curl -L -o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
-        sudo dpkg -i $SCENE_BUILDER_DEB
+        curl -L -o scenebuilder.deb $SCENE_BUILDER_DEB_LINK
+        sudo dpkg -i scenebuilder.deb
     else
         echo "Unkown error has occured."
     fi
@@ -837,8 +857,6 @@ install_bluefish(){
 }
 
 install_nodejs(){
-    echo "This downloads the nvm or Node Version Manager script to install"
-    echo "the latest nodejs long term support release."
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
@@ -975,7 +993,6 @@ install_geany(){
 install_eclipse(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
     curl -o eclipse.tar.gz $ECLIPSE_LINK
 
     tar -xvf eclipse.tar.gz
@@ -1133,7 +1150,6 @@ install_virtualization(){
 
 ### remove packages
 remove_codecs(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y
