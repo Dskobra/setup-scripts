@@ -475,6 +475,8 @@ wowup(){
         cd /home/$USER/.AppInstalls
         curl -L -o $WOWUPBINARY $WOWUPLINK 
         chmod +x $WOWUPBINARY
+        cp $SCRIPTS_HOME/data/launchers/wowup.sh /home/$USER/.AppInstalls/launchers
+        ln -s '/home/$USER/.AppInstalls/launchers/wowup.sh' '/home/$USER/Desktop/wowup'
     fi
 }
 
