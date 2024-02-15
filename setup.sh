@@ -779,7 +779,7 @@ office_menu(){
             ;;
 
         11)
-            source $SCRIPTS_HOME/packages.sh; "install_bitwarden"
+            source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
             office_menu
             ;;
 
