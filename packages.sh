@@ -659,14 +659,33 @@ install_thunderbird(){
 download_bitwarden(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/.AppInstalls/$BWBINARY; then
+    if test -f /home/$USER/.AppInstalls/$BITWARDEN_BINARY; then
         echo "Bitwarden already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/$BWBINARY; then
+    elif ! test -f /home/$USER/.AppInstalls/$BITWARDEN_BINARY; then
         cd /home/$USER/.AppInstalls
-        curl -L -o $BWBINARY $BWLINK 
-        chmod +x $BWBINARY
+        curl -L -o $BITWARDEN_BINARY $BITWARDEN_LINK 
+        chmod +x $BITWARDEN_BINARY
         cp $SCRIPTS_HOME/data/launchers/bitwarden.sh /home/$USER/.AppInstalls/launchers/bitwarden.sh
         ln -s "$HOME/.AppInstalls/launchers/bitwarden.sh" "$HOME/Desktop/bitwarden"
+    fi
+}
+
+install_keepassxc(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        flatpak install --user -y flathub org.keepassxc.KeePassXC
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.keepassxc.KeePassXC
+    elif [ $PKGMGR == "zypper" ]
+    then
+        sudo zypper -n install keepassxc
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.keepassxc.KeePassXC
+    else
+        echo "Unkown error has occured."
     fi
 }
 

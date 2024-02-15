@@ -777,6 +777,16 @@ office_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
             office_menu
             ;;
+
+        11)
+            source $SCRIPTS_HOME/packages.sh; "install_bitwarden"
+            office_menu
+            ;;
+
+        12)
+            source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
+            office_menu
+            ;;
         
         99) 
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Office-Apps
