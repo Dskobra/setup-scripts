@@ -492,6 +492,8 @@ minecraft(){
         cd minecraft-launcher
         chmod +x minecraft-launcher
         mv minecraft-launcher /home/$USER/.AppInstalls
+        cp $SCRIPTS_HOME/data/launchers/minecraft.sh /home/$USER/.AppInstalls/launchers/minecraft.sh
+        ln -s "$HOME/.AppInstalls/launchers/minecraft.sh" "$HOME/Desktop/minecraft"
     fi
 }
 
