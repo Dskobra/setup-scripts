@@ -742,7 +742,9 @@ install_package_tools_containers(){
         sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
         m4 valgrind byacc ccache cscope indent ltrace perf strace
     elif ! test -f /usr/bin/dnf; then
-        echo "Please run this in a container."
+        CONTAINER_WARNING="Highly discourged to install outside of a container
+        on Fedora atomic editions."
+        zenity --warning --text="$CONTAINER_WARNING"
     fi
 }
 
