@@ -889,9 +889,8 @@ cpp_menu(){
     echo ""
     echo ""   
     echo ""
-    echo "(1) GCC            (2) Package Build Tools"
-    echo "(3) Codeblocks"
-    echo "(p) Previous Menu  (m) Main Menu"
+    echo "(1) GCC/Package Tools (2) Codeblocks"
+    echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -902,13 +901,8 @@ cpp_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_c_cpp"
             cpp_menu
             ;;
-
+        
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_package_tools"
-            cpp_menu
-            ;;
-
-        3)
             source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
             cpp_menu
             ;;

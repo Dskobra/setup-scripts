@@ -695,47 +695,32 @@ install_c_cpp(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
-        check_if_fedora_immutable 
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y automake gcc g++ bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace linux-perf strace
-    else
-        echo "Unkown error has occured."
-    fi
-}
-install_c_cpp(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
+        m4 valgrind byacc ccache cscope indent ltrace perf strace koji\
+        mock redhat-rpm-config rpm-build rpmdevtools
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         #sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
         #m4 valgrind byacc ccache cscope indent ltrace perf strace
+
+        #sudo rpm-ostree install koji mock redhat-rpm-config\
+        #rpm-build rpmdevtools
         #check_if_fedora_immutable
         install_package_tools_containers 
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace
+        m4 valgrind byacc ccache cscope indent ltrace perf strace rpm-build\
+        build inst-source-utils
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y automake gcc g++ bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace linux-perf strace
+        m4 valgrind byacc ccache cscope indent ltrace linux-perf strace\
+        build-essential
     else
         echo "Unkown error has occured."
     fi
 }
+
 
 install_package_tools_containers(){  
     if test -f /usr/bin/dnf; then
