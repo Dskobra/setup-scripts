@@ -10,5 +10,3 @@
 cd /home/$USER/.AppInstalls/
 # run wowup while supressing input/output to avoid a logfile being made
 nohup ./WowUp-CF*.AppImage 0</dev/null 1>/dev/null 2>/dev/null &
-cd ~/Desktop
-nohup ./WowUp-CF*.AppImage &
