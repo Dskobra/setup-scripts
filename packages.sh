@@ -812,24 +812,24 @@ install_scene_builder(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openjfx
-        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER_RPM
+        curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i scenebuilder.rpm
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install openjfx
-        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i $SCENE_BUILDER_RPM
+        curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i scenebuilder.rpm
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install openjfx
-        curl -L -o $SCENE_BUILDER_RPM $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i --force $SCENE_BUILDER_RPM
+        curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
+        sudo rpm -i --force scenebuilder.rpm
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openjfx
-        curl -L -o $SCENE_BUILDER_DEB $SCENE_BUILDER_DEB_LINK
-        sudo dpkg -i $SCENE_BUILDER_DEB
+        curl -L -oscenebuilder.deb $SCENE_BUILDER_DEB_LINK
+        sudo dpkg -i scenebuilder.deb
     else
         echo "Unkown error has occured."
     fi
@@ -875,8 +875,6 @@ install_bluefish(){
 }
 
 install_nodejs(){
-    echo "This downloads the nvm or Node Version Manager script to install"
-    echo "the latest nodejs long term support release."
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 	source ~/.bashrc
 	nvm install lts/*
@@ -1013,7 +1011,6 @@ install_geany(){
 install_eclipse(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    ECLIPSE="eclipse-inst-jre-linux64.tar.gz"
     curl -o eclipse.tar.gz $ECLIPSE_LINK
 
     tar -xvf eclipse.tar.gz

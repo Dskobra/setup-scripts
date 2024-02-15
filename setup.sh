@@ -787,10 +787,6 @@ office_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
             office_menu
             ;;
-        
-        99) 
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Office-Apps
-            ;;
 
         m)
             main_menu
