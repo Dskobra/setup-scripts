@@ -698,14 +698,8 @@ install_package_tools(){
         mock redhat-rpm-config rpm-build rpmdevtools
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        #sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
-        #m4 valgrind byacc ccache cscope indent ltrace perf strace
-
-        #sudo rpm-ostree install koji mock redhat-rpm-config\
-        #rpm-build rpmdevtools
-        #check_if_fedora_immutable
-        #install_package_tools_containers 
-        CONTAINER_WARNING="Highly discourged to install outside of a container on Fedora atomic editions."
+        CONTAINER_WARNING="Installing GCC and build tools is not supported outside of\n
+        containers on Fedora Atomic"
         zenity --warning --text="$CONTAINER_WARNING"
     elif [ $PKGMGR == "zypper" ]
     then
