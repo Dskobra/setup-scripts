@@ -481,15 +481,15 @@ wowup(){
 minecraft(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
-    if test -f /home/$USER/Desktop/minecraft-launcher; then
+    if test -f /home/$USER/.AppInstalls/minecraft-launcher; then
         echo "Minecraft already downloaded."
-    elif ! test -f /home/$USER/Desktop/minecraft-launcher; then
+    elif ! test -f /home/$USER/.AppInstalls/minecraft-launcher; then
         cd $SCRIPTS_HOME/temp
         curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
         tar -xvf Minecraft.tar.gz
         cd minecraft-launcher
         chmod +x minecraft-launcher
-        mv minecraft-launcher "$HOME"/Desktop
+        mv minecraft-launcher /home/$USER/.AppInstalls
     fi
 }
 
