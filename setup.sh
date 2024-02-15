@@ -20,7 +20,7 @@ make_app_folder(){
            APP_FOLDER=exists 
     elif [ "$APP_FOLDER" = "missing" ];
         then
-        mkdir  "$HOME"/.AppInstalls/ # store idea, pycharm etc in
+        mkdir  -p "$HOME"/.AppInstalls/launchers # store idea, pycharm etc in
     fi
 }
 
