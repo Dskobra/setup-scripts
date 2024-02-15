@@ -698,9 +698,10 @@ install_package_tools(){
         mock redhat-rpm-config rpm-build rpmdevtools
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        CONTAINER_WARNING="Installing GCC and build tools is not supported outside of\n
-        containers on Fedora Atomic"
-        zenity --warning --text="$CONTAINER_WARNING"
+        WARNING_ONE="Installing gcc and package build tools is not supported"
+        WARNING_TWO="outside of containers on"
+        WARNING_THREE="Fedora Atomic editions."
+        zenity --warning --text="$WARNING_ONE $WARNING_TWO $WARNING_THREE"
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
