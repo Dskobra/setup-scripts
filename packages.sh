@@ -655,6 +655,21 @@ install_thunderbird(){
         echo "Unkown error has occured."
     fi
 }
+
+download_bitwarden(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -f /home/$USER/.AppInstalls/$BWBINARY; then
+        echo "Bitwarden already downloaded."
+    elif ! test -f /home/$USER/.AppInstalls/$BWBINARY; then
+        cd /home/$USER/.AppInstalls
+        curl -L -o $BWBINARY $BWLINK 
+        chmod +x $BWBINARY
+        cp $SCRIPTS_HOME/data/launchers/bitwarden.sh /home/$USER/.AppInstalls/launchers/bitwarden.sh
+        ln -s "$HOME/.AppInstalls/launchers/bitwarden.sh" "$HOME/Desktop/bitwarden"
+    fi
+}
+
 ### coding apps
 
 install_c_cpp(){

@@ -364,6 +364,7 @@ main_menu(){
         unset input
         main_menu
 }
+
 hardware_menu(){
     echo "----------------"
     echo "|   Hardware   |"
@@ -717,7 +718,8 @@ office_menu(){
     echo "(3) Abiword            (4) Gnumeric"
     echo "(5) KDE Okular         (6) Gnome Evince"
     echo "(7) KDE Ark            (8) Gnome File Roller"
-    echo "(9) Claws-Mail         (10) Thunderbird"         
+    echo "(9) Claws-Mail         (10) Thunderbird"
+    echo "(11) Bitwarden         (12) KeePassXC"         
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
