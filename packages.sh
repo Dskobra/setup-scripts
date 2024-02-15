@@ -704,7 +704,10 @@ install_package_tools(){
         #sudo rpm-ostree install koji mock redhat-rpm-config\
         #rpm-build rpmdevtools
         #check_if_fedora_immutable
-        install_package_tools_containers 
+        #install_package_tools_containers 
+        CONTAINER_WARNING="Highly discourged to install outside of a container
+        on Fedora atomic editions."
+        zenity --warning --text="$CONTAINER_WARNING"
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
