@@ -690,7 +690,7 @@ install_keepassxc(){
 
 ### coding apps
 
-install_c_cpp(){
+install_package_tools(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\

@@ -898,7 +898,7 @@ cpp_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_c_cpp"
+            source $SCRIPTS_HOME/packages.sh; "install_package_tools"
             cpp_menu
             ;;
         
