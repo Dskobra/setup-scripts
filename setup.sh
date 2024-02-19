@@ -704,12 +704,14 @@ gaming_clients_menu(){
 
         1)  
             source $SCRIPTS_HOME/packages.sh; "install_steam"
+            gaming_clients_menu
             ;;
 
         2) 
             mkdir "$HOME"/Games       
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak run net.lutris.Lutris
+            gaming_clients_menu
             ;;
 
         3)
@@ -758,15 +760,17 @@ gaming_tools_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_mangohud"
-            gaming_menu
+            gaming_tools_menu
             ;;
 
         2)
             flatpak install --user -y com.github.Matoking.protontricks
+            gaming_tools_menu
             ;;
         
         3)
             flatpak install --user -y flathub net.davidotek.pupgui2
+            gaming_tools_menu
             ;;
 
         m)
@@ -809,24 +813,25 @@ gaming_wow_clients_menu(){
 
         1)  
             source $SCRIPTS_HOME/packages.sh; "wowup"
+            gaming_wow_clients_menu
             ;;
 
         2) 
             source $SCRIPTS_HOME/packages.sh; "warcraft_logs"
-            gaming_menu
+            gaming_wow_clients_menu
             ;;
 
         3)
-            WARNING_ONE="Raider.IO uses a CDN which this script from downloading."
+            WARNING_ONE="Raider.IO uses a CDN which prevents this script from downloading."
             WARNING_TWO="Clicking OK will take you to the web page."
             zenity --warning --text="$WARNING_ONE $WARNING_TWO"
             xdg-open "https://raider.io/addon"
-            gaming_menu
+            gaming_wow_clients_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/packages.sh; "weakauras_companion"
-            gaming_menu
+            gaming_wow_clients_menu
             ;;
 
 
@@ -844,12 +849,12 @@ gaming_wow_clients_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            gaming_menu
+            gaming_wow_clients_menu
             ;;
             
         esac
         unset input
-        gaming_menu
+        gaming_wow_clients_menu
 }
 
 office_menu(){
