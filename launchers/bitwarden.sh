@@ -1,11 +1,9 @@
 #! /usr/bin/bash
 
-### Bitwarden Launcher
-### launch Bitwarden and separate the process 
-### keeping it open without this script
-### this allows creating a wowup shortcut
-### without updating the file name
-### every update
+## This launches an application with nohup
+## then separates the process. That way
+## i dont have to edit the shortcut with the
+## new appimage name everytime it's updated
 
 cd /home/$USER/.AppInstalls/
 # run Bitwarden while supressing input/output to avoid a logfile being made

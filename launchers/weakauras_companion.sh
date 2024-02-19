@@ -6,5 +6,5 @@
 ## new appimage name everytime it's updated
 
 cd /home/$USER/.AppInstalls/
-# run minecraft while supressing input/output to avoid a logfile being made
-nohup ./minecraft-launcher 0</dev/null 1>/dev/null 2>/dev/null &
+# run weakauras companion app while supressing input/output to avoid a logfile being made
+nohup ./WeakAuras-Companion*.AppImage 0</dev/null 1>/dev/null 2>/dev/null &
