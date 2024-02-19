@@ -812,38 +812,21 @@ gaming_wow_clients_menu(){
             ;;
 
         2) 
-            mkdir "$HOME"/Games       
-            flatpak install --user -y flathub net.lutris.Lutris
-            flatpak run net.lutris.Lutris
+            source $SCRIPTS_HOME/packages.sh; "warcraft_logs"
+            gaming_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
+            WARNING_ONE="Raider.IO uses a CDN which this script from downloading."
+            WARNING_TWO="Clicking OK will take you to the web page."
+            zenity --warning --text="$WARNING_ONE $WARNING_TWO"
+            xdg-open "https://raider.io/addon"
             gaming_menu
             ;;
 
         4)
-            flatpak install --user -y com.github.Matoking.protontricks
-            ;;
-        
-        5)
-            flatpak install --user -y flathub net.davidotek.pupgui2
-            ;;
-
-        6)
-            flatpak install --user -y flathub com.discordapp.Discord
-            ;;
-
-        7)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
-            ;;
-        
-        8)
-            source $SCRIPTS_HOME/packages.sh; "minecraft"
-            ;;
-
-        9)
-            source $SCRIPTS_HOME/packages.sh; "wowup"
+            source $SCRIPTS_HOME/packages.sh; "weakauras_companion"
+            gaming_menu
             ;;
 
 
