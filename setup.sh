@@ -633,11 +633,69 @@ gaming_menu(){
     echo "Steam, lutris and other game related apps/games."
     echo ""
     echo ""   
+    echo "(1) Game Clients           (2) Tools"
+    echo "(3) WoW Clients            (3) Discord"
+    echo "(4) Solitare               (5) Minecraft"
+    echo "(m) Main Menu              (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            gaming_clients_menu
+            ;;
+
+        2) 
+            gaming_tools_menu
+            ;;
+
+        3)
+            gaming_wow_clients_menu
+            gaming_menu
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            ;;
+        
+        5)
+            source $SCRIPTS_HOME/packages.sh; "minecraft"
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_menu
+}
+
+gaming_clients_menu(){
+    echo "----------------------"
+    echo "|   Gaming Clients   |"
+    echo "---------------- ------"
+    echo ""
+    echo "Steam, lutris and other game related apps/games."
+    echo ""
+    echo ""   
     echo "(1) Steam                  (2) Lutris"
-    echo "(3) Mangohud               (4) Protontricks"
-    echo "(5) ProtonUp Qt            (6) Discord"
-    echo "(7) Solitare               (8) Minecraft"
-    echo "(9) WoWUp"
+    echo "(3) Bottles"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -646,6 +704,111 @@ gaming_menu(){
 
         1)  
             source $SCRIPTS_HOME/packages.sh; "install_steam"
+            ;;
+
+        2) 
+            mkdir "$HOME"/Games       
+            flatpak install --user -y flathub net.lutris.Lutris
+            flatpak run net.lutris.Lutris
+            ;;
+
+        3)
+            flatpak install --user -y flatpak install flathub com.usebottles.bottles
+            gaming_clients_menu
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_clients_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_clients_menu
+}
+
+gaming_tools_menu(){
+    echo "--------------------"
+    echo "|   Gaming Tools   |"
+    echo "--------------------"
+    echo ""
+    echo "Mangohud and proton tools"
+    echo ""
+    echo ""   
+    echo "(1) Mangohud               (2) Protontricks"
+    echo "(3) ProtonUp Qt"
+    echo "(m) Main Menu              (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
+            gaming_menu
+            ;;
+
+        2)
+            flatpak install --user -y com.github.Matoking.protontricks
+            ;;
+        
+        3)
+            flatpak install --user -y flathub net.davidotek.pupgui2
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_tools_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_tools_menu
+}
+
+gaming_wow_clients_menu(){
+    echo "----------------------"
+    echo "|  Clients  for WoW   |"
+    echo "---------------- ------"
+    echo ""
+    echo "Addon managers and extra stuff for World of Warcraft"
+    echo ""
+    echo ""   
+    echo "(1) WoW UP                 (2) Warcraft Logs"
+    echo "(3) Raider.IO              (4) Weak Auras Companion"
+    echo "(m) Main Menu              (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            source $SCRIPTS_HOME/packages.sh; "wowup"
             ;;
 
         2) 

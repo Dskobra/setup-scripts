@@ -480,6 +480,34 @@ wowup(){
     fi
 }
 
+warcraft_logs(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -f /home/$USER/.AppInstalls/$WOWLOGSBINARY; then
+        echo "WoWUp already downloaded."
+    elif ! test -f /home/$USER/.AppInstalls/$WOWLOGSBINARY; then
+        cd /home/$USER/.AppInstalls
+        curl -L -o $WOWLOGSBINAR $WOWLOGSLINK
+        chmod +x $WOWLOGSBINARY
+        cp $SCRIPTS_HOME/data/launchers/warcraftlogs.sh /home/$USER/.AppInstalls/launchers/warcraftlogs.sh 
+        ln -s "$HOME/.AppInstalls/launchers/warcraftlogs.sh" "$HOME/Desktop/warcraftlogs"
+    fi
+}
+
+weaKauras_companion(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -f /home/$USER/.AppInstalls/$WACOMPBINARY; then
+        echo "WoWUp already downloaded."
+    elif ! test -f /home/$USER/.AppInstalls/$WACOMPBINARY; then
+        cd /home/$USER/.AppInstalls
+        curl -L -o $WACOMPBINARY $WACOMPLINK
+        chmod +x $WACOMPBINARY
+        cp $SCRIPTS_HOME/data/launchers/weakaurascompanion.sh /home/$USER/.AppInstalls/launchers/weakaurascompanion.sh 
+        ln -s "$HOME/.AppInstalls/launchers/weakaurascompanion.sh" "$HOME/Desktop/weakaurascompanion"
+    fi
+}
+
 minecraft(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
