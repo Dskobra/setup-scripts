@@ -489,8 +489,8 @@ warcraft_logs(){
         cd /home/$USER/.AppInstalls
         curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
         chmod +x $WOWLOGSBINARY
-        cp $SCRIPTS_HOME/data/launchers/warcraftlogs.sh /home/$USER/.AppInstalls/launchers/warcraftlogs.sh 
-        ln -s "$HOME/.AppInstalls/launchers/warcraftlogs.sh" "$HOME/Desktop/warcraftlogs"
+        cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /home/$USER/.AppInstalls/launchers/warcraft_logs.sh 
+        ln -s "$HOME/.AppInstalls/launchers/warcraft_logs.sh" "$HOME/Desktop/warcraft_logs"
     fi
 }
 
@@ -503,8 +503,8 @@ weakauras_companion(){
         cd /home/$USER/.AppInstalls
         curl -L -o $WACOMPBINARY $WACOMPLINK
         chmod +x $WACOMPBINARY
-        cp $SCRIPTS_HOME/data/launchers/weakaurascompanion.sh /home/$USER/.AppInstalls/launchers/weakaurascompanion.sh 
-        ln -s "$HOME/.AppInstalls/launchers/weakaurascompanion.sh" "$HOME/Desktop/weakaurascompanion"
+        cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /home/$USER/.AppInstalls/launchers/weakauras_companion.sh 
+        ln -s "$HOME/.AppInstalls/launchers/weakauras_companion.sh" "$HOME/Desktop/weakauras_companion"
     fi
 }
 
