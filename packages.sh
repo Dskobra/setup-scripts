@@ -487,7 +487,7 @@ warcraft_logs(){
         echo "WoWUp already downloaded."
     elif ! test -f /home/$USER/.AppInstalls/$WOWLOGSBINARY; then
         cd /home/$USER/.AppInstalls
-        curl -L -o $WOWLOGSBINAR $WOWLOGSLINK
+        curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
         chmod +x $WOWLOGSBINARY
         cp $SCRIPTS_HOME/data/launchers/warcraftlogs.sh /home/$USER/.AppInstalls/launchers/warcraftlogs.sh 
         ln -s "$HOME/.AppInstalls/launchers/warcraftlogs.sh" "$HOME/Desktop/warcraftlogs"
