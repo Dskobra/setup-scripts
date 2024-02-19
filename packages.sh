@@ -494,7 +494,7 @@ warcraft_logs(){
     fi
 }
 
-weaKauras_companion(){
+weakauras_companion(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /home/$USER/.AppInstalls/$WACOMPBINARY; then
