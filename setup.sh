@@ -821,6 +821,8 @@ gaming_wow_clients_menu(){
             WARNING_TWO="Clicking OK will take you to the web page."
             zenity --warning --text="$WARNING_ONE $WARNING_TWO"
             xdg-open "https://raider.io/addon"
+            source $SCRIPTS_HOME/packages.sh; "raiderio"
+
             ;;
 
         4)
