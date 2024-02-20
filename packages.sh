@@ -529,7 +529,9 @@ raiderio(){
     if test -f /home/$USER/.AppInstalls/RaiderIO_Client.appimage; then
         echo "Raider.IO already downloaded."
     elif ! test -f /home/$USER/.AppInstalls/RaiderIO_Client.appimage; then
-        zenity --info --text="Please make sure Raider.IO is in the downloads folder then hit OK."
+        FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
+        FILEWARNINGTWO="is saved as .appimage (all lower case) then hit OK."
+        zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
         mv $HOME/Downloads/RaiderIO_Client.appimage /home/$USER/.AppInstalls/RaiderIO_Client.appimage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /home/$USER/.AppInstalls/launchers/raiderio.sh
         ln -s "$HOME/.AppInstalls/launchers/raiderio.sh" "$HOME/Desktop/raiderio"
