@@ -630,7 +630,7 @@ gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "Steam, lutris and other game related apps/games."
+    echo "Game clients and other apps"
     echo ""
     echo ""   
     echo "(1) Game Clients           (2) Tools"
@@ -652,7 +652,6 @@ gaming_menu(){
 
         3)
             gaming_wow_clients_menu
-            gaming_menu
             ;;
 
         4)
@@ -691,12 +690,13 @@ gaming_clients_menu(){
     echo "|   Gaming Clients   |"
     echo "---------------- ------"
     echo ""
-    echo "Steam, lutris and other game related apps/games."
+    echo "Steam, lutris and bottles"
     echo ""
     echo ""   
     echo "(1) Steam                  (2) Lutris"
     echo "(3) Bottles"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -704,19 +704,24 @@ gaming_clients_menu(){
 
         1)  
             source $SCRIPTS_HOME/packages.sh; "install_steam"
-            gaming_clients_menu
             ;;
 
         2) 
             mkdir "$HOME"/Games       
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak run net.lutris.Lutris
-            gaming_clients_menu
             ;;
 
         3)
-            flatpak install --user -y flatpak install flathub com.usebottles.bottles
-            gaming_clients_menu
+            flatpak install --user -y flathub com.usebottles.bottles
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
             ;;
 
 
@@ -752,7 +757,8 @@ gaming_tools_menu(){
     echo ""   
     echo "(1) Mangohud               (2) Protontricks"
     echo "(3) ProtonUp Qt"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -771,6 +777,14 @@ gaming_tools_menu(){
         3)
             flatpak install --user -y flathub net.davidotek.pupgui2
             gaming_tools_menu
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+        
+        P)
+            gaming_menu
             ;;
 
         m)
@@ -805,7 +819,8 @@ gaming_wow_clients_menu(){
     echo ""   
     echo "(1) WoW UP                 (2) Warcraft Logs"
     echo "(3) Raider.IO              (4) Weak Auras Companion"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
