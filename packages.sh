@@ -532,6 +532,7 @@ raiderio(){
         FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
         FILEWARNINGTWO="is saved as .appimage (all lower case) then hit OK."
         zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
+        chmod +x $HOME/Downloads/RaiderIO_Client.appimage
         mv $HOME/Downloads/RaiderIO_Client.appimage /home/$USER/.AppInstalls/RaiderIO_Client.appimage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /home/$USER/.AppInstalls/launchers/raiderio.sh
         ln -s "$HOME/.AppInstalls/launchers/raiderio.sh" "$HOME/Desktop/raiderio"
