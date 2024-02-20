@@ -384,32 +384,26 @@ hardware_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_corectrl"
-            hardware_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "install_nvidia"
-            hardware_menu
             ;;
 
         3)
             source $SCRIPTS_HOME/packages.sh; "install_cheese"
-            hardware_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/packages.sh; "install_kamoso"
-            hardware_menu
             ;;
         
         h)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware
-            hardware_menu
             ;;
 
         H)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware
-            hardware_menu
             ;;
 
         m)
@@ -464,12 +458,10 @@ desktop_plugins_menu(){
 
         h)
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
-            main_menu
             ;;
 
         H)  
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
-            main_menu
             ;;
 
         m)
@@ -513,22 +505,18 @@ internet_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_firefox"
-            internet_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "install_brave_browser"
-            internet_menu
             ;;
         
         3)
             flatpak install --user -y flathub com.dropbox.Client
-            internet_menu
             ;;
 
         4)
             flatpak install --user -y  flathub com.transmissionbt.Transmission
-            internet_menu
             ;;
 
         m)
@@ -573,33 +561,26 @@ multimedia_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_codecs"
-            multimedia_menu
             ;;
 
         2)
             flatpak install --user -y flathub org.videolan.VLC
-            multimedia_menu
             ;;
         
         3)
             flatpak install --user -y flathub com.obsproject.Studio
-            install_openshot
-            multimedia_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/packages.sh; "install_openshot"
-            multimedia_menu
             ;;
 
         5)
             source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
-            multimedia_menu
             ;;
             
         6)
             source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
-            multimedia_menu
             ;;
         
         m)
@@ -630,14 +611,12 @@ gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "Steam, lutris and other game related apps/games."
+    echo "Game clients and other apps"
     echo ""
     echo ""   
-    echo "(1) Steam                  (2) Lutris"
-    echo "(3) Mangohud               (4) Protontricks"
-    echo "(5) ProtonUp Qt            (6) Discord"
-    echo "(7) Solitare               (8) Minecraft"
-    echo "(9) WoWUp"
+    echo "(1) Game Clients           (2) Tools"
+    echo "(3) WoW Clients            (4) Discord"
+    echo "(5) Solitare               (6) Minecraft"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -645,42 +624,27 @@ gaming_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "install_steam"
+            gaming_clients_menu
             ;;
 
         2) 
-            mkdir "$HOME"/Games       
-            flatpak install --user -y flathub net.lutris.Lutris
-            flatpak run net.lutris.Lutris
+            gaming_tools_menu
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
-            gaming_menu
+            gaming_wow_clients_menu
             ;;
 
         4)
-            flatpak install --user -y com.github.Matoking.protontricks
+            flatpak install --user -y flathub com.discordapp.Discord
             ;;
         
         5)
-            flatpak install --user -y flathub net.davidotek.pupgui2
+            source $SCRIPTS_HOME/packages.sh; "install_kpat"
             ;;
 
         6)
-            flatpak install --user -y flathub com.discordapp.Discord
-            ;;
-
-        7)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
-            ;;
-        
-        8)
             source $SCRIPTS_HOME/packages.sh; "minecraft"
-            ;;
-
-        9)
-            source $SCRIPTS_HOME/packages.sh; "wowup"
             ;;
 
 
@@ -706,6 +670,194 @@ gaming_menu(){
         gaming_menu
 }
 
+gaming_clients_menu(){
+    echo "----------------------"
+    echo "|   Gaming Clients   |"
+    echo "---------------- ------"
+    echo ""
+    echo "Steam, lutris and bottles"
+    echo ""
+    echo ""   
+    echo "(1) Steam                  (2) Lutris"
+    echo "(3) Bottles"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            source $SCRIPTS_HOME/packages.sh; "install_steam"
+            ;;
+
+        2) 
+            mkdir "$HOME"/Games       
+            flatpak install --user -y flathub net.lutris.Lutris
+            flatpak run net.lutris.Lutris
+            ;;
+
+        3)
+            flatpak install --user -y flathub com.usebottles.bottles
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_clients_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_clients_menu
+}
+
+gaming_tools_menu(){
+    echo "--------------------"
+    echo "|   Gaming Tools   |"
+    echo "--------------------"
+    echo ""
+    echo "Mangohud and proton tools"
+    echo ""
+    echo ""   
+    echo "(1) Mangohud               (2) Protontricks"
+    echo "(3) ProtonUp Qt"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
+            ;;
+
+        2)
+            flatpak install --user -y com.github.Matoking.protontricks
+            ;;
+        
+        3)
+            flatpak install --user -y flathub net.davidotek.pupgui2
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+        
+        P)
+            gaming_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_tools_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_tools_menu
+}
+
+gaming_wow_clients_menu(){
+    echo "----------------------"
+    echo "|  Clients  for WoW   |"
+    echo "---------------- ------"
+    echo ""
+    echo "Addon managers and extra stuff for World of Warcraft"
+    echo ""
+    echo ""   
+    echo "(1) WoW UP                 (2) Warcraft Logs"
+    echo "(3) Raider.IO              (4) Weak Auras Companion"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            source $SCRIPTS_HOME/packages.sh; "wowup"
+            ;;
+
+        2) 
+            source $SCRIPTS_HOME/packages.sh; "warcraft_logs"
+            ;;
+
+        3)
+            WARNING_ONE="Raider.IO uses a CDN which prevents this script from downloading."
+            WARNING_TWO="Clicking OK will take you to the web page."
+            zenity --warning --text="$WARNING_ONE $WARNING_TWO"
+            xdg-open "https://raider.io/addon"
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "weakauras_companion"
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_wow_clients_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_wow_clients_menu
+}
+
 office_menu(){
     echo "--------------"
     echo "|   Office   |"
@@ -728,64 +880,52 @@ office_menu(){
 
         1)
             flatpak install --user -y flathub org.qownnotes.QOwnNotes
-            office_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "remove_office"
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             check_if_fedora_immutable
-            office_menu
             ;;
 
         3)
             source $SCRIPTS_HOME/packages.sh; "install_abiword"
-            office_menu
             ;;
         
         4)
             source $SCRIPTS_HOME/packages.sh; "install_gnumeric"
-            office_menu
             ;;
 
         5)
             source $SCRIPTS_HOME/packages.sh; "install_okular"
-            office_menu
             ;;
 
         6)
             source $SCRIPTS_HOME/packages.sh; "install_evince"
-            office_menu
             ;;
         
         7)
             source $SCRIPTS_HOME/packages.sh; "install_kde_ark"
-            office_menu
             ;;
 
         8)
             source $SCRIPTS_HOME/packages.sh; "install_file_roller"
-            office_menu
             ;;
 
         9)
             source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
-            office_menu
             ;;
         
         10)
             source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
-            office_menu
             ;;
 
         11)
             source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
-            office_menu
             ;;
 
         12)
             source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
-            office_menu
             ;;
 
         m)
@@ -851,12 +991,10 @@ coding_menu(){
 
         6)
             source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
-            coding_menu
             ;;
 
         7)
             source $SCRIPTS_HOME/packages.sh; "install_containers"
-            coding_menu
             ;;
 
         m)
@@ -899,12 +1037,10 @@ cpp_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_package_tools"
-            cpp_menu
             ;;
         
         2)
             source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
-            cpp_menu
             ;;
         
         p)
@@ -956,23 +1092,19 @@ openjdk_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_openjdk"
-            openjdk_menu
             ;;
 
         2)
             
             source $SCRIPTS_HOME/packages.sh; "install_idea"
-            openjdk_menu
             ;;
 
         3)  
             source $SCRIPTS_HOME/packages.sh; "install_netbeans"
-            openjdk_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
-            openjdk_menu
             ;;
         p)
             coding_menu
@@ -1023,17 +1155,14 @@ web_dev_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_nodejs"
-            web_dev_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
-            web_dev_menu
             ;;
 
         3)
             source $SCRIPTS_HOME/packages.sh; "install_bluefish"
-            web_dev_menu
             ;;
         
         p)
@@ -1085,17 +1214,14 @@ python_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_python_tools"
-            python_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
-            python_menu
             ;;
 
         3)
             source $SCRIPTS_HOME/packages.sh; "install_pycharm"
-            python_menu
             ;;
 
         p)
@@ -1147,22 +1273,18 @@ ides_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_vim"
-            ides_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "install_vscodium"
-            ides_menu
             ;;
 
         3)
             source $SCRIPTS_HOME/packages.sh; "install_geany"
-            ides_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/packages.sh; "install_eclipse"
-            ides_menu
             ;;
 
         p)
@@ -1218,42 +1340,34 @@ utils_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_fmedia_writer"
-            utils_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
-            utils_menu
             ;;
 
         3)
             flatpak install --user -y flathub org.raspberrypi.rpi-imager
-            utils_menu
             ;;
 
         4)
             source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
-            utils_menu
             ;;
 
         5)
             flatpak install --user -y flathub org.gtkhash.gtkhash
-            utils_menu
             ;;
 
         6)
             flatpak install --user -y flathub com.github.tchx84.Flatseal
-            utils_menu
             ;;
 
         7)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
-            utils_menu
             ;;
         
         8)
             source $SCRIPTS_HOME/packages.sh; "install_virtualization"
-            utils_menu
             ;;
 
         m)
@@ -1297,7 +1411,6 @@ extras_menu(){
 
         1)
             source $SCRIPTS_HOME/data/fedora_upgrade_helper.sh; "launch_menu"
-            extras_menu
             ;;
 
         2)
@@ -1306,7 +1419,6 @@ extras_menu(){
 
         3)
             source $SCRIPTS_HOME/data/dsksstuff.sh; "dsksstuff_menu"
-            extras_menu
             ;;
 
         4)
@@ -1355,12 +1467,10 @@ configurations_menu(){
 
         1)
             sudo modprobe xpad
-            configurations_menu
             ;;
 
         2)
             source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
-            configurations_menu
             ;;
 
         3)
