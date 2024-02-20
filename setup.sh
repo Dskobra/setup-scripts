@@ -615,8 +615,8 @@ gaming_menu(){
     echo ""
     echo ""   
     echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (3) Discord"
-    echo "(4) Solitare               (5) Minecraft"
+    echo "(3) WoW Clients            (4) Discord"
+    echo "(5) Solitare               (6) Minecraft"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -636,10 +636,14 @@ gaming_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            flatpak install --user -y flathub com.discordapp.Discord
             ;;
         
         5)
+            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            ;;
+
+        6)
             source $SCRIPTS_HOME/packages.sh; "minecraft"
             ;;
 
