@@ -615,8 +615,9 @@ gaming_menu(){
     echo ""
     echo ""   
     echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Discord"
-    echo "(5) Solitare               (6) Minecraft"
+    echo "(3) WoW Clients            (4) Emulators"
+    echo "(5) Discord                (6) Solitare"
+    echo "(7) Minecraft"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -636,14 +637,18 @@ gaming_menu(){
             ;;
 
         4)
+            emulators_menu
+            ;;
+
+        5)
             flatpak install --user -y flathub com.discordapp.Discord
             ;;
         
-        5)
+        6)
             source $SCRIPTS_HOME/packages.sh; "install_kpat"
             ;;
 
-        6)
+        7)
             source $SCRIPTS_HOME/packages.sh; "minecraft"
             ;;
 
@@ -858,6 +863,52 @@ gaming_wow_clients_menu(){
         esac
         unset input
         gaming_wow_clients_menu
+}
+
+emulators_menu(){
+    echo "-----------------"
+    echo "|   Emulators   |"
+    echo "-----------------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Dolphin                (2) Cemu"
+    echo "(m) Main Menu              (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+            emulators_menu
+            ;;
+
+        2) 
+            emulators_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            emulators_menu
+            ;;
+            
+        esac
+        unset input
+        emulators_menu
 }
 
 office_menu(){
