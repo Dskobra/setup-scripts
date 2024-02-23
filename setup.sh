@@ -886,6 +886,7 @@ emulators_menu(){
             ;;
 
         2) 
+            source $SCRIPTS_HOME/packages.sh; "download_cemu"
             emulators_menu
             ;;
 

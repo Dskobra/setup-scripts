@@ -539,6 +539,19 @@ raiderio(){
     fi
 }
 
+download_cemu(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -f /home/$USER/.AppInstalls/$CEMU_BINARY; then
+        echo "Cemu already downloaded."
+    elif ! test -f /home/$USER/.AppInstalls/$CEMU_BINARY; then
+        cd /home/$USER/.AppInstalls
+        curl -L -o $CEMU_BINARY $CEMU_LINK
+        chmod +x $CEMU_BINARY
+        cp $SCRIPTS_HOME/data/launchers/cemu.sh /home/$USER/.AppInstalls/launchers/cemu.sh
+        ln -s "$HOME/.AppInstalls/launchers/cemu.sh" "$HOME/Desktop/cemu"
+    fi
+}
 ### Office Apps
 
 install_abiword(){
