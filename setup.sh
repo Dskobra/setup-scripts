@@ -874,7 +874,8 @@ emulators_menu(){
     echo ""
     echo ""   
     echo "(1) Dolphin                (2) Cemu"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -892,6 +893,14 @@ emulators_menu(){
 
         m)
             main_menu
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
             ;;
 
         M)
