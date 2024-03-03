@@ -530,7 +530,7 @@ raiderio(){
         echo "Raider.IO already downloaded."
     elif ! test -f /home/$USER/.AppInstalls/RaiderIO_Client.appimage; then
         FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
-        FILEWARNINGTWO="is saved as .appimage (all lower case) then hit OK."
+        FILEWARNINGTWO="is saved as .AppImage (A and I are capitals) then hit OK."
         zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
         chmod +x $HOME/Downloads/RaiderIO_Client.appimage
         mv $HOME/Downloads/RaiderIO_Client.appimage /home/$USER/.AppInstalls/RaiderIO_Client.appimage
