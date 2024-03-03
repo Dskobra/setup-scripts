@@ -7,4 +7,4 @@
 
 cd /home/$USER/.AppInstalls/
 # run the app while supressing input/output to avoid a logfile being made
-nohup ./RaiderIO_Client.appimage 0</dev/null 1>/dev/null 2>/dev/null &
+nohup ./RaiderIO_Client.AppImage 0</dev/null 1>/dev/null 2>/dev/null &
