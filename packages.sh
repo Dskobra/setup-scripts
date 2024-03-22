@@ -411,6 +411,8 @@ install_steam(){
     then
        flatpak install --user -y flathub com.valvesoftware.Steam 
        flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
+       sudo rpm-ostree install steam-devices
+       check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install steam
