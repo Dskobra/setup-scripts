@@ -492,7 +492,7 @@ warcraft_logs(){
         curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
         chmod +x $WOWLOGSBINARY
         cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /opt/AppInstalls/launchers/warcraft_logs.sh 
-        ln -s "$/opt/AppInstalls/launchers/warcraft_logs.sh" "$HOME/Desktop/warcraft_logs"
+        ln -s "/opt/AppInstalls/launchers/warcraft_logs.sh" "$HOME/Desktop/warcraft_logs"
     fi
 }
 
@@ -532,10 +532,10 @@ raiderio(){
         echo "Raider.IO already downloaded."
     elif ! test -f /opt/AppInstalls/data/RaiderIO_Client.appimage; then
         FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
-        FILEWARNINGTWO="is saved as .appimage (all lowercase) then hit OK."
+        FILEWARNINGTWO="is saved as .AppImage (all lowercase) then hit OK."
         zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
         chmod +x $HOME/Downloads/RaiderIO_Client.appimage
-        mv $HOME/Downloads/RaiderIO_Client.appimage /opt/AppInstalls/data/RaiderIO_Client.appimage
+        mv $HOME/Downloads/RaiderIO_Client.AppImage /opt/AppInstalls/data/RaiderIO_Client.AppImage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
         ln -s "/opt/AppInstalls/launchers/raiderio.sh" "$HOME/Desktop/raiderio"
     fi
