@@ -483,8 +483,7 @@ wowup(){
         chmod +x $HOME/.local/share/applications/WoWUp.desktop
         curl -L -o /opt/AppInstalls/icons/wowup.png $WOWUP_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/WoWUp.desktop" "$HOME/Desktop/WoWUp.desktop"
-        #ln -s "/opt/AppInstalls/launchers/wowup.sh" "$HOME/Desktop/wowup"          old shorcut link
-        
+        #ln -s "/opt/AppInstalls/launchers/wowup.sh" "$HOME/Desktop/wowup"          old shorcut link   
     fi
 }
 
@@ -502,9 +501,7 @@ warcraft_logs(){
         chown $USER:$USER $HOME/.local/share/applications/Warcraft_Logs.desktop
         chmod +x $HOME/.local/share/applications/Warcraft_Logs.desktop
         curl -L -o /opt/AppInstalls/icons/warcraft_logs.png $WOWLOGS_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/Warcraft_Logs.desktop" "$HOME/Desktop/Warcraft_Logs.desktop"
-
-        
+        ln -s "$HOME/.local/share/applications/Warcraft_Logs.desktop" "$HOME/Desktop/Warcraft_Logs.desktop"  
     fi
 }
 
@@ -549,6 +546,10 @@ raiderio(){
         chmod +x $HOME/Downloads/RaiderIO_Client.appimage
         mv $HOME/Downloads/RaiderIO_Client.AppImage /opt/AppInstalls/data/RaiderIO_Client.AppImage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
+        cp $SCRIPTS_HOME/data/shortcuts/RaiderIO.desktop $HOME/.local/share/applications/RaiderIO.desktop
+        chown $USER:$USER $HOME/.local/share/applications/RaiderIO.desktop
+        chmod +x $HOME/.local/share/applications/RaiderIO.desktop
+        curl -L -o /opt/AppInstalls/icons/raiderio.png $RAIDERIO_IMAGE_LINK
         ln -s "/opt/AppInstalls/launchers/raiderio.sh" "$HOME/Desktop/raiderio"
     fi
 }
