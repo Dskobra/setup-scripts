@@ -5,6 +5,6 @@
 ## i dont have to edit the shortcut with the
 ## new appimage name everytime it's updated
 
-cd /home/$USER/.AppInstalls/
+cd /opt/AppInstalls/data
 # run the app while supressing input/output to avoid a logfile being made
 nohup ./minecraft-launcher 0</dev/null 1>/dev/null 2>/dev/null &

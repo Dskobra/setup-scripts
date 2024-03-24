@@ -4,5 +4,5 @@ Version=1.0
 Terminal=false
 Type=Application
 Name=Minecraft
-Exec=/home/$USER/.AppInstalls/launchers/minecraft.sh
-Icon=
+Exec=/opt/AppInstalls/launchers/minecraft.sh
+Icon=/opt/AppInstalls/icons/minecraft.png

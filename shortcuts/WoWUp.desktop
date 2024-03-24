@@ -4,5 +4,6 @@ Version=1.0
 Terminal=false
 Type=Application
 Name=WoWUp
+Categories=Games;
 Exec=/home/$USER/.AppInstalls/launchers/wowup.sh
-Icon=
+Icon=/opt/AppInstalls/icons/wowup.png
