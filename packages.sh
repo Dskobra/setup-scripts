@@ -537,13 +537,13 @@ minecraft(){
 }
 
 raiderio(){
-    if test -f /opt/AppInstalls/data/RaiderIO_Client.appimage; then
+    if test -f /opt/AppInstalls/data/RaiderIO_Client.AppImage; then
         echo "Raider.IO already downloaded."
-    elif ! test -f /opt/AppInstalls/data/RaiderIO_Client.appimage; then
+    elif ! test -f /opt/AppInstalls/data/RaiderIO_Client.AppImage; then
         FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
-        FILEWARNINGTWO="is saved as .AppImage (all lowercase) then hit OK."
+        FILEWARNINGTWO="is saved as .AppImage (capital A and I in AppImage) then hit OK."
         zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
-        chmod +x $HOME/Downloads/RaiderIO_Client.appimage
+        chmod +x $HOME/Downloads/RaiderIO_Client.AppImage
         mv $HOME/Downloads/RaiderIO_Client.AppImage /opt/AppInstalls/data/RaiderIO_Client.AppImage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
         cp $SCRIPTS_HOME/data/shortcuts/RaiderIO.desktop $HOME/.local/share/applications/RaiderIO.desktop
