@@ -3,6 +3,6 @@
 Version=1.0
 Terminal=false
 Type=Application
-Name=Minecraft
+Name=Warcraft Logs
 Exec=/opt/AppInstalls/launchers/warcraft_logs.sh
 Icon=/opt/AppInstalls/icons/warcraft_logs.png
