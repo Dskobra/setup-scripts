@@ -513,17 +513,17 @@ weakauras_companion(){
 minecraft(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
-    if test -f /home/$USER/.AppInstalls/minecraft-launcher; then
+    if test -f /opt/AppInstalls/data/minecraft-launcher; then
         echo "Minecraft already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/minecraft-launcher; then
+    elif ! test -f /opt/AppInstalls/data/minecraft-launcher; then
         cd $SCRIPTS_HOME/temp
         curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
         tar -xvf Minecraft.tar.gz
         cd minecraft-launcher
         chmod +x minecraft-launcher
-        mv minecraft-launcher /home/$USER/.AppInstalls
-        cp $SCRIPTS_HOME/data/launchers/minecraft.sh /home/$USER/.AppInstalls/launchers/minecraft.sh
-        ln -s "$HOME/.AppInstalls/launchers/minecraft.sh" "$HOME/Desktop/minecraft"
+        mv minecraft-launcher /opt/AppInstalls/data
+        cp $SCRIPTS_HOME/data/launchers/minecraft.sh /opt/AppInstalls/launchers/minecraft.sh
+        ln -s "/opt/AppInstalls/launchers/minecraft.sh" "$HOME/Desktop/minecraft"
     fi
 }
 
@@ -555,42 +555,6 @@ download_cemu(){
     fi
 }
 ### Office Apps
-
-install_abiword(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y abiword
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub com.abisource.AbiWord
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install abiword
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y abiword
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_gnumeric(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y gnumeric
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.gnumeric.Gnumeric
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install gnumeric
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y gnumeric
-    else
-        echo "Unkown error has occured."
-    fi
-}
 
 install_okular(){
     if [ $PKGMGR == "dnf" ]
@@ -815,16 +779,16 @@ install_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     
-    if test -d $HOME/.AppInstalls/idea; then
+    if test -d /opt/AppInstalls/data/idea; then
         echo "Intellij Idea already downloaded."
-    elif ! test -d $HOME/.AppInstalls/idea; then
+    elif ! test -d /opt/AppInstalls/data/idea; then
         rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o idea.tar.gz $IDEA_LINK
         tar -xvf idea.tar.gz
         rm idea.tar.gz
-        mv idea* $HOME/.AppInstalls/idea
-        ln -s "$HOME/.AppInstalls/idea/bin/idea.sh" "$HOME/Desktop/idea"
+        mv idea* /opt/AppInstalls/data/idea
+        ln -s "$HOME/.AppInstalls/data/idea/bin/idea.sh" "$HOME/Desktop/idea"
 
     fi
 }
@@ -832,15 +796,15 @@ install_idea(){
 install_netbeans(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -d $HOME/.AppInstalls/netbeans; then
+    if test -d /opt/AppInstalls/data/netbeans; then
         echo "Netbeans already downloaded."
-    elif ! test -d $HOME/.AppInstalls/netbeans; then
+    elif ! test -d /opt/AppInstalls/data/netbeans; then
         rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o netbeans.zip $NETBEANS_LINK
         unzip netbeans.zip
-        mv $SCRIPTS_HOME/temp/netbeans $HOME/.AppInstalls/netbeans
-        ln -s "$HOME/.AppInstalls/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
+        mv $SCRIPTS_HOME/temp/netbeans /opt/AppInstalls/data/netbeans
+        ln -s "/opt/AppInstalls/data/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
 
     fi
 }
@@ -941,16 +905,16 @@ install_python_tools(){
 install_pycharm(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
-    if test -d $HOME/.AppInstalls/pycharm; then
+    if test -d /opt/AppInstalls/data/pycharm; then
         echo "Pycharm already downloaded."
-    elif ! test -d $HOME/.AppInstalls/pycharm; then
+    elif ! test -d /opt/AppInstalls/data/pycharm; then
         rm "$HOME/Desktop/pycharm"       # symlink gets put in pycharm folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o pycharm.tar.gz $PYCHARM_LINK
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
-        mv pycharm* $HOME/.AppInstalls/pycharm
-        ln -s "$HOME/.AppInstalls/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
+        mv pycharm* /opt/AppInstalls/data/pycharm
+        ln -s "/opt/AppInstalls/data/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
 
     fi
 }

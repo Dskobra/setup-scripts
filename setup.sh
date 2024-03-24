@@ -14,13 +14,16 @@ make_temp(){
 }
 
 make_app_folder(){
-    test -d "$HOME"/.AppInstalls/ && APP_FOLDER=exists
+    test -d /opt/AppInstalls/ && APP_FOLDER=exists
     if [ "$APP_FOLDER" = "exists" ];
         then
            APP_FOLDER=exists 
     elif [ "$APP_FOLDER" = "missing" ];
         then
-        mkdir  -p "$HOME"/.AppInstalls/launchers # store idea, pycharm etc in
+        mkdir /opt/AppInstalls/
+        mkdir /opt/AppInstalls/launchers # store launch scripts
+        mkdir /opt/AppInstalls/data      # store program folders etc
+        mkdir /opt/AppInstalls/icons  
     fi
 }
 
@@ -930,7 +933,6 @@ office_menu(){
     echo ""
     echo ""   
     echo "(1) QOwnNotes          (2) Libreoffice"
-    echo "(3) Abiword            (4) Gnumeric"
     echo "(5) KDE Okular         (6) Gnome Evince"
     echo "(7) KDE Ark            (8) Gnome File Roller"
     echo "(9) Claws-Mail         (10) Thunderbird"
