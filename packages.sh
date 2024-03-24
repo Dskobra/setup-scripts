@@ -471,42 +471,42 @@ install_mangohud(){
 wowup(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/.AppInstalls/$WOWUPBINARY; then
+    if test -f /opt/AppInstalls/data/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/$WOWUPBINARY; then
-        cd /home/$USER/.AppInstalls
+    elif ! test -f /opt/AppInstalls/data/$WOWUPBINARY; then
+        cd /opt/AppInstalls/data
         curl -L -o $WOWUPBINARY $WOWUPLINK 
         chmod +x $WOWUPBINARY
-        cp $SCRIPTS_HOME/data/launchers/wowup.sh /home/$USER/.AppInstalls/launchers/wowup.sh
-        ln -s "$HOME/.AppInstalls/launchers/wowup.sh" "$HOME/Desktop/wowup"
+        cp $SCRIPTS_HOME/data/launchers/wowup.sh /opt/AppInstalls/launchers/wowup.sh
+        ln -s "/opt/AppInstalls/launchers/wowup.sh" "$HOME/Desktop/wowup"
     fi
 }
 
 warcraft_logs(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/.AppInstalls/$WOWLOGSBINARY; then
+    if test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
         echo "WoWUp already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/$WOWLOGSBINARY; then
-        cd /home/$USER/.AppInstalls
+    elif ! test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
+        cd /opt/AppInstalls/data
         curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
         chmod +x $WOWLOGSBINARY
-        cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /home/$USER/.AppInstalls/launchers/warcraft_logs.sh 
-        ln -s "$HOME/.AppInstalls/launchers/warcraft_logs.sh" "$HOME/Desktop/warcraft_logs"
+        cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /opt/AppInstalls/launchers/warcraft_logs.sh 
+        ln -s "$/opt/AppInstalls/launchers/warcraft_logs.sh" "$HOME/Desktop/warcraft_logs"
     fi
 }
 
 weakauras_companion(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/.AppInstalls/$WACOMPBINARY; then
+    if test -f /opt/AppInstalls/data/$WACOMPBINARY; then
         echo "WoWUp already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/$WACOMPBINARY; then
-        cd /home/$USER/.AppInstalls
+    elif ! test -f /opt/AppInstalls/data/$WACOMPBINARY; then
+        cd /opt/AppInstalls/data
         curl -L -o $WACOMPBINARY $WACOMPLINK
         chmod +x $WACOMPBINARY
-        cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /home/$USER/.AppInstalls/launchers/weakauras_companion.sh 
-        ln -s "$HOME/.AppInstalls/launchers/weakauras_companion.sh" "$HOME/Desktop/weakauras_companion"
+        cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /opt/AppInstalls/launchers/weakauras_companion.sh 
+        ln -s "/opt/AppInstalls/launchers/weakauras_companion.sh" "$HOME/Desktop/weakauras_companion"
     fi
 }
 
@@ -528,30 +528,30 @@ minecraft(){
 }
 
 raiderio(){
-    if test -f /home/$USER/.AppInstalls/RaiderIO_Client.appimage; then
+    if test -f /opt/AppInstalls/data/RaiderIO_Client.appimage; then
         echo "Raider.IO already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/RaiderIO_Client.appimage; then
+    elif ! test -f /opt/AppInstalls/data/RaiderIO_Client.appimage; then
         FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
-        FILEWARNINGTWO="is saved as .AppImage (A and I are capitals) then hit OK."
+        FILEWARNINGTWO="is saved as .appimage (all lowercase) then hit OK."
         zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
         chmod +x $HOME/Downloads/RaiderIO_Client.appimage
-        mv $HOME/Downloads/RaiderIO_Client.appimage /home/$USER/.AppInstalls/RaiderIO_Client.appimage
-        cp $SCRIPTS_HOME/data/launchers/raiderio.sh /home/$USER/.AppInstalls/launchers/raiderio.sh
-        ln -s "$HOME/.AppInstalls/launchers/raiderio.sh" "$HOME/Desktop/raiderio"
+        mv $HOME/Downloads/RaiderIO_Client.appimage /opt/AppInstalls/data/RaiderIO_Client.appimage
+        cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
+        ln -s "/opt/AppInstalls/launchers/raiderio.sh" "$HOME/Desktop/raiderio"
     fi
 }
 
 download_cemu(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/.AppInstalls/$CEMU_BINARY; then
+    if test -f /opt/AppInstalls/data/$CEMU_BINARY; then
         echo "Cemu already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/$CEMU_BINARY; then
-        cd /home/$USER/.AppInstalls
+    elif ! test -f /opt/AppInstalls/data/$CEMU_BINARY; then
+        cd /opt/AppInstalls/data
         curl -L -o $CEMU_BINARY $CEMU_LINK
         chmod +x $CEMU_BINARY
-        cp $SCRIPTS_HOME/data/launchers/cemu.sh /home/$USER/.AppInstalls/launchers/cemu.sh
-        ln -s "$HOME/.AppInstalls/launchers/cemu.sh" "$HOME/Desktop/cemu"
+        cp $SCRIPTS_HOME/data/launchers/cemu.sh /opt/AppInstalls/launchers/cemu.sh
+        ln -s "/opt/AppInstalls/launchers/cemu.sh" "$HOME/Desktop/cemu"
     fi
 }
 ### Office Apps
@@ -680,14 +680,14 @@ install_thunderbird(){
 download_bitwarden(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -f /home/$USER/.AppInstalls/$BITWARDEN_BINARY; then
+    if test -f /opt/AppInstalls/data/$BITWARDEN_BINARY; then
         echo "Bitwarden already downloaded."
-    elif ! test -f /home/$USER/.AppInstalls/$BITWARDEN_BINARY; then
-        cd /home/$USER/.AppInstalls
+    elif ! test -f /opt/AppInstalls/data/$BITWARDEN_BINARY; then
+        cd /opt/AppInstalls/data
         curl -L -o $BITWARDEN_BINARY $BITWARDEN_LINK 
         chmod +x $BITWARDEN_BINARY
-        cp $SCRIPTS_HOME/data/launchers/bitwarden.sh /home/$USER/.AppInstalls/launchers/bitwarden.sh
-        ln -s "$HOME/.AppInstalls/launchers/bitwarden.sh" "$HOME/Desktop/bitwarden"
+        cp $SCRIPTS_HOME/data/launchers/bitwarden.sh /opt/AppInstalls/launchers/bitwarden.sh
+        ln -s "/opt/AppInstalls/launchers/bitwarden.sh" "$HOME/Desktop/bitwarden"
     fi
 }
 
