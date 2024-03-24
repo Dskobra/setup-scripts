@@ -20,10 +20,12 @@ make_app_folder(){
            APP_FOLDER=exists 
     elif [ "$APP_FOLDER" = "missing" ];
         then
-        mkdir /opt/AppInstalls/
-        mkdir /opt/AppInstalls/launchers # store launch scripts
-        mkdir /opt/AppInstalls/data      # store program folders etc
-        mkdir /opt/AppInstalls/icons  
+        sudo mkdir /opt/AppInstalls/
+        sudo mkdir /opt/AppInstalls/launchers # store launch scripts
+        sudo mkdir /opt/AppInstalls/data      # store program folders etc
+        sudo mkdir /opt/AppInstalls/icons
+
+        sudo chown $USER:$USER /opt/AppInstalls -R  # make current user owner so its writable  
     fi
 }
 
