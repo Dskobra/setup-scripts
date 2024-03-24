@@ -3,6 +3,7 @@
 Version=1.0
 Terminal=false
 Type=Application
-Name=RaiderIO
+Name=Raider.IO
+Categories=Games;
 Exec=/opt/AppInstalls/launchers/raiderio.sh
 Icon=/opt/AppInstalls/icons/raiderio.png
