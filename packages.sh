@@ -498,7 +498,13 @@ warcraft_logs(){
         curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
         chmod +x $WOWLOGSBINARY
         cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /opt/AppInstalls/launchers/warcraft_logs.sh 
-        ln -s "/opt/AppInstalls/launchers/warcraft_logs.sh" "$HOME/Desktop/warcraft_logs"
+        cp $SCRIPTS_HOME/data/shortcuts/Warcraft_Logs.desktop $HOME/.local/share/applications/Warcraft_Logs.desktop
+        chown $USER:$USER $HOME/.local/share/applications/Warcraft_Logs.desktop
+        chmod +x $HOME/.local/share/applications/Warcraft_Logs.desktop
+        curl -L -o /opt/AppInstalls/icons/warcraft_logs.png $WOWLOGS_IMAGE_LINK
+        ln -s "/opt/AppInstalls/launchers/warcraft_logs.sh" "$HOME/Warcraft_Logs.desktop"
+
+        
     fi
 }
 
