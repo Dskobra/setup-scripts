@@ -502,7 +502,7 @@ warcraft_logs(){
         chown $USER:$USER $HOME/.local/share/applications/Warcraft_Logs.desktop
         chmod +x $HOME/.local/share/applications/Warcraft_Logs.desktop
         curl -L -o /opt/AppInstalls/icons/warcraft_logs.png $WOWLOGS_IMAGE_LINK
-        ln -s "/opt/AppInstalls/launchers/warcraft_logs.sh" "$HOME/Warcraft_Logs.desktop"
+        ln -s "$HOME/.local/share/applications/Warcraft_Logs.desktop" "$HOME/Warcraft_Logs.desktop"
 
         
     fi

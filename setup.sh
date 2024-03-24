@@ -14,6 +14,9 @@ make_temp(){
 }
 
 make_app_folder(){
+    # desktops like xfce might not have the applications folder created. 
+    # Which is needed for menu shortcuts.
+    mkdir -p $HOME/.local/share/applications/       
     test -d /opt/AppInstalls/ && APP_FOLDER=exists
     if [ "$APP_FOLDER" = "exists" ];
         then
