@@ -547,11 +547,11 @@ raiderio(){
         chmod +x $HOME/Downloads/RaiderIO_Client.AppImage
         mv $HOME/Downloads/RaiderIO_Client.AppImage /opt/AppInstalls/data/RaiderIO_Client.AppImage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
-        cp $SCRIPTS_HOME/data/shortcuts/RaiderIO.desktop $HOME/.local/share/applications/RaiderIO.desktop
-        chown $USER:$USER $HOME/.local/share/applications/RaiderIO.desktop
-        chmod +x $HOME/.local/share/applications/RaiderIO.desktop
+        cp $SCRIPTS_HOME/data/shortcuts/Raider.IO.desktop $HOME/.local/share/applications/Raider.IO.desktop
+        chown $USER:$USER $HOME/.local/share/applications/Raider.IO.desktop
+        chmod +x $HOME/.local/share/applications/Raider.IO.desktop
         curl -L -o /opt/AppInstalls/icons/raiderio.png $RAIDERIO_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/RaiderIO.desktop" "$HOME/Desktop/RaiderIO.desktop"
+        ln -s "$HOME/.local/share/applications/Raider.IO.desktop" "$HOME/Desktop/Raider.IO.desktop"
     fi
 }
 
