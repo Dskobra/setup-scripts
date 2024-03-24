@@ -537,6 +537,7 @@ minecraft(){
 }
 
 raiderio(){
+    source $SCRIPTS_HOME/data/packages.conf  
     if test -f /opt/AppInstalls/data/RaiderIO_Client.AppImage; then
         echo "Raider.IO already downloaded."
     elif ! test -f /opt/AppInstalls/data/RaiderIO_Client.AppImage; then
@@ -550,7 +551,7 @@ raiderio(){
         chown $USER:$USER $HOME/.local/share/applications/RaiderIO.desktop
         chmod +x $HOME/.local/share/applications/RaiderIO.desktop
         curl -L -o /opt/AppInstalls/icons/raiderio.png $RAIDERIO_IMAGE_LINK
-        ln -s "/opt/AppInstalls/launchers/raiderio.sh" "$HOME/Desktop/raiderio"
+        ln -s "$HOME/.local/share/applications/RaiderIO.desktop" "$HOME/Desktop/RaiderIO.desktop"
     fi
 }
 
