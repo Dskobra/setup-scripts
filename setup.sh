@@ -1249,12 +1249,12 @@ web_dev_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        cpp_menu
+        web_dev_menu
         ;;
         
     esac
     unset input
-    cpp_menu
+    web_dev_menu
 }
 
 python_menu(){
@@ -1308,12 +1308,12 @@ python_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        cpp_menu
+        python_menu
         ;;
         
     esac
     unset input
-    cpp_menu
+    python_menu
 }
 
 ides_menu(){
