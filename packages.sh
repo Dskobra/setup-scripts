@@ -573,7 +573,11 @@ download_cemu(){
         curl -L -o $CEMU_BINARY $CEMU_LINK
         chmod +x $CEMU_BINARY
         cp $SCRIPTS_HOME/data/launchers/cemu.sh /opt/AppInstalls/launchers/cemu.sh
-        ln -s "/opt/AppInstalls/launchers/cemu.sh" "$HOME/Desktop/cemu"
+        cp $SCRIPTS_HOME/data/shortcuts/Cemu.desktop $HOME/.local/share/applications/Cemu.desktop
+        chown $USER:$USER $HOME/.local/share/applications/Cemu.desktop
+        chmod +x $HOME/.local/share/applications/Cemu.desktop
+        curl -L -o /opt/AppInstalls/icons/raiderio.png $CEMU_IMAGE_LINK
+        ln -s "$HOME/.local/share/applications/Cemu.desktop" "$HOME/Desktop/Cemu.desktop"
     fi
 }
 ### Office Apps
