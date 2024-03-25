@@ -468,7 +468,7 @@ install_mangohud(){
     fi
 }
 
-wowup(){
+download_wowup(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WOWUPBINARY; then
@@ -487,7 +487,7 @@ wowup(){
     fi
 }
 
-warcraft_logs(){
+download_warcraft_logs(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
@@ -505,7 +505,7 @@ warcraft_logs(){
     fi
 }
 
-weakauras_companion(){
+download_weakauras_companion(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WACOMPBINARY; then
@@ -523,7 +523,7 @@ weakauras_companion(){
     fi
 }
 
-minecraft(){
+download_minecraft(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
     if test -f /opt/AppInstalls/data/minecraft-launcher; then
@@ -544,7 +544,7 @@ minecraft(){
     fi
 }
 
-raiderio(){
+download_raiderio(){
     source $SCRIPTS_HOME/data/packages.conf  
     if test -f /opt/AppInstalls/data/RaiderIO_Client.AppImage; then
         echo "Raider.IO already downloaded."
@@ -801,7 +801,7 @@ install_openjdk(){
     fi
 }
 
-install_idea(){
+download_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     
@@ -819,7 +819,7 @@ install_idea(){
     fi
 }
 
-install_netbeans(){
+download_netbeans(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -d /opt/AppInstalls/data/netbeans; then
@@ -928,7 +928,7 @@ install_python_tools(){
     fi
 }
 
-install_pycharm(){
+download_pycharm(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
     if test -d /opt/AppInstalls/data/pycharm; then

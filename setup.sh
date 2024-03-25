@@ -657,7 +657,7 @@ gaming_menu(){
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "minecraft"
+            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
             ;;
 
 
@@ -822,11 +822,11 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "wowup"
+            source $SCRIPTS_HOME/packages.sh; "download_wowup"
             ;;
 
         2) 
-            source $SCRIPTS_HOME/packages.sh; "warcraft_logs"
+            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
             ;;
 
         3)
@@ -834,12 +834,12 @@ gaming_wow_clients_menu(){
             WARNING_TWO="Clicking OK will take you to the web page."
             zenity --warning --text="$WARNING_ONE $WARNING_TWO"
             xdg-open "https://raider.io/addon"
-            source $SCRIPTS_HOME/packages.sh; "raiderio"
+            source $SCRIPTS_HOME/packages.sh; "download_raiderio"
 
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "weakauras_companion"
+            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
             ;;
 
         p)
@@ -1157,11 +1157,11 @@ openjdk_menu(){
 
         2)
             
-            source $SCRIPTS_HOME/packages.sh; "install_idea"
+            source $SCRIPTS_HOME/packages.sh; "download_idea"
             ;;
 
         3)  
-            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
+            source $SCRIPTS_HOME/packages.sh; "download_netbeans"
             ;;
 
         4)
@@ -1282,7 +1282,7 @@ python_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
+            source $SCRIPTS_HOME/packages.sh; "download_pycharm"
             ;;
 
         p)
