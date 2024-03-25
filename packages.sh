@@ -514,8 +514,12 @@ weakauras_companion(){
         cd /opt/AppInstalls/data
         curl -L -o $WACOMPBINARY $WACOMPLINK
         chmod +x $WACOMPBINARY
-        cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /opt/AppInstalls/launchers/weakauras_companion.sh 
-        ln -s "/opt/AppInstalls/launchers/weakauras_companion.sh" "$HOME/Desktop/weakauras_companion"
+        cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /opt/AppInstalls/launchers/weakauras_companion.sh
+        cp $SCRIPTS_HOME/data/shortcuts/WeakAuras_Companion.desktop $HOME/.local/share/applications/WeakAuras_Companion.desktop
+        chown $USER:$USER $HOME/.local/share/applications/WeakAuras_Companion.desktop
+        chmod +x $HOME/.local/share/applications/WeakAuras_Companion.desktop
+        curl -L -o /opt/AppInstalls/icons/weakauras.png $WAC_IMAGE_LINK
+        ln -s "$HOME/.local/share/applications/WeakAuras_Companion.desktop" "$HOME/Desktop/WeakAuras_Companion.desktop"  
     fi
 }
 
