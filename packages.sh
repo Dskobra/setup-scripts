@@ -576,7 +576,7 @@ download_cemu(){
         cp $SCRIPTS_HOME/data/shortcuts/Cemu.desktop $HOME/.local/share/applications/Cemu.desktop
         chown $USER:$USER $HOME/.local/share/applications/Cemu.desktop
         chmod +x $HOME/.local/share/applications/Cemu.desktop
-        curl -L -o /opt/AppInstalls/icons/raiderio.png $CEMU_IMAGE_LINK
+        curl -L -o /opt/AppInstalls/icons/cemu.png $CEMU_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Cemu.desktop" "$HOME/Desktop/Cemu.desktop"
     fi
 }
