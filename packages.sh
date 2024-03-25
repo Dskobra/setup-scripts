@@ -536,7 +536,11 @@ minecraft(){
         chmod +x minecraft-launcher
         mv minecraft-launcher /opt/AppInstalls/data
         cp $SCRIPTS_HOME/data/launchers/minecraft.sh /opt/AppInstalls/launchers/minecraft.sh
-        ln -s "/opt/AppInstalls/launchers/minecraft.sh" "$HOME/Desktop/minecraft"
+        cp $SCRIPTS_HOME/data/shortcuts/Minecraft.desktop $HOME/.local/share/applications/Minecraft.desktop
+        chown $USER:$USER $HOME/.local/share/applications/Minecraft.desktop
+        chmod +x $HOME/.local/share/applications/Minecraft.desktop
+        curl -L -o /opt/AppInstalls/icons/minecraft.png $MINECRAFT_IMAGE_LINK
+        ln -s "$HOME/.local/share/applications/Minecraft.desktop" "$HOME/Desktop/Minecraft.desktop"
     fi
 }
 
