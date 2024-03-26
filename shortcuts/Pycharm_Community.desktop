@@ -5,5 +5,5 @@ Terminal=false
 Type=Application
 Name=Intellij Idea Community
 Categories=Development; Programming;
-Exec=/opt/AppInstalls/data/idea/bin/idea.sh
-Icon=/opt/AppInstalls/data/idea/bin/idea.png
+Exec=/opt/AppInstalls/data/pycharm/bin/pycharm.sh
+Icon=/opt/AppInstalls/data/pycharm/bin/pycharm.png
