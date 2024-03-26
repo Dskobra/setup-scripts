@@ -814,6 +814,8 @@ download_idea(){
         tar -xvf idea.tar.gz
         rm idea.tar.gz
         mv idea* /opt/AppInstalls/data/idea
+        cp $SCRIPTS_HOME/data/shortcuts/Intelij_Idea.desktop $HOME/.local/share/applications/Intelij_Idea.desktop
+        chown $USER:$USER $HOME/.local/share/applications/Intelij_Idea.desktop
         ln -s "$HOME/.local/share/applications/Intelij_Idea.desktop" "$HOME/Desktop/Intelij_Idea.desktop"
 
     fi
