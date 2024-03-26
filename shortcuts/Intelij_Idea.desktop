@@ -5,5 +5,5 @@ Terminal=false
 Type=Application
 Name=Intellij Idea Community
 Categories=Development; Programming;
-Exec=/opt/AppInstalls/
-Icon=/opt/AppInstalls/
+Exec=/opt/AppInstalls/data/idea/bin/idea.sh
+Icon=/opt/AppInstalls/data/idea/bin/idea.svg
