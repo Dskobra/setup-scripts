@@ -833,7 +833,7 @@ download_netbeans(){
         cp $SCRIPTS_HOME/data/shortcuts/Netbeans.desktop $HOME/.local/share/applications/Netbeans.desktop
         chown $USER:$USER $HOME/.local/share/applications/Netbeans.desktop
         chmod +x $HOME/.local/share/applications/Netbeans.desktop
-        curl -L -o /opt/AppInstalls/icons/netbeans.svg $NETBEANS_IMAGE_LINK
+        curl -L -o /opt/AppInstalls/icons/netbeans.png $NETBEANS_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Netbeans.desktop" "$HOME/Desktop/Netbeans.desktop"
 
     fi
