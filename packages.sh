@@ -808,7 +808,6 @@ download_idea(){
     if test -d /opt/AppInstalls/data/idea; then
         echo "Intellij Idea already downloaded."
     elif ! test -d /opt/AppInstalls/data/idea; then
-        rm "$HOME/Desktop/idea"       # symlink gets put in idea folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o idea.tar.gz $IDEA_LINK
         tar -xvf idea.tar.gz
@@ -827,12 +826,15 @@ download_netbeans(){
     if test -d /opt/AppInstalls/data/netbeans; then
         echo "Netbeans already downloaded."
     elif ! test -d /opt/AppInstalls/data/netbeans; then
-        rm "$HOME/Desktop/netbeans"       # symlink gets put in folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o netbeans.zip $NETBEANS_LINK
         unzip netbeans.zip
         mv $SCRIPTS_HOME/temp/netbeans /opt/AppInstalls/data/netbeans
-        ln -s "/opt/AppInstalls/data/netbeans/bin/netbeans" "$HOME/Desktop/netbeans"
+        cp $SCRIPTS_HOME/data/shortcuts/Netbeans.desktop $HOME/.local/share/applications/Netbeans.desktop
+        chown $USER:$USER $HOME/.local/share/applications/Netbeans.desktop
+        chmod +x $HOME/.local/share/applications/Netbeans.desktop
+        curl -L -o /opt/AppInstalls/icons/netbeans.svg $NETBEANS_IMAGE_LINK
+        ln -s "$HOME/.local/share/applications/Netbeans.desktop" "$HOME/Desktop/Netbeans.desktop"
 
     fi
 }
