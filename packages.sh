@@ -479,7 +479,7 @@ download_wowup(){
         chmod +x $WOWUPBINARY
         cp $SCRIPTS_HOME/data/launchers/wowup.sh /opt/AppInstalls/launchers/wowup.sh
         cp $SCRIPTS_HOME/data/shortcuts/WoWUp.desktop $HOME/.local/share/applications/WoWUp.desktop
-        chown $USER:$USER $HOME/.local/share/applications/WoWUp.desktop
+        #chown $USER:$USER $HOME/.local/share/applications/WoWUp.desktop
         chmod +x $HOME/.local/share/applications/WoWUp.desktop
         curl -L -o /opt/AppInstalls/icons/wowup.png $WOWUP_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/WoWUp.desktop" "$HOME/Desktop/WoWUp.desktop"
@@ -498,7 +498,7 @@ download_warcraft_logs(){
         chmod +x $WOWLOGSBINARY
         cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /opt/AppInstalls/launchers/warcraft_logs.sh 
         cp $SCRIPTS_HOME/data/shortcuts/Warcraft_Logs.desktop $HOME/.local/share/applications/Warcraft_Logs.desktop
-        chown $USER:$USER $HOME/.local/share/applications/Warcraft_Logs.desktop
+        #chown $USER:$USER $HOME/.local/share/applications/Warcraft_Logs.desktop
         chmod +x $HOME/.local/share/applications/Warcraft_Logs.desktop
         curl -L -o /opt/AppInstalls/icons/warcraft_logs.png $WOWLOGS_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Warcraft_Logs.desktop" "$HOME/Desktop/Warcraft_Logs.desktop"  
@@ -516,7 +516,7 @@ download_weakauras_companion(){
         chmod +x $WACOMPBINARY
         cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /opt/AppInstalls/launchers/weakauras_companion.sh
         cp $SCRIPTS_HOME/data/shortcuts/WeakAuras_Companion.desktop $HOME/.local/share/applications/WeakAuras_Companion.desktop
-        chown $USER:$USER $HOME/.local/share/applications/WeakAuras_Companion.desktop
+        #chown $USER:$USER $HOME/.local/share/applications/WeakAuras_Companion.desktop
         chmod +x $HOME/.local/share/applications/WeakAuras_Companion.desktop
         curl -L -o /opt/AppInstalls/icons/weakauras.png $WAC_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/WeakAuras_Companion.desktop" "$HOME/Desktop/WeakAuras_Companion.desktop"  
@@ -537,7 +537,7 @@ download_minecraft(){
         mv minecraft-launcher /opt/AppInstalls/data
         cp $SCRIPTS_HOME/data/launchers/minecraft.sh /opt/AppInstalls/launchers/minecraft.sh
         cp $SCRIPTS_HOME/data/shortcuts/Minecraft.desktop $HOME/.local/share/applications/Minecraft.desktop
-        chown $USER:$USER $HOME/.local/share/applications/Minecraft.desktop
+        ##chown $USER:$USER $HOME/.local/share/applications/Minecraft.desktop
         chmod +x $HOME/.local/share/applications/Minecraft.desktop
         curl -L -o /opt/AppInstalls/icons/minecraft.png $MINECRAFT_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Minecraft.desktop" "$HOME/Desktop/Minecraft.desktop"
@@ -556,7 +556,7 @@ download_raiderio(){
         mv $HOME/Downloads/RaiderIO_Client.AppImage /opt/AppInstalls/data/RaiderIO_Client.AppImage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
         cp $SCRIPTS_HOME/data/shortcuts/Raider.IO.desktop $HOME/.local/share/applications/Raider.IO.desktop
-        chown $USER:$USER $HOME/.local/share/applications/Raider.IO.desktop
+        #chown $USER:$USER $HOME/.local/share/applications/Raider.IO.desktop
         chmod +x $HOME/.local/share/applications/Raider.IO.desktop
         curl -L -o /opt/AppInstalls/icons/raiderio.png $RAIDERIO_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Raider.IO.desktop" "$HOME/Desktop/Raider.IO.desktop"
@@ -574,7 +574,7 @@ download_cemu(){
         chmod +x $CEMU_BINARY
         cp $SCRIPTS_HOME/data/launchers/cemu.sh /opt/AppInstalls/launchers/cemu.sh
         cp $SCRIPTS_HOME/data/shortcuts/Cemu.desktop $HOME/.local/share/applications/Cemu.desktop
-        chown $USER:$USER $HOME/.local/share/applications/Cemu.desktop
+        #chown $USER:$USER $HOME/.local/share/applications/Cemu.desktop
         chmod +x $HOME/.local/share/applications/Cemu.desktop
         curl -L -o /opt/AppInstalls/icons/cemu.png $CEMU_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Cemu.desktop" "$HOME/Desktop/Cemu.desktop"
@@ -814,7 +814,7 @@ download_idea(){
         rm idea.tar.gz
         mv idea* /opt/AppInstalls/data/idea
         cp $SCRIPTS_HOME/data/shortcuts/Intelij_Idea.desktop $HOME/.local/share/applications/Intelij_Idea.desktop
-        chown $USER:$USER $HOME/.local/share/applications/Intelij_Idea.desktop
+        ##chown $USER:$USER $HOME/.local/share/applications/Intelij_Idea.desktop
         ln -s "$HOME/.local/share/applications/Intelij_Idea.desktop" "$HOME/Desktop/Intelij_Idea.desktop"
 
     fi
@@ -831,7 +831,7 @@ download_netbeans(){
         unzip netbeans.zip
         mv $SCRIPTS_HOME/temp/netbeans /opt/AppInstalls/data/netbeans
         cp $SCRIPTS_HOME/data/shortcuts/Netbeans.desktop $HOME/.local/share/applications/Netbeans.desktop
-        chown $USER:$USER $HOME/.local/share/applications/Netbeans.desktop
+        #chown $USER:$USER $HOME/.local/share/applications/Netbeans.desktop
         chmod +x $HOME/.local/share/applications/Netbeans.desktop
         curl -L -o /opt/AppInstalls/icons/netbeans.png $NETBEANS_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Netbeans.desktop" "$HOME/Desktop/Netbeans.desktop"
@@ -944,7 +944,7 @@ download_pycharm(){
         rm pycharm.tar.gz
         mv pycharm* /opt/AppInstalls/data/pycharm
         cp $SCRIPTS_HOME/data/shortcuts/Pycharm_Community.desktop $HOME/.local/share/applications/Pycharm_Community.desktop
-        chown $USER:$USER $HOME/.local/share/applications/Pycharm_Community.desktop
+        #chown $USER:$USER $HOME/.local/share/applications/Pycharm_Community.desktop
         ln -s "$HOME/.local/share/applications/Pycharm_Community.desktop" "$HOME/Desktop/Pycharm_Community.desktop"
 
     fi
