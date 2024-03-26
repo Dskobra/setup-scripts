@@ -6,4 +6,4 @@ Type=Application
 Name=Apache Netbeans
 Categories=Development; Programming;
 Exec=/opt/AppInstalls/data/netbeans/bin/netbeans
-Icon=/opt/AppInstalls/icons/netbeans.svg
+Icon=/opt/AppInstalls/icons/netbeans.png
