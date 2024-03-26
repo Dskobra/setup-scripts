@@ -785,17 +785,17 @@ install_codeblocks(){
 install_openjdk(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y java-17-openjdk-devel
+        sudo dnf install -y java-21-openjdk-devel
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install  java-17-openjdk-devel
+        sudo rpm-ostree install  java-21-openjdk-devel
         check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper -n install java-17-openjdk-devel
+        sudo zypper -n install java-21-openjdk-devel
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y openjdk-17-jdk
+        sudo apt-get install -y openjdk-21-jdk
     else
         echo "Unkown error has occured."
     fi
