@@ -938,13 +938,14 @@ download_pycharm(){
     if test -d /opt/AppInstalls/data/pycharm; then
         echo "Pycharm already downloaded."
     elif ! test -d /opt/AppInstalls/data/pycharm; then
-        rm "$HOME/Desktop/pycharm"       # symlink gets put in pycharm folder if its present on desktop
         cd $SCRIPTS_HOME/temp
         curl -L -o pycharm.tar.gz $PYCHARM_LINK
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
         mv pycharm* /opt/AppInstalls/data/pycharm
-        ln -s "/opt/AppInstalls/data/pycharm/bin/pycharm.sh" "$HOME/Desktop/pycharm"
+        cp $SCRIPTS_HOME/data/shortcuts/Pycharm_Community.desktop $HOME/.local/share/applications/Pycharm_Community.desktop
+        chown $USER:$USER $HOME/.local/share/applications/Pycharm_Community.desktop
+        ln -s "$HOME/.local/share/applications/Pycharm_Community.desktop" "$HOME/Desktop/Pycharm_Community.desktop"
 
     fi
 }
