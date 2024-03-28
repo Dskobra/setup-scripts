@@ -1204,7 +1204,7 @@ install_virtualization(){
 remove_codecs(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y
+        sudo dnf update -y
         sudo dnf swap -y ffmpeg libavcodec-free --allowerasing
         sudo dnf remove -y gstreamer1-plugin-openh264 \
         mozilla-openh264
