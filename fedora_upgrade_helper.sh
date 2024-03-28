@@ -48,7 +48,7 @@ fedora_dnf_menu(){
 fedora_dnf_upgrade(){
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
-    sudo dnf system-upgrade download --releasever=39
+    sudo dnf system-upgrade download --releasever=40
     sudo dnf system-upgrade reboot
 }
 
@@ -183,7 +183,7 @@ perform_upgrade(){
     if [ $input == "y" ] || [ $input == "Y" ]
     then
         sudo ostree admin pin 0
-        sudo  rpm-ostree rebase fedora:fedora/39/x86_64/kinoite
+        sudo  rpm-ostree rebase fedora:fedora/40/x86_64/kinoite
         sudo systemctl reboot
     elif [ $input == "n" ] || [ $input == "N" ]
     then
