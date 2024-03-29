@@ -714,6 +714,10 @@ download_bitwarden(){
         chmod +x $BITWARDEN_BINARY
         cp $SCRIPTS_HOME/data/launchers/bitwarden.sh /opt/AppInstalls/launchers/bitwarden.sh
         ln -s "/opt/AppInstalls/launchers/bitwarden.sh" "$HOME/Desktop/bitwarden"
+        cp $SCRIPTS_HOME/data/shortcuts/Bitwarden.desktop $HOME/.local/share/applications/Bitwarden.desktop
+        chmod +x $HOME/.local/share/applications/Bitwarden.desktop
+        curl -L -o /opt/AppInstalls/icons/bitwarden.png $BITWARDEN_IMAGE_LINK
+        ln -s "$HOME/.local/share/applications/Bitwarden.desktop" "$HOME/Desktop/Bitwarden.desktop"
     fi
 }
 
