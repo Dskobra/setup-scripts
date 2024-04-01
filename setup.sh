@@ -176,6 +176,7 @@ check_for_zenity(){
 
 get_data(){
     echo "Will need to download extra files from data branch"
+    cd $SCRIPTS_HOME
     rm -r -f data
     git clone https://github.com/Dskobra/setup-scripts -b data
     mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
