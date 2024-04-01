@@ -592,8 +592,9 @@ multimedia_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
             ;;
 
-        (7)
+        7)
             source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
+            ;;
         
         m)
             main_menu
