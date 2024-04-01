@@ -561,6 +561,7 @@ multimedia_menu(){
     echo "(1) Codecs                (2) VLC Media Player" 
     echo "(3) OBS Studio            (4) OpenShot" 
     echo "(5) K3b                   (6) Kolourpaint"
+    echo "(7) OBS Virtual Camera Driver"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -590,6 +591,9 @@ multimedia_menu(){
         6)
             source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
             ;;
+
+        (7)
+            source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
         
         m)
             main_menu
