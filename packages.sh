@@ -411,7 +411,8 @@ install_v4l2loopback(){
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
     elif [ $PKGMGR == "zypper" ]
     then
-        echo ""
+        sudo zypper install -n v4l2loopback-autoload v4l2loopback-utils
+
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils
