@@ -719,6 +719,7 @@ gaming_clients_menu(){
 
         3)
             flatpak install --user -y flathub com.usebottles.bottles
+            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
         p)
