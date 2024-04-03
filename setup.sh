@@ -713,6 +713,7 @@ gaming_clients_menu(){
         2) 
             mkdir "$HOME"/Games       
             flatpak install --user -y flathub net.lutris.Lutris
+            flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
             flatpak run net.lutris.Lutris
             ;;
 
@@ -1524,7 +1525,6 @@ configurations_menu(){
     echo ""
     echo ""   
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Link Mangohud to Lutris"
     echo "(p) Previous Menu              (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1538,10 +1538,6 @@ configurations_menu(){
 
         2)
             source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
-            ;;
-
-        3)
-            ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
         p)
