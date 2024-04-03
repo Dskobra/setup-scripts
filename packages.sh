@@ -1265,10 +1265,10 @@ remove_office(){
         sudo rpm-ostree remove libreoffice
     elif [ $PKGMGR == "zypper" ]
     then
-        sudo zypper -n install libreoffice*
+        sudo zypper -n remove libreoffice*
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y libreoffice*
+        sudo apt-get remove -y libreoffice*
     else
         echo "Unkown error has occured."
     fi
