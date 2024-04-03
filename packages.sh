@@ -409,6 +409,7 @@ install_v4l2loopback(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
+        check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install v4l2loopback-autoload v4l2loopback-utils
