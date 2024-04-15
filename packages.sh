@@ -673,19 +673,6 @@ install_evince(){
 }
 
 install_kde_ark(){
-    source $SCRIPTS_HOME/packages/office_apps.conf
-    if [ ! -n "$VARIANT" ]
-    then
-        sudo $PKGMGR install -y $KDE_ARK
-    elif [ $VARIANT == "ostree" ]
-    then
-        flatpak install --user -y $FLATPAK_ARK
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kde_ark(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y ark
@@ -1233,6 +1220,8 @@ install_virtualization(){
         sudo rpm-ostree refresh-md
         sudo rpm-ostree install libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer virtio-win
+        sudo rpm-ostree apply-live
+        check_for_libvirt_group
     elif [ $PKGMGR == "zypper" ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
