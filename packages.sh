@@ -412,8 +412,9 @@ install_v4l2loopback(){
         install_v4l2loopback_temp_fix
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
-        check_if_fedora_immutable
+        #sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
+        #check_if_fedora_immutable
+        zenity --warning --text="This is disabled atm. Please use a container."
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install v4l2loopback-autoload v4l2loopback-utils
@@ -433,15 +434,7 @@ install_v4l2loopback_temp_fix(){
     if [ $PKGMGR == "dnf" ]
     then
         install_package_tools
-        cd $SCRIPTS_HOME/temp
-        git clone https://github.com/umlaeute/v4l2loopback.git
-        cd v4l2loopback
-        make && sudo make install
-        sudo depmod -a
-        sudo modprobe v4l2loopback
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        install_package_tools
+        sudo dnf install -y dkms kernel-devel
         cd $SCRIPTS_HOME/temp
         git clone https://github.com/umlaeute/v4l2loopback.git
         cd v4l2loopback
