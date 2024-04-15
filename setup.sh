@@ -40,20 +40,22 @@ distro_check(){
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
         PKGMGR="zypper"
-        check_for_git
-        check_for_wget
-        check_for_curl
-        check_for_zenity
+        deps_check
+        #check_for_git
+        #check_for_wget
+        #check_for_curl
+        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
     elif [ $DISTRO == "debian" ]
     then
         PKGMGR="apt-get"
-        check_for_git
-        check_for_wget
-        check_for_curl
-        check_for_zenity
+        deps_check
+        #check_for_git
+        #check_for_wget
+        #check_for_curl
+        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -68,17 +70,19 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        check_for_git
-        check_for_wget
-        check_for_curl
-        check_for_zenity
+        deps_check
+        #check_for_git
+        #check_for_wget
+        #check_for_curl
+        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        check_for_zenity
+        deps_check
+        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -111,6 +115,48 @@ confirm_reboot(){
         echo "Chose not to reboot."
     else
 	    main_menu
+    fi
+}
+
+deps_check(){
+    test -f /usr/bin/git && GITCHECK="exists"
+    if [ "$GITCHECK" = "exists" ];
+        then
+           GITCHECK=exists 
+    elif [ "$GITCHECK" = "missing" ];
+        then
+        echo "git not found. Will install it."
+        install_git
+    fi
+    
+    test -f /usr/bin/zenity && ZENITYCHECK="exists"
+    if [ "$ZENITYCHECK" = "exists" ];
+        then
+           ZENITYCHECK=exists 
+    elif [ "$ZENITYCHECK" = "missing" ];
+        then
+        echo "zenity not found. Will install it."
+        install_zenity
+    fi
+
+    test -f /usr/bin/wget && WGETCHECK="exists"
+    if [ "$WGETCHECK" = "exists" ];
+        then
+           WGETCHECK="exists" 
+    elif [ "$WGETCHECK" = "missing" ];
+        then
+        echo "wget not found. Will install it."
+        install_wget
+    fi
+
+    test -f /usr/bin/curl && CURLCHECK="exists"
+    if [ "$CURLCHECK" = "exists" ];
+        then
+           CURLCHECK="exists" 
+    elif [ "$CURLCHECK" = "missing" ];
+        then
+        echo "curl not found. Will install it."
+        install_curl
     fi
 }
 
