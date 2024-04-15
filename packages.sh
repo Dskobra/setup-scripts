@@ -11,7 +11,8 @@ install_third_party_repos(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/ packman-essentials
@@ -56,7 +57,8 @@ install_corectrl(){
     then
         sudo rpm-ostree install corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
@@ -147,7 +149,8 @@ install_kdeapps(){
         sudo rpm-ostree install kmouth krdc signon-kwallet-extension
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install kate kmouth krdc kgpg kcalc kontact\
@@ -301,7 +304,8 @@ install_brave_browser(){
         sudo mv brave-core.asc /etc/pki/rpm-gpg/
         sudo rpm-ostree refresh-md
         sudo rpm-ostree install brave-browser
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
@@ -334,7 +338,8 @@ install_codecs(){
 
         sudo rpm-ostree install gstreamer1-plugin-openh264\
         mozilla-openh264
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live --allow-replacement
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install ffmpeg-6 mozilla-openh264\
@@ -372,7 +377,8 @@ install_kthreeb(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install k3b
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install k3b
@@ -501,7 +507,8 @@ install_mangohud(){
     then
         sudo rpm-ostree install mangohud goverlay
         flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install mangohud goverlay
