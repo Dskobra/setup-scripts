@@ -405,7 +405,11 @@ install_kolourpaint(){
 install_v4l2loopback(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y akmod-v4l2loopback v4l2loopback
+        #sudo dnf install -y akmod-v4l2loopback v4l2loopback
+        V4LWARNING_ONE="Fedora provided v4l2loopback is currently broken with kernel 6.8."
+        V4LWARNING_TWO="This will download and manually compile it."
+        zenity --warning --text="$V4LWARNING_ONE $V4LWARNING_TWO"
+        install_v4l2loopback_temp_fix
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
@@ -413,7 +417,6 @@ install_v4l2loopback(){
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install v4l2loopback-autoload v4l2loopback-utils
-
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils
@@ -421,6 +424,30 @@ install_v4l2loopback(){
         sudo echo "options v4l2loopback video_nr=10 card_label=\"OBS Video Source\" exclusive_caps=1" | sudo tee /etc/modprobe.d/v4l2loopback.conf
 
         sudo update-initramfs -c -k $(uname -r)
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_v4l2loopback_temp_fix(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        install_package_tools
+        cd $SCRIPTS_HOME/temp
+        git clone https://github.com/umlaeute/v4l2loopback.git
+        cd v4l2loopback
+        make && sudo make install
+        sudo depmod -a
+        sudo modprobe v4l2loopback
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        install_package_tools
+        cd $SCRIPTS_HOME/temp
+        git clone https://github.com/umlaeute/v4l2loopback.git
+        cd v4l2loopback
+        make && sudo make install
+        sudo depmod -a
+        sudo modprobe v4l2loopback
     else
         echo "Unkown error has occured."
     fi
