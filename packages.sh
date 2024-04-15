@@ -406,7 +406,7 @@ install_v4l2loopback(){
     if [ $PKGMGR == "dnf" ]
     then
         #sudo dnf install -y akmod-v4l2loopback v4l2loopback
-        V4LWARNING_ONE="Fedora provided v4l2loopback is currently broken with kernel 6.8."
+        V4LWARNING_ONE="RPMFusion provided v4l2loopback is currently broken with kernel 6.8."
         V4LWARNING_TWO="This will download and manually compile it."
         zenity --warning --text="$V4LWARNING_ONE $V4LWARNING_TWO"
         install_v4l2loopback_temp_fix
@@ -414,7 +414,7 @@ install_v4l2loopback(){
     then
         #sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
         #check_if_fedora_immutable
-        zenity --warning --text="This is disabled atm. Please use a container."
+        zenity --warning --text="This is disabled atm."
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install v4l2loopback-autoload v4l2loopback-utils
@@ -431,6 +431,9 @@ install_v4l2loopback(){
 }
 
 install_v4l2loopback_temp_fix(){
+    ## manually compile the module as the
+    ## rpmfusion provided one is out of date
+    ## and broken with 6.8 kernel
     if [ $PKGMGR == "dnf" ]
     then
         install_package_tools
