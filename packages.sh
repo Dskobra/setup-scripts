@@ -411,11 +411,7 @@ install_kolourpaint(){
 install_v4l2loopback(){
     if [ $PKGMGR == "dnf" ]
     then
-        #sudo dnf install -y akmod-v4l2loopback v4l2loopback
-        V4LWARNING_ONE="RPMFusion provided v4l2loopback is currently broken with kernel 6.8."
-        V4LWARNING_TWO="This will download and manually compile it."
-        zenity --warning --text="$V4LWARNING_ONE $V4LWARNING_TWO"
-        install_v4l2loopback_temp_fix
+        sudo dnf install -y akmod-v4l2loopback v4l2loopback
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         #sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
@@ -436,24 +432,6 @@ install_v4l2loopback(){
     fi
 }
 
-install_v4l2loopback_temp_fix(){
-    ## manually compile the module as the
-    ## rpmfusion provided one is out of date
-    ## and broken with 6.8 kernel
-    if [ $PKGMGR == "dnf" ]
-    then
-        install_package_tools
-        sudo dnf install -y dkms kernel-devel
-        cd $SCRIPTS_HOME/temp
-        git clone https://github.com/umlaeute/v4l2loopback.git
-        cd v4l2loopback
-        make && sudo make install
-        sudo depmod -a
-        sudo modprobe v4l2loopback
-    else
-        echo "Unkown error has occured."
-    fi
-}
 ### games
 install_steam(){
     if [ $PKGMGR == "dnf" ]
@@ -1213,6 +1191,7 @@ install_virtualization(){
         sudo dnf update -y
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer virtio-win
+        check_for_libvirt_group
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
