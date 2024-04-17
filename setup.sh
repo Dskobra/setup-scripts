@@ -280,7 +280,8 @@ install_dos2unix(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install dos2unix
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install dos2unix
@@ -299,7 +300,8 @@ install_zenity(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install zenity
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install zenity
