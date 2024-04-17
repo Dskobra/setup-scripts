@@ -144,13 +144,27 @@ install_kdeapps(){
     then
         sudo dnf install -y kate kmouth krdc kgpg kcalc kontact\
         signon-kwallet-extension gwenview
+        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
+        if [ $FEDORA_VERSION == "40" ]
+        then
+            sudo dnf install -y plasma-workspace-x11
+        else
+            echo "Fedora version detected as 39. Not installing x11 support."
+        fi
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install kmouth krdc signon-kwallet-extension
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
+        if [ $FEDORA_VERSION == "40" ]
+        then
+            sudo rpm-ostree install plasma-workspace-x11
+            check_if_fedora_immutable
+        else
+            echo "Fedora version detected as 39. Not installing x11 support."
+        fi
+        #sudo rpm-ostree apply-live
     elif [ $PKGMGR == "zypper" ]
     then
         sudo zypper -n install kate kmouth krdc kgpg kcalc kontact\
@@ -162,66 +176,6 @@ install_kdeapps(){
     else
         echo "Unkown error has occured."
     fi
-}
-
-install_xfce_apps(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y catfish orage galculator mousepad ristretto seahorse\
-        xfce4-clipman-plugin menulibre
-
-        sudo dnf install -y xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
-        xfce4-cpugraph-plugin xfce4-diskperf-plugin xfce4-docklike-plugin xfce4-eyes-plugin\
-        xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mount-plugin\
-        xfce4-netload-plugin xfce4-notes-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin\
-        xfce4-systemload-plugin xfce4-time-out-plugin xfce4-timer-plugin xfce4-verve-plugin\
-        xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin\
-        xfce4-mpc-plugin
-
-        sudo dnf install -y xfce4-clipman-plugin xfce4-dict-plugin python3-distutils-extra\
-        xfce4-statusnotifier-plugin
-        install_mugshot
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        echo "Immutable variants are unsupported"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install catfish orage galculator mousepad ristretto seahorse\
-        xfce4-clipman-plugin menulibre
-
-        sudo zypper -n install xfce4-battery-plugin xfce4-calculator-plugin xfce4-cpufreq-plugin\
-        xfce4-cpugraph-plugin xfce4-diskperf-plugin xfce4-docklike-plugin xfce4-eyes-plugin\
-        xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mount-plugin\
-        xfce4-netload-plugin xfce4-notes-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin\
-        xfce4-systemload-plugin xfce4-time-out-plugin xfce4-timer-plugin xfce4-verve-plugin\
-        xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin\
-        xfce4-mpc-plugin
-
-        sudo zypper -n install xfce4-panel-plugin-dict mugshot
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y catfish orage galculator mousepad ristretto seahorse xfce4-clipman-plugin menulibre
-        sudo apt-get install -y xfce4-battery-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin\
-        xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin\
-        xfce4-mailwatch-plugin xfce4-mount-plugin xfce4-netload-plugin xfce4-sensors-plugin\
-        xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin\
-        xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin 
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_mugshot(){
-    MUGSHOT_FOLDER="mugshot-0.4.3"
-    cd $SCRIPTS_HOME/temp/
-    curl -L -o $MUGSHOT_FOLDER.tar.gz https://github.com/bluesabre/mugshot/releases/download/mugshot-0.4.3/mugshot-0.4.3.tar.gz
-    tar -xvf $MUGSHOT_FOLDER.tar.gz
-    cd $MUGSHOT_FOLDER
-    sudo python3 setup.py install
-    sudo mkdir /usr/local/share/glib-2.0/schemas
-    cd data/glib-2.0/schemas/
-    sudo cp org.bluesabre.mugshot.gschema.xml  /usr/local/share/glib-2.0/schemas
-    sudo glib-compile-schemas /usr/local/share/glib-2.0/schemas
 }
 
 install_mate_apps(){

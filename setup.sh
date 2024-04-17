@@ -506,7 +506,7 @@ desktop_plugins_menu(){
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_xfce_apps"
+            echo "Removed"
             ;;
 
         3)
