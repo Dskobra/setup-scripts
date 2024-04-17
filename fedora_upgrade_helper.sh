@@ -183,7 +183,7 @@ perform_upgrade(){
     if [ $input == "y" ] || [ $input == "Y" ]
     then
         sudo ostree admin pin 0
-        sudo  rpm-ostree rebase fedora:fedora/40/x86_64/kinoite
+        sudo rpm-ostree rebase fedora:fedora/40/x86_64/kinoite
         sudo systemctl reboot
     elif [ $input == "n" ] || [ $input == "N" ]
     then
