@@ -139,6 +139,30 @@ install_kamoso(){
     fi
 }
 
+install_gnome_apps(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y gnome-shell-extension-appindicator gnome-shell-extension-dash-to-dock\
+        gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection file-roller evince
+        flatpak install -y --user flathub com.mattjakeman.ExtensionManager
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install gnome-shell-extension-appindicator gnome-shell-extension-dash-to-dock\
+        gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection
+        flatpak install -y --user flathub com.mattjakeman.ExtensionManager
+        flatpak install --user -y flathub org.gnome.FileRoller
+        flatpak install --user -y flathub org.gnome.Evince
+    elif [ $PKGMGR == "zypper" ]
+    then
+        echo "placeholder"
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        echo "placeholder"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_kdeapps(){
     if [ $PKGMGR == "dnf" ]
     then

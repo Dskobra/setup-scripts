@@ -493,7 +493,7 @@ desktop_plugins_menu(){
     echo "Extra plugins and misc stuff for specific desktops"
     echo ""
     echo ""   
-    echo "(1) KDE                (2) XFCE"
+    echo "(1) KDE                (2) GNOME"
     echo "(3) Mate               (h) Help"     
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
@@ -507,6 +507,7 @@ desktop_plugins_menu(){
         
         2)
             echo "Removed"
+            source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
             ;;
 
         3)
