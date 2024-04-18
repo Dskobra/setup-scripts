@@ -5,7 +5,6 @@ Set of scripts for installing several popular applications and drivers.
 * Fedora 39/40 Workstation/Spins
 * Fedora 39/40 Atomic Desktops
 * Debian 12
-* openSUSE Tumbleweed
 
 ## Requirements
 * git

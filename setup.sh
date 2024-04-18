@@ -37,17 +37,6 @@ distro_check(){
     if [ $DISTRO == "fedora" ]
     then
         fedora_variant_check
-    elif [ $DISTRO == "opensuse-tumbleweed" ]
-    then
-        PKGMGR="zypper"
-        deps_check
-        #check_for_git
-        #check_for_wget
-        #check_for_curl
-        #check_for_zenity
-        get_data
-        display_third_party_repos
-        main_menu
     elif [ $DISTRO == "debian" ]
     then
         PKGMGR="apt-get"
@@ -232,9 +221,6 @@ install_git(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y git
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install git
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y git
@@ -247,9 +233,6 @@ install_wget(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y wget
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install wget
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y wget
@@ -262,9 +245,6 @@ install_curl(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y curl
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install curl
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y curl
@@ -282,9 +262,6 @@ install_dos2unix(){
         sudo rpm-ostree install dos2unix
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install dos2unix
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y dos2unix
@@ -302,9 +279,6 @@ install_zenity(){
         sudo rpm-ostree install zenity
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install zenity
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y zenity
@@ -317,9 +291,6 @@ display_third_party_repos(){
     if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         THIRD_PARTY_REPO="RPMFusion"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        THIRD_PARTY_REPO="Packman Essentials"
     elif [ $PKGMGR == "apt-get" ]
     then
         THIRD_PARTY_REPO="contrib non-free"
@@ -506,7 +477,6 @@ desktop_plugins_menu(){
             ;;
         
         2)
-            echo "Removed"
             source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
             ;;
 

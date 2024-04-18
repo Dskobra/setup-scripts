@@ -13,10 +13,6 @@ install_third_party_repos(){
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/ packman-essentials
-        sudo zypper dup --from packman-essentials --allow-vendor-change
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y software-properties-common
@@ -33,10 +29,6 @@ install_flatpak(){
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install flatpak
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "apt-get" ]
     then
@@ -59,12 +51,6 @@ install_corectrl(){
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
-        sudo zypper refresh
-        sudo zypper -n install corectrl
-        xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
     elif [ $PKGMGR == "apt-get" ]
     then
         echo "deb http://deb.debian.org/debian bookworm-backports main" >> backports.list
@@ -87,11 +73,6 @@ install_nvidia(){
         sudo rpm-ostree install akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
-        sudo zypper install-new-recommends --repo NVIDIA
-        xdg-open https://en.opensuse.org/SDB:NVIDIA_drivers
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-add-repository -y --component non-free-firmware
@@ -110,9 +91,6 @@ install_cheese(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.gnome.Cheese
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install cheese
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y cheese
@@ -128,9 +106,6 @@ install_kamoso(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.kde.kamoso
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install kamoso
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kamoso
@@ -152,12 +127,11 @@ install_gnome_apps(){
         flatpak install -y --user flathub com.mattjakeman.ExtensionManager
         flatpak install --user -y flathub org.gnome.FileRoller
         flatpak install --user -y flathub org.gnome.Evince
-    elif [ $PKGMGR == "zypper" ]
-    then
-        echo "placeholder"
     elif [ $PKGMGR == "apt-get" ]
     then
-        echo "placeholder"
+        sudo apt-get install -y gnome-shell-extension-appindicator gnome-shell-extension-dashtodock\
+        gnome-shell-extension-gsconnect file-roller evince
+        flatpak install -y --user flathub com.mattjakeman.ExtensionManager
     else
         echo "Unkown error has occured."
     fi
@@ -189,10 +163,6 @@ install_kdeapps(){
             echo "Fedora version detected as 39. Not installing x11 support."
         fi
         #sudo rpm-ostree apply-live
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install kate kmouth krdc kgpg kcalc kontact\
-        signon-kwallet-extension gwenview5
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kate kmouth krdc kgpg kcalc kontact\
@@ -214,19 +184,11 @@ install_mate_apps(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         echo "Immutable variants are unsupported"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install mate-menu compiz-manager fusion-icon\
-        simple-ccsm compiz-plugins-experimental compiz-bcop
-
-        sudo zypper -n install caja-extension-share mate-menu\
-        libmate-sensors-applet-plugin0 compizconfig-settings-manager\
-        compiz-emerald compiz-emerald-themes
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y mate-menu mate-sensors-applet mate-utils\
         fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop\
-        emerald emerald-themes
+        emerald emerald-themes caja-open-terminal
     else
         echo "Unkown error has occured."
     fi
@@ -240,9 +202,6 @@ install_firefox(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         echo "Immutable variants are unsupported"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install MozillaFirefox
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo install -d -m 0755 /etc/apt/keyrings
@@ -284,11 +243,6 @@ install_brave_browser(){
         sudo rpm-ostree install brave-browser
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        sudo zypper -n install brave-browser
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -318,10 +272,6 @@ install_codecs(){
         mozilla-openh264
         sudo rpm-ostree apply-live --allow-replacement
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install ffmpeg-6 mozilla-openh264\
-        gstreamer-plugin-openh264
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y ffmpeg
@@ -337,9 +287,6 @@ install_openshot(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.openshot.OpenShot
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install openshot-qt
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openshot-qt
@@ -357,9 +304,6 @@ install_kthreeb(){
         sudo rpm-ostree install k3b
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install k3b
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y k3b
@@ -375,9 +319,6 @@ install_kolourpaint(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.kde.kolourpaint
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install kolourpaint
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kolourpaint
@@ -394,9 +335,6 @@ install_v4l2loopback(){
     then
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install v4l2loopback-autoload v4l2loopback-utils
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils
@@ -421,9 +359,6 @@ install_steam(){
        flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
        sudo rpm-ostree install steam-devices
        check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install steam
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo dpkg --add-architecture i386
@@ -441,9 +376,6 @@ install_kpat(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.kde.kpat
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install kpat
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kpat
@@ -464,10 +396,6 @@ install_mangohud(){
         flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install mangohud goverlay
-        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y mangohud goverlay
@@ -598,9 +526,6 @@ install_okular(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.kde.okular
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install okular
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y okular
@@ -616,9 +541,6 @@ install_evince(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.gnome.Evince
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install evince
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y evince
@@ -634,9 +556,6 @@ install_kde_ark(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.kde.ark
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install ark
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y ark
@@ -652,9 +571,6 @@ install_file_roller(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.gnome.FileRoller
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install file-roller
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y file-roller
@@ -670,10 +586,6 @@ install_claws_mail(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.claws_mail.Claws-Mail
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install claws-mail
-    elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y claws-mail
     else
@@ -688,9 +600,6 @@ install_thunderbird(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.mozilla.Thunderbird
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install thunderbird
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y thunderbird
@@ -723,9 +632,6 @@ install_keepassxc(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.keepassxc.KeePassXC
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install keepassxc
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub org.keepassxc.KeePassXC
@@ -748,11 +654,6 @@ install_package_tools(){
         WARNING_TWO="outside of containers on"
         WARNING_THREE="Fedora Atomic editions."
         zenity --warning --text="$WARNING_ONE $WARNING_TWO $WARNING_THREE"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
-        m4 valgrind byacc ccache cscope indent ltrace perf strace rpm-build\
-        build inst-source-utils
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y automake gcc g++ bison flex libtool\
@@ -768,9 +669,6 @@ install_codeblocks(){
     then
         sudo dnf install -y codeblocks codeblocks-contrib-devel
     elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.codeblocks.codeblocks
-    elif [ $PKGMGR == "zypper" ]
     then
         flatpak install --user -y flathub org.codeblocks.codeblocks
     elif [ $PKGMGR == "apt-get" ]
@@ -789,9 +687,6 @@ install_openjdk(){
     then
         sudo rpm-ostree install  java-17-openjdk-devel
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install java-17-openjdk-devel
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openjdk-17-jdk
@@ -852,11 +747,6 @@ install_scene_builder(){
         curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
         sudo rpm-ostree install scenebuilder.rpm
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install openjfx
-        curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
-        sudo rpm -i --force scenebuilder.rpm
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openjfx
@@ -876,9 +766,6 @@ install_lamp_stack(){
     then
         sudo rpm-ostree install httpd php phpMyAdmin
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install apache2 mariadb php8 phpMyAdmin
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y apache2 mariadb-client\
@@ -895,9 +782,6 @@ install_bluefish(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub nl.openoffice.bluefish
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install bluefish
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y bluefish
@@ -920,9 +804,6 @@ install_python_tools(){
     then
         sudo rpm-ostree install python3-idle python3-devel
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install python311-idle python311-devel
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y idle-python3.11 python3.11-dev
@@ -957,9 +838,6 @@ install_eric_ide(){
     then
         sudo rpm-ostree install eric
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install eric
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y eric
@@ -984,14 +862,6 @@ install_vscodium(){
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
         sudo rpm-ostree install codium
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        cd $SCRIPTS_HOME/data
-        cp vscodium.repo.txt vscodium.repo
-        sudo chown root:root vscodium.repo
-        sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
-        sudo zypper refresh
-        sudo zypper -n install codium
     elif [ $PKGMGR == "apt-get" ]
     then
         wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
@@ -1011,9 +881,6 @@ install_vim(){
     then
         sudo rpm-ostree install vim-enhanced
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install vim
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y vim
@@ -1030,9 +897,6 @@ install_geany(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.geany.Geany 
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install geany
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub org.geany.Geany 
@@ -1065,12 +929,6 @@ install_github_desktop(){
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
         sudo rpm-ostree install git-gui github-desktop
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/zypp/repos.d/shiftkey-packages.repo'
-        sudo zypper refresh
-        sudo zypper -n install git-gui github-desktop
     elif [ $PKGMGR == "apt-get" ]
     then
         wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
@@ -1091,10 +949,6 @@ install_containers(){
         sudo rpm-ostree install distrobox
         flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install toolbox distrobox
-        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y distrobox
@@ -1112,9 +966,6 @@ install_fmedia_writer(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
-    elif [ $PKGMGR == "zypper" ]
-    then
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
@@ -1128,9 +979,6 @@ install_kde_iso_image_writer(){
     then
         sudo dnf install -y isoimagewriter
     elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.isoimagewriter
-    elif [ $PKGMGR == "zypper" ]
     then
         flatpak install --user -y flathub org.kde.isoimagewriter
     elif [ $PKGMGR == "apt-get" ]
@@ -1148,9 +996,6 @@ install_kleopatra(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.kde.kleopatra
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install kleopatra
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kleopatra
@@ -1178,19 +1023,6 @@ install_virtualization(){
         qemu-kvm virt-install virt-manager virt-viewer virtio-win
         sudo rpm-ostree apply-live
         check_for_libvirt_group
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-        -O /etc/zypp/repos.d/virtio-win.repo
-        
-        sudo zypper refresh
-        sudo zypper -n install libvirt-daemon-config-network\
-        qemu-kvm virt-install virt-manager virt-viewer libvirt\
-        libvirt-daemon-driver-lxc libvirt-daemon-lxc\
-        libvirt-daemon-driver-storage-gluster\
-        libvirt-daemon-hooks libvirt-daemon-plugin-sanlock\
-        libvirt-daemon-qemu libvirt-daemon-config-network\
-        qemu-kvm virt-install virt-manager virt-viewer
     elif [ $PKGMGR == "apt-get" ]
     then
         cd ~/Downloads/
@@ -1221,10 +1053,6 @@ remove_codecs(){
         sudo rpm-ostree remove -y gstreamer1-plugin-openh264 \
         mozilla-openh264
         check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n remove ffmpeg-6 mozilla-openh264\
-        gstreamer-plugin-openh264
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y ffmpeg
@@ -1240,9 +1068,6 @@ remove_office(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree remove libreoffice
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n remove libreoffice*
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y libreoffice*
@@ -1270,9 +1095,6 @@ template(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install 
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y
