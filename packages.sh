@@ -151,6 +151,7 @@ install_kdeapps(){
         fi
     elif [ $PKGMGR == "rpm-ostree" ]
     then
+        remove_kinoite_flatpaks
         sudo rpm-ostree install kmouth krdc signon-kwallet-extension
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
@@ -170,6 +171,19 @@ install_kdeapps(){
     else
         echo "Unkown error has occured."
     fi
+}
+
+remove_kinoite_flatpaks(){
+    flatpak remove -y org.fedoraproject.KDE5Platform
+    flatpak remove -y org.fedoraproject.KDE6Platform 
+    flatpak remove -y org.kde.elisa  
+    flatpak remove -y org.kde.gwenview
+    flatpak remove -y org.kde.kcalc
+    flatpak remove -y org.kde.kmahjongg  
+    flatpak remove -y org.kde.kmines 
+    flatpak remove -y org.kde.kolourpaint  
+    flatpak remove -y org.kde.krdc  
+    flatpak remove -y org.kde.okular   
 }
 
 install_mate_apps(){
