@@ -205,7 +205,6 @@ install_firefox(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo install -d -m 0755 /etc/apt/keyrings
-        sudo apt-get install -y wget
         wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 
         gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | awk '/pub/{getline; gsub(/^ +| +$/,""); print "\n"$0"\n"}'
