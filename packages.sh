@@ -586,6 +586,7 @@ install_claws_mail(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         flatpak install --user -y flathub org.claws_mail.Claws-Mail
+    elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y claws-mail
     else
