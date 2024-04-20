@@ -80,13 +80,7 @@ install_spinfinity_theme(){
         sudo plymouth-set-default-theme spinfinity -R
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install plymouth-theme-spinfinity
-        sudo plymouth-set-default-theme spinfinity -R
         check_for_spinfinity
-    elif [ $PKGMGR == "zypper" ]
-    then
-       sudo zypper -n install plymouth-theme-spinfinity
-       sudo plymouth-set-default-theme spinfinity -R
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y plymouth-themes
@@ -104,7 +98,8 @@ check_for_spinfinity(){
         sudo plymouth-set-default-theme spinfinity -R
     elif [ "$THEME" = "missing" ]
     then
-        SPINFINITY="Immutable variants will need to reboot first to load the package layer then rerun
+        sudo rpm-ostree install plymouth-theme-spinfinity
+        SPINFINITY="Fedora Atomic editions will need to reboot first to load the package layer then rerun
         this option to apply the theme."
         zenity --warning --text="$SPINFINITY"
         check_if_fedora_immutable
