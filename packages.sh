@@ -174,8 +174,6 @@ install_kdeapps(){
 }
 
 remove_kinoite_flatpaks(){
-    flatpak remove -y org.fedoraproject.KDE5Platform
-    flatpak remove -y org.fedoraproject.KDE6Platform 
     flatpak remove -y org.kde.elisa  
     flatpak remove -y org.kde.gwenview
     flatpak remove -y org.kde.kcalc
@@ -184,6 +182,8 @@ remove_kinoite_flatpaks(){
     flatpak remove -y org.kde.kolourpaint  
     flatpak remove -y org.kde.krdc  
     flatpak remove -y org.kde.okular   
+    flatpak remove -y org.fedoraproject.KDE5Platform
+    flatpak remove -y org.fedoraproject.KDE6Platform 
 }
 
 install_mate_apps(){
