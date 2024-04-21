@@ -118,19 +118,20 @@ install_gnome_apps(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y gnome-shell-extension-appindicator gnome-shell-extension-dash-to-dock\
-        gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection file-roller evince
+        gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection file-roller evince\
+        gnome-tweaks
         flatpak install -y --user flathub com.mattjakeman.ExtensionManager
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install gnome-shell-extension-appindicator gnome-shell-extension-dash-to-dock\
-        gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection
+        gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection gnome-tweaks
         flatpak install -y --user flathub com.mattjakeman.ExtensionManager
         flatpak install --user -y flathub org.gnome.FileRoller
         flatpak install --user -y flathub org.gnome.Evince
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y gnome-shell-extension-appindicator gnome-shell-extension-dashtodock\
-        gnome-shell-extension-gsconnect file-roller evince
+        gnome-shell-extension-gsconnect file-roller evince gnome-tweaks
         flatpak install -y --user flathub com.mattjakeman.ExtensionManager
     else
         echo "Unkown error has occured."
