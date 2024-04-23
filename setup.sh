@@ -47,17 +47,17 @@ distro_check(){
 }
 
 fedora_release_check(){
-    if [ $VERSION_ID -ge 39 ]
+    if [ $VERSION_ID == "39" ] || [ $VERSION_ID == "40" ]
     then
         fedora_variant_check
     else
-        echo "These scripts only support Fedora $SUPPORTED_FEDORA_VERSION"
+        echo "These scripts only support Fedora 39/40"
     fi
 
 }
 
 debian_release_check(){
-    if [ $VERSION_ID -ge 12 ]
+    if [ $VERSION_ID == "12" ]
     then
         PKGMGR="apt-get"
         deps_check
@@ -65,10 +65,11 @@ debian_release_check(){
         display_third_party_repos
         main_menu
     else
-        echo "These scripts only support Debian $SUPPORTED_DEBIAN_VERSION"
+        echo "These scripts only support Debian 12"
     fi
 
 }
+
 fedora_variant_check(){
     test -f /run/ostree-booted && VARIANT=ostree
     if [ ! -n "$VARIANT" ]
@@ -1609,8 +1610,6 @@ configurations_menu(){
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
-SUPPORTED_FEDORA_VERSION="39/40"
-SUPPORTED_DEBIAN_VERSION="12"
 VERSION="dev branch"
 TEMP_FOLDER="missing"
 GITCHECK="missing"
