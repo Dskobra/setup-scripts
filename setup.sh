@@ -36,20 +36,36 @@ distro_check(){
     DISTRO=$(source /etc/os-release ; echo $ID)
     if [ $DISTRO == "fedora" ]
     then
-        fedora_variant_check
+        fedora_release_check
     elif [ $DISTRO == "debian" ]
+    then
+        debian_release_check
+    else
+        echo "Unsupported distro"
+    fi
+
+}
+
+fedora_release_check(){
+    if [ $VERSION_ID == "39" ] || [ $VERSION_ID == "40" ]
+    then
+        fedora_variant_check
+    else
+        echo "These scripts only support Fedora 39/40"
+    fi
+
+}
+
+debian_release_check(){
+    if [ $VERSION_ID == "12" ]
     then
         PKGMGR="apt-get"
         deps_check
-        #check_for_git
-        #check_for_wget
-        #check_for_curl
-        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
     else
-        echo "Unsupported distro"
+        echo "These scripts only support Debian 12"
     fi
 
 }
@@ -1593,7 +1609,8 @@ configurations_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
-VERSION="4.22.2024"
+VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
+VERSION="4.23.2024"
 TEMP_FOLDER="missing"
 GITCHECK="missing"
 WGETCHECK="missing"
