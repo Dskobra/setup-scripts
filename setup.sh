@@ -36,7 +36,7 @@ distro_check(){
     DISTRO=$(source /etc/os-release ; echo $ID)
     if [ $DISTRO == "fedora" ]
     then
-        fedora_variant_check
+        fedora_release_check
     elif [ $DISTRO == "debian" ]
     then
         PKGMGR="apt-get"
@@ -54,6 +54,15 @@ distro_check(){
 
 }
 
+fedora_release_check(){
+    if [ $VERSION_ID -ge 39 ]
+    then
+        fedora_variant_check
+    else
+        echo "Release is no longer supported."
+    fi
+
+}
 fedora_variant_check(){
     test -f /run/ostree-booted && VARIANT=ostree
     if [ ! -n "$VARIANT" ]
@@ -1593,6 +1602,7 @@ configurations_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
+VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 VERSION="dev branch"
 TEMP_FOLDER="missing"
 GITCHECK="missing"
