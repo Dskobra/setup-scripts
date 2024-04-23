@@ -1593,7 +1593,7 @@ configurations_menu(){
 
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
-VERSION="2.19.2024"
+VERSION="4.22.2024"
 TEMP_FOLDER="missing"
 GITCHECK="missing"
 WGETCHECK="missing"
