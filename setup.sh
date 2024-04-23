@@ -39,11 +39,7 @@ distro_check(){
         fedora_release_check
     elif [ $DISTRO == "debian" ]
     then
-        PKGMGR="apt-get"
-        deps_check
-        get_data
-        display_third_party_repos
-        main_menu
+        debian_release_check
     else
         echo "Unsupported distro"
     fi
@@ -56,6 +52,20 @@ fedora_release_check(){
         fedora_variant_check
     else
         echo "These scripts only support Fedora $SUPPORTED_FEDORA_VERSION"
+    fi
+
+}
+
+debian_release_check(){
+    if [ $VERSION_ID -ge 12 ]
+    then
+        PKGMGR="apt-get"
+        deps_check
+        get_data
+        display_third_party_repos
+        main_menu
+    else
+        echo "These scripts only support Debian $SUPPORTED_DEBIAN_VERSION"
     fi
 
 }
@@ -1600,6 +1610,7 @@ export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 SUPPORTED_FEDORA_VERSION="39/40"
+SUPPORTED_DEBIAN_VERSION="12"
 VERSION="dev branch"
 TEMP_FOLDER="missing"
 GITCHECK="missing"
