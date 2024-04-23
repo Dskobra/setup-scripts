@@ -4,6 +4,59 @@
 ### branch includes the links for pycharm, intellij idea
 ### community edition, netbeans, scenebuilder, eclipse 
 ### and wowup
+install_git(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y git
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y git
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_wget(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y wget
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y wget
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_curl(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y curl
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y curl
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_zenity(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y zenity
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install zenity
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y zenity
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_third_party_repos(){
     if [ $PKGMGR == "dnf" ]
     then

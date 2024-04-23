@@ -76,10 +76,6 @@ fedora_variant_check(){
     then
         PKGMGR="dnf"
         deps_check
-        #check_for_git
-        #check_for_wget
-        #check_for_curl
-        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -87,7 +83,6 @@ fedora_variant_check(){
     then
         PKGMGR="rpm-ostree"
         deps_check
-        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -131,7 +126,7 @@ deps_check(){
     elif [ "$GITCHECK" = "missing" ];
         then
         echo "git not found. Will install it."
-        install_git
+        source $SCRIPTS_HOME/packages.sh; "install_git"
     fi
     
     test -f /usr/bin/zenity && ZENITYCHECK="exists"
@@ -141,7 +136,7 @@ deps_check(){
     elif [ "$ZENITYCHECK" = "missing" ];
         then
         echo "zenity not found. Will install it."
-        install_zenity
+        source $SCRIPTS_HOME/packages.sh; "install_zenity"
     fi
 
     test -f /usr/bin/wget && WGETCHECK="exists"
@@ -151,7 +146,7 @@ deps_check(){
     elif [ "$WGETCHECK" = "missing" ];
         then
         echo "wget not found. Will install it."
-        install_wget
+        source $SCRIPTS_HOME/packages.sh; "install_wget"
     fi
 
     test -f /usr/bin/curl && CURLCHECK="exists"
@@ -161,67 +156,7 @@ deps_check(){
     elif [ "$CURLCHECK" = "missing" ];
         then
         echo "curl not found. Will install it."
-        install_curl
-    fi
-}
-
-check_for_git(){
-    test -f /usr/bin/git && GITCHECK="exists"
-    if [ "$GITCHECK" = "exists" ];
-        then
-           GITCHECK=exists 
-    elif [ "$GITCHECK" = "missing" ];
-        then
-        echo "git not found. Will install it."
-        install_git
-    fi
-}
-
-check_for_wget(){
-    test -f /usr/bin/wget && WGETCHECK="exists"
-    if [ "$WGETCHECK" = "exists" ];
-        then
-           WGETCHECK="exists" 
-    elif [ "$WGETCHECK" = "missing" ];
-        then
-        echo "wget not found. Will install it."
-        install_wget
-    fi
-}
-
-check_for_curl(){
-    test -f /usr/bin/curl && CURLCHECK="exists"
-    if [ "$CURLCHECK" = "exists" ];
-        then
-           CURLCHECK="exists" 
-    elif [ "$CURLCHECK" = "missing" ];
-        then
-        echo "curl not found. Will install it."
-        install_curl
-    fi
-}
-
-check_for_dos2unix(){
-    test -f /usr/bin/dos2unix && DOS2UNIXCHECK="exists"
-    if [ "$DOS2UNIXCHECK" = "exists" ];
-        then
-           DOS2UNIXCHECK=exists 
-    elif [ "$DOS2UNIXCHECK" = "missing" ];
-        then
-        echo "dos2unix not found. Will install it."
-        install_dos2unix
-    fi
-}
-
-check_for_zenity(){
-    test -f /usr/bin/zenity && ZENITYCHECK="exists"
-    if [ "$ZENITYCHECK" = "exists" ];
-        then
-           ZENITYCHECK=exists 
-    elif [ "$ZENITYCHECK" = "missing" ];
-        then
-        echo "zenity not found. Will install it."
-        install_zenity
+        source $SCRIPTS_HOME/packages.sh; "install_curl"
     fi
 }
 
@@ -231,76 +166,6 @@ get_data(){
     rm -r -f data
     git clone https://github.com/Dskobra/setup-scripts -b data
     mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
-}
-
-install_git(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y git
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y git
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_wget(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y wget
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y wget
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_curl(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y curl
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y curl
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_dos2unix(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y dos2unix
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install dos2unix
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y dos2unix
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_zenity(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y zenity
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install zenity
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y zenity
-    else
-        echo "Unkown error has occured."
-    fi
 }
 
 display_third_party_repos(){
