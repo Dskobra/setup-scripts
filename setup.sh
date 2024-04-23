@@ -128,17 +128,17 @@ deps_check(){
         echo "git not found. Will install it."
         source $SCRIPTS_HOME/packages.sh; "install_git"
     fi
-    
-    test -f /usr/bin/zenity && ZENITYCHECK="exists"
-    if [ "$ZENITYCHECK" = "exists" ];
-        then
-           ZENITYCHECK=exists 
-    elif [ "$ZENITYCHECK" = "missing" ];
-        then
-        echo "zenity not found. Will install it."
-        source $SCRIPTS_HOME/packages.sh; "install_zenity"
-    fi
 
+    test -f /usr/bin/curl && CURLCHECK="exists"
+    if [ "$CURLCHECK" = "exists" ];
+        then
+           CURLCHECK="exists" 
+    elif [ "$CURLCHECK" = "missing" ];
+        then
+        echo "curl not found. Will install it."
+        source $SCRIPTS_HOME/packages.sh; "install_curl"
+    fi
+    
     test -f /usr/bin/wget && WGETCHECK="exists"
     if [ "$WGETCHECK" = "exists" ];
         then
@@ -149,14 +149,14 @@ deps_check(){
         source $SCRIPTS_HOME/packages.sh; "install_wget"
     fi
 
-    test -f /usr/bin/curl && CURLCHECK="exists"
-    if [ "$CURLCHECK" = "exists" ];
+    test -f /usr/bin/zenity && ZENITYCHECK="exists"
+    if [ "$ZENITYCHECK" = "exists" ];
         then
-           CURLCHECK="exists" 
-    elif [ "$CURLCHECK" = "missing" ];
+           ZENITYCHECK=exists 
+    elif [ "$ZENITYCHECK" = "missing" ];
         then
-        echo "curl not found. Will install it."
-        source $SCRIPTS_HOME/packages.sh; "install_curl"
+        echo "zenity not found. Will install it."
+        source $SCRIPTS_HOME/packages.sh; "install_zenity"
     fi
 }
 

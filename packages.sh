@@ -4,6 +4,10 @@
 ### branch includes the links for pycharm, intellij idea
 ### community edition, netbeans, scenebuilder, eclipse 
 ### and wowup
+
+### Scripts need git to pull from data branch, curl to get
+### icons and repository info, wget for nodejs and other repositories,
+### and zenity for displaying some info.
 install_git(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -16,18 +20,6 @@ install_git(){
     fi
 }
 
-install_wget(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y wget
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y wget
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 install_curl(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -35,6 +27,18 @@ install_curl(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y curl
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_wget(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y wget
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y wget
     else
         echo "Unkown error has occured."
     fi
