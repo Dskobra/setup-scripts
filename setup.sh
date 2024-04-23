@@ -41,10 +41,6 @@ distro_check(){
     then
         PKGMGR="apt-get"
         deps_check
-        #check_for_git
-        #check_for_wget
-        #check_for_curl
-        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -59,7 +55,7 @@ fedora_release_check(){
     then
         fedora_variant_check
     else
-        echo "Release is no longer supported."
+        echo "These scripts only support Fedora $SUPPORTED_FEDORA_VERSION"
     fi
 
 }
@@ -1603,6 +1599,7 @@ configurations_menu(){
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
+SUPPORTED_FEDORA_VERSION="39/40"
 VERSION="dev branch"
 TEMP_FOLDER="missing"
 GITCHECK="missing"
