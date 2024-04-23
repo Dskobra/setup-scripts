@@ -14,13 +14,21 @@ make_temp(){
 }
 
 make_app_folder(){
-    test -d "$HOME"/.AppInstalls/ && APP_FOLDER=exists
+    # desktops like xfce might not have the applications folder created. 
+    # Which is needed for menu shortcuts.
+    mkdir -p $HOME/.local/share/applications/       
+    test -d /opt/AppInstalls/ && APP_FOLDER=exists
     if [ "$APP_FOLDER" = "exists" ];
         then
            APP_FOLDER=exists 
     elif [ "$APP_FOLDER" = "missing" ];
         then
-        mkdir  -p "$HOME"/.AppInstalls/launchers # store idea, pycharm etc in
+        sudo mkdir /opt/AppInstalls/
+        sudo mkdir /opt/AppInstalls/launchers # store launch scripts
+        sudo mkdir /opt/AppInstalls/data      # store program folders etc
+        sudo mkdir /opt/AppInstalls/icons
+
+        sudo chown $USER:$USER /opt/AppInstalls -R  # make current user owner so its writable  
     fi
 }
 
@@ -29,23 +37,14 @@ distro_check(){
     if [ $DISTRO == "fedora" ]
     then
         fedora_variant_check
-    elif [ $DISTRO == "opensuse-tumbleweed" ]
-    then
-        PKGMGR="zypper"
-        check_for_git
-        check_for_wget
-        check_for_curl
-        check_for_zenity
-        get_data
-        display_third_party_repos
-        main_menu
     elif [ $DISTRO == "debian" ]
     then
         PKGMGR="apt-get"
-        check_for_git
-        check_for_wget
-        check_for_curl
-        check_for_zenity
+        deps_check
+        #check_for_git
+        #check_for_wget
+        #check_for_curl
+        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -60,17 +59,19 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        check_for_git
-        check_for_wget
-        check_for_curl
-        check_for_zenity
+        deps_check
+        #check_for_git
+        #check_for_wget
+        #check_for_curl
+        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        check_for_zenity
+        deps_check
+        #check_for_zenity
         get_data
         display_third_party_repos
         main_menu
@@ -103,6 +104,48 @@ confirm_reboot(){
         echo "Chose not to reboot."
     else
 	    main_menu
+    fi
+}
+
+deps_check(){
+    test -f /usr/bin/git && GITCHECK="exists"
+    if [ "$GITCHECK" = "exists" ];
+        then
+           GITCHECK=exists 
+    elif [ "$GITCHECK" = "missing" ];
+        then
+        echo "git not found. Will install it."
+        install_git
+    fi
+    
+    test -f /usr/bin/zenity && ZENITYCHECK="exists"
+    if [ "$ZENITYCHECK" = "exists" ];
+        then
+           ZENITYCHECK=exists 
+    elif [ "$ZENITYCHECK" = "missing" ];
+        then
+        echo "zenity not found. Will install it."
+        install_zenity
+    fi
+
+    test -f /usr/bin/wget && WGETCHECK="exists"
+    if [ "$WGETCHECK" = "exists" ];
+        then
+           WGETCHECK="exists" 
+    elif [ "$WGETCHECK" = "missing" ];
+        then
+        echo "wget not found. Will install it."
+        install_wget
+    fi
+
+    test -f /usr/bin/curl && CURLCHECK="exists"
+    if [ "$CURLCHECK" = "exists" ];
+        then
+           CURLCHECK="exists" 
+    elif [ "$CURLCHECK" = "missing" ];
+        then
+        echo "curl not found. Will install it."
+        install_curl
     fi
 }
 
@@ -168,6 +211,7 @@ check_for_zenity(){
 
 get_data(){
     echo "Will need to download extra files from data branch"
+    cd $SCRIPTS_HOME
     rm -r -f data
     git clone https://github.com/Dskobra/setup-scripts -b data
     mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
@@ -177,9 +221,6 @@ install_git(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y git
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install git
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y git
@@ -192,9 +233,6 @@ install_wget(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y wget
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install wget
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y wget
@@ -207,9 +245,6 @@ install_curl(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y curl
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install curl
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y curl
@@ -225,10 +260,8 @@ install_dos2unix(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install dos2unix
-        check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install dos2unix
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y dos2unix
@@ -244,10 +277,8 @@ install_zenity(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install zenity
-        check_if_fedora_immutable
-    elif [ $PKGMGR == "zypper" ]
-    then
-        sudo zypper -n install zenity
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y zenity
@@ -260,9 +291,6 @@ display_third_party_repos(){
     if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
     then
         THIRD_PARTY_REPO="RPMFusion"
-    elif [ $PKGMGR == "zypper" ]
-    then
-        THIRD_PARTY_REPO="Packman Essentials"
     elif [ $PKGMGR == "apt-get" ]
     then
         THIRD_PARTY_REPO="contrib non-free"
@@ -436,7 +464,7 @@ desktop_plugins_menu(){
     echo "Extra plugins and misc stuff for specific desktops"
     echo ""
     echo ""   
-    echo "(1) KDE                (2) XFCE"
+    echo "(1) KDE                (2) GNOME"
     echo "(3) Mate               (h) Help"     
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
@@ -449,7 +477,7 @@ desktop_plugins_menu(){
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_xfce_apps"
+            source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
             ;;
 
         3)
@@ -553,6 +581,7 @@ multimedia_menu(){
     echo "(1) Codecs                (2) VLC Media Player" 
     echo "(3) OBS Studio            (4) OpenShot" 
     echo "(5) K3b                   (6) Kolourpaint"
+    echo "(7) OBS Virtual Camera Driver"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -581,6 +610,10 @@ multimedia_menu(){
             
         6)
             source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            ;;
+
+        7)
+            source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
             ;;
         
         m)
@@ -615,8 +648,9 @@ gaming_menu(){
     echo ""
     echo ""   
     echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Discord"
-    echo "(5) Solitare               (6) Minecraft"
+    echo "(3) WoW Clients            (4) Emulators"
+    echo "(5) Discord                (6) Solitare"
+    echo "(7) Minecraft"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -636,15 +670,19 @@ gaming_menu(){
             ;;
 
         4)
+            emulators_menu
+            ;;
+
+        5)
             flatpak install --user -y flathub com.discordapp.Discord
             ;;
         
-        5)
+        6)
             source $SCRIPTS_HOME/packages.sh; "install_kpat"
             ;;
 
-        6)
-            source $SCRIPTS_HOME/packages.sh; "minecraft"
+        7)
+            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
             ;;
 
 
@@ -694,11 +732,13 @@ gaming_clients_menu(){
         2) 
             mkdir "$HOME"/Games       
             flatpak install --user -y flathub net.lutris.Lutris
+            flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
             flatpak run net.lutris.Lutris
             ;;
 
         3)
             flatpak install --user -y flathub com.usebottles.bottles
+            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
         p)
@@ -809,11 +849,11 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "wowup"
+            source $SCRIPTS_HOME/packages.sh; "download_wowup"
             ;;
 
         2) 
-            source $SCRIPTS_HOME/packages.sh; "warcraft_logs"
+            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
             ;;
 
         3)
@@ -821,10 +861,12 @@ gaming_wow_clients_menu(){
             WARNING_TWO="Clicking OK will take you to the web page."
             zenity --warning --text="$WARNING_ONE $WARNING_TWO"
             xdg-open "https://raider.io/addon"
+            source $SCRIPTS_HOME/packages.sh; "download_raiderio"
+
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "weakauras_companion"
+            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
             ;;
 
         p)
@@ -858,6 +900,62 @@ gaming_wow_clients_menu(){
         gaming_wow_clients_menu
 }
 
+emulators_menu(){
+    echo "-----------------"
+    echo "|   Emulators   |"
+    echo "-----------------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Dolphin                (2) Cemu"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+            emulators_menu
+            ;;
+
+        2) 
+            source $SCRIPTS_HOME/packages.sh; "download_cemu"
+            emulators_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            emulators_menu
+            ;;
+            
+        esac
+        unset input
+        emulators_menu
+}
+
 office_menu(){
     echo "--------------"
     echo "|   Office   |"
@@ -867,11 +965,10 @@ office_menu(){
     echo ""
     echo ""   
     echo "(1) QOwnNotes          (2) Libreoffice"
-    echo "(3) Abiword            (4) Gnumeric"
-    echo "(5) KDE Okular         (6) Gnome Evince"
-    echo "(7) KDE Ark            (8) Gnome File Roller"
-    echo "(9) Claws-Mail         (10) Thunderbird"
-    echo "(11) Bitwarden         (12) KeePassXC"         
+    echo "(3) KDE Okular         (4) Gnome Evince"
+    echo "(5) KDE Ark            (6) Gnome File Roller"
+    echo "(7) Claws-Mail         (8) Thunderbird"
+    echo "(9) Bitwarden          (10) KeePassXC"         
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -887,44 +984,35 @@ office_menu(){
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             check_if_fedora_immutable
             ;;
-
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_abiword"
-            ;;
-        
-        4)
-            source $SCRIPTS_HOME/packages.sh; "install_gnumeric"
-            ;;
-
-        5)
             source $SCRIPTS_HOME/packages.sh; "install_okular"
             ;;
 
-        6)
+        4)
             source $SCRIPTS_HOME/packages.sh; "install_evince"
             ;;
         
-        7)
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_kde_ark"
             ;;
 
-        8)
+        6)
             source $SCRIPTS_HOME/packages.sh; "install_file_roller"
             ;;
 
-        9)
+        7)
             source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
             ;;
         
-        10)
+        8)
             source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
             ;;
 
-        11)
+        9)
             source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
             ;;
 
-        12)
+        10)
             source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
             ;;
 
@@ -1096,11 +1184,11 @@ openjdk_menu(){
 
         2)
             
-            source $SCRIPTS_HOME/packages.sh; "install_idea"
+            source $SCRIPTS_HOME/packages.sh; "download_idea"
             ;;
 
         3)  
-            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
+            source $SCRIPTS_HOME/packages.sh; "download_netbeans"
             ;;
 
         4)
@@ -1188,12 +1276,12 @@ web_dev_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        cpp_menu
+        web_dev_menu
         ;;
         
     esac
     unset input
-    cpp_menu
+    web_dev_menu
 }
 
 python_menu(){
@@ -1221,7 +1309,7 @@ python_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
+            source $SCRIPTS_HOME/packages.sh; "download_pycharm"
             ;;
 
         p)
@@ -1247,12 +1335,12 @@ python_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        cpp_menu
+        python_menu
         ;;
         
     esac
     unset input
-    cpp_menu
+    python_menu
 }
 
 ides_menu(){
@@ -1457,7 +1545,6 @@ configurations_menu(){
     echo ""
     echo ""   
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Link Mangohud to Lutris"
     echo "(p) Previous Menu              (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1471,10 +1558,6 @@ configurations_menu(){
 
         2)
             source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
-            ;;
-
-        3)
-            ln -s "$HOME/.config/MangoHud/" "$HOME/.var/app/net.lutris.Lutris/config/"
             ;;
 
         p)
