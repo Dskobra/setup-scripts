@@ -461,8 +461,8 @@ multimedia_menu(){
     echo ""   
     echo "(1) Codecs                (2) VLC Media Player" 
     echo "(3) OBS Studio            (4) OpenShot" 
-    echo "(5) K3b                   (6) Kolourpaint"
-    echo "(7) OBS Virtual Camera Driver"
+    echo "(5) K3b                   (5) xfburn"
+    echo "(7) Kolourpaint           (8) OBS Virtual Camera Driver"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -488,12 +488,16 @@ multimedia_menu(){
         5)
             source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
             ;;
-            
+
         6)
+            source $SCRIPTS_HOME/packages.sh; "install_xfburn"
+            ;;
+            
+        7)
             source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
             ;;
 
-        7)
+        8)
             source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
             ;;
         

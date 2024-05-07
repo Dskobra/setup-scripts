@@ -380,6 +380,23 @@ install_kthreeb(){
     fi
 }
 
+install_xfburn(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y xfburn
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install xfburn
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y xfburn
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_kolourpaint(){
     if [ $PKGMGR == "dnf" ]
     then
