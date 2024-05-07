@@ -846,10 +846,8 @@ office_menu(){
     echo ""
     echo ""   
     echo "(1) QOwnNotes          (2) Libreoffice"
-    echo "(3) KDE Okular         (4) Gnome Evince"
-    echo "(5) KDE Ark            (6) Gnome File Roller"
-    echo "(7) Claws-Mail         (8) Thunderbird"
-    echo "(9) Bitwarden          (10) KeePassXC"         
+    echo "(3) Claws-Mail         (4) Thunderbird"
+    echo "(5) Bitwarden          (6) KeePassXC"         
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -865,35 +863,20 @@ office_menu(){
             flatpak install --user -y flathub org.libreoffice.LibreOffice
             check_if_fedora_immutable
             ;;
+
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_okular"
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/packages.sh; "install_evince"
-            ;;
-        
-        5)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_ark"
-            ;;
-
-        6)
-            source $SCRIPTS_HOME/packages.sh; "install_file_roller"
-            ;;
-
-        7)
             source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
             ;;
         
-        8)
+        4)
             source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
             ;;
 
-        9)
+        5)
             source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
             ;;
 
-        10)
+        6)
             source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
             ;;
 
