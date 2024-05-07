@@ -551,17 +551,16 @@ download_minecraft(){
 
 download_raiderio(){
     source $SCRIPTS_HOME/data/packages.conf  
-    if test -f /opt/AppInstalls/data/RaiderIO_Client.AppImage; then
+    if test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
         echo "Raider.IO already downloaded."
-    elif ! test -f /opt/AppInstalls/data/RaiderIO_Client.AppImage; then
+    elif ! test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
         FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
         FILEWARNINGTWO="is saved as .AppImage (capital A and I in AppImage) then hit OK."
         zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
-        chmod +x $HOME/Downloads/RaiderIO_Client.AppImage
-        mv $HOME/Downloads/RaiderIO_Client.AppImage /opt/AppInstalls/data/RaiderIO_Client.AppImage
+        chmod +x $HOME/Downloads/RaiderIO.AppImage
+        mv $HOME/Downloads/RaiderIO.AppImage /opt/AppInstalls/data/RaiderIO.AppImage
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
         cp $SCRIPTS_HOME/data/shortcuts/Raider.IO.desktop $HOME/.local/share/applications/Raider.IO.desktop
-        #chown $USER:$USER $HOME/.local/share/applications/Raider.IO.desktop
         chmod +x $HOME/.local/share/applications/Raider.IO.desktop
         curl -L -o /opt/AppInstalls/icons/raiderio.png $RAIDERIO_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Raider.IO.desktop" "$HOME/Desktop/Raider.IO.desktop"
