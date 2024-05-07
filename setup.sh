@@ -946,7 +946,8 @@ coding_menu(){
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            #source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            flatpak install --user -y flathub io.github.shiftey.Desktop
             ;;
 
         7)
