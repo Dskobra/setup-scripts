@@ -494,7 +494,8 @@ multimedia_menu(){
             ;;
             
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            #source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            flatpak install --user -y flathub org.kde.kolourpaint
             ;;
 
         8)
@@ -563,7 +564,8 @@ gaming_menu(){
             ;;
         
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            #source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            flatpak install --user -y flathub org.kde.kpat
             ;;
 
         7)
@@ -1308,7 +1310,8 @@ utils_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
+            #source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
+            flatpak install --user -y flathub org.kde.kleopatra
             ;;
 
         5)
