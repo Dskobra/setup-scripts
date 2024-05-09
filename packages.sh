@@ -174,18 +174,20 @@ install_kamoso(){
 install_gnome_apps(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y file-roller evince dconf-editor gnome-tweaks libgtop2-devel lm_sensors # last 2 needed for vitals extension
-        flatpak install -y --user flathub com.mattjakeman.ExtensionManager
+        sudo dnf install -y file-roller evince dconf-editor gnome-tweaks pavucontrol\
+        libgtop2-devel lm_sensors # last 2 needed for vitals extension
+        flatpak install -y --user flathub org.gnome.Extensions
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree gnome-tweaks dconf-editor libgtop2-devel lm_sensors # last 2 needed for vitals extension
-        flatpak install -y --user flathub com.mattjakeman.ExtensionManager
+        flatpak install -y --user flathub org.gnome.Extensions
         flatpak install --user -y flathub org.gnome.FileRoller
         flatpak install --user -y flathub org.gnome.Evince
+        flatpak install --user -y flathub org.pulseaudio.pavucontrol
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y file-roller evince dconf-editor gnome-tweaks gir1.2-gtop-2.0 lm-sensors # last 2 needed for vitals extension
-        flatpak install -y --user flathub com.mattjakeman.ExtensionManager
+        flatpak install -y --user flathub org.gnome.Extensions
     else
         echo "Unkown error has occured."
     fi
