@@ -487,7 +487,7 @@ multimedia_menu(){
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_openshot"
+            flatpak install --user -y flathub org.openshot.OpenShot
             ;;
 
         5)
