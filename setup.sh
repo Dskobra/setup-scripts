@@ -406,6 +406,7 @@ internet_menu(){
     echo ""   
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
+    echo "(5) Remmina"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -426,6 +427,10 @@ internet_menu(){
 
         4)
             flatpak install --user -y  flathub com.transmissionbt.Transmission
+            ;;
+
+        5)  
+            source $SCRIPTS_HOME/packages.sh; "install_remmina"
             ;;
 
         m)

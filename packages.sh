@@ -324,6 +324,20 @@ install_brave_browser(){
     fi
 }
 
+install_remmina(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y remmina
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.remmina.Remmina
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y remmina
+    else
+        echo "Unkown error has occured."
+    fi
+}
 ### multimedia
 
 install_codecs(){
