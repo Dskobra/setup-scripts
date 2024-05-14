@@ -197,7 +197,7 @@ install_kdeapps(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kate kmouth krdc kgpg kcalc kontact\
-        signon-kwallet-extension gwenview
+        signon-kwallet-extension gwenview kleopatra
         FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
         if [ $FEDORA_VERSION == "40" ]
         then
@@ -211,6 +211,7 @@ install_kdeapps(){
         sudo rpm-ostree install kmouth krdc signon-kwallet-extension
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
+        flatpak install --user -y flathub org.kde.kleopatra
         FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
         if [ $FEDORA_VERSION == "40" ]
         then
@@ -223,7 +224,7 @@ install_kdeapps(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kate kmouth krdc kgpg kcalc kontact\
-        signon-kwallet-extension gwenview
+        signon-kwallet-extension gwenview kleopatra
     else
         echo "Unkown error has occured."
     fi
