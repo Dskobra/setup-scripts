@@ -622,7 +622,8 @@ gaming_clients_menu(){
             ;;
 
         2) 
-            mkdir "$HOME"/Games       
+            mkdir "$HOME"/Games
+            flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
             flatpak run net.lutris.Lutris
@@ -749,10 +750,10 @@ gaming_wow_clients_menu(){
             ;;
 
         3)
-            WARNING_ONE="Raider.IO uses a CDN which prevents this script from downloading."
-            WARNING_TWO="Clicking OK will take you to the web page."
-            zenity --warning --text="$WARNING_ONE $WARNING_TWO"
-            xdg-open "https://raider.io/addon"
+            #WARNING_ONE="Raider.IO uses a CDN which prevents this script from downloading."
+            #WARNING_TWO="Clicking OK will take you to the web page."
+            #zenity --warning --text="$WARNING_ONE $WARNING_TWO"
+            #xdg-open "https://raider.io/addon"
             source $SCRIPTS_HOME/packages.sh; "download_raiderio"
 
             ;;

@@ -587,11 +587,17 @@ download_raiderio(){
     if test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
         echo "Raider.IO already downloaded."
     elif ! test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
-        FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
-        FILEWARNINGTWO="is saved as .AppImage (capital A and I in AppImage) then hit OK."
+        RAIDERIO_WARNING_ONE="Please download the RaiderIO client from https://raider.io/addon, name it as RaiderIO.AppImage"
+        RAIDERIO_WARNING_TWO=", mark it as executable (right click and select properties) and place it in /opt/AppInstalls/data"
         zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
-        chmod +x $HOME/Downloads/RaiderIO.AppImage
-        mv $HOME/Downloads/RaiderIO.AppImage /opt/AppInstalls/data/RaiderIO.AppImage
+
+        #FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
+        #FILEWARNINGTWO="is saved as .AppImage (capital A and I in AppImage) then hit OK."
+        #zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
+        #chmod +x $HOME/Downloads/RaiderIO.AppImage
+        #mv $HOME/Downloads/RaiderIO.AppImage /opt/AppInstalls/data/RaiderIO.AppImage
+        
+        
         cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
         cp $SCRIPTS_HOME/data/shortcuts/Raider.IO.desktop $HOME/.local/share/applications/Raider.IO.desktop
         chmod +x $HOME/.local/share/applications/Raider.IO.desktop
