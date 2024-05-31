@@ -466,7 +466,7 @@ multimedia_menu(){
     echo ""   
     echo "(1) Codecs                (2) VLC Media Player" 
     echo "(3) OBS Studio            (4) OpenShot" 
-    echo "(5) K3b                   (5) xfburn"
+    echo "(5) K3b                   (6) xfburn"
     echo "(7) Kolourpaint           (8) OBS Virtual Camera Driver"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "

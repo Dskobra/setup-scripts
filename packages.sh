@@ -590,7 +590,7 @@ download_raiderio(){
     elif ! test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
         RAIDERIO_WARNING_ONE="Please download the RaiderIO client from https://raider.io/addon, name it as RaiderIO.AppImage"
         RAIDERIO_WARNING_TWO=", mark it as executable (right click and select properties) and place it in /opt/AppInstalls/data"
-        zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
+        zenity --info --text="$RAIDERIO_WARNING_ONE $RAIDERIO_WARNING_TWO"
 
         #FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
         #FILEWARNINGTWO="is saved as .AppImage (capital A and I in AppImage) then hit OK."
