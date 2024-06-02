@@ -274,6 +274,62 @@ main_menu(){
         main_menu
 }
 
+flatpak_menu(){
+    echo "----------------"
+    echo "|   Flatpak    |"
+    echo "----------------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""     
+    echo "(1) Setup flatpak      (2) "
+    echo "(3)         (4) "
+    echo "(h) Help"
+    echo "(m) Main Menu           (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_flatpak"
+            flatpak_menu
+            ;;
+
+        2)
+            
+            ;;
+
+        3)
+            
+            ;;
+
+        4)
+            
+            ;;
+
+        m)
+            main_menu
+            ;;
+            
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            flatpak_menu
+            ;;
+            
+        esac
+        unset input
+        flatpak_menu
+}
+
 hardware_menu(){
     echo "----------------"
     echo "|   Hardware   |"
