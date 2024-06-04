@@ -96,7 +96,7 @@ install_flatpak(){
     fi
 }
 
-### desktop features
+### Drivers/Kernel modules
 install_corectrl(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -141,21 +141,27 @@ install_nvidia(){
     fi
 }
 
-install_cheese(){
+install_v4l2loopback(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y cheese
+        sudo dnf install -y akmod-v4l2loopback v4l2loopback
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.gnome.Cheese
+        sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
+        check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y cheese
+        sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils
+        sudo echo "v4l2loopback" | sudo tee /etc/modules-load.d/v4l2loopback.conf 
+        sudo echo "options v4l2loopback video_nr=10 card_label=\"OBS Video Source\" exclusive_caps=1" | sudo tee /etc/modprobe.d/v4l2loopback.conf
+
+        sudo update-initramfs -c -k $(uname -r)
     else
         echo "Unkown error has occured."
     fi
 }
 
+### KDE/Qt Apps
 install_kamoso(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -166,6 +172,208 @@ install_kamoso(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kamoso
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kdeapps(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y kate krdc kcalc kontact\
+        signon-kwallet-extension gwenview kleopatra
+        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
+        if [ $FEDORA_VERSION == "40" ]
+        then
+            sudo dnf install -y plasma-workspace-x11
+        else
+            echo "Fedora version detected as 39. Not installing x11 support."
+        fi
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        remove_kinoite_flatpaks
+        sudo rpm-ostree install krdc signon-kwallet-extension
+        flatpak install --user -y flathub org.kde.kcalc
+        flatpak install --user -y flathub org.kde.gwenview
+        flatpak install --user -y flathub org.kde.kleopatra
+        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
+        if [ $FEDORA_VERSION == "40" ]
+        then
+            sudo rpm-ostree install plasma-workspace-x11
+            check_if_fedora_immutable
+        else
+            echo "Fedora version detected as 39. Not installing x11 support."
+        fi
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kate krdc kcalc kontact\
+        signon-kwallet-extension gwenview kleopatra
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_openshot(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y openshot
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.openshot.OpenShot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y openshot-qt
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kolourpaint(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y kolourpaint
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.kde.kolourpaint
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kolourpaint
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kthreeb(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y k3b
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install k3b
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y k3b
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kpat(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y kpat
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.kde.kpat
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kpat
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_okular(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y okular
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.kde.okular
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y okular
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kde_ark(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y ark
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.kde.ark
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y ark
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_fmedia_writer(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y mediawriter
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kde_iso_image_writer(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y isoimagewriter
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.kde.isoimagewriter
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.kde.isoimagewriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kleopatra(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y kleopatra
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.kde.kleopatra
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kleopatra
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+remove_kinoite_flatpaks(){
+    flatpak remove -y org.kde.elisa  
+    flatpak remove -y org.kde.gwenview
+    flatpak remove -y org.kde.kcalc
+    flatpak remove -y org.kde.kmahjongg  
+    flatpak remove -y org.kde.kmines 
+    flatpak remove -y org.kde.kolourpaint  
+    flatpak remove -y org.kde.krdc  
+    flatpak remove -y org.kde.okular   
+    flatpak remove -y org.fedoraproject.KDE5Platform
+    flatpak remove -y org.fedoraproject.KDE6Platform 
+}
+
+### gtk Apps
+install_cheese(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y cheese
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.gnome.Cheese
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y cheese
     else
         echo "Unkown error has occured."
     fi
@@ -193,56 +401,6 @@ install_gnome_apps(){
     fi
 }
 
-install_kdeapps(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y kate kmouth krdc kgpg kcalc kontact\
-        signon-kwallet-extension gwenview kleopatra
-        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
-        if [ $FEDORA_VERSION == "40" ]
-        then
-            sudo dnf install -y plasma-workspace-x11
-        else
-            echo "Fedora version detected as 39. Not installing x11 support."
-        fi
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        remove_kinoite_flatpaks
-        sudo rpm-ostree install kmouth krdc signon-kwallet-extension
-        flatpak install --user -y flathub org.kde.kcalc
-        flatpak install --user -y flathub org.kde.gwenview
-        flatpak install --user -y flathub org.kde.kleopatra
-        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
-        if [ $FEDORA_VERSION == "40" ]
-        then
-            sudo rpm-ostree install plasma-workspace-x11
-            check_if_fedora_immutable
-        else
-            echo "Fedora version detected as 39. Not installing x11 support."
-        fi
-        #sudo rpm-ostree apply-live
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y kate kmouth krdc kgpg kcalc kontact\
-        signon-kwallet-extension gwenview kleopatra
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-remove_kinoite_flatpaks(){
-    flatpak remove -y org.kde.elisa  
-    flatpak remove -y org.kde.gwenview
-    flatpak remove -y org.kde.kcalc
-    flatpak remove -y org.kde.kmahjongg  
-    flatpak remove -y org.kde.kmines 
-    flatpak remove -y org.kde.kolourpaint  
-    flatpak remove -y org.kde.krdc  
-    flatpak remove -y org.kde.okular   
-    flatpak remove -y org.fedoraproject.KDE5Platform
-    flatpak remove -y org.fedoraproject.KDE6Platform 
-}
-
 install_mate_apps(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -260,6 +418,83 @@ install_mate_apps(){
         sudo apt-get install -y mate-menu mate-sensors-applet mate-utils\
         fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop\
         emerald emerald-themes caja-open-terminal
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_xfburn(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y xfburn
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install xfburn
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y xfburn
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_remmina(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y remmina
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.remmina.Remmina
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y remmina
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_evince(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y evince
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.gnome.Evince
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y evince
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_file_roller(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y file-roller
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.gnome.FileRoller
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y file-roller
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_claws_mail(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y claws-mail
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak install --user -y flathub org.claws_mail.Claws-Mail
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y claws-mail
     else
         echo "Unkown error has occured."
     fi
@@ -325,20 +560,7 @@ install_brave_browser(){
     fi
 }
 
-install_remmina(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y remmina
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.remmina.Remmina
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y remmina
-    else
-        echo "Unkown error has occured."
-    fi
-}
+
 ### multimedia
 
 install_codecs(){
@@ -365,90 +587,6 @@ install_codecs(){
     fi
 }
 
-install_openshot(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y openshot
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.openshot.OpenShot
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y openshot-qt
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kthreeb(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y k3b
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install k3b
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y k3b
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_xfburn(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y xfburn
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install xfburn
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y xfburn
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kolourpaint(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y kolourpaint
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.kolourpaint
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y kolourpaint
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_v4l2loopback(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y akmod-v4l2loopback v4l2loopback
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
-        check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils
-        sudo echo "v4l2loopback" | sudo tee /etc/modules-load.d/v4l2loopback.conf 
-        sudo echo "options v4l2loopback video_nr=10 card_label=\"OBS Video Source\" exclusive_caps=1" | sudo tee /etc/modprobe.d/v4l2loopback.conf
-
-        sudo update-initramfs -c -k $(uname -r)
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 ### games
 install_steam(){
     if [ $PKGMGR == "dnf" ]
@@ -466,21 +604,6 @@ install_steam(){
         sudo dpkg --add-architecture i386
         sudo apt-get update
         sudo apt-get install -y steam
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kpat(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y kpat
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.kpat
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y kpat
     else
         echo "Unkown error has occured."
     fi
@@ -625,81 +748,6 @@ download_cemu(){
     fi
 }
 ### Office Apps
-
-install_okular(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y okular
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.okular
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y okular
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_evince(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y evince
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.gnome.Evince
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y evince
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kde_ark(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y ark
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.ark
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y ark
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_file_roller(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y file-roller
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.gnome.FileRoller
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y file-roller
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_claws_mail(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y claws-mail
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.claws_mail.Claws-Mail
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y claws-mail
-    else
-        echo "Unkown error has occured."
-    fi
-}
 
 install_thunderbird(){
     if [ $PKGMGR == "dnf" ]
@@ -1067,50 +1115,7 @@ install_containers(){
 }
 
 ### utilities
-install_fmedia_writer(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y mediawriter
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
-    else
-        echo "Unkown error has occured."
-    fi
-}
 
-install_kde_iso_image_writer(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y isoimagewriter
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.isoimagewriter
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        flatpak install --user -y flathub org.kde.isoimagewriter
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kleopatra(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y kleopatra
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.kleopatra
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y kleopatra
-    else
-        echo "Unkown error has occured."
-    fi
-}
 
 install_virtualization(){
     if [ $PKGMGR == "dnf" ]
