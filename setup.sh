@@ -334,9 +334,9 @@ drivers_modules_menu(){
 }
 
 desktop_specific_apps_menu(){
-    echo "-----------------------"
+    echo "-----------------------------"
     echo "|   Desktop Specific Apps   |"
-    echo "-----------------------"
+    echo "-----------------------------"
     echo ""
     echo "KDE/Gnome/Mate apps"
     echo ""
