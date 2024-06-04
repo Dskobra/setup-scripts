@@ -193,7 +193,7 @@ main_menu(){
     echo ""
     echo ""
     echo "(1) 3rd Party Repo                (2) Setup Flatpak"
-    echo "(3) Hardware                      (4) Desktop Plugins"      
+    echo "(3) Drivers/Modules               (4) Desktop Specific Apps"      
     echo "(5) Internet                      (6) Multimedia"
     echo "(7) Gaming                        (8) Office"
     echo "(9) Coding                        (10) Utilities"
@@ -216,12 +216,12 @@ main_menu(){
             ;;
 
         3)
-            hardware_menu
+            drivers_modules_menu
             main_menu
             ;;
 
         4)
-            desktop_plugins_menu
+            desktop_specific_apps_menu
             main_menu
             ;;
 
@@ -297,11 +297,11 @@ flatpak_menu(){
             ;;
 
         2)
-            
+            flatpak install --user -y flathub org.gnome.Cheese
             ;;
 
         3)
-            
+            flatpak install --user -y flathub org.kde.kamoso
             ;;
 
         4)
@@ -330,16 +330,16 @@ flatpak_menu(){
         flatpak_menu
 }
 
-hardware_menu(){
-    echo "----------------"
-    echo "|   Hardware   |"
-    echo "----------------"
+drivers_modules_menu(){
+    echo "------------------------------"
+    echo "|   Drivers/Kernel Modules   |"
+    echo "------------------------------"
     echo ""
     echo "AMD/Nvidia drivers"
     echo ""
     echo ""     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) Cheese(gtk)         (4) Kamoso(Qt)"
+    echo "(3) v4l2loopback"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -356,11 +356,7 @@ hardware_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_cheese"
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/packages.sh; "install_kamoso"
+            source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
             ;;
         
         h)
@@ -393,12 +389,12 @@ hardware_menu(){
         hardware_menu
 }
 
-desktop_plugins_menu(){
+desktop_specific_apps_menu(){
     echo "-----------------------"
-    echo "|   Desktop Plugins   |"
+    echo "|   Desktop Specific Apps   |"
     echo "-----------------------"
     echo ""
-    echo "Extra plugins and misc stuff for specific desktops"
+    echo "KDE/Gnome/Mate apps"
     echo ""
     echo ""   
     echo "(1) KDE                (2) GNOME"
@@ -419,6 +415,195 @@ desktop_plugins_menu(){
 
         3)
             source $SCRIPTS_HOME/packages.sh; "install_mate_apps"
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            desktop_plugins_menu
+            ;;
+            
+        esac
+        unset input
+        desktop_plugins_menu
+}
+
+kde_desktop_menu(){
+    echo "-----------"
+    echo "|   KDE   |"
+    echo "-----------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Core Apps          (2) Non flatpaks"
+    echo "(3) Flatpaks           (h) Help"     
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            ;;
+        
+        2)
+            kde_non_flatpaks_menu
+            ;;
+
+        3)
+            kde_flatpaks_menu
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            kde_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        kde_desktop_menu
+}
+
+kde_non_flatpaks_menu(){
+    echo "-----------"
+    echo "|   KDE   |"
+    echo "-----------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) K3b                (2) KDE ISO Image Writer"
+    echo "(3) KDE Patience       (7) Plasma X11"
+    echo "(h) Help"     
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
+            ;;
+
+        7)
+            source $SCRIPTS_HOME/packages.sh; "install_plasma_x11"
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            kde_non_flatpaks_menu
+            ;;
+            
+        esac
+        unset input
+        kde_non_flatpaks_menu
+}
+
+kde_flatpaks_menu(){
+    echo "-----------"
+    echo "|   KDE   |"
+    echo "-----------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Kolourpaint        (2) Kleopatra"
+    echo "(3) KDE Patience       (4) KDE ISO Image Writer"
+    echo "(h) Help"     
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            ;;
+        
+        2)
+            flatpak install --user -y flathub org.kde.kolourpaint
+            ;;
+
+        3)
+            flatpak install --user -y flathub org.kde.kpat
+            ;;
+
+        4)
+            flatpak install --user -y flathub org.kde.isoimagewriter
+            ;;
+
+        
+        5)
+            ;;
+
+        6)
+            ;;
+
+        7)
             ;;
 
         h)
@@ -522,8 +707,7 @@ multimedia_menu(){
     echo ""   
     echo "(1) Codecs                (2) VLC Media Player" 
     echo "(3) OBS Studio            (4) OpenShot" 
-    echo "(5) K3b                   (6) xfburn"
-    echo "(7) Kolourpaint           (8) OBS Virtual Camera Driver"
+    echo "(5) xfburn"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -547,20 +731,7 @@ multimedia_menu(){
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
-            ;;
-
-        6)
             source $SCRIPTS_HOME/packages.sh; "install_xfburn"
-            ;;
-            
-        7)
-            #source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
-            flatpak install --user -y flathub org.kde.kolourpaint
-            ;;
-
-        8)
-            source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
             ;;
         
         m)
@@ -596,8 +767,7 @@ gaming_menu(){
     echo ""   
     echo "(1) Game Clients           (2) Tools"
     echo "(3) WoW Clients            (4) Emulators"
-    echo "(5) Discord                (6) Solitare"
-    echo "(7) Minecraft"
+    echo "(5) Discord                (6) Minecraft"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -625,11 +795,6 @@ gaming_menu(){
             ;;
         
         6)
-            #source $SCRIPTS_HOME/packages.sh; "install_kpat"
-            flatpak install --user -y flathub org.kde.kpat
-            ;;
-
-        7)
             source $SCRIPTS_HOME/packages.sh; "download_minecraft"
             ;;
 
@@ -1349,10 +1514,9 @@ utils_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Fedora Media Writer        (2) KDE ISO Image Writer"
-    echo "(3) Raspberry Pi Imager        (4) Kleopatra"
-    echo "(5) GtkHash                    (6) Flatseal"
-    echo "(7) MissionCenter              (8) Virtualization"
+    echo "(1) Fedora Media Writer        (2) Raspberry Pi Imager"
+    echo "(3) GtkHash                    (4) Flatseal"
+    echo "(5) MissionCenter              (6) Virtualization"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1364,31 +1528,22 @@ utils_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
-            ;;
-
-        3)
             flatpak install --user -y flathub org.raspberrypi.rpi-imager
             ;;
 
-        4)
-            #source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
-            flatpak install --user -y flathub org.kde.kleopatra
-            ;;
-
-        5)
+        3)
             flatpak install --user -y flathub org.gtkhash.gtkhash
             ;;
 
-        6)
+        4)
             flatpak install --user -y flathub com.github.tchx84.Flatseal
             ;;
 
-        7)
+        5)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
         
-        8)
+        6)
             source $SCRIPTS_HOME/packages.sh; "install_virtualization"
             ;;
 
