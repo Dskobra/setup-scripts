@@ -533,11 +533,11 @@ kde_flatpaks_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            flatpak install --user -y flathub org.kde.kolourpaint
             ;;
         
         2)
-            flatpak install --user -y flathub org.kde.kolourpaint
+            flatpak install --user -y flathub org.kde.kleopatra
             ;;
 
         3)
