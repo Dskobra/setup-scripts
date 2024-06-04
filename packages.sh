@@ -244,6 +244,17 @@ install_fmedia_writer(){
     fi
 }
 
+install_kde_iso_image_writer(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y isoimagewriter
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.kde.isoimagewriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
 install_plasma_x11(){
     if [ $PKGMGR == "dnf" ]
     then
