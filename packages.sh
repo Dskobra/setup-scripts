@@ -167,7 +167,6 @@ install_kdeapps(){
     then
         sudo dnf install -y ark kate krdc kcalc kamoso gwenview\
         kleopatra okular signon-kwallet-extension
-        install_plasma_x11
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         remove_kinoite_flatpaks
@@ -177,7 +176,6 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kleopatra
-        install_plasma_x11
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y ark kate krdc kcalc kamoso\
