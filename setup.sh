@@ -350,7 +350,7 @@ desktop_specific_apps_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            source $SCRIPTS_HOME/packages.sh; "kde_desktop_menu"
             ;;
         
         2)
@@ -573,12 +573,12 @@ kde_flatpaks_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            desktop_plugins_menu
+            kde_flatpaks_menu
             ;;
             
         esac
         unset input
-        desktop_plugins_menu
+        kde_flatpaks_menu
 }
 
 internet_menu(){
