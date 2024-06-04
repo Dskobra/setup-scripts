@@ -274,62 +274,6 @@ main_menu(){
         main_menu
 }
 
-flatpak_menu(){
-    echo "----------------"
-    echo "|   Flatpak    |"
-    echo "----------------"
-    echo ""
-    echo ""
-    echo ""
-    echo ""     
-    echo "(1) Setup flatpak      (2) "
-    echo "(3)         (4) "
-    echo "(h) Help"
-    echo "(m) Main Menu           (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/packages.sh; "install_flatpak"
-            flatpak_menu
-            ;;
-
-        2)
-            flatpak install --user -y flathub org.gnome.Cheese
-            ;;
-
-        3)
-            flatpak install --user -y flathub org.kde.kamoso
-            ;;
-
-        4)
-            
-            ;;
-
-        m)
-            main_menu
-            ;;
-            
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_menu
-}
-
 drivers_modules_menu(){
     echo "------------------------------"
     echo "|   Drivers/Kernel Modules   |"
@@ -381,12 +325,12 @@ drivers_modules_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            hardware_menu
+            drivers_modules_menu
             ;;
             
         esac
         unset input
-        hardware_menu
+        drivers_modules_menu
 }
 
 desktop_specific_apps_menu(){
@@ -440,12 +384,12 @@ desktop_specific_apps_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            desktop_plugins_menu
+            desktop_specific_apps_menu
             ;;
             
         esac
         unset input
-        desktop_plugins_menu
+        desktop_specific_apps_menu
 }
 
 kde_desktop_menu(){
