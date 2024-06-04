@@ -460,7 +460,7 @@ kde_non_flatpaks_menu(){
     echo ""
     echo ""   
     echo "(1) K3b                (2) KDE ISO Image Writer"
-    echo "(3) KDE Patience       (7) Plasma X11"
+    echo "(3) KDE Patience       (4) Plasma X11"
     echo "(h) Help"     
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
@@ -472,7 +472,15 @@ kde_non_flatpaks_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
             ;;
 
-        7)
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            ;;
+
+        4)
             source $SCRIPTS_HOME/packages.sh; "install_plasma_x11"
             ;;
 
