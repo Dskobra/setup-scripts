@@ -162,25 +162,10 @@ install_v4l2loopback(){
 }
 
 ### KDE/Qt Apps
-install_kamoso(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y kamoso
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.kamoso
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y kamoso
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 install_kdeapps(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y kate krdc kcalc kontact gwenview\
+        sudo dnf install -y kate krdc kcalc kamoso gwenview\
         kleopatra okular signon-kwallet-extension
         install_plasma_x11
     elif [ $PKGMGR == "rpm-ostree" ]
@@ -190,11 +175,12 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kleopatra
+        flatpak install --user -y flathub org.kde.kamoso
         install_plasma_x11
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y kate krdc kcalc kontact\
-        signon-kwallet-extension gwenview kleopatra
+        sudo apt-get install -y kate krdc kcalc kamoso\
+        gwenview okular kleopatra signon-kwallet-extension
     else
         echo "Unkown error has occured."
     fi
