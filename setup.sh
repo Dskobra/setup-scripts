@@ -428,6 +428,14 @@ kde_desktop_menu(){
             xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
             ;;
 
+        p)
+            desktop_specific_apps_menu
+            ;;
+
+        P)
+            desktop_specific_apps_menu
+            ;;
+
         m)
             main_menu
             ;;
@@ -452,17 +460,17 @@ kde_desktop_menu(){
 }
 
 kde_non_flatpaks_menu(){
-    echo "-----------"
-    echo "|   KDE   |"
-    echo "-----------"
+    echo "---------------------------"
+    echo "|   KDE Non Flatpak Apps  |"
+    echo "---------------------------"
     echo ""
     echo ""
     echo ""
     echo ""   
     echo "(1) K3b                (2) KDE ISO Image Writer"
     echo "(3) KDE Patience       (4) Plasma X11"
-    echo "(h) Help"     
-    echo "(m) Main Menu          (0) Exit"
+    echo "(p) Previous Menu      (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -484,12 +492,12 @@ kde_non_flatpaks_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_plasma_x11"
             ;;
 
-        h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+        p)
+            kde_desktop_menu
             ;;
 
-        H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+        P)
+            kde_desktop_menu
             ;;
 
         m)
@@ -516,9 +524,9 @@ kde_non_flatpaks_menu(){
 }
 
 kde_flatpaks_menu(){
-    echo "-----------"
-    echo "|   KDE   |"
-    echo "-----------"
+    echo "------------------------"
+    echo "|   KDE Flatpak Apps   |"
+    echo "------------------------"
     echo ""
     echo ""
     echo ""
@@ -548,22 +556,13 @@ kde_flatpaks_menu(){
             flatpak install --user -y flathub org.kde.isoimagewriter
             ;;
 
-        
-        5)
+
+        p)
+            kde_desktop_menu
             ;;
 
-        6)
-            ;;
-
-        7)
-            ;;
-
-        h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
-            ;;
-
-        H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+        P)  
+            kde_desktop_menu
             ;;
 
         m)
@@ -710,6 +709,70 @@ multimedia_menu(){
 }
 
 gaming_menu(){
+    echo "--------------"
+    echo "|   Gaming   |"
+    echo "--------------"
+    echo ""
+    echo "Game clients and other apps"
+    echo ""
+    echo ""   
+    echo "(1) Game Clients           (2) Tools"
+    echo "(3) WoW Clients            (4) Emulators"
+    echo "(5) Discord                (6) Minecraft"
+    echo "(m) Main Menu              (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            gaming_clients_menu
+            ;;
+
+        2) 
+            gaming_tools_menu
+            ;;
+
+        3)
+            gaming_wow_clients_menu
+            ;;
+
+        4)
+            emulators_menu
+            ;;
+
+        5)
+            flatpak install --user -y flathub com.discordapp.Discord
+            ;;
+        
+        6)
+            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_menu
+}
+
+gaming_flatpaks_menu(){
     echo "--------------"
     echo "|   Gaming   |"
     echo "--------------"
@@ -1058,7 +1121,8 @@ office_menu(){
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
+            #source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
+            flatpak install f--user -y lathub com.bitwarden.desktop
             ;;
 
         6)
