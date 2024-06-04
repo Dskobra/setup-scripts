@@ -180,15 +180,9 @@ install_kamoso(){
 install_kdeapps(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y kate krdc kcalc kontact\
-        signon-kwallet-extension gwenview kleopatra
-        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
-        if [ $FEDORA_VERSION == "40" ]
-        then
-            sudo dnf install -y plasma-workspace-x11
-        else
-            echo "Fedora version detected as 39. Not installing x11 support."
-        fi
+        sudo dnf install -y kate krdc kcalc kontact gwenview\
+        kleopatra okular signon-kwallet-extension
+        install_plasma_x11
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         remove_kinoite_flatpaks
@@ -196,14 +190,7 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kleopatra
-        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
-        if [ $FEDORA_VERSION == "40" ]
-        then
-            sudo rpm-ostree install plasma-workspace-x11
-            check_if_fedora_immutable
-        else
-            echo "Fedora version detected as 39. Not installing x11 support."
-        fi
+        install_plasma_x11
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kate krdc kcalc kontact\
@@ -345,6 +332,31 @@ install_kleopatra(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kleopatra
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_plasma_x11(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
+        if [ $FEDORA_VERSION == "40" ]
+        then
+            sudo dnf install -y plasma-workspace-x11
+        else
+            echo "Fedora version detected as 39. Not installing x11 support."
+        fi
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
+        if [ $FEDORA_VERSION == "40" ]
+        then
+            sudo rpm-ostree install plasma-workspace-x11
+            check_if_fedora_immutable
+        else
+            echo "Fedora version detected as 39. Not installing x11 support."
+        fi
     else
         echo "Unkown error has occured."
     fi
