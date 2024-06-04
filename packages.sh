@@ -165,21 +165,22 @@ install_v4l2loopback(){
 install_kdeapps(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y kate krdc kcalc kamoso gwenview\
+        sudo dnf install -y ark kate krdc kcalc kamoso gwenview\
         kleopatra okular signon-kwallet-extension
         install_plasma_x11
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         remove_kinoite_flatpaks
         sudo rpm-ostree install krdc signon-kwallet-extension
+        flatpak install --user -y flathub org.kde.ark
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
-        flatpak install --user -y flathub org.kde.kleopatra
         flatpak install --user -y flathub org.kde.kamoso
+        flatpak install --user -y flathub org.kde.kleopatra
         install_plasma_x11
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y kate krdc kcalc kamoso\
+        sudo apt-get install -y ark kate krdc kcalc kamoso\
         gwenview okular kleopatra signon-kwallet-extension
     else
         echo "Unkown error has occured."
@@ -196,21 +197,6 @@ install_openshot(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openshot-qt
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kolourpaint(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y kolourpaint
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.kolourpaint
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y kolourpaint
     else
         echo "Unkown error has occured."
     fi
@@ -237,42 +223,9 @@ install_kpat(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kpat
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.kpat
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kpat
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_okular(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y okular
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.okular
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y okular
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kde_ark(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y ark
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.ark
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y ark
     else
         echo "Unkown error has occured."
     fi
@@ -288,36 +241,6 @@ install_fmedia_writer(){
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kde_iso_image_writer(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y isoimagewriter
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.isoimagewriter
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        flatpak install --user -y flathub org.kde.isoimagewriter
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_kleopatra(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y kleopatra
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.kde.kleopatra
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y kleopatra
     else
         echo "Unkown error has occured."
     fi
@@ -362,26 +285,11 @@ remove_kinoite_flatpaks(){
 }
 
 ### gtk Apps
-install_cheese(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y cheese
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.gnome.Cheese
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y cheese
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 install_gnome_apps(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y file-roller evince dconf-editor gnome-tweaks pavucontrol\
-        libgtop2-devel lm_sensors # last 2 needed for vitals extension
+        cheese libgtop2-devel lm_sensors # last 2 needed for vitals extension
         flatpak install -y --user flathub org.gnome.Extensions
     elif [ $PKGMGR == "rpm-ostree" ]
     then
@@ -390,9 +298,11 @@ install_gnome_apps(){
         flatpak install --user -y flathub org.gnome.FileRoller
         flatpak install --user -y flathub org.gnome.Evince
         flatpak install --user -y flathub org.pulseaudio.pavucontrol
+        flatpak install --user -y flathub org.gnome.Cheese
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y file-roller evince dconf-editor gnome-tweaks gir1.2-gtop-2.0 lm-sensors # last 2 needed for vitals extension
+        sudo apt-get install -y file-roller evince dconf-editor gnome-tweaks cheese\
+        gir1.2-gtop-2.0 lm-sensors # last 2 needed for vitals extension
         flatpak install -y --user flathub org.gnome.Extensions
     else
         echo "Unkown error has occured."
@@ -448,36 +358,6 @@ install_remmina(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y remmina
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_evince(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y evince
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.gnome.Evince
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y evince
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_file_roller(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y file-roller
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.gnome.FileRoller
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y file-roller
     else
         echo "Unkown error has occured."
     fi
