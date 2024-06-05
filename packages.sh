@@ -524,13 +524,10 @@ install_mangohud(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install mangohud
-        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y mangohud
-        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     else
         echo "Unkown error has occured."
     fi

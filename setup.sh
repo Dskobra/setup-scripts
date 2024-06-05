@@ -867,9 +867,10 @@ gaming_flatpaks_menu(){
     echo "Game clients and other apps"
     echo ""
     echo ""   
-    echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Emulators"
-    echo "(5) Discord                (6) Minecraft"
+    echo "(1) Steam                  (2) Lutris"
+    echo "(3) Bottles                (4) Mangohud"
+    echo "(5) Discord                (6) ProtonUp"
+    echo "(7) Protontrickss"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -877,11 +878,15 @@ gaming_flatpaks_menu(){
     case $input in
 
         1)  
-            gaming_clients_menu
+            flatpak install --user -y flathub com.valvesoftware.Steam 
             ;;
 
         2) 
-            gaming_tools_menu
+            mkdir "$HOME"/Games
+            flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
+            flatpak install --user -y flathub net.lutris.Lutris
+            flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
+            flatpak run net.lutris.Lutris
             ;;
 
         3)
@@ -897,7 +902,11 @@ gaming_flatpaks_menu(){
             ;;
         
         6)
-            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
+            flatpak install --user -y flathub net.davidotek.pupgui2
+            ;;
+
+        7)
+            flatpak install --user -y com.github.Matoking.protontricks
             ;;
 
 
@@ -915,13 +924,14 @@ gaming_flatpaks_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            gaming_menu
+            gaming_flatpaks_menu
             ;;
             
         esac
         unset input
-        gaming_menu
+        gaming_flatpaks_menu
 }
+
 
 gaming_clients_menu(){
     echo "----------------------"
