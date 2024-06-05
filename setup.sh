@@ -729,7 +729,7 @@ gaming_menu(){
             ;;
 
         2) 
-            gaming_tools_menu
+            gaming_flatpaks_menu
             ;;
 
         3)
