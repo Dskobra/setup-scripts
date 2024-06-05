@@ -933,7 +933,6 @@ gaming_flatpaks_menu(){
         gaming_flatpaks_menu
 }
 
-
 gaming_clients_menu(){
     echo "----------------------"
     echo "|   Gaming Clients   |"
