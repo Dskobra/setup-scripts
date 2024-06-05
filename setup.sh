@@ -890,11 +890,12 @@ gaming_flatpaks_menu(){
             ;;
 
         3)
-            gaming_wow_clients_menu
+            flatpak install --user -y flathub com.usebottles.bottles
+            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
         4)
-            emulators_menu
+            flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
             ;;
 
         5)
