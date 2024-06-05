@@ -1377,7 +1377,7 @@ openjdk_menu(){
     echo ""
     echo ""   
     echo ""
-    echo "(1) openJDK 17      (2) Intellij IDEA"
+    echo "(1) openJDK 17/21   (2) Intellij IDEA"
     echo "(3) Netbeans        (4) Scene Builder"
     echo "(p) Previous Menu   (m) Main Menu"
     echo "(0) Exit"
