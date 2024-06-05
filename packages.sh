@@ -559,14 +559,13 @@ download_warcraft_logs(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
-        echo "WoWUp already downloaded."
+        echo "Warcraft Logs already downloaded."
     elif ! test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
         cd /opt/AppInstalls/data
         curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
         chmod +x $WOWLOGSBINARY
         cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /opt/AppInstalls/launchers/warcraft_logs.sh 
         cp $SCRIPTS_HOME/data/shortcuts/Warcraft_Logs.desktop $HOME/.local/share/applications/Warcraft_Logs.desktop
-        #chown $USER:$USER $HOME/.local/share/applications/Warcraft_Logs.desktop
         chmod +x $HOME/.local/share/applications/Warcraft_Logs.desktop
         curl -L -o /opt/AppInstalls/icons/warcraft_logs.png $WOWLOGS_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Warcraft_Logs.desktop" "$HOME/Desktop/Warcraft_Logs.desktop"  
@@ -577,14 +576,13 @@ download_weakauras_companion(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WACOMPBINARY; then
-        echo "WoWUp already downloaded."
+        echo "WeakAuras Companion already downloaded."
     elif ! test -f /opt/AppInstalls/data/$WACOMPBINARY; then
         cd /opt/AppInstalls/data
         curl -L -o $WACOMPBINARY $WACOMPLINK
         chmod +x $WACOMPBINARY
         cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /opt/AppInstalls/launchers/weakauras_companion.sh
         cp $SCRIPTS_HOME/data/shortcuts/WeakAuras_Companion.desktop $HOME/.local/share/applications/WeakAuras_Companion.desktop
-        #chown $USER:$USER $HOME/.local/share/applications/WeakAuras_Companion.desktop
         chmod +x $HOME/.local/share/applications/WeakAuras_Companion.desktop
         curl -L -o /opt/AppInstalls/icons/weakauras.png $WAC_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/WeakAuras_Companion.desktop" "$HOME/Desktop/WeakAuras_Companion.desktop"  
@@ -605,7 +603,6 @@ download_minecraft(){
         mv minecraft-launcher /opt/AppInstalls/data
         cp $SCRIPTS_HOME/data/launchers/minecraft.sh /opt/AppInstalls/launchers/minecraft.sh
         cp $SCRIPTS_HOME/data/shortcuts/Minecraft.desktop $HOME/.local/share/applications/Minecraft.desktop
-        ##chown $USER:$USER $HOME/.local/share/applications/Minecraft.desktop
         chmod +x $HOME/.local/share/applications/Minecraft.desktop
         curl -L -o /opt/AppInstalls/icons/minecraft.png $MINECRAFT_IMAGE_LINK
         ln -s "$HOME/.local/share/applications/Minecraft.desktop" "$HOME/Desktop/Minecraft.desktop"
