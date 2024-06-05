@@ -255,6 +255,7 @@ install_kde_iso_image_writer(){
         echo "Unkown error has occured."
     fi
 }
+
 install_plasma_x11(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -491,6 +492,24 @@ install_steam(){
         sudo dpkg --add-architecture i386
         sudo apt-get update
         sudo apt-get install -y steam
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_steam_devices(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y steam-devices
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+       sudo rpm-ostree install steam-devices
+       check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo dpkg --add-architecture i386
+        sudo apt-get update
+        sudo apt-get install -y steam-devices
     else
         echo "Unkown error has occured."
     fi

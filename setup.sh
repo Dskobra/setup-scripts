@@ -716,9 +716,8 @@ gaming_menu(){
     echo "Game clients and other apps"
     echo ""
     echo ""   
-    echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Emulators"
-    echo "(5) Discord                (6) Minecraft"
+    echo "(1) Non flatpaks           (2) Flatpaks"
+    echo "(3) Misc"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -726,7 +725,7 @@ gaming_menu(){
     case $input in
 
         1)  
-            gaming_clients_menu
+            gaming_nonflatpaks_menu
             ;;
 
         2) 
@@ -770,6 +769,93 @@ gaming_menu(){
         esac
         unset input
         gaming_menu
+}
+
+gaming_nonflatpaks_menu(){
+    echo "----------------------"
+    echo "|   Gaming Clients   |"
+    echo "---------------- ------"
+    echo ""
+    echo "Steam, lutris and bottles"
+    echo ""
+    echo ""   
+    echo "(1) Steam                  (2) Steam Devices"
+    echo "(3) Mangohud               (4) Minecraft"
+    echo "(5) Cemu                   (6) WoWUp"
+    echo "(7) Warcraft Logs          (8) Raider.IO"
+    echo "(9) WeakAuras Companion"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            source $SCRIPTS_HOME/packages.sh; "install_steam"
+            ;;
+
+        2) 
+            source $SCRIPTS_HOME/packages.sh; "install_steam_devices"
+            ;;
+
+        3)
+            mkdir "$HOME"/.config/MangoHud/
+            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/packages.sh; "download_cemu"
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/packages.sh; "download_wowup"
+            ;;
+
+        7)
+            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
+            ;;
+
+        8)
+            source $SCRIPTS_HOME/packages.sh; "download_raiderio"
+            ;;
+        9)
+            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+            ;;
+
+        p)
+            gaming_nonflatpaks_menu
+            ;;
+
+        P)
+            gaming_nonflatpaks_menu
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_nonflatpaks_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_nonflatpaks_menu
 }
 
 gaming_flatpaks_menu(){
