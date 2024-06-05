@@ -947,11 +947,10 @@ install_vim(){
 install_geany(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf remove -y geany
-        flatpak install --user -y flathub org.geany.Geany
+        sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.geany.Geany 
+        sudo rpm-ostree install geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub org.geany.Geany 
