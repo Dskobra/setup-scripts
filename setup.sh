@@ -717,7 +717,6 @@ gaming_menu(){
     echo ""
     echo ""   
     echo "(1) Non flatpaks           (2) Flatpaks"
-    echo "(3) Misc"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -730,22 +729,6 @@ gaming_menu(){
 
         2) 
             gaming_flatpaks_menu
-            ;;
-
-        3)
-            gaming_wow_clients_menu
-            ;;
-
-        4)
-            emulators_menu
-            ;;
-
-        5)
-            flatpak install --user -y flathub com.discordapp.Discord
-            ;;
-        
-        6)
-            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
             ;;
 
 
@@ -772,11 +755,11 @@ gaming_menu(){
 }
 
 gaming_nonflatpaks_menu(){
-    echo "----------------------"
-    echo "|   Gaming Clients   |"
-    echo "----------------------"
+    echo "-------------------"
+    echo "|   Gaming Apps   |"
+    echo "-------------------"
     echo ""
-    echo "Steam, lutris and bottles"
+    echo "Appimages and non flatpaks"
     echo ""
     echo ""   
     echo "(1) Steam                  (2) Steam Devices"
@@ -860,17 +843,17 @@ gaming_nonflatpaks_menu(){
 }
 
 gaming_flatpaks_menu(){
-    echo "--------------"
-    echo "|   Gaming   |"
-    echo "--------------"
+    echo "-------------------"
+    echo "|   Gaming Apps   |"
+    echo "-------------------"
     echo ""
-    echo "Game clients and other apps"
+    echo "Gaming apps from flathub"
     echo ""
     echo ""   
     echo "(1) Steam                  (2) Lutris"
     echo "(3) Bottles                (4) Mangohud"
     echo "(5) Discord                (6) ProtonUp"
-    echo "(7) Protontrickss"
+    echo "(7) Protontricks           (8) Dolphin"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -878,7 +861,10 @@ gaming_flatpaks_menu(){
     case $input in
 
         1)  
-            flatpak install --user -y flathub com.valvesoftware.Steam 
+            flatpak install --user -y flathub com.valvesoftware.Steam
+            STEAM_WARNING_ONE="Flatpak versions of steam will need to install steam-devices from the"
+            STEAM_WARNING_TWO="non flatpak section in order to get controller support"
+            zenity --info --text="$STEAM_WARNING_ONE $STEAM_WARNING_TWO"
             ;;
 
         2) 
@@ -910,6 +896,17 @@ gaming_flatpaks_menu(){
             flatpak install --user -y com.github.Matoking.protontricks
             ;;
 
+        8)
+            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
+            ;;
 
         m)
             main_menu

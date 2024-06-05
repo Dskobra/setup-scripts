@@ -516,11 +516,9 @@ install_steam_devices(){
 }
 
 install_mangohud(){
-    mkdir "$HOME"/.config/MangoHud/
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mangohud
-        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install mangohud
