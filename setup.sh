@@ -774,7 +774,7 @@ gaming_menu(){
 gaming_nonflatpaks_menu(){
     echo "----------------------"
     echo "|   Gaming Clients   |"
-    echo "---------------- ------"
+    echo "----------------------"
     echo ""
     echo "Steam, lutris and bottles"
     echo ""
@@ -823,16 +823,17 @@ gaming_nonflatpaks_menu(){
         8)
             source $SCRIPTS_HOME/packages.sh; "download_raiderio"
             ;;
+
         9)
             source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
             ;;
 
         p)
-            gaming_nonflatpaks_menu
+            gaming_menu
             ;;
 
         P)
-            gaming_nonflatpaks_menu
+            gaming_menu
             ;;
 
 
