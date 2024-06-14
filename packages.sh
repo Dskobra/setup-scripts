@@ -133,10 +133,8 @@ install_openrgb(){
         cd $SCRIPTS_HOME/temp
         source $SCRIPTS_HOME/data/packages.conf
         curl -L -o $OPENRGB_DEB $OPENRGB_LINK
-        sudo apt install libc6 libgcc-s1 libhidapi-hidraw0 libmbedcrypto7 libmbedtls14 libmbedx509-1\
-        libqt5core5a libqt5gui5 libqt5gui5-gles libqt5widgets5 libstdc++6 libusb-1.0-0 udev
-
-        
+        sudo dpkg -i $OPENRGB_DEB
+        sudo apt-get -f -y install   
     else
         echo "Unkown error has occured."
     fi
