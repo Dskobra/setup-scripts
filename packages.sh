@@ -152,6 +152,8 @@ install_cooler_control(){
         cd $SCRIPTS_HOME/temp
         source $SCRIPTS_HOME/data/packages.conf
         curl -L -o $COOLERCONTROL_FILE $COOLERCONTROL_LINK
+        sudo chown root:root $COOLERCONTROL_FILE
+        sudo mv $COOLERCONTROL_FILE /etc/yum.repos.d/
         sudo rpm-ostree install coolercontrol
         sudo rpm-ostree apply-live
         sudo systemctl enable --now coolercontrold
@@ -536,7 +538,10 @@ install_amd_codecs(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         echo "unfinished"
-        #check_if_fedora_immutable
+        sudo rpm-ostree install mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
+
+        sudo rpm-ostree install mesa-va-drivers-freeworld.i686 mesa-vdpau-drivers-freeworld.i686
+        check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
         echo "unfinished"
