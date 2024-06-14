@@ -156,12 +156,12 @@ install_cooler_control(){
         #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt install curl apt-transport-https
+        sudo apt install -y curl apt-transport-https
         curl -1sLf \
         'https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/setup.deb.sh' \
         | sudo -E bash
-        sudo apt update
-        sudo apt install coolercontrol
+        sudo apt-get -y update
+        sudo apt-get install -y coolercontrol
         sudo systemctl enable --now coolercontrold
     else
         echo "Unkown error has occured."
