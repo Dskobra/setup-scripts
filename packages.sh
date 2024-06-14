@@ -523,6 +523,26 @@ install_codecs(){
     fi
 }
 
+install_amd_codecs(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
+        sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+
+        sudo dnf swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
+        sudo dnf swap mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        echo "unfinished"
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        echo "unfinished"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 ### games
 install_steam(){
     if [ $PKGMGR == "dnf" ]

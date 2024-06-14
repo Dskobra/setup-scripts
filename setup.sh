@@ -665,9 +665,10 @@ multimedia_menu(){
     echo "Various multimedia apps, codecs etc."
     echo ""
     echo ""   
-    echo "(1) Codecs                (2) VLC Media Player" 
-    echo "(3) OBS Studio            (4) OpenShot" 
-    echo "(5) xfburn"
+    echo "(1) FFmpeg (a/v codecs)   (2) Mesa Codecs (AMD)"    
+    echo "(3) VLC Media Player      (4) OBS Studio"
+    echo "(5) OpenShot" 
+    echo "(6) xfburn"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -679,18 +680,22 @@ multimedia_menu(){
             ;;
 
         2)
+            source $SCRIPTS_HOME/packages.sh; "install_amd_codecs"
+            ;;
+
+        3)
             flatpak install --user -y flathub org.videolan.VLC
             ;;
         
-        3)
+        4)
             flatpak install --user -y flathub com.obsproject.Studio
             ;;
 
-        4)
+        5)
             flatpak install --user -y flathub org.openshot.OpenShot
             ;;
 
-        5)
+        6)
             source $SCRIPTS_HOME/packages.sh; "install_xfburn"
             ;;
         
