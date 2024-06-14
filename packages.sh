@@ -324,7 +324,7 @@ install_mate_apps(){
     then
         sudo dnf install -y mate-menu mate-sensors-applet mate-utils\
         multimedia-menus compiz-manager fusion-icon simple-ccsm\
-        compiz-plugins-experimental compiz-bcop
+        compiz-plugins-experimental compiz-bcop fuse
 
         sudo dnf install -y caja-beesu caja-share ccsm \
         compizconfig-python emerald emerald-themes simple-ccsm
