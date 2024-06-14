@@ -283,7 +283,8 @@ drivers_modules_menu(){
     echo ""
     echo ""     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) v4l2loopback"
+    echo "(3) OpenRGB             (4) CoolerControl"
+    echo "(5) v4l2loopback"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -300,6 +301,16 @@ drivers_modules_menu(){
             ;;
 
         3)
+            echo "Placeholder"
+            #source $SCRIPTS_HOME/packages.sh; "install_openrgb"
+            ;;
+
+        4)
+            echo "Placeholder"
+            #source $SCRIPTS_HOME/packages.sh; "install_cooler_control"
+            ;;
+
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
             ;;
         

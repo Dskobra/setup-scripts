@@ -120,6 +120,56 @@ install_corectrl(){
     fi
 }
 
+install_openrgb(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y openrgb
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install openrgb
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        cd $SCRIPTS_HOME/temp
+        source $SCRIPTS_HOME/data/packages.conf
+        curl -L -o $OPENRGB_DEB $OPENRGB_LINK
+        sudo apt install libc6 libgcc-s1 libhidapi-hidraw0 libmbedcrypto7 libmbedtls14 libmbedx509-1\
+        libqt5core5a libqt5gui5 libqt5gui5-gles libqt5widgets5 libstdc++6 libusb-1.0-0 udev
+
+        
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_cooler_control(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y dnf-plugins-core
+        sudo dnf copr enable codifryed/CoolerControl
+        sudo dnf install -y coolercontrol
+        sudo systemctl enable --now coolercontrold
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        cd $SCRIPTS_HOME/temp
+        source $SCRIPTS_HOME/data/packages.conf
+        curl -L -o $COOLERCONTROL_FILE $COOLERCONTROL_LINK
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt install curl apt-transport-https
+        curl -1sLf \
+        'https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/setup.deb.sh' \
+        | sudo -E bash
+        sudo apt update
+        sudo apt install coolercontrol
+        sudo systemctl enable --now coolercontrold
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_nvidia(){
     if [ $PKGMGR == "dnf" ]
     then
