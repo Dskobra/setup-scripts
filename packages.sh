@@ -152,7 +152,9 @@ install_cooler_control(){
         cd $SCRIPTS_HOME/temp
         source $SCRIPTS_HOME/data/packages.conf
         curl -L -o $COOLERCONTROL_FILE $COOLERCONTROL_LINK
+        sudo rpm-ostree install coolercontrol
         sudo rpm-ostree apply-live
+        sudo systemctl enable --now coolercontrold
         #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
