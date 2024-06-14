@@ -301,13 +301,11 @@ drivers_modules_menu(){
             ;;
 
         3)
-            echo "Placeholder"
-            #source $SCRIPTS_HOME/packages.sh; "install_openrgb"
+            source $SCRIPTS_HOME/packages.sh; "install_openrgb"
             ;;
 
         4)
-            echo "Placeholder"
-            #source $SCRIPTS_HOME/packages.sh; "install_cooler_control"
+            source $SCRIPTS_HOME/packages.sh; "install_cooler_control"
             ;;
 
         5)
