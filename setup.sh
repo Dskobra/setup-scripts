@@ -1230,7 +1230,7 @@ office_menu(){
 
         5)
             #source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
-            flatpak install f--user -y lathub com.bitwarden.desktop
+            flatpak install --user -y Flathub com.bitwarden.desktop
             ;;
 
         6)
