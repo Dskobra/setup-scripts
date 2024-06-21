@@ -1758,6 +1758,7 @@ configurations_menu(){
     echo ""
     echo ""   
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
+    echo "(3) Spinfinity Boot Theme"
     echo "(p) Previous Menu              (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1771,6 +1772,10 @@ configurations_menu(){
 
         2)
             source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_spinfinity_theme"
             ;;
 
         p)
