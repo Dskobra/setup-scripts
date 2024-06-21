@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=PyCharm Community
+Comment=The most intelligent Python IDE
+Categories=Development; Programming;
+Exec=/opt/AppInstalls/data/pycharm/bin/pycharm.sh
+Icon=/opt/AppInstalls/data/pycharm/bin/pycharm.png

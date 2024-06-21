@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Apache Netbeans
+Comment=Java IDE
+Categories=Development; Programming;
+Exec=/opt/AppInstalls/data/netbeans/bin/netbeans
+Icon=/opt/AppInstalls/icons/netbeans.png

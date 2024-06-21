@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Minecraft
+Comment=Create your own world in one of the most popular video games
+Categories=Game;
+Exec=/opt/AppInstalls/launchers/minecraft.sh
+Icon=/opt/AppInstalls/icons/minecraft.png

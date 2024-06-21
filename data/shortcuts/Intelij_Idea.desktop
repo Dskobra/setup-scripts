@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Intellij Idea Community
+Comment=Capable and Ergonomic Java IDE
+Categories=Development; Programming;
+Exec=/opt/AppInstalls/data/idea/bin/idea.sh
+Icon=/opt/AppInstalls/data/idea/bin/idea.png

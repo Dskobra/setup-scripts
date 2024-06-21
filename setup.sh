@@ -61,7 +61,7 @@ debian_release_check(){
     then
         PKGMGR="apt-get"
         deps_check
-        get_data
+        #get_data
         display_third_party_repos
         main_menu
     else
@@ -76,14 +76,14 @@ fedora_variant_check(){
     then
         PKGMGR="dnf"
         deps_check
-        get_data
+        #get_data
         display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
         deps_check
-        get_data
+        #get_data
         display_third_party_repos
         main_menu
     fi
