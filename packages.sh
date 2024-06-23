@@ -609,6 +609,60 @@ install_mangohud(){
 download_wowup(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
+    if test -f ~/Desktop/$WOWUPBINARY; then
+        echo "WoWUp already downloaded."
+    elif ! test -f ~/Desktop/$WOWUPBINARY; then
+        cd ~/Desktop/
+        curl -L -o $WOWUPBINARY $WOWUPLINK 
+        chmod +x $WOWUPBINARY
+    fi
+}
+
+download_warcraft_logs(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -f ~/Desktop/$WOWLOGSBINARY; then
+        echo "Warcraft Logs already downloaded."
+    elif ! test -f ~/Desktop/$WOWLOGSBINARY; then
+        cd ~/Desktop/
+        curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
+        chmod +x $WOWLOGSBINARY
+    fi
+}
+
+download_weakauras_companion(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -f ~/Desktop/$WACOMPBINARY; then
+        echo "WeakAuras Companion already downloaded."
+    elif ! test -f  ~/Desktop/$WACOMPBINARY; then
+        cd  ~/Desktop/
+        curl -L -o $WACOMPBINARY $WACOMPLINK
+        chmod +x $WACOMPBINARY
+}
+
+download_minecraft(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf    
+    if test -f ~/Desktop/minecraft-launcher; then
+        echo "Minecraft already downloaded."
+    elif ! test -f ~/Desktop/minecraft-launcher; then
+        cd $SCRIPTS_HOME/temp
+        curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
+        tar -xvf Minecraft.tar.gz
+        cd minecraft-launcher
+        chmod +x minecraft-launcher
+        mv minecraft-launcher ~/Desktop/
+    fi
+}
+
+download_raiderio(){
+    echo "Pending removal"
+}
+
+old_download_wowup(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
     elif ! test -f /opt/AppInstalls/data/$WOWUPBINARY; then
@@ -625,7 +679,7 @@ download_wowup(){
     fi
 }
 
-download_warcraft_logs(){
+old_download_warcraft_logs(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
@@ -642,7 +696,7 @@ download_warcraft_logs(){
     fi
 }
 
-download_weakauras_companion(){
+old_download_weakauras_companion(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     if test -f /opt/AppInstalls/data/$WACOMPBINARY; then
@@ -659,7 +713,7 @@ download_weakauras_companion(){
     fi
 }
 
-download_minecraft(){
+old_download_minecraft(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
     if test -f /opt/AppInstalls/data/minecraft-launcher; then
@@ -679,7 +733,7 @@ download_minecraft(){
     fi
 }
 
-download_raiderio(){
+old_download_raiderio(){
     source $SCRIPTS_HOME/data/packages.conf  
     if test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
         echo "Raider.IO already downloaded."
