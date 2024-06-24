@@ -1827,7 +1827,6 @@ test_menu(){
         1)
             source $SCRIPTS_HOME/packages.sh; "test_template"
             ;;
-            ;;
 
         p)
             echo ""
