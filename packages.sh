@@ -238,8 +238,7 @@ install_kdeapps(){
 }
 
 install_openshot(){
-    ## template function for adding more packages
-    echo "Default install(1) or flatpak(2)?"
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
@@ -1281,9 +1280,10 @@ check_for_libvirt_group(){
     fi
 }
  
-test_template(){
-    ## template function for adding more packages
-    echo "Default install (1) or flatpak(2)?"
+package_type_template(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
@@ -1297,7 +1297,7 @@ test_template(){
     fi
 }
 
-template(){
+standard_package_template(){
     ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
