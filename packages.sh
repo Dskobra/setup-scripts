@@ -237,6 +237,22 @@ install_kdeapps(){
     fi
 }
 
+install_openshot_test(){
+    ## template function for adding more packages
+    echo "Default install (1) or flatpak(2)?"
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        install_openshot_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.openshot.OpenShot
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_openshot(){
     if [ $PKGMGR == "dnf" ]
     then

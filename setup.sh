@@ -1816,7 +1816,7 @@ test_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) test template"
+    echo "(1) test template              (2) install openshot test"
     echo "(p) Previous Menu              (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1826,6 +1826,10 @@ test_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "test_template"
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_openshot_test"
             ;;
 
         p)
