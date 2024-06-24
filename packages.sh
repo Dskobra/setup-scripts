@@ -244,7 +244,7 @@ install_openshot_test(){
     read -r input
     if [ $input == "1" ]
     then
-        install_openshot_package
+        install_openshot
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.openshot.OpenShot
