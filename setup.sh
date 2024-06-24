@@ -258,9 +258,6 @@ main_menu(){
             extras_menu
             main_menu
             ;;
-        12)
-            test_menu
-            ;;
 
         0)
             exit
@@ -695,7 +692,7 @@ multimedia_menu(){
             ;;
 
         5)
-            flatpak install --user -y flathub org.openshot.OpenShot
+            source $SCRIPTS_HOME/packages.sh; "install_openshot"
             ;;
 
         6)
@@ -1806,61 +1803,6 @@ configurations_menu(){
     esac
     unset input
     configurations_menu
-}
-
-test_menu(){
-    echo "----------------------"
-    echo "|  Experiments   |"
-    echo "----------------------"
-    echo ""
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) test template              (2) install openshot test"
-    echo "(p) Previous Menu              (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/packages.sh; "test_template"
-            ;;
-
-        2)
-            source $SCRIPTS_HOME/packages.sh; "install_openshot_test"
-            ;;
-
-        p)
-            echo ""
-            ;;
-
-        P)
-            echo ""
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        test_menu
-        ;;
-        
-    esac
-    unset input
-    test_menu
 }
 
 export SCRIPTS_HOME=$(pwd)

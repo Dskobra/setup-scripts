@@ -237,14 +237,15 @@ install_kdeapps(){
     fi
 }
 
-install_openshot_test(){
+install_openshot(){
     ## template function for adding more packages
-    echo "Default install (1) or flatpak(2)?"
+    echo "Default install(1) or flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        install_openshot
+        openshot_package
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.openshot.OpenShot
@@ -253,13 +254,14 @@ install_openshot_test(){
     fi
 }
 
-install_openshot(){
+openshot_package(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openshot
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.openshot.OpenShot
+        sudo rpm-ostree install openshot
+        sudo rpm-ostree apply-live
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openshot-qt
