@@ -778,8 +778,8 @@ gaming_nonflatpaks_menu(){
     echo ""   
     echo "(1) Steam                  (2) Steam Devices"
     echo "(3) Mangohud               (4) Minecraft"
-    echo "(5) Cemu                   (6) WoWUp"
-    echo "(7) Warcraft Logs          (8) WeakAuras Companion"
+    echo "(5) WoWUp                  (6) Warcraft Logs"
+    echo "(7) WeakAuras Companion"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -805,18 +805,14 @@ gaming_nonflatpaks_menu(){
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "download_cemu"
-            ;;
-
-        6)
             source $SCRIPTS_HOME/packages.sh; "download_wowup"
             ;;
 
-        7)
+        6)
             source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
             ;;
 
-        8)
+        7)
             source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
             ;;
 
@@ -863,6 +859,7 @@ gaming_flatpaks_menu(){
     echo "(3) Bottles                (4) Mangohud"
     echo "(5) Discord                (6) ProtonUp"
     echo "(7) Protontricks           (8) Dolphin"
+    echo "(9) Cemu"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -907,6 +904,10 @@ gaming_flatpaks_menu(){
 
         8)
             flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+            ;;
+
+        9)
+            flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
         p)
