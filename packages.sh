@@ -639,6 +639,7 @@ download_weakauras_companion(){
         cd  ~/Desktop/
         curl -L -o $WACOMPBINARY $WACOMPLINK
         chmod +x $WACOMPBINARY
+    fi
 }
 
 download_minecraft(){
@@ -1267,7 +1268,6 @@ test_template(){
     echo "Default install (1) or flatpak(2)?"
     printf "Option: "
     read -r input
-
     if [ $input == "1" ]
     then
         echo "insert package function"
