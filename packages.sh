@@ -1262,6 +1262,23 @@ check_for_libvirt_group(){
     fi
 }
  
+test_template(){
+    ## template function for adding more packages
+    echo "Default install (1) or flatpak(2)?"
+    printf "Option: "
+    read -r input
+
+    if [ $input == "1" ]
+    then
+        echo "insert package function"
+    elif [ $input == "2" ]
+    then
+       echo "insert flatpak(s)"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 template(){
     ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]

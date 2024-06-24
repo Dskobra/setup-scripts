@@ -258,6 +258,9 @@ main_menu(){
             extras_menu
             main_menu
             ;;
+        12)
+            test_menu
+            ;;
 
         0)
             exit
@@ -1803,6 +1806,58 @@ configurations_menu(){
     esac
     unset input
     configurations_menu
+}
+
+test_menu(){
+    echo "----------------------"
+    echo "|  Experiments   |"
+    echo "----------------------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) test template"
+    echo "(p) Previous Menu              (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "test_template"
+            ;;
+            ;;
+
+        p)
+            echo ""
+            ;;
+
+        P)
+            echo ""
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        test_menu
+        ;;
+        
+    esac
+    unset input
+    test_menu
 }
 
 export SCRIPTS_HOME=$(pwd)
