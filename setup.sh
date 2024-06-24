@@ -817,10 +817,6 @@ gaming_nonflatpaks_menu(){
             ;;
 
         8)
-            source $SCRIPTS_HOME/packages.sh; "download_raiderio"
-            ;;
-
-        9)
             source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
             ;;
 
