@@ -547,7 +547,7 @@ gnome_desktop_menu(){
             
         esac
         unset input
-        kde_desktop_menu
+        gnome_desktop_menu
 }
 
 internet_menu(){
@@ -576,11 +576,11 @@ internet_menu(){
             ;;
         
         3)
-            flatpak install --user -y flathub com.dropbox.Client
+            source $SCRIPTS_HOME/packages.sh; "install_dropbox"
             ;;
 
         4)
-            flatpak install --user -y  flathub com.transmissionbt.Transmission
+            source $SCRIPTS_HOME/packages.sh; "install_transmission"
             ;;
 
         5)  

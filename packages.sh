@@ -597,12 +597,31 @@ install_xfburn(){
 }
 
 install_remmina(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        remmina_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.remmina.Remmina
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+remmina_package(){
+    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y remmina
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.remmina.Remmina
+        sudo rpm-ostree install remmina
+        sudo rpm-ostree apply-live
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y remmina
@@ -610,7 +629,6 @@ install_remmina(){
         echo "Unkown error has occured."
     fi
 }
-
 install_claws_mail(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -720,6 +738,85 @@ brave_browser_package(){
     fi
 }
 
+install_dropbox(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        dropbox_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub com.dropbox.Client
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+dropbox_package(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y dropbox
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install dropbox
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        dropbox_debian_package
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+dropbox_debian_package(){
+    DESKTOP=$(echo $XDG_CURRENT_DESKTOP)
+    if [ $DESKTOP == "GNOME" ]
+    then
+        sudo apt-get install -y nautilus-dropbox
+    elif [ $DESKTOP == "MATE" ]
+    then
+        sudo apt-get install caja-dropbox
+    else
+        sudo apt-get install -y nautilus-dropbox
+    fi
+}
+
+install_transmission(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        transmission_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y  flathub com.transmissionbt.Transmission
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+transmission_package(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y transmission-gtk
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install transmission-gtk
+        sudo rpm-ostree apply-live
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y transmission-gtk
+    else
+        echo "Unkown error has occured."
+    fi
+}
 ### multimedia
 
 install_codecs(){
@@ -1507,6 +1604,8 @@ standard_package_template(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install 
+        #sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y
