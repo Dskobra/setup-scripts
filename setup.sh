@@ -409,8 +409,11 @@ kde_desktop_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Core Apps          (2) Non flatpaks"
-    echo "(3) Flatpaks           (h) Help"     
+    echo "(1) Core Apps          (2) Plasma X11"
+    echo "(3) KDE Patience       (4) KDE ISO Image Writer"
+    echo "(5) K3b                (6) Kolourpaint"
+    echo "(7) Kleopatra"
+    echo "(h) Help               (p) Previous Menu"
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -422,11 +425,27 @@ kde_desktop_menu(){
             ;;
         
         2)
-            kde_non_flatpaks_menu
+            source $SCRIPTS_HOME/packages.sh; "install_plasma_x11"
             ;;
 
         3)
-            kde_flatpaks_menu
+            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
+            ;;
+        
+        5)
+            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            ;;
+
+        7)
+            source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
             ;;
 
         h)
@@ -466,135 +485,6 @@ kde_desktop_menu(){
         esac
         unset input
         kde_desktop_menu
-}
-
-kde_non_flatpaks_menu(){
-    echo "---------------------------"
-    echo "|   KDE Non Flatpak Apps  |"
-    echo "---------------------------"
-    echo ""
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) K3b                (2) KDE ISO Image Writer"
-    echo "(3) KDE Patience       (4) Plasma X11"
-    echo "(p) Previous Menu      (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
-            ;;
-
-        2)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/packages.sh; "install_plasma_x11"
-            ;;
-
-        p)
-            kde_desktop_menu
-            ;;
-
-        P)
-            kde_desktop_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            kde_non_flatpaks_menu
-            ;;
-            
-        esac
-        unset input
-        kde_non_flatpaks_menu
-}
-
-kde_flatpaks_menu(){
-    echo "------------------------"
-    echo "|   KDE Flatpak Apps   |"
-    echo "------------------------"
-    echo ""
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) Kolourpaint        (2) Kleopatra"
-    echo "(3) KDE Patience       (4) KDE ISO Image Writer"
-    echo "(h) Help"     
-    echo "(m) Main Menu          (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            flatpak install --user -y flathub org.kde.kolourpaint
-            ;;
-        
-        2)
-            flatpak install --user -y flathub org.kde.kleopatra
-            ;;
-
-        3)
-            flatpak install --user -y flathub org.kde.kpat
-            ;;
-
-        4)
-            flatpak install --user -y flathub org.kde.isoimagewriter
-            ;;
-
-
-        p)
-            kde_desktop_menu
-            ;;
-
-        P)  
-            kde_desktop_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            kde_flatpaks_menu
-            ;;
-            
-        esac
-        unset input
-        kde_flatpaks_menu
 }
 
 internet_menu(){

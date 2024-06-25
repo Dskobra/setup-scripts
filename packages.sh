@@ -397,6 +397,72 @@ kde_iso_image_writer_package(){
     fi
 }
 
+install_kleopatra(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        kleopatra_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.kde.kleopatra
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+kleopatra_package(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y kleopatra
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install kleopatra
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kleopatra
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_kolourpaint(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        kolourpaint_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.kde.kolourpaint
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+kolourpaint_package(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y kolourpaint
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install kolourpaint
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y kolourpaint
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_plasma_x11(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -437,6 +503,28 @@ remove_kinoite_flatpaks(){
 
 ### gtk Apps
 install_gnome_apps(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        echo "insert package function"
+    elif [ $input == "2" ]
+    then
+        sudo rpm-ostree gnome-tweaks dconf-editor libgtop2-devel lm_sensors # last 2 needed for vitals extension
+        flatpak install -y --user flathub org.gnome.Extensions
+        flatpak install --user -y flathub org.gnome.FileRoller
+        flatpak install --user -y flathub org.gnome.Evince
+        flatpak install --user -y flathub org.pulseaudio.pavucontrol
+        flatpak install --user -y flathub org.gnome.Cheese
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+gnome_packages(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y file-roller evince dconf-editor gnome-tweaks pavucontrol\
