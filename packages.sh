@@ -866,6 +866,75 @@ install_amd_codecs(){
     fi
 }
 
+install_vlc(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        vlc_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.videolan.VLC
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+vlc_package(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y vlc
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install vlc
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y vlc
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_obsstudio(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        obsstudio_package(
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub com.obsproject.Studio
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+obsstudio_package(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y obs-studio
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install obs-studio
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y obs-studio
+    else
+        echo "Unkown error has occured."
+    fi
+}
 ### games
 install_steam(){
     if [ $PKGMGR == "dnf" ]

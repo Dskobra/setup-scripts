@@ -637,11 +637,11 @@ multimedia_menu(){
             ;;
 
         3)
-            flatpak install --user -y flathub org.videolan.VLC
+            source $SCRIPTS_HOME/packages.sh; "install_vlc"
             ;;
         
         4)
-            flatpak install --user -y flathub com.obsproject.Studio
+            source $SCRIPTS_HOME/packages.sh; "install_obsstudio"
             ;;
 
         5)
