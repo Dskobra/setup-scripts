@@ -628,6 +628,23 @@ install_claws_mail(){
 
 ### internet
 install_firefox(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        firefox_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.mozilla.firefox
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+firefox_package(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y firefox
@@ -655,6 +672,23 @@ install_firefox(){
 }
 
 install_brave_browser(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        echo "insert package function"
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub com.brave.Browser
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+brave_browser_package(){
     cd $SCRIPTS_HOME/temp
     if [ $PKGMGR == "dnf" ]
     then
@@ -685,7 +719,6 @@ install_brave_browser(){
         echo "Unkown error has occured."
     fi
 }
-
 
 ### multimedia
 

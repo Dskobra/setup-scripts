@@ -549,6 +549,7 @@ gnome_desktop_menu(){
         unset input
         kde_desktop_menu
 }
+
 internet_menu(){
     echo "----------------"
     echo "|   Internet   |"
