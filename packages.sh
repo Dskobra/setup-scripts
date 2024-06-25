@@ -213,25 +213,42 @@ install_v4l2loopback(){
     fi
 }
 
-### KDE/Qt Apps
 install_kdeapps(){
-    if [ $PKGMGR == "dnf" ]
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
     then
-        sudo dnf install -y ark kate krdc kcalc kamoso gwenview\
-        kleopatra okular signon-kwallet-extension
-    elif [ $PKGMGR == "rpm-ostree" ]
+        kde_packages
+    elif [ $input == "2" ]
     then
         remove_kinoite_flatpaks
-        sudo rpm-ostree install krdc signon-kwallet-extension
         flatpak install --user -y flathub org.kde.ark
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kleopatra
+    else
+        echo "Unkown error has occured."
+    fi
+}
+### KDE/Qt Apps
+kde_packages(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y ark kate krdc kcalc kamoso gwenview\
+        kleopatra okular
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        remove_kinoite_flatpaks
+        sudo rpm-ostree ark kate krdc kcalc kamoso gwenview\
+        kleopatra okular
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y ark kate krdc kcalc kamoso\
-        gwenview okular kleopatra signon-kwallet-extension
+        gwenview okular kleopatra
     else
         echo "Unkown error has occured."
     fi
@@ -277,7 +294,6 @@ install_kthreeb(){
     then
         sudo rpm-ostree install k3b
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y k3b
@@ -287,9 +303,29 @@ install_kthreeb(){
 }
 
 install_kpat(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        kpat_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.kde.kpat
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+kpat_package(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kpat
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install kpat
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kpat
@@ -299,14 +335,32 @@ install_kpat(){
 }
 
 install_fmedia_writer(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        fmedia_writer_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+fmedia_writer_package(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mediawriter
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+        sudo rpm-ostree install mediawriter
     elif [ $PKGMGR == "apt-get" ]
     then
+        zenity --info --text="Fedora Mediawriter isn't available in Debian so using flatpak version instead."
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
         echo "Unkown error has occured."
@@ -314,11 +368,29 @@ install_fmedia_writer(){
 }
 
 install_kde_iso_image_writer(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        kde_iso_image_writer_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.kde.isoimagewriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+kde_iso_image_writer_package(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y isoimagewriter
     elif [ $PKGMGR == "apt-get" ]
     then
+        zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."
         flatpak install --user -y flathub org.kde.isoimagewriter
     else
         echo "Unkown error has occured."
