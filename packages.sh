@@ -510,11 +510,11 @@ install_gnome_apps(){
     read -r input
     if [ $input == "1" ]
     then
-        echo "insert package function"
+        gnome_packages
     elif [ $input == "2" ]
     then
-        sudo rpm-ostree gnome-tweaks dconf-editor libgtop2-devel lm_sensors # last 2 needed for vitals extension
-        flatpak install -y --user flathub org.gnome.Extensions
+        flatpak install --user -y flathub org.gnome.Extensions
+        flatpak install --user -y flathub ca.desrt.dconf-editor
         flatpak install --user -y flathub org.gnome.FileRoller
         flatpak install --user -y flathub org.gnome.Evince
         flatpak install --user -y flathub org.pulseaudio.pavucontrol
@@ -527,22 +527,31 @@ install_gnome_apps(){
 gnome_packages(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y file-roller evince dconf-editor gnome-tweaks pavucontrol\
-        cheese libgtop2-devel lm_sensors # last 2 needed for vitals extension
-        flatpak install -y --user flathub org.gnome.Extensions
+        sudo dnf install -y file-roller evince dconf-editor pavucontrol cheese\
+        gnome-extensions-app
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree gnome-tweaks dconf-editor libgtop2-devel lm_sensors # last 2 needed for vitals extension
-        flatpak install -y --user flathub org.gnome.Extensions
-        flatpak install --user -y flathub org.gnome.FileRoller
-        flatpak install --user -y flathub org.gnome.Evince
-        flatpak install --user -y flathub org.pulseaudio.pavucontrol
-        flatpak install --user -y flathub org.gnome.Cheese
+        sudo rpm-ostree file-roller evince dconf-editor pavucontrol cheese\
+         gnome-extensions-app
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y file-roller evince dconf-editor gnome-tweaks cheese\
-        gir1.2-gtop-2.0 lm-sensors # last 2 needed for vitals extension
-        flatpak install -y --user flathub org.gnome.Extensions
+        sudo apt-get install -y file-roller evince dconf-editor pavucontrol cheese\
+        gnome-shell-extension-prefs 
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_gnome_tweaks(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y gnome-tweaks
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree gnome-tweaks
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y gnome-tweaks
     else
         echo "Unkown error has occured."
     fi

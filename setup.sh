@@ -487,6 +487,68 @@ kde_desktop_menu(){
         kde_desktop_menu
 }
 
+gnome_desktop_menu(){
+    echo "-----------"
+    echo "|   Gnome  |"
+    echo "-----------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Core Apps          (2) Gnome Tweaks"
+    echo "(h) Help               (p) Previous Menu"
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
+            ;;
+        
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_gnome_tweaks"
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            ;;
+
+        p)
+            desktop_specific_apps_menu
+            ;;
+
+        P)
+            desktop_specific_apps_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gnome_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        kde_desktop_menu
+}
 internet_menu(){
     echo "----------------"
     echo "|   Internet   |"
