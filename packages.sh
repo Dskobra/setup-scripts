@@ -8,6 +8,32 @@
 ### Scripts need git to pull from data branch, curl to get
 ### icons and repository info, wget for nodejs and other repositories,
 ### and zenity for displaying some info.
+install_prereq(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y git curl wget zenity flatpak
+        sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+        sudo dnf update -y
+        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install wget zenity
+        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+        sudo rpm-ostree apply-live
+        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y git curl wget zenity flatpak
+        sudo apt-get install -y software-properties-common
+        sudo apt-add-repository -y --component contrib non-free 
+        sudo dpkg --add-architecture i386
+        sudo apt-get update && sudo apt-get upgrade -y
+        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_git(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -213,15 +239,16 @@ install_v4l2loopback(){
     fi
 }
 
+
+### KDE/Qt Apps
 install_kdeapps(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        kde_packages
+        packages_kde
     elif [ $input == "2" ]
     then
         remove_kinoite_flatpaks
@@ -234,8 +261,8 @@ install_kdeapps(){
         echo "Unkown error has occured."
     fi
 }
-### KDE/Qt Apps
-kde_packages(){
+
+packages_kde(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y ark kate krdc kcalc kamoso gwenview\
@@ -243,7 +270,7 @@ kde_packages(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         remove_kinoite_flatpaks
-        sudo rpm-ostree ark kate krdc kcalc kamoso gwenview\
+        sudo rpm-ostree install ark kate krdc kcalc kamoso gwenview\
         kleopatra okular
     elif [ $PKGMGR == "apt-get" ]
     then
@@ -261,7 +288,7 @@ install_openshot(){
     read -r input
     if [ $input == "1" ]
     then
-        openshot_package
+        package_openshot
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.openshot.OpenShot
@@ -270,7 +297,7 @@ install_openshot(){
     fi
 }
 
-openshot_package(){
+package_openshot(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openshot
@@ -303,14 +330,13 @@ install_kthreeb(){
 }
 
 install_kpat(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        kpat_package
+        package_kpat
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.kde.kpat
@@ -319,7 +345,7 @@ install_kpat(){
     fi
 }
 
-kpat_package(){
+package_kpat(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kpat
@@ -335,14 +361,13 @@ kpat_package(){
 }
 
 install_fmedia_writer(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        fmedia_writer_package
+        package_fmedia_writer
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.fedoraproject.MediaWriter
@@ -351,7 +376,7 @@ install_fmedia_writer(){
     fi
 }
 
-fmedia_writer_package(){
+package_fmedia_writer_(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mediawriter
@@ -368,14 +393,13 @@ fmedia_writer_package(){
 }
 
 install_kde_iso_image_writer(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        kde_iso_image_writer_package
+        package_kde_iso_image_writer
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.kde.isoimagewriter
@@ -384,7 +408,7 @@ install_kde_iso_image_writer(){
     fi
 }
 
-kde_iso_image_writer_package(){
+package_kde_iso_image_writer(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y isoimagewriter
@@ -398,14 +422,13 @@ kde_iso_image_writer_package(){
 }
 
 install_kleopatra(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        kleopatra_package
+        package_kleopatra
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.kde.kleopatra
@@ -414,8 +437,7 @@ install_kleopatra(){
     fi
 }
 
-kleopatra_package(){
-    ## template function for adding more packages
+package_kleopatra(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kleopatra
@@ -431,14 +453,13 @@ kleopatra_package(){
 }
 
 install_kolourpaint(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        kolourpaint_package
+        package_kolourpaint
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.kde.kolourpaint
@@ -447,8 +468,7 @@ install_kolourpaint(){
     fi
 }
 
-kolourpaint_package(){
-    ## template function for adding more packages
+package_kolourpaint(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kolourpaint
@@ -503,14 +523,13 @@ remove_kinoite_flatpaks(){
 
 ### gtk Apps
 install_gnome_apps(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        gnome_packages
+        packages_gnome
     elif [ $input == "2" ]
     then
         flatpak install --user -y flathub org.gnome.Extensions
@@ -524,7 +543,7 @@ install_gnome_apps(){
     fi
 }
 
-gnome_packages(){
+packages_gnome(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y file-roller evince dconf-editor pavucontrol cheese\
@@ -597,14 +616,13 @@ install_xfburn(){
 }
 
 install_remmina(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        remmina_package
+        package_remmina
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.remmina.Remmina
@@ -613,8 +631,8 @@ install_remmina(){
     fi
 }
 
-remmina_package(){
-    ## template function for adding more packages
+package_remmina(){
+    
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y remmina
@@ -629,6 +647,7 @@ remmina_package(){
         echo "Unkown error has occured."
     fi
 }
+
 install_claws_mail(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -646,14 +665,13 @@ install_claws_mail(){
 
 ### internet
 install_firefox(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        firefox_package
+        package_firefox
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.mozilla.firefox
@@ -662,7 +680,7 @@ install_firefox(){
     fi
 }
 
-firefox_package(){
+package_firefox(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y firefox
@@ -690,14 +708,13 @@ firefox_package(){
 }
 
 install_brave_browser(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        echo "insert package function"
+        package_brave_browser
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub com.brave.Browser
@@ -706,7 +723,7 @@ install_brave_browser(){
     fi
 }
 
-brave_browser_package(){
+package_brave_browser(){
     cd $SCRIPTS_HOME/temp
     if [ $PKGMGR == "dnf" ]
     then
@@ -739,7 +756,6 @@ brave_browser_package(){
 }
 
 install_dropbox(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
@@ -756,7 +772,7 @@ install_dropbox(){
 }
 
 dropbox_package(){
-    ## template function for adding more packages
+    
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y dropbox
@@ -785,7 +801,6 @@ dropbox_debian_package(){
 }
 
 install_transmission(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
@@ -802,7 +817,7 @@ install_transmission(){
 }
 
 transmission_package(){
-    ## template function for adding more packages
+    
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y transmission-gtk
@@ -867,7 +882,6 @@ install_amd_codecs(){
 }
 
 install_vlc(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
@@ -884,7 +898,7 @@ install_vlc(){
 }
 
 vlc_package(){
-    ## template function for adding more packages
+    
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y vlc
@@ -902,7 +916,6 @@ vlc_package(){
 }
 
 install_obsstudio(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
@@ -919,7 +932,7 @@ install_obsstudio(){
 }
 
 obsstudio_package(){
-    ## template function for adding more packages
+    
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y obs-studio
@@ -937,16 +950,33 @@ obsstudio_package(){
 }
 ### games
 install_steam(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        steam_package
+    elif [ $input == "2" ]
+    then
+        flatpak install --user -y flathub com.valvesoftware.Steam
+        flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
+        flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
+        zenity --info --text="steam-devices package will also be installed for controller support."
+        install_steam_devices
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+steam_package(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y steam
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-       flatpak install --user -y flathub com.valvesoftware.Steam 
-       flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
-       flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
-       sudo rpm-ostree install steam-devices
-       check_if_fedora_immutable
+        sudo rpm-ostree install steam
+        check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo dpkg --add-architecture i386
@@ -975,7 +1005,96 @@ install_steam_devices(){
     fi
 }
 
+install_lutris(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        lutris_package
+    elif [ $input == "2" ]
+    then
+            flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
+            flatpak install --user -y flathub net.lutris.Lutris
+            flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+lutris_package(){
+    
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y lutris
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install lutris
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y lutris
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_bottles(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        bottles_package
+    elif [ $input == "2" ]
+    then
+        flatpak install --user -y flathub com.usebottles.bottles
+        flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+bottles_package(){
+    
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y bottles
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install bottles
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        zenity --info --text="Bottles isn't currently available in Debian. This will install the flatpak version."
+        flatpak install --user -y flathub com.usebottles.bottles
+        flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_mangohud(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        mangohud_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+mangohud_package(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mangohud
@@ -986,6 +1105,74 @@ install_mangohud(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y mangohud
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_discord(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        discord_package
+    elif [ $input == "2" ]
+    then
+        flatpak install --user -y flathub com.discordapp.Discord
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+discord_package(){
+    
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y discord
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install discord
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub com.discordapp.Discord
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_dolphin_emu(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        dolphin_emu_package
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+dolphin_emu_package(){
+    
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y dolphin-emu
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install dolphin-emu
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y dolphin-emu
     else
         echo "Unkown error has occured."
     fi

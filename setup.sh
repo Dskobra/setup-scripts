@@ -2,6 +2,18 @@
 
 ### This is the main script that contians all the menus,
 ### and code for determining the distro.
+
+run_prereq_check(){
+    FIRST_RUN_FILE=$SCRIPTS_HOME/.first_run_file.txt
+    test -f $FIRST_RUN_FILE && FIRST_RUN_FILE="exists"
+    if [ "$FIRST_RUN_FILE" = "exists" ] then
+        echo "prereq already setup."
+    else
+        echo "setting up prereq"
+        touch $SCRIPTS_HOME/.first_run_file.txt
+    fi
+}
+
 make_temp(){
     test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];
@@ -683,7 +695,8 @@ gaming_menu(){
     echo "Game clients and other apps"
     echo ""
     echo ""   
-    echo "(1) Non flatpaks           (2) Flatpaks"
+    echo "(1) Game Clients           (2) Tools"
+    echo "(3) WoW Clients            (4) Misc"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -691,14 +704,20 @@ gaming_menu(){
     case $input in
 
         1)  
-            gaming_nonflatpaks_menu
+            gaming_clients_menu
             ;;
 
         2) 
-            gaming_flatpaks_menu
+            gaming_tools_menu
             ;;
 
+        3)
+            gaming_wow_clients_menu
+            ;;
 
+        4)
+            gaming_misc_menu
+            ;;
         m)
             main_menu
             ;;
@@ -719,178 +738,6 @@ gaming_menu(){
         esac
         unset input
         gaming_menu
-}
-
-gaming_nonflatpaks_menu(){
-    echo "-------------------"
-    echo "|   Gaming Apps   |"
-    echo "-------------------"
-    echo ""
-    echo "Appimages and non flatpaks"
-    echo ""
-    echo ""   
-    echo "(1) Steam                  (2) Steam Devices"
-    echo "(3) Mangohud               (4) Minecraft"
-    echo "(5) WoWUp                  (6) Warcraft Logs"
-    echo "(7) WeakAuras Companion"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            source $SCRIPTS_HOME/packages.sh; "install_steam"
-            ;;
-
-        2) 
-            source $SCRIPTS_HOME/packages.sh; "install_steam_devices"
-            ;;
-
-        3)
-            mkdir "$HOME"/.config/MangoHud/
-            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
-            ;;
-
-        5)
-            source $SCRIPTS_HOME/packages.sh; "download_wowup"
-            ;;
-
-        6)
-            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
-            ;;
-
-        7)
-            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
-            ;;
-
-        p)
-            gaming_menu
-            ;;
-
-        P)
-            gaming_menu
-            ;;
-
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            gaming_nonflatpaks_menu
-            ;;
-            
-        esac
-        unset input
-        gaming_nonflatpaks_menu
-}
-
-gaming_flatpaks_menu(){
-    echo "-------------------"
-    echo "|   Gaming Apps   |"
-    echo "-------------------"
-    echo ""
-    echo "Gaming apps from flathub"
-    echo ""
-    echo ""   
-    echo "(1) Steam                  (2) Lutris"
-    echo "(3) Bottles                (4) Mangohud"
-    echo "(5) Discord                (6) ProtonUp"
-    echo "(7) Protontricks           (8) Dolphin"
-    echo "(9) Cemu"
-    echo "(m) Main Menu              (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            flatpak install --user -y flathub com.valvesoftware.Steam
-            STEAM_WARNING_ONE="Flatpak versions of steam will need to install steam-devices from the"
-            STEAM_WARNING_TWO="non flatpak section in order to get controller support"
-            zenity --info --text="$STEAM_WARNING_ONE $STEAM_WARNING_TWO"
-            ;;
-
-        2) 
-            mkdir "$HOME"/Games
-            flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
-            flatpak install --user -y flathub net.lutris.Lutris
-            flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
-            flatpak run net.lutris.Lutris
-            ;;
-
-        3)
-            flatpak install --user -y flathub com.usebottles.bottles
-            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
-            ;;
-
-        4)
-            flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
-            ;;
-
-        5)
-            flatpak install --user -y flathub com.discordapp.Discord
-            ;;
-        
-        6)
-            flatpak install --user -y flathub net.davidotek.pupgui2
-            ;;
-
-        7)
-            flatpak install --user -y com.github.Matoking.protontricks
-            ;;
-
-        8)
-            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-            ;;
-
-        9)
-            flatpak install --user -y flathub info.cemu.Cemu
-            ;;
-
-        p)
-            gaming_menu
-            ;;
-
-        P)
-            gaming_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            gaming_flatpaks_menu
-            ;;
-            
-        esac
-        unset input
-        gaming_flatpaks_menu
 }
 
 gaming_clients_menu(){
@@ -916,15 +763,11 @@ gaming_clients_menu(){
 
         2) 
             mkdir "$HOME"/Games
-            flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
-            flatpak install --user -y flathub net.lutris.Lutris
-            flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
-            flatpak run net.lutris.Lutris
+            source $SCRIPTS_HOME/packages.sh; "install_lutris"
             ;;
 
         3)
-            flatpak install --user -y flathub com.usebottles.bottles
-            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
+            source $SCRIPTS_HOME/packages.sh; "install_bottles"
             ;;
 
         p)
@@ -956,6 +799,71 @@ gaming_clients_menu(){
         esac
         unset input
         gaming_clients_menu
+}
+
+gaming_wow_clients_menu(){
+    echo "----------------------"
+    echo "|  Clients  for WoW   |"
+    echo "---------------- ------"
+    echo ""
+    echo "Addon managers and extra stuff for World of Warcraft"
+    echo ""
+    echo ""   
+    echo "(1) WoWUp                 (2) Warcraft Logs"
+    echo "(3) Weak Auras Companion"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            source $SCRIPTS_HOME/packages.sh; "download_wowup"
+            ;;
+
+        2) 
+            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_wow_clients_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_wow_clients_menu
 }
 
 gaming_tools_menu(){
@@ -1017,16 +925,16 @@ gaming_tools_menu(){
         gaming_tools_menu
 }
 
-gaming_wow_clients_menu(){
-    echo "----------------------"
-    echo "|  Clients  for WoW   |"
-    echo "---------------- ------"
+gaming_misc_menu(){
+    echo "-----------------"
+    echo "|   Misc Stuff   |"
+    echo "-----------------"
     echo ""
-    echo "Addon managers and extra stuff for World of Warcraft"
+    echo ""
     echo ""
     echo ""   
-    echo "(1) WoW UP                 (2) Warcraft Logs"
-    echo "(3) Raider.IO              (4) Weak Auras Companion"
+    echo "(1) Discord                (2)Minecraft"
+    echo "(3) Dolphin                (4) Cemu"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1035,81 +943,18 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "download_wowup"
+            source $SCRIPTS_HOME/packages.sh; "install_discord"
             ;;
 
         2) 
-            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
+            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
             ;;
 
         3)
-            #WARNING_ONE="Raider.IO uses a CDN which prevents this script from downloading."
-            #WARNING_TWO="Clicking OK will take you to the web page."
-            #zenity --warning --text="$WARNING_ONE $WARNING_TWO"
-            #xdg-open "https://raider.io/addon"
-            source $SCRIPTS_HOME/packages.sh; "download_raiderio"
-
+            source $SCRIPTS_HOME/packages.sh; "install_dolphin_emu"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
-            ;;
-
-        p)
-            gaming_menu
-            ;;
-
-        P)
-            gaming_menu
-            ;;
-
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            gaming_wow_clients_menu
-            ;;
-            
-        esac
-        unset input
-        gaming_wow_clients_menu
-}
-
-emulators_menu(){
-    echo "-----------------"
-    echo "|   Emulators   |"
-    echo "-----------------"
-    echo ""
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) Dolphin                (2) Cemu"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-            emulators_menu
-            ;;
-
-        2) 
-            source $SCRIPTS_HOME/packages.sh; "download_cemu"
-            emulators_menu
             ;;
 
         m)
@@ -1134,12 +979,12 @@ emulators_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            emulators_menu
+            gaming_misc_menu
             ;;
             
         esac
         unset input
-        emulators_menu
+        gaming_misc_menu
 }
 
 office_menu(){
@@ -1769,6 +1614,7 @@ CURLCHECK="missing"
 DOS2UNIXCHECK="missing"
 ZENITYCHECK="missing"
 APP_FOLDER="missing"
+FIRST_RUN_FILE="missing"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
