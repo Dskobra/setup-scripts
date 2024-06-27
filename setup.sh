@@ -1626,5 +1626,5 @@ PKGMGR=""
 VARIANT=""
 make_temp
 #make_app_folder
-run_prereq_check
 distro_check
+run_prereq_check
