@@ -11,6 +11,7 @@ run_prereq_check(){
         echo "prereq already setup."
     else
         echo "setting up prereq"
+        source $SCRIPTS_HOME/packages.sh; "install_prereq"
         touch $SCRIPTS_HOME/.first_run_file.txt
     fi
 }
@@ -88,9 +89,10 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        deps_check
+        #deps_check
         #get_data
-        display_third_party_repos
+        #display_third_party_repos
+
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
@@ -270,6 +272,10 @@ main_menu(){
         11)
             extras_menu
             main_menu
+            ;;
+
+        12)
+            run_prereq_check
             ;;
 
         0)
