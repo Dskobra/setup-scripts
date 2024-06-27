@@ -862,7 +862,7 @@ gaming_misc_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Discord                (2)Minecraft"
+    echo "(1) Discord                (2) Minecraft"
     echo "(3) Dolphin                (4) Cemu"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
