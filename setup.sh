@@ -1,9 +1,11 @@
 #!/usr/bin/bash
 
-### This is the main script that contians all the menus,
-### and code for determining the distro.
+### Main launch script which includes menus, distro
+### determination and making app/temp folders.
 
 run_prereq_check(){
+    ### make sure git, curl, wget, zenity
+    ### and flatpak are installed.
     FIRST_RUN_FILE=$SCRIPTS_HOME/.first_run_file.txt
     test -f $FIRST_RUN_FILE && FIRST_RUN_FILE="exists"
     if [ "$FIRST_RUN_FILE" = "exists" ]
@@ -29,9 +31,8 @@ make_temp(){
 }
 
 make_app_folder(){
-    # desktops like xfce might not have the applications folder created. 
-    # Which is needed for menu shortcuts.
-    mkdir -p $HOME/.local/share/applications/       
+    ### Store netbeans, intellij idea and pycharm
+    ### in ~/Apps  
     test -d $HOME/Apps && LOOK_FOR_APP_FOLDER=exists
     if [ "$LOOK_FOR_APP_FOLDER" = "exists" ];
         then
@@ -80,6 +81,11 @@ debian_release_check(){
 }
 
 fedora_variant_check(){
+    # Fedora Workstation/Server and Desktop Spins
+    # use dnf as their package manager while
+    # Atomic Desktop Editions use rpm-ostree
+    # which is very different. Some commands need
+    # to be run differently.
     test -f /run/ostree-booted && VARIANT=ostree
     if [ ! -n "$VARIANT" ]
     then
@@ -97,6 +103,10 @@ fedora_variant_check(){
 }
 
 check_if_fedora_immutable(){
+    # Many packages can be applied live, but many
+    # cannot be. Largely kernel or system modifications.
+    # Things like adding system groups or installing boot themes
+    # require rebooting first in order for them to be usable.
     if [ "$PKGMGR" == "rpm-ostree" ]
     then
         confirm_reboot
@@ -126,6 +136,8 @@ confirm_reboot(){
 }
 
 get_data(){
+    # data branch includes links I can update more frequently and
+    # my personal mangohud profiles (positioned for my liking).
     echo "Will need to download extra files from data branch"
     cd $SCRIPTS_HOME
     rm -r -f data

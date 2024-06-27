@@ -1,13 +1,8 @@
 #!/usr/bin/bash
 
-### All the packages are here. packages.conf from the data
-### branch includes the links for pycharm, intellij idea
-### community edition, netbeans, scenebuilder, eclipse 
-### and wowup
+### All the package install functions are here. packages.conf from the data
+### branch includes the links for anything that doesn't have a repository.
 
-### Scripts need git to pull from data branch, curl to get
-### icons and repository info, wget for nodejs and other repositories,
-### and zenity for displaying some info.
 install_prereq(){
     if [ $PKGMGR == "dnf" ]
     then
