@@ -6,7 +6,8 @@
 run_prereq_check(){
     FIRST_RUN_FILE=$SCRIPTS_HOME/.first_run_file.txt
     test -f $FIRST_RUN_FILE && FIRST_RUN_FILE="exists"
-    if [ "$FIRST_RUN_FILE" = "exists" ] then
+    if [ "$FIRST_RUN_FILE" = "exists" ]
+    then
         echo "prereq already setup."
     else
         echo "setting up prereq"
@@ -955,6 +956,7 @@ gaming_misc_menu(){
             ;;
 
         4)
+            flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
         m)
