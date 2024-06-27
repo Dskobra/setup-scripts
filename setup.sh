@@ -944,9 +944,7 @@ office_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "remove_office"
-            flatpak install --user -y flathub org.libreoffice.LibreOffice
-            check_if_fedora_immutable
+            source $SCRIPTS_HOME/packages.sh; "install_libreoffice"
             ;;
 
         3)

@@ -34,94 +34,6 @@ install_prereq(){
     fi
 }
 
-install_git(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y git
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y git
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_curl(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y curl
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y curl
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_wget(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y wget
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y wget
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_zenity(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y zenity
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install zenity
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y zenity
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_third_party_repos(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y software-properties-common
-        sudo apt-add-repository -y --component contrib non-free
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_flatpak(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y flatpak
-        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y flatpak
-        flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
 ### Drivers/Kernel modules
 install_corectrl(){
     if [ $PKGMGR == "dnf" ]
@@ -521,7 +433,7 @@ remove_kinoite_flatpaks(){
     flatpak remove -y org.fedoraproject.KDE6Platform 
 }
 
-### gtk Apps
+### gnome Apps
 install_gnome_apps(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
@@ -643,21 +555,6 @@ package_remmina(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y remmina
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_claws_mail(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y claws-mail
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        flatpak install --user -y flathub org.claws_mail.Claws-Mail
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y claws-mail
     else
         echo "Unkown error has occured."
     fi
@@ -1330,23 +1227,6 @@ old_download_raiderio(){
     fi
 }
 
-download_cemu(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
-    if test -f /opt/AppInstalls/data/$CEMU_BINARY; then
-        echo "Cemu already downloaded."
-    elif ! test -f /opt/AppInstalls/data/$CEMU_BINARY; then
-        cd /opt/AppInstalls/data
-        curl -L -o $CEMU_BINARY $CEMU_LINK
-        chmod +x $CEMU_BINARY
-        cp $SCRIPTS_HOME/data/launchers/cemu.sh /opt/AppInstalls/launchers/cemu.sh
-        cp $SCRIPTS_HOME/data/shortcuts/Cemu.desktop $HOME/.local/share/applications/Cemu.desktop
-        #chown $USER:$USER $HOME/.local/share/applications/Cemu.desktop
-        chmod +x $HOME/.local/share/applications/Cemu.desktop
-        curl -L -o /opt/AppInstalls/icons/cemu.png $CEMU_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/Cemu.desktop" "$HOME/Desktop/Cemu.desktop"
-    fi
-}
 ### Office Apps
 install_qownnotes(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
@@ -1365,7 +1245,6 @@ install_qownnotes(){
 }
 
 package_qownnotes(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y qownnotes
@@ -1383,31 +1262,30 @@ package_qownnotes(){
 }
 
 install_libreoffice(){
-    ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
     then
-        echo "insert package function"
+        package_libreoffice
     elif [ $input == "2" ]
     then
-       echo "insert flatpak(s)"
+        source $SCRIPTS_HOME/packages.sh; "remove_libreoffice"
+        flatpak install --user -y flathub org.libreoffice.LibreOffice
     else
         echo "Unkown error has occured."
     fi
 }
 
 package_libreoffice(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y libreoffice
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install 
-        #sudo rpm-ostree apply-live
+        sudo rpm-ostree install libreoffice
+        sudo rpm-ostree apply-live
         #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
@@ -1416,13 +1294,66 @@ package_libreoffice(){
         echo "Unkown error has occured."
     fi
 }
+
+install_claws_mail(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_claws_mail
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.claws_mail.Claws-Mail
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+package_claws_mail(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y claws-mail
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install claws-mail
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y claws-mail
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_thunderbird(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_thunderbird
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.mozilla.Thunderbird
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+package_thunderbird(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y thunderbird
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.mozilla.Thunderbird
+        sudo rpm-ostree install thunderbird
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y thunderbird
@@ -1449,15 +1380,32 @@ download_bitwarden(){
 }
 
 install_keepassxc(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_keepassxc
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.keepassxc.KeePassXC
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+package_keepassxc(){
     if [ $PKGMGR == "dnf" ]
     then
-        flatpak install --user -y flathub org.keepassxc.KeePassXC
+        sudo dnf install -y keepassxc
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.keepassxc.KeePassXC
+        sudo rpm-ostree install keepassxc
     elif [ $PKGMGR == "apt-get" ]
     then
-        flatpak install --user -y flathub org.keepassxc.KeePassXC
+        sudo apt-get install -y keepassxc
     else
         echo "Unkown error has occured."
     fi
