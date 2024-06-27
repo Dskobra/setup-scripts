@@ -147,7 +147,7 @@ main_menu(){
     echo "(1) Drivers/Modules               (2) Desktop Specific Apps"      
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
-    echo "(7) Coding                        (8) Utilities"
+    echo "(7) Development                   (8) Utilities"
     echo "(9) Extras"
     echo "(0) Exit"
     printf "Option: "
@@ -158,46 +158,37 @@ main_menu(){
 
         1)
             drivers_modules_menu
-            main_menu
             ;;
 
         2)
             desktop_specific_apps_menu
-            main_menu
             ;;
 
         3)
             internet_menu
-            main_menu
             ;;
 
         4)
             multimedia_menu
-            main_menu
             ;;
 
         5)
             gaming_menu
-            main_menu
             ;;
 
         6)
             office_menu
-            main_menu
             ;;
         7)
-            coding_menu
-            main_menu
+            development_menu
             ;;
 
         8)
             utils_menu
-            main_menu
             ;;
 
         9)
             extras_menu
-            main_menu
             ;;
 
         0)
@@ -981,10 +972,10 @@ office_menu(){
         office_menu
 }
 
-coding_menu(){
-    echo "--------------"
-    echo "|   Coding   |"
-    echo "--------------"
+development_menu(){
+    echo "-------------------"
+    echo "|   Development   |"
+    echo "-------------------"
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
@@ -994,7 +985,6 @@ coding_menu(){
     echo "(3) Web Devlopment    (4) Python"
     echo "(5) Other IDEs        (6) GitHub Desktop"
     echo "(7) Containers"
-    
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -1042,12 +1032,12 @@ coding_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        coding_menu
+        development_menu
         ;;
         
     esac
     unset input
-    coding_menu
+    development_menu
 }
 
 cpp_menu(){
@@ -1074,11 +1064,11 @@ cpp_menu(){
             ;;
         
         p)
-            coding_menu
+            development_menu
             ;;
         
         P)
-            coding_menu
+            development_menu
             ;;
         
         m)
@@ -1137,11 +1127,11 @@ openjdk_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
             ;;
         p)
-            coding_menu
+            development_menu
             ;;
 
         P)
-            coding_menu
+            development_menu
             ;;
 
         m)
@@ -1196,11 +1186,11 @@ web_dev_menu(){
             ;;
         
         p)
-            coding_menu
+            development_menu
             ;;
 
         P)
-            coding_menu
+            development_menu
             ;;
 
         m)
@@ -1255,11 +1245,11 @@ python_menu(){
             ;;
 
         p)
-            coding_menu
+            development_menu
             ;;
 
         P)
-            coding_menu
+            development_menu
             ;;
 
         m)
@@ -1318,11 +1308,11 @@ ides_menu(){
             ;;
 
         p)
-            coding_menu
+            development_menu
             ;;
 
         P)
-            coding_menu
+            development_menu
             ;;
 
         m)
