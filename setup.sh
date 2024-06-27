@@ -133,64 +133,12 @@ confirm_reboot(){
     fi
 }
 
-deps_check(){
-    test -f /usr/bin/git && GITCHECK="exists"
-    if [ "$GITCHECK" = "exists" ];
-        then
-           GITCHECK=exists 
-    elif [ "$GITCHECK" = "missing" ];
-        then
-        echo "git not found. Will install it."
-        source $SCRIPTS_HOME/packages.sh; "install_git"
-    fi
-
-    test -f /usr/bin/curl && CURLCHECK="exists"
-    if [ "$CURLCHECK" = "exists" ];
-        then
-           CURLCHECK="exists" 
-    elif [ "$CURLCHECK" = "missing" ];
-        then
-        echo "curl not found. Will install it."
-        source $SCRIPTS_HOME/packages.sh; "install_curl"
-    fi
-    
-    test -f /usr/bin/wget && WGETCHECK="exists"
-    if [ "$WGETCHECK" = "exists" ];
-        then
-           WGETCHECK="exists" 
-    elif [ "$WGETCHECK" = "missing" ];
-        then
-        echo "wget not found. Will install it."
-        source $SCRIPTS_HOME/packages.sh; "install_wget"
-    fi
-
-    test -f /usr/bin/zenity && ZENITYCHECK="exists"
-    if [ "$ZENITYCHECK" = "exists" ];
-        then
-           ZENITYCHECK=exists 
-    elif [ "$ZENITYCHECK" = "missing" ];
-        then
-        echo "zenity not found. Will install it."
-        source $SCRIPTS_HOME/packages.sh; "install_zenity"
-    fi
-}
-
 get_data(){
     echo "Will need to download extra files from data branch"
     cd $SCRIPTS_HOME
     rm -r -f data
     git clone https://github.com/Dskobra/setup-scripts -b data
     mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
-}
-
-display_third_party_repos(){
-    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
-    then
-        THIRD_PARTY_REPO="RPMFusion"
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        THIRD_PARTY_REPO="contrib non-free"
-    fi
 }
 
 main_menu(){
@@ -202,17 +150,12 @@ main_menu(){
     echo "Copyright (c) 2021-2023 Jordan Bottoms"
     echo "Released under the MIT license"
     echo ""
-    echo "OS Name: $OS_NAME"
-    echo "Package Manager: $PKGMGR"
-    echo "3rd Party Repo is: $THIRD_PARTY_REPO"
     echo ""
-    echo ""
-    echo "(1) 3rd Party Repo                (2) Setup Flatpak"
-    echo "(3) Drivers/Modules               (4) Desktop Specific Apps"      
-    echo "(5) Internet                      (6) Multimedia"
-    echo "(7) Gaming                        (8) Office"
-    echo "(9) Coding                        (10) Utilities"
-    echo "(11) Extras"
+    echo "(1) Drivers/Modules               (2) Desktop Specific Apps"      
+    echo "(3) Internet                      (4) Multimedia"
+    echo "(5) Gaming                        (6) Office"
+    echo "(7) Coding                        (8) Utilities"
+    echo "(9) Extras"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -220,62 +163,48 @@ main_menu(){
     case $input in
 
 
-        1)  
-            source $SCRIPTS_HOME/packages.sh; "install_third_party_repos"
-            main_menu
-            ;;
-
-        2)
-            source $SCRIPTS_HOME/packages.sh; "install_flatpak"
-            main_menu
-            ;;
-
-        3)
+        1)
             drivers_modules_menu
             main_menu
             ;;
 
-        4)
+        2)
             desktop_specific_apps_menu
             main_menu
             ;;
 
-        5)
+        3)
             internet_menu
             main_menu
             ;;
 
-        6)
+        4)
             multimedia_menu
             main_menu
             ;;
 
-        7)
+        5)
             gaming_menu
             main_menu
             ;;
 
-        8)
+        6)
             office_menu
             main_menu
             ;;
-        9)
+        7)
             coding_menu
             main_menu
             ;;
 
-        10)
+        8)
             utils_menu
             main_menu
             ;;
 
-        11)
+        9)
             extras_menu
             main_menu
-            ;;
-
-        12)
-            run_prereq_check
             ;;
 
         0)
@@ -1013,7 +942,7 @@ office_menu(){
     case $input in
 
         1)
-            flatpak install --user -y flathub org.qownnotes.QOwnNotes
+            source $SCRIPTS_HOME/packages.sh; "install_qownnotes"
             ;;
 
         2)
@@ -1031,7 +960,6 @@ office_menu(){
             ;;
 
         5)
-            #source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
             flatpak install --user -y flathub com.bitwarden.desktop
             ;;
 

@@ -1348,7 +1348,74 @@ download_cemu(){
     fi
 }
 ### Office Apps
+install_qownnotes(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_qownnotes
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.qownnotes.QOwnNotes
+    else
+        echo "Unkown error has occured."
+    fi
+}
 
+package_qownnotes(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y qownnotes
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install qownnotes
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.qownnotes.QOwnNotes
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+install_libreoffice(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        echo "insert package function"
+    elif [ $input == "2" ]
+    then
+       echo "insert flatpak(s)"
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+package_libreoffice(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y libreoffice
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install 
+        #sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y
+    else
+        echo "Unkown error has occured."
+    fi
+}
 install_thunderbird(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -1809,7 +1876,7 @@ remove_codecs(){
     fi
 }
 
-remove_office(){
+remove_libreoffice(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf remove -y libreoffice*
