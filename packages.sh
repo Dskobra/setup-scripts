@@ -1048,7 +1048,7 @@ install_dolphin_emu(){
     read -r input
     if [ $input == "1" ]
     then
-        dolphin_emu_package
+        package_dolphin_emu
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
@@ -1057,8 +1057,7 @@ install_dolphin_emu(){
     fi
 }
 
-dolphin_emu_package(){
-    
+package_dolphin_emu(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y dolphin-emu
@@ -1128,103 +1127,6 @@ download_minecraft(){
 
 download_raiderio(){
     echo "Pending removal"
-}
-
-old_download_wowup(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
-    if test -f /opt/AppInstalls/data/$WOWUPBINARY; then
-        echo "WoWUp already downloaded."
-    elif ! test -f /opt/AppInstalls/data/$WOWUPBINARY; then
-        cd /opt/AppInstalls/data
-        curl -L -o $WOWUPBINARY $WOWUPLINK 
-        chmod +x $WOWUPBINARY
-        cp $SCRIPTS_HOME/data/launchers/wowup.sh /opt/AppInstalls/launchers/wowup.sh
-        cp $SCRIPTS_HOME/data/shortcuts/WoWUp.desktop $HOME/.local/share/applications/WoWUp.desktop
-        #chown $USER:$USER $HOME/.local/share/applications/WoWUp.desktop
-        chmod +x $HOME/.local/share/applications/WoWUp.desktop
-        curl -L -o /opt/AppInstalls/icons/wowup.png $WOWUP_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/WoWUp.desktop" "$HOME/Desktop/WoWUp.desktop"
-        #ln -s "/opt/AppInstalls/launchers/wowup.sh" "$HOME/Desktop/wowup"          old shorcut link   
-    fi
-}
-
-old_download_warcraft_logs(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
-    if test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
-        echo "Warcraft Logs already downloaded."
-    elif ! test -f /opt/AppInstalls/data/$WOWLOGSBINARY; then
-        cd /opt/AppInstalls/data
-        curl -L -o $WOWLOGSBINARY $WOWLOGSLINK
-        chmod +x $WOWLOGSBINARY
-        cp $SCRIPTS_HOME/data/launchers/warcraft_logs.sh /opt/AppInstalls/launchers/warcraft_logs.sh 
-        cp $SCRIPTS_HOME/data/shortcuts/Warcraft_Logs.desktop $HOME/.local/share/applications/Warcraft_Logs.desktop
-        chmod +x $HOME/.local/share/applications/Warcraft_Logs.desktop
-        curl -L -o /opt/AppInstalls/icons/warcraft_logs.png $WOWLOGS_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/Warcraft_Logs.desktop" "$HOME/Desktop/Warcraft_Logs.desktop"  
-    fi
-}
-
-old_download_weakauras_companion(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
-    if test -f /opt/AppInstalls/data/$WACOMPBINARY; then
-        echo "WeakAuras Companion already downloaded."
-    elif ! test -f /opt/AppInstalls/data/$WACOMPBINARY; then
-        cd /opt/AppInstalls/data
-        curl -L -o $WACOMPBINARY $WACOMPLINK
-        chmod +x $WACOMPBINARY
-        cp $SCRIPTS_HOME/data/launchers/weakauras_companion.sh /opt/AppInstalls/launchers/weakauras_companion.sh
-        cp $SCRIPTS_HOME/data/shortcuts/WeakAuras_Companion.desktop $HOME/.local/share/applications/WeakAuras_Companion.desktop
-        chmod +x $HOME/.local/share/applications/WeakAuras_Companion.desktop
-        curl -L -o /opt/AppInstalls/icons/weakauras.png $WAC_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/WeakAuras_Companion.desktop" "$HOME/Desktop/WeakAuras_Companion.desktop"  
-    fi
-}
-
-old_download_minecraft(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf    
-    if test -f /opt/AppInstalls/data/minecraft-launcher; then
-        echo "Minecraft already downloaded."
-    elif ! test -f /opt/AppInstalls/data/minecraft-launcher; then
-        cd $SCRIPTS_HOME/temp
-        curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
-        tar -xvf Minecraft.tar.gz
-        cd minecraft-launcher
-        chmod +x minecraft-launcher
-        mv minecraft-launcher /opt/AppInstalls/data
-        cp $SCRIPTS_HOME/data/launchers/minecraft.sh /opt/AppInstalls/launchers/minecraft.sh
-        cp $SCRIPTS_HOME/data/shortcuts/Minecraft.desktop $HOME/.local/share/applications/Minecraft.desktop
-        chmod +x $HOME/.local/share/applications/Minecraft.desktop
-        curl -L -o /opt/AppInstalls/icons/minecraft.png $MINECRAFT_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/Minecraft.desktop" "$HOME/Desktop/Minecraft.desktop"
-    fi
-}
-
-old_download_raiderio(){
-    source $SCRIPTS_HOME/data/packages.conf  
-    if test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
-        echo "Raider.IO already downloaded."
-    elif ! test -f /opt/AppInstalls/data/RaiderIO.AppImage; then
-        RAIDERIO_WARNING_ONE="Please download the RaiderIO client from https://raider.io/addon, name it as RaiderIO.AppImage"
-        RAIDERIO_WARNING_TWO=", mark it as executable (right click and select properties) and place it in /opt/AppInstalls/data"
-        zenity --info --text="$RAIDERIO_WARNING_ONE $RAIDERIO_WARNING_TWO"
-
-        #FILEWARNINGONE="Please make sure Raider.IO is in the downloads folder and the filetype"
-        #FILEWARNINGTWO="is saved as .AppImage (capital A and I in AppImage) then hit OK."
-        #zenity --info --text="$FILEWARNINGONE $FILEWARNINGTWO"
-        #chmod +x $HOME/Downloads/RaiderIO.AppImage
-        #mv $HOME/Downloads/RaiderIO.AppImage /opt/AppInstalls/data/RaiderIO.AppImage
-        
-        
-        cp $SCRIPTS_HOME/data/launchers/raiderio.sh /opt/AppInstalls/launchers/raiderio.sh
-        cp $SCRIPTS_HOME/data/shortcuts/Raider.IO.desktop $HOME/.local/share/applications/Raider.IO.desktop
-        chmod +x $HOME/.local/share/applications/Raider.IO.desktop
-        curl -L -o /opt/AppInstalls/icons/raiderio.png $RAIDERIO_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/Raider.IO.desktop" "$HOME/Desktop/Raider.IO.desktop"
-    fi
 }
 
 ### Office Apps
@@ -1454,36 +1356,27 @@ download_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
     
-    if test -d /opt/AppInstalls/data/idea; then
+    if test -d $APP_FOLDER/idea; then
         echo "Intellij Idea already downloaded."
-    elif ! test -d /opt/AppInstalls/data/idea; then
+    elif ! test -d $APP_FOLDER/idea; then
         cd $SCRIPTS_HOME/temp
         curl -L -o idea.tar.gz $IDEA_LINK
         tar -xvf idea.tar.gz
         rm idea.tar.gz
-        mv idea* /opt/AppInstalls/data/idea
-        cp $SCRIPTS_HOME/data/shortcuts/Intelij_Idea.desktop $HOME/.local/share/applications/Intelij_Idea.desktop
-        ##chown $USER:$USER $HOME/.local/share/applications/Intelij_Idea.desktop
-        ln -s "$HOME/.local/share/applications/Intelij_Idea.desktop" "$HOME/Desktop/Intelij_Idea.desktop"
-
+        mv idea* $APP_FOLDER/idea
     fi
 }
 
 download_netbeans(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
-    if test -d /opt/AppInstalls/data/netbeans; then
+    if test -d $APP_FOLDER/netbeans; then
         echo "Netbeans already downloaded."
-    elif ! test -d /opt/AppInstalls/data/netbeans; then
+    elif ! test -d $APP_FOLDER/netbeans; then
         cd $SCRIPTS_HOME/temp
         curl -L -o netbeans.zip $NETBEANS_LINK
         unzip netbeans.zip
-        mv $SCRIPTS_HOME/temp/netbeans /opt/AppInstalls/data/netbeans
-        cp $SCRIPTS_HOME/data/shortcuts/Netbeans.desktop $HOME/.local/share/applications/Netbeans.desktop
-        #chown $USER:$USER $HOME/.local/share/applications/Netbeans.desktop
-        chmod +x $HOME/.local/share/applications/Netbeans.desktop
-        curl -L -o /opt/AppInstalls/icons/netbeans.png $NETBEANS_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/Netbeans.desktop" "$HOME/Desktop/Netbeans.desktop"
+        mv $SCRIPTS_HOME/temp/netbeans $APP_FOLDER/netbeans
 
     fi
 }
@@ -1586,18 +1479,14 @@ install_python_tools(){
 download_pycharm(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf    
-    if test -d /opt/AppInstalls/data/pycharm; then
+    if test -d $APP_FOLDER/pycharm; then
         echo "Pycharm already downloaded."
-    elif ! test -d /opt/AppInstalls/data/pycharm; then
+    elif ! test -d $APP_FOLDER/pycharm; then
         cd $SCRIPTS_HOME/temp
         curl -L -o pycharm.tar.gz $PYCHARM_LINK
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
-        mv pycharm* /opt/AppInstalls/data/pycharm
-        cp $SCRIPTS_HOME/data/shortcuts/Pycharm_Community.desktop $HOME/.local/share/applications/Pycharm_Community.desktop
-        #chown $USER:$USER $HOME/.local/share/applications/Pycharm_Community.desktop
-        ln -s "$HOME/.local/share/applications/Pycharm_Community.desktop" "$HOME/Desktop/Pycharm_Community.desktop"
-
+        mv pycharm* $APP_FOLDER/pycharm
     fi
 }
 

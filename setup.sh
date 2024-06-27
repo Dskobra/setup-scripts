@@ -31,18 +31,13 @@ make_app_folder(){
     # desktops like xfce might not have the applications folder created. 
     # Which is needed for menu shortcuts.
     mkdir -p $HOME/.local/share/applications/       
-    test -d /opt/AppInstalls/ && APP_FOLDER=exists
-    if [ "$APP_FOLDER" = "exists" ];
+    test -d $HOME/Apps && LOOK_FOR_APP_FOLDER=exists
+    if [ "$LOOK_FOR_APP_FOLDER" = "exists" ];
         then
-           APP_FOLDER=exists 
-    elif [ "$APP_FOLDER" = "missing" ];
+           LOOK_FOR_APP_FOLDER=exists 
+    elif [ "$LOOK_FOR_APP_FOLDER" = "missing" ];
         then
-        sudo mkdir /opt/AppInstalls/
-        sudo mkdir /opt/AppInstalls/launchers # store launch scripts
-        sudo mkdir /opt/AppInstalls/data      # store program folders etc
-        sudo mkdir /opt/AppInstalls/icons
-
-        sudo chown $USER:$USER /opt/AppInstalls -R  # make current user owner so its writable  
+            mkdir $APP_FOLDER
     fi
 }
 
@@ -1540,16 +1535,12 @@ OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 VERSION="4.23.2024"
 TEMP_FOLDER="missing"
-GITCHECK="missing"
-WGETCHECK="missing"
-CURLCHECK="missing"
-DOS2UNIXCHECK="missing"
-ZENITYCHECK="missing"
-APP_FOLDER="missing"
+LOOK_FOR_APP_FOLDER="missing"
+APP_FOLDER="$HOME/Apps"
 FIRST_RUN_FILE="missing"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
 make_temp
-#make_app_folder
+make_app_folder
 distro_check
