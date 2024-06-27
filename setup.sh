@@ -74,9 +74,7 @@ debian_release_check(){
     if [ $VERSION_ID == "12" ]
     then
         PKGMGR="apt-get"
-        deps_check
         #get_data
-        display_third_party_repos
         run_prereq_check
         main_menu
     else
