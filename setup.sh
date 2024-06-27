@@ -140,7 +140,7 @@ main_menu(){
     echo "---------------------------" 
     echo ""
     echo "Version: $VERSION"
-    echo "Copyright (c) 2021-2023 Jordan Bottoms"
+    echo "$COPYRIGHT"
     echo "Released under the MIT license"
     echo ""
     echo ""
@@ -1523,6 +1523,7 @@ configurations_menu(){
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
+COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
 VERSION="4.23.2024"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
