@@ -922,7 +922,7 @@ install_obsstudio(){
     read -r input
     if [ $input == "1" ]
     then
-        obsstudio_package(
+        obsstudio_package
     elif [ $input == "2" ]
     then
        flatpak install --user -y flathub com.obsproject.Studio
