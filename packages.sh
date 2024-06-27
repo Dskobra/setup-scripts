@@ -151,7 +151,6 @@ install_v4l2loopback(){
     fi
 }
 
-
 ### KDE/Qt Apps
 install_kdeapps(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"

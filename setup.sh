@@ -13,6 +13,7 @@ run_prereq_check(){
         echo "setting up prereq"
         source $SCRIPTS_HOME/packages.sh; "install_prereq"
         touch $SCRIPTS_HOME/.first_run_file.txt
+        zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
     fi
 }
 
