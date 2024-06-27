@@ -1025,8 +1025,7 @@ coding_menu(){
             ;;
 
         6)
-            #source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
-            flatpak install --user -y flathub io.github.shiftey.Desktop
+            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
             ;;
 
         7)
@@ -1378,6 +1377,7 @@ utils_menu(){
             ;;
 
         2)
+            source $SCRIPTS_HOME/packages.sh; "install_fmedia_writer"
             flatpak install --user -y flathub org.raspberrypi.rpi-imager
             ;;
 

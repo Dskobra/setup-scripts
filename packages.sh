@@ -1289,7 +1289,7 @@ package_libreoffice(){
         #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y
+        sudo apt-get install -y libreoffice
     else
         echo "Unkown error has occured."
     fi
@@ -1359,23 +1359,6 @@ package_thunderbird(){
         sudo apt-get install -y thunderbird
     else
         echo "Unkown error has occured."
-    fi
-}
-
-download_bitwarden(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
-    if test -f /opt/AppInstalls/data/$BITWARDEN_BINARY; then
-        echo "Bitwarden already downloaded."
-    elif ! test -f /opt/AppInstalls/data/$BITWARDEN_BINARY; then
-        cd /opt/AppInstalls/data
-        curl -L -o $BITWARDEN_BINARY $BITWARDEN_LINK 
-        chmod +x $BITWARDEN_BINARY
-        cp $SCRIPTS_HOME/data/launchers/bitwarden.sh /opt/AppInstalls/launchers/bitwarden.sh
-        cp $SCRIPTS_HOME/data/shortcuts/Bitwarden.desktop $HOME/.local/share/applications/Bitwarden.desktop
-        chmod +x $HOME/.local/share/applications/Bitwarden.desktop
-        curl -L -o /opt/AppInstalls/icons/bitwarden.png $BITWARDEN_IMAGE_LINK
-        ln -s "$HOME/.local/share/applications/Bitwarden.desktop" "$HOME/Desktop/Bitwarden.desktop"
     fi
 }
 
@@ -1548,12 +1531,28 @@ install_lamp_stack(){
 }
 
 install_bluefish(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_bluefish
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub nl.openoffice.bluefish
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+package_bluefish(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y bluefish
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub nl.openoffice.bluefish
+        sudo rpm-ostree install bluefish
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y bluefish
@@ -1575,7 +1574,7 @@ install_python_tools(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install python3-idle python3-devel
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y idle-python3.11 python3.11-dev
@@ -1609,7 +1608,7 @@ install_eric_ide(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install eric
-        check_if_fedora_immutable
+        sudo rpm-ostree apply-live
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y eric
@@ -1686,6 +1685,23 @@ install_eclipse(){
 }
 
 install_github_desktop(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_install_github_desktop
+    elif [ $input == "2" ]
+    then
+        flatpak install --user -y flathub io.github.shiftey.Desktop
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+package_install_github_desktop(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
@@ -1722,7 +1738,7 @@ install_containers(){
         check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y distrobox
+        sudo apt-get install -y distrobox podman-toolbox
         flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
     else
         echo "Unkown error has occured."
@@ -1730,7 +1746,38 @@ install_containers(){
 }
 
 ### utilities
+install_gtkhash(){
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_gtkhash
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.gtkhash.gtkhash
+    else
+        echo "Unkown error has occured."
+    fi
+}
 
+package_gtkhash(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y gtkhash
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install gtkhash
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y gtkhash
+    else
+        echo "Unkown error has occured."
+    fi
+}
 
 install_virtualization(){
     if [ $PKGMGR == "dnf" ]
