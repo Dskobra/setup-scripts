@@ -77,6 +77,7 @@ debian_release_check(){
         deps_check
         #get_data
         display_third_party_repos
+        run_prereq_check
         main_menu
     else
         echo "These scripts only support Debian 12"
@@ -90,14 +91,15 @@ fedora_variant_check(){
     then
         PKGMGR="dnf"
         #get_data
-        #display_third_party_repos
-
+        display_third_party_repos
+        run_prereq_check
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
         #get_data
         display_third_party_repos
+        run_prereq_check
         main_menu
     fi
 }
@@ -1627,4 +1629,3 @@ VARIANT=""
 make_temp
 #make_app_folder
 distro_check
-run_prereq_check
