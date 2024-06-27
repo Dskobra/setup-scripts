@@ -69,8 +69,8 @@ debian_release_check(){
     if [ $VERSION_ID == "12" ]
     then
         PKGMGR="apt-get"
-        #get_data
         run_prereq_check
+        get_data
         main_menu
     else
         echo "These scripts only support Debian 12"
@@ -83,16 +83,14 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        #get_data
-        display_third_party_repos
         run_prereq_check
+        get_data
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        #get_data
-        display_third_party_repos
         run_prereq_check
+        get_data
         main_menu
     fi
 }
