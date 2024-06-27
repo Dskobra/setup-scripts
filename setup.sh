@@ -89,7 +89,6 @@ fedora_variant_check(){
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        #deps_check
         #get_data
         #display_third_party_repos
 
@@ -97,7 +96,6 @@ fedora_variant_check(){
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        deps_check
         #get_data
         display_third_party_repos
         main_menu
@@ -1627,5 +1625,6 @@ DISTRO=""
 PKGMGR=""
 VARIANT=""
 make_temp
-make_app_folder
+#make_app_folder
+run_prereq_check
 distro_check
