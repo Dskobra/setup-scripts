@@ -766,7 +766,7 @@ install_amd_codecs(){
         check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
-        echo "unfinished"
+        sudo apt-get install mesa-va-drivers
     else
         echo "Unkown error has occured."
     fi
