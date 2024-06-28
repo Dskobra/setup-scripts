@@ -151,7 +151,7 @@ get_updates(){
         then
             cd $SCRIPTS_HOME
             rm $SCRIPTS_HOME/.first_run_file.txt
-            rm -r data
+            rm -r -f data
             git pull
             zenity --info --text="Please rerun setup.sh now."
             exit
@@ -1559,6 +1559,7 @@ TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
 APP_FOLDER="$HOME/Apps"
 FIRST_RUN_FILE="missing"
+REPO_FOLDER="missing"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
