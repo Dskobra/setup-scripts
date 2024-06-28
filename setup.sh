@@ -145,6 +145,21 @@ get_data(){
     mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
 }
 
+get_updates(){
+    test -d $SCRIPTS_HOME/.git && REPO_FOLDER=exists
+    if [ "$REPO_FOLDER" = "exists" ];
+        then
+            cd $SCRIPTS_HOME
+            rm $SCRIPTS_HOME/.first_run_file.txt
+            rm -r data
+            git pull
+            zenity --info --text="Please rerun setup.sh now."
+            exit
+    elif [ "$REPO_FOLDER" = "missing" ];
+        then
+            zenity --info --text="No valid .git folder found. Please redownload them."
+    fi
+}
 main_menu(){
     echo "---------------------------"   
     echo "|   DSK's Setup Scripts   |"
@@ -159,7 +174,7 @@ main_menu(){
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
-    echo "(9) Extras"
+    echo "(9) Extras                        (10) Update Scripts"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -200,6 +215,10 @@ main_menu(){
 
         9)
             extras_menu
+            ;;
+
+        10)
+            get_updates
             ;;
 
         0)
