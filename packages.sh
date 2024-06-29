@@ -438,12 +438,26 @@ install_gnome_apps(){
         packages_gnome
     elif [ $input == "2" ]
     then
+        remove_silverblue_flatpaks
+        flatpak install --user -y flathub org.gnome.clocks
+        flatpak install --user -y flathub org.gnome.Calendar
+        flatpak install --user -y flathub org.gnome.Weather
+        flatpak install --user -y flathub org.gnome.Contacts
+        flatpak install --user -y flathub org.gnome.Calculator
+        flatpak install --user -y flathub org.gnome.TextEditor
         flatpak install --user -y flathub org.gnome.Extensions
-        flatpak install --user -y flathub ca.desrt.dconf-editor
-        flatpak install --user -y flathub org.gnome.FileRoller
+        flatpak install --user -y flathub org.gnome.Connections
+        flatpak install --user -y flathub org.gnome.Characters
+        flatpak install --user -y flathub org.gnome.font-viewer
         flatpak install --user -y flathub org.gnome.Evince
+        flatpak install --user -y flathub org.gnome.Loupe
+        flatpak install --user -y flathub org.gnome.Maps
+        flatpak install --user -y flathub org.gnome.Snapshot
+        flatpak install --user -y flathub org.gnome.FileRoller
         flatpak install --user -y flathub org.pulseaudio.pavucontrol
-        flatpak install --user -y flathub org.gnome.Cheese
+        flatpak install --user -y flathub ca.desrt.dconf-editor
+        flatpak install --user -y flathub org.gnome.Logs
+        flatpak install --user -y flathub org.gnome.baobab
     else
         echo "Unkown error has occured."
     fi
@@ -554,6 +568,26 @@ package_remmina(){
     fi
 }
 
+remove_silverblue_flatpaks(){
+    flatpak remove -y org.fedoraproject.MediaWriter
+    flatpak remove -y org.fedoraproject.Platform
+    flatpak remove -y org.gnome.Calculator
+    flatpak remove -y org.gnome.Calendar
+    flatpak remove -y org.gnome.Characters
+    flatpak remove -y org.gnome.Connections
+    flatpak remove -y org.gnome.Contacts
+    flatpak remove -y org.gnome.Evince
+    flatpak remove -y org.gnome.Extensions
+    flatpak remove -y org.gnome.Logs 
+    flatpak remove -y org.gnome.Loupe
+    flatpak remove -y org.gnome.Maps 
+    flatpak remove -y org.gnome.Snapshot
+    flatpak remove -y org.gnome.TextEditor
+    flatpak remove -y org.gnome.Weather 
+    flatpak remove -y org.gnome.baobab
+    flatpak remove -y org.gnome.clocks
+    flatpak remove -y org.gnome.font-viewer
+}
 ### internet
 install_firefox(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
@@ -1629,6 +1663,41 @@ install_containers(){
 }
 
 ### utilities
+install_rpi_imager(){
+    ## template function for aasking to do distro package or flatpak
+    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "Flatpaks can include better codec support and faster updates."
+    printf "Option: "
+    read -r input
+    if [ $input == "1" ]
+    then
+        package_rpi_imager
+    elif [ $input == "2" ]
+    then
+       flatpak install --user -y flathub org.raspberrypi.rpi-imager
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
+package_rpi_imager(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y rpi-imager
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install rpi-imager
+        #sudo rpm-ostree apply-live
+        check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        flatpak install --user -y flathub org.raspberrypi.rpi-imager
+    else
+        echo "Unkown error has occured."
+    fi
+}
+
 install_gtkhash(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."

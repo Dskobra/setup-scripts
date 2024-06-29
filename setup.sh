@@ -160,6 +160,7 @@ get_updates(){
             zenity --info --text="No valid .git folder found. Please redownload them."
     fi
 }
+
 main_menu(){
     echo "---------------------------"   
     echo "|   DSK's Setup Scripts   |"
@@ -1392,12 +1393,11 @@ utils_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_fmedia_writer"
-            flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            source $SCRIPTS_HOME/packages.sh; "install_rpi_imager"
             ;;
 
         3)
-            flatpak install --user -y flathub org.gtkhash.gtkhash
+            source $SCRIPTS_HOME/packages.sh; "install_gtkhash"
             ;;
 
         4)
