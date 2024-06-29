@@ -888,7 +888,7 @@ install_steam(){
         flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
         flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
         zenity --info --text="steam-devices package will also be installed for controller support."
-        install_steam_devices
+        package_steam_devices
     else
         echo "Unkown error has occured."
     fi
@@ -912,7 +912,7 @@ steam_package(){
     fi
 }
 
-install_steam_devices(){
+package_steam_devices(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y steam-devices
