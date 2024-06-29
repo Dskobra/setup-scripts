@@ -12,7 +12,7 @@ install_prereq(){
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install wget zenity --allow-inactive
+        sudo rpm-ostree install zenity
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo rpm-ostree apply-live
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -164,7 +164,12 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kleopatra
     else
-        echo "Unkown error has occured."
+        remove_kinoite_flatpaks
+        flatpak install --user -y flathub org.kde.ark
+        flatpak install --user -y flathub org.kde.kcalc
+        flatpak install --user -y flathub org.kde.gwenview
+        flatpak install --user -y flathub org.kde.kamoso
+        flatpak install --user -y flathub org.kde.kleopatra
     fi
 }
 
@@ -345,6 +350,7 @@ package_kde_iso_image_writer(){
         echo "Unkown error has occured."
     fi
 }
+
 install_kleopatra(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
@@ -811,7 +817,6 @@ install_amd_codecs(){
         sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        echo "unfinished"
         sudo rpm-ostree install mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
 
         sudo rpm-ostree install mesa-va-drivers-freeworld.i686 mesa-vdpau-drivers-freeworld.i686
