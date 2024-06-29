@@ -12,7 +12,7 @@ install_prereq(){
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install wget zenity
+        sudo rpm-ostree install wget zenity --allow-inactive
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo rpm-ostree apply-live
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -327,6 +327,24 @@ package_kde_iso_image_writer(){
     fi
 }
 
+package_kde_iso_image_writer(){
+    ## template function for adding more packages
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y isoimagewriter
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install soimagewriter
+        sudo rpm-ostree apply-live
+        #check_if_fedora_immutable
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."
+        flatpak install --user -y flathub org.kde.isoimagewriter
+    else
+        echo "Unkown error has occured."
+    fi
+}
 install_kleopatra(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
     echo "Flatpaks can include better codec support and faster updates."
@@ -1873,7 +1891,7 @@ standard_package_template(){
         sudo dnf install -y
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install 
+        sudo rpm-ostree install --allow-inactive
         #sudo rpm-ostree apply-live
         #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
