@@ -282,7 +282,7 @@ install_fmedia_writer(){
     fi
 }
 
-package_fmedia_writer_(){
+package_fmedia_writer(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mediawriter
