@@ -154,18 +154,10 @@ install_kdeapps(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         packages_kde
-    elif [ $input == "2" ]
-    then
-        remove_kinoite_flatpaks
-        flatpak install --user -y flathub org.kde.ark
-        flatpak install --user -y flathub org.kde.kcalc
-        flatpak install --user -y flathub org.kde.gwenview
-        flatpak install --user -y flathub org.kde.kamoso
-        flatpak install --user -y flathub org.kde.kleopatra
-    elif [ $input == "" ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         remove_kinoite_flatpaks
         flatpak install --user -y flathub org.kde.ark
@@ -202,10 +194,10 @@ install_openshot(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_openshot
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.openshot.OpenShot
     else
@@ -250,10 +242,10 @@ install_kpat(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_kpat
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub org.kde.kpat
     else
@@ -281,10 +273,10 @@ install_fmedia_writer(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_fmedia_writer
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
@@ -313,10 +305,10 @@ install_kde_iso_image_writer(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_kde_iso_image_writer
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub org.kde.isoimagewriter
     else
@@ -361,10 +353,10 @@ install_kleopatra(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_kleopatra
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.kde.kleopatra
     else
@@ -392,10 +384,10 @@ install_kolourpaint(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_kolourpaint
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.kde.kolourpaint
     else
@@ -462,10 +454,10 @@ install_gnome_apps(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         packages_gnome
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         remove_silverblue_flatpaks
         flatpak install --user -y flathub org.gnome.clocks
@@ -569,10 +561,10 @@ install_remmina(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_remmina
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.remmina.Remmina
     else
@@ -623,10 +615,10 @@ install_firefox(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_firefox
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.mozilla.firefox
     else
@@ -666,10 +658,10 @@ install_brave_browser(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_brave_browser
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub com.brave.Browser
     else
@@ -714,10 +706,10 @@ install_dropbox(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         dropbox_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub com.dropbox.Client
     else
@@ -759,10 +751,10 @@ install_transmission(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         transmission_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y  flathub com.transmissionbt.Transmission
     else
@@ -839,10 +831,10 @@ install_vlc(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         vlc_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.videolan.VLC
     else
@@ -873,10 +865,10 @@ install_obsstudio(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         obsstudio_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub com.obsproject.Studio
     else
@@ -907,10 +899,10 @@ install_steam(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         steam_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub com.valvesoftware.Steam
         flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
@@ -963,10 +955,10 @@ install_lutris(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         lutris_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
             flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
             flatpak install --user -y flathub net.lutris.Lutris
@@ -999,10 +991,10 @@ install_bottles(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         bottles_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub com.usebottles.bottles
         flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
@@ -1036,10 +1028,10 @@ install_mangohud(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         mangohud_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     else
@@ -1068,10 +1060,10 @@ install_discord(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         discord_package
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub com.discordapp.Discord
     else
@@ -1102,10 +1094,10 @@ install_dolphin_emu(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_dolphin_emu
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
     else
@@ -1191,10 +1183,10 @@ install_qownnotes(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_qownnotes
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.qownnotes.QOwnNotes
     else
@@ -1224,10 +1216,10 @@ install_libreoffice(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_libreoffice
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         source $SCRIPTS_HOME/packages.sh; "remove_libreoffice"
         flatpak install --user -y flathub org.libreoffice.LibreOffice
@@ -1259,10 +1251,10 @@ install_claws_mail(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_claws_mail
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.claws_mail.Claws-Mail
     else
@@ -1294,10 +1286,10 @@ install_thunderbird(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_thunderbird
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.mozilla.Thunderbird
     else
@@ -1326,10 +1318,10 @@ install_keepassxc(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_keepassxc
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.keepassxc.KeePassXC
     else
@@ -1484,10 +1476,10 @@ install_bluefish(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_bluefish
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub nl.openoffice.bluefish
     else
@@ -1635,10 +1627,10 @@ install_github_desktop(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_install_github_desktop
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub io.github.shiftey.Desktop
     else
@@ -1697,10 +1689,10 @@ install_rpi_imager(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_rpi_imager
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.raspberrypi.rpi-imager
     else
@@ -1731,10 +1723,10 @@ install_gtkhash(){
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         package_gtkhash
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ]
     then
        flatpak install --user -y flathub org.gtkhash.gtkhash
     else
@@ -1883,10 +1875,10 @@ package_type_template(){
     echo "Flatpaks can support more codecs and some authors use it as their official release."
     printf "Option: "
     read -r input
-    if [ $input == "1" ]
+    if [ "$input" = 1 ]
     then
         echo "insert package function"
-    elif [ $input == "2" ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         echo "insert flatpak(s)"
     else
