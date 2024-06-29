@@ -25,7 +25,7 @@ install_prereq(){
         sudo apt-get update && sudo apt-get upgrade -y
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -49,7 +49,7 @@ install_corectrl(){
         sudo apt-get update
         sudo apt-get install -y corectrl/bookworm-backports
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -69,7 +69,7 @@ install_openrgb(){
         sudo dpkg -i $OPENRGB_DEB
         sudo apt-get -f -y install   
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -101,7 +101,7 @@ install_cooler_control(){
         sudo apt-get install -y coolercontrol
         sudo systemctl enable --now coolercontrold
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -122,7 +122,7 @@ install_nvidia(){
         sudo apt-get install -y nvidia-driver firmware-misc-nonfree
         xdg-open https://wiki.debian.org/NvidiaGraphicsDrivers
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -142,13 +142,15 @@ install_v4l2loopback(){
 
         sudo update-initramfs -c -k $(uname -r)
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
 ### KDE/Qt Apps
 install_kdeapps(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty)"
     echo "Flatpaks can include better codec support and faster updates."
     printf "Option: "
     read -r input
@@ -163,13 +165,16 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kleopatra
-    else
+    elif [ $input == "" ]
+    then
         remove_kinoite_flatpaks
         flatpak install --user -y flathub org.kde.ark
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kleopatra
+    else
+        echo "Invalid option"
     fi
 }
 
@@ -188,7 +193,7 @@ packages_kde(){
         sudo apt-get install -y ark kate krdc kcalc kamoso\
         gwenview okular kleopatra
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -204,7 +209,7 @@ install_openshot(){
     then
        flatpak install --user -y flathub org.openshot.OpenShot
     else
-        echo "Unkown error has occured."
+        flatpak install --user -y flathub org.openshot.OpenShot
     fi
 }
 
@@ -220,7 +225,7 @@ package_openshot(){
     then
         sudo apt-get install -y openshot-qt
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -236,7 +241,7 @@ install_kthreeb(){
     then
         sudo apt-get install -y k3b
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -250,9 +255,9 @@ install_kpat(){
         package_kpat
     elif [ $input == "2" ]
     then
-       flatpak install --user -y flathub org.kde.kpat
+        flatpak install --user -y flathub org.kde.kpat
     else
-        echo "Unkown error has occured."
+        flatpak install --user -y flathub org.kde.kpat
     fi
 }
 
@@ -267,7 +272,7 @@ package_kpat(){
     then
         sudo apt-get install -y kpat
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -281,9 +286,9 @@ install_fmedia_writer(){
         package_fmedia_writer
     elif [ $input == "2" ]
     then
-       flatpak install --user -y flathub org.fedoraproject.MediaWriter
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
-        echo "Unkown error has occured."
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     fi
 }
 
@@ -299,7 +304,7 @@ package_fmedia_writer(){
         zenity --info --text="Fedora Mediawriter isn't available in Debian so using flatpak version instead."
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -313,9 +318,9 @@ install_kde_iso_image_writer(){
         package_kde_iso_image_writer
     elif [ $input == "2" ]
     then
-       flatpak install --user -y flathub org.kde.isoimagewriter
+        flatpak install --user -y flathub org.kde.isoimagewriter
     else
-        echo "Unkown error has occured."
+        flatpak install --user -y flathub org.kde.isoimagewriter
     fi
 }
 
@@ -328,7 +333,7 @@ package_kde_iso_image_writer(){
         zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."
         flatpak install --user -y flathub org.kde.isoimagewriter
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -347,7 +352,7 @@ package_kde_iso_image_writer(){
         zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."
         flatpak install --user -y flathub org.kde.isoimagewriter
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -363,7 +368,7 @@ install_kleopatra(){
     then
        flatpak install --user -y flathub org.kde.kleopatra
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -378,7 +383,7 @@ package_kleopatra(){
     then
         sudo apt-get install -y kleopatra
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -394,7 +399,7 @@ install_kolourpaint(){
     then
        flatpak install --user -y flathub org.kde.kolourpaint
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -409,7 +414,7 @@ package_kolourpaint(){
     then
         sudo apt-get install -y kolourpaint
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -434,7 +439,7 @@ install_plasma_x11(){
             echo "Fedora version detected as 39. Not installing x11 support."
         fi
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -483,7 +488,7 @@ install_gnome_apps(){
         flatpak install --user -y flathub org.gnome.Logs
         flatpak install --user -y flathub org.gnome.baobab
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -501,7 +506,7 @@ packages_gnome(){
         sudo apt-get install -y file-roller evince dconf-editor pavucontrol cheese\
         gnome-shell-extension-prefs 
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -516,7 +521,7 @@ install_gnome_tweaks(){
     then
         sudo apt-get install -y gnome-tweaks
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -538,7 +543,7 @@ install_mate_apps(){
         fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop\
         emerald emerald-themes caja-open-terminal
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -555,7 +560,7 @@ install_xfburn(){
     then
         sudo apt-get install -y xfburn
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -571,7 +576,7 @@ install_remmina(){
     then
        flatpak install --user -y flathub org.remmina.Remmina
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -588,7 +593,7 @@ package_remmina(){
     then
         sudo apt-get install -y remmina
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -625,7 +630,7 @@ install_firefox(){
     then
        flatpak install --user -y flathub org.mozilla.firefox
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -652,7 +657,7 @@ package_firefox(){
         ' | sudo tee /etc/apt/preferences.d/mozilla
         sudo apt-get update && sudo apt-get install -y firefox
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -668,7 +673,7 @@ install_brave_browser(){
     then
        flatpak install --user -y flathub com.brave.Browser
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -700,7 +705,7 @@ package_brave_browser(){
         sudo apt-get update
         sudo apt-get install -y brave-browser
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -716,7 +721,7 @@ install_dropbox(){
     then
        flatpak install --user -y flathub com.dropbox.Client
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -732,7 +737,7 @@ dropbox_package(){
     then
         dropbox_debian_package
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -761,7 +766,7 @@ install_transmission(){
     then
        flatpak install --user -y  flathub com.transmissionbt.Transmission
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -778,7 +783,7 @@ transmission_package(){
     then
         sudo apt-get install -y transmission-gtk
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 ### multimedia
@@ -803,7 +808,7 @@ install_codecs(){
     then
         sudo apt-get install -y ffmpeg
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -825,7 +830,7 @@ install_amd_codecs(){
     then
         sudo apt-get install mesa-va-drivers
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -841,7 +846,7 @@ install_vlc(){
     then
        flatpak install --user -y flathub org.videolan.VLC
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -859,7 +864,7 @@ vlc_package(){
     then
         sudo apt-get install -y vlc
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -875,7 +880,7 @@ install_obsstudio(){
     then
        flatpak install --user -y flathub com.obsproject.Studio
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -893,7 +898,7 @@ obsstudio_package(){
     then
         sudo apt-get install -y obs-studio
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 ### games
@@ -913,7 +918,7 @@ install_steam(){
         zenity --info --text="steam-devices package will also be installed for controller support."
         package_steam_devices
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -931,7 +936,7 @@ steam_package(){
         sudo apt-get update
         sudo apt-get install -y steam
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -949,7 +954,7 @@ package_steam_devices(){
         sudo apt-get update
         sudo apt-get install -y steam-devices
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -967,7 +972,7 @@ install_lutris(){
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -985,7 +990,7 @@ lutris_package(){
     then
         sudo apt-get install -y lutris
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1002,7 +1007,7 @@ install_bottles(){
         flatpak install --user -y flathub com.usebottles.bottles
         flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1022,7 +1027,7 @@ bottles_package(){
         flatpak install --user -y flathub com.usebottles.bottles
         flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1038,7 +1043,7 @@ install_mangohud(){
     then
        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1054,7 +1059,7 @@ mangohud_package(){
     then
         sudo apt-get install -y mangohud
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1070,7 +1075,7 @@ install_discord(){
     then
         flatpak install --user -y flathub com.discordapp.Discord
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1088,7 +1093,7 @@ discord_package(){
     then
         flatpak install --user -y flathub com.discordapp.Discord
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1104,7 +1109,7 @@ install_dolphin_emu(){
     then
        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1121,7 +1126,7 @@ package_dolphin_emu(){
     then
         sudo apt-get install -y dolphin-emu
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1193,7 +1198,7 @@ install_qownnotes(){
     then
        flatpak install --user -y flathub org.qownnotes.QOwnNotes
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1210,7 +1215,7 @@ package_qownnotes(){
     then
         flatpak install --user -y flathub org.qownnotes.QOwnNotes
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1227,7 +1232,7 @@ install_libreoffice(){
         source $SCRIPTS_HOME/packages.sh; "remove_libreoffice"
         flatpak install --user -y flathub org.libreoffice.LibreOffice
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1244,7 +1249,7 @@ package_libreoffice(){
     then
         sudo apt-get install -y libreoffice
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1261,7 +1266,7 @@ install_claws_mail(){
     then
        flatpak install --user -y flathub org.claws_mail.Claws-Mail
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1279,7 +1284,7 @@ package_claws_mail(){
     then
         sudo apt-get install -y claws-mail
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1296,7 +1301,7 @@ install_thunderbird(){
     then
        flatpak install --user -y flathub org.mozilla.Thunderbird
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1311,7 +1316,7 @@ package_thunderbird(){
     then
         sudo apt-get install -y thunderbird
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1328,7 +1333,7 @@ install_keepassxc(){
     then
        flatpak install --user -y flathub org.keepassxc.KeePassXC
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1343,7 +1348,7 @@ package_keepassxc(){
     then
         sudo apt-get install -y keepassxc
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1367,7 +1372,7 @@ install_package_tools(){
         m4 valgrind byacc ccache cscope indent ltrace linux-perf strace\
         build-essential
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1382,7 +1387,7 @@ install_codeblocks(){
     then
         sudo apt-get install -y codeblocks
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1399,7 +1404,7 @@ install_openjdk(){
         zenity --info --text="Using openjdk 17 as 21 isn't in stable yet."
         sudo apt-get install -y openjdk-17-jdk
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1452,7 +1457,7 @@ install_scene_builder(){
         curl -L -o scenebuilder.deb $SCENE_BUILDER_DEB_LINK
         sudo dpkg -i scenebuilder.deb
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1470,7 +1475,7 @@ install_lamp_stack(){
         sudo apt-get install -y apache2 mariadb-client\
         mariadb-server php phpmyadmin
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1486,7 +1491,7 @@ install_bluefish(){
     then
        flatpak install --user -y flathub nl.openoffice.bluefish
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1501,7 +1506,7 @@ package_bluefish(){
     then
         sudo apt-get install -y bluefish
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1523,7 +1528,7 @@ install_python_tools(){
     then
         sudo apt-get install -y idle-python3.11 python3.11-dev
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1553,7 +1558,7 @@ install_eric_ide(){
     then
         sudo apt-get install -y eric
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1580,7 +1585,7 @@ install_vscodium(){
         sudo apt-get update && sudo apt-get install -y codium
         
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1596,7 +1601,7 @@ install_vim(){
     then
         sudo apt-get install -y vim
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1611,7 +1616,7 @@ install_geany(){
     then
         flatpak install --user -y flathub org.geany.Geany 
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1637,7 +1642,7 @@ install_github_desktop(){
     then
         flatpak install --user -y flathub io.github.shiftey.Desktop
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1662,7 +1667,7 @@ package_install_github_desktop(){
         sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
         sudo apt-get update && sudo apt-get install -y github-desktop
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1681,7 +1686,7 @@ install_containers(){
         sudo apt-get install -y distrobox podman-toolbox
         flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1699,7 +1704,7 @@ install_rpi_imager(){
     then
        flatpak install --user -y flathub org.raspberrypi.rpi-imager
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1717,7 +1722,7 @@ package_rpi_imager(){
     then
         flatpak install --user -y flathub org.raspberrypi.rpi-imager
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1733,7 +1738,7 @@ install_gtkhash(){
     then
        flatpak install --user -y flathub org.gtkhash.gtkhash
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1750,7 +1755,7 @@ package_gtkhash(){
     then
         sudo apt-get install -y gtkhash
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1779,7 +1784,7 @@ install_virtualization(){
         curl -L -o virtio-win.iso https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
         sudo apt-get install -y libvirt-daemon-config-network qemu-kvm virt-manager virt-viewer
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1797,7 +1802,7 @@ install_spinfinity_theme(){
         sudo apt-get install -y plymouth-themes
         sudo plymouth-set-default-theme spinfinity -R
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1815,7 +1820,7 @@ check_for_spinfinity(){
         zenity --warning --text="$SPINFINITY"
         check_if_fedora_immutable
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1842,7 +1847,7 @@ remove_codecs(){
     then
         sudo apt-get remove -y ffmpeg
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1857,7 +1862,7 @@ remove_libreoffice(){
     then
         sudo apt-get remove -y libreoffice*
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1875,7 +1880,7 @@ check_for_libvirt_group(){
 package_type_template(){
     ## template function for aasking to do distro package or flatpak
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "Flatpaks can support more codecs and some authors use it as their official release."
     printf "Option: "
     read -r input
     if [ $input == "1" ]
@@ -1883,9 +1888,9 @@ package_type_template(){
         echo "insert package function"
     elif [ $input == "2" ]
     then
-       echo "insert flatpak(s)"
+        echo "insert flatpak(s)"
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
 
@@ -1903,6 +1908,6 @@ standard_package_template(){
     then
         sudo apt-get install -y
     else
-        echo "Unkown error has occured."
+        echo "Unkown error has occurred."
     fi
 }
