@@ -1379,10 +1379,9 @@ install_package_tools(){
         mock redhat-rpm-config rpm-build rpmdevtools
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        WARNING_ONE="Installing gcc and package build tools is not supported"
-        WARNING_TWO="outside of containers on"
-        WARNING_THREE="Fedora Atomic editions."
-        zenity --warning --text="$WARNING_ONE $WARNING_TWO $WARNING_THREE"
+        sudo rpm-ostree install gcc-g++ autoconf automake bison flex libtool\
+        m4 valgrind byacc ccache cscope indent ltrace perf strace koji\
+        mock redhat-rpm-config rpm-build rpmdevtools
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y automake gcc g++ bison flex libtool\
@@ -1399,7 +1398,7 @@ install_codeblocks(){
         sudo dnf install -y codeblocks codeblocks-contrib-devel
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak install --user -y flathub org.codeblocks.codeblocks
+        sudo rpm-ostree install codeblocks codeblocks-contrib-devel
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y codeblocks
@@ -1485,7 +1484,7 @@ install_lamp_stack(){
         php phpMyAdmin
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install httpd php phpMyAdmin
+        sudo rpm-ostree install httpd php phpMyAdmin --allow-inactive
         check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
     then
