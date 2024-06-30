@@ -199,9 +199,9 @@ install_openshot(){
         package_openshot
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-       flatpak install --user -y flathub org.openshot.OpenShot
-    else
         flatpak install --user -y flathub org.openshot.OpenShot
+    else
+        echo "Invalid option"
     fi
 }
 
@@ -249,7 +249,7 @@ install_kpat(){
     then
         flatpak install --user -y flathub org.kde.kpat
     else
-        flatpak install --user -y flathub org.kde.kpat
+        echo "Invalid option"
     fi
 }
 
@@ -280,7 +280,7 @@ install_fmedia_writer(){
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+        echo "Invalid option"
     fi
 }
 
@@ -312,7 +312,7 @@ install_kde_iso_image_writer(){
     then
         flatpak install --user -y flathub org.kde.isoimagewriter
     else
-        flatpak install --user -y flathub org.kde.isoimagewriter
+        echo "Invalid option"
     fi
 }
 
