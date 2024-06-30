@@ -338,11 +338,11 @@ desktop_apps_menu(){
             ;;
 
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps
             ;;
 
         H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps
             ;;
 
         m)

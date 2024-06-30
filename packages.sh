@@ -165,6 +165,7 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kleopatra
+        flatpak install --user -y flathub org.kde.krdc
     else
         echo "Invalid option"
     fi
