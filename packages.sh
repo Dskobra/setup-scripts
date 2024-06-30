@@ -197,7 +197,7 @@ install_openshot(){
     if [ "$input" = 1 ]
     then
         package_openshot
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.openshot.OpenShot
     else
@@ -245,7 +245,7 @@ install_kpat(){
     if [ "$input" = 1 ]
     then
         package_kpat
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.kde.kpat
     else
@@ -276,7 +276,7 @@ install_fmedia_writer(){
     if [ "$input" = 1 ]
     then
         package_fmedia_writer
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
@@ -308,24 +308,11 @@ install_kde_iso_image_writer(){
     if [ "$input" = 1 ]
     then
         package_kde_iso_image_writer
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.kde.isoimagewriter
     else
         flatpak install --user -y flathub org.kde.isoimagewriter
-    fi
-}
-
-package_kde_iso_image_writer(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y isoimagewriter
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."
-        flatpak install --user -y flathub org.kde.isoimagewriter
-    else
-        echo "Unkown error has occurred."
     fi
 }
 
@@ -336,7 +323,7 @@ package_kde_iso_image_writer(){
         sudo dnf install -y isoimagewriter
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install soimagewriter
+        sudo rpm-ostree install isoimagewriter
         sudo rpm-ostree apply-live
         #check_if_fedora_immutable
     elif [ $PKGMGR == "apt-get" ]
@@ -356,11 +343,11 @@ install_kleopatra(){
     if [ "$input" = 1 ]
     then
         package_kleopatra
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.kde.kleopatra
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -387,11 +374,11 @@ install_kolourpaint(){
     if [ "$input" = 1 ]
     then
         package_kolourpaint
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.kde.kolourpaint
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -457,7 +444,7 @@ install_gnome_apps(){
     if [ "$input" = 1 ]
     then
         packages_gnome
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         remove_silverblue_flatpaks
         flatpak install --user -y flathub org.gnome.clocks
@@ -480,7 +467,7 @@ install_gnome_apps(){
         flatpak install --user -y flathub org.gnome.Logs
         flatpak install --user -y flathub org.gnome.baobab
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -564,11 +551,11 @@ install_remmina(){
     if [ "$input" = 1 ]
     then
         package_remmina
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.remmina.Remmina
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -618,11 +605,11 @@ install_firefox(){
     if [ "$input" = 1 ]
     then
         package_firefox
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.mozilla.firefox
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -661,11 +648,11 @@ install_brave_browser(){
     if [ "$input" = 1 ]
     then
         package_brave_browser
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub com.brave.Browser
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -708,16 +695,16 @@ install_dropbox(){
     read -r input
     if [ "$input" = 1 ]
     then
-        dropbox_package
-    elif [ "$input" = 2 ]
+        package_dropbox
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub com.dropbox.Client
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
-dropbox_package(){
+package_dropbox(){
     
     if [ $PKGMGR == "dnf" ]
     then
@@ -727,13 +714,13 @@ dropbox_package(){
         sudo rpm-ostree install dropbox
     elif [ $PKGMGR == "apt-get" ]
     then
-        dropbox_debian_package
+        package_dropbox_debian
     else
         echo "Unkown error has occurred."
     fi
 }
 
-dropbox_debian_package(){
+package_dropbox_debian(){
     DESKTOP=$(echo $XDG_CURRENT_DESKTOP)
     if [ $DESKTOP == "GNOME" ]
     then
@@ -753,17 +740,16 @@ install_transmission(){
     read -r input
     if [ "$input" = 1 ]
     then
-        transmission_package
-    elif [ "$input" = 2 ]
+        package_transmission
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y  flathub com.transmissionbt.Transmission
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
-transmission_package(){
-    
+package_transmission(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y transmission-gtk
@@ -833,17 +819,16 @@ install_vlc(){
     read -r input
     if [ "$input" = 1 ]
     then
-        vlc_package
-    elif [ "$input" = 2 ]
+        package_vlc
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.videolan.VLC
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
-vlc_package(){
-    
+package_vlc(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y vlc
@@ -867,17 +852,16 @@ install_obsstudio(){
     read -r input
     if [ "$input" = 1 ]
     then
-        obsstudio_package
-    elif [ "$input" = 2 ]
+        package_obsstudio
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub com.obsproject.Studio
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
-obsstudio_package(){
-    
+package_obsstudio(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y obs-studio
@@ -890,7 +874,7 @@ obsstudio_package(){
     then
         sudo apt-get install -y obs-studio
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 ### games
@@ -901,8 +885,8 @@ install_steam(){
     read -r input
     if [ "$input" = 1 ]
     then
-        steam_package
-    elif [ "$input" = 2 ]
+        package_steam
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub com.valvesoftware.Steam
         flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
@@ -914,7 +898,7 @@ install_steam(){
     fi
 }
 
-steam_package(){
+package_steam(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y steam
@@ -958,18 +942,17 @@ install_lutris(){
     if [ "$input" = 1 ]
     then
         lutris_package
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
             flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
 lutris_package(){
-    
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y lutris
@@ -993,18 +976,17 @@ install_bottles(){
     read -r input
     if [ "$input" = 1 ]
     then
-        bottles_package
-    elif [ "$input" = 2 ]
+        package_bottles
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub com.usebottles.bottles
         flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
-bottles_package(){
-    
+package_bottles(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y bottles
@@ -1030,16 +1012,16 @@ install_mangohud(){
     read -r input
     if [ "$input" = 1 ]
     then
-        mangohud_package
-    elif [ "$input" = 2 ]
+        package_mangohud
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
-mangohud_package(){
+package_mangohud(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mangohud
@@ -1062,17 +1044,16 @@ install_discord(){
     read -r input
     if [ "$input" = 1 ]
     then
-        discord_package
-    elif [ "$input" = 2 ]
+        package_discord
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub com.discordapp.Discord
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
-discord_package(){
-    
+package_discord(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y discord
@@ -1097,11 +1078,11 @@ install_dolphin_emu(){
     if [ "$input" = 1 ]
     then
         package_dolphin_emu
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1173,10 +1154,6 @@ download_minecraft(){
     fi
 }
 
-download_raiderio(){
-    echo "Pending removal"
-}
-
 ### Office Apps
 install_qownnotes(){
     echo "Install distro built app (1) or distro neutral flatpak(2)?"
@@ -1186,11 +1163,11 @@ install_qownnotes(){
     if [ "$input" = 1 ]
     then
         package_qownnotes
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.qownnotes.QOwnNotes
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1219,12 +1196,12 @@ install_libreoffice(){
     if [ "$input" = 1 ]
     then
         package_libreoffice
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         source $SCRIPTS_HOME/packages.sh; "remove_libreoffice"
         flatpak install --user -y flathub org.libreoffice.LibreOffice
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1254,11 +1231,11 @@ install_claws_mail(){
     if [ "$input" = 1 ]
     then
         package_claws_mail
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.claws_mail.Claws-Mail
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1289,11 +1266,11 @@ install_thunderbird(){
     if [ "$input" = 1 ]
     then
         package_thunderbird
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.mozilla.Thunderbird
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1321,11 +1298,11 @@ install_keepassxc(){
     if [ "$input" = 1 ]
     then
         package_keepassxc
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.keepassxc.KeePassXC
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1479,11 +1456,11 @@ install_bluefish(){
     if [ "$input" = 1 ]
     then
         package_bluefish
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub nl.openoffice.bluefish
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1608,7 +1585,7 @@ install_geany(){
     then
         flatpak install --user -y flathub org.geany.Geany 
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1630,7 +1607,7 @@ install_github_desktop(){
     if [ "$input" = 1 ]
     then
         package_install_github_desktop
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub io.github.shiftey.Desktop
     else
@@ -1692,11 +1669,11 @@ install_rpi_imager(){
     if [ "$input" = 1 ]
     then
         package_rpi_imager
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.raspberrypi.rpi-imager
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
@@ -1726,11 +1703,11 @@ install_gtkhash(){
     if [ "$input" = 1 ]
     then
         package_gtkhash
-    elif [ "$input" = 2 ]
+    elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.gtkhash.gtkhash
     else
-        echo "Unkown error has occurred."
+        echo "Invalid option"
     fi
 }
 
