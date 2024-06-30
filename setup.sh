@@ -245,9 +245,9 @@ drivers_modules_menu(){
     echo "AMD/Nvidia drivers"
     echo ""
     echo ""     
-    echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) OpenRGB             (4) CoolerControl"
-    echo "(5) v4l2loopback"
+    echo "(1) Corectrl(amd)       (2) AMD Video Acceleration"
+    echo "(3) Nvidia Driver       (4) CoolerControl"
+    echo "(5) OpenRGB             (6) v4l2loopback"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -260,11 +260,11 @@ drivers_modules_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
+            source $SCRIPTS_HOME/packages.sh; "install_amd_codecs"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_openrgb"
+            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
             ;;
 
         4)
@@ -272,6 +272,10 @@ drivers_modules_menu(){
             ;;
 
         5)
+            source $SCRIPTS_HOME/packages.sh; "install_openrgb"
+            ;;
+
+        6)
             source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
             ;;
         
@@ -581,9 +585,9 @@ multimedia_menu(){
     echo "Various multimedia apps, codecs etc."
     echo ""
     echo ""   
-    echo "(1) Audio/Video Codecs    (2) Mesa Codecs (AMD)"    
-    echo "(3) VLC Media Player      (4) OBS Studio"
-    echo "(5) OpenShot              (6) xfburn"
+    echo "(1) Audio/Video Codecs    (2) VLC Media Player"
+    echo "(3) OBS Studio            (4) OpenShot"
+    echo "(5) xfburn"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -595,22 +599,18 @@ multimedia_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_amd_codecs"
+            source $SCRIPTS_HOME/packages.sh; "install_vlc"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_vlc"
+            source $SCRIPTS_HOME/packages.sh; "install_obsstudio"
             ;;
         
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_obsstudio"
-            ;;
-
-        5)
             source $SCRIPTS_HOME/packages.sh; "install_openshot"
             ;;
 
-        6)
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_xfburn"
             ;;
         
