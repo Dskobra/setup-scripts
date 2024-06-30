@@ -6,15 +6,15 @@
 run_prereq_check(){
     ### make sure git, curl, wget, zenity
     ### and flatpak are installed.
-    FIRST_RUN_FILE=$SCRIPTS_HOME/.first_run_file.txt
-    test -f $FIRST_RUN_FILE && FIRST_RUN_FILE="exists"
-    if [ "$FIRST_RUN_FILE" = "exists" ]
+    RAN_ONCE_FILE=$SCRIPTS_HOME/.ranonce.txt
+    test -f $RAN_ONCE_FILE && RAN_ONCE_FILE="exists"
+    if [ "$RAN_ONCE_FILE" = "exists" ]
     then
         echo "prereq already setup."
     else
         echo "setting up prereq"
         source $SCRIPTS_HOME/packages.sh; "install_prereq"
-        touch $SCRIPTS_HOME/.first_run_file.txt
+        touch $SCRIPTS_HOME/.ranonce.txt
         zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
     fi
 }
@@ -150,7 +150,7 @@ get_updates(){
     if [ "$REPO_FOLDER" = "exists" ];
         then
             cd $SCRIPTS_HOME
-            rm $SCRIPTS_HOME/.first_run_file.txt
+            rm $SCRIPTS_HOME/.ranonce.txt
             rm -r -f data
             git pull
             zenity --info --text="Please rerun setup.sh now."
@@ -1557,7 +1557,7 @@ VERSION="4.23.2024"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
 APP_FOLDER="$HOME/Apps"
-FIRST_RUN_FILE="missing"
+RAN_ONCE_FILE="missing"
 REPO_FOLDER="missing"
 DISTRO=""
 PKGMGR=""
