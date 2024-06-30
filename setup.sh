@@ -171,7 +171,7 @@ main_menu(){
     echo "Released under the MIT license"
     echo ""
     echo ""
-    echo "(1) Drivers/Modules               (2) Desktop Specific Apps"      
+    echo "(1) Hardware/Drivers              (2) Desktop Apps"      
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
@@ -184,11 +184,11 @@ main_menu(){
 
 
         1)
-            drivers_modules_menu
+            hardware_drivers_menu
             ;;
 
         2)
-            desktop_specific_apps_menu
+            desktop_apps_menu
             ;;
 
         3)
@@ -237,17 +237,17 @@ main_menu(){
         main_menu
 }
 
-drivers_modules_menu(){
-    echo "------------------------------"
-    echo "|   Drivers/Kernel Modules   |"
-    echo "------------------------------"
+hardware_drivers_menu(){
+    echo "------------------------"
+    echo "|   Hardware/Drivers   |"
+    echo "------------------------"
     echo ""
-    echo "AMD/Nvidia drivers"
+    echo "Hardware and device drivers etc"
     echo ""
     echo ""     
     echo "(1) Corectrl(amd)       (2) AMD Video Acceleration"
     echo "(3) Nvidia Driver       (4) CoolerControl"
-    echo "(5) OpenRGB             (6) v4l2loopback"
+    echo "(5) OpenRGB             (6) Virtual Camera"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -301,20 +301,20 @@ drivers_modules_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            drivers_modules_menu
+            hardware_drivers_menu
             ;;
             
         esac
         unset input
-        drivers_modules_menu
+        hardware_drivers_menu
 }
 
-desktop_specific_apps_menu(){
-    echo "-----------------------------"
-    echo "|   Desktop Specific Apps   |"
-    echo "-----------------------------"
+desktop_apps_menu(){
+    echo "--------------------"
+    echo "|   Desktop Apps   |"
+    echo "--------------------"
     echo ""
-    echo "KDE/Gnome/Mate apps"
+    echo "Specific Desktop Enviroment apps."
     echo ""
     echo ""   
     echo "(1) KDE                (2) GNOME"
@@ -360,12 +360,12 @@ desktop_specific_apps_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            desktop_specific_apps_menu
+            desktop_apps_menu
             ;;
             
         esac
         unset input
-        desktop_specific_apps_menu
+        desktop_apps_menu
 }
 
 kde_desktop_menu(){
