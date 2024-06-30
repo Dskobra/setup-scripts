@@ -150,8 +150,8 @@ install_v4l2loopback(){
 install_kdeapps(){
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
-    echo "(empty)"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -190,8 +190,10 @@ packages_kde(){
 }
 
 install_openshot(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -238,8 +240,10 @@ install_kthreeb(){
 }
 
 install_kpat(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -269,8 +273,10 @@ package_kpat(){
 }
 
 install_fmedia_writer(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -301,8 +307,10 @@ package_fmedia_writer(){
 }
 
 install_kde_iso_image_writer(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -336,8 +344,10 @@ package_kde_iso_image_writer(){
 }
 
 install_kleopatra(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -367,8 +377,10 @@ package_kleopatra(){
 }
 
 install_kolourpaint(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -437,8 +449,10 @@ remove_kinoite_flatpaks(){
 
 ### gnome Apps
 install_gnome_apps(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -544,8 +558,10 @@ install_xfburn(){
 }
 
 install_remmina(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -598,8 +614,10 @@ remove_silverblue_flatpaks(){
 }
 ### internet
 install_firefox(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -641,8 +659,10 @@ package_firefox(){
 }
 
 install_brave_browser(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -689,8 +709,10 @@ package_brave_browser(){
 }
 
 install_dropbox(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -734,8 +756,10 @@ package_dropbox_debian(){
 }
 
 install_transmission(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -813,8 +837,10 @@ install_amd_codecs(){
 }
 
 install_vlc(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -846,8 +872,10 @@ package_vlc(){
 }
 
 install_obsstudio(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -877,10 +905,13 @@ package_obsstudio(){
         echo "Invalid option"
     fi
 }
+
 ### games
 install_steam(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -935,8 +966,10 @@ package_steam_devices(){
 }
 
 install_lutris(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -970,8 +1003,10 @@ lutris_package(){
 }
 
 install_bottles(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1006,8 +1041,10 @@ package_bottles(){
 }
 
 install_mangohud(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1038,8 +1075,10 @@ package_mangohud(){
 }
 
 install_discord(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1071,8 +1110,10 @@ package_discord(){
 }
 
 install_dolphin_emu(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1156,8 +1197,10 @@ download_minecraft(){
 
 ### Office Apps
 install_qownnotes(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1189,8 +1232,10 @@ package_qownnotes(){
 }
 
 install_libreoffice(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1223,9 +1268,10 @@ package_libreoffice(){
 }
 
 install_claws_mail(){
-    ## template function for aasking to do distro package or flatpak
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1258,9 +1304,10 @@ package_claws_mail(){
 }
 
 install_thunderbird(){
-    ## template function for aasking to do distro package or flatpak
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1290,9 +1337,10 @@ package_thunderbird(){
 }
 
 install_keepassxc(){
-    ## template function for aasking to do distro package or flatpak
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1599,9 +1647,10 @@ install_eclipse(){
 }
 
 install_github_desktop(){
-    ## template function for aasking to do distro package or flatpak
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1661,9 +1710,10 @@ install_containers(){
 
 ### utilities
 install_rpi_imager(){
-    ## template function for aasking to do distro package or flatpak
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1696,8 +1746,10 @@ package_rpi_imager(){
 }
 
 install_gtkhash(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1848,8 +1900,10 @@ check_for_libvirt_group(){
  
 package_type_template(){
     ## template function for aasking to do distro package or flatpak
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can support more codecs and some authors use it as their official release."
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
