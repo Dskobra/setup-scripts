@@ -581,10 +581,9 @@ multimedia_menu(){
     echo "Various multimedia apps, codecs etc."
     echo ""
     echo ""   
-    echo "(1) FFmpeg (a/v codecs)   (2) Mesa Codecs (AMD)"    
+    echo "(1) Audio/Video Codecs    (2) Mesa Codecs (AMD)"    
     echo "(3) VLC Media Player      (4) OBS Studio"
-    echo "(5) OpenShot" 
-    echo "(6) xfburn"
+    echo "(5) OpenShot              (6) xfburn"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
