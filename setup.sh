@@ -416,19 +416,19 @@ kde_desktop_menu(){
             ;;
 
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
             ;;
 
         H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
             ;;
 
         p)
-            desktop_specific_apps_menu
+            desktop_apps_menu
             ;;
 
         P)
-            desktop_specific_apps_menu
+            desktop_apps_menu
             ;;
 
         m)
@@ -479,19 +479,19 @@ gnome_desktop_menu(){
             ;;
 
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
             ;;
 
         H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
             ;;
 
         p)
-            desktop_specific_apps_menu
+            desktop_apps_menu
             ;;
 
         P)
-            desktop_specific_apps_menu
+            desktop_apps_menu
             ;;
 
         m)
