@@ -330,7 +330,7 @@ desktop_apps_menu(){
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
+            gnome_desktop_menu
             ;;
 
         3)
