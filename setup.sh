@@ -1070,10 +1070,10 @@ development_menu(){
     development_menu
 }
 
-cpp_menu(){
-    echo "-------------"
-    echo "|   C/C++   |"
-    echo "-------------"
+frameworks_menu(){
+    echo "------------------"
+    echo "|   Frameworks   |"
+    echo "------------------"
     echo ""
     echo ""   
     echo ""
@@ -1314,6 +1314,7 @@ ides_menu(){
     echo ""   
     echo "(1) VIM                            (2) VSCodium"
     echo "(3) Geany                          (4) Eclipse"
+    echo
     echo "(p) Previous Menu                  (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
