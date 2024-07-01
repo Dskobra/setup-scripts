@@ -463,7 +463,9 @@ install_gnome_apps(){
         packages_gnome
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        remove_silverblue_flatpaks
+        if [ $PKGMGR == "rpm-ostree" ]; then
+            remove_silverblue_flatpaks
+        fi
         flatpak install --user -y flathub org.gnome.clocks
         flatpak install --user -y flathub org.gnome.Calendar
         flatpak install --user -y flathub org.gnome.Weather
