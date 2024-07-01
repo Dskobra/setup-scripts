@@ -1004,10 +1004,10 @@ development_menu(){
     echo ""
     echo ""   
     echo ""
-    echo "(1) C/C++             (2) openJDK"
-    echo "(3) Web Devlopment    (4) Python"
+    echo "(1) SDKs              (2) Web Devlopment"
+    echo "(3) Python"
     echo "(5) Other IDEs        (6) GitHub Desktop"
-    echo "(7) Containers"
+    echo "(7) Containers        (8) Misc"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -1015,20 +1015,15 @@ development_menu(){
     case $input in
 
         1)
-            cpp_menu
+            sdks_menu
             ;;
-
         2)
-            openjdk_menu
-            ;;
-
-        3)
             web_dev_menu
             ;;
-        4)
+        3)
             python_menu
             ;;
-        5)
+        4)
             ides_menu
             ;;
 
@@ -1038,6 +1033,10 @@ development_menu(){
 
         7)
             source $SCRIPTS_HOME/packages.sh; "install_containers"
+            ;;
+
+        8)
+            dev_misc_menu
             ;;
 
         m)
@@ -1063,14 +1062,15 @@ development_menu(){
     development_menu
 }
 
-frameworks_menu(){
-    echo "------------------"
-    echo "|   Frameworks   |"
-    echo "------------------"
+sdks_menu(){
+    echo "-----------"
+    echo "|  SDKs   |"
+    echo "-----------"
     echo ""
     echo ""   
     echo ""
-    echo "(1) GCC/Package Tools (2) Codeblocks"
+    echo "(1) C/C++ Compiler    (2) openJDK 17/21"
+    echo "(3) Nodejs LTS        (4) Python Dev Packages"
     echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1083,7 +1083,15 @@ frameworks_menu(){
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
+            source $SCRIPTS_HOME/packages.sh; "install_openjdk"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_nodejs"
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "install_python_tools"
             ;;
         
         p)
@@ -1115,128 +1123,6 @@ frameworks_menu(){
     esac
     unset input
     cpp_menu
-}
-
-openjdk_menu(){
-    echo "---------------"
-    echo "|   openJDK   |"
-    echo " --------------"
-    echo ""
-    echo ""   
-    echo ""
-    echo "(1) openJDK 17/21   (2) Intellij IDEA"
-    echo "(3) Netbeans        (4) Scene Builder"
-    echo "(p) Previous Menu   (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/packages.sh; "install_openjdk"
-            ;;
-
-        2)
-            
-            source $SCRIPTS_HOME/packages.sh; "download_idea"
-            ;;
-
-        3)  
-            source $SCRIPTS_HOME/packages.sh; "download_netbeans"
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
-            ;;
-        p)
-            development_menu
-            ;;
-
-        P)
-            development_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        openjdk_menu
-        ;;
-        
-    esac
-    unset input
-    openjdk_menu
-}
-
-web_dev_menu(){
-    echo "-----------------------"
-    echo "|   Web Development   |"
-    echo "-----------------------"
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) NodejS LTS            (2) LAMP Stack"
-    echo "(3) Bluefish"
-    echo "(p) Previous Menu         (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/packages.sh; "install_nodejs"
-            ;;
-
-        2)
-            source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/packages.sh; "install_bluefish"
-            ;;
-        
-        p)
-            development_menu
-            ;;
-
-        P)
-            development_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-        
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        web_dev_menu
-        ;;
-        
-    esac
-    unset input
-    web_dev_menu
 }
 
 python_menu(){
@@ -1306,8 +1192,10 @@ ides_menu(){
     echo ""
     echo ""   
     echo "(1) VIM                            (2) VSCodium"
-    echo "(3) Geany                          (4) Eclipse"
-    echo
+    echo "(3) Geany                          (4) CodeBlocks"
+    echo "(5) Eclipse                        (6) Intellij IDEA"
+    echo "(7) Netbeans                       (8) Scene Builder"
+    echo "(9) Bluefish"
     echo "(p) Previous Menu                  (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1328,7 +1216,27 @@ ides_menu(){
             ;;
 
         4)
+            source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
+            ;;
+
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_eclipse"
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/packages.sh; "download_idea"
+            ;;
+        
+        7)
+            source $SCRIPTS_HOME/packages.sh; "download_netbeans"
+            ;;
+
+        8)
+            source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
+            ;;
+
+        9)
+            source $SCRIPTS_HOME/packages.sh; "install_bluefish"
             ;;
 
         p)
@@ -1362,6 +1270,56 @@ ides_menu(){
     ides_menu
 }
 
+dev_misc_menu(){
+    echo "--------------"
+    echo "|   Misc   |"
+    echo "--------------"
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1)                       (2)"
+    echo "(3) "
+    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
+            ;;
+
+        p)
+            development_menu
+            ;;
+
+        P)
+            development_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+        
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        dev_misc_menu
+        ;;
+        
+    esac
+    unset input
+    dev_misc_menu
+}
 utils_menu(){
     echo "-----------------"
     echo "|   Utilities   |"
