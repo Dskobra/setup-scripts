@@ -40,7 +40,7 @@ install_corectrl(){
         sudo rpm-ostree install corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         echo "deb http://deb.debian.org/debian bookworm-backports main" >> backports.list
@@ -60,7 +60,7 @@ install_openrgb(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install openrgb
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         cd $SCRIPTS_HOME/temp
@@ -90,7 +90,7 @@ install_cooler_control(){
         sudo rpm-ostree install coolercontrol
         sudo rpm-ostree apply-live
         sudo systemctl enable --now coolercontrold
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt install -y curl apt-transport-https
@@ -114,7 +114,7 @@ install_nvidia(){
     then
         sudo rpm-ostree install akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-add-repository -y --component non-free-firmware
@@ -133,7 +133,7 @@ install_v4l2loopback(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils
@@ -159,7 +159,9 @@ install_kdeapps(){
         packages_kde
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        remove_kinoite_flatpaks
+        if [ $PKGMGR == "rpm-ostree" ]; then
+            remove_kinoite_flatpaks
+        fi
         flatpak install --user -y flathub org.kde.ark
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
@@ -334,7 +336,7 @@ package_kde_iso_image_writer(){
     then
         sudo rpm-ostree install isoimagewriter
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."
@@ -426,7 +428,7 @@ install_plasma_x11(){
         if [ $FEDORA_VERSION == "40" ]
         then
             sudo rpm-ostree install plasma-workspace-x11
-            check_if_fedora_immutable
+            confirm_reboot
         else
             echo "Fedora version detected as 39. Not installing x11 support."
         fi
@@ -549,7 +551,7 @@ install_xfburn(){
     then
         sudo rpm-ostree install xfburn
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y xfburn
@@ -697,7 +699,7 @@ package_brave_browser(){
         sudo rpm-ostree refresh-md
         sudo rpm-ostree install brave-browser
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -806,7 +808,7 @@ install_codecs(){
         sudo rpm-ostree install gstreamer1-plugin-openh264\
         mozilla-openh264
         sudo rpm-ostree apply-live --allow-replacement
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y ffmpeg
@@ -828,7 +830,7 @@ install_amd_codecs(){
         sudo rpm-ostree install mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
 
         sudo rpm-ostree install mesa-va-drivers-freeworld.i686 mesa-vdpau-drivers-freeworld.i686
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install mesa-va-drivers
@@ -863,7 +865,7 @@ package_vlc(){
     then
         sudo rpm-ostree install vlc
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y vlc
@@ -898,7 +900,7 @@ package_obsstudio(){
     then
         sudo rpm-ostree install obs-studio
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y obs-studio
@@ -937,7 +939,7 @@ package_steam(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install steam
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo dpkg --add-architecture i386
@@ -955,7 +957,7 @@ package_steam_devices(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
        sudo rpm-ostree install steam-devices
-       check_if_fedora_immutable
+       confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo dpkg --add-architecture i386
@@ -994,7 +996,7 @@ lutris_package(){
     then
         sudo rpm-ostree install lutris
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y lutris
@@ -1030,7 +1032,7 @@ package_bottles(){
     then
         sudo rpm-ostree install bottles
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="Bottles isn't currently available in Debian. This will install the flatpak version."
@@ -1101,7 +1103,7 @@ package_discord(){
     then
         sudo rpm-ostree install discord
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub com.discordapp.Discord
@@ -1136,7 +1138,7 @@ package_dolphin_emu(){
     then
         sudo rpm-ostree install dolphin-emu
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y dolphin-emu
@@ -1223,7 +1225,7 @@ package_qownnotes(){
     then
         sudo rpm-ostree install qownnotes
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub org.qownnotes.QOwnNotes
@@ -1259,7 +1261,7 @@ package_libreoffice(){
     then
         sudo rpm-ostree install libreoffice
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y libreoffice
@@ -1295,7 +1297,7 @@ package_claws_mail(){
     then
         sudo rpm-ostree install claws-mail
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y claws-mail
@@ -1415,7 +1417,7 @@ install_openjdk(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install  java-21-openjdk-devel
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="Using openjdk 17 as 21 isn't in stable yet."
@@ -1467,7 +1469,7 @@ install_scene_builder(){
         sudo rpm-ostree install openjfx
         curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
         sudo rpm-ostree install scenebuilder.rpm
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y openjfx
@@ -1486,7 +1488,7 @@ install_lamp_stack(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install httpd php phpMyAdmin --allow-inactive
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y apache2 mariadb-client\
@@ -1594,7 +1596,7 @@ install_vscodium(){
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
         sudo rpm-ostree install codium
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
@@ -1613,7 +1615,7 @@ install_vim(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install vim-enhanced
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y vim
@@ -1678,7 +1680,7 @@ package_install_github_desktop(){
         sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
         sudo rpm-ostree install git-gui github-desktop
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
@@ -1698,7 +1700,7 @@ install_containers(){
     then
         sudo rpm-ostree install distrobox
         flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y distrobox podman-toolbox
@@ -1736,7 +1738,7 @@ package_rpi_imager(){
     then
         sudo rpm-ostree install rpi-imager
         #sudo rpm-ostree apply-live
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         flatpak install --user -y flathub org.raspberrypi.rpi-imager
@@ -1771,7 +1773,7 @@ package_gtkhash(){
     then
         sudo rpm-ostree install gtkhash
         sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y gtkhash
@@ -1839,7 +1841,7 @@ check_for_spinfinity(){
         SPINFINITY="Fedora Atomic editions will need to reboot first to load the package layer then rerun
         this option to apply the theme."
         zenity --warning --text="$SPINFINITY"
-        check_if_fedora_immutable
+        confirm_reboot
     else
         echo "Unkown error has occurred."
     fi
@@ -1863,7 +1865,7 @@ remove_codecs(){
         
         sudo rpm-ostree remove -y gstreamer1-plugin-openh264 \
         mozilla-openh264
-        check_if_fedora_immutable
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y ffmpeg
@@ -1926,7 +1928,7 @@ standard_package_template(){
     then
         sudo rpm-ostree install --allow-inactive
         #sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
+        #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y
