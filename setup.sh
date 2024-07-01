@@ -102,18 +102,11 @@ fedora_variant_check(){
     fi
 }
 
-check_if_fedora_immutable(){
-    # Many packages can be applied live, but many
-    # cannot be. Largely kernel or system modifications.
-    # Things like adding system groups or installing boot themes
-    # require rebooting first in order for them to be usable.
-    if [ "$PKGMGR" == "rpm-ostree" ]
-    then
-        confirm_reboot
-    fi
-}
-
 confirm_reboot(){
+    # Some packages cannot be applied live without restarting.
+    # Things like adding system groups, installing boot themes,
+    # steam udev rules (aka steam-devices)
+    # require rebooting first in order for them to be usable.
     echo "================================================"
     echo "New RPM packages won't be availble until a "
     echo "restart is performed. Not doing so may"
