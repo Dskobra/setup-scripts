@@ -876,9 +876,9 @@ gaming_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Discord                (2) Minecraft"
-    echo "(3) Prisim Launcher        (4) Dolphin"
-    echo "(5) Cemu"
+    echo "(1) Discord                (2) Discord Overlay"
+    echo "(3) Minecraft              (4) Prisim Launcher"
+    echo "(5) Dolphin                (6) Cemu"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -889,20 +889,24 @@ gaming_other_menu(){
         1)  
             source $SCRIPTS_HOME/packages.sh; "install_discord"
             ;;
+        
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_discover_overlay"
+            ;;
 
-        2) 
+        3) 
             flatpak install --user -y flathub com.mojang.Minecraft
             ;;
 
-        3)
+        4)
             flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
-        4)
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_dolphin_emu"
             ;;
 
-        5)
+        6)
             flatpak install --user -y flathub info.cemu.Cemu
             ;;
 

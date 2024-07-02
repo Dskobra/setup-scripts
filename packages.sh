@@ -6,13 +6,13 @@
 install_prereq(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y git curl wget zenity flatpak
+        sudo dnf install -y git curl wget zenity flatpak dnf-plugins-core
         sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo dnf update -y
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install zenity
+        sudo rpm-ostree install zenity dnf dnf-plugins-core
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo rpm-ostree apply-live
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -76,17 +76,12 @@ install_openrgb(){
 install_cooler_control(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y dnf-plugins-core
         sudo dnf copr enable codifryed/CoolerControl
         sudo dnf install -y coolercontrol
         sudo systemctl enable --now coolercontrold
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        cd $SCRIPTS_HOME/temp
-        source $SCRIPTS_HOME/data/packages.conf
-        curl -L -o $COOLERCONTROL_FILE $COOLERCONTROL_LINK
-        sudo chown root:root $COOLERCONTROL_FILE
-        sudo mv $COOLERCONTROL_FILE /etc/yum.repos.d/
+        sudo dnf copr enable codifryed/CoolerControl
         sudo rpm-ostree install coolercontrol
         sudo rpm-ostree apply-live
         sudo systemctl enable --now coolercontrold
@@ -691,10 +686,7 @@ package_brave_browser(){
         sudo dnf install -y brave-browser
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        curl -L -o brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        sudo chown root:root brave-browser.repo
-        sudo mv brave-browser.repo /etc/yum.repos.d/
-
+        sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
         curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo chown root:root brave-core.asc
         sudo mv brave-core.asc /etc/pki/rpm-gpg/
@@ -1149,6 +1141,43 @@ package_dolphin_emu(){
     fi
 }
 
+install_discover_overlay(){
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(empty) default option which is flatpak"
+    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ]
+    then
+        package_discover_overlay
+    elif [ "$input" = 2 ] || [ -z "$input" ]
+    then
+        flatpak install --user -y flathub io.github.trigg.discover_overlay
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_discover_overlay(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf copr enable mavit/discover-overlay
+        sudo dnf install -y discover-overlay
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo dnf copr enable mavit/discover-overlay
+        sudo rpm-ostree install -y discover-overlay
+        confirm_reboot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y python3-gi python3-gi-cairo\
+        gtk-layer-shell libgtk-layer-shell-dev
+        python3 -m pipx install discover-overlay
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 download_wowup(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
@@ -1182,21 +1211,6 @@ download_weakauras_companion(){
         cd  ~/Desktop/
         curl -L -o $WACOMPBINARY $WACOMPLINK
         chmod +x $WACOMPBINARY
-    fi
-}
-
-download_minecraft(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf    
-    if test -f ~/Desktop/minecraft-launcher; then
-        echo "Minecraft already downloaded."
-    elif ! test -f ~/Desktop/minecraft-launcher; then
-        cd $SCRIPTS_HOME/temp
-        curl -L -o $MINECRAFT_ARCHIVE $MINECRAFT_LINK
-        tar -xvf Minecraft.tar.gz
-        cd minecraft-launcher
-        chmod +x minecraft-launcher
-        mv minecraft-launcher ~/Desktop/
     fi
 }
 
