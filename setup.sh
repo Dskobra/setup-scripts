@@ -639,7 +639,7 @@ gaming_menu(){
     echo ""
     echo ""   
     echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Misc"
+    echo "(3) WoW Clients            (4) Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -659,7 +659,7 @@ gaming_menu(){
             ;;
 
         4)
-            gaming_misc_menu
+            gaming_other_menu
             ;;
         m)
             main_menu
@@ -868,7 +868,7 @@ gaming_tools_menu(){
         gaming_tools_menu
 }
 
-gaming_misc_menu(){
+gaming_other_menu(){
     echo "-----------------"
     echo "|   Misc Stuff   |"
     echo "-----------------"
@@ -877,7 +877,8 @@ gaming_misc_menu(){
     echo ""
     echo ""   
     echo "(1) Discord                (2) Minecraft"
-    echo "(3) Dolphin                (4) Cemu"
+    echo "(3) Prisim Launcher        (4) Dolphin"
+    echo "(5) Cemu"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -890,14 +891,18 @@ gaming_misc_menu(){
             ;;
 
         2) 
-            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
+            flatpak install --user -y flathub com.mojang.Minecraft
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_dolphin_emu"
+            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
         4)
+            source $SCRIPTS_HOME/packages.sh; "install_dolphin_emu"
+            ;;
+
+        5)
             flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
@@ -923,12 +928,12 @@ gaming_misc_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            gaming_misc_menu
+            gaming_other_menu
             ;;
             
         esac
         unset input
-        gaming_misc_menu
+        gaming_other_menu
 }
 
 office_menu(){
