@@ -1171,9 +1171,8 @@ package_discover_overlay(){
         confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y python3-gi python3-gi-cairo\
-        gtk-layer-shell libgtk-layer-shell-dev
-        python3 -m pipx install discover-overlay
+        zenity --info --text="discover-overlay isn't currently available in Debian. This will install the flatpak version."
+        flatpak install --user -y io.github.trigg.discover_overlay
     else
         echo "Unkown error has occurred."
     fi
