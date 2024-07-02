@@ -1004,10 +1004,8 @@ development_menu(){
     echo ""
     echo ""   
     echo ""
-    echo "(1) SDKs              (2) Web Devlopment"
-    echo "(3) Python"
-    echo "(5) Other IDEs        (6) GitHub Desktop"
-    echo "(7) Containers        (8) Misc"
+    echo "(1) SDKs              (2) IDEs"
+    echo "(3) Other"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -1018,25 +1016,11 @@ development_menu(){
             sdks_menu
             ;;
         2)
-            web_dev_menu
-            ;;
-        3)
-            python_menu
-            ;;
-        4)
             ides_menu
             ;;
 
-        6)
-            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
-            ;;
-
-        7)
-            source $SCRIPTS_HOME/packages.sh; "install_containers"
-            ;;
-
-        8)
-            dev_misc_menu
+        3)
+            dev_other_menu
             ;;
 
         m)
@@ -1117,71 +1101,12 @@ sdks_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        cpp_menu
+        sdks_menu
         ;;
         
     esac
     unset input
-    cpp_menu
-}
-
-python_menu(){
-    echo "--------------"
-    echo "|   Python   |"
-    echo "--------------"
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) Python IDLE           (2) Eric"
-    echo "(3) Pycharm"
-    echo "(p) Previous Menu         (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_HOME/packages.sh; "install_python_tools"
-            ;;
-
-        2)
-            source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/packages.sh; "download_pycharm"
-            ;;
-
-        p)
-            development_menu
-            ;;
-
-        P)
-            development_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-        
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        python_menu
-        ;;
-        
-    esac
-    unset input
-    python_menu
+    sdks_menu
 }
 
 ides_menu(){
@@ -1239,6 +1164,14 @@ ides_menu(){
             source $SCRIPTS_HOME/packages.sh; "install_bluefish"
             ;;
 
+        10)
+            source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
+            ;;
+
+        11)
+            source $SCRIPTS_HOME/packages.sh; "download_pycharm"
+            ;;
+
         p)
             development_menu
             ;;
@@ -1270,15 +1203,15 @@ ides_menu(){
     ides_menu
 }
 
-dev_misc_menu(){
-    echo "--------------"
-    echo "|   Misc   |"
-    echo "--------------"
+dev_other_menu(){
+    echo "-------------"
+    echo "|   Other   |"
+    echo "-------------"
     echo ""
     echo ""
     echo ""   
-    echo "(1)                       (2)"
-    echo "(3) "
+    echo "(1) Lamp Stack            (2) Github Desktop"
+    echo "(3) Containers"
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1288,6 +1221,14 @@ dev_misc_menu(){
 
         1)
             source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_containers"
             ;;
 
         p)
@@ -1313,13 +1254,14 @@ dev_misc_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        dev_misc_menu
+        dev_other_menu
         ;;
         
     esac
     unset input
-    dev_misc_menu
+    dev_other_menu
 }
+
 utils_menu(){
     echo "-----------------"
     echo "|   Utilities   |"
