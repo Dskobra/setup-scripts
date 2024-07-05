@@ -1162,7 +1162,7 @@ ides_menu(){
             ;;
         
         7)
-            source $SCRIPTS_HOME/packages.sh; "download_netbeans"
+            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
             ;;
 
         8)
@@ -1282,8 +1282,8 @@ utils_menu(){
     echo ""
     echo ""   
     echo "(1) Fedora Media Writer        (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                    (4) Flatseal"
-    echo "(5) MissionCenter              (6) Virtualization"
+    echo "(3) GtkHash                    (4) MissionCenter"
+    echo "(5) Virtualization"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1303,14 +1303,10 @@ utils_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub com.github.tchx84.Flatseal
-            ;;
-
-        5)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
         
-        6)
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_virtualization"
             ;;
 

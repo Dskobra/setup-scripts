@@ -27,6 +27,7 @@ install_prereq(){
     else
         echo "Unkown error has occurred."
     fi
+    flatpak install --user -y flathub com.github.tchx84.Flatseal
 }
 
 ### Drivers/Kernel modules
@@ -143,10 +144,12 @@ install_v4l2loopback(){
 
 ### KDE/Qt Apps
 install_kdeapps(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -163,6 +166,9 @@ install_kdeapps(){
         flatpak install --user -y flathub org.kde.kamoso
         flatpak install --user -y flathub org.kde.kleopatra
         flatpak install --user -y flathub org.kde.krdc
+     elif [ "$input" = 3 ]
+     then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -188,10 +194,12 @@ packages_kde(){
 }
 
 install_openshot(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -200,6 +208,9 @@ install_openshot(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.openshot.OpenShot
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -238,10 +249,12 @@ install_kthreeb(){
 }
 
 install_kpat(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -250,6 +263,9 @@ install_kpat(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.kde.kpat
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -271,10 +287,12 @@ package_kpat(){
 }
 
 install_fmedia_writer(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -283,6 +301,9 @@ install_fmedia_writer(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -305,10 +326,12 @@ package_fmedia_writer(){
 }
 
 install_kde_iso_image_writer(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -317,6 +340,9 @@ install_kde_iso_image_writer(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.kde.isoimagewriter
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -342,10 +368,12 @@ package_kde_iso_image_writer(){
 }
 
 install_kleopatra(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -354,6 +382,9 @@ install_kleopatra(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.kde.kleopatra
+    elif [ "$input" = 3 ]
+    then
+        package_help_page 
     else
         echo "Invalid option"
     fi
@@ -375,10 +406,12 @@ package_kleopatra(){
 }
 
 install_kolourpaint(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -387,6 +420,9 @@ install_kolourpaint(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.kde.kolourpaint
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -447,10 +483,12 @@ remove_kinoite_flatpaks(){
 
 ### gnome Apps
 install_gnome_apps(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -480,6 +518,9 @@ install_gnome_apps(){
         flatpak install --user -y flathub ca.desrt.dconf-editor
         flatpak install --user -y flathub org.gnome.Logs
         flatpak install --user -y flathub org.gnome.baobab
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -558,10 +599,12 @@ install_xfburn(){
 }
 
 install_remmina(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -570,6 +613,9 @@ install_remmina(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.remmina.Remmina
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -614,10 +660,12 @@ remove_silverblue_flatpaks(){
 }
 ### internet
 install_firefox(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -626,6 +674,9 @@ install_firefox(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.mozilla.firefox
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -659,10 +710,12 @@ package_firefox(){
 }
 
 install_brave_browser(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -671,6 +724,9 @@ install_brave_browser(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub com.brave.Browser
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -706,10 +762,12 @@ package_brave_browser(){
 }
 
 install_dropbox(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -718,6 +776,9 @@ install_dropbox(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub com.dropbox.Client
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -753,10 +814,12 @@ package_dropbox_debian(){
 }
 
 install_transmission(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -765,6 +828,9 @@ install_transmission(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y  flathub com.transmissionbt.Transmission
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -834,10 +900,12 @@ install_amd_codecs(){
 }
 
 install_vlc(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -846,6 +914,9 @@ install_vlc(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.videolan.VLC
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -869,10 +940,12 @@ package_vlc(){
 }
 
 install_obsstudio(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -881,6 +954,9 @@ install_obsstudio(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub com.obsproject.Studio
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -905,10 +981,12 @@ package_obsstudio(){
 
 ### games
 install_steam(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -921,6 +999,9 @@ install_steam(){
         flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
         zenity --info --text="steam-devices package will also be installed for controller support."
         package_steam_devices
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Unkown error has occurred."
     fi
@@ -963,10 +1044,12 @@ package_steam_devices(){
 }
 
 install_lutris(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -977,6 +1060,9 @@ install_lutris(){
             flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
             flatpak install --user -y flathub net.lutris.Lutris
             flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1000,10 +1086,12 @@ lutris_package(){
 }
 
 install_bottles(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1013,6 +1101,9 @@ install_bottles(){
     then
         flatpak install --user -y flathub com.usebottles.bottles
         flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1038,10 +1129,12 @@ package_bottles(){
 }
 
 install_mangohud(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1050,6 +1143,9 @@ install_mangohud(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1072,10 +1168,12 @@ package_mangohud(){
 }
 
 install_discord(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1084,6 +1182,9 @@ install_discord(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub com.discordapp.Discord
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1107,10 +1208,12 @@ package_discord(){
 }
 
 install_dolphin_emu(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1119,6 +1222,9 @@ install_dolphin_emu(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1142,10 +1248,12 @@ package_dolphin_emu(){
 }
 
 install_discover_overlay(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1154,6 +1262,9 @@ install_discover_overlay(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub io.github.trigg.discover_overlay
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Unkown error has occurred."
     fi
@@ -1177,6 +1288,7 @@ package_discover_overlay(){
         echo "Unkown error has occurred."
     fi
 }
+
 download_wowup(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
@@ -1215,10 +1327,12 @@ download_weakauras_companion(){
 
 ### Office Apps
 install_qownnotes(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1227,6 +1341,9 @@ install_qownnotes(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.qownnotes.QOwnNotes
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1250,10 +1367,12 @@ package_qownnotes(){
 }
 
 install_libreoffice(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1263,6 +1382,9 @@ install_libreoffice(){
     then
         source $SCRIPTS_HOME/packages.sh; "remove_libreoffice"
         flatpak install --user -y flathub org.libreoffice.LibreOffice
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1286,10 +1408,12 @@ package_libreoffice(){
 }
 
 install_claws_mail(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1298,6 +1422,9 @@ install_claws_mail(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.claws_mail.Claws-Mail
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1322,10 +1449,12 @@ package_claws_mail(){
 }
 
 install_thunderbird(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1334,6 +1463,9 @@ install_thunderbird(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.mozilla.Thunderbird
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1355,10 +1487,12 @@ package_thunderbird(){
 }
 
 install_keepassxc(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1367,6 +1501,9 @@ install_keepassxc(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.keepassxc.KeePassXC
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1411,6 +1548,29 @@ install_package_tools(){
 }
 
 install_codeblocks(){
+    echo "-------Pick an option-------"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is distro built"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ] || [ -z "$input" ]
+    then
+        package_codeblocks
+    elif [ "$input" = 2 ]
+    then
+        flatpak install --user -y flathub org.codeblocks.codeblocks
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_codeblocks(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y codeblocks codeblocks-contrib-devel
@@ -1419,7 +1579,7 @@ install_codeblocks(){
         sudo rpm-ostree install codeblocks codeblocks-contrib-devel
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y codeblocks
+        sudo apt-get install -y codeblocks-dev
     else
         echo "Unkown error has occurred."
     fi
@@ -1437,6 +1597,26 @@ install_openjdk(){
     then
         zenity --info --text="Using openjdk 17 as 21 isn't in stable yet."
         sudo apt-get install -y openjdk-17-jdk
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+install_netbeans(){
+    echo "-------Pick an option-------"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ]
+    then
+        download_idea
+    elif [ "$input" = 2 ] || [ -z "$input" ]
+    then
+        flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community
     else
         echo "Unkown error has occurred."
     fi
@@ -1514,8 +1694,12 @@ install_lamp_stack(){
 }
 
 install_bluefish(){
-    echo "Install distro built app (1) or distro neutral flatpak(2)?"
-    echo "Flatpaks can include better codec support and faster updates."
+    echo "-------Pick an option-------"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1524,6 +1708,9 @@ install_bluefish(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub nl.openoffice.bluefish
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1664,10 +1851,12 @@ install_eclipse(){
 }
 
 install_github_desktop(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1676,6 +1865,9 @@ install_github_desktop(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub io.github.shiftey.Desktop
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Unkown error has occurred."
     fi
@@ -1727,10 +1919,12 @@ install_containers(){
 
 ### utilities
 install_rpi_imager(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1739,6 +1933,9 @@ install_rpi_imager(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.raspberrypi.rpi-imager
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1763,10 +1960,12 @@ package_rpi_imager(){
 }
 
 install_gtkhash(){
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1775,6 +1974,9 @@ install_gtkhash(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.gtkhash.gtkhash
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Invalid option"
     fi
@@ -1914,13 +2116,15 @@ check_for_libvirt_group(){
         echo "from the Extras menu and/or reboot first if using Kinoite etc."
     fi
 }
- 
+
 package_type_template(){
     ## template function for aasking to do distro package or flatpak
+    echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
+    echo "(3) for help"
     echo "(empty) default option which is flatpak"
-    echo "Flatpaks can support more codecs and some authors use it as their supported release."
+    echo "----------------------------"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ]
@@ -1929,6 +2133,9 @@ package_type_template(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         echo "insert flatpak(s)"
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Unkown error has occurred."
     fi
@@ -1950,4 +2157,8 @@ standard_package_template(){
     else
         echo "Unkown error has occurred."
     fi
+}
+
+package_help_page(){
+    xdg-open https://github.com/Dskobra/setup-scripts/wiki/Package-install-methods
 }
