@@ -1604,19 +1604,19 @@ install_openjdk(){
 
 install_netbeans(){
     echo "-------Pick an option-------"
-    echo "(1) distro built app"
+    echo "(1) download zip file"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option which is flatpak"
+    echo "(empty) default option is download"
     echo "----------------------------"
     printf "Option: "
     read -r input
-    if [ "$input" = 1 ]
+    if [ "$input" = 1 ] || [ -z "$input" ]
     then
-        download_idea
-    elif [ "$input" = 2 ] || [ -z "$input" ]
+        download_netbeans
+    elif [ "$input" = 2 ]
     then
-        flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community
+        flatpak install --user -y flathub org.apache.netbeans
     else
         echo "Unkown error has occurred."
     fi
