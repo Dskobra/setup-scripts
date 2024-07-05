@@ -1607,7 +1607,7 @@ install_netbeans(){
     echo "(1) download zip file"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option is download"
+    echo "(empty) default option is download zip file"
     echo "----------------------------"
     printf "Option: "
     read -r input
