@@ -10,9 +10,9 @@ run_prereq_check(){
     test -f $RAN_ONCE_FILE && RAN_ONCE_FILE="exists"
     if [ "$RAN_ONCE_FILE" = "exists" ]
     then
-        echo "prereq already setup."
+        echo "Skipping first run steps."
     else
-        echo "setting up prereq"
+        echo "Installing required software"
         source $SCRIPTS_HOME/packages.sh; "install_prereq"
         touch $SCRIPTS_HOME/.ranonce.txt
         zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
