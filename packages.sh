@@ -1622,6 +1622,44 @@ install_netbeans(){
     fi
 }
 
+download_netbeans(){
+    cd $SCRIPTS_HOME/temp
+    source $SCRIPTS_HOME/data/packages.conf
+    if test -d $APP_FOLDER/netbeans; then
+        echo "Netbeans already downloaded."
+    elif ! test -d $APP_FOLDER/netbeans; then
+        cd $SCRIPTS_HOME/temp
+        curl -L -o netbeans.zip $NETBEANS_LINK
+        unzip netbeans.zip
+        mv $SCRIPTS_HOME/temp/netbeans $APP_FOLDER/netbeans
+
+    fi
+}
+
+install_idea(){
+    ## template function for aasking to do distro package or flatpak
+    echo "-------Pick an option-------"
+    echo "(1) download tar.gz file"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ] || [ -z "$input" ]
+    then
+        download_idea
+    elif [ "$input" = 2 ] 
+    then
+        flatpak install --user -y flathub com.jetbrains.IntelliJ-IDEA-Community
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
 download_idea(){
     cd $SCRIPTS_HOME/temp
     source $SCRIPTS_HOME/data/packages.conf
@@ -1634,20 +1672,6 @@ download_idea(){
         tar -xvf idea.tar.gz
         rm idea.tar.gz
         mv idea* $APP_FOLDER/idea
-    fi
-}
-
-download_netbeans(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
-    if test -d $APP_FOLDER/netbeans; then
-        echo "Netbeans already downloaded."
-    elif ! test -d $APP_FOLDER/netbeans; then
-        cd $SCRIPTS_HOME/temp
-        curl -L -o netbeans.zip $NETBEANS_LINK
-        unzip netbeans.zip
-        mv $SCRIPTS_HOME/temp/netbeans $APP_FOLDER/netbeans
-
     fi
 }
 
@@ -1702,10 +1726,10 @@ install_bluefish(){
     echo "----------------------------"
     printf "Option: "
     read -r input
-    if [ "$input" = 1 ]
+    if [ "$input" = 1 ] || [ -z "$input" ]
     then
         package_bluefish
-    elif [ "$input" = 2 ] || [ -z "$input" ]
+    elif [ "$input" = 2 ] 
     then
        flatpak install --user -y flathub nl.openoffice.bluefish
     elif [ "$input" = 3 ]
@@ -1748,6 +1772,30 @@ install_python_tools(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y idle-python3.11 python3.11-dev
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+install_pycharm(){
+    ## template function for aasking to do distro package or flatpak
+    echo "-------Pick an option-------"
+    echo "(1) download tar.gz file"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ]
+    then
+        download_pycharm
+    elif [ "$input" = 2 ] || [ -z "$input" ]
+    then
+        flatpak install --user -y flathub com.jetbrains.PyCharm-Community
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
     else
         echo "Unkown error has occurred."
     fi

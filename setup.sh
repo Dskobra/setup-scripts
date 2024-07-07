@@ -1129,7 +1129,8 @@ ides_menu(){
     echo "(3) Geany                          (4) CodeBlocks"
     echo "(5) Eclipse                        (6) Intellij IDEA"
     echo "(7) Netbeans                       (8) Scene Builder"
-    echo "(9) Bluefish"
+    echo "(9) Bluefish                       (10) Eric IDE"
+    echo "(11) Pycharm"
     echo "(p) Previous Menu                  (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1158,7 +1159,7 @@ ides_menu(){
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "download_idea"
+            source $SCRIPTS_HOME/packages.sh; "install_idea"
             ;;
         
         7)
@@ -1178,7 +1179,7 @@ ides_menu(){
             ;;
 
         11)
-            source $SCRIPTS_HOME/packages.sh; "download_pycharm"
+            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
             ;;
 
         p)
