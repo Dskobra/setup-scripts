@@ -948,9 +948,10 @@ office_menu(){
     echo "Office and note taking apps."
     echo ""
     echo ""   
-    echo "(1) QOwnNotes          (2) Libreoffice"
-    echo "(3) Claws-Mail         (4) Thunderbird"
-    echo "(5) Bitwarden          (6) KeePassXC"         
+    echo "(1) LibreOffice        (2) QOwnNotes"          
+    echo "(3) Marknote           (4) Claws-Mail"
+    echo "(5) Thunderbird        (6) Bitwarden"
+    echo "(7) KeePassXC"         
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -958,26 +959,30 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_qownnotes"
-            ;;
-
-        2)
             source $SCRIPTS_HOME/packages.sh; "install_libreoffice"
             ;;
 
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_qownnotes"
+            ;;
+
         3)
+            source $SCRIPTS_HOME/packages.sh; "install_marknote"
+            ;;
+
+        4)
             source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
             ;;
         
-        4)
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
             ;;
 
-        5)
+        6)
             flatpak install --user -y flathub com.bitwarden.desktop
             ;;
 
-        6)
+        7)
             source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
             ;;
 
