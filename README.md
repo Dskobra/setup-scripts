@@ -23,4 +23,4 @@ structure
 setup.sh        -       Main launch script. Always use this.
 packages.sh     -       Contains all the install commands.
 
-data folder     -       When main script is run it pulls extra scripts and customization from the data branch.
+data folder     -       Separate branch that is pulled when setup.sh is run and has download links for some packages and game profiles.
