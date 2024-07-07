@@ -1778,7 +1778,6 @@ install_python_tools(){
 }
 
 install_pycharm(){
-    ## template function for aasking to do distro package or flatpak
     echo "-------Pick an option-------"
     echo "(1) download tar.gz file"
     echo "(2) distro neutral flatpak"
@@ -1787,10 +1786,10 @@ install_pycharm(){
     echo "----------------------------"
     printf "Option: "
     read -r input
-    if [ "$input" = 1 ]
+    if [ "$input" = 1 ] || [ -z "$input" ]
     then
         download_pycharm
-    elif [ "$input" = 2 ] || [ -z "$input" ]
+    elif [ "$input" = 2 ] 
     then
         flatpak install --user -y flathub com.jetbrains.PyCharm-Community
     elif [ "$input" = 3 ]
@@ -1832,6 +1831,29 @@ install_eric_ide(){
 }
 
 install_vscodium(){
+    echo "-------Pick an option-------"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ] || [ -z "$input" ]
+    then
+        package_vscodium
+    elif [ "$input" = 2 ]
+    then
+        flatpak install --user -y flathub com.vscodium.codium
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_vscodium(){
     if [ $PKGMGR == "dnf" ]
     then
         cd $SCRIPTS_HOME/data
@@ -1875,6 +1897,29 @@ install_vim(){
 }
 
 install_geany(){
+    echo "-------Pick an option-------"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ] || [ -z "$input" ]
+    then
+        package_geany
+    elif [ "$input" = 2 ]
+    then
+        flatpak install --user -y flathub org.geany.Geany
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_geany(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
@@ -2189,7 +2234,7 @@ package_type_template(){
     fi
 }
 
-standard_package_template(){
+distro_package_template(){
     ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
