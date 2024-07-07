@@ -879,6 +879,7 @@ gaming_other_menu(){
     echo "(1) Discord                (2) Discord Overlay"
     echo "(3) Minecraft              (4) Prisim Launcher"
     echo "(5) Dolphin                (6) Cemu"
+    echo "(7) Basic Game profiles"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -908,6 +909,11 @@ gaming_other_menu(){
 
         6)
             flatpak install --user -y flathub info.cemu.Cemu
+            ;;
+
+        7)
+            source $SCRIPTS_HOME/packages.sh; "game-profiles"
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Game-Profiles
             ;;
 
         m)
@@ -1458,7 +1464,7 @@ export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
-VERSION="4.23.2024"
+VERSION="7.7.2024"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
 APP_FOLDER="$HOME/Apps"

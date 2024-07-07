@@ -1325,6 +1325,15 @@ download_weakauras_companion(){
     fi
 }
 
+game_profiles(){
+    if test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
+        echo "MangoHud.conf exists. Not copying profiles over."
+    elif ! test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
+        cd $SCRIPTS_HOME/data/game-profiles
+        chown $USER:$USER *.conf
+        cp *.conf $HOME/.config/MangoHud/
+    fi
+}
 ### Office Apps
 install_qownnotes(){
     echo "-------Pick an option-------"
