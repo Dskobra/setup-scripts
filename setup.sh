@@ -912,8 +912,7 @@ gaming_other_menu(){
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "game-profiles"
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Game-Profiles
+            source $SCRIPTS_HOME/packages.sh; "setup_game-profiles"
             ;;
 
         m)
