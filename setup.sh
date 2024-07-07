@@ -1354,7 +1354,7 @@ extras_menu(){
     echo ""
     echo ""   
     echo "(1) Fedora Upgrade Helper      (2) Configurations"
-    echo "(3) DSKs Stuff                 (4) Remove Codecs"
+    echo "(3) Remove Codecs"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1370,10 +1370,6 @@ extras_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/data/dsksstuff.sh; "dsksstuff_menu"
-            ;;
-
-        4)
             source $SCRIPTS_HOME/packages.sh; "remove_codecs"
             ;;
 
