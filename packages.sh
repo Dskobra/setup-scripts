@@ -1645,10 +1645,10 @@ install_openjdk(){
 
 install_netbeans(){
     echo "-------Pick an option-------"
-    echo "(1) download zip file"
+    echo "(1) download a compressed bundle"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option is download zip file"
+    echo "(empty) default option which is a bundle extracted from an archive. Stored in ~/Apps/netbeans"
     echo "----------------------------"
     printf "Option: "
     read -r input
@@ -1678,12 +1678,11 @@ download_netbeans(){
 }
 
 install_idea(){
-    ## template function for aasking to do distro package or flatpak
     echo "-------Pick an option-------"
-    echo "(1) download tar.gz file"
+    echo "(1) download a compressed bundle"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option which is flatpak"
+    echo "(empty) default option which is a bundle extracted from an archive. Stored in ~/Apps/idea"
     echo "----------------------------"
     printf "Option: "
     read -r input
@@ -1763,7 +1762,7 @@ install_bluefish(){
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option which is flatpak"
+    echo "(empty) default option which is distro built."
     echo "----------------------------"
     printf "Option: "
     read -r input
@@ -1820,10 +1819,10 @@ install_python_tools(){
 
 install_pycharm(){
     echo "-------Pick an option-------"
-    echo "(1) download tar.gz file"
+    echo "(1) download a compressed bundle"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option which is flatpak"
+    echo "(empty) default option which is a bundle extracted from an archive. Stored in ~/Apps/pycharm"
     echo "----------------------------"
     printf "Option: "
     read -r input
@@ -1876,7 +1875,7 @@ install_vscodium(){
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option which is flatpak"
+    echo "(empty) default option which is distro built."
     echo "----------------------------"
     printf "Option: "
     read -r input
@@ -1942,7 +1941,7 @@ install_geany(){
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
     echo "(3) for help"
-    echo "(empty) default option which is flatpak"
+    echo "(empty) default option which is distro built."
     echo "----------------------------"
     printf "Option: "
     read -r input
