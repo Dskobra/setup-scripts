@@ -12,6 +12,7 @@ Set of scripts for installing several popular applications and drivers.
 * wget
 * zenity
 * flatpak
+* flatseal flatpak
 * dnf   (fedora)
 * dnf-plugins-core (fedora)
 

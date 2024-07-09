@@ -912,7 +912,7 @@ gaming_other_menu(){
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "setup_game-profiles"
+            source $SCRIPTS_HOME/packages.sh; "setup_game_profiles"
             ;;
 
         m)
