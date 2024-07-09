@@ -1616,6 +1616,130 @@ install_package_tools(){
     fi
 }
 
+install_openjdk(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y java-21-openjdk-devel openjfx
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install  java-21-openjdk-devel openjfx
+        confirm_reboot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        zenity --info --text="Using openjdk 17 as 21 isn't in stable yet."
+        sudo apt-get install -y openjdk-17-jdk openjfx
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+install_nodejs(){
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	source ~/.bashrc
+	nvm install lts/*
+}
+
+install_python_tools(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y python3-idle python3-devel
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install python3-idle python3-devel
+        sudo rpm-ostree apply-live
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y idle-python3.11 python3.11-dev
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+install_lamp_stack(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y httpd mariadb mariadb-server\
+        php phpMyAdmin
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install httpd php phpMyAdmin --allow-inactive
+        confirm_reboot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y apache2 mariadb-client\
+        mariadb-server php phpmyadmin
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+install_github_desktop(){
+    echo "-------Pick an option-------"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ]
+    then
+        package_install_github_desktop
+    elif [ "$input" = 2 ] || [ -z "$input" ]
+    then
+        flatpak install --user -y flathub io.github.shiftey.Desktop
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_install_github_desktop(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
+        sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+        sudo dnf install -y github-desktop
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        cd $SCRIPTS_HOME/temp
+        curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
+        sudo chown root:root shiftkey-gpg.key
+        sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
+        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
+        sudo rpm-ostree install github-desktop
+        confirm_reboot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
+        sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
+        sudo apt-get update && sudo apt-get install -y github-desktop
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+install_containers(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y toolbox distrobox
+        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install distrobox
+        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+        confirm_reboot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y distrobox podman-toolbox
+        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
 install_codeblocks(){
     echo "-------Pick an option-------"
     echo "(1) distro built app"
@@ -1649,23 +1773,6 @@ package_codeblocks(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y codeblocks-dev
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-install_openjdk(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y java-21-openjdk-devel openjfx
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install  java-21-openjdk-devel openjfx
-        confirm_reboot
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        zenity --info --text="Using openjdk 17 as 21 isn't in stable yet."
-        sudo apt-get install -y openjdk-17-jdk openjfx
     else
         echo "Unkown error has occurred."
     fi
@@ -1764,24 +1871,6 @@ install_scene_builder(){
     fi
 }
 
-install_lamp_stack(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y httpd mariadb mariadb-server\
-        php phpMyAdmin
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install httpd php phpMyAdmin --allow-inactive
-        confirm_reboot
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y apache2 mariadb-client\
-        mariadb-server php phpmyadmin
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
 install_bluefish(){
     echo "-------Pick an option-------"
     echo "(1) distro built app"
@@ -1815,28 +1904,6 @@ package_bluefish(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y bluefish
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-install_nodejs(){
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-	source ~/.bashrc
-	nvm install lts/*
-}
-
-install_python_tools(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y python3-idle python3-devel
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install python3-idle python3-devel
-        sudo rpm-ostree apply-live
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y idle-python3.11 python3.11-dev
     else
         echo "Unkown error has occurred."
     fi
@@ -2006,73 +2073,6 @@ install_eclipse(){
 
     tar -xvf eclipse.tar.gz
     ./eclipse-installer/eclipse-inst
-}
-
-install_github_desktop(){
-    echo "-------Pick an option-------"
-    echo "(1) distro built app"
-    echo "(2) distro neutral flatpak"
-    echo "(3) for help"
-    echo "(empty) default option which is flatpak"
-    echo "----------------------------"
-    printf "Option: "
-    read -r input
-    if [ "$input" = 1 ]
-    then
-        package_install_github_desktop
-    elif [ "$input" = 2 ] || [ -z "$input" ]
-    then
-        flatpak install --user -y flathub io.github.shiftey.Desktop
-    elif [ "$input" = 3 ]
-    then
-        package_help_page
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-package_install_github_desktop(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-        sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-        sudo dnf install -y github-desktop
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        cd $SCRIPTS_HOME/temp
-        curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
-        sudo chown root:root shiftkey-gpg.key
-        sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
-        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-        sudo rpm-ostree install github-desktop
-        confirm_reboot
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
-        sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
-        sudo apt-get update && sudo apt-get install -y github-desktop
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-install_containers(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y toolbox distrobox
-        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install distrobox
-        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-        confirm_reboot
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y distrobox podman-toolbox
-        flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-    else
-        echo "Unkown error has occurred."
-    fi
 }
 
 ### utilities
