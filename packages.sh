@@ -1657,15 +1657,15 @@ package_codeblocks(){
 install_openjdk(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y java-21-openjdk-devel
+        sudo dnf install -y java-21-openjdk-devel openjfx
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install  java-21-openjdk-devel
+        sudo rpm-ostree install  java-21-openjdk-devel openjfx
         confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="Using openjdk 17 as 21 isn't in stable yet."
-        sudo apt-get install -y openjdk-17-jdk
+        sudo apt-get install -y openjdk-17-jdk openjfx
     else
         echo "Unkown error has occurred."
     fi
@@ -1748,18 +1748,15 @@ install_scene_builder(){
     source $SCRIPTS_HOME/data/packages.conf
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y openjfx
         curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
         sudo rpm -i scenebuilder.rpm
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install openjfx
         curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
         sudo rpm-ostree install scenebuilder.rpm
         confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y openjfx
         curl -L -o scenebuilder.deb $SCENE_BUILDER_DEB_LINK
         sudo dpkg -i scenebuilder.deb
     else
@@ -2114,6 +2111,7 @@ package_rpi_imager(){
         confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
+        zenity --info --text="Raspberry Pi Imager isn't currently available in Debian. This will install the flatpak version."
         flatpak install --user -y flathub org.raspberrypi.rpi-imager
     else
         echo "Unkown error has occurred."
