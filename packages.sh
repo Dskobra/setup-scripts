@@ -1388,6 +1388,7 @@ package_qownnotes(){
         #confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
+        zenity --info --text="QOwnNotes isn't currently available in Debian. This will install the flatpak version."
         flatpak install --user -y flathub org.qownnotes.QOwnNotes
     else
         echo "Unkown error has occurred."
