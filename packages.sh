@@ -451,7 +451,7 @@ install_plasma_x11(){
         then
             sudo dnf install -y plasma-workspace-x11
         else
-            echo "Fedora version detected as 39. Not installing x11 support."
+            echo "This only supports Fedora 40+. 39 has x11 support by default."
         fi
     elif [ $PKGMGR == "rpm-ostree" ]
     then
@@ -464,7 +464,7 @@ install_plasma_x11(){
             echo "Fedora version detected as 39. Not installing x11 support."
         fi
     else
-        echo "Unkown error has occurred."
+        echo "This only supports Fedora Linux 40+"
     fi
 }
 
@@ -691,7 +691,7 @@ package_firefox(){
         echo "Immutable variants are unsupported"
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get remove firefox-esr
+        sudo apt-get remove -y firefox-esr
         sudo install -d -m 0755 /etc/apt/keyrings
         wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 
