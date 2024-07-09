@@ -1993,7 +1993,7 @@ package_geany(){
         sudo rpm-ostree install geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
     elif [ $PKGMGR == "apt-get" ]
     then
-        flatpak install --user -y flathub org.geany.Geany 
+        sudo apt-get install -y geany geany-plugin-markdown geany-plugin-spellcheck geany-plugin-treebrowser
     else
         echo "Invalid option"
     fi
