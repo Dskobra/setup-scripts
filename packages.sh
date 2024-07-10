@@ -550,7 +550,7 @@ install_gnome_tweaks(){
         sudo dnf install -y gnome-tweaks
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree gnome-tweaks
+        sudo rpm-ostree install gnome-tweaks
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y gnome-tweaks
