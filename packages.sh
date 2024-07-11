@@ -1771,6 +1771,7 @@ package_codeblocks(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install codeblocks codeblocks-contrib-devel
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y codeblocks-dev
@@ -2059,6 +2060,7 @@ package_geany(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
+        confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y geany geany-plugin-markdown geany-plugin-spellcheck geany-plugin-treebrowser
