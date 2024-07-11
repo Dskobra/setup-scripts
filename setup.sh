@@ -108,9 +108,8 @@ confirm_reboot(){
     # steam udev rules (aka steam-devices)
     # require rebooting first in order for them to be usable.
     echo "================================================"
-    echo "New RPM packages won't be availble until a "
-    echo "restart is performed. Not doing so may"
-    echo "result in errors."
+    echo "Some packages won't be availble until a "
+    echo "restart is performed."
     echo "Do you wish to restart now?"
     echo "Type y/n"
     echo "================================================"
@@ -1459,7 +1458,7 @@ export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
-VERSION="7.7.2024"
+VERSION="7.11.2024"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
 APP_FOLDER="$HOME/Apps"
