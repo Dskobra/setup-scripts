@@ -1,7 +1,24 @@
 #!/usr/bin/bash
 
-### This is the main script that contians all the menus,
-### and code for determining the distro.
+### Main launch script which includes menus, distro
+### determination and making app/temp folders.
+
+run_prereq_check(){
+    ### make sure git, curl, wget, zenity
+    ### and flatpak are installed.
+    RAN_ONCE_FILE=$SCRIPTS_HOME/.ranonce.txt
+    test -f $RAN_ONCE_FILE && RAN_ONCE_FILE="exists"
+    if [ "$RAN_ONCE_FILE" = "exists" ]
+    then
+        echo "Skipping first run steps."
+    else
+        echo "Installing required software"
+        source $SCRIPTS_HOME/packages.sh; "install_prereq"
+        touch $SCRIPTS_HOME/.ranonce.txt
+        zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
+    fi
+}
+
 make_temp(){
     test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];
@@ -14,21 +31,15 @@ make_temp(){
 }
 
 make_app_folder(){
-    # desktops like xfce might not have the applications folder created. 
-    # Which is needed for menu shortcuts.
-    mkdir -p $HOME/.local/share/applications/       
-    test -d /opt/AppInstalls/ && APP_FOLDER=exists
-    if [ "$APP_FOLDER" = "exists" ];
+    ### Store netbeans, intellij idea and pycharm
+    ### in ~/Apps  
+    test -d $HOME/Apps && LOOK_FOR_APP_FOLDER=exists
+    if [ "$LOOK_FOR_APP_FOLDER" = "exists" ];
         then
-           APP_FOLDER=exists 
-    elif [ "$APP_FOLDER" = "missing" ];
+           LOOK_FOR_APP_FOLDER=exists 
+    elif [ "$LOOK_FOR_APP_FOLDER" = "missing" ];
         then
-        sudo mkdir /opt/AppInstalls/
-        sudo mkdir /opt/AppInstalls/launchers # store launch scripts
-        sudo mkdir /opt/AppInstalls/data      # store program folders etc
-        sudo mkdir /opt/AppInstalls/icons
-
-        sudo chown $USER:$USER /opt/AppInstalls -R  # make current user owner so its writable  
+            mkdir $APP_FOLDER
     fi
 }
 
@@ -60,9 +71,8 @@ debian_release_check(){
     if [ $VERSION_ID == "12" ]
     then
         PKGMGR="apt-get"
-        deps_check
+        run_prereq_check
         get_data
-        display_third_party_repos
         main_menu
     else
         echo "These scripts only support Debian 12"
@@ -71,41 +81,35 @@ debian_release_check(){
 }
 
 fedora_variant_check(){
+    # Fedora Workstation/Server and Desktop Spins
+    # use dnf as their package manager while
+    # Atomic Desktop Editions use rpm-ostree
+    # which is very different. Some commands need
+    # to be run differently.
     test -f /run/ostree-booted && VARIANT=ostree
     if [ ! -n "$VARIANT" ]
     then
         PKGMGR="dnf"
-        deps_check
-        #check_for_git
-        #check_for_wget
-        #check_for_curl
-        #check_for_zenity
+        run_prereq_check
         get_data
-        display_third_party_repos
         main_menu
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        deps_check
-        #check_for_zenity
+        run_prereq_check
         get_data
-        display_third_party_repos
         main_menu
     fi
 }
 
-check_if_fedora_immutable(){
-    if [ "$PKGMGR" == "rpm-ostree" ]
-    then
-        confirm_reboot
-    fi
-}
-
 confirm_reboot(){
+    # Some packages cannot be applied live without restarting.
+    # Things like adding system groups, installing boot themes,
+    # steam udev rules (aka steam-devices)
+    # require rebooting first in order for them to be usable.
     echo "================================================"
-    echo "New RPM packages won't be availble until a "
-    echo "restart is performed. Not doing so may"
-    echo "result in errors."
+    echo "Some packages won't be availble until a "
+    echo "restart is performed."
     echo "Do you wish to restart now?"
     echo "Type y/n"
     echo "================================================"
@@ -123,109 +127,9 @@ confirm_reboot(){
     fi
 }
 
-deps_check(){
-    test -f /usr/bin/git && GITCHECK="exists"
-    if [ "$GITCHECK" = "exists" ];
-        then
-           GITCHECK=exists 
-    elif [ "$GITCHECK" = "missing" ];
-        then
-        echo "git not found. Will install it."
-        install_git
-    fi
-    
-    test -f /usr/bin/zenity && ZENITYCHECK="exists"
-    if [ "$ZENITYCHECK" = "exists" ];
-        then
-           ZENITYCHECK=exists 
-    elif [ "$ZENITYCHECK" = "missing" ];
-        then
-        echo "zenity not found. Will install it."
-        install_zenity
-    fi
-
-    test -f /usr/bin/wget && WGETCHECK="exists"
-    if [ "$WGETCHECK" = "exists" ];
-        then
-           WGETCHECK="exists" 
-    elif [ "$WGETCHECK" = "missing" ];
-        then
-        echo "wget not found. Will install it."
-        install_wget
-    fi
-
-    test -f /usr/bin/curl && CURLCHECK="exists"
-    if [ "$CURLCHECK" = "exists" ];
-        then
-           CURLCHECK="exists" 
-    elif [ "$CURLCHECK" = "missing" ];
-        then
-        echo "curl not found. Will install it."
-        install_curl
-    fi
-}
-
-check_for_git(){
-    test -f /usr/bin/git && GITCHECK="exists"
-    if [ "$GITCHECK" = "exists" ];
-        then
-           GITCHECK=exists 
-    elif [ "$GITCHECK" = "missing" ];
-        then
-        echo "git not found. Will install it."
-        install_git
-    fi
-}
-
-check_for_wget(){
-    test -f /usr/bin/wget && WGETCHECK="exists"
-    if [ "$WGETCHECK" = "exists" ];
-        then
-           WGETCHECK="exists" 
-    elif [ "$WGETCHECK" = "missing" ];
-        then
-        echo "wget not found. Will install it."
-        install_wget
-    fi
-}
-
-check_for_curl(){
-    test -f /usr/bin/curl && CURLCHECK="exists"
-    if [ "$CURLCHECK" = "exists" ];
-        then
-           CURLCHECK="exists" 
-    elif [ "$CURLCHECK" = "missing" ];
-        then
-        echo "curl not found. Will install it."
-        install_curl
-    fi
-}
-
-check_for_dos2unix(){
-    test -f /usr/bin/dos2unix && DOS2UNIXCHECK="exists"
-    if [ "$DOS2UNIXCHECK" = "exists" ];
-        then
-           DOS2UNIXCHECK=exists 
-    elif [ "$DOS2UNIXCHECK" = "missing" ];
-        then
-        echo "dos2unix not found. Will install it."
-        install_dos2unix
-    fi
-}
-
-check_for_zenity(){
-    test -f /usr/bin/zenity && ZENITYCHECK="exists"
-    if [ "$ZENITYCHECK" = "exists" ];
-        then
-           ZENITYCHECK=exists 
-    elif [ "$ZENITYCHECK" = "missing" ];
-        then
-        echo "zenity not found. Will install it."
-        install_zenity
-    fi
-}
-
 get_data(){
+    # data branch includes links I can update more frequently and
+    # my personal mangohud profiles (positioned for my liking).
     echo "Will need to download extra files from data branch"
     cd $SCRIPTS_HOME
     rm -r -f data
@@ -233,83 +137,19 @@ get_data(){
     mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
 }
 
-install_git(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y git
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y git
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_wget(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y wget
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y wget
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_curl(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y curl
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y curl
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_dos2unix(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y dos2unix
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install dos2unix
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y dos2unix
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-install_zenity(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf install -y zenity
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install zenity
-        sudo rpm-ostree apply-live
-        #check_if_fedora_immutable
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get install -y zenity
-    else
-        echo "Unkown error has occured."
-    fi
-}
-
-display_third_party_repos(){
-    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" = "rpm-ostree" ]
-    then
-        THIRD_PARTY_REPO="RPMFusion"
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        THIRD_PARTY_REPO="contrib non-free"
+get_updates(){
+    test -d $SCRIPTS_HOME/.git && REPO_FOLDER=exists
+    if [ "$REPO_FOLDER" = "exists" ];
+        then
+            cd $SCRIPTS_HOME
+            rm $SCRIPTS_HOME/.ranonce.txt
+            rm -r -f data
+            git pull
+            zenity --info --text="Please rerun setup.sh now."
+            exit
+    elif [ "$REPO_FOLDER" = "missing" ];
+        then
+            zenity --info --text="No valid .git folder found. Please redownload them."
     fi
 }
 
@@ -319,20 +159,15 @@ main_menu(){
     echo "---------------------------" 
     echo ""
     echo "Version: $VERSION"
-    echo "Copyright (c) 2021-2023 Jordan Bottoms"
+    echo "$COPYRIGHT"
     echo "Released under the MIT license"
     echo ""
-    echo "OS Name: $OS_NAME"
-    echo "Package Manager: $PKGMGR"
-    echo "3rd Party Repo is: $THIRD_PARTY_REPO"
     echo ""
-    echo ""
-    echo "(1) 3rd Party Repo                (2) Setup Flatpak"
-    echo "(3) Hardware                      (4) Desktop Plugins"      
-    echo "(5) Internet                      (6) Multimedia"
-    echo "(7) Gaming                        (8) Office"
-    echo "(9) Coding                        (10) Utilities"
-    echo "(11) Extras"
+    echo "(1) Hardware/Drivers              (2) Desktop Apps"      
+    echo "(3) Internet                      (4) Multimedia"
+    echo "(5) Gaming                        (6) Office"
+    echo "(7) Development                   (8) Utilities"
+    echo "(9) Extras                        (10) Update Scripts"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -340,58 +175,43 @@ main_menu(){
     case $input in
 
 
-        1)  
-            source $SCRIPTS_HOME/packages.sh; "install_third_party_repos"
-            main_menu
+        1)
+            hardware_drivers_menu
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_flatpak"
-            main_menu
+            desktop_apps_menu
             ;;
 
         3)
-            hardware_menu
-            main_menu
+            internet_menu
             ;;
 
         4)
-            desktop_plugins_menu
-            main_menu
+            multimedia_menu
             ;;
 
         5)
-            internet_menu
-            main_menu
+            gaming_menu
             ;;
 
         6)
-            multimedia_menu
-            main_menu
+            office_menu
             ;;
-
         7)
-            gaming_menu
-            main_menu
+            development_menu
             ;;
 
         8)
-            office_menu
-            main_menu
+            utils_menu
             ;;
+
         9)
-            coding_menu
-            main_menu
+            extras_menu
             ;;
 
         10)
-            utils_menu
-            main_menu
-            ;;
-
-        11)
-            extras_menu
-            main_menu
+            get_updates
             ;;
 
         0)
@@ -409,16 +229,17 @@ main_menu(){
         main_menu
 }
 
-hardware_menu(){
-    echo "----------------"
-    echo "|   Hardware   |"
-    echo "----------------"
+hardware_drivers_menu(){
+    echo "------------------------"
+    echo "|   Hardware/Drivers   |"
+    echo "------------------------"
     echo ""
-    echo "AMD/Nvidia drivers"
+    echo "Hardware and device drivers etc"
     echo ""
     echo ""     
-    echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) Cheese(gtk)         (4) Kamoso(Qt)"
+    echo "(1) Corectrl(amd)       (2) AMD Video Acceleration"
+    echo "(3) Nvidia Driver       (4) CoolerControl"
+    echo "(5) OpenRGB             (6) Virtual Camera"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -431,15 +252,23 @@ hardware_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
+            source $SCRIPTS_HOME/packages.sh; "install_amd_codecs"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_cheese"
+            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kamoso"
+            source $SCRIPTS_HOME/packages.sh; "install_cooler_control"
+            ;;
+
+        5)
+            source $SCRIPTS_HOME/packages.sh; "install_openrgb"
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
             ;;
         
         h)
@@ -464,20 +293,20 @@ hardware_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            hardware_menu
+            hardware_drivers_menu
             ;;
             
         esac
         unset input
-        hardware_menu
+        hardware_drivers_menu
 }
 
-desktop_plugins_menu(){
-    echo "-----------------------"
-    echo "|   Desktop Plugins   |"
-    echo "-----------------------"
+desktop_apps_menu(){
+    echo "--------------------"
+    echo "|   Desktop Apps   |"
+    echo "--------------------"
     echo ""
-    echo "Extra plugins and misc stuff for specific desktops"
+    echo "Specific Desktop Enviroment apps."
     echo ""
     echo ""   
     echo "(1) KDE                (2) GNOME"
@@ -489,11 +318,11 @@ desktop_plugins_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            source $SCRIPTS_HOME/packages.sh; "kde_desktop_menu"
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
+            gnome_desktop_menu
             ;;
 
         3)
@@ -501,11 +330,11 @@ desktop_plugins_menu(){
             ;;
 
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps
             ;;
 
         H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Features
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps
             ;;
 
         m)
@@ -523,12 +352,161 @@ desktop_plugins_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            desktop_plugins_menu
+            desktop_apps_menu
             ;;
             
         esac
         unset input
-        desktop_plugins_menu
+        desktop_apps_menu
+}
+
+kde_desktop_menu(){
+    echo "-----------"
+    echo "|   KDE   |"
+    echo "-----------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Core Apps          (2) Plasma X11"
+    echo "(3) KDE Patience       (4) KDE ISO Image Writer"
+    echo "(5) K3b                (6) Kolourpaint"
+    echo "(7) Kleopatra"
+    echo "(h) Help               (p) Previous Menu"
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            ;;
+        
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_plasma_x11"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
+            ;;
+        
+        5)
+            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
+            ;;
+
+        6)
+            source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            ;;
+
+        7)
+            source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            ;;
+
+        p)
+            desktop_apps_menu
+            ;;
+
+        P)
+            desktop_apps_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            kde_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        kde_desktop_menu
+}
+
+gnome_desktop_menu(){
+    echo "-----------"
+    echo "|   Gnome  |"
+    echo "-----------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Core Apps          (2) Gnome Tweaks"
+    echo "(h) Help               (p) Previous Menu"
+    echo "(m) Main Menu          (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
+            ;;
+        
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_gnome_tweaks"
+            ;;
+
+        h)
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            ;;
+
+        H)  
+            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            ;;
+
+        p)
+            desktop_apps_menu
+            ;;
+
+        P)
+            desktop_apps_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gnome_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        gnome_desktop_menu
 }
 
 internet_menu(){
@@ -541,6 +519,7 @@ internet_menu(){
     echo ""   
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
+    echo "(5) Remmina"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -556,11 +535,15 @@ internet_menu(){
             ;;
         
         3)
-            flatpak install --user -y flathub com.dropbox.Client
+            source $SCRIPTS_HOME/packages.sh; "install_dropbox"
             ;;
 
         4)
-            flatpak install --user -y  flathub com.transmissionbt.Transmission
+            source $SCRIPTS_HOME/packages.sh; "install_transmission"
+            ;;
+
+        5)  
+            source $SCRIPTS_HOME/packages.sh; "install_remmina"
             ;;
 
         m)
@@ -594,10 +577,9 @@ multimedia_menu(){
     echo "Various multimedia apps, codecs etc."
     echo ""
     echo ""   
-    echo "(1) Codecs                (2) VLC Media Player" 
-    echo "(3) OBS Studio            (4) OpenShot" 
-    echo "(5) K3b                   (6) Kolourpaint"
-    echo "(7) OBS Virtual Camera Driver"
+    echo "(1) Audio/Video Codecs    (2) VLC Media Player"
+    echo "(3) OBS Studio            (4) OpenShot"
+    echo "(5) xfburn"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -609,27 +591,19 @@ multimedia_menu(){
             ;;
 
         2)
-            flatpak install --user -y flathub org.videolan.VLC
-            ;;
-        
-        3)
-            flatpak install --user -y flathub com.obsproject.Studio
+            source $SCRIPTS_HOME/packages.sh; "install_vlc"
             ;;
 
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_obsstudio"
+            ;;
+        
         4)
             source $SCRIPTS_HOME/packages.sh; "install_openshot"
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
-            ;;
-            
-        6)
-            source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
-            ;;
-
-        7)
-            source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
+            source $SCRIPTS_HOME/packages.sh; "install_xfburn"
             ;;
         
         m)
@@ -664,9 +638,7 @@ gaming_menu(){
     echo ""
     echo ""   
     echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Emulators"
-    echo "(5) Discord                (6) Solitare"
-    echo "(7) Minecraft"
+    echo "(3) WoW Clients            (4) Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -686,22 +658,8 @@ gaming_menu(){
             ;;
 
         4)
-            emulators_menu
+            gaming_other_menu
             ;;
-
-        5)
-            flatpak install --user -y flathub com.discordapp.Discord
-            ;;
-        
-        6)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
-            ;;
-
-        7)
-            source $SCRIPTS_HOME/packages.sh; "download_minecraft"
-            ;;
-
-
         m)
             main_menu
             ;;
@@ -746,15 +704,12 @@ gaming_clients_menu(){
             ;;
 
         2) 
-            mkdir "$HOME"/Games       
-            flatpak install --user -y flathub net.lutris.Lutris
-            flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
-            flatpak run net.lutris.Lutris
+            mkdir "$HOME"/Games
+            source $SCRIPTS_HOME/packages.sh; "install_lutris"
             ;;
 
         3)
-            flatpak install --user -y flathub com.usebottles.bottles
-            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
+            source $SCRIPTS_HOME/packages.sh; "install_bottles"
             ;;
 
         p)
@@ -786,6 +741,71 @@ gaming_clients_menu(){
         esac
         unset input
         gaming_clients_menu
+}
+
+gaming_wow_clients_menu(){
+    echo "----------------------"
+    echo "|  Clients  for WoW   |"
+    echo "---------------- ------"
+    echo ""
+    echo "Addon managers and extra stuff for World of Warcraft"
+    echo ""
+    echo ""   
+    echo "(1) WoWUp                 (2) Warcraft Logs"
+    echo "(3) Weak Auras Companion"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            source $SCRIPTS_HOME/packages.sh; "download_wowup"
+            ;;
+
+        2) 
+            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+
+            ;;
+
+        4)
+            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+            ;;
+
+        p)
+            gaming_menu
+            ;;
+
+        P)
+            gaming_menu
+            ;;
+
+
+        m)
+            main_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            gaming_wow_clients_menu
+            ;;
+            
+        esac
+        unset input
+        gaming_wow_clients_menu
 }
 
 gaming_tools_menu(){
@@ -847,16 +867,18 @@ gaming_tools_menu(){
         gaming_tools_menu
 }
 
-gaming_wow_clients_menu(){
-    echo "----------------------"
-    echo "|  Clients  for WoW   |"
-    echo "---------------- ------"
+gaming_other_menu(){
+    echo "-----------------"
+    echo "|   Misc Stuff   |"
+    echo "-----------------"
     echo ""
-    echo "Addon managers and extra stuff for World of Warcraft"
+    echo ""
     echo ""
     echo ""   
-    echo "(1) WoW UP                 (2) Warcraft Logs"
-    echo "(3) Raider.IO              (4) Weak Auras Companion"
+    echo "(1) Discord                (2) Discord Overlay"
+    echo "(3) Minecraft              (4) Prisim Launcher"
+    echo "(5) Dolphin                (6) Cemu"
+    echo "(7) Basic Game profiles"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -865,81 +887,31 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "download_wowup"
+            source $SCRIPTS_HOME/packages.sh; "install_discord"
+            ;;
+        
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_discover_overlay"
             ;;
 
-        2) 
-            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
-            ;;
-
-        3)
-            WARNING_ONE="Raider.IO uses a CDN which prevents this script from downloading."
-            WARNING_TWO="Clicking OK will take you to the web page."
-            zenity --warning --text="$WARNING_ONE $WARNING_TWO"
-            xdg-open "https://raider.io/addon"
-            source $SCRIPTS_HOME/packages.sh; "download_raiderio"
-
+        3) 
+            flatpak install --user -y flathub com.mojang.Minecraft
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
-        p)
-            gaming_menu
+        5)
+            source $SCRIPTS_HOME/packages.sh; "install_dolphin_emu"
             ;;
 
-        P)
-            gaming_menu
+        6)
+            flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            gaming_wow_clients_menu
-            ;;
-            
-        esac
-        unset input
-        gaming_wow_clients_menu
-}
-
-emulators_menu(){
-    echo "-----------------"
-    echo "|   Emulators   |"
-    echo "-----------------"
-    echo ""
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) Dolphin                (2) Cemu"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-            emulators_menu
-            ;;
-
-        2) 
-            source $SCRIPTS_HOME/packages.sh; "download_cemu"
-            emulators_menu
+        7)
+            source $SCRIPTS_HOME/packages.sh; "setup_game_profiles"
             ;;
 
         m)
@@ -964,12 +936,12 @@ emulators_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            emulators_menu
+            gaming_other_menu
             ;;
             
         esac
         unset input
-        emulators_menu
+        gaming_other_menu
 }
 
 office_menu(){
@@ -980,11 +952,10 @@ office_menu(){
     echo "Office and note taking apps."
     echo ""
     echo ""   
-    echo "(1) QOwnNotes          (2) Libreoffice"
-    echo "(3) KDE Okular         (4) Gnome Evince"
-    echo "(5) KDE Ark            (6) Gnome File Roller"
-    echo "(7) Claws-Mail         (8) Thunderbird"
-    echo "(9) Bitwarden          (10) KeePassXC"         
+    echo "(1) LibreOffice        (2) QOwnNotes"          
+    echo "(3) Marknote           (4) Claws-Mail"
+    echo "(5) Thunderbird        (6) Bitwarden"
+    echo "(7) KeePassXC"         
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
     read -r input
@@ -992,43 +963,30 @@ office_menu(){
     case $input in
 
         1)
-            flatpak install --user -y flathub org.qownnotes.QOwnNotes
+            source $SCRIPTS_HOME/packages.sh; "install_libreoffice"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "remove_office"
-            flatpak install --user -y flathub org.libreoffice.LibreOffice
-            check_if_fedora_immutable
+            source $SCRIPTS_HOME/packages.sh; "install_qownnotes"
             ;;
+
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_okular"
+            source $SCRIPTS_HOME/packages.sh; "install_marknote"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_evince"
-            ;;
-        
-        5)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_ark"
-            ;;
-
-        6)
-            source $SCRIPTS_HOME/packages.sh; "install_file_roller"
-            ;;
-
-        7)
             source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
             ;;
         
-        8)
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
             ;;
 
-        9)
-            source $SCRIPTS_HOME/packages.sh; "download_bitwarden"
+        6)
+            flatpak install --user -y flathub com.bitwarden.desktop
             ;;
 
-        10)
+        7)
             source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
             ;;
 
@@ -1055,20 +1013,17 @@ office_menu(){
         office_menu
 }
 
-coding_menu(){
-    echo "--------------"
-    echo "|   Coding   |"
-    echo "--------------"
+development_menu(){
+    echo "-------------------"
+    echo "|   Development   |"
+    echo "-------------------"
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
     echo ""   
     echo ""
-    echo "(1) C/C++             (2) openJDK"
-    echo "(3) Web Devlopment    (4) Python"
-    echo "(5) Other IDEs        (6) GitHub Desktop"
-    echo "(7) Containers"
-    
+    echo "(1) SDKs              (2) IDEs"
+    echo "(3) Other"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -1076,29 +1031,14 @@ coding_menu(){
     case $input in
 
         1)
-            cpp_menu
+            sdks_menu
             ;;
-
         2)
-            openjdk_menu
-            ;;
-
-        3)
-            web_dev_menu
-            ;;
-        4)
-            python_menu
-            ;;
-        5)
             ides_menu
             ;;
 
-        6)
-            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
-            ;;
-
-        7)
-            source $SCRIPTS_HOME/packages.sh; "install_containers"
+        3)
+            dev_other_menu
             ;;
 
         m)
@@ -1116,22 +1056,23 @@ coding_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        coding_menu
+        development_menu
         ;;
         
     esac
     unset input
-    coding_menu
+    development_menu
 }
 
-cpp_menu(){
-    echo "-------------"
-    echo "|   C/C++   |"
-    echo "-------------"
+sdks_menu(){
+    echo "-----------"
+    echo "|  SDKs   |"
+    echo "-----------"
     echo ""
     echo ""   
     echo ""
-    echo "(1) GCC/Package Tools (2) Codeblocks"
+    echo "(1) C/C++ Compiler    (2) openJDK 17/21"
+    echo "(3) Nodejs LTS        (4) Python Dev Packages"
     echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1144,198 +1085,25 @@ cpp_menu(){
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
-            ;;
-        
-        p)
-            coding_menu
-            ;;
-        
-        P)
-            coding_menu
-            ;;
-        
-        m)
-            main_menu
-            ;;
-        
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        cpp_menu
-        ;;
-        
-    esac
-    unset input
-    cpp_menu
-}
-
-openjdk_menu(){
-    echo "---------------"
-    echo "|   openJDK   |"
-    echo " --------------"
-    echo ""
-    echo ""   
-    echo ""
-    echo "(1) openJDK 17      (2) Intellij IDEA"
-    echo "(3) Netbeans        (4) Scene Builder"
-    echo "(p) Previous Menu   (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
             source $SCRIPTS_HOME/packages.sh; "install_openjdk"
             ;;
 
-        2)
-            
-            source $SCRIPTS_HOME/packages.sh; "download_idea"
-            ;;
-
-        3)  
-            source $SCRIPTS_HOME/packages.sh; "download_netbeans"
-            ;;
-
-        4)
-            source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
-            ;;
-        p)
-            coding_menu
-            ;;
-
-        P)
-            coding_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        openjdk_menu
-        ;;
-        
-    esac
-    unset input
-    openjdk_menu
-}
-
-web_dev_menu(){
-    echo "-----------------------"
-    echo "|   Web Development   |"
-    echo "-----------------------"
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) NodejS LTS            (2) LAMP Stack"
-    echo "(3) Bluefish"
-    echo "(p) Previous Menu         (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
+        3)
             source $SCRIPTS_HOME/packages.sh; "install_nodejs"
             ;;
 
-        2)
-            source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/packages.sh; "install_bluefish"
-            ;;
-        
-        p)
-            coding_menu
-            ;;
-
-        P)
-            coding_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-        
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        web_dev_menu
-        ;;
-        
-    esac
-    unset input
-    web_dev_menu
-}
-
-python_menu(){
-    echo "--------------"
-    echo "|   Python   |"
-    echo "--------------"
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) Python IDLE           (2) Eric"
-    echo "(3) Pycharm"
-    echo "(p) Previous Menu         (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
+        4)
             source $SCRIPTS_HOME/packages.sh; "install_python_tools"
             ;;
-
-        2)
-            source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
-            ;;
-
-        3)
-            source $SCRIPTS_HOME/packages.sh; "download_pycharm"
-            ;;
-
+        
         p)
-            coding_menu
+            development_menu
             ;;
-
+        
         P)
-            coding_menu
+            development_menu
             ;;
-
+        
         m)
             main_menu
             ;;
@@ -1351,12 +1119,12 @@ python_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        python_menu
+        sdks_menu
         ;;
         
     esac
     unset input
-    python_menu
+    sdks_menu
 }
 
 ides_menu(){
@@ -1367,7 +1135,11 @@ ides_menu(){
     echo ""
     echo ""   
     echo "(1) VIM                            (2) VSCodium"
-    echo "(3) Geany                          (4) Eclipse"
+    echo "(3) Geany                          (4) CodeBlocks"
+    echo "(5) Eclipse                        (6) Intellij IDEA"
+    echo "(7) Netbeans                       (8) Scene Builder"
+    echo "(9) Bluefish                       (10) Eric IDE"
+    echo "(11) Pycharm"
     echo "(p) Previous Menu                  (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1388,15 +1160,43 @@ ides_menu(){
             ;;
 
         4)
+            source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
+            ;;
+
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_eclipse"
             ;;
 
+        6)
+            source $SCRIPTS_HOME/packages.sh; "install_idea"
+            ;;
+        
+        7)
+            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
+            ;;
+
+        8)
+            source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
+            ;;
+
+        9)
+            source $SCRIPTS_HOME/packages.sh; "install_bluefish"
+            ;;
+
+        10)
+            source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
+            ;;
+
+        11)
+            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
+            ;;
+
         p)
-            coding_menu
+            development_menu
             ;;
 
         P)
-            coding_menu
+            development_menu
             ;;
 
         m)
@@ -1422,6 +1222,65 @@ ides_menu(){
     ides_menu
 }
 
+dev_other_menu(){
+    echo "-------------"
+    echo "|   Other   |"
+    echo "-------------"
+    echo ""
+    echo ""
+    echo ""   
+    echo "(1) Lamp Stack            (2) Github Desktop"
+    echo "(3) Containers"
+    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
+            ;;
+
+        2)
+            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_containers"
+            ;;
+
+        p)
+            development_menu
+            ;;
+
+        P)
+            development_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+        
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        dev_other_menu
+        ;;
+        
+    esac
+    unset input
+    dev_other_menu
+}
+
 utils_menu(){
     echo "-----------------"
     echo "|   Utilities   |"
@@ -1432,10 +1291,9 @@ utils_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Fedora Media Writer        (2) KDE ISO Image Writer"
-    echo "(3) Raspberry Pi Imager        (4) Kleopatra"
-    echo "(5) GtkHash                    (6) Flatseal"
-    echo "(7) MissionCenter              (8) Virtualization"
+    echo "(1) Fedora Media Writer        (2) Raspberry Pi Imager"
+    echo "(3) GtkHash                    (4) MissionCenter"
+    echo "(5) Virtualization"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1447,30 +1305,18 @@ utils_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
+            source $SCRIPTS_HOME/packages.sh; "install_rpi_imager"
             ;;
 
         3)
-            flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            source $SCRIPTS_HOME/packages.sh; "install_gtkhash"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
-            ;;
-
-        5)
-            flatpak install --user -y flathub org.gtkhash.gtkhash
-            ;;
-
-        6)
-            flatpak install --user -y flathub com.github.tchx84.Flatseal
-            ;;
-
-        7)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
         
-        8)
+        5)
             source $SCRIPTS_HOME/packages.sh; "install_virtualization"
             ;;
 
@@ -1506,7 +1352,7 @@ extras_menu(){
     echo ""
     echo ""   
     echo "(1) Fedora Upgrade Helper      (2) Configurations"
-    echo "(3) DSKs Stuff                 (4) Remove Codecs"
+    echo "(3) Remove Codecs"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
@@ -1522,10 +1368,6 @@ extras_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/data/dsksstuff.sh; "dsksstuff_menu"
-            ;;
-
-        4)
             source $SCRIPTS_HOME/packages.sh; "remove_codecs"
             ;;
 
@@ -1561,6 +1403,7 @@ configurations_menu(){
     echo ""
     echo ""   
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
+    echo "(3) Spinfinity Boot Theme"
     echo "(p) Previous Menu              (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1574,6 +1417,10 @@ configurations_menu(){
 
         2)
             source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
+            ;;
+
+        3)
+            source $SCRIPTS_HOME/packages.sh; "install_spinfinity_theme"
             ;;
 
         p)
@@ -1610,14 +1457,13 @@ configurations_menu(){
 export SCRIPTS_HOME=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
-VERSION="4.23.2024"
+COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
+VERSION="7.11.2024"
 TEMP_FOLDER="missing"
-GITCHECK="missing"
-WGETCHECK="missing"
-CURLCHECK="missing"
-DOS2UNIXCHECK="missing"
-ZENITYCHECK="missing"
-APP_FOLDER="missing"
+LOOK_FOR_APP_FOLDER="missing"
+APP_FOLDER="$HOME/Apps"
+RAN_ONCE_FILE="missing"
+REPO_FOLDER="missing"
 DISTRO=""
 PKGMGR=""
 VARIANT=""
