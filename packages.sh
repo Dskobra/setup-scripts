@@ -1182,6 +1182,7 @@ install_discord(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub com.discordapp.Discord
+        flatpak override --user com.discordapp.Discord --env=XDG_SESSION_TYPE=x11
     elif [ "$input" = 3 ]
     then
         package_help_page
@@ -1203,6 +1204,7 @@ package_discord(){
     then
         zenity --info --text="Discord isn't currently available in Debian. This will install the flatpak version."
         flatpak install --user -y flathub com.discordapp.Discord
+        flatpak override --user com.discordapp.Discord --env=XDG_SESSION_TYPE=x11
     else
         echo "Unkown error has occurred."
     fi
