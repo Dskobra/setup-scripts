@@ -2,7 +2,6 @@
 
 ### All the package install functions are here. packages.conf from the data
 ### branch includes the links for anything that doesn't have a repository.
-
 install_prereq(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -142,7 +141,7 @@ install_v4l2loopback(){
     fi
 }
 
-### KDE/Qt Apps
+### KDE
 install_kdeapps(){
     echo "-------Pick an option-------"
     echo "(1) distro built app"
@@ -481,7 +480,7 @@ remove_kinoite_flatpaks(){
     flatpak remove -y org.fedoraproject.KDE6Platform 
 }
 
-### gnome Apps
+### gnome
 install_gnome_apps(){
     echo "-------Pick an option-------"
     echo "(1) distro built app"
@@ -658,6 +657,7 @@ remove_silverblue_flatpaks(){
     flatpak remove -y org.gnome.clocks
     flatpak remove -y org.gnome.font-viewer
 }
+
 ### internet
 install_firefox(){
     echo "-------Pick an option-------"
@@ -851,8 +851,8 @@ package_transmission(){
         echo "Unkown error has occurred."
     fi
 }
-### multimedia
 
+### multimedia
 install_codecs(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -1355,6 +1355,7 @@ copy_game_profiles(){
         cp *.conf $HOME/.config/MangoHud/
     fi
 }
+
 ### Office Apps
 install_qownnotes(){
     echo "-------Pick an option-------"
@@ -1596,8 +1597,7 @@ package_keepassxc(){
     fi
 }
 
-### coding apps
-
+### development
 install_package_tools(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -2271,7 +2271,6 @@ remove_libreoffice(){
 }
 
 ### configurations
-
 check_for_libvirt_group(){
     if [ $(getent group libvirt) ]; then
         sudo usermod -aG libvirt $USER
@@ -2281,6 +2280,8 @@ check_for_libvirt_group(){
     fi
 }
 
+
+# tempplates
 package_type_template(){
     ## template function for aasking to do distro package or flatpak
     echo "-------Pick an option-------"
