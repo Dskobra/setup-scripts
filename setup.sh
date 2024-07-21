@@ -6,27 +6,27 @@
 run_prereq_check(){
     ### make sure git, curl, wget, zenity
     ### and flatpak are installed.
-    RAN_ONCE_FILE=$SCRIPTS_HOME/.ranonce.txt
+    RAN_ONCE_FILE=$SCRIPTS_FOLDER/.ranonce.txt
     test -f $RAN_ONCE_FILE && RAN_ONCE_FILE="exists"
     if [ "$RAN_ONCE_FILE" = "exists" ]
     then
         echo "Skipping first run steps."
     else
         echo "Installing required software"
-        source $SCRIPTS_HOME/packages.sh; "install_prereq"
-        touch $SCRIPTS_HOME/.ranonce.txt
+        source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
+        touch $SCRIPTS_FOLDER/.ranonce.txt
         zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
     fi
 }
 
 make_temp(){
-    test -d $SCRIPTS_HOME/temp && TEMP_FOLDER=exists
+    test -d $SCRIPTS_FOLDER/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];
         then
            TEMP_FOLDER=exists 
     elif [ "$TEMP_FOLDER" = "missing" ];
         then
-        mkdir $SCRIPTS_HOME/temp        # make a temp folder for all files to be downloaded to   
+        mkdir $SCRIPTS_FOLDER/temp        # make a temp folder for all files to be downloaded to   
     fi
 }
 
@@ -131,18 +131,18 @@ get_data(){
     # data branch includes links I can update more frequently and
     # my personal mangohud profiles (positioned for my liking).
     echo "Will need to download extra files from data branch"
-    cd $SCRIPTS_HOME
+    cd $SCRIPTS_FOLDER
     rm -r -f data
     git clone https://github.com/Dskobra/setup-scripts -b data
-    mv $SCRIPTS_HOME/setup-scripts $SCRIPTS_HOME/data
+    mv $SCRIPTS_FOLDER/setup-scripts $SCRIPTS_FOLDER/data
 }
 
 get_updates(){
-    test -d $SCRIPTS_HOME/.git && REPO_FOLDER=exists
+    test -d $SCRIPTS_FOLDER/.git && REPO_FOLDER=exists
     if [ "$REPO_FOLDER" = "exists" ];
         then
-            cd $SCRIPTS_HOME
-            rm $SCRIPTS_HOME/.ranonce.txt
+            cd $SCRIPTS_FOLDER
+            rm $SCRIPTS_FOLDER/.ranonce.txt
             rm -r -f data
             git pull
             zenity --info --text="Please rerun setup.sh now."
@@ -248,27 +248,27 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_corectrl"
+            source $SCRIPTS_FOLDER/packages.sh; "install_corectrl"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_amd_codecs"
+            source $SCRIPTS_FOLDER/packages.sh; "install_amd_codecs"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_nvidia"
+            source $SCRIPTS_FOLDER/packages.sh; "install_nvidia"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_cooler_control"
+            source $SCRIPTS_FOLDER/packages.sh; "install_cooler_control"
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_openrgb"
+            source $SCRIPTS_FOLDER/packages.sh; "install_openrgb"
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_v4l2loopback"
+            source $SCRIPTS_FOLDER/packages.sh; "install_v4l2loopback"
             ;;
         
         h)
@@ -318,7 +318,7 @@ desktop_apps_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "kde_desktop_menu"
+            source $SCRIPTS_FOLDER/packages.sh; "kde_desktop_menu"
             ;;
         
         2)
@@ -326,7 +326,7 @@ desktop_apps_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_mate_apps"
+            source $SCRIPTS_FOLDER/packages.sh; "install_mate_apps"
             ;;
 
         h)
@@ -380,31 +380,31 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_kdeapps"
+            source $SCRIPTS_FOLDER/packages.sh; "install_kdeapps"
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_plasma_x11"
+            source $SCRIPTS_FOLDER/packages.sh; "install_plasma_x11"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_kpat"
+            source $SCRIPTS_FOLDER/packages.sh; "install_kpat"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_kde_iso_image_writer"
+            source $SCRIPTS_FOLDER/packages.sh; "install_kde_iso_image_writer"
             ;;
         
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_kthreeb"
+            source $SCRIPTS_FOLDER/packages.sh; "install_kthreeb"
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_kolourpaint"
+            source $SCRIPTS_FOLDER/packages.sh; "install_kolourpaint"
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_kleopatra"
+            source $SCRIPTS_FOLDER/packages.sh; "install_kleopatra"
             ;;
 
         h)
@@ -463,11 +463,11 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_gnome_apps"
+            source $SCRIPTS_FOLDER/packages.sh; "install_gnome_apps"
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_gnome_tweaks"
+            source $SCRIPTS_FOLDER/packages.sh; "install_gnome_tweaks"
             ;;
 
         h)
@@ -527,23 +527,23 @@ internet_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_firefox"
+            source $SCRIPTS_FOLDER/packages.sh; "install_firefox"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_brave_browser"
+            source $SCRIPTS_FOLDER/packages.sh; "install_brave_browser"
             ;;
         
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_dropbox"
+            source $SCRIPTS_FOLDER/packages.sh; "install_dropbox"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_transmission"
+            source $SCRIPTS_FOLDER/packages.sh; "install_transmission"
             ;;
 
         5)  
-            source $SCRIPTS_HOME/packages.sh; "install_remmina"
+            source $SCRIPTS_FOLDER/packages.sh; "install_remmina"
             ;;
 
         m)
@@ -587,23 +587,23 @@ multimedia_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_codecs"
+            source $SCRIPTS_FOLDER/packages.sh; "install_codecs"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_vlc"
+            source $SCRIPTS_FOLDER/packages.sh; "install_vlc"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_obsstudio"
+            source $SCRIPTS_FOLDER/packages.sh; "install_obsstudio"
             ;;
         
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_openshot"
+            source $SCRIPTS_FOLDER/packages.sh; "install_openshot"
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_xfburn"
+            source $SCRIPTS_FOLDER/packages.sh; "install_xfburn"
             ;;
         
         m)
@@ -700,16 +700,16 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "install_steam"
+            source $SCRIPTS_FOLDER/packages.sh; "install_steam"
             ;;
 
         2) 
             mkdir "$HOME"/Games
-            source $SCRIPTS_HOME/packages.sh; "install_lutris"
+            source $SCRIPTS_FOLDER/packages.sh; "install_lutris"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_bottles"
+            source $SCRIPTS_FOLDER/packages.sh; "install_bottles"
             ;;
 
         p)
@@ -761,20 +761,20 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "download_wowup"
+            source $SCRIPTS_FOLDER/packages.sh; "download_wowup"
             ;;
 
         2) 
-            source $SCRIPTS_HOME/packages.sh; "download_warcraft_logs"
+            source $SCRIPTS_FOLDER/packages.sh; "download_warcraft_logs"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+            source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
 
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "download_weakauras_companion"
+            source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
             ;;
 
         p)
@@ -817,7 +817,7 @@ gaming_tools_menu(){
     echo ""
     echo ""   
     echo "(1) Mangohud               (2) Protontricks"
-    echo "(3) ProtonUp Qt"
+    echo "(3) ProtonUp Qt            (4) Proton Plus"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -826,7 +826,7 @@ gaming_tools_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_mangohud"
+            source $SCRIPTS_FOLDER/packages.sh; "install_mangohud"
             ;;
 
         2)
@@ -835,6 +835,10 @@ gaming_tools_menu(){
         
         3)
             flatpak install --user -y flathub net.davidotek.pupgui2
+            ;;
+
+        4)
+            source $SCRIPTS_FOLDER/packages.sh; "install_proton_plus"
             ;;
 
         p)
@@ -887,11 +891,11 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_HOME/packages.sh; "install_discord"
+            source $SCRIPTS_FOLDER/packages.sh; "install_discord"
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_discover_overlay"
+            source $SCRIPTS_FOLDER/packages.sh; "install_discover_overlay"
             ;;
 
         3) 
@@ -903,7 +907,7 @@ gaming_other_menu(){
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_dolphin_emu"
+            source $SCRIPTS_FOLDER/packages.sh; "install_dolphin_emu"
             ;;
 
         6)
@@ -911,7 +915,7 @@ gaming_other_menu(){
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "setup_game_profiles"
+            source $SCRIPTS_FOLDER/packages.sh; "setup_game_profiles"
             ;;
 
         m)
@@ -963,23 +967,23 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_libreoffice"
+            source $SCRIPTS_FOLDER/packages.sh; "install_libreoffice"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_qownnotes"
+            source $SCRIPTS_FOLDER/packages.sh; "install_qownnotes"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_marknote"
+            source $SCRIPTS_FOLDER/packages.sh; "install_marknote"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_claws_mail"
+            source $SCRIPTS_FOLDER/packages.sh; "install_claws_mail"
             ;;
         
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_thunderbird"
+            source $SCRIPTS_FOLDER/packages.sh; "install_thunderbird"
             ;;
 
         6)
@@ -987,7 +991,7 @@ office_menu(){
             ;;
 
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_keepassxc"
+            source $SCRIPTS_FOLDER/packages.sh; "install_keepassxc"
             ;;
 
         m)
@@ -1081,19 +1085,19 @@ sdks_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_package_tools"
+            source $SCRIPTS_FOLDER/packages.sh; "install_package_tools"
             ;;
         
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_openjdk"
+            source $SCRIPTS_FOLDER/packages.sh; "install_openjdk"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_nodejs"
+            source $SCRIPTS_FOLDER/packages.sh; "install_nodejs"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_python_tools"
+            source $SCRIPTS_FOLDER/packages.sh; "install_python_tools"
             ;;
         
         p)
@@ -1148,47 +1152,47 @@ ides_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_vim"
+            source $SCRIPTS_FOLDER/packages.sh; "install_vim"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_vscodium"
+            source $SCRIPTS_FOLDER/packages.sh; "install_vscodium"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_geany"
+            source $SCRIPTS_FOLDER/packages.sh; "install_geany"
             ;;
 
         4)
-            source $SCRIPTS_HOME/packages.sh; "install_codeblocks"
+            source $SCRIPTS_FOLDER/packages.sh; "install_codeblocks"
             ;;
 
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_eclipse"
+            source $SCRIPTS_FOLDER/packages.sh; "install_eclipse"
             ;;
 
         6)
-            source $SCRIPTS_HOME/packages.sh; "install_idea"
+            source $SCRIPTS_FOLDER/packages.sh; "install_idea"
             ;;
         
         7)
-            source $SCRIPTS_HOME/packages.sh; "install_netbeans"
+            source $SCRIPTS_FOLDER/packages.sh; "install_netbeans"
             ;;
 
         8)
-            source $SCRIPTS_HOME/packages.sh; "install_scene_builder"
+            source $SCRIPTS_FOLDER/packages.sh; "install_scene_builder"
             ;;
 
         9)
-            source $SCRIPTS_HOME/packages.sh; "install_bluefish"
+            source $SCRIPTS_FOLDER/packages.sh; "install_bluefish"
             ;;
 
         10)
-            source $SCRIPTS_HOME/packages.sh; "install_eric_ide"
+            source $SCRIPTS_FOLDER/packages.sh; "install_eric_ide"
             ;;
 
         11)
-            source $SCRIPTS_HOME/packages.sh; "install_pycharm"
+            source $SCRIPTS_FOLDER/packages.sh; "install_pycharm"
             ;;
 
         p)
@@ -1239,15 +1243,15 @@ dev_other_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_lamp_stack"
+            source $SCRIPTS_FOLDER/packages.sh; "install_lamp_stack"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_github_desktop"
+            source $SCRIPTS_FOLDER/packages.sh; "install_github_desktop"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_containers"
+            source $SCRIPTS_FOLDER/packages.sh; "install_containers"
             ;;
 
         p)
@@ -1301,15 +1305,15 @@ utils_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/packages.sh; "install_fmedia_writer"
+            source $SCRIPTS_FOLDER/packages.sh; "install_fmedia_writer"
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "install_rpi_imager"
+            source $SCRIPTS_FOLDER/packages.sh; "install_rpi_imager"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_gtkhash"
+            source $SCRIPTS_FOLDER/packages.sh; "install_gtkhash"
             ;;
 
         4)
@@ -1317,7 +1321,7 @@ utils_menu(){
             ;;
         
         5)
-            source $SCRIPTS_HOME/packages.sh; "install_virtualization"
+            source $SCRIPTS_FOLDER/packages.sh; "install_virtualization"
             ;;
 
         m)
@@ -1360,7 +1364,7 @@ extras_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_HOME/data/fedora_upgrade_helper.sh; "launch_menu"
+            source $SCRIPTS_FOLDER/data/fedora_upgrade_helper.sh; "launch_menu"
             ;;
 
         2)
@@ -1368,7 +1372,7 @@ extras_menu(){
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "remove_codecs"
+            source $SCRIPTS_FOLDER/packages.sh; "remove_codecs"
             ;;
 
         m)
@@ -1416,11 +1420,11 @@ configurations_menu(){
             ;;
 
         2)
-            source $SCRIPTS_HOME/packages.sh; "check_for_libvirt_group"
+            source $SCRIPTS_FOLDER/packages.sh; "check_for_libvirt_group"
             ;;
 
         3)
-            source $SCRIPTS_HOME/packages.sh; "install_spinfinity_theme"
+            source $SCRIPTS_FOLDER/packages.sh; "install_spinfinity_theme"
             ;;
 
         p)
@@ -1454,11 +1458,11 @@ configurations_menu(){
     configurations_menu
 }
 
-export SCRIPTS_HOME=$(pwd)
+export SCRIPTS_FOLDER=$(pwd)
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
-VERSION="7.11.2024"
+VERSION="7.21.2024"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
 APP_FOLDER="$HOME/Apps"
