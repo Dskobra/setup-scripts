@@ -63,8 +63,8 @@ install_openrgb(){
         confirm_reboot
     elif [ $PKGMGR == "apt-get" ]
     then
-        cd $SCRIPTS_HOME/temp
-        source $SCRIPTS_HOME/data/packages.conf
+        cd $SCRIPTS_FOLDER/temp
+        source $SCRIPTS_FOLDER/data/packages.conf
         curl -L -o $OPENRGB_DEB $OPENRGB_LINK
         sudo dpkg -i $OPENRGB_DEB
         sudo apt-get -f -y install   
@@ -76,12 +76,12 @@ install_openrgb(){
 install_cooler_control(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf copr enable codifryed/CoolerControl
+        sudo dnf copr enable -y codifryed/CoolerControl
         sudo dnf install -y coolercontrol
         sudo systemctl enable --now coolercontrold
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo dnf copr enable codifryed/CoolerControl
+        sudo dnf copr enable -y codifryed/CoolerControl
         sudo rpm-ostree install coolercontrol
         sudo rpm-ostree apply-live
         sudo systemctl enable --now coolercontrold
@@ -733,7 +733,7 @@ install_brave_browser(){
 }
 
 package_brave_browser(){
-    cd $SCRIPTS_HOME/temp
+    cd $SCRIPTS_FOLDER/temp
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -1319,11 +1319,11 @@ install_proton_plus(){
 package_proton_plus(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf copr enable wehagy/protonplus
+        sudo dnf copr enable -y wehagy/protonplus
         sudo dnf install -y protonplus
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo dnf copr enable wehagy/protonplus
+        sudo dnf copr enable -y wehagy/protonplus
         sudo rpm-ostree install protonplus
         sudo rpm-ostree apply-live
         #confirm_reboot
@@ -1336,8 +1336,8 @@ package_proton_plus(){
     fi
 }
 download_wowup(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf
     if test -f ~/Desktop/$WOWUPBINARY; then
         echo "WoWUp already downloaded."
     elif ! test -f ~/Desktop/$WOWUPBINARY; then
@@ -1348,8 +1348,8 @@ download_wowup(){
 }
 
 download_warcraft_logs(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf
     if test -f ~/Desktop/$WOWLOGSBINARY; then
         echo "Warcraft Logs already downloaded."
     elif ! test -f ~/Desktop/$WOWLOGSBINARY; then
@@ -1360,8 +1360,8 @@ download_warcraft_logs(){
 }
 
 download_weakauras_companion(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf
     if test -f ~/Desktop/$WACOMPBINARY; then
         echo "WeakAuras Companion already downloaded."
     elif ! test -f  ~/Desktop/$WACOMPBINARY; then
@@ -1393,7 +1393,7 @@ copy_game_profiles(){
     if test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
         echo "MangoHud.conf exists. Not copying profiles over."
     elif ! test -f /home/$USER/.config/MangoHud/MangoHud.conf; then
-        cd $SCRIPTS_HOME/data/game-profiles
+        cd $SCRIPTS_FOLDER/data/game-profiles
         chown $USER:$USER *.conf
         cp *.conf $HOME/.config/MangoHud/
     fi
@@ -1496,7 +1496,7 @@ install_libreoffice(){
         package_libreoffice
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        source $SCRIPTS_HOME/packages.sh; "remove_libreoffice"
+        source $SCRIPTS_FOLDER/packages.sh; "remove_libreoffice"
         flatpak install --user -y flathub org.libreoffice.LibreOffice
     elif [ "$input" = 3 ]
     then
@@ -1750,7 +1750,7 @@ package_install_github_desktop(){
         sudo dnf install -y github-desktop
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        cd $SCRIPTS_HOME/temp
+        cd $SCRIPTS_FOLDER/temp
         curl -L -o shiftkey-gpg.key https://rpm.packages.shiftkey.dev/gpg.key
         sudo chown root:root shiftkey-gpg.key
         sudo mv shiftkey-gpg.key /etc/pki/rpm-gpg/
@@ -1846,15 +1846,15 @@ install_netbeans(){
 }
 
 download_netbeans(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf
     if test -d $APP_FOLDER/netbeans; then
         echo "Netbeans already downloaded."
     elif ! test -d $APP_FOLDER/netbeans; then
-        cd $SCRIPTS_HOME/temp
+        cd $SCRIPTS_FOLDER/temp
         curl -L -o netbeans.zip $NETBEANS_LINK
         unzip netbeans.zip
-        mv $SCRIPTS_HOME/temp/netbeans $APP_FOLDER/netbeans
+        mv $SCRIPTS_FOLDER/temp/netbeans $APP_FOLDER/netbeans
 
     fi
 }
@@ -1883,13 +1883,13 @@ install_idea(){
 }
 
 download_idea(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf
     
     if test -d $APP_FOLDER/idea; then
         echo "Intellij Idea already downloaded."
     elif ! test -d $APP_FOLDER/idea; then
-        cd $SCRIPTS_HOME/temp
+        cd $SCRIPTS_FOLDER/temp
         curl -L -o idea.tar.gz $IDEA_LINK
         tar -xvf idea.tar.gz
         rm idea.tar.gz
@@ -1898,8 +1898,8 @@ download_idea(){
 }
 
 install_scene_builder(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf
     if [ $PKGMGR == "dnf" ]
     then
         curl -L -o scenebuilder.rpm $SCENE_BUILDER_RPM_LINK
@@ -1980,12 +1980,12 @@ install_pycharm(){
 }
 
 download_pycharm(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf    
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf    
     if test -d $APP_FOLDER/pycharm; then
         echo "Pycharm already downloaded."
     elif ! test -d $APP_FOLDER/pycharm; then
-        cd $SCRIPTS_HOME/temp
+        cd $SCRIPTS_FOLDER/temp
         curl -L -o pycharm.tar.gz $PYCHARM_LINK
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
@@ -2035,14 +2035,14 @@ install_vscodium(){
 package_vscodium(){
     if [ $PKGMGR == "dnf" ]
     then
-        cd $SCRIPTS_HOME/data
+        cd $SCRIPTS_FOLDER/data
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
         sudo dnf install -y codium
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        cd $SCRIPTS_HOME/data
+        cd $SCRIPTS_FOLDER/data
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
@@ -2115,8 +2115,8 @@ package_geany(){
 }
 
 install_eclipse(){
-    cd $SCRIPTS_HOME/temp
-    source $SCRIPTS_HOME/data/packages.conf
+    cd $SCRIPTS_FOLDER/temp
+    source $SCRIPTS_FOLDER/data/packages.conf
     curl -o eclipse.tar.gz $ECLIPSE_LINK
 
     tar -xvf eclipse.tar.gz
