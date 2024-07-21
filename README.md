@@ -9,9 +9,7 @@ root
                             into a terminal doesnt work well in a script. So I just saved the repo file for 
                             fedora/opensuse and copy it into yum.repos.d or zypp.repos.d.
 
-* fedora_upgrade_helper     - runs commands to update to the latest fedora. Currently 39.
-* dsksstuff.sh              - personal script for setting my prefered boot theme spinfinity, copying mangohud profiles
-                              and setting few apps for autostart.
+* fedora_upgrade_helper     - runs commands to update to the latest fedora. Currently 40.
 
 ## game-profiles
 Optional mangohud files i made for myself. Nothing fancy just custom placement for mangohud, data to display, formating like rounded corners, font size and scale etc.
