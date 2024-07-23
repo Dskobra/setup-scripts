@@ -12,7 +12,6 @@ run_prereq_check(){
     then
         echo "Skipping first run steps."
     else
-        echo "Installing required software"
         #source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
         $SCRIPTS_FOLDER/modules/prereq.sh
         touch $SCRIPTS_FOLDER/.ranonce.txt
