@@ -14,8 +14,7 @@ run_prereq_check(){
     else
         echo "Installing required software"
         #source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
-        ls $SCRIPTS_FOLDER/modules/
-        .$SCRIPTS_FOLDER/modules/prereq.sh
+        $SCRIPTS_FOLDER/modules/prereq.sh
         touch $SCRIPTS_FOLDER/.ranonce.txt
         zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
     fi
@@ -1466,19 +1465,19 @@ configurations_menu(){
     configurations_menu
 }
 
-export SCRIPTS_FOLDER=$(pwd)
+export SCRIPTS_FOLDER=$(pwd)        # stores full path for setup-scripts
+export APP_FOLDER="$HOME/Apps"      # app folder thats made for some downloads
+export PKGMGR=""                    # stores package manager name such as dnf/rpm-ostree etc
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
 VERSION="7.21.2024"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
-APP_FOLDER="$HOME/Apps"
 RAN_ONCE_FILE="missing"
-REPO_FOLDER="missing"
-DISTRO=""
-PKGMGR=""
-VARIANT=""
+REPO_FOLDER="missing"               # .git folder with repository metadata
+DISTRO=""                           # stores the ID (os-release info) of the os such as fedora or debian
+VARIANT=""                          # only used for storing 'ostree' if fedora version is atomic
 make_temp
 make_app_folder
 distro_check
