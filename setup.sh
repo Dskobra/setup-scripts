@@ -249,27 +249,33 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_corectrl"
+            .$SCRIPTS_FOLDER/modules/hardware/corectrl.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_corectrl"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_amd_codecs"
+            .$SCRIPTS_FOLDER/modules/hardware/amd_codecs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_amd_codecs"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_nvidia"
+            .$SCRIPTS_FOLDER/modules/hardware/nvidia.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_nvidia"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_cooler_control"
+            .$SCRIPTS_FOLDER/modules/hardware/cooler_control.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_cooler_control"
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_openrgb"
+            .$SCRIPTS_FOLDER/modules/hardware/openrgb.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_openrgb"
             ;;
 
         6)
-            source $SCRIPTS_FOLDER/packages.sh; "install_v4l2loopback"
+            .$SCRIPTS_FOLDER/modules/hardware/v4l2loopback.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_v4l2loopback"
             ;;
         
         h)
