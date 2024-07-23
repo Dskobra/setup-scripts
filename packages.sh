@@ -156,9 +156,7 @@ install_kdeapps(){
         packages_kde
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        if [ $PKGMGR == "rpm-ostree" ]; then
-            remove_kinoite_flatpaks
-        fi
+        remove_core_kdeapps
         flatpak install --user -y flathub org.kde.ark
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
@@ -480,6 +478,32 @@ remove_kinoite_flatpaks(){
     flatpak remove -y org.fedoraproject.KDE6Platform 
 }
 
+remove_core_kdeapps(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y ark kate krdc kcalc kamoso gwenview\
+        kleopatra okular
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak remove -y org.kde.elisa  
+        flatpak remove -y org.kde.gwenview
+        flatpak remove -y org.kde.kcalc
+        flatpak remove -y org.kde.kmahjongg  
+        flatpak remove -y org.kde.kmines 
+        flatpak remove -y org.kde.kolourpaint  
+        flatpak remove -y org.kde.krdc  
+        flatpak remove -y org.kde.okular   
+        flatpak remove -y org.fedoraproject.KDE5Platform
+        flatpak remove -y org.fedoraproject.KDE6Platform 
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y ark kate krdc kcalc kamoso\
+        gwenview okular kleopatra
+        #zenity --info --text="[app name] isn't currently available in Debian. This will install the flatpak version."
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 ### gnome
 install_gnome_apps(){
     echo "-------Pick an option-------"
