@@ -598,6 +598,7 @@ remove_core_gnomeapps(){
         echo "Unkown error has occurred."
     fi
 }
+
 install_gnome_tweaks(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -728,7 +729,8 @@ install_firefox(){
         package_firefox
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-       flatpak install --user -y flathub org.mozilla.firefox
+        remove_firefox
+        flatpak install --user -y flathub org.mozilla.firefox
     elif [ "$input" = 3 ]
     then
         package_help_page
@@ -764,6 +766,22 @@ package_firefox(){
     fi
 }
 
+remove_firefox(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y firefox firefox-langpacks
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree override remove firefox firefox-langpacks
+        sudo rpm-ostree apply-live --allow-replacement
+        #confirm_reboot
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get install -y firefox firerfox-esr
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 install_brave_browser(){
     echo "-------Pick an option-------"
     echo "(1) distro built app"
