@@ -485,16 +485,7 @@ remove_core_kdeapps(){
         kleopatra okular
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak remove -y org.kde.elisa  
-        flatpak remove -y org.kde.gwenview
-        flatpak remove -y org.kde.kcalc
-        flatpak remove -y org.kde.kmahjongg  
-        flatpak remove -y org.kde.kmines 
-        flatpak remove -y org.kde.kolourpaint  
-        flatpak remove -y org.kde.krdc  
-        flatpak remove -y org.kde.okular   
-        flatpak remove -y org.fedoraproject.KDE5Platform
-        flatpak remove -y org.fedoraproject.KDE6Platform 
+        remove_kinoite_flatpaks
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y ark kate krdc kcalc kamoso\
@@ -572,24 +563,7 @@ remove_core_gnomeapps(){
         gnome-extensions-app
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        flatpak remove -y org.fedoraproject.MediaWriter
-        flatpak remove -y org.fedoraproject.Platform
-        flatpak remove -y org.gnome.Calculator
-        flatpak remove -y org.gnome.Calendar
-        flatpak remove -y org.gnome.Characters
-        flatpak remove -y org.gnome.Connections
-        flatpak remove -y org.gnome.Contacts
-        flatpak remove -y org.gnome.Evince
-        flatpak remove -y org.gnome.Extensions
-        flatpak remove -y org.gnome.Logs 
-        flatpak remove -y org.gnome.Loupe
-        flatpak remove -y org.gnome.Maps 
-        flatpak remove -y org.gnome.Snapshot
-        flatpak remove -y org.gnome.TextEditor
-        flatpak remove -y org.gnome.Weather 
-        flatpak remove -y org.gnome.baobab
-        flatpak remove -y org.gnome.clocks
-        flatpak remove -y org.gnome.font-viewer
+        remove_silverblue_flatpaks
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y file-roller evince dconf-editor pavucontrol cheese\
