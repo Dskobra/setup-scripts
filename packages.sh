@@ -519,9 +519,7 @@ install_gnome_apps(){
         packages_gnome
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        if [ $PKGMGR == "rpm-ostree" ]; then
-            remove_silverblue_flatpaks
-        fi
+        remove_core_gnomeapps
         flatpak install --user -y flathub org.gnome.clocks
         flatpak install --user -y flathub org.gnome.Calendar
         flatpak install --user -y flathub org.gnome.Weather
@@ -567,6 +565,39 @@ packages_gnome(){
     fi
 }
 
+remove_core_gnomeapps(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y file-roller evince dconf-editor pavucontrol cheese\
+        gnome-extensions-app
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        flatpak remove -y org.fedoraproject.MediaWriter
+        flatpak remove -y org.fedoraproject.Platform
+        flatpak remove -y org.gnome.Calculator
+        flatpak remove -y org.gnome.Calendar
+        flatpak remove -y org.gnome.Characters
+        flatpak remove -y org.gnome.Connections
+        flatpak remove -y org.gnome.Contacts
+        flatpak remove -y org.gnome.Evince
+        flatpak remove -y org.gnome.Extensions
+        flatpak remove -y org.gnome.Logs 
+        flatpak remove -y org.gnome.Loupe
+        flatpak remove -y org.gnome.Maps 
+        flatpak remove -y org.gnome.Snapshot
+        flatpak remove -y org.gnome.TextEditor
+        flatpak remove -y org.gnome.Weather 
+        flatpak remove -y org.gnome.baobab
+        flatpak remove -y org.gnome.clocks
+        flatpak remove -y org.gnome.font-viewer
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y file-roller evince dconf-editor pavucontrol cheese\
+        gnome-shell-extension-prefs 
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 install_gnome_tweaks(){
     if [ $PKGMGR == "dnf" ]
     then
