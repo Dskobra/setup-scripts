@@ -14,6 +14,7 @@ run_prereq_check(){
     else
         echo "Installing required software"
         source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
+        .$SCRIPTS_FOLDER/modules/prereq.sh
         touch $SCRIPTS_FOLDER/.ranonce.txt
         zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
     fi
