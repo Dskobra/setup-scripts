@@ -1149,6 +1149,7 @@ install_mangohud(){
     else
         echo "Invalid option"
     fi
+    mkdir $HOME/.config/MangoHud
 }
 
 package_mangohud(){
@@ -1335,6 +1336,7 @@ package_proton_plus(){
         echo "Unkown error has occurred."
     fi
 }
+
 download_wowup(){
     cd $SCRIPTS_FOLDER/temp
     source $SCRIPTS_FOLDER/data/packages.conf
