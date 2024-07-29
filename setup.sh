@@ -391,28 +391,33 @@ kde_desktop_menu(){
             ;;
         
         2)
-            $SCRIPTS_FOLDER/modules/desktops/kde/plasma_x11
+            $SCRIPTS_FOLDER/modules/desktops/kde/plasma_x11.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_plasma_x11"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kpat"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kpat.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kpat"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kde_iso_image_writer"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kde_iso_image_writer.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kde_iso_image_writer"
             ;;
         
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kthreeb"
+            $SCRIPTS_FOLDER/modules/desktops/kde/k3b.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kthreeb"
             ;;
 
         6)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kolourpaint"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kolourpaint.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kolourpaint"
             ;;
 
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kleopatra"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kleopatra.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kleopatra"
             ;;
 
         h)
