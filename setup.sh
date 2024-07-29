@@ -318,7 +318,7 @@ desktop_apps_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "kde_desktop_menu"
+            kde_desktop_menu
             ;;
         
         2)
