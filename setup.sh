@@ -248,32 +248,32 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            .$SCRIPTS_FOLDER/modules/hardware/corectrl.sh
+            $SCRIPTS_FOLDER/modules/hardware/corectrl.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_corectrl"
             ;;
 
         2)
-            .$SCRIPTS_FOLDER/modules/hardware/amd_codecs.sh
+            $SCRIPTS_FOLDER/modules/hardware/amd_codecs.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_amd_codecs"
             ;;
 
         3)
-            .$SCRIPTS_FOLDER/modules/hardware/nvidia.sh
+            $SCRIPTS_FOLDER/modules/hardware/nvidia.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_nvidia"
             ;;
 
         4)
-            .$SCRIPTS_FOLDER/modules/hardware/cooler_control.sh
+            $SCRIPTS_FOLDER/modules/hardware/cooler_control.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_cooler_control"
             ;;
 
         5)
-            .$SCRIPTS_FOLDER/modules/hardware/openrgb.sh
+            $SCRIPTS_FOLDER/modules/hardware/openrgb.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_openrgb"
             ;;
 
         6)
-            .$SCRIPTS_FOLDER/modules/hardware/v4l2loopback.sh
+            $SCRIPTS_FOLDER/modules/hardware/v4l2loopback.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_v4l2loopback"
             ;;
         
@@ -324,7 +324,7 @@ desktop_apps_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "kde_desktop_menu"
+            kde_desktop_menu
             ;;
         
         2)
@@ -386,7 +386,8 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kdeapps"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kde_apps.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kdeapps"
             ;;
         
         2)
