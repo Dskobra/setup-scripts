@@ -391,7 +391,8 @@ kde_desktop_menu(){
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_plasma_x11"
+            $SCRIPTS_FOLDER/modules/desktops/kde/plasma_x11
+            #source $SCRIPTS_FOLDER/packages.sh; "install_plasma_x11"
             ;;
 
         3)
