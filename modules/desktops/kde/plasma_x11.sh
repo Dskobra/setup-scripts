@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 install_plasma_x11(){
     if [ $PKGMGR == "dnf" ]

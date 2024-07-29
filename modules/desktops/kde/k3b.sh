@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 install_k3b(){
     if [ $PKGMGR == "dnf" ]

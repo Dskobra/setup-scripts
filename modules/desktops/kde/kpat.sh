@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 install_kpat(){
     echo "-------Pick an option-------"

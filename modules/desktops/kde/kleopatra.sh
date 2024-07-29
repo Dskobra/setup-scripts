@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 install_kleopatra(){
     echo "-------Pick an option-------"

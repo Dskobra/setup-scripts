@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 install_kde_iso_image_writer(){
     echo "-------Pick an option-------"

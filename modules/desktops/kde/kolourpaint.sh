@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 install_kolourpaint(){
     echo "-------Pick an option-------"
