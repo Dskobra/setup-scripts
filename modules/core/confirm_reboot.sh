@@ -14,10 +14,10 @@ confirm_reboot(){
     printf "Option: "
     read input
     
-    if [ $input == "y" ] || [ $input == "Y" ]
+    if [ "$input" = "y" ] || [ "$input" = "Y" ]
     then
         sudo systemctl reboot
-    elif [ $input == "n" ] || [ $input == "N" ] || [ -z "$input" ]
+    elif [ "$input" = "n" ] || [ "$input" = "N" ] || [ -z "$input" ]
     then
         echo "Chose not to reboot."
     else
