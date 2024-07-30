@@ -15,6 +15,9 @@ install_netbeans(){
     elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub org.apache.netbeans
+    elif [ "$input" = 3 ]
+    then
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi

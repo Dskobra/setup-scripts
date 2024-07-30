@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_qownnotes(){
+install_fmedia_writer(){
     echo "-------Pick an option-------"
     echo "(1) distro built app"
     echo "(2) distro neutral flatpak"
@@ -11,10 +11,10 @@ install_qownnotes(){
     read -r input
     if [ "$input" = 1 ]
     then
-        package_qownnotes
+        package_fmedia_writer
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-       flatpak install --user -y flathub org.qownnotes.QOwnNotes
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -23,22 +23,20 @@ install_qownnotes(){
     fi
 }
 
-package_qownnotes(){
+package_fmedia_writer(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y qownnotes
+        sudo dnf install -y mediawriter
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install qownnotes
-        sudo rpm-ostree apply-live
-        #confirm_reboot
+        sudo rpm-ostree install mediawriter
     elif [ $PKGMGR == "apt-get" ]
     then
-        zenity --info --text="QOwnNotes isn't currently available in Debian. This will install the flatpak version."
-        flatpak install --user -y flathub org.qownnotes.QOwnNotes
+        zenity --info --text="Fedora Mediawriter isn't available in Debian so using flatpak version instead."
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
         echo "Unkown error has occurred."
     fi
 }
 
-install_qownnotes
+install_fmedia_writer

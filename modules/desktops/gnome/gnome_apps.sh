@@ -36,7 +36,7 @@ install_gnome_apps(){
         flatpak install --user -y flathub org.gnome.baobab
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi
@@ -97,4 +97,6 @@ remove_silverblue_flatpaks(){
     flatpak remove -y org.gnome.clocks
     flatpak remove -y org.gnome.font-viewer
 }
+
+
 install_gnome_apps

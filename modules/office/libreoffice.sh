@@ -14,11 +14,11 @@ install_libreoffice(){
         package_libreoffice
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        source $SCRIPTS_FOLDER/packages.sh; "remove_libreoffice"
+        remove_libreoffice
         flatpak install --user -y flathub org.libreoffice.LibreOffice
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi
@@ -41,4 +41,18 @@ package_libreoffice(){
     fi
 }
 
+remove_libreoffice(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y libreoffice*
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree remove libreoffice
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y libreoffice*
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 install_libreoffice

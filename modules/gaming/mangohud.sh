@@ -17,7 +17,7 @@ install_mangohud(){
        flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi

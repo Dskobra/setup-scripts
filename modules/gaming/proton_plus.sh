@@ -18,7 +18,7 @@ install_proton_plus(){
         flatpak install --user -y flathub com.vysp3r.ProtonPlus
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi

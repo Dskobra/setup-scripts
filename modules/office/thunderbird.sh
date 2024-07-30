@@ -17,7 +17,7 @@ install_thunderbird(){
        flatpak install --user -y flathub org.mozilla.Thunderbird
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi

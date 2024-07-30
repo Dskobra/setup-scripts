@@ -17,7 +17,7 @@ install_dolphin_emu(){
        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi

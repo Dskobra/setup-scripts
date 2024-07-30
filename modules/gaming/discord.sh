@@ -18,7 +18,7 @@ install_discord(){
         flatpak override --user com.discordapp.Discord --env=XDG_SESSION_TYPE=x11
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi

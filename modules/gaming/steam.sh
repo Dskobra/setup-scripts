@@ -21,7 +21,7 @@ install_steam(){
         package_steam_devices
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi

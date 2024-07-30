@@ -1362,15 +1362,18 @@ utils_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_fmedia_writer"
+            $SCRIPTS_FOLDER/modules/utilities/fedora_media_writer.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_fmedia_writer"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_rpi_imager"
+            $SCRIPTS_FOLDER/modules/utilities/rpi_imager.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_rpi_imager"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_gtkhash"
+            $SCRIPTS_FOLDER/modules/utilities/gtkhash.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_gtkhash"
             ;;
 
         4)
@@ -1378,7 +1381,8 @@ utils_menu(){
             ;;
         
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_virtualization"
+            $SCRIPTS_FOLDER/modules/utilities/virtualization.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_virtualization"
             ;;
 
         m)
@@ -1477,7 +1481,8 @@ configurations_menu(){
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "check_for_libvirt_group"
+            $SCRIPTS_FOLDER/modules/misc/check_for_libvirt_group.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "check_for_libvirt_group"
             ;;
 
         3)

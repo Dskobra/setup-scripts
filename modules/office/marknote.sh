@@ -17,7 +17,7 @@ install_marknote(){
         flatpak install --user -y flathub org.kde.marknote
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi

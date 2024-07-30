@@ -19,7 +19,7 @@ install_lutris(){
             flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi

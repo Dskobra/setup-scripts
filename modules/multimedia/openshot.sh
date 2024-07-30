@@ -17,7 +17,7 @@ install_openshot(){
         flatpak install --user -y flathub org.openshot.OpenShot
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Invalid option"
     fi

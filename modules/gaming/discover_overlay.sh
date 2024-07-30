@@ -17,7 +17,7 @@ install_discover_overlay(){
         flatpak install --user -y flathub io.github.trigg.discover_overlay
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi
