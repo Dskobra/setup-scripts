@@ -13,7 +13,7 @@ run_prereq_check(){
         echo "Skipping first run steps."
     else
         #source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
-        $SCRIPTS_FOLDER/modules/prereq.sh
+        $SCRIPTS_FOLDER/modules/core/prereq.sh
         touch $SCRIPTS_FOLDER/.ranonce.txt
         zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
     fi
@@ -476,11 +476,13 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_gnome_apps"
+            $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_apps.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_gnome_apps"
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_gnome_tweaks"
+            $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_tweaks.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_gnome_tweaks"
             ;;
 
         h)
