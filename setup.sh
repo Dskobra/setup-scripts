@@ -607,23 +607,29 @@ multimedia_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_codecs"
+
+            $SCRIPTS_FOLDER/modules/multimedia/codecs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_codecs"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_vlc"
+            $SCRIPTS_FOLDER/modules/multimedia/vlc.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_vlc"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_obsstudio"
+            $SCRIPTS_FOLDER/modules/multimedia/obs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_obsstudio"
             ;;
         
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_openshot"
+            $SCRIPTS_FOLDER/modules/multimedia/openshot.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_openshot"
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_xfburn"
+            $SCRIPTS_FOLDER/modules/multimedia/xfburn.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_xfburn"
             ;;
         
         m)
