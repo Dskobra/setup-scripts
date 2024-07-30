@@ -542,23 +542,28 @@ internet_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_firefox"
+            $SCRIPTS_FOLDER/modules/internet/firefox.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_firefox"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_brave_browser"
+            $SCRIPTS_FOLDER/modules/internet/brave.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_brave_browser"
             ;;
         
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_dropbox"
+            $SCRIPTS_FOLDER/modules/internet/dropbox.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_dropbox"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_transmission"
+            $SCRIPTS_FOLDER/modules/internet/transmission.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_transmission"
             ;;
 
         5)  
-            source $SCRIPTS_FOLDER/packages.sh; "install_remmina"
+            $SCRIPTS_FOLDER/modules/internet/remmina.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_remmina"
             ;;
 
         m)
