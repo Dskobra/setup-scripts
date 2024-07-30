@@ -31,7 +31,7 @@ package_qownnotes(){
     then
         sudo rpm-ostree install qownnotes
         sudo rpm-ostree apply-live
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="QOwnNotes isn't currently available in Debian. This will install the flatpak version."

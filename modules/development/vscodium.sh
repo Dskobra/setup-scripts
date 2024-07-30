@@ -38,7 +38,8 @@ package_vscodium(){
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
         sudo rpm-ostree install codium
-        confirm_reboot
+        #sudo rpm-ostree apply-live
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -

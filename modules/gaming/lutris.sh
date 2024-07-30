@@ -33,7 +33,7 @@ lutris_package(){
     then
         sudo rpm-ostree install lutris
         sudo rpm-ostree apply-live
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y lutris

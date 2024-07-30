@@ -31,7 +31,7 @@ package_vlc(){
     then
         sudo rpm-ostree install vlc
         sudo rpm-ostree apply-live
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y vlc

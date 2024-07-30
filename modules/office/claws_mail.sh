@@ -32,7 +32,7 @@ package_claws_mail(){
     then
         sudo rpm-ostree install claws-mail
         sudo rpm-ostree apply-live
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y claws-mail

@@ -31,6 +31,8 @@ package_dropbox(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install dropbox
+        #sudo rpm-ostree apply-live
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         package_dropbox_debian

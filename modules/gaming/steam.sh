@@ -34,7 +34,8 @@ package_steam(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install steam
-        confirm_reboot
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo dpkg --add-architecture i386

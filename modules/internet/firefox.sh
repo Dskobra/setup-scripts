@@ -59,7 +59,7 @@ remove_firefox(){
     then
         sudo rpm-ostree override remove firefox firefox-langpacks
         sudo rpm-ostree apply-live --allow-replacement
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y firefox firerfox-esr

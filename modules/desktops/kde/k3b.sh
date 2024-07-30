@@ -8,6 +8,7 @@ install_k3b(){
     then
         sudo rpm-ostree install k3b
         sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y k3b

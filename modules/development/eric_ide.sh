@@ -8,6 +8,7 @@ install_eric_ide(){
     then
         sudo rpm-ostree install eric
         sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y eric

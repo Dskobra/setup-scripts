@@ -40,7 +40,7 @@ package_brave_browser(){
         sudo rpm-ostree refresh-md
         sudo rpm-ostree install brave-browser
         sudo rpm-ostree apply-live
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg

@@ -30,6 +30,8 @@ package_fmedia_writer(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install mediawriter
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="Fedora Mediawriter isn't available in Debian so using flatpak version instead."

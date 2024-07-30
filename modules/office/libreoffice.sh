@@ -32,7 +32,7 @@ package_libreoffice(){
     then
         sudo rpm-ostree install libreoffice
         sudo rpm-ostree apply-live
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y libreoffice
@@ -48,6 +48,8 @@ remove_libreoffice(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree remove libreoffice
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y libreoffice*

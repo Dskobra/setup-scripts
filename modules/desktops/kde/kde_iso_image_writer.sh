@@ -32,7 +32,7 @@ package_kde_iso_image_writer(){
     then
         sudo rpm-ostree install isoimagewriter
         sudo rpm-ostree apply-live
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."

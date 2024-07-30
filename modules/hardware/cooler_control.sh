@@ -12,7 +12,8 @@ install_cooler_control(){
         sudo rpm-ostree install coolercontrol
         sudo rpm-ostree apply-live
         sudo systemctl enable --now coolercontrold
-        #confirm_reboot
+        #sudo rpm-ostree apply-live
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt install -y curl apt-transport-https

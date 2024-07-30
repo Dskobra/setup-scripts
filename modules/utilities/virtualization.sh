@@ -18,6 +18,7 @@ install_virtualization(){
         sudo rpm-ostree install libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer virtio-win
         sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
         check_for_libvirt_group
     elif [ $PKGMGR == "apt-get" ]
     then

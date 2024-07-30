@@ -39,25 +39,6 @@ remove_codecs(){
         echo "Unkown error has occurred."
     fi
 }
-
-remove_libreoffice(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo dnf remove -y libreoffice*
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree remove libreoffice
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo apt-get remove -y libreoffice*
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-
-
-
 # tempplates
 package_type_template(){
     ## template function for aasking to do distro package or flatpak

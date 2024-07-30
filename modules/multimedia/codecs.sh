@@ -15,7 +15,7 @@ install_codecs(){
         sudo rpm-ostree install gstreamer1-plugin-openh264\
         mozilla-openh264
         sudo rpm-ostree apply-live --allow-replacement
-        #confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y ffmpeg

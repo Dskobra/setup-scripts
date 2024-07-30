@@ -7,7 +7,8 @@ install_v4l2loopback(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
-        confirm_reboot
+        #sudo rpm-ostree apply-live
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils

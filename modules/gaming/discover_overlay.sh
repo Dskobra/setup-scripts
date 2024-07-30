@@ -32,7 +32,8 @@ package_discover_overlay(){
     then
         sudo dnf copr enable mavit/discover-overlay
         sudo rpm-ostree install -y discover-overlay
-        confirm_reboot
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="discover-overlay isn't currently available in Debian. This will install the flatpak version."
