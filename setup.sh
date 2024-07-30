@@ -790,7 +790,7 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            $SCRIPTS_FOLDER/modules/gaming/steam.sh
+            $SCRIPTS_FOLDER/modules/gaming/wowup.sh
             #source $SCRIPTS_FOLDER/packages.sh; "download_wowup"
             ;;
 
