@@ -726,16 +726,19 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_FOLDER/packages.sh; "install_steam"
+            $SCRIPTS_FOLDER/modules/gaming/steam.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_steam"
             ;;
 
         2) 
-            mkdir "$HOME"/Games
-            source $SCRIPTS_FOLDER/packages.sh; "install_lutris"
+            $SCRIPTS_FOLDER/modules/gaming/lutris.sh
+            #mkdir "$HOME"/Games
+            #source $SCRIPTS_FOLDER/packages.sh; "install_lutris"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_bottles"
+            $SCRIPTS_FOLDER/modules/gaming/steam.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_bottles"
             ;;
 
         p)
@@ -787,20 +790,18 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_FOLDER/packages.sh; "download_wowup"
+            $SCRIPTS_FOLDER/modules/gaming/steam.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "download_wowup"
             ;;
 
         2) 
-            source $SCRIPTS_FOLDER/packages.sh; "download_warcraft_logs"
+            $SCRIPTS_FOLDER/modules/gaming/warcraft_logs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "download_warcraft_logs"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
-
-            ;;
-
-        4)
-            source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
+            $SCRIPTS_FOLDER/modules/gaming/weakauras_companion.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
             ;;
 
         p)
@@ -852,7 +853,8 @@ gaming_tools_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_mangohud"
+            $SCRIPTS_FOLDER/modules/gaming/mangohud.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_mangohud"
             ;;
 
         2)
@@ -864,7 +866,8 @@ gaming_tools_menu(){
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_proton_plus"
+            $SCRIPTS_FOLDER/modules/gaming/proton_plus.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_proton_plus"
             ;;
 
         p)
@@ -917,11 +920,13 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_FOLDER/packages.sh; "install_discord"
+            $SCRIPTS_FOLDER/modules/gaming/discord.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_discord"
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_discover_overlay"
+            $SCRIPTS_FOLDER/modules/gaming/discover_overlay.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_discover_overlay"
             ;;
 
         3) 
@@ -933,7 +938,8 @@ gaming_other_menu(){
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_dolphin_emu"
+            $SCRIPTS_FOLDER/modules/gaming/dolphin_emu.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_dolphin_emu"
             ;;
 
         6)
@@ -941,7 +947,8 @@ gaming_other_menu(){
             ;;
 
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "setup_game_profiles"
+            $SCRIPTS_FOLDER/modules/gaming/game_profiles.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "setup_game_profiles"
             ;;
 
         m)
