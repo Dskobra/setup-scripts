@@ -1124,19 +1124,23 @@ sdks_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_package_tools"
+            $SCRIPTS_FOLDER/modules/development/package_tools.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_package_tools"
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_openjdk"
+            $SCRIPTS_FOLDER/modules/development/openjdk.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_openjdk"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_nodejs"
+            $SCRIPTS_FOLDER/modules/development/nodejs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_nodejs"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_python_tools"
+            $SCRIPTS_FOLDER/modules/development/python_tools.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_python_tools"
             ;;
         
         p)
@@ -1191,47 +1195,58 @@ ides_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_vim"
+            $SCRIPTS_FOLDER/modules/development/vim.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_vim"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_vscodium"
+            $SCRIPTS_FOLDER/modules/development/vscodium.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_vscodium"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_geany"
+            $SCRIPTS_FOLDER/modules/development/geany.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_geany"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_codeblocks"
+            $SCRIPTS_FOLDER/modules/development/codeblocks.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_codeblocks"
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_eclipse"
+            $SCRIPTS_FOLDER/modules/development/eclipse.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_eclipse"
             ;;
 
         6)
-            source $SCRIPTS_FOLDER/packages.sh; "install_idea"
+            $SCRIPTS_FOLDER/modules/development/idea.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_idea"
             ;;
         
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "install_netbeans"
+            $SCRIPTS_FOLDER/modules/development/netbeans.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_netbeans"
             ;;
 
         8)
-            source $SCRIPTS_FOLDER/packages.sh; "install_scene_builder"
+            $SCRIPTS_FOLDER/modules/development/scene_builder.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_scene_builder"
             ;;
 
         9)
-            source $SCRIPTS_FOLDER/packages.sh; "install_bluefish"
+            $SCRIPTS_FOLDER/modules/development/bluefish.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_bluefish"
             ;;
 
         10)
-            source $SCRIPTS_FOLDER/packages.sh; "install_eric_ide"
+            $SCRIPTS_FOLDER/modules/development/eric_ide.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_eric_ide"
             ;;
 
         11)
-            source $SCRIPTS_FOLDER/packages.sh; "install_pycharm"
+            $SCRIPTS_FOLDER/modules/development/pycharm.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_pycharm"
             ;;
 
         p)
@@ -1282,15 +1297,18 @@ dev_other_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_lamp_stack"
+            $SCRIPTS_FOLDER/modules/development/lamp.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_lamp_stack"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_github_desktop"
+            $SCRIPTS_FOLDER/modules/development/github_desktop.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_github_desktop"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_containers"
+            $SCRIPTS_FOLDER/modules/development/containers.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_containers"
             ;;
 
         p)
