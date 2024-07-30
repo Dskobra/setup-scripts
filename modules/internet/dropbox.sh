@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+
+install_dropbox(){
+    echo "-------Pick an option-------"
+    echo "(1) distro built app"
+    echo "(2) distro neutral flatpak"
+    echo "(3) for help"
+    echo "(empty) default option which is flatpak"
+    echo "----------------------------"
+    printf "Option: "
+    read -r input
+    if [ "$input" = 1 ]
+    then
+        package_dropbox
+    elif [ "$input" = 2 ] || [ -z "$input" ]
+    then
+       flatpak install --user -y flathub com.dropbox.Client
+    elif [ "$input" = 3 ]
+    then
+        package_help_page
+    else
+        echo "Invalid option"
+    fi
+}
+
+package_dropbox(){
+    
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf install -y dropbox
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install dropbox
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        package_dropbox_debian
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_dropbox_debian(){
+    DESKTOP=$(echo $XDG_CURRENT_DESKTOP)
+    if [ $DESKTOP == "GNOME" ]
+    then
+        sudo apt-get install -y nautilus-dropbox
+    elif [ $DESKTOP == "MATE" ]
+    then
+        sudo apt-get install caja-dropbox
+    else
+        sudo apt-get install -y nautilus-dropbox
+    fi
+}
+
+install_dropbox
