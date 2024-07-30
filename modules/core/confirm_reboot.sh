@@ -9,7 +9,7 @@ confirm_reboot(){
     echo "Some packages won't be availble until a "
     echo "restart is performed."
     echo "Do you wish to restart now?"
-    echo "Type y/n"
+    echo "Type y/n or simply enter for no"
     echo "================================================"
     printf "Option: "
     read input
@@ -17,7 +17,7 @@ confirm_reboot(){
     if [ $input == "y" ] || [ $input == "Y" ]
     then
         sudo systemctl reboot
-    elif [ $input == "n" ] || [ $input == "N" ]
+    elif [ $input == "n" ] || [ $input == "N" ] || [ -z "$input" ]
     then
         echo "Chose not to reboot."
     else
