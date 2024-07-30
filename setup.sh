@@ -1486,7 +1486,8 @@ configurations_menu(){
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_spinfinity_theme"
+            $SCRIPTS_FOLDER/modules/misc/spinfinity_theme.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_spinfinity_theme"
             ;;
 
         p)
