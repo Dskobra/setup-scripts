@@ -1000,23 +1000,28 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_libreoffice"
+            $SCRIPTS_FOLDER/modules/office/libreoffice.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_libreoffice"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_qownnotes"
+            $SCRIPTS_FOLDER/modules/office/qownnotes.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_qownnotes"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_marknote"
+            $SCRIPTS_FOLDER/modules/office/marknote.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_marknote"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_claws_mail"
+            $SCRIPTS_FOLDER/modules/office/claws_mail.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_claws_mail"
             ;;
         
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_thunderbird"
+            $SCRIPTS_FOLDER/modules/office/thunderbird.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_thunderbird"
             ;;
 
         6)
@@ -1024,7 +1029,8 @@ office_menu(){
             ;;
 
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "install_keepassxc"
+            $SCRIPTS_FOLDER/modules/office/keepassxc.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_keepassxc"
             ;;
 
         m)
