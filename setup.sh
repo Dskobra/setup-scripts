@@ -332,7 +332,7 @@ desktop_apps_menu(){
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/desktops/mate_apps
+            $SCRIPTS_FOLDER/modules/desktops/mate_apps.sh
             ;;
 
         h)
