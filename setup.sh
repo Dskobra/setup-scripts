@@ -737,7 +737,7 @@ gaming_clients_menu(){
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/gaming/steam.sh
+            $SCRIPTS_FOLDER/modules/gaming/bottles.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_bottles"
             ;;
 
