@@ -26,7 +26,7 @@ install_discover_overlay(){
 package_discover_overlay(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf copr enable mavit/discover-overlay
+        sudo dnf copr enable -y mavit/discover-overlay
         sudo dnf install -y discover-overlay
     elif [ $PKGMGR == "rpm-ostree" ]
     then
