@@ -22,6 +22,6 @@ then create the file. Once the file is made future runs won't check for the prer
 structure
 -------------
 setup.sh        -       Main launch script. Always use this.
-packages.sh     -       Contains all the install commands.
 
+modules folder  -       Contains all the install commands.
 data folder     -       Separate branch that is pulled when setup.sh is run and has download links for some packages and game profiles.
