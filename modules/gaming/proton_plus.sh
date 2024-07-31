@@ -1,21 +1,6 @@
 #!/usr/bin/bash
 
-### All the package install functions are here. packages.conf from the data
-### branch includes the links for anything that doesn't have a repository.
-
-
-
-
-
-### utilities
-
-
-
-
-### Misc
-### remove packages
-# tempplates
-package_type_template(){
+install_proton_plus(){
     ## template function for aasking to do distro package or flatpak
     echo "-------Pick an option-------"
     echo "(1) distro built app"
@@ -27,33 +12,36 @@ package_type_template(){
     read -r input
     if [ "$input" = 1 ]
     then
-        echo "insert package function"
+        package_proton_plus
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        echo "insert flatpak(s)"
+        flatpak install --user -y flathub com.vysp3r.ProtonPlus
     elif [ "$input" = 3 ]
     then
-        package_help_page
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi
 }
 
-distro_package_template(){
-    ## template function for adding more packages
+package_proton_plus(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y
+        sudo dnf copr enable -y wehagy/protonplus
+        sudo dnf install -y protonplus
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo rpm-ostree install --allow-inactive
-        #sudo rpm-ostree apply-live
-        #confirm_reboot
+        sudo dnf copr enable -y wehagy/protonplus
+        sudo rpm-ostree install protonplus
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y
-        #zenity --info --text="[app name] isn't currently available in Debian. This will install the flatpak version."
+        zenity --info --text="Proton Plus isn't currently available in Debian. This will install the flatpak version."
+        flatpak install --user -y flathub com.vysp3r.ProtonPlus
     else
         echo "Unkown error has occurred."
     fi
 }
+
+install_proton_plus

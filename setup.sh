@@ -12,8 +12,8 @@ run_prereq_check(){
     then
         echo "Skipping first run steps."
     else
-        echo "Installing required software"
-        source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
+        #source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
+        $SCRIPTS_FOLDER/modules/core/prereq.sh
         touch $SCRIPTS_FOLDER/.ranonce.txt
         zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
     fi
@@ -248,27 +248,33 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_corectrl"
+            $SCRIPTS_FOLDER/modules/hardware/corectrl.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_corectrl"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_amd_codecs"
+            $SCRIPTS_FOLDER/modules/hardware/amd_codecs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_amd_codecs"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_nvidia"
+            $SCRIPTS_FOLDER/modules/hardware/nvidia.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_nvidia"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_cooler_control"
+            $SCRIPTS_FOLDER/modules/hardware/cooler_control.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_cooler_control"
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_openrgb"
+            $SCRIPTS_FOLDER/modules/hardware/openrgb.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_openrgb"
             ;;
 
         6)
-            source $SCRIPTS_FOLDER/packages.sh; "install_v4l2loopback"
+            $SCRIPTS_FOLDER/modules/hardware/v4l2loopback.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_v4l2loopback"
             ;;
         
         h)
@@ -326,7 +332,7 @@ desktop_apps_menu(){
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_mate_apps"
+            $SCRIPTS_FOLDER/modules/desktops/mate_apps.sh
             ;;
 
         h)
@@ -380,31 +386,38 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kdeapps"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kde_apps.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kdeapps"
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_plasma_x11"
+            $SCRIPTS_FOLDER/modules/desktops/kde/plasma_x11.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_plasma_x11"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kpat"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kpat.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kpat"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kde_iso_image_writer"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kde_iso_image_writer.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kde_iso_image_writer"
             ;;
         
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kthreeb"
+            $SCRIPTS_FOLDER/modules/desktops/kde/k3b.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kthreeb"
             ;;
 
         6)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kolourpaint"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kolourpaint.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kolourpaint"
             ;;
 
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "install_kleopatra"
+            $SCRIPTS_FOLDER/modules/desktops/kde/kleopatra.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_kleopatra"
             ;;
 
         h)
@@ -463,11 +476,13 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_gnome_apps"
+            $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_apps.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_gnome_apps"
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_gnome_tweaks"
+            $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_tweaks.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_gnome_tweaks"
             ;;
 
         h)
@@ -527,23 +542,28 @@ internet_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_firefox"
+            $SCRIPTS_FOLDER/modules/internet/firefox.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_firefox"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_brave_browser"
+            $SCRIPTS_FOLDER/modules/internet/brave.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_brave_browser"
             ;;
         
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_dropbox"
+            $SCRIPTS_FOLDER/modules/internet/dropbox.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_dropbox"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_transmission"
+            $SCRIPTS_FOLDER/modules/internet/transmission.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_transmission"
             ;;
 
         5)  
-            source $SCRIPTS_FOLDER/packages.sh; "install_remmina"
+            $SCRIPTS_FOLDER/modules/internet/remmina.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_remmina"
             ;;
 
         m)
@@ -587,23 +607,29 @@ multimedia_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_codecs"
+
+            $SCRIPTS_FOLDER/modules/multimedia/codecs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_codecs"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_vlc"
+            $SCRIPTS_FOLDER/modules/multimedia/vlc.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_vlc"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_obsstudio"
+            $SCRIPTS_FOLDER/modules/multimedia/obs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_obsstudio"
             ;;
         
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_openshot"
+            $SCRIPTS_FOLDER/modules/multimedia/openshot.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_openshot"
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_xfburn"
+            $SCRIPTS_FOLDER/modules/multimedia/xfburn.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_xfburn"
             ;;
         
         m)
@@ -700,16 +726,19 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_FOLDER/packages.sh; "install_steam"
+            $SCRIPTS_FOLDER/modules/gaming/steam.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_steam"
             ;;
 
         2) 
-            mkdir "$HOME"/Games
-            source $SCRIPTS_FOLDER/packages.sh; "install_lutris"
+            $SCRIPTS_FOLDER/modules/gaming/lutris.sh
+            #mkdir "$HOME"/Games
+            #source $SCRIPTS_FOLDER/packages.sh; "install_lutris"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_bottles"
+            $SCRIPTS_FOLDER/modules/gaming/bottles.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_bottles"
             ;;
 
         p)
@@ -761,20 +790,18 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_FOLDER/packages.sh; "download_wowup"
+            $SCRIPTS_FOLDER/modules/gaming/wowup.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "download_wowup"
             ;;
 
         2) 
-            source $SCRIPTS_FOLDER/packages.sh; "download_warcraft_logs"
+            $SCRIPTS_FOLDER/modules/gaming/warcraft_logs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "download_warcraft_logs"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
-
-            ;;
-
-        4)
-            source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
+            $SCRIPTS_FOLDER/modules/gaming/weakauras_companion.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
             ;;
 
         p)
@@ -826,7 +853,8 @@ gaming_tools_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_mangohud"
+            $SCRIPTS_FOLDER/modules/gaming/mangohud.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_mangohud"
             ;;
 
         2)
@@ -838,7 +866,8 @@ gaming_tools_menu(){
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_proton_plus"
+            $SCRIPTS_FOLDER/modules/gaming/proton_plus.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_proton_plus"
             ;;
 
         p)
@@ -891,11 +920,13 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            source $SCRIPTS_FOLDER/packages.sh; "install_discord"
+            $SCRIPTS_FOLDER/modules/gaming/discord.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_discord"
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_discover_overlay"
+            $SCRIPTS_FOLDER/modules/gaming/discover_overlay.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_discover_overlay"
             ;;
 
         3) 
@@ -907,7 +938,8 @@ gaming_other_menu(){
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_dolphin_emu"
+            $SCRIPTS_FOLDER/modules/gaming/dolphin_emu.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_dolphin_emu"
             ;;
 
         6)
@@ -915,7 +947,8 @@ gaming_other_menu(){
             ;;
 
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "setup_game_profiles"
+            $SCRIPTS_FOLDER/modules/gaming/game_profiles.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "setup_game_profiles"
             ;;
 
         m)
@@ -967,23 +1000,28 @@ office_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_libreoffice"
+            $SCRIPTS_FOLDER/modules/office/libreoffice.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_libreoffice"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_qownnotes"
+            $SCRIPTS_FOLDER/modules/office/qownnotes.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_qownnotes"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_marknote"
+            $SCRIPTS_FOLDER/modules/office/marknote.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_marknote"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_claws_mail"
+            $SCRIPTS_FOLDER/modules/office/claws_mail.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_claws_mail"
             ;;
         
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_thunderbird"
+            $SCRIPTS_FOLDER/modules/office/thunderbird.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_thunderbird"
             ;;
 
         6)
@@ -991,7 +1029,8 @@ office_menu(){
             ;;
 
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "install_keepassxc"
+            $SCRIPTS_FOLDER/modules/office/keepassxc.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_keepassxc"
             ;;
 
         m)
@@ -1085,19 +1124,23 @@ sdks_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_package_tools"
+            $SCRIPTS_FOLDER/modules/development/package_tools.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_package_tools"
             ;;
         
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_openjdk"
+            $SCRIPTS_FOLDER/modules/development/openjdk.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_openjdk"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_nodejs"
+            $SCRIPTS_FOLDER/modules/development/nodejs.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_nodejs"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_python_tools"
+            $SCRIPTS_FOLDER/modules/development/python_tools.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_python_tools"
             ;;
         
         p)
@@ -1152,47 +1195,58 @@ ides_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_vim"
+            $SCRIPTS_FOLDER/modules/development/vim.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_vim"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_vscodium"
+            $SCRIPTS_FOLDER/modules/development/vscodium.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_vscodium"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_geany"
+            $SCRIPTS_FOLDER/modules/development/geany.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_geany"
             ;;
 
         4)
-            source $SCRIPTS_FOLDER/packages.sh; "install_codeblocks"
+            $SCRIPTS_FOLDER/modules/development/codeblocks.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_codeblocks"
             ;;
 
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_eclipse"
+            $SCRIPTS_FOLDER/modules/development/eclipse.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_eclipse"
             ;;
 
         6)
-            source $SCRIPTS_FOLDER/packages.sh; "install_idea"
+            $SCRIPTS_FOLDER/modules/development/idea.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_idea"
             ;;
         
         7)
-            source $SCRIPTS_FOLDER/packages.sh; "install_netbeans"
+            $SCRIPTS_FOLDER/modules/development/netbeans.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_netbeans"
             ;;
 
         8)
-            source $SCRIPTS_FOLDER/packages.sh; "install_scene_builder"
+            $SCRIPTS_FOLDER/modules/development/scene_builder.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_scene_builder"
             ;;
 
         9)
-            source $SCRIPTS_FOLDER/packages.sh; "install_bluefish"
+            $SCRIPTS_FOLDER/modules/development/bluefish.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_bluefish"
             ;;
 
         10)
-            source $SCRIPTS_FOLDER/packages.sh; "install_eric_ide"
+            $SCRIPTS_FOLDER/modules/development/eric_ide.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_eric_ide"
             ;;
 
         11)
-            source $SCRIPTS_FOLDER/packages.sh; "install_pycharm"
+            $SCRIPTS_FOLDER/modules/development/pycharm.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_pycharm"
             ;;
 
         p)
@@ -1243,15 +1297,18 @@ dev_other_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_lamp_stack"
+            $SCRIPTS_FOLDER/modules/development/lamp.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_lamp_stack"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_github_desktop"
+            $SCRIPTS_FOLDER/modules/development/github_desktop.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_github_desktop"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_containers"
+            $SCRIPTS_FOLDER/modules/development/containers.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_containers"
             ;;
 
         p)
@@ -1305,15 +1362,18 @@ utils_menu(){
     case $input in
 
         1)
-            source $SCRIPTS_FOLDER/packages.sh; "install_fmedia_writer"
+            $SCRIPTS_FOLDER/modules/utilities/fedora_media_writer.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_fmedia_writer"
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "install_rpi_imager"
+            $SCRIPTS_FOLDER/modules/utilities/rpi_imager.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_rpi_imager"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_gtkhash"
+            $SCRIPTS_FOLDER/modules/utilities/gtkhash.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_gtkhash"
             ;;
 
         4)
@@ -1321,7 +1381,8 @@ utils_menu(){
             ;;
         
         5)
-            source $SCRIPTS_FOLDER/packages.sh; "install_virtualization"
+            $SCRIPTS_FOLDER/modules/utilities/virtualization.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_virtualization"
             ;;
 
         m)
@@ -1420,11 +1481,13 @@ configurations_menu(){
             ;;
 
         2)
-            source $SCRIPTS_FOLDER/packages.sh; "check_for_libvirt_group"
+            $SCRIPTS_FOLDER/modules/misc/check_for_libvirt_group.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "check_for_libvirt_group"
             ;;
 
         3)
-            source $SCRIPTS_FOLDER/packages.sh; "install_spinfinity_theme"
+            $SCRIPTS_FOLDER/modules/misc/spinfinity_theme.sh
+            #source $SCRIPTS_FOLDER/packages.sh; "install_spinfinity_theme"
             ;;
 
         p)
@@ -1458,19 +1521,19 @@ configurations_menu(){
     configurations_menu
 }
 
-export SCRIPTS_FOLDER=$(pwd)
+export SCRIPTS_FOLDER=$(pwd)        # stores full path for setup-scripts
+export APP_FOLDER="$HOME/Apps"      # app folder thats made for some downloads
+export PKGMGR=""                    # stores package manager name such as dnf/rpm-ostree etc
 OS_NAME=$(source /etc/os-release ; echo $NAME)
 VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
 VERSION="7.21.2024"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
-APP_FOLDER="$HOME/Apps"
 RAN_ONCE_FILE="missing"
-REPO_FOLDER="missing"
-DISTRO=""
-PKGMGR=""
-VARIANT=""
+REPO_FOLDER="missing"               # .git folder with repository metadata
+DISTRO=""                           # stores the ID (os-release info) of the os such as fedora or debian
+VARIANT=""                          # only used for storing 'ostree' if fedora version is atomic
 make_temp
 make_app_folder
 distro_check
