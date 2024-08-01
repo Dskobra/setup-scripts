@@ -207,7 +207,7 @@ main_menu(){
             ;;
 
         9)
-            extras_menu
+            miscellaneous_menu
             ;;
 
         10)
@@ -1459,16 +1459,17 @@ extras_menu(){
     extras_menu
 }
 
-configurations_menu(){
-    echo "----------------------"
-    echo "|   Configurations   |"
-    echo "----------------------"
+miscellaneous_menu(){
+    echo "---------------------"
+    echo "|   Miscellaneous   |"
+    echo "---------------------"
     echo ""
     echo ""
     echo ""
     echo ""   
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Spinfinity Boot Theme"
+    echo "(3) Spinfinity Boot Theme      (4) Remove AMD hardware accelerated codecs"
+    echo "(5) Remove Audio/Video Codecs"
     echo "(p) Previous Menu              (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1488,6 +1489,14 @@ configurations_menu(){
         3)
             $SCRIPTS_FOLDER/modules/misc/spinfinity_theme.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_spinfinity_theme"
+            ;;
+
+        4)
+            $SCRIPTS_FOLDER/modules/cleanup/remove_amd_codecs.sh
+            ;;
+
+        5)
+            $SCRIPTS_FOLDER/modules/cleanup/remove_codecs.sh
             ;;
 
         p)
@@ -1513,12 +1522,12 @@ configurations_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        configurations_menu
+        miscellaneous_menu
         ;;
         
     esac
     unset input
-    configurations_menu
+    miscellaneous_menu
 }
 
 export SCRIPTS_FOLDER=$(pwd)        # stores full path for setup-scripts
