@@ -53,7 +53,7 @@ package_steam_devices(){
     elif [ $PKGMGR == "rpm-ostree" ]
     then
        sudo rpm-ostree install steam-devices
-       confirm_reboot
+       $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo dpkg --add-architecture i386
