@@ -31,7 +31,7 @@ package_kleopatra(){
     then
         sudo rpm-ostree install kleopatra
         sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y kleopatra

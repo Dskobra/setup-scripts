@@ -29,7 +29,7 @@ check_for_spinfinity(){
         SPINFINITY="Fedora Atomic editions will need to reboot first to load the package layer then rerun
         this option to apply the theme."
         zenity --warning --text="$SPINFINITY"
-        confirm_reboot
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     else
         echo "Unkown error has occurred."
     fi

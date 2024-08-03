@@ -17,7 +17,7 @@ install_plasma_x11(){
         then
             sudo rpm-ostree install plasma-workspace-x11
             #sudo rpm-ostree apply-live
-            $SCRIPTS_FOLDER/modules/core/confirm_reboot
+            $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
         else
             echo "Fedora version detected as 39. Not installing x11 support."
         fi
