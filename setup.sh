@@ -167,7 +167,7 @@ main_menu(){
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
-    echo "(9) Extras                        (10) Update Scripts"
+    echo "(9) Misc                          (10) Update Scripts"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -1406,57 +1406,6 @@ utils_menu(){
     esac
     unset input
     utils_menu
-}
-
-extras_menu(){
-    echo "--------------"
-    echo "|   Extras   |"
-    echo "--------------"
-    echo ""
-    echo "Upgrade helper and script for my personal configurations"
-    echo ""
-    echo ""   
-    echo "(1) Fedora Upgrade Helper      (2) Configurations"
-    echo "(3) Remove Codecs"
-    echo "(m) Main Menu                  (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            source $SCRIPTS_FOLDER/data/fedora_upgrade_helper.sh; "launch_menu"
-            ;;
-
-        2)
-            configurations_menu
-            ;;
-
-        3)
-            source $SCRIPTS_FOLDER/packages.sh; "remove_codecs"
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        extras_menu
-        ;;
-        
-    esac
-    unset input
-    extras_menu
 }
 
 miscellaneous_menu(){
