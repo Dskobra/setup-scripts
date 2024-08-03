@@ -30,7 +30,8 @@ package_firefox(){
         sudo dnf install -y firefox
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        echo "Immutable variants are unsupported"
+        echo "This is experimental atm"
+        sudo rpm-ostree override reset firefox firefox-langpacks
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y firefox-esr
