@@ -14,6 +14,7 @@ install_kde_iso_image_writer(){
         package_kde_iso_image_writer
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
+        remove_kde_iso_image_writer
         flatpak install --user -y flathub org.kde.isoimagewriter
     elif [ "$input" = 3 ]
     then
@@ -24,7 +25,6 @@ install_kde_iso_image_writer(){
 }
 
 package_kde_iso_image_writer(){
-    ## template function for adding more packages
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y isoimagewriter
@@ -42,4 +42,20 @@ package_kde_iso_image_writer(){
     fi
 }
 
+remove_kde_iso_image_writer(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y isoimagewriter
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall isoimagewriter
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        echo "Not removing isoimagewriter as it's not present in Debian repos."
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 install_kde_iso_image_writer
