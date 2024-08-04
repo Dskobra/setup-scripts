@@ -14,7 +14,8 @@ install_brave_browser(){
         package_brave_browser
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-       flatpak install --user -y flathub com.brave.Browser
+        remove_brave_browser
+        flatpak install --user -y flathub com.brave.Browser
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -52,4 +53,30 @@ package_brave_browser(){
     fi
 }
 
+remove_brave_browser(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y brave-browser
+        sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        sudo dnf update -y
+        
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall brave-browser
+        sudo rm /etc/yum.repos.d/brave-browser.repo
+        sudo rm /etc/pki/rpm-gpg/brave-core.asc
+        sudo rpm-ostree refresh-md
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y brave-browser
+        sudo rm /etc/apt/sources.list.d/brave-browser-release.list
+        sudo apt-get update
+        
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 install_brave_browser
