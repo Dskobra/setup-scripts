@@ -33,6 +33,7 @@ package_firefox(){
     then
         echo "This is experimental atm"
         sudo rpm-ostree override reset firefox firefox-langpacks
+        $SCRIPTS_FOLDER/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get remove -y firefox-esr
