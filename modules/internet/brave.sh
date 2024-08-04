@@ -11,7 +11,7 @@ install_brave_browser(){
     read -r input
     if [ "$input" = 1 ]
     then
-        flatpak uninstall --user -y flathub com.brave.Browser
+        flatpak uninstall --user -y com.brave.Browser
         package_brave_browser
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
