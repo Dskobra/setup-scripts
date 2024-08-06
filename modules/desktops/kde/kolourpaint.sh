@@ -11,6 +11,7 @@ install_kolourpaint(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y org.kde.kolourpaint
         package_kolourpaint
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then

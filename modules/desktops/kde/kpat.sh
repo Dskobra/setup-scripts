@@ -11,6 +11,7 @@ install_kpat(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y org.kde.kpat
         package_kpat
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then

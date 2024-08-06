@@ -11,6 +11,7 @@ install_kde_iso_image_writer(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y org.kde.isoimagewriter
         package_kde_iso_image_writer
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then

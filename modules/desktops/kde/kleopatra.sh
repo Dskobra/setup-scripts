@@ -11,6 +11,7 @@ install_kleopatra(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y org.kde.kleopatra
         package_kleopatra
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
