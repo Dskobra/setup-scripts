@@ -12,9 +12,11 @@ install_remmina(){
     if [ "$input" = 1 ]
     then
         package_remmina
+        flatpak remove --user -y org.remmina.Remmina
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-       flatpak install --user -y flathub org.remmina.Remmina
+        package_remmina
+        flatpak install --user -y flathub org.remmina.Remmina
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -36,6 +38,24 @@ package_remmina(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y remmina
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_remmina(){
+    
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y remmina
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall remmina
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y remmina
     else
         echo "Unkown error has occurred."
     fi
