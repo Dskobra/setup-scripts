@@ -11,7 +11,7 @@ install_lutris(){
     read -r input
     if [ "$input" = 1 ]
     then
-        lutris_package
+        package_lutris
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
             flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
@@ -25,7 +25,7 @@ install_lutris(){
     fi
 }
 
-lutris_package(){
+package_lutris(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y lutris
@@ -37,6 +37,23 @@ lutris_package(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y lutris
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_lutris_(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y lutris
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall lutris
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y lutris
     else
         echo "Unkown error has occurred."
     fi

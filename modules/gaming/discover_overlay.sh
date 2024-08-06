@@ -11,9 +11,11 @@ install_discover_overlay(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y flathub io.github.trigg.discover_overlay
         package_discover_overlay
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
+        remove_discover_overlay
         flatpak install --user -y flathub io.github.trigg.discover_overlay
     elif [ "$input" = 3 ]
     then
@@ -38,6 +40,25 @@ package_discover_overlay(){
     then
         zenity --info --text="discover-overlay isn't currently available in Debian. This will install the flatpak version."
         flatpak install --user -y io.github.trigg.discover_overlay
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_discover_overlay(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y discover-overlay
+        sudo rm /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:mavit:discover-overlay.repo
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall -y discover-overlay
+        sudo rm /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:mavit:discover-overlay.repo
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        echo "Not removing discover-overlay as it's not present in Debian repos."
     else
         echo "Unkown error has occurred."
     fi
