@@ -30,7 +30,7 @@ package_discover_overlay(){
         sudo dnf install -y discover-overlay
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        sudo dnf copr enable mavit/discover-overlay
+        sudo dnf copr enable -y mavit/discover-overlay
         sudo rpm-ostree install -y discover-overlay
         sudo rpm-ostree apply-live
         #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
