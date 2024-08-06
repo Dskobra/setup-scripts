@@ -15,8 +15,8 @@ install_dropbox(){
         package_dropbox
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        remove_dropbox
         flatpak install --user -y flathub com.dropbox.Client
+        remove_dropbox
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
