@@ -223,32 +223,26 @@ hardware_drivers_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/hardware/corectrl.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_corectrl"
             ;;
 
         2)
             $SCRIPTS_FOLDER/modules/hardware/amd_codecs.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_amd_codecs"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/hardware/nvidia.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_nvidia"
             ;;
 
         4)
             $SCRIPTS_FOLDER/modules/hardware/cooler_control.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_cooler_control"
             ;;
 
         5)
             $SCRIPTS_FOLDER/modules/hardware/openrgb.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_openrgb"
             ;;
 
         6)
             $SCRIPTS_FOLDER/modules/hardware/v4l2loopback.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_v4l2loopback"
             ;;
         
         h)
@@ -361,37 +355,30 @@ kde_desktop_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/desktops/kde/kde_apps.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_kdeapps"
             ;;
         
         2)
             $SCRIPTS_FOLDER/modules/desktops/kde/plasma_x11.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_plasma_x11"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/desktops/kde/kpat.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_kpat"
             ;;
 
         4)
             $SCRIPTS_FOLDER/modules/desktops/kde/kde_iso_image_writer.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_kde_iso_image_writer"
             ;;
         
         5)
             $SCRIPTS_FOLDER/modules/desktops/kde/k3b.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_kthreeb"
             ;;
 
         6)
             $SCRIPTS_FOLDER/modules/desktops/kde/kolourpaint.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_kolourpaint"
             ;;
 
         7)
             $SCRIPTS_FOLDER/modules/desktops/kde/kleopatra.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_kleopatra"
             ;;
 
         8)
@@ -455,12 +442,10 @@ gnome_desktop_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_apps.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_gnome_apps"
             ;;
         
         2)
             $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_tweaks.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_gnome_tweaks"
             ;;
 
         h)
@@ -521,27 +506,22 @@ internet_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/internet/firefox.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_firefox"
             ;;
 
         2)
             $SCRIPTS_FOLDER/modules/internet/brave.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_brave_browser"
             ;;
         
         3)
             $SCRIPTS_FOLDER/modules/internet/dropbox.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_dropbox"
             ;;
 
         4)
             $SCRIPTS_FOLDER/modules/internet/transmission.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_transmission"
             ;;
 
         5)  
             $SCRIPTS_FOLDER/modules/internet/remmina.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_remmina"
             ;;
 
         m)
@@ -587,27 +567,22 @@ multimedia_menu(){
         1)
 
             $SCRIPTS_FOLDER/modules/multimedia/codecs.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_codecs"
             ;;
 
         2)
             $SCRIPTS_FOLDER/modules/multimedia/vlc.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_vlc"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/multimedia/obs.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_obsstudio"
             ;;
         
         4)
             $SCRIPTS_FOLDER/modules/multimedia/openshot.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_openshot"
             ;;
 
         5)
             $SCRIPTS_FOLDER/modules/multimedia/xfburn.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_xfburn"
             ;;
         
         m)
@@ -705,18 +680,14 @@ gaming_clients_menu(){
 
         1)  
             $SCRIPTS_FOLDER/modules/gaming/steam.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_steam"
             ;;
 
         2) 
             $SCRIPTS_FOLDER/modules/gaming/lutris.sh
-            #mkdir "$HOME"/Games
-            #source $SCRIPTS_FOLDER/packages.sh; "install_lutris"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/gaming/bottles.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_bottles"
             ;;
 
         p)
@@ -769,17 +740,14 @@ gaming_wow_clients_menu(){
 
         1)  
             $SCRIPTS_FOLDER/modules/gaming/wowup.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "download_wowup"
             ;;
 
         2) 
             $SCRIPTS_FOLDER/modules/gaming/warcraft_logs.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "download_warcraft_logs"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/gaming/weakauras_companion.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "download_weakauras_companion"
             ;;
 
         p)
@@ -832,7 +800,6 @@ gaming_tools_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/gaming/mangohud.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_mangohud"
             ;;
 
         2)
@@ -845,7 +812,6 @@ gaming_tools_menu(){
 
         4)
             $SCRIPTS_FOLDER/modules/gaming/proton_plus.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_proton_plus"
             ;;
 
         p)
@@ -899,12 +865,10 @@ gaming_other_menu(){
 
         1)  
             $SCRIPTS_FOLDER/modules/gaming/discord.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_discord"
             ;;
         
         2)
             $SCRIPTS_FOLDER/modules/gaming/discover_overlay.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_discover_overlay"
             ;;
 
         3) 
@@ -917,7 +881,6 @@ gaming_other_menu(){
 
         5)
             $SCRIPTS_FOLDER/modules/gaming/dolphin_emu.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_dolphin_emu"
             ;;
 
         6)
@@ -979,27 +942,22 @@ office_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/office/libreoffice.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_libreoffice"
             ;;
 
         2)
             $SCRIPTS_FOLDER/modules/office/qownnotes.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_qownnotes"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/office/marknote.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_marknote"
             ;;
 
         4)
             $SCRIPTS_FOLDER/modules/office/claws_mail.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_claws_mail"
             ;;
         
         5)
             $SCRIPTS_FOLDER/modules/office/thunderbird.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_thunderbird"
             ;;
 
         6)
@@ -1008,7 +966,6 @@ office_menu(){
 
         7)
             $SCRIPTS_FOLDER/modules/office/keepassxc.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_keepassxc"
             ;;
 
         m)
@@ -1103,22 +1060,18 @@ sdks_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/development/package_tools.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_package_tools"
             ;;
         
         2)
             $SCRIPTS_FOLDER/modules/development/openjdk.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_openjdk"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/development/nodejs.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_nodejs"
             ;;
 
         4)
             $SCRIPTS_FOLDER/modules/development/python_tools.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_python_tools"
             ;;
         
         p)
@@ -1174,57 +1127,46 @@ ides_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/development/vim.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_vim"
             ;;
 
         2)
             $SCRIPTS_FOLDER/modules/development/vscodium.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_vscodium"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/development/geany.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_geany"
             ;;
 
         4)
             $SCRIPTS_FOLDER/modules/development/codeblocks.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_codeblocks"
             ;;
 
         5)
             $SCRIPTS_FOLDER/modules/development/eclipse.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_eclipse"
             ;;
 
         6)
             $SCRIPTS_FOLDER/modules/development/idea.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_idea"
             ;;
         
         7)
             $SCRIPTS_FOLDER/modules/development/netbeans.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_netbeans"
             ;;
 
         8)
             $SCRIPTS_FOLDER/modules/development/scene_builder.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_scene_builder"
             ;;
 
         9)
             $SCRIPTS_FOLDER/modules/development/bluefish.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_bluefish"
             ;;
 
         10)
             $SCRIPTS_FOLDER/modules/development/eric_ide.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_eric_ide"
             ;;
 
         11)
             $SCRIPTS_FOLDER/modules/development/pycharm.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_pycharm"
             ;;
 
         p)
@@ -1276,17 +1218,14 @@ dev_other_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/development/lamp.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_lamp_stack"
             ;;
 
         2)
             $SCRIPTS_FOLDER/modules/development/github_desktop.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_github_desktop"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/development/containers.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_containers"
             ;;
 
         p)
@@ -1341,17 +1280,14 @@ utils_menu(){
 
         1)
             $SCRIPTS_FOLDER/modules/utilities/fedora_media_writer.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_fmedia_writer"
             ;;
 
         2)
             $SCRIPTS_FOLDER/modules/utilities/rpi_imager.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_rpi_imager"
             ;;
 
         3)
             $SCRIPTS_FOLDER/modules/utilities/gtkhash.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_gtkhash"
             ;;
 
         4)
@@ -1360,7 +1296,6 @@ utils_menu(){
         
         5)
             $SCRIPTS_FOLDER/modules/utilities/virtualization.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_virtualization"
             ;;
 
         m)
@@ -1414,12 +1349,10 @@ miscellaneous_menu(){
 
         3)
             $SCRIPTS_FOLDER/modules/misc/check_for_libvirt_group.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "check_for_libvirt_group"
             ;;
 
         4)
             $SCRIPTS_FOLDER/modules/misc/spinfinity_theme.sh
-            #source $SCRIPTS_FOLDER/packages.sh; "install_spinfinity_theme"
             ;;
 
         5)
