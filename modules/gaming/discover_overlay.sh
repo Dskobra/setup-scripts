@@ -11,7 +11,7 @@ install_discover_overlay(){
     read -r input
     if [ "$input" = 1 ]
     then
-        flatpak remove --user -y flathub io.github.trigg.discover_overlay
+        flatpak remove --user -y io.github.trigg.discover_overlay
         package_discover_overlay
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then

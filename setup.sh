@@ -1456,11 +1456,11 @@ miscellaneous_menu(){
             ;;
 
         p)
-            extras_menu
+            miscellaneous_menu
             ;;
 
         P)
-            extras_menu
+            miscellaneous_menu
             ;;
 
         m)
