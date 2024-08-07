@@ -61,7 +61,6 @@ remove_brave_browser(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf remove -y brave-browser
-        sudo rpm-ostree uninstall brave-browser
         sudo rm /etc/yum.repos.d/brave-browser.repo
         sudo rm /etc/pki/rpm-gpg/brave-core.asc
         sudo dnf update -y
