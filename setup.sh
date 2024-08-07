@@ -1422,7 +1422,7 @@ miscellaneous_menu(){
     echo "(1) Reinstall prerequisites    (2)Setup xbox controller"
     echo "(3) Add user to libvirt group  (4) Spinfinity Boot Theme"
     echo "(5) Remove Audio/Video Codecs  (6) Remove AMD hardware accelerated codecs"
-    echo "(p) Previous Menu              (m) Main Menu"
+    echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -1453,14 +1453,6 @@ miscellaneous_menu(){
 
         6)
             $SCRIPTS_FOLDER/modules/cleanup/remove_amd_codecs.sh
-            ;;
-
-        p)
-            miscellaneous_menu
-            ;;
-
-        P)
-            miscellaneous_menu
             ;;
 
         m)
