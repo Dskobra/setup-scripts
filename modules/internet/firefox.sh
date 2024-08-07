@@ -11,8 +11,8 @@ install_firefox(){
     read -r input
     if [ "$input" = 1 ]
     then
-        package_firefox
         flatpak uninstall --user -y org.mozilla.firefox
+        package_firefox
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         remove_firefox
