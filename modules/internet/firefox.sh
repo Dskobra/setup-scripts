@@ -75,6 +75,7 @@ remove_firefox(){
 }
 
 hide_firefox_on_atomic(){
+        sudo mkdir -p /usr/local/share/applications/
         FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
         if [ $FEDORA_VERSION == "40" ]
             then
