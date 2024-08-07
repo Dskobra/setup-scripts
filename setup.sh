@@ -376,7 +376,7 @@ kde_desktop_menu(){
     echo "(1) Core Apps          (2) Plasma X11"
     echo "(3) KDE Patience       (4) KDE ISO Image Writer"
     echo "(5) K3b                (6) Kolourpaint"
-    echo "(7) Kleopatra"
+    echo "(7) Kleopatra          (8) Kate"
     echo "(h) Help               (p) Previous Menu"
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
@@ -417,6 +417,10 @@ kde_desktop_menu(){
         7)
             $SCRIPTS_FOLDER/modules/desktops/kde/kleopatra.sh
             #source $SCRIPTS_FOLDER/packages.sh; "install_kleopatra"
+            ;;
+
+        8)
+            $SCRIPTS_FOLDER/modules/desktops/kde/kate.sh
             ;;
 
         h)
