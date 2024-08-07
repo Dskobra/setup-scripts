@@ -15,7 +15,6 @@ install_kdeapps(){
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         remove_core_kdeapps
-        flatpak install --user -y flathub org.kde.ark
         flatpak install --user -y flathub org.kde.kcalc
         flatpak install --user -y flathub org.kde.gwenview
         flatpak install --user -y flathub org.kde.kamoso
