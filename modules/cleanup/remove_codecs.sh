@@ -8,8 +8,9 @@ remove_ffmpeg(){
         sudo dnf swap -y ffmpeg ffmpeg-free --allowerasing
     elif [ $PKGMGR == "rpm-ostree" ]
     then
+        sudo rpm-ostree uninstall ffmpeg openh264 mozilla-openh264
         sudo rpm-ostree override reset ffmpeg-free libavcodec-free libavdevice-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free libswresample-free libswscale-free
+        libavformat-free libavutil-free libpostproc-free libswresample-free libswscale-free noopenh264
         $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
