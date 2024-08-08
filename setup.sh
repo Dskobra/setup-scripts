@@ -790,7 +790,7 @@ gaming_tools_menu(){
     echo ""
     echo ""   
     echo "(1) Mangohud               (2) Protontricks"
-    echo "(3) ProtonUp Qt            (4) Proton Plus"
+    echo "(3) Proton Plus"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -804,10 +804,6 @@ gaming_tools_menu(){
 
         2)
             flatpak install --user -y com.github.Matoking.protontricks
-            ;;
-        
-        3)
-            flatpak install --user -y flathub net.davidotek.pupgui2
             ;;
 
         4)
