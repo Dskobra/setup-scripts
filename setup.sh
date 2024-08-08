@@ -806,7 +806,7 @@ gaming_tools_menu(){
             flatpak install --user -y com.github.Matoking.protontricks
             ;;
 
-        4)
+        3)
             $SCRIPTS_FOLDER/modules/gaming/proton_plus.sh
             ;;
 
