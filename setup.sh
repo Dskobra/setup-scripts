@@ -848,9 +848,9 @@ gaming_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Discord                (2) Minecraft"
-    echo "(3) Prisim Launcher        (4) Dolphin"
-    echo "(5) Cemu                   (6) Basic Game profiles"
+    echo "(1) Discord                (2) Prisim Launcher"
+    echo "(3) Dolphin                (4) Cemu"
+    echo "(5) Basic Game profiles"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -862,23 +862,19 @@ gaming_other_menu(){
             $SCRIPTS_FOLDER/modules/gaming/discord.sh
             ;;
 
-        2) 
-            flatpak install --user -y flathub com.mojang.Minecraft
-            ;;
-
-        3)
+        2)
             flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
-        4)
+        3)
             $SCRIPTS_FOLDER/modules/gaming/dolphin_emu.sh
             ;;
 
-        5)
+        4)
             flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
-        6)
+        5)
             $SCRIPTS_FOLDER/modules/gaming/game_profiles.sh
             ;;
 
