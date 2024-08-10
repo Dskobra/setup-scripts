@@ -11,10 +11,12 @@ install_bluefish(){
     read -r input
     if [ "$input" = 1 ] || [ -z "$input" ]
     then
+        flatpak remove --user -y nl.openoffice.bluefish
         package_bluefish
     elif [ "$input" = 2 ] 
     then
        flatpak install --user -y flathub nl.openoffice.bluefish
+       remove_bluefish
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -35,6 +37,23 @@ package_bluefish(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y bluefish
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_bluefish(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y bluefish
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall bluefish
+        #sudo rpm-ostree apply-live
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y bluefish
     else
         echo "Unkown error has occurred."
     fi

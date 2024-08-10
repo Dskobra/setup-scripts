@@ -11,10 +11,12 @@ install_vscodium(){
     read -r input
     if [ "$input" = 1 ] || [ -z "$input" ]
     then
+        flatpak remove --user -y com.vscodium.codium
         package_vscodium
     elif [ "$input" = 2 ]
     then
         flatpak install --user -y flathub com.vscodium.codium
+        remove_vscodium
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -45,6 +47,27 @@ package_vscodium(){
         wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
         sudo apt-add-repository 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main'
         sudo apt-get update && sudo apt-get install -y codium
+        
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_vscodium(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo rm /etc/yum.repos.d/vscodium.repo
+        sudo dnf remove -y codium
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rm /etc/yum.repos.d/vscodium.repo
+        sudo rpm-ostree uninstall codium
+        #sudo rpm-ostree apply-live
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo rm archive_uri-https_paulcarroty_gitlab_io_vscodium-deb-rpm-repo_debs_-bookworm.list
+        sudo apt-get remove -y codium
         
     else
         echo "Unkown error has occurred."

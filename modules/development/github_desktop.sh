@@ -11,10 +11,12 @@ install_github_desktop(){
     read -r input
     if [ "$input" = 1 ]
     then
-        package_install_github_desktop
+        flatpak remove --user -y io.github.shiftey.Desktop
+        package_github_desktop
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub io.github.shiftey.Desktop
+        remove_github_desktop
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -23,7 +25,7 @@ install_github_desktop(){
     fi
 }
 
-package_install_github_desktop(){
+package_github_desktop(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
@@ -44,6 +46,28 @@ package_install_github_desktop(){
         wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
         sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
         sudo apt-get update && sudo apt-get install -y github-desktop
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_github_desktop(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo rm /etc/yum.repos.d/shiftkey-packages.repo
+        sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
+        sudo dnf remove -y github-desktop
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rm /etc/yum.repos.d/shiftkey-packages.repo
+        sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
+        sudo rpm-ostree uninstall github-desktop
+        #sudo rpm-ostree apply-live
+        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo rm /etc/apt/sources.list.d/shiftkey-packages.list
+        sudo apt-get remove -y github-desktop
     else
         echo "Unkown error has occurred."
     fi

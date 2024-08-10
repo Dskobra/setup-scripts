@@ -12,10 +12,12 @@ install_gtkhash(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y org.gtkhash.gtkhash
         package_gtkhash
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.gtkhash.gtkhash
+       remove_gtkhash
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -36,6 +38,23 @@ package_gtkhash(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y gtkhash
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_gtkhash(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y gtkhash
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall gtkhash
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y gtkhash
     else
         echo "Unkown error has occurred."
     fi

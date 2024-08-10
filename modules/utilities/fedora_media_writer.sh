@@ -11,10 +11,12 @@ install_fmedia_writer(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y org.fedoraproject.MediaWriter
         package_fmedia_writer
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
+        remove_fmedia_writer
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -36,6 +38,23 @@ package_fmedia_writer(){
     then
         zenity --info --text="Fedora Mediawriter isn't available in Debian so using flatpak version instead."
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_fmedia_writer(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y mediawriter
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall mediawriter
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        echo "Not removing Fedora media writer as it's not present in Debian repos."
     else
         echo "Unkown error has occurred."
     fi
