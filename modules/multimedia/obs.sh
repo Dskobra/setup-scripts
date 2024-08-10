@@ -11,10 +11,12 @@ install_obsstudio(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak uninstall --user -y com.obsproject.Studio
         package_obsstudio
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub com.obsproject.Studio
+       remove_obsstudio
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -35,6 +37,23 @@ package_obsstudio(){
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y obs-studio
+    else
+        echo "Invalid option"
+    fi
+}
+
+remove_obsstudio(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y obs-studio
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall obs-studio
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y obs-studio
     else
         echo "Invalid option"
     fi

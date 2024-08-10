@@ -11,10 +11,12 @@ install_vlc(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak uninstall --user -y org.videolan.VLC
         package_vlc
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
        flatpak install --user -y flathub org.videolan.VLC
+       remove_vlc
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
@@ -40,5 +42,21 @@ package_vlc(){
     fi
 }
 
+remove_vlc(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y vlc
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall vlc
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y vlc
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 
 install_vlc
