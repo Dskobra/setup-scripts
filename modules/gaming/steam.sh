@@ -11,9 +11,11 @@ install_steam(){
     read -r input
     if [ "$input" = 1 ]
     then
+        flatpak remove --user -y flathub com.valvesoftware.Steam
         package_steam
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
+        remove_steam
         flatpak install --user -y flathub com.valvesoftware.Steam
         flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
         flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
@@ -59,6 +61,23 @@ package_steam_devices(){
         sudo dpkg --add-architecture i386
         sudo apt-get update
         sudo apt-get install -y steam-devices
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+remove_steam(){
+    if [ $PKGMGR == "dnf" ]
+    then
+        sudo dnf remove -y steam
+    elif [ $PKGMGR == "rpm-ostree" ]
+    then
+        sudo rpm-ostree uninstall steam
+        sudo rpm-ostree apply-live
+        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ $PKGMGR == "apt-get" ]
+    then
+        sudo apt-get remove -y steam
     else
         echo "Unkown error has occurred."
     fi

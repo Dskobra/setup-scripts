@@ -16,8 +16,8 @@ install_proton_plus(){
         package_proton_plus
     elif [ "$input" = 2 ] || [ -z "$input" ]
     then
-        remove_proton_plus
         flatpak install --user -y flathub com.vysp3r.ProtonPlus
+        remove_proton_plus
     elif [ "$input" = 3 ]
     then
         $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
