@@ -61,5 +61,6 @@ remove_bottles(){
         echo "Unkown error has occurred."
     fi
 }
+
 mkdir $HOME/bottles
 install_bottles
