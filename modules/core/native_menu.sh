@@ -72,9 +72,9 @@ hardware_drivers_menu(){
     echo "Hardware and device drivers etc"
     echo ""
     echo ""     
-    echo "(1) Corectrl(amd)       (2) AMD Video Acceleration"
-    echo "(3) Nvidia Driver       (4) CoolerControl"
-    echo "(5) OpenRGB             (6) Virtual Camera"
+    echo "(1) Corectrl(amd)       (2) Nvidia Driver"
+    echo "(3) CoolerControl       (4) OpenRGB"
+    echo "(5) Virtual Camera      (6) AMD Video Acceleration"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -87,23 +87,23 @@ hardware_drivers_menu(){
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/native/hardware/amd_codecs.sh
-            ;;
-
-        3)
             $SCRIPTS_FOLDER/modules/native/hardware/nvidia.sh
             ;;
 
-        4)
+        3)
             $SCRIPTS_FOLDER/modules/native/hardware/cooler_control.sh
             ;;
 
-        5)
+        4)
             $SCRIPTS_FOLDER/modules/native/hardware/openrgb.sh
             ;;
 
-        6)
+        5)
             $SCRIPTS_FOLDER/modules/native/hardware/v4l2loopback.sh
+            ;;
+
+        6)
+            $SCRIPTS_FOLDER/modules/native/hardware/amd_codecs.sh
             ;;
         
         h)
