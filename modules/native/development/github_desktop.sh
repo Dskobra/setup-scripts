@@ -1,30 +1,5 @@
 #!/usr/bin/bash
 
-install_github_desktop(){
-    echo "-------Pick an option-------"
-    echo "(1) distro built app"
-    echo "(2) distro neutral flatpak"
-    echo "(3) for help"
-    echo "(empty) default option which is flatpak"
-    echo "----------------------------"
-    printf "Option: "
-    read -r input
-    if [ "$input" = 1 ]
-    then
-        flatpak remove --user -y io.github.shiftey.Desktop
-        package_github_desktop
-    elif [ "$input" = 2 ] || [ -z "$input" ]
-    then
-        flatpak install --user -y flathub io.github.shiftey.Desktop
-        remove_github_desktop
-    elif [ "$input" = 3 ]
-    then
-        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
 package_github_desktop(){
     if [ $PKGMGR == "dnf" ]
     then
@@ -51,26 +26,5 @@ package_github_desktop(){
     fi
 }
 
-remove_github_desktop(){
-    if [ $PKGMGR == "dnf" ]
-    then
-        sudo rm /etc/yum.repos.d/shiftkey-packages.repo
-        sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
-        sudo dnf remove -y github-desktop
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rm /etc/yum.repos.d/shiftkey-packages.repo
-        sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
-        sudo rpm-ostree uninstall github-desktop
-        #sudo rpm-ostree apply-live
-        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
-    elif [ $PKGMGR == "apt-get" ]
-    then
-        sudo rm /etc/apt/sources.list.d/shiftkey-packages.list
-        sudo apt-get remove -y github-desktop
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-install_github_desktop
+flatpak remove --user -y io.github.shiftey.Desktop
+package_github_desktop
