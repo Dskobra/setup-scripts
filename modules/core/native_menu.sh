@@ -1055,7 +1055,7 @@ dev_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Github Desktop         (2)  Containers"
+    echo "(1) Github Desktop        (2)  Containers"
     echo "(3) Lamp Stack"
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
@@ -1178,9 +1178,9 @@ miscellaneous_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Reinstall prerequisites    (2)Setup xbox controller"
-    echo "(3) Add user to libvirt group  (4) Spinfinity Boot Theme"
-    echo "(5) Remove Audio/Video Codecs  (6) Remove AMD hardware accelerated codecs"
+    echo "(1) Setup xbox controller      (2) Add user to libvirt group"
+    echo "(3) Spinfinity Boot Theme      (4) Remove AMD hardware accelerated codecs  "
+    echo "(5) Remove Audio/Video Codecs"
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1189,28 +1189,23 @@ miscellaneous_menu(){
     case $input in
 
         1)
-            echo "This is disabled"
-            #install_prereq
-            ;;
-
-        2)
             sudo modprobe xpad
             ;;
 
-        3)
+        2)
             $SCRIPTS_FOLDER/modules/native/misc/check_for_libvirt_group.sh
             ;;
 
-        4)
+        3)
             $SCRIPTS_FOLDER/modules/native/misc/spinfinity_theme.sh
+            ;;
+
+        4)
+            $SCRIPTS_FOLDER/modules/native/cleanup/remove_amd_codecs.sh
             ;;
 
         5)
             $SCRIPTS_FOLDER/modules/native/cleanup/remove_codecs.sh
-            ;;
-
-        6)
-            $SCRIPTS_FOLDER/modules/native/cleanup/remove_amd_codecs.sh
             ;;
 
         m)
