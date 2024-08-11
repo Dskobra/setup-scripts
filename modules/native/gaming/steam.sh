@@ -21,4 +21,4 @@ package_steam(){
 
 flatpak remove --user -y flathub com.valvesoftware.Steam
 package_steam
-$SCRIPTS_FOLDER/modules/native/gaming/steam-devices.sh
+$SCRIPTS_FOLDER/modules/native/gaming/steam_devices.sh
