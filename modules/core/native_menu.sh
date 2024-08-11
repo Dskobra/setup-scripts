@@ -897,8 +897,8 @@ sdks_menu(){
     echo ""
     echo ""   
     echo ""
-    echo "(1) C/C++ Compiler    (2) openJDK 17/21"
-    echo "(3) Nodejs LTS        (4) Python Dev Packages"
+    echo "(1) Nodejs LTS        (2) C/C++ Compiler "
+    echo "(3) openJDK 17/21     (4) Python Dev Packages"
     echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -907,15 +907,15 @@ sdks_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/native/development/package_tools.sh
+            $SCRIPTS_FOLDER/modules/other/development/nodejs.sh
             ;;
         
         2)
-            $SCRIPTS_FOLDER/modules/native/development/openjdk.sh
+            $SCRIPTS_FOLDER/modules/native/development/package_tools.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/native/development/nodejs.sh
+            $SCRIPTS_FOLDER/modules/native/development/openjdk.sh
             ;;
 
         4)
