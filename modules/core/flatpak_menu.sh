@@ -247,7 +247,7 @@ kde_desktop_menu(){
             ;;
 
         7)
-            $SCRIPTS_FOLDER/modules/desktops/kde/kate.sh
+            $SCRIPTS_FOLDER/modules/native/desktops/kde/kate.sh
             ;;
 
         h)
@@ -310,7 +310,7 @@ gnome_desktop_menu(){
             ;;
         
         2)
-            $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_tweaks.sh
+            $SCRIPTS_FOLDER/modules/native/desktops/gnome/gnome_tweaks.sh
             ;;
 
         h)
@@ -595,15 +595,15 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            $SCRIPTS_FOLDER/modules/flatpak/gaming/wowup.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/wowup.sh
             ;;
 
         2) 
-            $SCRIPTS_FOLDER/modules/flatpak/gaming/warcraft_logs.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/warcraft_logs.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/flatpak/gaming/weakauras_companion.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/weakauras_companion.sh
             ;;
 
         p)
@@ -659,7 +659,7 @@ gaming_tools_menu(){
             ;;
 
         2)
-            flatpak install --user -y com.github.Matoking.protontricks
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/protontricks.sh
             ;;
 
         3)
@@ -704,7 +704,7 @@ gaming_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Discord                (2) Prisim Launcher"
+    echo "(1) Discord                (2) Prism Launcher"
     echo "(3) Dolphin                (4) Cemu"
     echo "(5) Basic Game profiles"
     echo "(p) Previous Menu          (m) Main Menu"
@@ -719,7 +719,7 @@ gaming_other_menu(){
             ;;
 
         2)
-            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/prism_launcher.sh
             ;;
 
         3)
@@ -727,7 +727,7 @@ gaming_other_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub info.cemu.Cemu
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/cemu.sh
             ;;
 
         5)
@@ -1041,6 +1041,7 @@ dev_other_menu(){
 
         2)
             $SCRIPTS_FOLDER/modules/development/containers.sh
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
         p)
