@@ -1131,7 +1131,7 @@ miscellaneous_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1)Setup xbox controller       (2) Add user to libvirt group"
+    echo "(1) Setup xbox controller       (2) Add user to libvirt group"
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
