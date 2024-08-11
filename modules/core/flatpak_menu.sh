@@ -803,7 +803,7 @@ office_menu(){
             ;;
 
         6)
-            flatpak install --user -y flathub com.bitwarden.desktop
+            $SCRIPTS_FOLDER/modules/flatpak/office/bitwarden.sh
             ;;
 
         7)
