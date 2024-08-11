@@ -43,6 +43,7 @@ fedora_variant_check(){
         $SCRIPTS_FOLDER/modules/core/prereq.sh
         $SCRIPTS_FOLDER/modules/core/get_data.sh
         $SCRIPTS_FOLDER/modules/core/flatpak_menu.sh
+    fi
 }
 
 debian_release_check(){
