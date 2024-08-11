@@ -17,7 +17,7 @@ install_kate(){
         #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
-        sudo apt-get install -y kate kate-plugins
+        sudo apt-get install -y kate
     else
         echo "Unkown error has occurred."
     fi
