@@ -665,7 +665,7 @@ gaming_tools_menu(){
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/core/flatpak/gaming/protontricks.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/protontricks.sh
             ;;
 
         3)
