@@ -1193,7 +1193,7 @@ miscellaneous_menu(){
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/native/misc/check_for_libvirt_group.sh
+            $SCRIPTS_FOLDER/modules/other/misc/check_for_libvirt_group.sh
             ;;
 
         3)
