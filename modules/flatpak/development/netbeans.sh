@@ -14,4 +14,4 @@ download_netbeans(){
     fi
 }
 
-flatpak install --user -y flathub org.apache.netbeansll_netbeans
+flatpak install --user -y flathub org.apache.netbeans
