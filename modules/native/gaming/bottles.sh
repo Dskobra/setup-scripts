@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_bottles(){
+install_bottles(){
     if [ $PKGMGR == "dnf" ]
     then
         flatpak remove --user -y com.usebottles.bottles
@@ -20,4 +20,4 @@ package_bottles(){
 }
 
 mkdir $HOME/bottles
-package_bottles
+install_bottles

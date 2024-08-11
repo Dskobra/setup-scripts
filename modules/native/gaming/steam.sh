@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_steam(){
+install_steam(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y steam
@@ -19,6 +19,5 @@ package_steam(){
     fi
 }
 
-flatpak remove --user -y flathub com.valvesoftware.Steam
-package_steam
+install_steam
 $SCRIPTS_FOLDER/modules/native/gaming/steam_devices.sh

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_brave_browser(){
+install_brave_browser(){
     cd $SCRIPTS_FOLDER/temp
     if [ $PKGMGR == "dnf" ]
     then
@@ -33,4 +33,4 @@ package_brave_browser(){
 }
 
 flatpak uninstall --user -y com.brave.Browser
-package_brave_browser
+install_brave_browser

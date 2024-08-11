@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_dropbox(){
+install_dropbox(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y dropbox
@@ -11,13 +11,13 @@ package_dropbox(){
         $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
-        package_dropbox_debian
+        install_dropbox_debian
     else
         echo "Unkown error has occurred."
     fi
 }
 
-package_dropbox_debian(){
+install_dropbox_debian(){
     DESKTOP=$(echo $XDG_CURRENT_DESKTOP)
     if [ $DESKTOP == "GNOME" ]
     then
@@ -31,4 +31,4 @@ package_dropbox_debian(){
 }
 
 flatpak remove --user -y com.dropbox.Client
-package_dropbox
+install_dropbox

@@ -13,7 +13,7 @@ remove_kinoite_flatpaks(){
     flatpak remove -y org.fedoraproject.KDE6Platform 
 }
 
-remove_core_kdeapps(){
+remove_core_kde_apps(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf remove -y ark kate krdc kcalc kamoso gwenview\
@@ -31,7 +31,7 @@ remove_core_kdeapps(){
     fi
 }
 
-remove_core_kdeapps
+remove_core_kde_apps
 flatpak install --user -y flathub org.kde.kcalc
 flatpak install --user -y flathub org.kde.gwenview
 flatpak install --user -y flathub org.kde.kamoso

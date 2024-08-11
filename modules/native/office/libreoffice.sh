@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_libreoffice(){
+install_libreoffice(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y libreoffice
@@ -18,4 +18,4 @@ package_libreoffice(){
 }
 
 flatpak remove --user -y org.libreoffice.LibreOffice
-package_libreoffice
+install_libreoffice

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-packages_kde(){
+install_kde_apps(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y ark kate krdc kcalc kamoso gwenview\
@@ -25,4 +25,4 @@ flatpak remove --user -y  org.kde.gwenview
 flatpak remove --user -y  org.kde.kamoso
 flatpak remove --user -y  org.kde.kleopatra
 flatpak remove --user -y  org.kde.krdc
-packages_kde
+install_kde_apps

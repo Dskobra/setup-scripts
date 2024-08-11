@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_marknote(){
+install_marknote(){
     if [ $PKGMGR == "dnf" ]
     then
         flatpak remove --user -y org.kde.marknote
@@ -19,4 +19,4 @@ package_marknote(){
     fi
 }
 
-package_marknote
+install_marknote

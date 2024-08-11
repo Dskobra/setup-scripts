@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-remove_core_gnomeapps(){
+remove_core_gnome_apps(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf remove -y file-roller evince dconf-editor pavucontrol cheese\
@@ -38,7 +38,7 @@ remove_silverblue_flatpaks(){
     flatpak remove -y org.gnome.font-viewer
 }
 
-remove_core_gnomeapps
+remove_core_gnome_apps
 flatpak install --user -y flathub org.gnome.clocks
 flatpak install --user -y flathub org.gnome.Calendar
 flatpak install --user -y flathub org.gnome.Weather

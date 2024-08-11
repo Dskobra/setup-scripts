@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_remmina(){
+install_remmina(){
     
     if [ $PKGMGR == "dnf" ]
     then
@@ -19,4 +19,4 @@ package_remmina(){
 }
 
 flatpak remove --user -y org.remmina.Remmina
-package_remmina
+install_remmina

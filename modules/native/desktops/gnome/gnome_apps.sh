@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-packages_gnome(){
+install_gnome_apps(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y file-roller evince dconf-editor pavucontrol cheese\
@@ -39,4 +39,4 @@ flatpak remove --user -y  org.pulseaudio.pavucontrol
 flatpak remove --user -y  ca.desrt.dconf-editor
 flatpak remove --user -y  org.gnome.Logs
 flatpak remove --user -y  org.gnome.baobab
-packages_gnome
+install_gnome_apps

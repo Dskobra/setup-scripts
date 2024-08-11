@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_openshot(){
+install_openshot(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y openshot
@@ -18,4 +18,4 @@ package_openshot(){
 }
 
 flatpak uninstall --user -y org.openshot.OpenShot
-package_openshot
+install_openshot

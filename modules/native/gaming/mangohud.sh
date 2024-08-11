@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_mangohud(){
+install_mangohud(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y mangohud
@@ -18,4 +18,4 @@ package_mangohud(){
 }
 
 mkdir $HOME/.config/MangoHud
-package_mangohud
+install_mangohud

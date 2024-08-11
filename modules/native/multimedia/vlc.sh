@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_vlc(){
+install_vlc(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y vlc
@@ -18,4 +18,4 @@ package_vlc(){
 }
 
 flatpak uninstall --user -y org.videolan.VLC
-package_vlc
+install_vlc

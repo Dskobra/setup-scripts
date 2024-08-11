@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_firefox(){
+install_firefox(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y firefox
@@ -32,4 +32,4 @@ package_firefox(){
 }
 
 flatpak uninstall --user -y org.mozilla.firefox
-package_firefox
+install_firefox

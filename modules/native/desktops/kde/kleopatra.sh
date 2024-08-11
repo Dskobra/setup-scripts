@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_kleopatra(){
+install_kleopatra(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kleopatra
@@ -18,4 +18,4 @@ package_kleopatra(){
 }
 
 flatpak remove --user -y  org.kde.kleopatra
-package_kleopatra
+install_kleopatra

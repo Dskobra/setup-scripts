@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_proton_plus(){
+install_proton_plus(){
     if [ $PKGMGR == "dnf" ]
     then
         flatpak remove --user -y com.vysp3r.ProtonPlus
@@ -21,4 +21,4 @@ package_proton_plus(){
     fi
 }
 
-package_proton_plus
+install_proton_plus

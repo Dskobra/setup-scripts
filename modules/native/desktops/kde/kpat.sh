@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_kpat(){
+install_kpat(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kpat
@@ -18,4 +18,4 @@ package_kpat(){
 }
 
 flatpak remove --user -y org.kde.kpat
-package_kpat
+install_kpat

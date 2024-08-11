@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_lutris(){
+install_lutris(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y lutris
@@ -19,4 +19,4 @@ package_lutris(){
 
 mkdir $HOME/Games
 flatpak remove --user -y net.lutris.Lutris
-package_lutris
+install_lutris

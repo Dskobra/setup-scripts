@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_kolourpaint(){
+install_kolourpaint(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y kolourpaint
@@ -18,4 +18,4 @@ package_kolourpaint(){
 }
 
 flatpak remove --user -y org.kde.kolourpaint
-package_kolourpaint
+install_kolourpaint

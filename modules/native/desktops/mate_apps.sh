@@ -21,4 +21,5 @@ install_mate_apps(){
         echo "Unkown error has occurred."
     fi
 }
+
 install_mate_apps

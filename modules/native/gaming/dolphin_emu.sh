@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_dolphin_emu(){
+install_dolphin_emu(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y dolphin-emu
@@ -18,4 +18,4 @@ package_dolphin_emu(){
 }
 
 flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-package_dolphin_emu
+install_dolphin_emu

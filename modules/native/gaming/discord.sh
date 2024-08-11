@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_discord(){
+install_discord(){
     if [ $PKGMGR == "dnf" ]
     then
         flatpak remove --user -y com.discordapp.Discord
@@ -19,4 +19,4 @@ package_discord(){
     fi
 }
 
-package_discord
+install_discord

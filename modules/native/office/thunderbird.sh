@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_thunderbird(){
+install_thunderbird(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y thunderbird
@@ -18,4 +18,4 @@ package_thunderbird(){
 }
 
 flatpak remove --user -y org.mozilla.Thunderbird
-package_thunderbird
+install_thunderbird

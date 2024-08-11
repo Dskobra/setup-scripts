@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_kde_iso_image_writer(){
+install_kde_iso_image_writer(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y isoimagewriter
@@ -18,4 +18,4 @@ package_kde_iso_image_writer(){
     fi
 }
 
-package_kde_iso_image_writer
+install_kde_iso_image_writer

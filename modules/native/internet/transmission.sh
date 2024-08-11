@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_transmission(){
+install_transmission(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y transmission-gtk
@@ -18,4 +18,4 @@ package_transmission(){
 }
 
 flatpak remove --user -y com.transmissionbt.Transmission
-package_transmission
+install_transmission

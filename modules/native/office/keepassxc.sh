@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_keepassxc(){
+install_keepassxc(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y keepassxc
@@ -18,4 +18,4 @@ package_keepassxc(){
 }
 
 flatpak remove --user -y org.keepassxc.KeePassXC
-package_keepassxc
+install_keepassxc

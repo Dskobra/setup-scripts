@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_obsstudio(){
+install_obsstudio(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y obs-studio
@@ -18,4 +18,4 @@ package_obsstudio(){
 }
 
 flatpak uninstall --user -y com.obsproject.Studio
-package_obsstudio
+install_obsstudio
