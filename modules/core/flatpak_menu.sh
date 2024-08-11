@@ -223,7 +223,7 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/desktops/kde/kde_apps.sh
+            $SCRIPTS_FOLDER/modules/flatpak/desktops/kde/kde_apps.sh
             ;;
         
         2)
@@ -231,19 +231,19 @@ kde_desktop_menu(){
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/desktops/kde/kpat.sh
+            $SCRIPTS_FOLDER/modules/flatpak/desktops/kde/kpat.sh
             ;;
 
         4)
-            $SCRIPTS_FOLDER/modules/desktops/kde/kde_iso_image_writer.sh
+            $SCRIPTS_FOLDER/modules/flatpak/desktops/kde/kde_iso_image_writer.sh
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/desktops/kde/kolourpaint.sh
+            $SCRIPTS_FOLDER/modules/flatpak/desktops/kde/kolourpaint.sh
             ;;
 
         6)
-            $SCRIPTS_FOLDER/modules/desktops/kde/kleopatra.sh
+            $SCRIPTS_FOLDER/modules/flatpak/desktops/kde/kleopatra.sh
             ;;
 
         7)
