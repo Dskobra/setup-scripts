@@ -717,7 +717,7 @@ gaming_other_menu(){
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/flatpak/gaming/game_profiles.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/game_profiles.sh
             ;;
 
         m)
