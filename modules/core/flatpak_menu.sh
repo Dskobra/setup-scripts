@@ -370,23 +370,23 @@ internet_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/internet/firefox.sh
+            $SCRIPTS_FOLDER/modules/flatpak/internet/firefox.sh
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/internet/brave.sh
+            $SCRIPTS_FOLDER/modules/flatpak/internet/brave.sh
             ;;
         
         3)
-            $SCRIPTS_FOLDER/modules/internet/dropbox.sh
+            $SCRIPTS_FOLDER/modules/flatpak/internet/dropbox.sh
             ;;
 
         4)
-            $SCRIPTS_FOLDER/modules/internet/transmission.sh
+            $SCRIPTS_FOLDER/modules/flatpak/internet/transmission.sh
             ;;
 
         5)  
-            $SCRIPTS_FOLDER/modules/internet/remmina.sh
+            $SCRIPTS_FOLDER/modules/flatpak/internet/remmina.sh
             ;;
 
         m)
@@ -429,15 +429,15 @@ multimedia_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/multimedia/vlc.sh
+            $SCRIPTS_FOLDER/modules/flatpak/multimedia/vlc.sh
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/multimedia/obs.sh
+            $SCRIPTS_FOLDER/modules/flatpak/multimedia/obs.sh
             ;;
         
         3)
-            $SCRIPTS_FOLDER/modules/multimedia/openshot.sh
+            $SCRIPTS_FOLDER/modules/flatpak/multimedia/openshot.sh
             ;;
 
         
@@ -535,15 +535,15 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            $SCRIPTS_FOLDER/modules/gaming/steam.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/steam.sh
             ;;
 
         2) 
-            $SCRIPTS_FOLDER/modules/gaming/lutris.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/lutris.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/gaming/bottles.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/bottles.sh
             ;;
 
         p)
@@ -595,15 +595,15 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            $SCRIPTS_FOLDER/modules/gaming/wowup.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/wowup.sh
             ;;
 
         2) 
-            $SCRIPTS_FOLDER/modules/gaming/warcraft_logs.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/warcraft_logs.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/gaming/weakauras_companion.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/weakauras_companion.sh
             ;;
 
         p)
@@ -655,7 +655,7 @@ gaming_tools_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/gaming/mangohud.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/mangohud.sh
             ;;
 
         2)
@@ -663,7 +663,7 @@ gaming_tools_menu(){
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/gaming/proton_plus.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/proton_plus.sh
             ;;
 
         p)
@@ -715,7 +715,7 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            $SCRIPTS_FOLDER/modules/gaming/discord.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/discord.sh
             ;;
 
         2)
@@ -723,7 +723,7 @@ gaming_other_menu(){
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/gaming/dolphin_emu.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/dolphin_emu.sh
             ;;
 
         4)
@@ -731,7 +731,7 @@ gaming_other_menu(){
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/gaming/game_profiles.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/game_profiles.sh
             ;;
 
         m)
@@ -783,23 +783,23 @@ office_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/office/libreoffice.sh
+            $SCRIPTS_FOLDER/modules/flatpak/office/libreoffice.sh
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/office/qownnotes.sh
+            $SCRIPTS_FOLDER/modules/flatpak/office/qownnotes.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/office/marknote.sh
+            $SCRIPTS_FOLDER/modules/flatpak/office/marknote.sh
             ;;
 
         4)
-            $SCRIPTS_FOLDER/modules/office/claws_mail.sh
+            $SCRIPTS_FOLDER/modules/flatpak/office/claws_mail.sh
             ;;
         
         5)
-            $SCRIPTS_FOLDER/modules/office/thunderbird.sh
+            $SCRIPTS_FOLDER/modules/flatpak/office/thunderbird.sh
             ;;
 
         6)
@@ -807,7 +807,7 @@ office_menu(){
             ;;
 
         7)
-            $SCRIPTS_FOLDER/modules/office/keepassxc.sh
+            $SCRIPTS_FOLDER/modules/flatpak/office/keepassxc.sh
             ;;
 
         m)
@@ -900,7 +900,7 @@ sdks_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/development/nodejs.sh
+            $SCRIPTS_FOLDER/modules/other/development/nodejs.sh
             ;;
         
         p)
@@ -944,9 +944,8 @@ ides_menu(){
     echo "(1) VIM                            (2) VSCodium"
     echo "(3) Geany                          (4) CodeBlocks"
     echo "(5) Eclipse                        (6) Intellij IDEA"
-    echo "(7) Netbeans                       (8) Scene Builder"
-    echo "(9) Bluefish                       (10) Pycharm"
-    echo "(11) Pycharm"
+    echo "(7) Netbeans                       (8) Bluefish"
+    echo "(9) Pycharm"
     echo "(p) Previous Menu                  (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -955,42 +954,38 @@ ides_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/development/vim.sh
+            $SCRIPTS_FOLDER/modules/native/development/vim.sh
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/development/vscodium.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/vscodium.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/development/geany.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/geany.sh
             ;;
 
         4)
-            $SCRIPTS_FOLDER/modules/development/codeblocks.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/codeblocks.sh
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/development/eclipse.sh
+            $SCRIPTS_FOLDER/modules/other/development/eclipse.sh
             ;;
 
         6)
-            $SCRIPTS_FOLDER/modules/development/idea.sh
+            $SCRIPTS_FOLDER/modules/other/development/idea.sh
             ;;
         
         7)
-            $SCRIPTS_FOLDER/modules/development/netbeans.sh
+            $SCRIPTS_FOLDER/modules/other/development/netbeans.sh
             ;;
 
         8)
-            $SCRIPTS_FOLDER/modules/development/scene_builder.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/bluefish.sh
             ;;
 
         9)
-            $SCRIPTS_FOLDER/modules/development/bluefish.sh
-            ;;
-
-        10)
             $SCRIPTS_FOLDER/modules/development/pycharm.sh
             ;;
 
