@@ -974,11 +974,11 @@ ides_menu(){
             ;;
 
         6)
-            $SCRIPTS_FOLDER/modules/other/development/idea.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/idea.sh
             ;;
         
         7)
-            $SCRIPTS_FOLDER/modules/other/development/netbeans.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/netbeans.sh
             ;;
 
         8)
@@ -986,7 +986,7 @@ ides_menu(){
             ;;
 
         9)
-            $SCRIPTS_FOLDER/modules/development/pycharm.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/pycharm.sh
             ;;
 
         p)
@@ -1036,12 +1036,12 @@ dev_other_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/development/github_desktop.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/github_desktop.sh
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/development/containers.sh
-            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+            $SCRIPTS_FOLDER/modules/native/development/containers.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/podman_desktop.sh
             ;;
 
         p)
