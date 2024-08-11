@@ -85,23 +85,23 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/hardware/corectrl.sh
+            $SCRIPTS_FOLDER/modules/native/hardware/corectrl.sh
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/hardware/nvidia.sh
+            $SCRIPTS_FOLDER/modules/native/hardware/nvidia.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/hardware/cooler_control.sh
+            $SCRIPTS_FOLDER/modules/native/hardware/cooler_control.sh
             ;;
 
         4)
-            $SCRIPTS_FOLDER/modules/hardware/openrgb.sh
+            $SCRIPTS_FOLDER/modules/native/hardware/openrgb.sh
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/hardware/v4l2loopback.sh
+            $SCRIPTS_FOLDER/modules/native/hardware/v4l2loopback.sh
             ;;
         
         h)
@@ -213,7 +213,7 @@ kde_desktop_menu(){
             ;;
         
         2)
-            $SCRIPTS_FOLDER/modules/desktops/kde/plasma_x11.sh
+            $SCRIPTS_FOLDER/modules/native/desktops/kde/plasma_x11.sh
             ;;
 
         3)
