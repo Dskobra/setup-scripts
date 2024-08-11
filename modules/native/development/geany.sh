@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_geany(){
+install_geany(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
@@ -18,4 +18,4 @@ package_geany(){
 }
 
 flatpak remove --user -y org.geany.Geany
-package_geany
+install_geany

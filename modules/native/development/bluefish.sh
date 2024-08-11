@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_bluefish(){
+install_bluefish(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y bluefish
@@ -18,4 +18,4 @@ package_bluefish(){
 }
 
 flatpak remove --user -y nl.openoffice.bluefish
-package_bluefish
+install_bluefish

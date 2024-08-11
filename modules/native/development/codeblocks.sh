@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_codeblocks(){
+install_codeblocks(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y codeblocks codeblocks-contrib-devel
@@ -18,4 +18,4 @@ package_codeblocks(){
 }
 
  flatpak remove --user -y org.codeblocks.codeblocks
- package_codeblocks
+install_codeblocks

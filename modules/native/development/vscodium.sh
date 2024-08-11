@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-package_vscodium(){
+install_vscodium(){
     if [ $PKGMGR == "dnf" ]
     then
         cd $SCRIPTS_FOLDER/data
@@ -29,4 +29,4 @@ package_vscodium(){
 }
 
 flatpak remove --user -y com.vscodium.codium
-package_vscodium
+install_vscodium
