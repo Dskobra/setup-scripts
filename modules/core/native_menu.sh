@@ -725,7 +725,7 @@ gaming_other_menu(){
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/flatpak/prism_launcher.sh
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/prism_launcher.sh
             ;;
 
         3)
