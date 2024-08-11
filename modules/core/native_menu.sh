@@ -710,7 +710,7 @@ gaming_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Discord                (2) Prisim Launcher"
+    echo "(1) Discord                (2) Prism Launcher"
     echo "(3) Dolphin                (4) Cemu"
     echo "(5) Basic Game profiles"
     echo "(p) Previous Menu          (m) Main Menu"
