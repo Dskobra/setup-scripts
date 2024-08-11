@@ -4,6 +4,7 @@ install_qownnotes(){
     if [ $PKGMGR == "dnf" ]
     then
         flatpak remove --user -y org.qownnotes.QOwnNotes
+        sudo dnf install -y qownnotes
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install qownnotes
