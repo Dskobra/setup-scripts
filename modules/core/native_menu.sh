@@ -963,9 +963,9 @@ ides_menu(){
     echo "(1) VIM                            (2) VSCodium"
     echo "(3) Geany                          (4) CodeBlocks"
     echo "(5) Eclipse                        (6) Intellij IDEA"
-    echo "(7) Netbeans                       (8) Scene Builder"
-    echo "(9) Bluefish                       (10) Eric IDE"
-    echo "(11) Pycharm"
+    echo "(7) Netbeans                       (8) Bluefish"
+    echo "(9) Pycharm                        (10) Eric IDE"
+    echo "(11) Scene Builder"
     echo "(p) Previous Menu                  (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1002,11 +1002,11 @@ ides_menu(){
             ;;
 
         8)
-            $SCRIPTS_FOLDER/modules/native/development/scene_builder.sh
+            $SCRIPTS_FOLDER/modules/native/development/bluefish.sh
             ;;
 
         9)
-            $SCRIPTS_FOLDER/modules/native/development/bluefish.sh
+            $SCRIPTS_FOLDER/modules/native/development/pycharm.sh
             ;;
 
         10)
@@ -1014,7 +1014,7 @@ ides_menu(){
             ;;
 
         11)
-            $SCRIPTS_FOLDER/modules/native/development/pycharm.sh
+            $SCRIPTS_FOLDER/modules/native/development/scene_builder.sh
             ;;
 
         p)
