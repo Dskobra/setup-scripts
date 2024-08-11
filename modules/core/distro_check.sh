@@ -36,7 +36,7 @@ fedora_variant_check(){
         PKGMGR="dnf"
         $SCRIPTS_FOLDER/modules/core/prereq.sh
         $SCRIPTS_FOLDER/modules/core/get_data.sh
-        $SCRIPTS_FOLDER/modules/core/menu.sh
+        $SCRIPTS_FOLDER/modules/core/package_type_chooser.sh
     elif [ $VARIANT == "ostree" ]
     then
         PKGMGR="rpm-ostree"
@@ -52,7 +52,7 @@ debian_release_check(){
         PKGMGR="apt-get"
         $SCRIPTS_FOLDER/modules/core/prereq.sh
         $SCRIPTS_FOLDER/modules/core/get_data.sh
-        $SCRIPTS_FOLDER/modules/core/menu.sh
+        $SCRIPTS_FOLDER/modules/core/package_type_chooser.sh
     else
         echo "These scripts only support Debian 12"
     fi

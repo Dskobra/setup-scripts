@@ -3,22 +3,6 @@
 ### Main launch script which includes menus, distro
 ### determination and making app/temp folders.
 
-run_prereq_check(){
-    ### make sure git, curl, wget, zenity
-    ### and flatpak are installed.
-    RAN_ONCE_FILE=$SCRIPTS_FOLDER/.ranonce.txt
-    test -f $RAN_ONCE_FILE && RAN_ONCE_FILE="exists"
-    if [ "$RAN_ONCE_FILE" = "exists" ]
-    then
-        echo "Skipping first run steps."
-    else
-        #source $SCRIPTS_FOLDER/packages.sh; "install_prereq"
-        $SCRIPTS_FOLDER/modules/core/prereq.sh
-        touch $SCRIPTS_FOLDER/.ranonce.txt
-        zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
-    fi
-}
-
 make_temp(){
     test -d $SCRIPTS_FOLDER/temp && TEMP_FOLDER=exists
     if [ "$TEMP_FOLDER" = "exists" ];
@@ -48,6 +32,7 @@ export APP_FOLDER="$HOME/Apps"      # app folder thats made for some downloads
 export PKGMGR=""                    # stores package manager name such as dnf/rpm-ostree etc
 export COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
 export VERSION="7.21.2024"
+export PACKAGE_TYPE="flatpak"
 #OS_NAME=$(source /etc/os-release ; echo $NAME)
 #VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 TEMP_FOLDER="missing"
