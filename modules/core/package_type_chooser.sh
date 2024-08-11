@@ -6,7 +6,7 @@
 # in setup.sh and launch $SCRIPTS_FOLDER/modules/folder_name/script_name.sh
 
 package_type_chooser(){
-    eco "Please input the package type you'd like to use."
+    echo "Please input the package type you'd like to use."
     echo "--------------------------------"
     echo "[1] Flatpak [2] Native [3] Help"
     echo "---------------------------------"
