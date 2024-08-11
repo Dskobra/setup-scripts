@@ -733,7 +733,7 @@ gaming_other_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub info.cemu.Cemu
+            $SCRIPTS_FOLDER/modules/flatpak/gaming/cemu.sh
             ;;
 
         5)
