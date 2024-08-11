@@ -12,7 +12,6 @@ main_menu(){
     echo "Version: $VERSION"
     echo "Package Type: $PACKAGE_TYPE"
     echo "$COPYRIGHT"
-    echo ""
     echo "Released under the MIT license"
     echo ""
     echo ""
