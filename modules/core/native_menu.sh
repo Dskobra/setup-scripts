@@ -990,15 +990,15 @@ ides_menu(){
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/native/development/eclipse.sh
+            $SCRIPTS_FOLDER/modules/other/development/eclipse.sh
             ;;
 
         6)
-            $SCRIPTS_FOLDER/modules/native/development/idea.sh
+            $SCRIPTS_FOLDER/modules/other/development/idea.sh
             ;;
         
         7)
-            $SCRIPTS_FOLDER/modules/native/development/netbeans.sh
+            $SCRIPTS_FOLDER/modules/other/development/netbeans.sh
             ;;
 
         8)
@@ -1055,8 +1055,8 @@ dev_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Lamp Stack            (2) Github Desktop"
-    echo "(3) Containers"
+    echo "(1) Github Desktop         (2)  Containers"
+    echo "(3) Lamp Stack"
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1065,15 +1065,16 @@ dev_other_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/native/development/lamp.sh
-            ;;
-
-        2)
             $SCRIPTS_FOLDER/modules/native/development/github_desktop.sh
             ;;
 
-        3)
+        2)
             $SCRIPTS_FOLDER/modules/native/development/containers.sh
+            $SCRIPTS_FOLDER/modules/flatpak/development/podman_desktop.sh
+            ;;
+
+        3)
+            $SCRIPTS_FOLDER/modules/native/development/lamp.sh
             ;;
 
         p)
