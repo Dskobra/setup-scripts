@@ -416,9 +416,9 @@ multimedia_menu(){
     echo "Various multimedia apps, codecs etc."
     echo ""
     echo ""   
-    echo "(1) Audio/Video Codecs    (2) VLC Media Player"
-    echo "(3) OBS Studio            (4) OpenShot"
-    echo "(5) xfburn"
+    echo "(1) VLC Media Player       (2) OBS Studio"   
+    echo "(3) OpenShot               (4) xfburn"
+    echo "(5)Audio/Video Codecs"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -426,24 +426,23 @@ multimedia_menu(){
     case $input in
 
         1)
-
-            $SCRIPTS_FOLDER/modules/native/multimedia/codecs.sh
-            ;;
-
-        2)
             $SCRIPTS_FOLDER/modules/native/multimedia/vlc.sh
             ;;
 
-        3)
+        2)
             $SCRIPTS_FOLDER/modules/native/multimedia/obs.sh
+            ;;
+
+        3)
+            $SCRIPTS_FOLDER/modules/native/multimedia/openshot.sh
             ;;
         
         4)
-            $SCRIPTS_FOLDER/modules/native/multimedia/openshot.sh
+            $SCRIPTS_FOLDER/modules/native/multimedia/xfburn.sh
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/native/multimedia/xfburn.sh
+            $SCRIPTS_FOLDER/modules/native/multimedia/codecs.sh
             ;;
         
         m)
@@ -600,15 +599,15 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            $SCRIPTS_FOLDER/modules/native/gaming/wowup.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/wowup.sh
             ;;
 
         2) 
-            $SCRIPTS_FOLDER/modules/native/gaming/warcraft_logs.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/warcraft_logs.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/native/gaming/weakauras_companion.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/weakauras_companion.sh
             ;;
 
         p)
@@ -664,7 +663,7 @@ gaming_tools_menu(){
             ;;
 
         2)
-            flatpak install --user -y com.github.Matoking.protontricks
+            $SCRIPTS_FOLDER/modules/core/flatpak/gaming/protontricks.sh
             ;;
 
         3)
@@ -724,7 +723,7 @@ gaming_other_menu(){
             ;;
 
         2)
-            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
+            $SCRIPTS_FOLDER/modules/flatpak/prism_launcher.sh
             ;;
 
         3)
@@ -736,7 +735,7 @@ gaming_other_menu(){
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/native/gaming/game_profiles.sh
+            $SCRIPTS_FOLDER/modules/other/gaming/game_profiles.sh
             ;;
 
         m)
