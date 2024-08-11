@@ -306,7 +306,7 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/desktops/gnome/gnome_apps.sh
+            $SCRIPTS_FOLDER/modules/flatpak/desktops/gnome/gnome_apps.sh
             ;;
         
         2)
