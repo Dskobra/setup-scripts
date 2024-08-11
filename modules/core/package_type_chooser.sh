@@ -23,7 +23,7 @@ package_type_chooser(){
         $SCRIPTS_FOLDER/modules/core/native_menu.sh
     elif [ "$input" = 3 ]
     then
-        $SCRIPTS_FOLDER/core/packages_help_page.sh
+        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi

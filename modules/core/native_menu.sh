@@ -6,7 +6,9 @@
 
 main_menu(){
     $SCRIPTS_FOLDER/modules/core/menu_header.sh
-
+    printf "Option: "
+    read -r input
+    
     case $input in
 
 
