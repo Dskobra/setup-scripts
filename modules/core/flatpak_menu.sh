@@ -1095,23 +1095,23 @@ utils_menu(){
     case $input in
 
         1)
-            $SCRIPTS_FOLDER/modules/utilities/fedora_media_writer.sh
+            $SCRIPTS_FOLDER/modules/flatpak/utilities/fedora_media_writer.sh
             ;;
 
         2)
-            $SCRIPTS_FOLDER/modules/utilities/rpi_imager.sh
+            $SCRIPTS_FOLDER/modules/flatpak/utilities/rpi_imager.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/utilities/gtkhash.sh
+            $SCRIPTS_FOLDER/modules/flatpak/utilities/gtkhash.sh
             ;;
 
         4)
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            $SCRIPTS_FOLDER/modules/flatpak/utilities/mission_center.sh
             ;;
         
         5)
-            $SCRIPTS_FOLDER/modules/utilities/virtualization.sh
+            $SCRIPTS_FOLDER/modules/native/utilities/virtualization.sh
             ;;
 
         m)
@@ -1155,28 +1155,18 @@ miscellaneous_menu(){
     case $input in
 
         1)
-            install_prereq
+            echo "Currently disabled"
+            #install_prereq
             ;;
 
         2)
-            sudo modprobe xpad
+            $SCRIPTS_FOLDER/modules/other/misc/xbox.sh
             ;;
 
         3)
-            $SCRIPTS_FOLDER/modules/misc/check_for_libvirt_group.sh
+            $SCRIPTS_FOLDER/modules/other/misc/check_for_libvirt_group.sh
             ;;
-
-        4)
-            $SCRIPTS_FOLDER/modules/misc/spinfinity_theme.sh
-            ;;
-
-        5)
-            $SCRIPTS_FOLDER/modules/cleanup/remove_codecs.sh
-            ;;
-
-        6)
-            $SCRIPTS_FOLDER/modules/cleanup/remove_amd_codecs.sh
-            ;;
+            
 
         m)
             main_menu
