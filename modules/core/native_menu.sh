@@ -205,8 +205,8 @@ kde_desktop_menu(){
     echo ""   
     echo "(1) Core Apps          (2) Plasma X11"
     echo "(3) KDE Patience       (4) KDE ISO Image Writer"
-    echo "(5) K3b                (6) Kolourpaint"
-    echo "(7) Kleopatra          (8) Kate"
+    echo "(5) Kolourpaint        (6) Kleopatra"
+    echo "(7) Kate               (8) K3b"
     echo "(h) Help               (p) Previous Menu"
     echo "(m) Main Menu          (0) Exit"
     printf "Option: "
@@ -229,21 +229,21 @@ kde_desktop_menu(){
         4)
             $SCRIPTS_FOLDER/modules/native/desktops/kde/kde_iso_image_writer.sh
             ;;
-        
-        5)
-            $SCRIPTS_FOLDER/modules/native/desktops/kde/k3b.sh
-            ;;
 
-        6)
+        5)
             $SCRIPTS_FOLDER/modules/native/desktops/kde/kolourpaint.sh
             ;;
 
-        7)
+        6)
             $SCRIPTS_FOLDER/modules/native/desktops/kde/kleopatra.sh
             ;;
 
-        8)
+        7)
             $SCRIPTS_FOLDER/modules/native/desktops/kde/kate.sh
+            ;;
+
+        8)
+            $SCRIPTS_FOLDER/modules/native/desktops/kde/k3b.sh
             ;;
 
         h)
@@ -418,7 +418,7 @@ multimedia_menu(){
     echo ""   
     echo "(1) VLC Media Player       (2) OBS Studio"   
     echo "(3) OpenShot               (4) xfburn"
-    echo "(5)Audio/Video Codecs"
+    echo "(5) Audio/Video Codecs"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -1137,7 +1137,7 @@ utils_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            $SCRIPTS_FOLDER/modules/flatpak/utilities/mission_center.sh
             ;;
         
         5)

@@ -7,7 +7,6 @@ packages_kde(){
         kleopatra okular
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        remove_kinoite_flatpaks
         sudo rpm-ostree install ark kate krdc kcalc kamoso gwenview\
         kleopatra okular
         sudo rpm-ostree apply-live
@@ -21,4 +20,9 @@ packages_kde(){
     fi
 }
 
+flatpak remove --user -y  org.kde.kcalc
+flatpak remove --user -y  org.kde.gwenview
+flatpak remove --user -y  org.kde.kamoso
+flatpak remove --user -y  org.kde.kleopatra
+flatpak remove --user -y  org.kde.krdc
 packages_kde

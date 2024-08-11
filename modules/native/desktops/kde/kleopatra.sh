@@ -17,4 +17,5 @@ package_kleopatra(){
     fi
 }
 
+flatpak remove --user -y  org.kde.kleopatra
 package_kleopatra
