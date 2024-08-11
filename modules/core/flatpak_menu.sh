@@ -1131,8 +1131,7 @@ miscellaneous_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Reinstall prerequisites    (2)Setup xbox controller"
-    echo "(3) Add user to libvirt group"
+    echo "(1)Setup xbox controller       (2) Add user to libvirt group"
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1141,15 +1140,10 @@ miscellaneous_menu(){
     case $input in
 
         1)
-            echo "Currently disabled"
-            #install_prereq
-            ;;
-
-        2)
             $SCRIPTS_FOLDER/modules/other/misc/xbox.sh
             ;;
 
-        3)
+        2)
             $SCRIPTS_FOLDER/modules/other/misc/check_for_libvirt_group.sh
             ;;
             
