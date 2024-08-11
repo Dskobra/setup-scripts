@@ -26,7 +26,7 @@ install_qownnotes(){
 package_qownnotes(){
     if [ $PKGMGR == "dnf" ]
     then
-        sudo dnf install -y qownnotes
+        flatpak remove --user -y org.qownnotes.QOwnNotes
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo rpm-ostree install qownnotes
@@ -35,10 +35,10 @@ package_qownnotes(){
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="QOwnNotes isn't currently available in Debian. This will install the flatpak version."
-        flatpak install --user -y flathub org.qownnotes.QOwnNotes
+        $SCRIPTS_FOLDER/modules/flatpak/office/qownnotes.sh
     else
         echo "Unkown error has occurred."
     fi
 }
 
-install_qownnotes
+package_qownnotes

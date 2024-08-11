@@ -12,7 +12,7 @@ package_fmedia_writer(){
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="Fedora Mediawriter isn't available in Debian so using flatpak version instead."
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
+        $SCRIPTS_FOLDER/modules/flatpak/utilities/fedora_media_writer.sh
     else
         echo "Unkown error has occurred."
     fi

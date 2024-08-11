@@ -3,13 +3,11 @@
 install_virtualization(){
     if [ $PKGMGR == "dnf" ]
     then
-
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
         -O /etc/yum.repos.d/virtio-win.repo
         sudo dnf update -y
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer virtio-win
-        $SCRIPTS_FOLDER/modules/misc/check_for_libvirt_group.sh
     elif [ $PKGMGR == "rpm-ostree" ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
@@ -18,7 +16,6 @@ install_virtualization(){
         sudo rpm-ostree install libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer virtio-win
         sudo rpm-ostree apply-live
-        $SCRIPTS_FOLDER/modules/misc/check_for_libvirt_group.sh
         #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
@@ -31,3 +28,4 @@ install_virtualization(){
 }
 
 install_virtualization
+$SCRIPTS_FOLDER/modules/other/misc/check_for_libvirt_group.sh

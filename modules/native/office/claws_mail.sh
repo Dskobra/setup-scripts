@@ -41,4 +41,5 @@ package_claws_mail(){
     fi
 }
 
-install_claws_mail
+flatpak remove --user -y org.claws_mail.Claws-Mail
+package_claws_mail
