@@ -1201,11 +1201,11 @@ miscellaneous_menu(){
             ;;
 
         4)
-            $SCRIPTS_FOLDER/modules/native/cleanup/remove_amd_codecs.sh
+            $SCRIPTS_FOLDER/modules/other/misc/remove_amd_codecs.sh
             ;;
 
         5)
-            $SCRIPTS_FOLDER/modules/native/cleanup/remove_codecs.sh
+            $SCRIPTS_FOLDER/modules/other/misc/remove_codecs.sh
             ;;
 
         m)
