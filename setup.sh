@@ -33,14 +33,8 @@ export PKGMGR=""                    # stores package manager name such as dnf/rp
 export COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
 export VERSION="7.21.2024"
 export PACKAGE_TYPE="flatpak"
-#OS_NAME=$(source /etc/os-release ; echo $NAME)
-#VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
-#RAN_ONCE_FILE="missing"
-#REPO_FOLDER="missing"               # .git folder with repository metadata
-#DISTRO=""                           # stores the ID (os-release info) of the os such as fedora or debian
-#VARIANT=""                          # only used for storing 'ostree' if fedora version is atomic
 make_temp
 make_app_folder
 $SCRIPTS_FOLDER/modules/core/distro_check.sh
