@@ -1006,7 +1006,7 @@ ides_menu(){
             ;;
 
         9)
-            $SCRIPTS_FOLDER/modules/native/development/pycharm.sh
+            $SCRIPTS_FOLDER/modules/other/development/pycharm.sh
             ;;
 
         10)
