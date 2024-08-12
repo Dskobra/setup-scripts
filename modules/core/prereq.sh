@@ -31,4 +31,20 @@ install_prereq(){
     flatpak install --user -y flathub com.github.tchx84.Flatseal
 }
 
-install_prereq
+run_prereq_check(){
+    ### make sure git, curl, wget, zenity
+    ### and flatpak are installed.
+    RAN_ONCE_FILE=$SCRIPTS_FOLDER/.ranonce.txt
+    test -f $RAN_ONCE_FILE && RAN_ONCE_FILE="exists"
+    if [ "$RAN_ONCE_FILE" = "exists" ]
+    then
+        echo "Skipping first run steps."
+    else
+        install_prereq
+        touch $SCRIPTS_FOLDER/.ranonce.txt
+        zenity --info --text="Required packages now installed and enabled 3rd party repositories. May now proceed to text menu."
+    fi
+}
+RAN_ONCE_FILE="missing"
+run_prereq_check
+#install_prereq
