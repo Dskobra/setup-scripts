@@ -12,7 +12,7 @@ install_kde_iso_image_writer(){
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="KDE ISO Image Writer isn't available in Debian so using flatpak version instead."
-        $SCRIPTS_FOLDER/modules/flatpak/desktop/kde/kde_iso_image_writer.sh
+        $SCRIPTS_FOLDER/modules/flatpak/desktops/kde/kde_iso_image_writer.sh
     else
         echo "Unkown error has occurred."
     fi
