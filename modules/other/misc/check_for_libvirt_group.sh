@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+## Adds user to libvirt group so they can skip the root password
+## when using virt-man
 check_for_libvirt_group(){
     if [ $(getent group libvirt) ]; then
         sudo usermod -aG libvirt $USER
