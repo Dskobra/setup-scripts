@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+# this downloads the weakauras companion
+# appimage for updating weakauras
+# macros in world of warcraft
+
 download_weakauras_companion(){
     cd $SCRIPTS_FOLDER/temp
     source $SCRIPTS_FOLDER/data/packages.conf

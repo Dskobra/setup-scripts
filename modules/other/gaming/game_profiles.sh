@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+# copies my personal mangohud profiles into ~/.config/MangoHud
+
 setup_game_profiles(){
     echo "-------Pick an option-------"
     echo "(1) Setup some mangohud profiles"

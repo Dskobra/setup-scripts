@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+# downloads the official jetbrains idea community edition
 install_idea(){
     cd $SCRIPTS_FOLDER/temp
     source $SCRIPTS_FOLDER/data/packages.conf

@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+# downloads the wowup appimage
+# for managing world of warcraft addons
 
 download_wowup(){
     cd $SCRIPTS_FOLDER/temp

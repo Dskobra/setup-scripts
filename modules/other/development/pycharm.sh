@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+# downloads the official jetbrains pycharm community edition
 
 install_pycharm(){
     cd $SCRIPTS_FOLDER/temp

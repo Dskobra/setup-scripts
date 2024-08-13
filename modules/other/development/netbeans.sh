@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+# downloads official netbeans build.
 install_netbeans(){
     cd $SCRIPTS_FOLDER/temp
     source $SCRIPTS_FOLDER/data/packages.conf
