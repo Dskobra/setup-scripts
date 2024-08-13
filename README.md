@@ -21,7 +21,9 @@ then create the file. Once the file is made future runs won't check for the prer
 
 structure
 -------------
-setup.sh        -       Main launch script. Always use this.
-
-modules folder  -       Contains all the install commands.
-data folder     -       Separate branch that is pulled when setup.sh is run and has download links for some packages and game profiles.
+setup.sh            -       Main launch script. Always use this.
+modules/core        -       Core scripts. Everything needed to run is here.
+modules/flatpak     -       Commands for installing packages through flatpak.
+modules/native      -       Commands for installing native deb/rpm built packages.
+modules/other       -       Scripts for downloading appimages, precompiled tarballs and few misc scripts.
+data/               -       Separate branch that is pulled when setup.sh is run. It has download links for some packages and game profiles.
