@@ -5,11 +5,6 @@ package_rpi_imager(){
     if [ $PKGMGR == "dnf" ]
     then
         sudo dnf install -y rpi-imager
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install rpi-imager
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         zenity --info --text="Raspberry Pi Imager isn't currently available in Debian. This will install the flatpak version."

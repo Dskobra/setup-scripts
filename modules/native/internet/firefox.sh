@@ -6,7 +6,6 @@ install_firefox(){
         sudo dnf install -y firefox
     elif [ $PKGMGR == "rpm-ostree" ]
     then
-        echo "This is experimental atm"
         sudo rm /usr/local/share/applications/org.mozilla.firefox.desktop
         sudo rm /usr/local/share/applications/firefox.desktop
         sudo update-desktop-database /usr/local/share/applications/

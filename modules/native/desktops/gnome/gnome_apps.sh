@@ -5,12 +5,6 @@ install_gnome_apps(){
     then
         sudo dnf install -y file-roller evince dconf-editor pavucontrol cheese\
         gnome-extensions-app
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install file-roller evince dconf-editor pavucontrol cheese\
-        gnome-extensions-app
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y file-roller evince dconf-editor pavucontrol cheese\

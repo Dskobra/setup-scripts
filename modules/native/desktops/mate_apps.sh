@@ -9,9 +9,6 @@ install_mate_apps(){
 
         sudo dnf install -y caja-beesu caja-share ccsm \
         compizconfig-python emerald emerald-themes simple-ccsm
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        echo "Immutable variants are unsupported"
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install -y mate-menu mate-sensors-applet mate-utils\

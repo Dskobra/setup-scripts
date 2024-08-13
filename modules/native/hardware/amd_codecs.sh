@@ -8,13 +8,6 @@ install_amd_codecs(){
 
         sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
         sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
-    elif [ $PKGMGR == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
-
-        sudo rpm-ostree install mesa-va-drivers-freeworld.i686 mesa-vdpau-drivers-freeworld.i686
-        #sudo rpm-ostree apply-live
-        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ $PKGMGR == "apt-get" ]
     then
         sudo apt-get install mesa-va-drivers
