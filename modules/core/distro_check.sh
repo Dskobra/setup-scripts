@@ -1,11 +1,10 @@
 #!/usr/bin/bash
 
 distro_check(){
-    DISTRO=$(source /etc/os-release ; echo $ID)
-    if [ $DISTRO == "fedora" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
-    elif [ $DISTRO == "debian" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         debian_release_check
     else
@@ -15,7 +14,7 @@ distro_check(){
 }
 
 fedora_release_check(){
-    if [ $VERSION_ID == "39" ] || [ $VERSION_ID == "40" ]
+    if [ "$VERSION_ID" == "39" ] || [ "$VERSION_ID" == "40" ]
     then
         fedora_variant_check
     else
@@ -31,28 +30,28 @@ fedora_variant_check(){
     # which is very different. Some commands need
     # to be run differently.
     test -f /run/ostree-booted && VARIANT=ostree
-    if [ ! -n "$VARIANT" ]
+    if [ -z "$VARIANT" ]
     then
         PKGMGR="dnf"
-        $SCRIPTS_FOLDER/modules/core/prereq.sh
-        $SCRIPTS_FOLDER/modules/core/get_data.sh
-        $SCRIPTS_FOLDER/modules/core/package_type_chooser.sh
-    elif [ $VARIANT == "ostree" ]
+        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+        "$SCRIPTS_FOLDER"/modules/core/get_data.sh
+        "$SCRIPTS_FOLDER"/modules/core/package_type_chooser.sh
+    elif [ "$VARIANT" == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        $SCRIPTS_FOLDER/modules/core/prereq.sh
-        $SCRIPTS_FOLDER/modules/core/get_data.sh
-        $SCRIPTS_FOLDER/modules/core/flatpak_menu.sh
+        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+        "$SCRIPTS_FOLDER"/modules/core/get_data.sh
+        "$SCRIPTS_FOLDER"/modules/core/flatpak_menu.sh
     fi
 }
 
 debian_release_check(){
-    if [ $VERSION_ID == "12" ]
+    if [ "$VERSION_ID" == "12" ]
     then
         PKGMGR="apt-get"
-        $SCRIPTS_FOLDER/modules/core/prereq.sh
-        $SCRIPTS_FOLDER/modules/core/get_data.sh
-        $SCRIPTS_FOLDER/modules/core/package_type_chooser.sh
+        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+        "$SCRIPTS_FOLDER"/modules/core/get_data.sh
+        "$SCRIPTS_FOLDER"/modules/core/package_type_chooser.sh
     else
         echo "These scripts only support Debian 12"
     fi
@@ -61,8 +60,8 @@ debian_release_check(){
 
 
 
-OS_NAME=$(source /etc/os-release ; echo $NAME)
-VERSION_ID=$(source /etc/os-release ; echo $VERSION_ID)
-DISTRO=""                           # stores the ID (os-release info) of the os such as fedora or debian
+OS_NAME=$(source /etc/os-release ; echo "$NAME")
+VERSION_ID=$(source /etc/os-release ; echo "$VERSION_ID")
+DISTRO=$(source /etc/os-release ; echo $ID)
 VARIANT=""      
 distro_check
