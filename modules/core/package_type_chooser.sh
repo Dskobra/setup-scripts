@@ -3,7 +3,7 @@
 # Basic templates for adding more packages. Simply add the first option
 # if you want to choose between flatpak or non flatpak or the 2nd one
 # if you only want the distro provided package. Added it to a menu
-# in setup.sh and launch $SCRIPTS_FOLDER/modules/folder_name/script_name.sh
+# in setup.sh and launch "$SCRIPTS_FOLDER"/modules/folder_name/script_name.sh
 
 package_type_chooser(){
     echo "Please input the package type you'd like to use."
@@ -16,17 +16,16 @@ package_type_chooser(){
     if [ "$input" = 1 ] || [ -z "$input" ]
     then
         PACKAGE_TYPE="flatpak"
-        $SCRIPTS_FOLDER/modules/core/flatpak_menu.sh
+        "$SCRIPTS_FOLDER"/modules/core/flatpak_menu.sh
     elif [ "$input" = 2 ] 
     then
         PACKAGE_TYPE="native"
-        $SCRIPTS_FOLDER/modules/core/native_menu.sh
+        "$SCRIPTS_FOLDER"/modules/core/native_menu.sh
     elif [ "$input" = 3 ]
     then
-        $SCRIPTS_FOLDER/modules/core/packages_help_page.sh
+        "$SCRIPTS_FOLDER"/modules/core/packages_help_page.sh
     else
         echo "Unkown error has occurred."
     fi
 }
-
 package_type_chooser

@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 get_updates(){
-    test -d $SCRIPTS_FOLDER/.git && REPO_FOLDER=exists
+    test -d "$SCRIPTS_FOLDER"/.git && REPO_FOLDER="exists"
     if [ "$REPO_FOLDER" = "exists" ];
         then
-            cd $SCRIPTS_FOLDER
+            cd "$SCRIPTS_FOLDER" || exit
             rm -r -f data
             git pull
             zenity --info --text="Please rerun setup.sh now."

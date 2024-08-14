@@ -124,11 +124,11 @@ hardware_drivers_menu(){
             ;;
         
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Hardware"
             ;;
 
         H)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Hardware
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Hardware"
             ;;
 
         m)
@@ -182,11 +182,11 @@ desktop_apps_menu(){
             ;;
 
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps"
             ;;
 
         H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps"
             ;;
 
         m)
@@ -264,11 +264,11 @@ kde_desktop_menu(){
             ;;
 
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#kde"
             ;;
 
         H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#kde"
             ;;
 
         p)
@@ -327,11 +327,11 @@ gnome_desktop_menu(){
             ;;
 
         h)
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome"
             ;;
 
         H)  
-            xdg-open https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome""
             ;;
 
         p)
