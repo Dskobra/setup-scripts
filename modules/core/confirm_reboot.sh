@@ -12,7 +12,7 @@ confirm_reboot(){
     echo "Type y/n or simply enter for no"
     echo "================================================"
     printf "Option: "
-    read input
+    read -r input
     
     if [ "$input" = "y" ] || [ "$input" = "Y" ]
     then
