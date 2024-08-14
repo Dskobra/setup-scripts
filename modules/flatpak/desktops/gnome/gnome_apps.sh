@@ -1,14 +1,14 @@
 #! /usr/bin/bash
 
 remove_core_gnome_apps(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf remove -y file-roller evince dconf-editor pavucontrol cheese\
         gnome-extensions-app
-    elif [ $PKGMGR == "rpm-ostree" ]
+    elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         remove_silverblue_flatpaks
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y file-roller evince dconf-editor pavucontrol cheese\
         gnome-shell-extension-prefs 

@@ -14,14 +14,14 @@ remove_kinoite_flatpaks(){
 }
 
 remove_core_kde_apps(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf remove -y ark kate krdc kcalc kamoso gwenview\
         kleopatra okular
-    elif [ $PKGMGR == "rpm-ostree" ]
+    elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         remove_kinoite_flatpaks
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y ark kate krdc kcalc kamoso\
         gwenview okular kleopatra
