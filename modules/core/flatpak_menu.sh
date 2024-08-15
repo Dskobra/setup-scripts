@@ -63,7 +63,7 @@ main_menu(){
             ;;
 
         10)
-            get_updates
+            "$SCRIPTS_FOLDER"/modules/core/get_updates.sh
             ;;
 
         0)
