@@ -1,11 +1,11 @@
 #! /usr/bin/bash
 
 install_gnome_apps(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y file-roller evince dconf-editor pavucontrol cheese\
         gnome-extensions-app
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y file-roller evince dconf-editor pavucontrol cheese\
         gnome-shell-extension-prefs 

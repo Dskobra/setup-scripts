@@ -12,7 +12,7 @@ download_warcraft_logs(){
         echo "Warcraft Logs already downloaded."
     elif ! test -f ~/Desktop/"$WOWLOGSBINARY"; then
         cd ~/Desktop/ || exit
-        curl -L -o "$WOWLOGSBINARY" $WOWLOGSLINK
+        curl -L -o "$WOWLOGSBINARY" "$WOWLOGSLINK"
         chmod +x "$WOWLOGSBINARY"
     fi
 }

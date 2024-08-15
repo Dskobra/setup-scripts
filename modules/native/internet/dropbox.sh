@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 install_dropbox(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y dropbox
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         install_dropbox_debian
     else

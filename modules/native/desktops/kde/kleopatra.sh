@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 install_kleopatra(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y kleopatra
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y kleopatra
     else

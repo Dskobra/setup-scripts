@@ -1,16 +1,16 @@
 #!/usr/bin/bash
 
 install_firefox(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y firefox
-    elif [ $PKGMGR == "rpm-ostree" ]
+    elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         sudo rm /usr/local/share/applications/org.mozilla.firefox.desktop
         sudo rm /usr/local/share/applications/firefox.desktop
         sudo update-desktop-database /usr/local/share/applications/
-        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
-    elif [ $PKGMGR == "apt-get" ]
+        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y firefox-esr
         sudo install -d -m 0755 /etc/apt/keyrings

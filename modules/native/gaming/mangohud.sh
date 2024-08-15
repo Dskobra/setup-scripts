@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 install_mangohud(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y mangohud
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y mangohud
     else

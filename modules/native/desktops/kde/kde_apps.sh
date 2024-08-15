@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
 install_kde_apps(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMG"R == "dnf" ]
     then
         sudo dnf install -y ark kate krdc kcalc kamoso gwenview\
         kleopatra okular
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMG"R == "apt-get" ]
     then
         sudo apt-get install -y ark kate krdc kcalc kamoso\
         gwenview okular kleopatra

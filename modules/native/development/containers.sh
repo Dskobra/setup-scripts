@@ -1,15 +1,15 @@
 #!/usr/bin/bash
 
 install_containers(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y toolbox distrobox
-    elif [ $PKGMGR == "rpm-ostree" ]
+    elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         sudo rpm-ostree install distrobox
         #sudo rpm-ostree apply-live
         $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y distrobox podman-toolbox
     else

@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 install_kolourpaint(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y kolourpaint
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y kolourpaint
     else

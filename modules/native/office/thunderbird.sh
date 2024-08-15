@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 install_thunderbird(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y thunderbird
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y thunderbird
     else

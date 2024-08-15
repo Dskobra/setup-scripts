@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 install_mate_apps(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y mate-menu mate-sensors-applet mate-utils\
         multimedia-menus compiz-manager fusion-icon simple-ccsm\
@@ -9,7 +9,7 @@ install_mate_apps(){
 
         sudo dnf install -y caja-beesu caja-share ccsm \
         compizconfig-python emerald emerald-themes simple-ccsm
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y mate-menu mate-sensors-applet mate-utils\
         fusion-icon simple-ccsm compiz-plugins-experimental compiz-bcop\

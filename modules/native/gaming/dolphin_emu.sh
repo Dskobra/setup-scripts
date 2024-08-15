@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 install_dolphin_emu(){
-    if [ $PKGMGR == "dnf" ]
+    if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y dolphin-emu
-    elif [ $PKGMGR == "apt-get" ]
+    elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y dolphin-emu
     else
