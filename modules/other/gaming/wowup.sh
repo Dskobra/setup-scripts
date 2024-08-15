@@ -10,7 +10,7 @@ download_wowup(){
         echo "WoWUp already downloaded."
     elif ! test -f ~/Desktop/"$WOWUPBINARY"; then
         cd ~/Desktop/ || exit
-        curl -L -o "$WOWUPBINARY" "$WOWUPLINK "
+        curl -L -o "$WOWUPBINARY" "$WOWUPLINK"
         chmod +x "$WOWUPBINARY"
     fi
 }
