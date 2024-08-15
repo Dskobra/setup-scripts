@@ -331,7 +331,7 @@ gnome_desktop_menu(){
             ;;
 
         H)  
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome""
+            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome"
             ;;
 
         p)
