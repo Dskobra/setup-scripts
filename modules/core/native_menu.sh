@@ -64,6 +64,7 @@ main_menu(){
 
         10)
             "$SCRIPTS_FOLDER"/modules/core/get_updates.sh
+            exit
             ;;
 
         0)

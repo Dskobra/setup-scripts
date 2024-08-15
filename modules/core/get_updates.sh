@@ -8,7 +8,6 @@ get_updates(){
             rm -r -f data
             git pull
             zenity --info --text="Please rerun setup.sh now."
-            exit
     elif [ "$REPO_FOLDER" = "missing" ];
         then
             zenity --info --text="No valid .git folder found. Please redownload them."
