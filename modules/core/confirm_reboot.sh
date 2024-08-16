@@ -21,7 +21,7 @@ confirm_reboot(){
     then
         echo "Chose not to reboot."
     else
-	    main_menu
+        echo "Invalid option or eror has occured."
     fi
 }
 
