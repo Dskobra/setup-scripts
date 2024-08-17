@@ -12,5 +12,5 @@ install_dolphin_emu(){
     fi
 }
 
-flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+flatpak remove --user -y org.DolphinEmu.dolphin-emu
 install_dolphin_emu
