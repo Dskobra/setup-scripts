@@ -16,14 +16,14 @@ remove_kinoite_flatpaks(){
 remove_core_kde_apps(){
     if [ "$PKGMGR" == "dnf" ]
     then
-        sudo dnf remove -y ark kate krdc kcalc kamoso gwenview\
+        sudo dnf remove -y krdc kcalc kamoso gwenview\
         kleopatra okular
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         remove_kinoite_flatpaks
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        sudo apt-get remove -y ark kate krdc kcalc kamoso\
+        sudo apt-get remove -y krdc kcalc kamoso\
         gwenview okular kleopatra
         #zenity --info --text="[app name] isn't currently available in Debian. This will install the flatpak version."
     else
