@@ -218,7 +218,7 @@ kde_desktop_menu(){
     echo "(5) Kolourpaint[f]        (6) Kleopatra[f]"
     echo "(7) Kate[n]"
     echo "(h) Help                  (p) Previous Menu"
-    echo "(m) Main Menu          (0) Exit"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
@@ -301,7 +301,7 @@ gnome_desktop_menu(){
     echo ""   
     echo "(1) Core Apps[f]           (2) Gnome Tweaks[n]"
     echo "(h) Help                   (p) Previous Menu"
-    echo "(m) Main Menu          (0) Exit"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
@@ -422,7 +422,7 @@ multimedia_menu(){
     echo "Various multimedia apps, codecs etc."
     echo ""
     echo ""   
-    echo "(1) VLC Media Player[f]      (2) OBS Studio[f]"
+    echo "(1) VLC Media Player[f]       (2) OBS Studio[f]"
     echo "(3) OpenShot[f]"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
@@ -709,7 +709,7 @@ gaming_other_menu(){
     echo "(1) Discord[f]                   (2) Prism Launcher[f]"
     echo "(3) Dolphin[f]                   (4) Cemu[f]"
     echo "(5) Basic Game profiles[o]"
-    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(p) Previous Menu                (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -778,7 +778,7 @@ office_menu(){
     echo "(3) Marknote[f]           (4) Claws-Mail[f]"
     echo "(5) Thunderbird[f]        (6) Bitwarden[f]"
     echo "(7) KeePassXC[f]"
-    echo "(m) Main Menu          (0) Exit"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
@@ -948,7 +948,7 @@ ides_menu(){
     echo "(5) Eclipse[f]                        (6) Intellij IDEA[f]"
     echo "(7) Netbeans[f]                       (8) Bluefish[f]"
     echo "(9) Pycharm[f]"
-    echo "(p) Previous Menu                  (m) Main Menu"
+    echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
