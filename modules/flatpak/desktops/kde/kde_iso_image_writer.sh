@@ -6,9 +6,7 @@ remove_kde_iso_image_writer(){
         sudo dnf remove -y isoimagewriter
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
-        sudo rpm-ostree uninstall isoimagewriter
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "Not removing isoimagewriter as it's not present in Debian repos."

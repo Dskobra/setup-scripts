@@ -1110,7 +1110,7 @@ utils_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/flatpak/utilities/mission_center.sh
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
         
         5)

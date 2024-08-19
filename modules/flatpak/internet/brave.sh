@@ -7,7 +7,9 @@ remove_brave_browser(){
         sudo rm "/etc/yum.repos.d/brave-browser.repo"
         sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
         sudo dnf update -y
-        
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y brave-browser

@@ -4,6 +4,9 @@ remove_lutris(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf remove -y lutris
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y lutris

@@ -6,9 +6,7 @@ remove_kleopatra(){
         sudo dnf remove -y kleopatra
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
-        sudo rpm-ostree uninstall kleopatra
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y kleopatra

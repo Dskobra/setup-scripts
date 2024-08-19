@@ -6,9 +6,7 @@ remove_steam(){
         sudo dnf remove -y steam
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
-        sudo rpm-ostree uninstall steam
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y steam

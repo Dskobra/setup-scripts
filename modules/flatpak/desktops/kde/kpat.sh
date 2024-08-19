@@ -6,9 +6,7 @@ remove_kpat(){
         sudo dnf remove -y kpat
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
-        sudo rpm-ostree uninstall kpat
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y kpat

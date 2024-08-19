@@ -4,6 +4,9 @@ remove_dropbox(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf remove -y dropbox
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y caja-dropbox nautilus-dropbox
