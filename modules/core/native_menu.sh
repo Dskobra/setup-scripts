@@ -437,7 +437,7 @@ multimedia_menu(){
     echo "(1) VLC Media Player       (2) OBS Studio"   
     echo "(3) OpenShot               (4) xfburn"
     echo "(5) Audio/Video Codecs"
-    echo "(m) Main Menu             (0) Exit"
+    echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
     
