@@ -977,11 +977,11 @@ ides_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/idea.sh
+            flatpak install --user -y flathub com.jetbrains.IntelliJ-IDEA-Community
             ;;
         
         7)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/netbeans.sh
+            flatpak install --user -y flathub org.apache.netbeans
             ;;
 
         8)
@@ -989,7 +989,7 @@ ides_menu(){
             ;;
 
         9)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/pycharm.sh
+            flatpak install --user -y flathub com.jetbrains.PyCharm-Community
             ;;
 
         p)
@@ -1043,7 +1043,7 @@ dev_other_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/podman_desktop.sh
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
             ;;
 
