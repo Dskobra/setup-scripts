@@ -677,11 +677,12 @@ gaming_tools_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/gaming/mangohud.sh
+            mkdir "$HOME"/.config/MangoHud
+            flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/protontricks.sh
+            flatpak install --user -y com.github.Matoking.protontricks
             ;;
 
         3)
@@ -741,7 +742,7 @@ gaming_other_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/prism_launcher.sh
+            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
         3)
@@ -749,7 +750,7 @@ gaming_other_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/cemu.sh
+            flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
         5)
