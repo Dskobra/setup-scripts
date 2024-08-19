@@ -5,12 +5,6 @@ remove_proton_plus(){
     then
         sudo dnf remove -y protonplus
         sudo rm /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:wehagy:protonplus.repo
-    elif [ "$PKGMGR" == "rpm-ostree" ]
-    then
-        sudo rpm-ostree uninstall protonplus
-        sudo rm /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:wehagy:protonplus.repo
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "Not removing protonplus as it's not present in Debian repos."

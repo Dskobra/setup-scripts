@@ -4,11 +4,6 @@ remove_dolphin_emu(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf remove -y dolphin-emu
-    elif [ "$PKGMGR" == "rpm-ostree" ]
-    then
-        sudo rpm-ostree uninstall dolphin-emu
-        sudo rpm-ostree apply-live
-        #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y dolphin-emu
