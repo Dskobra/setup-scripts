@@ -17,4 +17,5 @@ install_containers(){
     fi
 }
 
+flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
 install_containers

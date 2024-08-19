@@ -1043,7 +1043,6 @@ dev_other_menu(){
             ;;
 
         2)
-            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
             ;;
 

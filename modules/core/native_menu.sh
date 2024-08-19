@@ -1087,7 +1087,6 @@ dev_other_menu(){
 
         2)
             "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/podman_desktop.sh
             ;;
 
         3)
