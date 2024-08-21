@@ -3,14 +3,14 @@
 remove_core_gnome_apps(){
     if [ "$PKGMGR" == "dnf" ]
     then
-        sudo dnf remove -y file-roller evince dconf-editor pavucontrol cheese\
+        sudo dnf remove -y evince dconf-editor pavucontrol cheese\
         gnome-extensions-app
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         remove_silverblue_flatpaks
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        sudo apt-get remove -y file-roller evince dconf-editor pavucontrol cheese\
+        sudo apt-get remove -y evince dconf-editor pavucontrol cheese\
         gnome-shell-extension-prefs 
     else
         echo "Unkown error has occurred."
