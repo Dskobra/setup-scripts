@@ -299,8 +299,9 @@ gnome_desktop_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Core Apps[f]           (2) Gnome Tweaks[n]"
-    echo "(h) Help                   (p) Previous Menu"
+    echo "(1) Dconf Editor[f]        (2) Pavucontrol[f]"
+    echo "[3] Gnome Tweaks[n]"
+    echo "(h) Help                  (p) Previous Menu"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -308,10 +309,14 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/gnome/gnome_apps.sh
+            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/gnome/dconf_editor.sh
             ;;
         
         2)
+            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/gnome/pavucontrol.sh
+            ;;
+
+        3)
             "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/gnome_tweaks.sh
             ;;
 
