@@ -213,10 +213,9 @@ kde_desktop_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Core Apps[f]          (2) Plasma X11[n]"
-    echo "(3) KDE Patience          (4) KDE ISO Image Writer"
-    echo "(5) Kolourpaint[f]        (6) Kleopatra[f]"
-    echo "(7) Kate[n]"
+    echo "(1) KDE Patience[f        (2) Kolourpaint[f] "
+    echo "(3) Kleopatra[f]          (4) KDE ISO Image Writer[f]"
+    echo "(5) Kate[n]               (6) Plasma X11[n]"
     echo "(h) Help                  (p) Previous Menu"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
@@ -225,15 +224,15 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kde_apps.sh
+            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kpat.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/plasma_x11.sh
+            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kleopatra.sh
             ;;
 
         4)
@@ -241,15 +240,11 @@ kde_desktop_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kate.sh
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kleopatra.sh
-            ;;
-
-        7)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/plasma_x11.sh
             ;;
 
         h)
