@@ -217,23 +217,20 @@ kde_desktop_menu(){
     echo "-----------"
     echo "|   KDE   |"
     echo "-----------"
-    echo ""
-    echo ""
-    echo ""
     echo ""   
-    echo "(1) Core Apps          (2) Plasma X11"
-    echo "(3) KDE Patience       (4) KDE ISO Image Writer"
-    echo "(5) Kolourpaint        (6) Kleopatra"
-    echo "(7) Kate               (8) K3b"
-    echo "(h) Help               (p) Previous Menu"
-    echo "(m) Main Menu          (0) Exit"
+    echo "(1) KDE Patience[f        (2) Kolourpaint[f] "
+    echo "(3) Kleopatra[f]          (4) KDE ISO Image Writer[f]"
+    echo "(5) Kate[n]               (6) Plasma X11[n]"
+    echo "(7) Kate                  (8) K3b"
+    echo "(h) Help                  (p) Previous Menu"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kde_apps.sh
+            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kpat.sh
             ;;
         
         2)
