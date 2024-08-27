@@ -163,8 +163,8 @@ desktop_apps_menu(){
     echo ""
     echo ""   
     echo "(1) KDE                (2) GNOME"
-    echo "(3) Mate               (h) Help"     
-    echo "(m) Main Menu          (0) Exit"
+    echo "(3) Mate               (m) Main Menu"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -180,14 +180,6 @@ desktop_apps_menu(){
 
         3)
             "$SCRIPTS_FOLDER"/modules/native/desktops/mate_apps.sh
-            ;;
-
-        h)
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps"
-            ;;
-
-        H)  
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps"
             ;;
 
         m)
@@ -222,8 +214,8 @@ kde_desktop_menu(){
     echo "(3) Kleopatra[f]          (4) KDE ISO Image Writer[f]"
     echo "(5) Kate[n]               (6) Plasma X11[n]"
     echo "(7) Kate                  (8) K3b"
-    echo "(h) Help                  (p) Previous Menu"
-    echo "(m) Main Menu             (0) Exit"
+    echo "(p) Previous Menu         (m) Main Menu "
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -259,14 +251,6 @@ kde_desktop_menu(){
 
         8)
             "$SCRIPTS_FOLDER"/modules/native/desktops/kde/k3b.sh
-            ;;
-
-        h)
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#kde"
-            ;;
-
-        H)  
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#kde"
             ;;
 
         p)
@@ -305,12 +289,10 @@ gnome_desktop_menu(){
     echo "|   Gnome  |"
     echo "-----------"
     echo ""
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) Core Apps          (2) Gnome Tweaks"
-    echo "(h) Help               (p) Previous Menu"
-    echo "(m) Main Menu          (0) Exit"
+    echo "(1) Dconf Editor[n]        (2) Pavucontrol[n]"
+    echo "(3) Gnome Tweaks"
+    echo "(p) Previous Menu          (m) Main Menu "
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -319,17 +301,13 @@ gnome_desktop_menu(){
         1)
             "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/gnome_apps.sh
             ;;
-        
+
         2)
+            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/pavucontrol.sh
+            ;;
+        
+        3)
             "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/gnome_tweaks.sh
-            ;;
-
-        h)
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome"
-            ;;
-
-        H)  
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Desktop-Apps#gnome"
             ;;
 
         p)
