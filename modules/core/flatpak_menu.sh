@@ -209,9 +209,6 @@ kde_desktop_menu(){
     echo "-----------"
     echo "|   KDE   |"
     echo "-----------"
-    echo ""
-    echo ""
-    echo ""
     echo ""   
     echo "(1) KDE Patience[f        (2) Kolourpaint[f] "
     echo "(3) Kleopatra[f]          (4) KDE ISO Image Writer[f]"
@@ -291,9 +288,6 @@ gnome_desktop_menu(){
     echo "|   Gnome  |"
     echo "-----------"
     echo ""
-    echo ""
-    echo ""
-    echo ""   
     echo "(1) Dconf Editor[f]        (2) Pavucontrol[f]"
     echo "[3] Gnome Tweaks[n]"
     echo "(h) Help                  (p) Previous Menu"
@@ -585,7 +579,6 @@ gaming_wow_clients_menu(){
     echo "---------------- ------"
     echo ""
     echo "Addon managers and extra stuff for World of Warcraft"
-    echo ""
     echo ""   
     echo "(1) WoWUp[o]                 (2) Warcraft Logs[o]"
     echo "(3) Weak Auras Companion[o]"
@@ -645,7 +638,6 @@ gaming_tools_menu(){
     echo "--------------------"
     echo ""
     echo "Mangohud and proton tools"
-    echo ""
     echo ""   
     echo "(1) Mangohud[f]               (2) Protontricks[f]"
     echo "(3) Proton Plus[f]"
@@ -703,9 +695,6 @@ gaming_other_menu(){
     echo "-----------------"
     echo "|   Misc Stuff   |"
     echo "-----------------"
-    echo ""
-    echo ""
-    echo ""
     echo ""   
     echo "(1) Discord[f]                   (2) Prism Launcher[f]"
     echo "(3) Dolphin[f]                   (4) Cemu[f]"
@@ -772,9 +761,8 @@ office_menu(){
     echo "|   Office   |"
     echo "--------------"
     echo ""
-    echo "Office and note taking apps."
+    echo "General productivity apps."
     echo ""
-    echo ""   
     echo "(1) LibreOffice[f]        (2) QOwnNotes[f]"
     echo "(3) Marknote[f]           (4) Claws-Mail[f]"
     echo "(5) Thunderbird[f]        (6) Bitwarden[f]"
@@ -841,12 +829,8 @@ development_menu(){
     echo "|   Development   |"
     echo "-------------------"
     echo ""
-    echo "Mostly IDEs and compilers."
-    echo ""
-    echo ""   
-    echo ""
     echo "(1) SDKs              (2) IDEs"
-    echo "(3) Other"
+    echo "(3) Github Desktop[f] (4) Containers[n][f]"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -861,7 +845,11 @@ development_menu(){
             ;;
 
         3)
-            dev_other_menu
+            "$SCRIPTS_FOLDER"/modules/flatpak/development/github_desktop.sh
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
             ;;
 
         m)
@@ -891,8 +879,6 @@ sdks_menu(){
     echo "-----------"
     echo "|  SDKs   |"
     echo "-----------"
-    echo ""
-    echo ""   
     echo ""
     echo "(1) Nodejs LTS[o]"
     echo "(p) Previous Menu     (m) Main Menu"
@@ -941,8 +927,6 @@ ides_menu(){
     echo "------------"
     echo "|   IDEs   |"
     echo "------------"
-    echo ""
-    echo ""
     echo ""   
     echo "(1) VIM[n]                            (2) VSCodium[f]"
     echo "(3) Geany[f]                          (4) CodeBlocks[f]"
@@ -1021,60 +1005,6 @@ ides_menu(){
     esac
     unset input
     ides_menu
-}
-
-dev_other_menu(){
-    echo "-------------"
-    echo "|   Other   |"
-    echo "-------------"
-    echo ""
-    echo ""
-    echo ""   
-    echo "(1) Github Desktop[f]        (2) Containers[n][f]"
-    echo "(p) Previous Menu            (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/github_desktop.sh
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
-            ;;
-
-        p)
-            development_menu
-            ;;
-
-        P)
-            development_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-        
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        dev_other_menu
-        ;;
-        
-    esac
-    unset input
-    dev_other_menu
 }
 
 utils_menu(){
