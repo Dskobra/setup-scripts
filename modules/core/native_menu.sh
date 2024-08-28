@@ -161,7 +161,6 @@ desktop_apps_menu(){
     echo ""
     echo "Specific Desktop Enviroment apps."
     echo ""
-    echo ""   
     echo "(1) KDE                (2) GNOME"
     echo "(3) Mate               (m) Main Menu"
     echo "(0) Exit"
@@ -209,11 +208,11 @@ kde_desktop_menu(){
     echo "-----------"
     echo "|   KDE   |"
     echo "-----------"
-    echo ""   
-    echo "(1) KDE Patience[f        (2) Kolourpaint[f] "
+    echo ""
+    echo "(1) KDE Patience[f]       (2) Kolourpaint[f] "
     echo "(3) Kleopatra[f]          (4) KDE ISO Image Writer[f]"
     echo "(5) Kate[n]               (6) Plasma X11[n]"
-    echo "(7) Kate                  (8) K3b"
+    echo "(7) K3b"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -226,11 +225,11 @@ kde_desktop_menu(){
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/plasma_x11.sh
+            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kleopatra.sh
             ;;
 
         4)
@@ -238,18 +237,14 @@ kde_desktop_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kolourpaint.sh
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kleopatra.sh
-            ;;
-
-        7)
             "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kate.sh
             ;;
 
-        8)
+        6)
+            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/plasma_x11.sh
+            ;;
+
+        7)
             "$SCRIPTS_FOLDER"/modules/native/desktops/kde/k3b.sh
             ;;
 
@@ -290,7 +285,7 @@ gnome_desktop_menu(){
     echo "-----------"
     echo ""
     echo "(1) Dconf Editor[n]        (2) Pavucontrol[n]"
-    echo "(3) Gnome Tweaks"
+    echo "(3) Gnome Tweaks[n]"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -348,10 +343,9 @@ internet_menu(){
     echo ""
     echo "Web browsers, cloud storage and bitorrent client."
     echo ""
-    echo ""   
-    echo "(1) Firefox                (2) Brave Browser"
-    echo "(3) Dropbox                (4) Transmissionbt"
-    echo "(5) Remmina"
+    echo "(1) Firefox[n]             (2) Brave Browser[n]"
+    echo "(3) Dropbox[n]             (4) Transmissionbt[n]"
+    echo "(5) Remmina[n]"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -408,10 +402,9 @@ multimedia_menu(){
     echo ""
     echo "Various multimedia apps, codecs etc."
     echo ""
-    echo ""   
-    echo "(1) VLC Media Player       (2) OBS Studio"   
-    echo "(3) OpenShot               (4) xfburn"
-    echo "(5) Audio/Video Codecs"
+    echo "(1) VLC Media Player[n]    (2) OBS Studio[n]"
+    echo "(3) OpenShot[n]            (4) xfburn[n]"
+    echo "(5) Audio/Video Codecs[n]"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -521,9 +514,8 @@ gaming_clients_menu(){
     echo ""
     echo "Steam, lutris and bottles"
     echo ""
-    echo ""   
-    echo "(1) Steam                  (2) Lutris"
-    echo "(3) Bottles"
+    echo "(1) Steam[n]               (2) Lutris[n]"
+    echo "(3) Bottles[n]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -582,8 +574,8 @@ gaming_wow_clients_menu(){
     echo "Addon managers and extra stuff for World of Warcraft"
     echo ""
     echo ""   
-    echo "(1) WoWUp                 (2) Warcraft Logs"
-    echo "(3) Weak Auras Companion"
+    echo "(1) WoWUp[o]               (2) Warcraft Logs[o]"
+    echo "(3) Weak Auras Companion[o]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -642,8 +634,8 @@ gaming_tools_menu(){
     echo "Mangohud and proton tools"
     echo ""
     echo ""   
-    echo "(1) Mangohud               (2) Protontricks"
-    echo "(3) Proton Plus"
+    echo "(1) Mangohud[n]            (2) Protontricks[o]"
+    echo "(3) Proton Plus[n]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -702,9 +694,9 @@ gaming_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Discord                (2) Prism Launcher"
-    echo "(3) Dolphin                (4) Cemu"
-    echo "(5) Basic Game profiles"
+    echo "(1) Discord[n]             (2) Prism Launcher[o]"
+    echo "(3) Dolphin[n]             (4) Cemu[f]"
+    echo "(5) Basic Game profiles[o]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -770,11 +762,11 @@ office_menu(){
     echo "Office and note taking apps."
     echo ""
     echo ""   
-    echo "(1) LibreOffice        (2) QOwnNotes"          
-    echo "(3) Marknote           (4) Claws-Mail"
-    echo "(5) Thunderbird        (6) Bitwarden"
-    echo "(7) KeePassXC"         
-    echo "(m) Main Menu          (0) Exit"
+    echo "(1) LibreOffice[n]            (2) QOwnNotes[n]"
+    echo "(3) Marknote[n]               (4) Claws-Mail[n]"
+    echo "(5) Thunderbird[n]            (6) Bitwarden[f]"
+    echo "(7) KeePassXC[n]"
+    echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
     read -r input
     
@@ -838,8 +830,6 @@ development_menu(){
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
-    echo ""   
-    echo ""
     echo "(1) SDKs              (2) IDEs"
     echo "(3) Other"
     echo "(m) Main Menu         (0) Exit"
@@ -889,9 +879,9 @@ sdks_menu(){
     echo ""
     echo ""   
     echo ""
-    echo "(1) Nodejs LTS        (2) C/C++ Compiler "
-    echo "(3) openJDK 17/21     (4) Python Dev Packages"
-    echo "(p) Previous Menu     (m) Main Menu"
+    echo "(1) Nodejs LTS[o]         (2) C/C++ Compiler[n]"
+    echo "(3) openJDK 17/21[n]      (4) Python Dev Packages[n]"
+    echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -952,13 +942,13 @@ ides_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) VIM                            (2) VSCodium"
-    echo "(3) Geany                          (4) CodeBlocks"
-    echo "(5) Eclipse                        (6) Intellij IDEA"
-    echo "(7) Netbeans                       (8) Bluefish"
-    echo "(9) Pycharm                        (10) Eric IDE"
-    echo "(11) Scene Builder"
-    echo "(p) Previous Menu                  (m) Main Menu"
+    echo "(1) VIM[n]                            (2) VSCodium[n]"
+    echo "(3) Geany[n]                          (4) CodeBlocks[n]"
+    echo "(5) Eclipse[o]                        (6) Intellij IDEA[o]"
+    echo "(7) Netbeans[o]                       (8) Bluefish[n]"
+    echo "(9) Pycharm[o]                        (10) Eric IDE[n]"
+    echo "(11) Scene Builder[n]"
+    echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -1045,11 +1035,9 @@ dev_other_menu(){
     echo "|   Other   |"
     echo "-------------"
     echo ""
-    echo ""
-    echo ""   
-    echo "(1) Github Desktop        (2)  Containers"
-    echo "(3) Lamp Stack"
-    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(1) Github Desktop[n]        (2)  Containers[n]"
+    echo "(3) Lamp Stack[n]"
+    echo "(p) Previous Menu            (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -1109,10 +1097,10 @@ utils_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Fedora Media Writer        (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                    (4) MissionCenter"
-    echo "(5) Virtualization"
-    echo "(m) Main Menu                  (0) Exit"
+    echo "(1) Fedora Media Writer[n]        (2) Raspberry Pi Imager[n]"
+    echo "(3) GtkHash[n]                    (4) MissionCenter[f]"
+    echo "(5) Virtualization[n]"
+    echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
     
@@ -1166,9 +1154,6 @@ miscellaneous_menu(){
     echo "|   Miscellaneous   |"
     echo "---------------------"
     echo ""
-    echo ""
-    echo ""
-    echo ""   
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
     echo "(3) Spinfinity Boot Theme      (4) Remove AMD hardware accelerated codecs  "
     echo "(5) Remove Audio/Video Codecs"
