@@ -904,7 +904,7 @@ ides_menu(){
     echo ""   
     echo "(1) VIM[n]                            (2) VSCodium[f]"
     echo "(3) Geany[f]                          (4) CodeBlocks[f]"
-    echo "(5) Eclipse[f]                        (6) Intellij IDEA[f]"
+    echo "(5) Eclipse[o]                        (6) Intellij IDEA[f]"
     echo "(7) Netbeans[f]                       (8) Bluefish[f]"
     echo "(9) Pycharm[f]"
     echo "(p) Previous Menu                     (m) Main Menu"
