@@ -689,11 +689,11 @@ gaming_other_menu(){
             ;;
 
         3)
-            flatpak install --user -y flathub info.cemu.Cemu
+            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/cemu.sh
+            flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
         5)
