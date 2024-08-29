@@ -6,7 +6,7 @@ install_dconf_editor(){
         sudo dnf install -y dconf-editor
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        sudo apt-get apt-get install -y dconf-editor
+        sudo apt-get install -y dconf-editor
     else
         echo "Unkown error has occurred."
     fi
