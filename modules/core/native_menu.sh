@@ -209,10 +209,10 @@ kde_desktop_menu(){
     echo "|   KDE   |"
     echo "-----------"
     echo ""
-    echo "(1) KDE Patience[f]       (2) Kolourpaint[f] "
-    echo "(3) Kleopatra[f]          (4) KDE ISO Image Writer[f]"
+    echo "(1) KDE Patience[n]       (2) Kolourpaint[n] "
+    echo "(3) Kleopatra[n]          (4) KDE ISO Image Writer[n]"
     echo "(5) Kate[n]               (6) Plasma X11[n]"
-    echo "(7) K3b"
+    echo "(7) K3b[n]"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -634,7 +634,7 @@ gaming_tools_menu(){
     echo "Mangohud and proton tools"
     echo ""
     echo ""   
-    echo "(1) Mangohud[n]            (2) Protontricks[o]"
+    echo "(1) Mangohud[n]            (2) Protontricks[f]"
     echo "(3) Proton Plus[n]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
@@ -645,7 +645,7 @@ gaming_tools_menu(){
 
         1)
             mkdir "$HOME"/.config/MangoHud
-            flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+            "$SCRIPTS_FOLDER"/modules/native/gaming/mangohud.sh
             ;;
 
         2)
@@ -694,7 +694,7 @@ gaming_other_menu(){
     echo ""
     echo ""
     echo ""   
-    echo "(1) Discord[n]             (2) Prism Launcher[o]"
+    echo "(1) Discord[n]             (2) Prism Launcher[f]"
     echo "(3) Dolphin[n]             (4) Cemu[f]"
     echo "(5) Basic Game profiles[o]"
     echo "(p) Previous Menu          (m) Main Menu"
