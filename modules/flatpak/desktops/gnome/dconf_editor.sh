@@ -6,7 +6,7 @@ remove_dconf_editor(){
         sudo dnf remove -y dconf-editor
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
-        remove_silverblue_flatpaks
+        echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y dconf-editor
