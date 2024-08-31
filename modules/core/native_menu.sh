@@ -1035,7 +1035,7 @@ dev_other_menu(){
     echo "|   Other   |"
     echo "-------------"
     echo ""
-    echo "(1) Github Desktop[n]        (2)  Containers[n]"
+    echo "(1) Github Desktop[n]        (2)  Containers[n][f]"
     echo "(3) Lamp Stack[n]"
     echo "(p) Previous Menu            (m) Main Menu"
     echo "(0) Exit"
