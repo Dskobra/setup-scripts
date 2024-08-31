@@ -89,7 +89,6 @@ hardware_drivers_menu(){
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
-    echo ""     
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
     echo "(3) CoolerControl       (4) OpenRGB"
     echo "(5) Virtual Camera      (6) AMD Video Acceleration"
@@ -159,7 +158,7 @@ desktop_apps_menu(){
     echo "|   Desktop Apps   |"
     echo "--------------------"
     echo ""
-    echo "Specific Desktop Enviroment apps."
+    echo "Apps for popular desktops"
     echo ""
     echo "(1) KDE                (2) GNOME"
     echo "(3) Mate               (m) Main Menu"
@@ -341,8 +340,6 @@ internet_menu(){
     echo "|   Internet   |"
     echo "----------------"
     echo ""
-    echo "Web browsers, cloud storage and bitorrent client."
-    echo ""
     echo "(1) Firefox[n]             (2) Brave Browser[n]"
     echo "(3) Dropbox[n]             (4) Transmissionbt[n]"
     echo "(5) Remmina[n]"
@@ -399,8 +396,6 @@ multimedia_menu(){
     echo "------------------"
     echo "|   Multimedia   |"
     echo "------------------"
-    echo ""
-    echo "Various multimedia apps, codecs etc."
     echo ""
     echo "(1) VLC Media Player[n]    (2) OBS Studio[n]"
     echo "(3) OpenShot[n]            (4) xfburn[n]"
@@ -459,9 +454,6 @@ gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "Game clients and other apps"
-    echo ""
-    echo ""   
     echo "(1) Game Clients           (2) Tools"
     echo "(3) WoW Clients            (4) Other"
     echo "(m) Main Menu              (0) Exit"
@@ -511,8 +503,6 @@ gaming_clients_menu(){
     echo "----------------------"
     echo "|   Gaming Clients   |"
     echo "---------------- ------"
-    echo ""
-    echo "Steam, lutris and bottles"
     echo ""
     echo "(1) Steam[n]               (2) Lutris[n]"
     echo "(3) Bottles[n]"
@@ -573,7 +563,6 @@ gaming_wow_clients_menu(){
     echo ""
     echo "Addon managers and extra stuff for World of Warcraft"
     echo ""
-    echo ""   
     echo "(1) WoWUp[o]               (2) Warcraft Logs[o]"
     echo "(3) Weak Auras Companion[o]"
     echo "(p) Previous Menu          (m) Main Menu"
@@ -633,7 +622,6 @@ gaming_tools_menu(){
     echo ""
     echo "Mangohud and proton tools"
     echo ""
-    echo ""   
     echo "(1) Mangohud[n]            (2) Protontricks[f]"
     echo "(3) Proton Plus[n]"
     echo "(p) Previous Menu          (m) Main Menu"
@@ -691,9 +679,6 @@ gaming_other_menu(){
     echo "|   Misc Stuff   |"
     echo "-----------------"
     echo ""
-    echo ""
-    echo ""
-    echo ""   
     echo "(1) Discord[n]             (2) Prism Launcher[f]"
     echo "(3) Dolphin[n]             (4) Cemu[f]"
     echo "(5) Basic Game profiles[o]"
@@ -759,9 +744,6 @@ office_menu(){
     echo "|   Office   |"
     echo "--------------"
     echo ""
-    echo "Office and note taking apps."
-    echo ""
-    echo ""   
     echo "(1) LibreOffice[n]            (2) QOwnNotes[n]"
     echo "(3) Marknote[n]               (4) Claws-Mail[n]"
     echo "(5) Thunderbird[n]            (6) Bitwarden[f]"
@@ -877,8 +859,6 @@ sdks_menu(){
     echo "|  SDKs   |"
     echo "-----------"
     echo ""
-    echo ""   
-    echo ""
     echo "(1) Nodejs LTS[o]         (2) C/C++ Compiler[n]"
     echo "(3) openJDK 17/21[n]      (4) Python Dev Packages[n]"
     echo "(p) Previous Menu         (m) Main Menu"
@@ -940,8 +920,6 @@ ides_menu(){
     echo "|   IDEs   |"
     echo "------------"
     echo ""
-    echo ""
-    echo ""   
     echo "(1) VIM[n]                            (2) VSCodium[n]"
     echo "(3) Geany[n]                          (4) CodeBlocks[n]"
     echo "(5) Eclipse[o]                        (6) Intellij IDEA[o]"
@@ -1095,8 +1073,6 @@ utils_menu(){
     echo "Largely apps for image writing and file security."
     echo "Plus virtual machine client."
     echo ""
-    echo ""
-    echo ""   
     echo "(1) Fedora Media Writer[n]        (2) Raspberry Pi Imager[n]"
     echo "(3) GtkHash[n]                    (4) MissionCenter[f]"
     echo "(5) Virtualization[n]"
@@ -1155,8 +1131,7 @@ miscellaneous_menu(){
     echo "---------------------"
     echo ""
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Spinfinity Boot Theme      (4) Remove AMD hardware accelerated codecs  "
-    echo "(5) Remove Audio/Video Codecs"
+    echo "(3) Remove Audio/Video Codecs  (4) Remove AMD hardware accelerated codecs  "
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1172,16 +1147,12 @@ miscellaneous_menu(){
             "$SCRIPTS_FOLDER"/modules/other/misc/check_for_libvirt_group.sh
             ;;
 
-        3)
-            "$SCRIPTS_FOLDER"/modules/native/misc/spinfinity_theme.sh
-            ;;
-
         4)
-            "$SCRIPTS_FOLDER"/modules/other/misc/remove_amd_codecs.sh
+            "$SCRIPTS_FOLDER"/modules/other/misc/remove_codecs.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/other/misc/remove_codecs.sh
+            "$SCRIPTS_FOLDER"/modules/other/misc/remove_amd_codecs.sh
             ;;
 
         m)

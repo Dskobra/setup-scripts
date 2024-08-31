@@ -723,8 +723,6 @@ office_menu(){
     echo "|   Office   |"
     echo "--------------"
     echo ""
-    echo "General productivity apps."
-    echo ""
     echo "(1) LibreOffice[f]        (2) QOwnNotes[f]"
     echo "(3) Marknote[f]           (4) Claws-Mail[f]"
     echo "(5) Thunderbird[f]        (6) Bitwarden[f]"
