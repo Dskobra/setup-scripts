@@ -554,7 +554,7 @@ gaming_wow_clients_menu(){
     echo ""
     echo "Addon managers and extra stuff for World of Warcraft"
     echo ""   
-    echo "(1) WoWUp[o]                 (2) Warcraft Logs[o]"
+    echo "(1) WoWUp[o]                  (2) Warcraft Logs[o]"
     echo "(3) Weak Auras Companion[o]"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
