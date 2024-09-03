@@ -1,10 +1,5 @@
 #!/usr/bin/bash
 
-# Basic templates for adding more packages. Simply add the first option
-# if you want to choose between flatpak or non flatpak or the 2nd one
-# if you only want the distro provided package. Added it to a menu
-# in setup.sh and launch "$SCRIPTS_FOLDER"/modules/folder_name/script_name.sh
-
 package_type_chooser(){
     echo "Please input the package type you'd like to use."
     echo "----------------------------------------"

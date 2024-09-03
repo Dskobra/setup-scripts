@@ -3,11 +3,9 @@
 install_virtualization(){
     if [ "$PKGMGR" == "dnf" ]
     then
-        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-        -O /etc/yum.repos.d/virtio-win.repo
         sudo dnf update -y
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
-        qemu-kvm virt-install virt-manager virt-viewer virtio-win
+        qemu-kvm virt-install virt-manager virt-viewer
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
@@ -19,8 +17,6 @@ install_virtualization(){
         #"$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        cd ~/Downloads/ || exit
-        curl -L -o virtio-win.iso https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
         sudo apt-get install -y libvirt-daemon-config-network qemu-kvm virt-manager virt-viewer
     else
         echo "Unkown error has occurred."
@@ -29,3 +25,4 @@ install_virtualization(){
 
 install_virtualization
 $SCRIPTS_FOLDER/modules/other/misc/check_for_libvirt_group.sh
+xdg-open "https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md"

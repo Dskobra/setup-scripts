@@ -1,9 +1,5 @@
 #!/usr/bin/bash
 
-### Main launch script which includes menus, distro
-### determination and making app/temp folders.
-
-
 main_menu(){
     echo "---------------------------"   
     echo "|   DSK's Setup Scripts   |"
@@ -1069,9 +1065,6 @@ utils_menu(){
     echo "-----------------"
     echo "|   Utilities   |"
     echo "-----------------"
-    echo ""
-    echo "Largely apps for image writing and file security."
-    echo "Plus virtual machine client."
     echo ""
     echo "(1) Fedora Media Writer[n]        (2) Raspberry Pi Imager[n]"
     echo "(3) GtkHash[n]                    (4) MissionCenter[f]"
