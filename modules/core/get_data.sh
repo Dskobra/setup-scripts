@@ -1,8 +1,8 @@
 #!/usr/bin/bash
+# data branch includes links I can update more frequently and
+# my personal mangohud profiles (positioned for my liking).
 
 get_data(){
-    # data branch includes links I can update more frequently and
-    # my personal mangohud profiles (positioned for my liking).
     echo "Will need to download extra files from data branch"
     cd "$SCRIPTS_FOLDER" || exit
     rm -r -f data

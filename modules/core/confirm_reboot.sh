@@ -1,10 +1,10 @@
 #!/usr/bin/bash
+# Some packages cannot be applied live without restarting.
+# Things like adding system groups, installing boot themes,
+# steam udev rules (aka steam-devices)
+# require rebooting first in order for them to be usable.
 
 confirm_reboot(){
-    # Some packages cannot be applied live without restarting.
-    # Things like adding system groups, installing boot themes,
-    # steam udev rules (aka steam-devices)
-    # require rebooting first in order for them to be usable.
     echo "================================================"
     echo "Some packages won't be availble until a "
     echo "restart is performed."

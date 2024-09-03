@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-### Main launch script which includes menus, distro
-### determination and making app/temp folders.
+### Main launch script which makes the temp/app folders
+### and sets some variables
 
 make_temp(){
     test -d "$SCRIPTS_FOLDER"/temp && TEMP_FOLDER="exists"
@@ -31,7 +31,7 @@ export SCRIPTS_FOLDER       # stores full path for setup-scripts
 export APP_FOLDER="$HOME/Apps"      # app folder thats made for some downloads
 export PKGMGR=""                    # stores package manager name such as dnf/rpm-ostree etc
 export COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
-export VERSION="7.21.2024"
+export VERSION="9.3.2024"
 export PACKAGE_TYPE="flatpak"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"

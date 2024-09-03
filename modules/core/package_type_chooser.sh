@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+# asks user to choose between native and flatpak apps and
+# runs the appropriate menu
 
 package_type_chooser(){
     echo "Please input the package type you'd like to use."

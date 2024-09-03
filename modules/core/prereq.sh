@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
-# basic packages for installing everything
+# checks/installs basic packages such as flatpak, curl/wget and git.
+
 install_prereq(){
     if [ "$PKGMGR" == "dnf" ]
     then
@@ -28,7 +29,7 @@ install_prereq(){
     else
         echo "Unkown error has occurred."
     fi
-    flatpak install --user -y flathub com.github.tchx84.Flatseal
+    flatpak install --user -y flathub com.github.tchx84.Flatseal        # allows easily managing permissiosn for flatpaks
 }
 
 run_prereq_check(){

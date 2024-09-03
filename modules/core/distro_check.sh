@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+#  This determines the distro and sets PKGMGR
+# to related package manager
 
 distro_check(){
     if [ "$DISTRO" == "fedora" ]
@@ -24,11 +26,13 @@ fedora_release_check(){
 }
 
 fedora_variant_check(){
-    # Fedora Workstation/Server and Desktop Spins
-    # use dnf as their package manager while
-    # Atomic Desktop Editions use rpm-ostree
-    # which is very different. Some commands need
-    # to be run differently.
+# Fedora Workstation/Server and Desktop Spins
+# use dnf as their package manager while
+# Atomic Desktop Editions use rpm-ostree
+# which is very different. Atomic editions
+# highly encourage flatpak so it is the default
+# and limited native packages are provided.
+
     test -f /run/ostree-booted && VARIANT=ostree
     if [ -z "$VARIANT" ]
     then

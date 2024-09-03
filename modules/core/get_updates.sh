@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# updates scripts
 
 get_updates(){
     test -d "$SCRIPTS_FOLDER"/.git && REPO_FOLDER="exists"
