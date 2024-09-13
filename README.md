@@ -2,8 +2,8 @@
 Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
-* Fedora 39/40 Workstation/Spins
-* Fedora 39/40 Atomic Desktops
+* Fedora 39/40/41(beta) Workstation/Spins
+* Fedora 39/40/41(beta) Atomic Desktops
 * Debian 12
 
 ## Requirements
