@@ -16,7 +16,7 @@ distro_check(){
 }
 
 fedora_release_check(){
-    if [ "$VERSION_ID" == "39" ] || [ "$VERSION_ID" == "40" ]
+    if [ "$VERSION_ID" == "39" ] || [ "$VERSION_ID" == "40" ] || [ "$VERSION_ID" == "41" ]
     then
         fedora_variant_check
     else

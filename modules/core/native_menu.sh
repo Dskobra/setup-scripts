@@ -1140,11 +1140,11 @@ miscellaneous_menu(){
             "$SCRIPTS_FOLDER"/modules/other/misc/check_for_libvirt_group.sh
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/other/misc/remove_codecs.sh
             ;;
 
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/other/misc/remove_amd_codecs.sh
             ;;
 
