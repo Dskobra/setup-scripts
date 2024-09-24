@@ -20,7 +20,7 @@ fedora_release_check(){
     then
         fedora_variant_check
     else
-        echo "These scripts only support Fedora 39/40"
+        echo "These scripts only support Fedora 39/40/41 beta(experimental)"
     fi
 
 }
@@ -65,7 +65,7 @@ debian_release_check(){
 
 
 OS_NAME=$(source /etc/os-release ; echo "$NAME")
-VERSION_ID=$(source /etc/os-release ; echo "$VERSION_ID")
+export VERSION_ID=$(source /etc/os-release ; echo "$VERSION_ID")
 DISTRO=$(source /etc/os-release ; echo $ID)
 VARIANT=""      
 distro_check
