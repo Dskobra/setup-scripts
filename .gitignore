@@ -1,3 +1,4 @@
 *.vscode
 *.kate-swp
 .ranonce.txt
+ui/node_modules
