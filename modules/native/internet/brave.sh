@@ -4,7 +4,7 @@ install_brave_browser(){
     cd "$SCRIPTS_FOLDER"/temp
     if [ "$PKGMGR" == "dnf" ]
     then
-        sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo dnf4 config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo dnf update -y
         sudo dnf install -y brave-browser
