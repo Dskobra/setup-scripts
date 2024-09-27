@@ -3,33 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <script src="controller.js"></script>
     <title>SetupApp</title>
   </head>
   <body>
-    <div class="mainMenu">
-      <table>
-        <tr>
-          <th><button onclick="hardware_drivers()">Hardware/Drivers</button></th>
-          <th><button>Desktop Apps</button></th>
-          <th><button>Internet</button></th>
-          <th><button>Multimedia</button></th>
-          <th><button>Gaming</button></th>
-        </tr>
-        <tr>
-          <th><button>Office</button></th>
-          <th><button>Development</button></th>
-          <th><button>Misc</button></th>
-        </tr>
-      </table>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <div>
+      <!--Main headers-->
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-hardware-tab" data-bs-toggle="pill" data-bs-target="#pills-hardware" type="button" role="tab" aria-controls="pills-hardware" aria-selected="true">Hardware/Drivers</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-desktop-tab" data-bs-toggle="pill" data-bs-target="#pills-desktop" type="button" role="tab" aria-controls="pills-desktop" aria-selected="false">Desktop Apps</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-internet-tab" data-bs-toggle="pill" data-bs-target="#pills-internet" type="button" role="tab" aria-controls="pills-internet" aria-selected="false">Internet</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-multimedia-tab" data-bs-toggle="pill" data-bs-target="#pills-multimedia" type="button" role="tab" aria-controls="pills-multimedia" aria-selected="false">Multimedia</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-gaming-tab" data-bs-toggle="pill" data-bs-target="#pills-gaming" type="button" role="tab" aria-controls="pills-gaming" aria-selected="false">Gaming</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-office-tab" data-bs-toggle="pill" data-bs-target="#pills-office" type="button" role="tab" aria-controls="pills-office" aria-selected="false">Office</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" data-bs-target="#pills-development" type="button" role="tab" aria-controls="pills-development" aria-selected="false">Development</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-misc-tab" data-bs-toggle="pill" data-bs-target="#pills-misc" type="button" role="tab" aria-controls="pills-misc" aria-selected="false">Misc</button>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-hardware" role="tabpanel" aria-labelledby="pills-hardware-tab">...</div>
+      <div class="tab-pane fade" id="pills-desktop" role="tabpanel" aria-labelledby="pills-desktop-tab">...</div>
+      <div class="tab-pane fade" id="pills-internet" role="tabpanel" aria-labelledby="pills-internet-tab">...</div>
+      <div class="tab-pane fade" id="pills-multimedia" role="tabpanel" aria-labelledby="pills-multimedia-tab">...</div>
+      <div class="tab-pane fade" id="pills-gaming" role="tabpanel" aria-labelledby="pills-gaming-tab">...</div>
+      <div class="tab-pane fade" id="pills-office" role="tabpanel" aria-labelledby="pills-office-tab">...</div>
+      <div class="tab-pane fade" id="pills-development" role="tabpanel" aria-labelledby="pills-development-tab">...</div>
+      <div class="tab-pane fade" id="pills-misc" role="tabpanel" aria-labelledby="pills-misc-tab">...</div>
     </div>
   </body>
 </html>
