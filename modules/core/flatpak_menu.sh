@@ -886,9 +886,8 @@ ides_menu(){
     echo ""   
     echo "(1) VIM[n]                            (2) VSCodium[f]"
     echo "(3) Geany[f]                          (4) CodeBlocks[f]"
-    echo "(5) Eclipse[o]                        (6) Intellij IDEA[f]"
-    echo "(7) Netbeans[f]                       (8) Bluefish[f]"
-    echo "(9) Pycharm[f]"
+    echo "(5) Bluefish[f]                       (6) Intellij IDEA[f]"
+    echo "(7) Netbeans[f]                       (8) Pycharm[f]"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -913,7 +912,7 @@ ides_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/other/development/eclipse.sh
+            "$SCRIPTS_FOLDER"/modules/flatpak/development/bluefish.sh
             ;;
 
         6)
@@ -925,10 +924,6 @@ ides_menu(){
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/bluefish.sh
-            ;;
-
-        9)
             flatpak install --user -y flathub com.jetbrains.PyCharm-Community
             ;;
 
