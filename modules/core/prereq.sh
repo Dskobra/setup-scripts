@@ -48,4 +48,3 @@ run_prereq_check(){
 }
 RAN_ONCE_FILE="missing"
 run_prereq_check
-#install_prereq

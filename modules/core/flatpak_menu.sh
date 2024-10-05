@@ -656,7 +656,6 @@ gaming_other_menu(){
     echo ""   
     echo "(1) Discord[f]                   (2) Prism Launcher[f]"
     echo "(3) Dolphin[f]                   (4) Cemu[f]"
-    echo "(5) Basic Game profiles[o]"
     echo "(p) Previous Menu                (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -678,10 +677,6 @@ gaming_other_menu(){
 
         4)
             flatpak install --user -y flathub info.cemu.Cemu
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/other/gaming/game_profiles.sh
             ;;
 
         m)

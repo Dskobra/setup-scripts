@@ -3,7 +3,7 @@
 install_vscodium(){
     if [ "$PKGMGR" == "dnf" ]
     then
-        cd "$SCRIPTS_FOLDER"/data
+        cd "$SCRIPTS_FOLDER"/modules/native/development
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
