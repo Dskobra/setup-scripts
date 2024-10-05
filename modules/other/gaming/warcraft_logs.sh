@@ -6,8 +6,9 @@
 
 
 download_warcraft_logs(){
-    cd "$SCRIPTS_FOLDER"/temp || exit
-    source "$SCRIPTS_FOLDER"/data/packages.conf
+    WACOMPLINK="https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v5.2.3/WeakAuras-Companion-5.2.3.AppImage"
+    WACOMPBINARY="WeakAuras-Companion-5.2.3.AppImage"
+    
     if test -f ~/Desktop/"$WOWLOGSBINARY"; then
         echo "Warcraft Logs already downloaded."
     elif ! test -f ~/Desktop/"$WOWLOGSBINARY"; then

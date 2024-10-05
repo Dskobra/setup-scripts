@@ -11,8 +11,8 @@ install_openrgb(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        cd "$SCRIPTS_FOLDER"/temp
-        source "$SCRIPTS_FOLDER"/data/packages.conf
+        OPENRGB_LINK="https://openrgb.org/releases/release_0.9/openrgb_0.9_amd64_bookworm_b5f46e3.deb"
+        OPENRGB_DEB="openrgb_0.9_amd64_bookworm_b5f46e3.deb"
         curl -L -o "$OPENRGB_DEB" "$OPENRGB_LINK"
         sudo dpkg -i "$OPENRGB_DEB"
         sudo apt-get -f -y install   

@@ -4,8 +4,9 @@
 # for managing world of warcraft addons
 
 download_wowup(){
-    cd "$SCRIPTS_FOLDER"/temp || exit
-    source "$SCRIPTS_FOLDER"/data/packages.conf
+    WOWUPLINK="https://github.com/WowUp/WowUp.CF/releases/download/v2.20.0/WowUp-CF-2.20.0.AppImage"
+    WOWUPBINARY="WowUp-CF-2.20.0.AppImage"
+    
     if test -f ~/Desktop/"$WOWUPBINARY"; then
         echo "WoWUp already downloaded."
     elif ! test -f ~/Desktop/"$WOWUPBINARY"; then

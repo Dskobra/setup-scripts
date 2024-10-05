@@ -946,6 +946,14 @@ ides_menu(){
             "$SCRIPTS_FOLDER"/modules/native/development/bluefish.sh
             ;;
 
+        6)
+            "$SCRIPTS_FOLDER"/modules/other/development/idea.sh
+            ;;
+
+        7)
+            "$SCRIPTS_FOLDER"/modules/other/development/pycharm.sh
+            ;;
+
         p)
             development_menu
             ;;
