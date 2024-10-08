@@ -85,9 +85,9 @@ hardware_drivers_menu(){
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
-    echo "Note these are all native packages."
+    echo "All, but openrgb are native packages."
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) CoolerControl       (4) OpenRGB  "
+    echo "(3) CoolerControl       (4) OpenRGB[f]"
     echo "(5) Virtual Camera"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
@@ -109,7 +109,11 @@ hardware_drivers_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/openrgb.sh
+            flatpak install --user -y flathub org.openrgb.OpenRGB
+            cd "$SCRIPTS_FOLDER/temp"
+            wget https://openrgb.org/releases/release_0.9/openrgb-udev-install.sh
+            chmod +x openrgb-udev-install.sh
+            sudo ./openrgb-udev-install.sh
             ;;
 
         5)
