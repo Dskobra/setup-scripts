@@ -5,8 +5,8 @@
 # macros in world of warcraft
 
 download_weakauras_companion(){
-    WOWLOGSLINK="https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v8.5.16/warcraftlogs-v8.5.16.AppImage"
-    WOWLOGSBINARY="warcraftlogs-v8.5.16.AppImage"
+    WACOMPLINK="https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v5.2.3/WeakAuras-Companion-5.2.3.AppImage"
+    WACOMPBINARY="WeakAuras-Companion-5.2.3.AppImage"
     
     if test -f ~/Desktop/"$WACOMPBINARY"; then
         echo "WeakAuras Companion already downloaded."

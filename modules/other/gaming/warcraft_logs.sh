@@ -6,8 +6,8 @@
 
 
 download_warcraft_logs(){
-    WACOMPLINK="https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v5.2.3/WeakAuras-Companion-5.2.3.AppImage"
-    WACOMPBINARY="WeakAuras-Companion-5.2.3.AppImage"
+    WOWLOGSLINK="https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v8.5.16/warcraftlogs-v8.5.16.AppImage"
+    WOWLOGSBINARY="warcraftlogs-v8.5.16.AppImage"
     
     if test -f ~/Desktop/"$WOWLOGSBINARY"; then
         echo "Warcraft Logs already downloaded."
