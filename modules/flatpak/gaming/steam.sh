@@ -19,5 +19,6 @@ remove_steam
 flatpak install --user -y flathub com.valvesoftware.Steam
 flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
 flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
-zenity --info --text="steam-devices package will also be installed for controller support."
+echo "steam-devices package will also be installed for controller support."
+#zenity --info --text="steam-devices package will also be installed for controller support."
 "$SCRIPTS_FOLDER"/modules/native/gaming/steam_devices.sh

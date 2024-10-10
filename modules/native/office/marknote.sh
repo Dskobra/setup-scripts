@@ -7,7 +7,8 @@ install_marknote(){
         sudo dnf install -y marknote
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        zenity --info --text="Marknote isn't currently available in Debian. This will install the flatpak version."
+        #zenity --info --text="Marknote isn't currently available in Debian. This will install the flatpak version."
+        echo "Marknote isn't currently available in Debian. This will install the flatpak version."
         "$SCRIPTS_FOLDER"/modules/flatpak/office/marknote.sh
     else
         echo "Unkown error has occurred."

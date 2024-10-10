@@ -16,7 +16,8 @@ install_nodejs(){
         # this script. source ~/.bashrc won't work nor will rerunning this after a shell
         # restart. Manually is the only way.
 
-        zenity --info --text="Please open a new shell and run\nnvm install lts/*"
+        #zenity --info --text="Please open a new shell and run\nnvm install lts/*"
+        echo "Please open a new shell and run\nnvm install lts/*"
     else
         echo "Unkown error has occurred."
     fi
