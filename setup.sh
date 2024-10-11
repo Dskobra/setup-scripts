@@ -10,13 +10,13 @@ make_temp(){
            TEMP_FOLDER="exists"
     elif [ "$TEMP_FOLDER" = "missing" ];
         then
-        mkdir "$SCRIPTS_FOLDER"/temp        # make a temp folder for all files to be downloaded to
+        mkdir "$SCRIPTS_FOLDER"/temp            # make a temp folder for all files to be downloaded to
     fi
 }
 
 make_app_folder(){
-    ### Store netbeans, intellij idea and pycharm
-    ### in ~/Apps
+### Store netbeans, intellij idea and pycharm
+### in ~/Apps
     test -d "$HOME"/Apps && LOOK_FOR_APP_FOLDER="exists"
     if [ "$LOOK_FOR_APP_FOLDER" = "exists" ];
         then
@@ -27,9 +27,9 @@ make_app_folder(){
     fi
 }
 
-export SCRIPTS_FOLDER       # stores full path for setup-scripts
-export APP_FOLDER="$HOME/Apps"      # app folder thats made for some downloads
-export PKGMGR=""                    # stores package manager name such as dnf/rpm-ostree etc
+export SCRIPTS_FOLDER                           # stores full path for setup-scripts
+export APP_FOLDER="$HOME/Apps"                  # app folder thats made for some downloads
+export PKGMGR=""                                # stores package manager name such as dnf/rpm-ostree etc
 export COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
 export VERSION="9.3.2024"
 export PACKAGE_TYPE="flatpak"
