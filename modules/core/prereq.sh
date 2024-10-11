@@ -29,7 +29,7 @@ install_prereq(){
     else
         echo "Unkown error has occurred."
     fi
-    flatpak install --user -y flathub com.github.tchx84.Flatseal        # allows easily managing permissiosn for flatpaks
+    flatpak install --user -y flathub com.github.tchx84.Flatseal        # allows easily managing permissions for flatpaks
 }
 
 run_prereq_check(){
