@@ -31,7 +31,7 @@ export SCRIPTS_FOLDER                           # stores full path for setup-scr
 export APP_FOLDER="$HOME/Apps"                  # app folder thats made for some downloads
 export PKGMGR=""                                # stores package manager name such as dnf/rpm-ostree etc
 export COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
-export VERSION="9.3.2024"
+export VERSION="10.17.2024"
 export PACKAGE_TYPE="flatpak"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
