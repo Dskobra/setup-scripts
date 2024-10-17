@@ -25,7 +25,6 @@ remove_core_kde_apps(){
     then
         sudo apt-get remove -y krdc kcalc kamoso\
         gwenview okular kleopatra
-        #zenity --info --text="[app name] isn't currently available in Debian. This will install the flatpak version."
     else
         echo "Unkown error has occurred."
     fi

@@ -4,7 +4,7 @@ install_plasma_x11(){
     if [ "$PKGMGR" == "dnf" ]
     then
         FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
-        if [ "$FEDORA_VERSION" == "40" ]
+        if [ "$FEDORA_VERSION" -ge "40" ]
         then
             sudo dnf install -y plasma-workspace-x11
         else
@@ -13,7 +13,7 @@ install_plasma_x11(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
-        if [ "$FEDORA_VERSION" == "40" ]
+        if [ "$FEDORA_VERSION" -ge "40" ]
         then
             sudo rpm-ostree install plasma-workspace-x11
             #sudo rpm-ostree apply-live

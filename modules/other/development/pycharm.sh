@@ -3,8 +3,8 @@
 # downloads the official jetbrains pycharm community edition
 
 install_pycharm(){
-    cd "$SCRIPTS_FOLDER"/temp || exit
-    source "$SCRIPTS_FOLDER"/data/packages.conf
+    PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2024.2.1.tar.gz"
+    
     if test -d "$APP_FOLDER"/pycharm; then
         echo "Pycharm already downloaded."
     elif ! test -d "$APP_FOLDER"/pycharm; then

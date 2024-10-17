@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 # downloads the official jetbrains idea community edition
+
 install_idea(){
-    cd "$SCRIPTS_FOLDER"/temp || exit
-    source "$SCRIPTS_FOLDER"/data/packages.conf
+    IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2024.2.1.tar.gz"
     
     if test -d $APP_FOLDER/idea; then
         echo "Intellij Idea already downloaded."

@@ -6,8 +6,9 @@
 
 
 download_warcraft_logs(){
-    cd "$SCRIPTS_FOLDER"/temp || exit
-    source "$SCRIPTS_FOLDER"/data/packages.conf
+    WOWLOGSLINK="https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v8.5.16/warcraftlogs-v8.5.16.AppImage"
+    WOWLOGSBINARY="warcraftlogs-v8.5.16.AppImage"
+    
     if test -f ~/Desktop/"$WOWLOGSBINARY"; then
         echo "Warcraft Logs already downloaded."
     elif ! test -f ~/Desktop/"$WOWLOGSBINARY"; then

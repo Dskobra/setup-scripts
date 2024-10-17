@@ -677,7 +677,6 @@ gaming_other_menu(){
     echo ""
     echo "(1) Discord[n]             (2) Prism Launcher[f]"
     echo "(3) Dolphin[n]             (4) Cemu[f]"
-    echo "(5) Basic Game profiles[o]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -699,10 +698,6 @@ gaming_other_menu(){
 
         4)
             flatpak install --user -y flathub info.cemu.Cemu
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/other/gaming/game_profiles.sh
             ;;
 
         m)
@@ -918,10 +913,8 @@ ides_menu(){
     echo ""
     echo "(1) VIM[n]                            (2) VSCodium[n]"
     echo "(3) Geany[n]                          (4) CodeBlocks[n]"
-    echo "(5) Eclipse[o]                        (6) Intellij IDEA[o]"
-    echo "(7) Netbeans[o]                       (8) Bluefish[n]"
-    echo "(9) Pycharm[o]                        (10) Eric IDE[n]"
-    echo "(11) Scene Builder[n]"
+    echo "(5) Bluefish[n]                       (6) Intellij IDEA[o]"
+    echo "(7) Pycharm[o]"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -946,31 +939,15 @@ ides_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/other/development/eclipse.sh
+            "$SCRIPTS_FOLDER"/modules/native/development/bluefish.sh
             ;;
 
         6)
             "$SCRIPTS_FOLDER"/modules/other/development/idea.sh
             ;;
-        
+
         7)
-            "$SCRIPTS_FOLDER"/modules/other/development/netbeans.sh
-            ;;
-
-        8)
-            "$SCRIPTS_FOLDER"/modules/native/development/bluefish.sh
-            ;;
-
-        9)
             "$SCRIPTS_FOLDER"/modules/other/development/pycharm.sh
-            ;;
-
-        10)
-            "$SCRIPTS_FOLDER"/modules/native/development/eric_ide.sh
-            ;;
-
-        11)
-            "$SCRIPTS_FOLDER"/modules/native/development/scene_builder.sh
             ;;
 
         p)

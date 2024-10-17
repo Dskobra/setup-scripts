@@ -87,7 +87,7 @@ hardware_drivers_menu(){
     echo ""
     echo "Note these are all native packages."
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) CoolerControl       (4) OpenRGB  "
+    echo "(3) CoolerControl       (4) OpenRGB"
     echo "(5) Virtual Camera"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
@@ -656,7 +656,6 @@ gaming_other_menu(){
     echo ""   
     echo "(1) Discord[f]                   (2) Prism Launcher[f]"
     echo "(3) Dolphin[f]                   (4) Cemu[f]"
-    echo "(5) Basic Game profiles[o]"
     echo "(p) Previous Menu                (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -678,10 +677,6 @@ gaming_other_menu(){
 
         4)
             flatpak install --user -y flathub info.cemu.Cemu
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/other/gaming/game_profiles.sh
             ;;
 
         m)
@@ -886,9 +881,8 @@ ides_menu(){
     echo ""   
     echo "(1) VIM[n]                            (2) VSCodium[f]"
     echo "(3) Geany[f]                          (4) CodeBlocks[f]"
-    echo "(5) Eclipse[o]                        (6) Intellij IDEA[f]"
-    echo "(7) Netbeans[f]                       (8) Bluefish[f]"
-    echo "(9) Pycharm[f]"
+    echo "(5) Bluefish[f]                       (6) Intellij IDEA[o]"
+    echo "(7) Pycharm[o]"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -913,23 +907,15 @@ ides_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/other/development/eclipse.sh
-            ;;
-
-        6)
-            flatpak install --user -y flathub com.jetbrains.IntelliJ-IDEA-Community
-            ;;
-        
-        7)
-            flatpak install --user -y flathub org.apache.netbeans
-            ;;
-
-        8)
             "$SCRIPTS_FOLDER"/modules/flatpak/development/bluefish.sh
             ;;
 
-        9)
-            flatpak install --user -y flathub com.jetbrains.PyCharm-Community
+        6)
+            "$SCRIPTS_FOLDER"/modules/other/development/idea.sh
+            ;;
+
+        7)
+            "$SCRIPTS_FOLDER"/modules/other/development/pycharm.sh
             ;;
 
         p)
