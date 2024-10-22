@@ -5,8 +5,8 @@
 install_prereq(){
     if [ "$PKGMGR" == "dnf" ]
     then
-        echo "Following packages will be installed: git curl wget flatpak flatseal dnf-plugins-core"
-        sudo dnf install -y git curl wget flatpak dnf-plugins-core
+        echo "Following packages will be installed: curl wget flatpak flatseal dnf-plugins-core"
+        sudo dnf install -y curl wget flatpak dnf-plugins-core
         sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo dnf update -y
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -19,8 +19,8 @@ install_prereq(){
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        echo "Following packages will be installed: git curl wget flatpak flatseal software-properties-common"
-        sudo apt-get install -y git curl wget flatpak
+        echo "Following packages will be installed: curl wget flatpak flatseal software-properties-common"
+        sudo apt-get install -y curl wget flatpak
         sudo apt-get install -y software-properties-common
         sudo apt-add-repository -y --component contrib non-free 
         sudo dpkg --add-architecture i386

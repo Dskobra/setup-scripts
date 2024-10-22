@@ -58,11 +58,6 @@ main_menu(){
             miscellaneous_menu
             ;;
 
-        10)
-            "$SCRIPTS_FOLDER"/modules/core/get_updates.sh
-            exit
-            ;;
-
         0)
             exit
             ;;
