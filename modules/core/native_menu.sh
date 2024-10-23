@@ -846,7 +846,7 @@ sdks_menu(){
     echo "-----------"
     echo ""
     echo "(1) Nodejs LTS[o]         (2) C/C++ Compiler[n]"
-    echo "(3) Temurin openJDK 21[o] (4) Gluon openjfx 21[o]"
+    echo "(3) openJDK 21 LTS[o]     (4) openjfx 21 LTS[o]"
     echo "(5) Python Dev Packages[n]"
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
