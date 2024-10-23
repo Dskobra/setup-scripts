@@ -846,7 +846,8 @@ sdks_menu(){
     echo "-----------"
     echo ""
     echo "(1) Nodejs LTS[o]         (2) C/C++ Compiler[n]"
-    echo "(3) openJDK 17/21[n]      (4) Python Dev Packages[n]"
+    echo "(3) openJDK 21 LTS[o]     (4) openjfx 21 LTS[o]"
+    echo "(5) Python Dev Packages[n]"
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -863,10 +864,14 @@ sdks_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/development/openjdk.sh
+            "$SCRIPTS_FOLDER"/modules/other/development/openjdk.sh
             ;;
 
         4)
+            "$SCRIPTS_FOLDER"/modules/other/development/openjfx.sh
+            ;;
+
+        5)
             "$SCRIPTS_FOLDER"/modules/native/development/python_tools.sh
             ;;
         

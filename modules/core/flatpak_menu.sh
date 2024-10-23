@@ -826,7 +826,8 @@ sdks_menu(){
     echo "|  SDKs   |"
     echo "-----------"
     echo ""
-    echo "(1) Nodejs LTS[o]"
+    echo "(1) Nodejs LTS[o]     (2) openJDK 21 LTS[o]"
+    echo "(3) openjfx 21 LTS[o]"
     echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -836,6 +837,14 @@ sdks_menu(){
 
         1)
             "$SCRIPTS_FOLDER"/modules/other/development/nodejs.sh
+            ;;
+
+        2)
+            "$SCRIPTS_FOLDER"/modules/other/development/openjdk.sh
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/other/development/openjfx.sh
             ;;
         
         p)
