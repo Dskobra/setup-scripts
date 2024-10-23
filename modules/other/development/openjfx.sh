@@ -2,7 +2,7 @@
 
 install_openjfx(){
     OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.5/openjfx-21.0.5_linux-x64_bin-sdk.zip"
-    if test -d "$APP_FOLDER"/openfx21; then
+    if test -d "$APP_FOLDER"/openjfx21; then
         echo "openjfx21 already downloaded."
     elif ! test -d "$APP_FOLDER"/openjfx21; then
         openjfx_header
