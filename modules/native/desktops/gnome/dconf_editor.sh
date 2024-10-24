@@ -13,11 +13,6 @@ distro_dconf_editor(){
     flatpak remove --user -y ca.desrt.dconf-editor
 }
 
-test(){
-    # rename later
-    
-}
-
 if [ "$1" == "flatpak" ]
 then
     echo "flatpak test"
