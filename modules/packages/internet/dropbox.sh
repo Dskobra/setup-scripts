@@ -40,8 +40,6 @@ remove_dropbox(){
     fi
 }
 
-
-
 if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub com.dropbox.Client
