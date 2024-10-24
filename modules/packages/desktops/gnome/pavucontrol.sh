@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-install_pavucontrol(){
+native_pavucontrol(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y pavucontrol
@@ -11,6 +11,29 @@ install_pavucontrol(){
         echo "Unkown error has occurred."
     fi
 }
+remove_pavucontrol(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo dnf remove -y pavucontrol
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        sudo apt-get remove -y pavucontrol
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 
-flatpak remove --user -y org.pulseaudio.pavucontrol
-install_pavucontrol
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub org.pulseaudio.pavucontrol
+    remove_pavucontrol
+elif [ "$1" == "native" ]
+then
+    flatpak remove --user -y org.pulseaudio.pavucontrol
+    native_pavucontrol
+else
+    echo "error"
+fi

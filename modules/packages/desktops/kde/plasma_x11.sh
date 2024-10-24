@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_plasma_x11(){
+native_plasma_x11(){
     if [ "$PKGMGR" == "dnf" ]
     then
         FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
@@ -26,4 +26,4 @@ install_plasma_x11(){
     fi
 }
 
-install_plasma_x11
+native_plasma_x11

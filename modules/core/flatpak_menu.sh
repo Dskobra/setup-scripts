@@ -202,23 +202,23 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "flatpak"
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "flatpak"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "flatpak"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh "flatpak"
             ;;
 
         6)
@@ -271,11 +271,11 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "flatpak"
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
             ;;
 
         3)

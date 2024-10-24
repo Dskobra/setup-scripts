@@ -211,27 +211,27 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "native"
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "native"
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh "native"
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh 
             ;;
 
         7)
@@ -284,15 +284,15 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "native"
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh "native"
             ;;
 
         p)

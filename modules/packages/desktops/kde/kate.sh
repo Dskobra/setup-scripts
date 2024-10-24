@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_kate(){
+native_kate(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y kate kate-plugins
@@ -17,4 +17,4 @@ install_kate(){
     fi
 }
 
-install_kate
+native_k3b

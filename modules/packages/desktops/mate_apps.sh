@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-install_mate_apps(){
+native_mate_apps(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y mate-menu mate-sensors-applet mate-utils\
@@ -19,4 +19,4 @@ install_mate_apps(){
     fi
 }
 
-install_mate_apps
+native_mate_apps

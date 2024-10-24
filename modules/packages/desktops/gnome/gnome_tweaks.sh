@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_gnome_tweaks(){
+native_gnome_tweaks(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y gnome-tweaks
@@ -17,4 +17,16 @@ install_gnome_tweaks(){
     fi
 }
 
-install_gnome_tweaks
+if [ "$1" == "flatpak" ]
+then
+    echo "========================================================"
+    echo "This installs native version of Gnome Tweaks as it isn't"
+    echo "available as a flatpak"
+    echo "========================================================"
+    native_gnome_tweaks
+elif [ "$1" == "native" ]
+then
+    native_gnome_tweaks
+else
+    echo "error"
+fi
