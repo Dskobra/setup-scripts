@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_dropbox(){
+native_dropbox(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y dropbox
@@ -12,7 +12,7 @@ install_dropbox(){
     fi
 }
 
-install_dropbox_debian(){
+native_dropbox_debian(){
     DESKTOP=$(echo $XDG_CURRENT_DESKTOP)
     if [ $DESKTOP == "GNOME" ]
     then
@@ -25,5 +25,31 @@ install_dropbox_debian(){
     fi
 }
 
-flatpak remove --user -y com.dropbox.Client
-install_dropbox
+remove_dropbox(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo dnf remove -y dropbox
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        sudo apt-get remove -y caja-dropbox nautilus-dropbox
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+
+
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub com.dropbox.Client
+    remove_dropbox
+elif [ "$1" == "native" ]
+then
+    flatpak remove --user -y com.dropbox.Client
+    install_dropbox
+else
+    echo "error"
+fi

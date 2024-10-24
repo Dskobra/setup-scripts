@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_brave_browser(){
+native_brave_browser(){
     cd "$SCRIPTS_FOLDER"/temp
     if [ "$PKGMGR" == "dnf" ]
     then
@@ -19,5 +19,35 @@ install_brave_browser(){
     fi
 }
 
-flatpak uninstall --user -y com.brave.Browser
-install_brave_browser
+remove_brave_browser(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo dnf remove -y brave-browser
+        sudo rm "/etc/yum.repos.d/brave-browser.repo"
+        sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
+        sudo dnf update -y
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        sudo apt-get remove -y brave-browser
+        sudo rm "/etc/apt/sources.list.d/brave-browser-release.list"
+        sudo apt-get update
+        
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub com.brave.Browser
+    remove_brave_browser
+elif [ "$1" == "native" ]
+then
+    flatpak uninstall --user -y com.brave.Browser
+    install_brave_browser
+else
+    echo "error"
+fi

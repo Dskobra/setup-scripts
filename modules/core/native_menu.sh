@@ -341,23 +341,23 @@ internet_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "native"
             ;;
 
         5)  
-            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "native"
             ;;
 
         m)
