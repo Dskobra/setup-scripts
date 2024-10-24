@@ -17,4 +17,4 @@ native_kate(){
     fi
 }
 
-native_k3b
+native_kate

@@ -11,3 +11,5 @@ native_k3b(){
         echo "Unkown error has occurred."
     fi
 }
+
+native_k3b
