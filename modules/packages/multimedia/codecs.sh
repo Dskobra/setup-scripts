@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_codecs(){
+native_codecs(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
@@ -14,4 +14,4 @@ install_codecs(){
     fi
 }
 
-install_codecs
+native_codecs

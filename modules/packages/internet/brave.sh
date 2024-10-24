@@ -47,7 +47,7 @@ then
 elif [ "$1" == "native" ]
 then
     flatpak uninstall --user -y com.brave.Browser
-    install_brave_browser
+    native_brave_browser
 else
     echo "error"
 fi

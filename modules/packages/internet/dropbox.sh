@@ -49,7 +49,7 @@ then
 elif [ "$1" == "native" ]
 then
     flatpak remove --user -y com.dropbox.Client
-    install_dropbox
+    native_dropbox
 else
     echo "error"
 fi
