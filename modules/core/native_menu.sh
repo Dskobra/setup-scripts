@@ -58,10 +58,6 @@ main_menu(){
             miscellaneous_menu
             ;;
 
-        10)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/dconf_editor.sh
-            ;;
-
         0)
             exit
             ;;
