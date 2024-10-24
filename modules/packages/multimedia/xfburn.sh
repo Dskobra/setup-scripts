@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_xfburn(){
+native_xfburn(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y xfburn
@@ -12,4 +12,4 @@ install_xfburn(){
     fi
 }
 
-install_xfburn
+native_xfburn

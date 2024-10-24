@@ -384,15 +384,15 @@ multimedia_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh "flatpak"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/obs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/obs.sh "flatpak"
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "flatpak"
             ;;
 
         
