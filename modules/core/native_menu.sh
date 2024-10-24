@@ -91,27 +91,27 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/corectrl.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/corectrl.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/cooler_control.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/openrgb.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/v4l2loopback.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/amd_codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/amd_codecs.sh
             ;;
         
         h)
@@ -168,7 +168,7 @@ desktop_apps_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/mate_apps.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/mate_apps.sh
             ;;
 
         m)
@@ -211,31 +211,31 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kde_iso_image_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/plasma_x11.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/k3b.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/k3b.sh
             ;;
 
         p)
@@ -284,15 +284,15 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/dconf_editor.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/pavucontrol.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/gnome_tweaks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
             ;;
 
         p)
@@ -341,23 +341,23 @@ internet_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/internet/firefox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/internet/brave.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/native/internet/dropbox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/internet/transmission.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh
             ;;
 
         5)  
-            "$SCRIPTS_FOLDER"/modules/native/internet/remmina.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
             ;;
 
         m)
@@ -398,23 +398,23 @@ multimedia_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/vlc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/obs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/obs.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/openshot.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh
             ;;
         
         4)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/xfburn.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
         
         m)
@@ -505,15 +505,15 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/native/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/native/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/gaming/bottles.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/bottles.sh
             ;;
 
         p)
@@ -624,7 +624,7 @@ gaming_tools_menu(){
 
         1)
             mkdir "$HOME"/.config/MangoHud
-            "$SCRIPTS_FOLDER"/modules/native/gaming/mangohud.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/mangohud.sh
             ;;
 
         2)
@@ -632,7 +632,7 @@ gaming_tools_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/gaming/proton_plus.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/proton_plus.sh
             ;;
 
         p)
@@ -680,7 +680,7 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/native/gaming/discord.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
             ;;
 
         2)
@@ -688,7 +688,7 @@ gaming_other_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/gaming/dolphin_emu.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh
             ;;
 
         4)
@@ -741,23 +741,23 @@ office_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/office/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/office/qownnotes.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/office/marknote.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/office/claws_mail.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/native/office/thunderbird.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh
             ;;
 
         6)
@@ -765,7 +765,7 @@ office_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/native/office/keepassxc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh
             ;;
 
         m)
@@ -860,7 +860,7 @@ sdks_menu(){
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/native/development/package_tools.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
             ;;
 
         3)
@@ -872,7 +872,7 @@ sdks_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/development/python_tools.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
             ;;
         
         p)
@@ -923,23 +923,23 @@ ides_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/development/vim.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/development/vscodium.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/development/geany.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/development/codeblocks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/codeblocks.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/development/bluefish.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/bluefish.sh
             ;;
 
         6)
@@ -996,15 +996,15 @@ dev_other_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/development/github_desktop.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/development/lamp.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
         p)
@@ -1053,15 +1053,15 @@ utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/fedora_media_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/gtkhash.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh
             ;;
 
         4)
@@ -1069,7 +1069,7 @@ utils_menu(){
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
         m)

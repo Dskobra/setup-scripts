@@ -58,10 +58,6 @@ main_menu(){
             miscellaneous_menu
             ;;
 
-        10)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/dconf_editor.sh
-            ;;
-
         0)
             exit
             ;;
@@ -96,23 +92,23 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/corectrl.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/corectrl.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/cooler_control.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/openrgb.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/v4l2loopback.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
             ;;
         
         h)
@@ -206,27 +202,27 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/kde/kde_iso_image_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/plasma_x11.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh
             ;;
 
         p)
@@ -275,15 +271,15 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/gnome/dconf_editor.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/desktops/gnome/pavucontrol.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/gnome_tweaks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
             ;;
 
         p)
@@ -332,23 +328,23 @@ internet_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/internet/firefox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/internet/brave.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/internet/dropbox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/flatpak/internet/transmission.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh
             ;;
 
         5)  
-            "$SCRIPTS_FOLDER"/modules/flatpak/internet/remmina.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
             ;;
 
         m)
@@ -388,15 +384,15 @@ multimedia_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/multimedia/vlc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/multimedia/obs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/obs.sh
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/multimedia/openshot.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh
             ;;
 
         
@@ -488,15 +484,15 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/bottles.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/bottles.sh
             ;;
 
         p)
@@ -615,7 +611,7 @@ gaming_tools_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/proton_plus.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/proton_plus.sh
             ;;
 
         p)
@@ -663,7 +659,7 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/flatpak/gaming/discord.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
             ;;
 
         2)
@@ -724,23 +720,23 @@ office_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/office/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/office/qownnotes.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/office/marknote.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/flatpak/office/claws_mail.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/flatpak/office/thunderbird.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh
             ;;
 
         6)
@@ -748,7 +744,7 @@ office_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/flatpak/office/keepassxc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh
             ;;
 
         m)
@@ -795,11 +791,11 @@ development_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/github_desktop.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
         m)
@@ -899,23 +895,23 @@ ides_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/development/vim.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/vscodium.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/geany.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/codeblocks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/codeblocks.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/flatpak/development/bluefish.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/bluefish.sh
             ;;
 
         6)
@@ -972,15 +968,15 @@ utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/flatpak/utilities/fedora_media_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/flatpak/utilities/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/flatpak/utilities/gtkhash.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh
             ;;
 
         4)
@@ -988,7 +984,7 @@ utils_menu(){
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
         m)
