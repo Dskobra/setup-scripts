@@ -279,7 +279,7 @@ gnome_desktop_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh "flatpak"
             ;;
 
         p)
