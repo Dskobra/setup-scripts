@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-install_dconf_editor(){
+distro_dconf_editor(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y dconf-editor
@@ -10,8 +10,20 @@ install_dconf_editor(){
     else
         echo "Unkown error has occurred."
     fi
+    flatpak remove --user -y ca.desrt.dconf-editor
 }
 
-flatpak remove --user -y ca.desrt.dconf-editor
-install_dconf_editor
+test(){
+    # rename later
+    
+}
 
+if [ "$1" == "flatpak" ]
+then
+    echo "flatpak test"
+elif [ "$1" == "distro" ]
+then
+    distro_dconf_editor
+else
+    echo "error"
+fi
