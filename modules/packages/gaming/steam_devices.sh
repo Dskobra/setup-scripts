@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_steam_devices(){
+native_steam_devices(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y steam-devices
@@ -19,4 +19,4 @@ install_steam_devices(){
     fi
 }
 
-install_steam_devices
+native_steam_devices

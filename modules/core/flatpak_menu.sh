@@ -492,7 +492,9 @@ gaming_clients_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/bottles.sh
+            mkdir $HOME/bottles
+            flatpak install --user -y flathub com.usebottles.bottles
+            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
         p)
@@ -543,15 +545,15 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/other/gaming/wowup.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wowup.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/other/gaming/warcraft_logs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/warcraft_logs.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/other/gaming/weakauras_companion.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/weakauras_companion.sh
             ;;
 
         p)
@@ -611,7 +613,7 @@ gaming_tools_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/proton_plus.sh
+            flatpak install --user -y flathub com.vysp3r.ProtonPlus
             ;;
 
         p)

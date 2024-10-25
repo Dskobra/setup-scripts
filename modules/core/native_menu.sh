@@ -505,15 +505,17 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/bottles.sh
+            mkdir $HOME/bottles
+            flatpak install --user -y flathub com.usebottles.bottles
+            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
         p)
@@ -614,7 +616,7 @@ gaming_tools_menu(){
     echo "Mangohud and proton tools"
     echo ""
     echo "(1) Mangohud[n]            (2) Protontricks[f]"
-    echo "(3) Proton Plus[n]"
+    echo "(3) Proton Plus[f]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -624,7 +626,7 @@ gaming_tools_menu(){
 
         1)
             mkdir "$HOME"/.config/MangoHud
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/mangohud.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/mangohud.sh "native"
             ;;
 
         2)
@@ -632,7 +634,7 @@ gaming_tools_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/proton_plus.sh
+            flatpak install --user -y flathub com.vysp3r.ProtonPlus
             ;;
 
         p)
@@ -680,7 +682,7 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "native"
             ;;
 
         2)
@@ -688,7 +690,7 @@ gaming_other_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh "native"
             ;;
 
         4)
@@ -741,23 +743,23 @@ office_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "native"
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "native"
             ;;
 
         6)
@@ -765,7 +767,7 @@ office_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "native"
             ;;
 
         m)

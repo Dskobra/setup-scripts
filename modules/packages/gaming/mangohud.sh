@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_mangohud(){
+native_mangohud(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y mangohud
@@ -12,5 +12,13 @@ install_mangohud(){
     fi
 }
 
-mkdir $HOME/.config/MangoHud
-install_mangohud
+mkdir $HOME/.config/MangoHud           
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+elif [ "$1" == "native" ]
+then
+    native_mangohud
+else
+    echo "error"
+fi
