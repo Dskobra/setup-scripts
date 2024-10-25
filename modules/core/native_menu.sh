@@ -15,7 +15,7 @@ main_menu(){
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
-    echo "(9) Misc                          (10) Update Scripts"
+    echo "(9) Misc"
     echo "(0) Exit"
     printf "Option: "
     read -r input
