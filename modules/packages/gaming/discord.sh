@@ -3,7 +3,6 @@
 native_discord(){
     if [ "$PKGMGR" == "dnf" ]
     then
-        flatpak remove --user -y com.discordapp.Discord
         sudo dnf install -y discord
     elif [ "$PKGMGR" == "apt-get" ]
     then
@@ -33,13 +32,11 @@ remove_discord(){
     fi
 }
 
-
-
-
 if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub com.discordapp.Discord
     flatpak override --user com.discordapp.Discord --env=XDG_SESSION_TYPE=x11
+    remove_discord
 elif [ "$1" == "native" ]
 then
     flatpak remove --user -y com.discordapp.Discord
