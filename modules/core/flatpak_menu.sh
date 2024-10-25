@@ -484,11 +484,11 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
             ;;
 
         3)
