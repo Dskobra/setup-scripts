@@ -58,6 +58,7 @@ then
     native_steam_devices
 elif [ "$1" == "native" ]
 then
+    flatpak remove --user -y com.valvesoftware.Steam
     native_steam
     native_steam_devices
 else

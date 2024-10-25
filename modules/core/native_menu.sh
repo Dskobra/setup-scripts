@@ -496,7 +496,7 @@ gaming_clients_menu(){
     echo "---------------- ------"
     echo ""
     echo "(1) Steam[n]               (2) Lutris[n]"
-    echo "(3) Bottles[n]"
+    echo "(3) Bottles[f]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
