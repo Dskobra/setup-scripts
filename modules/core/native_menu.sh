@@ -858,7 +858,7 @@ sdks_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/other/development/nodejs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
             ;;
         
         2)
@@ -866,11 +866,11 @@ sdks_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/other/development/openjdk.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/other/development/openjfx.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
             ;;
 
         5)
