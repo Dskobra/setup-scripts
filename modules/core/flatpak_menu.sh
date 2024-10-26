@@ -722,23 +722,23 @@ office_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh "flatpak"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh "flatpak"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "flatpak"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "flatpak"
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "flatpak"
             ;;
 
         6)
@@ -746,7 +746,7 @@ office_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "flatpak"
             ;;
 
         m)
