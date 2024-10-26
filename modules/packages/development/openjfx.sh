@@ -1,11 +1,13 @@
 #!/usr/bin/bash
 
-install_openjfx(){
+download_openjfx(){
     OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.5/openjfx-21.0.5_linux-x64_bin-sdk.zip"
     if test -d "$APP_FOLDER"/openjfx21; then
         echo "openjfx21 already downloaded."
     elif ! test -d "$APP_FOLDER"/openjfx21; then
-        openjfx_header
+        echo "==========================================================="
+        echo "This downloads Gluon openjfx 21 LTS into ~/Apps/openjfx21"
+        echo "==========================================================="
         cd "$SCRIPTS_FOLDER"/temp || exit
         curl -L -o openjfx21.zip "$OPENJFX_LINK"
         unzip openjfx21.zip
@@ -17,9 +19,4 @@ install_openjfx(){
     fi
 }
 
-openjfx_header(){
-    echo "==========================================================="
-    echo "This downloads Gluon openjfx 21 LTS into ~/Apps/openjfx21"
-    echo "==========================================================="
-}
-install_openjfx
+download_openjfx

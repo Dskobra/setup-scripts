@@ -886,9 +886,8 @@ ides_menu(){
     echo "------------"
     echo ""   
     echo "(1) VIM[n]                            (2) VSCodium[f]"
-    echo "(3) Geany[f]                          (4) CodeBlocks[f]"
-    echo "(5) Bluefish[f]                       (6) Intellij IDEA[o]"
-    echo "(7) Pycharm[o]"
+    echo "(3) Geany[f]                          (4) Intellij IDEA[o]"
+    echo "(5) Pycharm[o]"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -909,18 +908,10 @@ ides_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/codeblocks.sh
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/bluefish.sh
-            ;;
-
-        6)
             "$SCRIPTS_FOLDER"/modules/other/development/idea.sh
             ;;
 
-        7)
+        5)
             "$SCRIPTS_FOLDER"/modules/other/development/pycharm.sh
             ;;
 

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_github_desktop(){
+native_github_desktop(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
@@ -16,5 +16,32 @@ install_github_desktop(){
     fi
 }
 
-flatpak remove --user -y io.github.shiftey.Desktop
-install_github_desktop
+remove_github_desktop(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo rm /etc/yum.repos.d/shiftkey-packages.repo
+        sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
+        sudo dnf remove -y github-desktop
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        sudo rm /etc/apt/sources.list.d/shiftkey-packages.list
+        sudo apt-get remove -y github-desktop
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub io.github.shiftey.Desktop
+    remove_github_desktop
+elif [ "$1" == "native" ]
+then
+    flatpak remove --user -y io.github.shiftey.Desktop
+    native_github_desktop
+else
+    echo "error"
+fi

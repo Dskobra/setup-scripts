@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_vim(){
+native_vim(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y vim-enhanced
@@ -17,4 +17,4 @@ install_vim(){
     fi
 }
 
-install_vim
+native_vim

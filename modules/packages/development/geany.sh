@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_geany(){
+native_geany(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
@@ -12,5 +12,29 @@ install_geany(){
     fi
 }
 
-flatpak remove --user -y org.geany.Geany
-install_geany
+remove_geany(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo dnf remove -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        sudo apt-get remove -y geany geany-plugin-markdown geany-plugin-spellcheck geany-plugin-treebrowser
+    else
+        echo "Invalid option"
+    fi
+}
+
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub org.geany.Geany
+    remove_geany
+elif [ "$1" == "native" ]
+then
+    flatpak remove --user -y org.geany.Geany
+    native_geany
+else
+    echo "error"
+fi

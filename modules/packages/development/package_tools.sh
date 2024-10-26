@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_package_tools(){
+native_package_tools(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\
@@ -16,4 +16,4 @@ install_package_tools(){
     fi
 }
 
-install_package_tools
+native_package_tools

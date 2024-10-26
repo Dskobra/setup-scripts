@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_containers(){
+native_containers(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y toolbox distrobox
@@ -18,4 +18,4 @@ install_containers(){
 }
 
 flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-install_containers
+native_containers

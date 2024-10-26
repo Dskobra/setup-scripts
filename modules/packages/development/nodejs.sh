@@ -15,9 +15,9 @@ install_nodejs(){
         # Due to some unknown reason/issue on Debian nvm is unable to be run from
         # this script. source ~/.bashrc won't work nor will rerunning this after a shell
         # restart. Manually is the only way.
-
-        #zenity --info --text="Please open a new shell and run\nnvm install lts/*"
+        echo "==================================================="
         echo "Please open a new shell and run\nnvm install lts/*"
+        echo "==================================================="
     else
         echo "Unkown error has occurred."
     fi

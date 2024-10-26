@@ -2,7 +2,7 @@
 
 # downloads the official jetbrains pycharm community edition
 
-install_pycharm(){
+download_pycharm(){
     PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2024.2.1.tar.gz"
     
     if test -d "$APP_FOLDER"/pycharm; then
@@ -16,4 +16,4 @@ install_pycharm(){
     fi
 }
 
-install_pycharm
+download_pycharm

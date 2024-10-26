@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_lamp_stack(){
+native_lamp_stack(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y httpd mariadb mariadb-server\
@@ -14,4 +14,4 @@ install_lamp_stack(){
     fi
 }
 
-install_lamp_stack
+native_lamp_stack

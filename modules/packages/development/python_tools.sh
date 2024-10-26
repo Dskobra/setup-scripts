@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_python_tools(){
+native_python_tools(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y python3-idle python3-devel
@@ -12,4 +12,4 @@ install_python_tools(){
     fi
 }
 
-install_python_tools
+native_python_tools

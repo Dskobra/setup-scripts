@@ -2,7 +2,7 @@
 
 # downloads the official jetbrains idea community edition
 
-install_idea(){
+download_idea(){
     IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2024.2.1.tar.gz"
     
     if test -d $APP_FOLDER/idea; then
@@ -16,4 +16,4 @@ install_idea(){
     fi
 }
 
-install_idea
+download_idea
