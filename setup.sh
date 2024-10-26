@@ -37,4 +37,4 @@ LOOK_FOR_APP_FOLDER="missing"
 SCRIPTS_FOLDER=$(pwd)
 make_temp
 make_app_folder
-"$SCRIPTS_FOLDER"/modules/core/launcher.sh
+"$SCRIPTS_FOLDER"/modules/core/distro_check.sh
