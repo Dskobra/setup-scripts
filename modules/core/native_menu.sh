@@ -15,7 +15,7 @@ main_menu(){
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
-    echo "(9) Misc                          (10) Update Scripts"
+    echo "(9) Misc"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -801,7 +801,8 @@ development_menu(){
     echo "Mostly IDEs and compilers."
     echo ""
     echo "(1) SDKs              (2) IDEs"
-    echo "(3) Other"
+    echo "(3) Github Desktop[n] (4)  Containers[n][f]"
+    echo "(5) Lamp Stack[n]"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -816,7 +817,15 @@ development_menu(){
             ;;
 
         3)
-            dev_other_menu
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
+            ;;
+
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
         m)
@@ -972,63 +981,6 @@ ides_menu(){
     esac
     unset input
     ides_menu
-}
-
-dev_other_menu(){
-    echo "-------------"
-    echo "|   Other   |"
-    echo "-------------"
-    echo ""
-    echo "(1) Github Desktop[n]        (2)  Containers[n][f]"
-    echo "(3) Lamp Stack[n]"
-    echo "(p) Previous Menu            (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
-            ;;
-
-        p)
-            development_menu
-            ;;
-
-        P)
-            development_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-        
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        dev_other_menu
-        ;;
-        
-    esac
-    unset input
-    dev_other_menu
 }
 
 utils_menu(){
