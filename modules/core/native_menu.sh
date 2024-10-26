@@ -989,7 +989,7 @@ dev_other_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
             ;;
 
         2)

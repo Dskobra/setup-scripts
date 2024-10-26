@@ -793,7 +793,7 @@ development_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "flatpak"
             ;;
 
         4)
