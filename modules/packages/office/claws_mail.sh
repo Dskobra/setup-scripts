@@ -31,7 +31,7 @@ if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.claws_mail.Claws-Mail
     remove_claws_mail
-elif [ "$1" == "distro" ]
+elif [ "$1" == "native" ]
 then
     flatpak remove --user -y org.claws_mail.Claws-Mail
     native_claws_mail

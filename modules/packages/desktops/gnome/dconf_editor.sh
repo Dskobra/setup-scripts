@@ -33,7 +33,7 @@ if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub ca.desrt.dconf-editor
     remove_dconf_editor
-elif [ "$1" == "distro" ]
+elif [ "$1" == "native" ]
 then
     native_dconf_editor
 else

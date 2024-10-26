@@ -31,7 +31,7 @@ if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.libreoffice.LibreOffice
     remove_libreoffice
-elif [ "$1" == "distro" ]
+elif [ "$1" == "native" ]
 then
     flatpak remove --user -y org.libreoffice.LibreOffice
     native_libreoffice

@@ -31,7 +31,7 @@ if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.mozilla.Thunderbird
     remove_thunderbird
-elif [ "$1" == "distro" ]
+elif [ "$1" == "native" ]
 then
     flatpak remove --user -y org.mozilla.Thunderbird
     native_thunderbird

@@ -38,7 +38,7 @@ if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.qownnotes.QOwnNotes
     remove_qownnotes
-elif [ "$1" == "distro" ]
+elif [ "$1" == "native" ]
 then
     flatpak remove --user -y org.qownnotes.QOwnNotes
     native_qownnotes

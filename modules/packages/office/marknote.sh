@@ -35,7 +35,7 @@ if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.kde.marknote
     remove_marknote
-elif [ "$1" == "distro" ]
+elif [ "$1" == "native" ]
 then
     flatpak remove --user -y org.kde.marknote
     native_marknote
