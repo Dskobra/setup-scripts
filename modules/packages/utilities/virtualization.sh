@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_virtualization(){
+native_virtualization(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf update -y
@@ -23,6 +23,6 @@ install_virtualization(){
     fi
 }
 
-install_virtualization
-$SCRIPTS_FOLDER/modules/other/misc/check_for_libvirt_group.sh
+native_virtualization
+"$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
 xdg-open "https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md"

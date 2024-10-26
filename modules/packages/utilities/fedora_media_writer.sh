@@ -1,18 +1,44 @@
 #!/usr/bin/bash
 
-package_fmedia_writer(){
+native_fmedia_writer(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y mediawriter
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        #zenity --info --text="Fedora Mediawriter isn't available in Debian so using flatpak version instead."
-        echo "Fedora Mediawriter isn't available in Debian so using flatpak version instead."
-        "$SCRIPTS_FOLDER"/modules/flatpak/utilities/fedora_media_writer.sh
+        echo "============================================="
+        echo "Fedora Mediawriter isn't available in Debian."
+        echo "This will install the flatpak version."
+        echo "============================================="
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
         echo "Unkown error has occurred."
     fi
 }
 
-flatpak remove --user -y org.fedoraproject.MediaWriter
-package_fmedia_writer
+remove_fmedia_writer(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo dnf remove -y mediawriter
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        echo "Not removing Fedora media writer as it's not present in Debian repos."
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub org.fedoraproject.MediaWriter
+    remove_fmedia_writer
+elif [ "$1" == "native" ]
+then
+    flatpak remove --user -y org.fedoraproject.MediaWriter
+    native_fmedia_writer
+else
+    echo "error"
+fi

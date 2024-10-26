@@ -961,15 +961,15 @@ utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh "flatpak"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "flatpak"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
             ;;
 
         4)

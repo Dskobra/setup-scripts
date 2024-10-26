@@ -998,15 +998,15 @@ utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
             ;;
 
         4)
