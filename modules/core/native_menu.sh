@@ -801,7 +801,7 @@ development_menu(){
     echo "Mostly IDEs and compilers."
     echo ""
     echo "(1) SDKs              (2) IDEs"
-    echo "(3) Github Desktop[n] (4)  Containers[n][f]"
+    echo "(3) Github Desktop[n] (4) Containers[n][f]"
     echo "(5) Lamp Stack[n]"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
