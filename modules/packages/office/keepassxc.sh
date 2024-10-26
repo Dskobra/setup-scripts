@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_keepassxc(){
+native_keepassxc(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y keepassxc
@@ -12,5 +12,29 @@ install_keepassxc(){
     fi
 }
 
-flatpak remove --user -y org.keepassxc.KeePassXC
-install_keepassxc
+remove_keepassxc(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo dnf remove -y keepassxc
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        sudo apt-get remove -y keepassxc
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub org.keepassxc.KeePassXC
+    remove_keepassxc
+elif [ "$1" == "distro" ]
+then
+    flatpak remove --user -y org.keepassxc.KeePassXC
+    native_keepassxc
+else
+    echo "error"
+fi

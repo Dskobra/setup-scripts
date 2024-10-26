@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install_thunderbird(){
+native_thunderbird(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y thunderbird
@@ -12,5 +12,29 @@ install_thunderbird(){
     fi
 }
 
-flatpak remove --user -y org.mozilla.Thunderbird
-install_thunderbird
+remove_thunderbird(){
+    if [ "$PKGMGR" == "dnf" ]
+    then
+        sudo dnf remove -y thunderbird
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
+        sudo apt-get remove -y thunderbird
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user -y flathub org.mozilla.Thunderbird
+    remove_thunderbird
+elif [ "$1" == "distro" ]
+then
+    flatpak remove --user -y org.mozilla.Thunderbird
+    native_thunderbird
+else
+    echo "error"
+fi

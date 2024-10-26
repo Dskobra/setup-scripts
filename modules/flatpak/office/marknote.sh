@@ -15,5 +15,5 @@ remove_marknote(){
     fi
 }
 
-flatpak install --user -y flathub org.kde.marknote
+
 remove_marknote
