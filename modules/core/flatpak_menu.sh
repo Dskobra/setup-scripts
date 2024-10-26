@@ -838,15 +838,15 @@ sdks_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/other/development/nodejs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/other/development/openjdk.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/other/development/openjfx.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
             ;;
         
         p)
@@ -900,19 +900,19 @@ ides_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "flatpak"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "flatpak"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/other/development/idea.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/idea.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/other/development/pycharm.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
             ;;
 
         p)
@@ -1017,11 +1017,11 @@ miscellaneous_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/other/misc/xbox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/misc/xbox.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/other/misc/check_for_libvirt_group.sh
+            "$SCRIPTS_FOLDER"/modules/packages/misc/check_for_libvirt_group.sh
             ;;
             
 

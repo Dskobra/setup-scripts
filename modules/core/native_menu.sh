@@ -928,19 +928,19 @@ ides_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/other/development/idea.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/idea.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/other/development/pycharm.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
             ;;
 
         p)
