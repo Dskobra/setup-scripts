@@ -1,7 +1,12 @@
 #!/usr/bin/bash
+########################################
+# These functions determine things like
+# distro and if using Fedora atomic
+# variants.
+########################################
 distro_check(){
-# This determines the distro and sets PKGMGR
-# to related package manager
+# Read $DISTRO then figure out if it's supported
+# version
     if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
@@ -15,9 +20,10 @@ distro_check(){
 }
 
 fedora_release_check(){
+    # checks if Fedora version is among supported versions.
     if [ "$VERSION_ID" == "39" ] || [ "$VERSION_ID" == "40" ] || [ "$VERSION_ID" == "41" ]
     then
-        fedora_variant_check
+        fedora_variant_check                # run an extra check to see if it's an atomic variant
     else
         echo "These scripts only support Fedora 39/40/41 beta(experimental)"
     fi
@@ -31,7 +37,7 @@ fedora_variant_check(){
 # which is very different. Atomic editions
 # highly encourage flatpak so it is the default
 # and limited native packages are provided.
-
+    VARIANT="" 
     test -f /run/ostree-booted && VARIANT=ostree
     if [ -z "$VARIANT" ]
     then
@@ -59,8 +65,11 @@ debian_release_check(){
     fi
 
 }
+########################################
+# End of grouped functions
+########################################
 
-# asks user to choose between native and flatpak apps and
+# This asks user to choose between native or flatpak apps and
 # runs the appropriate menu
 
 package_type_chooser(){
@@ -92,9 +101,6 @@ package_type_chooser(){
     fi
 }
 
-
-OS_NAME=$(source /etc/os-release ; echo "$NAME")
-export VERSION_ID=$(source /etc/os-release ; echo "$VERSION_ID")
-DISTRO=$(source /etc/os-release ; echo $ID)
-VARIANT=""      
-distro_check
+DISTRO=$(source /etc/os-release ; echo $ID)                      # store basic distro name
+VERSION_ID=$(source /etc/os-release ; echo "$VERSION_ID")        # store distro version number
+distro_check                                                     # determine distro
