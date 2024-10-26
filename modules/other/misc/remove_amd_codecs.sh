@@ -14,9 +14,8 @@ remove_amd_codecs(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        TEXT_ONE="This is only for Fedora as it swaps the RPMFusion mesa codecs"
-        TEXT_TWO="for the Fedora provided ones which only uses patent free codecs."
-        zenity --error --text="$TEXT_ONE $TEXT_TWO"
+        echo "This is only for Fedora as it swaps the RPMFusion mesa codecs"
+        echo "for the Fedora provided ones which only uses patent free codecs."
     else
         echo "Unkown error has occurred."
     fi
