@@ -1017,11 +1017,11 @@ miscellaneous_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/misc/xbox.sh
+            sudo modprobe xpad
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/misc/check_for_libvirt_group.sh
+            "$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
             ;;
             
 
