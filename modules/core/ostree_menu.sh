@@ -1075,7 +1075,7 @@ ostree_menu(){
             ;;
 
         3)
-            echo "not finished yet"
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "unhide"
             ;;
 
         4)

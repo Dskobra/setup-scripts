@@ -49,6 +49,10 @@ remove_firefox(){
 }
 
 hide_firefox_on_atomic(){
+        echo "==========================================================="
+        echo "This will hide the Firefox package instead of removing"
+        echo "it from the base image. Use the Native Menu to restore it."
+        echo "==========================================================="
         sudo mkdir -p "/usr/local/share/applications/"
         FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
         if [ "$FEDORA_VERSION" == "40" ]
@@ -73,6 +77,9 @@ elif [ "$1" == "native" ]
 then
     flatpak uninstall --user -y org.mozilla.firefox
     native_firefox
+elif [ "$1" == "unhide" ]
+then
+    sudo rm "/usr/local/share/applications/firefox.desktop"
 else
     echo "error"
 fi
