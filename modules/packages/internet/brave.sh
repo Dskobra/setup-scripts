@@ -8,6 +8,16 @@ native_brave_browser(){
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo dnf update -y
         sudo dnf install -y brave-browser
+
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        sudo dnf4 config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        cd "$SCRIPTS_FOLDER"/temp
+        curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        sudo mv brave-core.asc /etc/pki/rpm-gpg/
+        sudo rpm-ostree refresh-md
+        sudo rpm-ostree install brave-browser
+        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg

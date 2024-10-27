@@ -58,6 +58,10 @@ main_menu(){
             miscellaneous_menu
             ;;
 
+        10)
+            ostree_menu
+            ;;
+
         0)
             exit
             ;;
@@ -1053,8 +1057,8 @@ ostree_menu(){
     echo "-----------"
     echo ""
     echo "(1) AMD Video Acceleration             (2) Audio/Video Codecs"
-    echo "(3) Brave Browser                      (4) Dropbox"
-    echo "(5) Steam"
+    echo "(3) Unhide Firefox                     (4) Brave Browser"
+    echo "(5) Dropbox                            (6) Steam"
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1071,10 +1075,14 @@ ostree_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
+            echo "not finished yet"
             ;;
 
         4)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
+            ;;
+
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "native"
             ;;
         
