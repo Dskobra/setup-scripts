@@ -9,6 +9,10 @@ native_steam(){
         sudo dpkg --add-architecture i386
         sudo apt-get update
         sudo apt-get install -y steam
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install steam
+        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     else
         echo "Unkown error has occurred."
     fi

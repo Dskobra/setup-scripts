@@ -48,8 +48,9 @@ fedora_variant_check(){
     elif [ "$VARIANT" == "ostree" ]
     then
         PKGMGR="rpm-ostree"
+        PACKAGE_TYPE="flatpak"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/core/flatpak_menu.sh
+        "$SCRIPTS_FOLDER"/modules/core/ostree_menu.sh
     fi
 }
 
