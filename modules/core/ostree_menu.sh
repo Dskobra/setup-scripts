@@ -11,7 +11,7 @@ main_menu(){
     echo "Released under the MIT license"
     echo ""
     echo ""
-    echo "(1) Hardware/Drivers              (2) Desktop Apps"      
+    echo "(1) Hardware                      (2) Desktop Apps"      
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
@@ -78,9 +78,9 @@ main_menu(){
 }
 
 hardware_drivers_menu(){
-    echo "------------------------"
-    echo "|   Hardware/Drivers   |"
-    echo "------------------------"
+    echo "---------------"
+    echo "|   Hardware  |"
+    echo "---------------"
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
