@@ -15,7 +15,7 @@ main_menu(){
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
-    echo "(9) Misc"
+    echo "(9) Misc                          (10) Native Apps"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -1052,9 +1052,9 @@ miscellaneous_menu(){
 }
 
 ostree_menu(){
-    echo "-----------"
-    echo "|   |"
-    echo "-----------"
+    echo "--------------------------"
+    echo "|   Assorted Native Apps |"
+    echo "--------------------------"
     echo ""
     echo "(1) AMD Video Acceleration             (2) Audio/Video Codecs"
     echo "(3) Unhide Firefox                     (4) Brave Browser"
