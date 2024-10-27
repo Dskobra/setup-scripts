@@ -78,6 +78,7 @@ then
     native_firefox
 elif [ "$1" == "unhide" ]
 then
+    flatpak uninstall --user -y org.mozilla.firefox
     sudo rm "/usr/local/share/applications/org.mozilla.firefox.desktop"
     sudo update-desktop-database "/usr/local/share/applications/"
 else
