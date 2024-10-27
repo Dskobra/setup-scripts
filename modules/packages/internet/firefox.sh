@@ -78,7 +78,8 @@ then
     native_firefox
 elif [ "$1" == "unhide" ]
 then
-    sudo rm "/usr/local/share/applications/firefox.desktop"
+    sudo rm "/usr/local/share/applications/org.mozilla.firefox.desktop"
+    sudo update-desktop-database "/usr/local/share/applications/"
 else
     echo "error"
 fi
