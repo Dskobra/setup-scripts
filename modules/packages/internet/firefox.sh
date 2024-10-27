@@ -68,7 +68,6 @@ hide_firefox_on_atomic(){
         fi
 }
 
-
 if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.mozilla.firefox
