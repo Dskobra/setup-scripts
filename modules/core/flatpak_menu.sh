@@ -604,8 +604,7 @@ gaming_tools_menu(){
     case $input in
 
         1)
-            mkdir "$HOME"/.config/MangoHud
-            flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/mangohud.sh "flatpak"
             ;;
 
         2)
