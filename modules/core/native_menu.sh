@@ -566,15 +566,15 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/other/gaming/wowup.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wowup.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/other/gaming/warcraft_logs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/warcraft_logs.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/other/gaming/weakauras_companion.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/weakauras_companion.sh
             ;;
 
         p)
