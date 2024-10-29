@@ -54,18 +54,9 @@ hide_firefox_on_atomic(){
         echo "it from the base image. Use the Native Menu to restore it."
         echo "==========================================================="
         sudo mkdir -p "/usr/local/share/applications/"
-        FEDORA_VERSION=$(source /etc/os-release ; echo $VERSION_ID)
-        if [ "$FEDORA_VERSION" == "40" ]
-            then
-                sudo cp "/usr/share/applications/org.mozilla.firefox.desktop" "/usr/local/share/applications/"
-                sudo sed -i "2a\\NotShowIn=GNOME;KDE" /usr/local/share/applications/org.mozilla.firefox.desktop
-                sudo update-desktop-database "/usr/local/share/applications/"
-        elif [ "$FEDORA_VERSION" == "39" ]
-            then
-                sudo cp "/usr/share/applications/firefox.desktop" "/usr/local/share/applications/"
-                sudo sed -i "2a\\NotShowIn=GNOME;KDE" /usr/local/share/applications/firefox.desktop
-                sudo update-desktop-database "/usr/local/share/applications/"
-        fi
+        sudo cp "/usr/share/applications/org.mozilla.firefox.desktop" "/usr/local/share/applications/"
+        sudo sed -i "2a\\NotShowIn=GNOME;KDE" /usr/local/share/applications/org.mozilla.firefox.desktop
+        sudo update-desktop-database "/usr/local/share/applications/"
 }
 
 if [ "$1" == "flatpak" ]

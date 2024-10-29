@@ -152,7 +152,7 @@ desktop_apps_menu(){
     echo "Apps for popular desktops"
     echo ""
     echo "(1) KDE                (2) GNOME"
-    echo "(3) Mate               (m) Main Menu"
+    echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
