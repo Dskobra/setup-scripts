@@ -6,7 +6,7 @@ main_menu(){
     echo "---------------------------" 
     echo ""
     echo "Version: $VERSION"
-    echo "Package Type: $PACKAGE_TYPE"
+    echo "Package Type: $PACKAGE_TYPE/limited RPM"
     echo "$COPYRIGHT"
     echo "Released under the MIT license"
     echo ""
@@ -24,7 +24,7 @@ main_menu(){
 
 
         1)
-            hardware_drivers_menu
+            hardware_menu
             ;;
 
         2)
@@ -77,7 +77,7 @@ main_menu(){
         main_menu
 }
 
-hardware_drivers_menu(){
+hardware_menu(){
     echo "---------------"
     echo "|   Hardware  |"
     echo "---------------"
@@ -137,12 +137,12 @@ hardware_drivers_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            hardware_drivers_menu
+            hardware_menu
             ;;
             
         esac
         unset input
-        hardware_drivers_menu
+        hardware_menu
 }
 
 desktop_apps_menu(){
