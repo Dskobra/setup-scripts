@@ -1,6 +1,7 @@
 #! /usr/bin/bash
 
 native_dconf_editor(){
+    flatpak remove --user -y ca.desrt.dconf-editor
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y dconf-editor
@@ -9,8 +10,7 @@ native_dconf_editor(){
         sudo apt-get install -y dconf-editor
     else
         echo "Unkown error has occurred."
-    fi
-    flatpak remove --user -y ca.desrt.dconf-editor
+    fi 
 }
 
 remove_dconf_editor(){
