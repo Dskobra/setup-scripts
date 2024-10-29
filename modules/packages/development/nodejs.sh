@@ -16,7 +16,7 @@ install_nodejs(){
         # this script. source ~/.bashrc won't work nor will rerunning this after a shell
         # restart. Manually is the only way.
         echo "==================================================="
-        echo "Please open a new shell and run\nnvm install lts/*"
+        echo "Please open a new shell and run 'nvm install lts/*'"
         echo "==================================================="
     else
         echo "Unkown error has occurred."
