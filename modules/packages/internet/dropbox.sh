@@ -10,7 +10,7 @@ native_dropbox(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        install_dropbox_debian
+        native_dropbox_debian
     else
         echo "Unkown error has occurred."
     fi
