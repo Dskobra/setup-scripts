@@ -2,16 +2,16 @@
 Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
-* Fedora 39/40/41(beta) Workstation/Spins
-* Fedora 39/40/41(beta) Atomic Desktops
+* Fedora 40/41 Workstation/Spins
+* Fedora 40/41 Atomic Desktops
 * Debian 12
 
 ## Requirements
 * curl
 * wget
 * flatpak
-* flatseal flatpak
-* dnf   (fedora)
+* flatseal         (flatpak)
+* dnf              (fedora)
 * dnf-plugins-core (fedora)
 
 On first run setup.sh checks for the file ranonce.txt and if it doesn't exist it will install all the required packages
@@ -21,6 +21,5 @@ structure
 -------------
 * setup.sh            -       Main launch script. Always use this.
 * modules/core        -       Core scripts. Everything needed to run is here.
-* modules/flatpak     -       Commands for installing packages through flatpak.
-* modules/native      -       Commands for installing native deb/rpm built packages.
-* modules/other       -       Scripts for downloading appimages, precompiled tarballs and few misc scripts.
+* modules/packages    -       Commands for installing everything.
+* modules/misc        -       Scripts for setting permissions for libvirt and removing codecs on fedora.
