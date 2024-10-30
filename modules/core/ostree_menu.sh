@@ -6,7 +6,7 @@ main_menu(){
     echo "---------------------------" 
     echo ""
     echo "Version: $VERSION"
-    echo "Package Type: $PACKAGE_TYPE"
+    echo "Package Type: $PACKAGE_TYPE/limited RPM"
     echo "$COPYRIGHT"
     echo "Released under the MIT license"
     echo ""
@@ -15,7 +15,7 @@ main_menu(){
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
-    echo "(9) Misc"
+    echo "(9) Misc                          (10) Native Apps"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -58,6 +58,10 @@ main_menu(){
             miscellaneous_menu
             ;;
 
+        10)
+            ostree_menu
+            ;;
+
         0)
             exit
             ;;
@@ -74,9 +78,9 @@ main_menu(){
 }
 
 hardware_menu(){
-    echo "----------------"
-    echo "|   Hardware   |"
-    echo "----------------"
+    echo "---------------"
+    echo "|   Hardware  |"
+    echo "---------------"
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
@@ -1008,6 +1012,7 @@ miscellaneous_menu(){
     echo "---------------------"
     echo ""
     echo "(1) Setup xbox controller       (2) Add user to libvirt group"
+    echo "(3) Remove Audio/Video Codecs  (4) Remove AMD hardware accelerated codecs "
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1021,6 +1026,14 @@ miscellaneous_menu(){
 
         2)
             "$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/misc/remove_codecs.sh
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/misc/remove_amd_codecs.sh
             ;;
             
 
@@ -1045,6 +1058,64 @@ miscellaneous_menu(){
     esac
     unset input
     miscellaneous_menu
+}
+
+ostree_menu(){
+    echo "--------------------------"
+    echo "|   Assorted Native Apps |"
+    echo "--------------------------"
+    echo ""
+    echo "(1) AMD Video Acceleration             (2) Audio/Video Codecs"
+    echo "(3) Unhide Firefox                     (4) Brave Browser"
+    echo "(5) Dropbox                            (6) Steam"
+    echo "(m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/amd_codecs.sh
+            ;;
+
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "unhide"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
+            ;;
+
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "native"
+            ;;
+        
+        m)
+            main_menu
+            ;;
+        
+        M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+    *)
+        echo -n "Unknown entry"
+        echo ""
+        ostree_menu
+        ;;
+        
+    esac
+    unset input
+    ostree_menu
 }
 
 main_menu

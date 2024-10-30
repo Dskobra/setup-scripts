@@ -11,7 +11,7 @@ main_menu(){
     echo "Released under the MIT license"
     echo ""
     echo ""
-    echo "(1) Hardware/Drivers              (2) Desktop Apps"      
+    echo "(1) Hardware                      (2) Desktop Apps"      
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
@@ -24,7 +24,7 @@ main_menu(){
 
 
         1)
-            hardware_drivers_menu
+            hardware_menu
             ;;
 
         2)
@@ -73,10 +73,10 @@ main_menu(){
         main_menu
 }
 
-hardware_drivers_menu(){
-    echo "------------------------"
-    echo "|   Hardware/Drivers   |"
-    echo "------------------------"
+hardware_menu(){
+    echo "----------------"
+    echo "|   Hardware   |"
+    echo "----------------"
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
@@ -91,27 +91,27 @@ hardware_drivers_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/corectrl.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/corectrl.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/cooler_control.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/openrgb.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/v4l2loopback.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/native/hardware/amd_codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/amd_codecs.sh
             ;;
         
         h)
@@ -136,12 +136,12 @@ hardware_drivers_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            hardware_drivers_menu
+            hardware_menu
             ;;
             
         esac
         unset input
-        hardware_drivers_menu
+        hardware_menu
 }
 
 desktop_apps_menu(){
@@ -152,7 +152,7 @@ desktop_apps_menu(){
     echo "Apps for popular desktops"
     echo ""
     echo "(1) KDE                (2) GNOME"
-    echo "(3) Mate               (m) Main Menu"
+    echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -168,7 +168,7 @@ desktop_apps_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/mate_apps.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/mate_apps.sh
             ;;
 
         m)
@@ -211,31 +211,31 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "native"
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kde_iso_image_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "native"
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh "native"
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/plasma_x11.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh 
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/kde/k3b.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/k3b.sh
             ;;
 
         p)
@@ -284,15 +284,15 @@ gnome_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/dconf_editor.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/pavucontrol.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "native"
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/native/desktops/gnome/gnome_tweaks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh "native"
             ;;
 
         p)
@@ -341,23 +341,23 @@ internet_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/internet/firefox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/internet/brave.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/native/internet/dropbox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/internet/transmission.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "native"
             ;;
 
         5)  
-            "$SCRIPTS_FOLDER"/modules/native/internet/remmina.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "native"
             ;;
 
         m)
@@ -398,23 +398,23 @@ multimedia_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/vlc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/obs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/obs.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/openshot.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "native"
             ;;
         
         4)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/xfburn.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/multimedia/codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
         
         m)
@@ -496,7 +496,7 @@ gaming_clients_menu(){
     echo "---------------- ------"
     echo ""
     echo "(1) Steam[n]               (2) Lutris[n]"
-    echo "(3) Bottles[n]"
+    echo "(3) Bottles[f]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -505,15 +505,17 @@ gaming_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/native/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/native/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/gaming/bottles.sh
+            mkdir $HOME/bottles
+            flatpak install --user -y flathub com.usebottles.bottles
+            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
         p)
@@ -564,15 +566,15 @@ gaming_wow_clients_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/other/gaming/wowup.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wowup.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/other/gaming/warcraft_logs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/warcraft_logs.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/other/gaming/weakauras_companion.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/weakauras_companion.sh
             ;;
 
         p)
@@ -614,7 +616,7 @@ gaming_tools_menu(){
     echo "Mangohud and proton tools"
     echo ""
     echo "(1) Mangohud[n]            (2) Protontricks[f]"
-    echo "(3) Proton Plus[n]"
+    echo "(3) Proton Plus[f]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -624,7 +626,7 @@ gaming_tools_menu(){
 
         1)
             mkdir "$HOME"/.config/MangoHud
-            "$SCRIPTS_FOLDER"/modules/native/gaming/mangohud.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/mangohud.sh "native"
             ;;
 
         2)
@@ -632,7 +634,7 @@ gaming_tools_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/gaming/proton_plus.sh
+            flatpak install --user -y flathub com.vysp3r.ProtonPlus
             ;;
 
         p)
@@ -680,7 +682,7 @@ gaming_other_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/native/gaming/discord.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "native"
             ;;
 
         2)
@@ -688,7 +690,7 @@ gaming_other_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/gaming/dolphin_emu.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh "native"
             ;;
 
         4)
@@ -741,23 +743,23 @@ office_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/office/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/office/qownnotes.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/office/marknote.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/office/claws_mail.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "native"
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/native/office/thunderbird.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "native"
             ;;
 
         6)
@@ -765,7 +767,7 @@ office_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/native/office/keepassxc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "native"
             ;;
 
         m)
@@ -799,7 +801,8 @@ development_menu(){
     echo "Mostly IDEs and compilers."
     echo ""
     echo "(1) SDKs              (2) IDEs"
-    echo "(3) Other"
+    echo "(3) Github Desktop[n] (4) Containers[n][f]"
+    echo "(5) Lamp Stack[n]"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -814,7 +817,15 @@ development_menu(){
             ;;
 
         3)
-            dev_other_menu
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
+            ;;
+
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
         m)
@@ -856,23 +867,23 @@ sdks_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/other/development/nodejs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/native/development/package_tools.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/other/development/openjdk.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/other/development/openjfx.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/development/python_tools.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
             ;;
         
         p)
@@ -912,9 +923,8 @@ ides_menu(){
     echo "------------"
     echo ""
     echo "(1) VIM[n]                            (2) VSCodium[n]"
-    echo "(3) Geany[n]                          (4) CodeBlocks[n]"
-    echo "(5) Bluefish[n]                       (6) Intellij IDEA[o]"
-    echo "(7) Pycharm[o]"
+    echo "(3) Geany[n]                          (4) Intellij IDEA[o]"
+    echo "(5) Pycharm[o]"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -923,31 +933,23 @@ ides_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/development/vim.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/development/vscodium.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/development/geany.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/native/development/codeblocks.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/idea.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/native/development/bluefish.sh
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/other/development/idea.sh
-            ;;
-
-        7)
-            "$SCRIPTS_FOLDER"/modules/other/development/pycharm.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
             ;;
 
         p)
@@ -981,63 +983,6 @@ ides_menu(){
     ides_menu
 }
 
-dev_other_menu(){
-    echo "-------------"
-    echo "|   Other   |"
-    echo "-------------"
-    echo ""
-    echo "(1) Github Desktop[n]        (2)  Containers[n][f]"
-    echo "(3) Lamp Stack[n]"
-    echo "(p) Previous Menu            (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/native/development/github_desktop.sh
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/native/development/containers.sh
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/native/development/lamp.sh
-            ;;
-
-        p)
-            development_menu
-            ;;
-
-        P)
-            development_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-        
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        dev_other_menu
-        ;;
-        
-    esac
-    unset input
-    dev_other_menu
-}
-
 utils_menu(){
     echo "-----------------"
     echo "|   Utilities   |"
@@ -1053,15 +998,15 @@ utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/fedora_media_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/gtkhash.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
             ;;
 
         4)
@@ -1069,7 +1014,7 @@ utils_menu(){
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/native/utilities/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
         m)
@@ -1101,7 +1046,7 @@ miscellaneous_menu(){
     echo "---------------------"
     echo ""
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Remove Audio/Video Codecs  (4) Remove AMD hardware accelerated codecs  "
+    echo "(3) Remove Audio/Video Codecs  (4) Remove AMD hardware accelerated codecs "
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1114,15 +1059,15 @@ miscellaneous_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/other/misc/check_for_libvirt_group.sh
+            "$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/other/misc/remove_codecs.sh
+            "$SCRIPTS_FOLDER"/modules/misc/remove_codecs.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/other/misc/remove_amd_codecs.sh
+            "$SCRIPTS_FOLDER"/modules/misc/remove_amd_codecs.sh
             ;;
 
         m)
