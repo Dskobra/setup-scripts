@@ -11,6 +11,8 @@ remove_amd_codecs(){
     then
         sudo rpm-ostree uninstall mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
         sudo rpm-ostree uninstall mesa-va-drivers-freeworld.i686 mesa-vdpau-drivers-freeworld.i686
+
+        sudo rpm-ostree override reset mesa-va-drivers
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
