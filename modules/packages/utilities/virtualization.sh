@@ -8,11 +8,8 @@ native_virtualization(){
         qemu-kvm virt-install virt-manager virt-viewer
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
-        sudo wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo \
-        -O /etc/yum.repos.d/virtio-win.repo
-        sudo rpm-ostree refresh-md
         sudo rpm-ostree install libvirt-daemon-config-network libvirt-daemon-kvm\
-        qemu-kvm virt-install virt-manager virt-viewer virtio-win
+        qemu-kvm virt-install virt-manager virt-viewer
         sudo rpm-ostree apply-live
         #"$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
