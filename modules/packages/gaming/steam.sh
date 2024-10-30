@@ -29,8 +29,6 @@ native_steam_devices(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        sudo dpkg --add-architecture i386
-        sudo apt-get update
         sudo apt-get install -y steam-devices
     else
         echo "Unkown error has occurred."
