@@ -672,8 +672,9 @@ gaming_other_menu(){
     echo "|   Misc Stuff   |"
     echo "-----------------"
     echo ""
-    echo "(1) Discord[n]             (2) Prism Launcher[f]"
-    echo "(3) Dolphin[n]             (4) Cemu[f]"
+    echo "(1) Discord[n]             (2) Vesktop[f]"
+    echo "(3) Prism Launcher[f]      (4) Dolphin[n]"
+    echo "(5) Cemu[f]"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -686,14 +687,18 @@ gaming_other_menu(){
             ;;
 
         2)
-            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
+            flatpak install --user -y flathub dev.vencord.Vesktop
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh "native"
+            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
         4)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh "native"
+            ;;
+
+        5)
             flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
