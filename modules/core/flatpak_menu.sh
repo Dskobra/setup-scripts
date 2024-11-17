@@ -652,7 +652,7 @@ gaming_other_menu(){
     echo ""   
     echo "(1) Discord[n]             (2) Vesktop[f]"
     echo "(3) Prism Launcher[f]      (4) Dolphin[f]"
-    echo "(5) Cemu[f]"
+    echo "(5) Cemu[f]                (6) XIVLauncher"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -678,6 +678,10 @@ gaming_other_menu(){
 
         5)
             flatpak install --user -y flathub info.cemu.Cemu
+            ;;
+
+        6)
+            flatpak install --user -y flathub dev.goats.xivlauncher
             ;;
 
         m)
