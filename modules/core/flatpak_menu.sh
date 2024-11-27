@@ -262,7 +262,7 @@ gnome_desktop_menu(){
     echo "-----------"
     echo ""
     echo "(1) Dconf Editor[f]        (2) Pavucontrol[f]"
-    echo "[3] Gnome Tweaks[n]"
+    echo "[3] Gnome Tweaks[n]        (4) Gnome X11[n]"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -280,6 +280,10 @@ gnome_desktop_menu(){
 
         3)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh "flatpak"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_x11.sh
             ;;
 
         p)
