@@ -16,6 +16,7 @@ install_amd_codecs(){
         sudo rpm-ostree override remove mesa-vdpau-drivers
 
         sudo rpm-ostree install mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
+        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install mesa-va-drivers

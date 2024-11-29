@@ -13,6 +13,7 @@ native_codecs(){
         sudo rpm-ostree install gstreamer1-plugin-libav     # appeared to be installed by default so double check
         sudo rpm-ostree override remove libavdevice-free libavcodec-free libavfilter-free libavformat-free \
         libavutil-free libpostproc-free libswresample-free libswscale-free ffmpeg-free --install ffmpeg
+        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y ffmpeg

@@ -262,7 +262,7 @@ gnome_desktop_menu(){
     echo "-----------"
     echo ""
     echo "(1) Dconf Editor[f]        (2) Pavucontrol[f]"
-    echo "[3] Gnome Tweaks[n]"
+    echo "[3] Gnome Tweaks[n]        (4) Gnome X11[n]"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -280,6 +280,10 @@ gnome_desktop_menu(){
 
         3)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh "flatpak"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_x11.sh
             ;;
 
         p)
@@ -650,9 +654,10 @@ gaming_other_menu(){
     echo "|   Misc Stuff   |"
     echo "-----------------"
     echo ""   
-    echo "(1) Discord[f]                   (2) Prism Launcher[f]"
-    echo "(3) Dolphin[f]                   (4) Cemu[f]"
-    echo "(p) Previous Menu                (m) Main Menu"
+    echo "(1) Discord[n]             (2) Vesktop[f]"
+    echo "(3) Prism Launcher[f]      (4) Dolphin[f]"
+    echo "(5) Cemu[f]                (6) XIVLauncher"
+    echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -664,15 +669,23 @@ gaming_other_menu(){
             ;;
 
         2)
+            flatpak install --user -y flathub dev.vencord.Vesktop
+            ;;
+        
+        3)
             flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
-        3)
+        4)
             flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
             ;;
 
-        4)
+        5)
             flatpak install --user -y flathub info.cemu.Cemu
+            ;;
+
+        6)
+            flatpak install --user -y flathub dev.goats.xivlauncher
             ;;
 
         m)
