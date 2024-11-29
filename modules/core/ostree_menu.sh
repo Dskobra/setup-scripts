@@ -1103,6 +1103,10 @@ ostree_menu(){
         5)
             "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "native"
             ;;
+
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
+            ;;
         
         m)
             main_menu
