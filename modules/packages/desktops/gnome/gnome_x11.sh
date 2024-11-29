@@ -8,6 +8,7 @@ native_gnome_x11(){
     then
         sudo rpm-ostree install gnome-session-xsession
         #sudo rpm-ostree apply-live
+        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     else
         echo "This only supports Fedora Linux 40+"
     fi
