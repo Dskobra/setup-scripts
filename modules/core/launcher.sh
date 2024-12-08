@@ -13,7 +13,7 @@ distro_check(){
 
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
-
+        opensuse_release_check
     elif [ "$DISTRO" == "debian" ]
     then
         debian_release_check
