@@ -10,6 +10,10 @@ distro_check(){
     if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
+
+    elif [ $DISTRO == "opensuse-tumbleweed" ]
+    then
+
     elif [ "$DISTRO" == "debian" ]
     then
         debian_release_check
@@ -25,7 +29,7 @@ fedora_release_check(){
     then
         fedora_variant_check                # run an extra check to see if it's an atomic variant
     else
-        echo "These scripts only support Fedora 39/40/41 beta(experimental)"
+        echo "These scripts only support Fedora 40/41"
     fi
 
 }
@@ -43,8 +47,7 @@ fedora_variant_check(){
     then
         PKGMGR="dnf"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        #"$SCRIPTS_FOLDER"/modules/core/package_type_chooser.sh
-        package_type_chooser
+        "$SCRIPTS_FOLDER"/modules/core/menu.sh
     elif [ "$VARIANT" == "ostree" ]
     then
         PKGMGR="rpm-ostree"
@@ -54,18 +57,30 @@ fedora_variant_check(){
     fi
 }
 
+opensuse_release_check(){
+    if [ "$VERSION_ID" == "12" ]
+    then
+        PKGMGR="zypper"
+        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+        "$SCRIPTS_FOLDER"/modules/core/menu.sh
+    else
+        echo "Unkown error occured."
+    fi
+
+}
+
 debian_release_check(){
     if [ "$VERSION_ID" == "12" ]
     then
         PKGMGR="apt-get"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        #"$SCRIPTS_FOLDER"/modules/core/package_type_chooser.sh
-        package_type_chooser
+        "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
         echo "These scripts only support Debian 12"
     fi
 
 }
+
 ########################################
 # End of grouped functions
 ########################################

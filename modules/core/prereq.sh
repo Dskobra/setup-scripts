@@ -17,6 +17,11 @@ install_prereq(){
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo rpm-ostree apply-live
         flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        #sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/ packman-essentials
+        #sudo zypper dup --from packman-essentials --allow-vendor-change
+        echo "Not yet supported."
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal software-properties-common"
