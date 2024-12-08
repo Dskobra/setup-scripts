@@ -9,11 +9,10 @@ native_menu(){
     echo "---------------------------" 
     echo ""
     echo "Version: $VERSION"
-    echo "Package Type: $PACKAGE_TYPE"
     echo "$COPYRIGHT"
     echo "Released under the MIT license"
     echo ""
-    echo ""
+    echo "                 ---NATIVE MENU---"
     echo "(1) Flatpak Menu                  (2) Hardware"
     echo "(3) Desktop Apps                  (4) Internet"
     echo "(5) Multimedia                    (6) Gaming"
@@ -997,11 +996,10 @@ flatpak_menu(){
     echo "---------------------------" 
     echo ""
     echo "Version: $VERSION"
-    echo "Package Type: $PACKAGE_TYPE"
     echo "$COPYRIGHT"
     echo "Released under the MIT license"
     echo ""
-    echo ""
+    echo "              ---FLATPAK MENU---"
     echo "(1) Native menu                   (2) Desktop Apps"      
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
@@ -1996,11 +1994,11 @@ package_type_chooser(){
     read -r input
     if [ "$input" = 1 ] || [ -z "$input" ]
     then
-        PACKAGE_TYPE="native"
+        #PACKAGE_TYPE="native"
         native_menu
     elif [ "$input" = 2 ] 
     then
-        PACKAGE_TYPE="flatpak"
+        #PACKAGE_TYPE="flatpak"
         flatpak_menu
     elif [ "$input" = 3 ]
     then
@@ -2014,3 +2012,5 @@ package_type_chooser(){
         echo "Invalid option or error has occurred."
     fi
 }
+
+package_type_chooser
