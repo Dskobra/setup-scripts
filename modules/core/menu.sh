@@ -1006,7 +1006,6 @@ flatpak_menu(){
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
-    echo "(9) Misc"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -1114,10 +1113,9 @@ flatpak_kde_desktop_menu(){
     echo "|   KDE   |"
     echo "-----------"
     echo ""   
-    echo "(1) KDE Patience[f]       (2) Kolourpaint[f] "
-    echo "(3) Kleopatra[f]          (4) KDE ISO Image Writer[f]"
-    echo "(5) Kate[n]               (6) Plasma X11[n]"
-    echo "(p) Previous Menu         (m) Main Menu"
+    echo "(1) KDE Patience       (2) Kolourpaint"
+    echo "(3) Kleopatra          (4) KDE ISO Image Writer"
+    echo "(p) Previous Menu      (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -1139,15 +1137,6 @@ flatpak_kde_desktop_menu(){
         4)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
             ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh "flatpak"
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh
-            ;;
-
         p)
             flatpak_desktop_apps_menu
             ;;
@@ -1184,8 +1173,7 @@ flatpak_gnome_desktop_menu(){
     echo "|   Gnome  |"
     echo "-----------"
     echo ""
-    echo "(1) Dconf Editor[f]        (2) Pavucontrol[f]"
-    echo "[3] Gnome Tweaks[n]        (4) Gnome X11[n]"
+    echo "(1) Dconf Editor           (2) Pavucontrol"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -1200,15 +1188,6 @@ flatpak_gnome_desktop_menu(){
         2)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
             ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh "flatpak"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_x11.sh
-            ;;
-
         p)
             flatpak_desktop_apps_menu
             ;;
@@ -1245,9 +1224,9 @@ flatpak_internet_menu(){
     echo "|   Internet   |"
     echo "----------------"
     echo ""
-    echo "(1) Firefox[f]             (2) Brave Browser[f]"
-    echo "(3) Dropbox[f]             (4) Transmissionbt[f]"
-    echo "(5) Remmina[f]"
+    echo "(1) Firefox                (2) Brave Browser"
+    echo "(3) Dropbox                (4) Transmissionbt"
+    echo "(5) Remmina"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -1302,8 +1281,8 @@ flatpak_multimedia_menu(){
     echo "|   Multimedia   |"
     echo "------------------"
     echo ""
-    echo "(1) VLC Media Player[f]       (2) OBS Studio[f]"
-    echo "(3) OpenShot[f]"
+    echo "(1) VLC Media Player          (2) OBS Studio"
+    echo "(3) OpenShot"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
     read -r input
@@ -1401,8 +1380,8 @@ flatpak_gaming_clients_menu(){
     echo "|   Gaming Clients   |"
     echo "---------------- ------"
     echo ""
-    echo "(1) Steam[f]                  (2) Lutris[f]"
-    echo "(3) Bottles[f]"
+    echo "(1) Steam                     (2) Lutris"
+    echo "(3) Bottles"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1462,8 +1441,8 @@ other_gaming_wow_clients_menu(){
     echo ""
     echo "Addon managers and extra stuff for World of Warcraft"
     echo ""   
-    echo "(1) WoWUp[o]                  (2) Warcraft Logs[o]"
-    echo "(3) Weak Auras Companion[o]"
+    echo "(1) WoWUp                     (2) Warcraft Logs"
+    echo "(3) Weak Auras Companion"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1521,8 +1500,8 @@ flatpak_gaming_tools_menu(){
     echo ""
     echo "Mangohud and proton tools"
     echo ""   
-    echo "(1) Mangohud[f]               (2) Protontricks[f]"
-    echo "(3) Proton Plus[f]"
+    echo "(1) Mangohud                  (2) Protontricks"
+    echo "(3) Proton Plus"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1577,9 +1556,9 @@ flatpak_gaming_other_menu(){
     echo "|   Misc Stuff   |"
     echo "-----------------"
     echo ""   
-    echo "(1) Discord[n]             (2) Vesktop[f]"
-    echo "(3) Prism Launcher[f]      (4) Dolphin[f]"
-    echo "(5) Cemu[f]                (6) XIVLauncher"
+    echo "(1) Discord                (2) Vesktop"
+    echo "(3) Prism Launcher         (4) Dolphin"
+    echo "(5) Cemu                   (6) XIVLauncher"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1646,10 +1625,10 @@ flatpak_office_menu(){
     echo "|   Office   |"
     echo "--------------"
     echo ""
-    echo "(1) LibreOffice[f]        (2) QOwnNotes[f]"
-    echo "(3) Marknote[f]           (4) Claws-Mail[f]"
-    echo "(5) Thunderbird[f]        (6) Bitwarden[f]"
-    echo "(7) KeePassXC[f]"
+    echo "(1) LibreOffice           (2) QOwnNotes"
+    echo "(3) Marknote              (4) Claws-Mail"
+    echo "(5) Thunderbird           (6) Bitwarden"
+    echo "(7) KeePassXC"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -1713,7 +1692,7 @@ flatpak_development_menu(){
     echo "-------------------"
     echo ""
     echo "(1) SDKs              (2) IDEs"
-    echo "(3) Github Desktop[f] (4) Containers[n][f]"
+    echo "(3) Github Desktop    (4) Podman Desktop"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -1763,8 +1742,8 @@ flatpak_sdks_menu(){
     echo "|  SDKs   |"
     echo "-----------"
     echo ""
-    echo "(1) Nodejs LTS[o]     (2) openJDK 21 LTS[o]"
-    echo "(3) openjfx 21 LTS[o]"
+    echo "(1) Nodejs LTS        (2) openJDK 21 LTS"
+    echo "(3) openjfx 21 LTS"
     echo "(p) Previous Menu     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1820,9 +1799,8 @@ flatpak_ides_menu(){
     echo "|   IDEs   |"
     echo "------------"
     echo ""   
-    echo "(1) VIM[n]                            (2) VSCodium[f]"
-    echo "(3) Geany[f]                          (4) Intellij IDEA[o]"
-    echo "(5) Pycharm[o]"
+    echo "(1) VSCodium                          (2) Geany"
+    echo "(3) Intellij IDEA                     (4) Pycharm"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1831,22 +1809,18 @@ flatpak_ides_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
-            ;;
-
-        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "flatpak"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "flatpak"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/development/idea.sh
             ;;
 
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
             ;;
 
@@ -1886,9 +1860,8 @@ flatpak_utils_menu(){
     echo "|   Utilities   |"
     echo "-----------------"
     echo ""
-    echo "(1) Fedora Media Writer[f]        (2) Raspberry Pi Imager[f]"
-    echo "(3) GtkHash[f]                    (4) MissionCenter[f]"
-    echo "(5) Virtualization[n]"
+    echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
+    echo "(3) GtkHash                       (4) MissionCenter"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
@@ -1909,10 +1882,6 @@ flatpak_utils_menu(){
 
         4)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
-            ;;
-        
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
         m)
@@ -1936,51 +1905,6 @@ flatpak_utils_menu(){
     esac
     unset input
     flatpak_utils_menu
-}
-
-miscellaneous_menu(){
-    echo "---------------------"
-    echo "|   Miscellaneous   |"
-    echo "---------------------"
-    echo ""
-    echo "(1) Setup xbox controller       (2) Add user to libvirt group"
-    echo "(m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            sudo modprobe xpad
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
-            ;;
-            
-
-        m)
-            flatpak_menu
-            ;;
-
-        M)
-            flatpak_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        miscellaneous_menu
-        ;;
-        
-    esac
-    unset input
-    miscellaneous_menu
 }
 
 ########################################
