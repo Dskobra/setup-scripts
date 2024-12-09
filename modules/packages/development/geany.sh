@@ -24,7 +24,7 @@ remove_geany(){
         echo "Not removing package on atomic editions."
     elif [ "$PKGMGR" == "zypper" ]
     then
-        sudo zypper -rm remove geany
+        sudo zypper -rm remove geany geany-plugins
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y geany geany-plugin-markdown geany-plugin-spellcheck geany-plugin-treebrowser
