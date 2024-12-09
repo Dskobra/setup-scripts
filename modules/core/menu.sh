@@ -206,10 +206,10 @@ native_kde_desktop_menu(){
     echo "|   KDE   |"
     echo "-----------"
     echo ""
-    echo "(1) KDE Patience[n]       (2) Kolourpaint[n] "
-    echo "(3) Kleopatra[n]          (4) KDE ISO Image Writer[n]"
-    echo "(5) Kate[n]               (6) Plasma X11[n]"
-    echo "(7) K3b[n]"
+    echo "(1) KDE Patience          (2) Kolourpaint "
+    echo "(3) Kleopatra             (4) KDE ISO Image Writer"
+    echo "(5) Kate                  (6) Plasma X11"
+    echo "(7) K3b"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -281,8 +281,8 @@ native_gnome_desktop_menu(){
     echo "|   Gnome  |"
     echo "-----------"
     echo ""
-    echo "(1) Dconf Editor[n]        (2) Pavucontrol[n]"
-    echo "(3) Gnome Tweaks[n]        (4) Gnome X11[n]"
+    echo "(1) Dconf Editor           (2) Pavucontrol"
+    echo "(3) Gnome Tweaks           (4) Gnome X11"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -342,9 +342,9 @@ native_internet_menu(){
     echo "|   Internet   |"
     echo "----------------"
     echo ""
-    echo "(1) Firefox[n]             (2) Brave Browser[n]"
-    echo "(3) Dropbox[n]             (4) Transmissionbt[n]"
-    echo "(5) Remmina[n]"
+    echo "(1) Firefox                (2) Brave Browser"
+    echo "(3) Dropbox                (4) Transmissionbt"
+    echo "(5) Remmina"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -399,9 +399,9 @@ native_multimedia_menu(){
     echo "|   Multimedia   |"
     echo "------------------"
     echo ""
-    echo "(1) VLC Media Player[n]    (2) OBS Studio[n]"
-    echo "(3) OpenShot[n]            (4) xfburn[n]"
-    echo "(5) Audio/Video Codecs[n]"
+    echo "(1) VLC Media Player       (2) OBS Studio"
+    echo "(3) OpenShot               (4) xfburn"
+    echo "(5) Audio/Video Codecs"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -457,7 +457,7 @@ native_gaming_menu(){
     echo "--------------"
     echo ""
     echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Other"
+    echo "(3) Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -473,10 +473,6 @@ native_gaming_menu(){
             ;;
 
         3)
-            gaming_wow_clients_menu
-            ;;
-
-        4)
             gaming_other_menu
             ;;
         m)
@@ -506,8 +502,7 @@ native_gaming_clients_menu(){
     echo "|   Gaming Clients   |"
     echo "---------------- ------"
     echo ""
-    echo "(1) Steam[n]               (2) Lutris[n]"
-    echo "(3) Bottles[f]"
+    echo "(1) Steam                  (2) Lutris"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -521,12 +516,6 @@ native_gaming_clients_menu(){
 
         2) 
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
-            ;;
-
-        3)
-            mkdir $HOME/bottles
-            flatpak install --user -y flathub com.usebottles.bottles
-            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
         p)
@@ -567,8 +556,7 @@ native_gaming_tools_menu(){
     echo ""
     echo "Mangohud and proton tools"
     echo ""
-    echo "(1) Mangohud[n]            (2) Protontricks[f]"
-    echo "(3) Proton Plus[f]"
+    echo "(1) Mangohud"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -624,10 +612,9 @@ native_office_menu(){
     echo "|   Office   |"
     echo "--------------"
     echo ""
-    echo "(1) LibreOffice[n]            (2) QOwnNotes[n]"
-    echo "(3) Marknote[n]               (4) Claws-Mail[n]"
-    echo "(5) Thunderbird[n]            (6) Bitwarden[f]"
-    echo "(7) KeePassXC[n]"
+    echo "(1) LibreOffice               (2) QOwnNotes"
+    echo "(3) Marknote                  (4) Claws-Mail"
+    echo "(5) Thunderbird               (6) KeePassXC"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
     read -r input
@@ -655,10 +642,6 @@ native_office_menu(){
             ;;
 
         6)
-            flatpak install --user -y flathub com.bitwarden.desktop
-            ;;
-
-        7)
             "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "native"
             ;;
 
@@ -693,8 +676,8 @@ native_development_menu(){
     echo "Mostly IDEs and compilers."
     echo ""
     echo "(1) SDKs              (2) IDEs"
-    echo "(3) Github Desktop[n] (4) Containers[n][f]"
-    echo "(5) Lamp Stack[n]"
+    echo "(3) Github Desktop    (4) Containers"
+    echo "(5) Lamp Stack"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -748,9 +731,7 @@ native_sdks_menu(){
     echo "|  SDKs   |"
     echo "-----------"
     echo ""
-    echo "(1) Nodejs LTS[o]         (2) C/C++ Compiler[n]"
-    echo "(3) openJDK 21 LTS[o]     (4) openjfx 21 LTS[o]"
-    echo "(5) Python Dev Packages[n]"
+    echo "(1) C/C++ Compiler        (2) Python Dev Packages"
     echo "(p) Previous Menu         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -759,22 +740,10 @@ native_sdks_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk.sh
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
-            ;;
-
-        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
             ;;
         
@@ -814,9 +783,8 @@ native_ides_menu(){
     echo "|   IDEs   |"
     echo "------------"
     echo ""
-    echo "(1) VIM[n]                            (2) VSCodium[n]"
-    echo "(3) Geany[n]                          (4) Intellij IDEA[o]"
-    echo "(5) Pycharm[o]"
+    echo "(1) VIM                               (2) VSCodium"
+    echo "(3) Geany"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -834,14 +802,6 @@ native_ides_menu(){
 
         3)
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/idea.sh
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
             ;;
 
         p)
@@ -880,9 +840,8 @@ native_utils_menu(){
     echo "|   Utilities   |"
     echo "-----------------"
     echo ""
-    echo "(1) Fedora Media Writer[n]        (2) Raspberry Pi Imager[n]"
-    echo "(3) GtkHash[n]                    (4) MissionCenter[f]"
-    echo "(5) Virtualization[n]"
+    echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
+    echo "(3) GtkHash                       (4) Virtualization"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
@@ -902,10 +861,6 @@ native_utils_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            ;;
-        
-        5)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
@@ -1711,7 +1666,7 @@ flatpak_development_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
         m)
