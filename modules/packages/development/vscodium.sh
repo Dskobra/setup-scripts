@@ -14,7 +14,7 @@ native_vscodium(){
         cp vscodium.repo.txt vscodium.repo
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
-        sudo dnf install -y codium
+        sudo zypper -n install codium
     elif [ "$PKGMGR" == "apt-get" ]
     then
         wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
@@ -34,6 +34,10 @@ remove_vscodium(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo rm /etc/zypp/repos.d/vscodium.repo
+        sudo zypper -n rm codium
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo rm archive_uri-https_paulcarroty_gitlab_io_vscodium-deb-rpm-repo_debs_-bookworm.list

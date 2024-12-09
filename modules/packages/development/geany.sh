@@ -6,6 +6,7 @@ native_geany(){
         sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
     elif [ "$PKGMGR" == "zypper" ]
     then
+        sudo zypper -n install geany geany-plugins
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y geany geany-plugin-markdown geany-plugin-spellcheck geany-plugin-treebrowser
