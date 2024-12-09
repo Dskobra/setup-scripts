@@ -8,6 +8,13 @@ native_vscodium(){
         sudo chown root:root vscodium.repo
         sudo mv vscodium.repo /etc/yum.repos.d/vscodium.repo
         sudo dnf install -y codium
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        cd "$SCRIPTS_FOLDER"/modules/packages/development
+        cp vscodium.repo.txt vscodium.repo
+        sudo chown root:root vscodium.repo
+        sudo mv vscodium.repo /etc/zypp/repos.d/vscodium.repo
+        sudo dnf install -y codium
     elif [ "$PKGMGR" == "apt-get" ]
     then
         wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -

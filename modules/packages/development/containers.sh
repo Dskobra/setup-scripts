@@ -9,6 +9,9 @@ native_containers(){
         sudo rpm-ostree install distrobox
         #sudo rpm-ostree apply-live
         $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install toolbox distrobox
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y distrobox podman-toolbox

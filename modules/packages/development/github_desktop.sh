@@ -6,6 +6,10 @@ native_github_desktop(){
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
         sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
         sudo dnf install -y github-desktop
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+        sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/zypp/repos.d/shiftkey-packages.repo'
     elif [ "$PKGMGR" == "apt-get" ]
     then
         wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
@@ -25,6 +29,11 @@ remove_github_desktop(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo rm /etc/zypp/repos.d/shiftkey-packages.repo
+        sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
+        sudo zypper rm -n github-desktop
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo rm /etc/apt/sources.list.d/shiftkey-packages.list
