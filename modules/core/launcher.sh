@@ -58,7 +58,7 @@ fedora_variant_check(){
 }
 
 opensuse_release_check(){
-    if [ "$VERSION_ID" == "12" ]
+    if [ "$VERSION_ID" -gt "20240101" ]
     then
         PKGMGR="zypper"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
