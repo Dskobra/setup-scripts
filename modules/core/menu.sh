@@ -1870,7 +1870,7 @@ package_type_chooser(){
     echo "----------------------------------------"
     echo "[1] Native [2] Flatpak [3] Help [0] Exit"
     echo "----------------------------------------"
-    echo "(empty) default option which is flatpak"
+    echo "(empty) default option which is native"
     printf "Option: "
     read -r input
     if [ "$input" = 1 ] || [ -z "$input" ]
