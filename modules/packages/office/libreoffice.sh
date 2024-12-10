@@ -4,6 +4,9 @@ native_libreoffice(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y libreoffice
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install libreoffice
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y libreoffice
