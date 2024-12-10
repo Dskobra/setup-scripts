@@ -12,8 +12,7 @@ install_corectrl(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "zypper" ]
     then
-        zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
-
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
         sudo zypper ref
         sudo zypper -n install corectrl
     elif [ "$PKGMGR" == "apt-get" ]
