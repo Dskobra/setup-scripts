@@ -11,6 +11,11 @@ install_nvidia(){
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper addrepo https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+        sudo zypper install-new-recommends --repo NVIDIA
+        xdg-open https://en.opensuse.org/SDB:NVIDIA_drivers
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-add-repository -y --component non-free-firmware

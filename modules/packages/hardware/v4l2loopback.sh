@@ -9,6 +9,9 @@ install_v4l2loopback(){
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install v4l2loopback-autoload
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils

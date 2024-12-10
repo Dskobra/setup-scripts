@@ -9,6 +9,9 @@ install_openrgb(){
         sudo rpm-ostree install openrgb
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install openrgb
     elif [ "$PKGMGR" == "apt-get" ]
     then
         OPENRGB_LINK="https://openrgb.org/releases/release_0.9/openrgb_0.9_amd64_bookworm_b5f46e3.deb"

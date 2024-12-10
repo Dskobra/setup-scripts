@@ -20,7 +20,7 @@ install_prereq(){
         #sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/ packman-essentials
         #sudo zypper dup --from packman-essentials --allow-vendor-change
         echo "Not yet supported."
-        sudo zypper -n install wget curl flatpak
+        sudo zypper -n install wget curl flatpak opi
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal software-properties-common"

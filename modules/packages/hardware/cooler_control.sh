@@ -14,6 +14,10 @@ install_cooler_control(){
         sudo systemctl enable --now coolercontrold
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        opi coolercontrol
+        sudo systemctl enable --now coolercontrold
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt install -y curl apt-transport-https
