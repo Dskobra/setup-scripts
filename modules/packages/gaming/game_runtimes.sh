@@ -22,7 +22,7 @@ then
     flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08
 elif [ "$1" == "native" ]
 then
-    native_mangohud
+    native_game_runtimes
 else
     echo "error"
 fi
