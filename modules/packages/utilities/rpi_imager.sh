@@ -4,6 +4,9 @@ native_rpi_imager(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y rpi-imager
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install rpi-imager
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "========================================================"
@@ -22,6 +25,9 @@ remove_rpi_imager(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm rpi-imager
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "Not removing Raspberry Pi Imager as it's not present in Debian repos."

@@ -14,6 +14,10 @@ native_virtualization(){
         #"$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "apt-get" ]
     then
+        sudo zypper -n install patterns-server-kvm_server
+        sudo zypper -n install patterns-server-kvm_tools
+    elif [ "$PKGMGR" == "apt-get" ]
+    then
         sudo apt-get install -y libvirt-daemon-config-network qemu-kvm virt-manager virt-viewer
     else
         echo "Unkown error has occurred."

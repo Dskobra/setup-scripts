@@ -4,6 +4,13 @@ native_fmedia_writer(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y mediawriter
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        echo "============================================="
+        echo "Fedora Mediawriter isn't available in openSUSE."
+        echo "This will install the flatpak version."
+        echo "============================================="
+        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "============================================="

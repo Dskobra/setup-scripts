@@ -4,6 +4,13 @@ native_gtkhash(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y gtkhash
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        echo "============================================="
+        echo "gtkhash isn't available in openSUSE."
+        echo "This will install the flatpak version."
+        echo "============================================="
+        flatpak install --user -y flathub org.gtkhash.gtkhash
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y gtkhash
