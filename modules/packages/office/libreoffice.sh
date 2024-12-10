@@ -9,7 +9,7 @@ native_libreoffice(){
         sudo zypper -n install libreoffice
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        sudo apt-get install -y libreoffice
+        sudo apt-get install -y libreoffice libreoffice-branding-openSUSE
     else
         echo "Unkown error has occurred."
     fi

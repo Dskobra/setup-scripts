@@ -12,7 +12,7 @@ native_firefox(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$PKGMGR" == "zypper" ]
     then
-        sudo zypper -n install MozillaFirefox
+        sudo zypper -n install MozillaFirefox-branding-openSUSE
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y firefox-esr
