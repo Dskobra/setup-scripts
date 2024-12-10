@@ -12,7 +12,7 @@ native_virtualization(){
         qemu-kvm virt-install virt-manager virt-viewer
         sudo rpm-ostree apply-live
         #"$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$PKGMGR" == "zypper" ]
     then
         sudo zypper -n install patterns-server-kvm_server
         sudo zypper -n install patterns-server-kvm_tools
