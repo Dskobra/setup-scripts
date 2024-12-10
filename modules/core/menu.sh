@@ -395,9 +395,8 @@ native_multimedia_menu(){
     echo "|   Multimedia   |"
     echo "------------------"
     echo ""
-    echo "(1) VLC Media Player       (2) OBS Studio"
-    echo "(3) OpenShot               (4) xfburn"
-    echo "(5) Audio/Video Codecs"
+    echo "(1) VLC Media Player       (2) OpenShot"
+    echo "(3) xfburn                 (4) Audio/Video Codecs"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -409,18 +408,14 @@ native_multimedia_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/obs.sh "native"
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "native"
             ;;
         
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
         

@@ -24,6 +24,9 @@ remove_qownnotes(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm qownnotes
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "Not removing marknote as it's not present in Debian repos."

@@ -4,6 +4,9 @@ native_thunderbird(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y thunderbird
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm MozillaThunderbird
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y thunderbird
@@ -19,6 +22,9 @@ remove_thunderbird(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        sudo zypper -n rm MozillaThunderbird
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y thunderbird

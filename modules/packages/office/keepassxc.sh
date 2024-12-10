@@ -4,6 +4,9 @@ native_keepassxc(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y keepassxc
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install keepassxc
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y keepassxc
@@ -19,6 +22,9 @@ remove_keepassxc(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm keepassxc
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y keepassxc

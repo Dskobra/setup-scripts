@@ -4,6 +4,9 @@ native_claws_mail(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y claws-mail
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install claws-mail
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y claws-mail
