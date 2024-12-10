@@ -63,7 +63,6 @@ if [ "$1" == "flatpak" ]
 then
     remove_steam
     flatpak install --user -y flathub com.valvesoftware.Steam
-    flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
     flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
     echo "steam-devices package will also be installed for controller support."
     native_steam_devices

@@ -37,7 +37,6 @@ remove_lutris(){
 mkdir $HOME/Games
 if [ "$1" == "flatpak" ]
 then
-    flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
     flatpak install --user -y flathub net.lutris.Lutris
     flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
     remove_lutris

@@ -457,7 +457,6 @@ native_gaming_menu(){
     echo "--------------"
     echo ""
     echo "(1) Game Clients           (2) Tools"
-    echo "(3) Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -470,10 +469,6 @@ native_gaming_menu(){
 
         2) 
             native_gaming_tools_menu
-            ;;
-
-        3)
-            gaming_other_menu
             ;;
         m)
             native_menu
@@ -554,9 +549,9 @@ native_gaming_tools_menu(){
     echo "|   Gaming Tools   |"
     echo "--------------------"
     echo ""
-    echo "Mangohud and proton tools"
+    echo "Runtimes include mangohud, gamescope and gamemode"
     echo ""
-    echo "(1) Mangohud"
+    echo "(1) Runtimes"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -565,8 +560,7 @@ native_gaming_tools_menu(){
     case $input in
 
         1)
-            mkdir "$HOME"/.config/MangoHud
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/mangohud.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
             ;;
 
         2)
@@ -1453,9 +1447,9 @@ flatpak_gaming_tools_menu(){
     echo "|   Gaming Tools   |"
     echo "--------------------"
     echo ""
-    echo "Mangohud and proton tools"
+    echo "Runtimes include mangohud, gamescope and gamemode"
     echo ""   
-    echo "(1) Mangohud                  (2) Protontricks"
+    echo "(1) Runtimes                  (2) Protontricks"
     echo "(3) Proton Plus"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
@@ -1465,7 +1459,7 @@ flatpak_gaming_tools_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/mangohud.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
             ;;
 
         2)
