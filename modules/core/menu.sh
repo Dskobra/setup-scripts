@@ -89,7 +89,7 @@ native_hardware_menu(){
     echo ""
     echo "(1) Corectrl(amd)       (2) Nvidia Driver"
     echo "(3) CoolerControl       (4) OpenRGB"
-    echo "(5) Virtual Camera      (6) AMD Video Acceleration"
+    echo "(5) Virtual Camera"
     echo "(h) Help"
     echo "(m) Main Menu           (0) Exit"
     printf "Option: "
@@ -115,10 +115,6 @@ native_hardware_menu(){
 
         5)
             "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/amd_codecs.sh
             ;;
         
         h)
@@ -1243,7 +1239,7 @@ flatpak_multimedia_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/obs.sh "flatpak"
+            flatpak install --user -y flathub com.obsproject.Studio
             ;;
         
         3)

@@ -4,6 +4,9 @@ native_openshot(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y openshot
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install openshot-qt
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y openshot-qt
@@ -19,6 +22,9 @@ remove_openshot(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm openshot-qt
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y openshot-qt

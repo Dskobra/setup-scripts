@@ -4,6 +4,9 @@ native_vlc(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y vlc
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install vlc-qt
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y vlc
@@ -19,6 +22,9 @@ remove_vlc(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm vlc-qt
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y vlc
