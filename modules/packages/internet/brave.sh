@@ -18,6 +18,12 @@ native_brave_browser(){
         sudo rpm-ostree refresh-md
         sudo rpm-ostree install brave-browser
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo zypper ref
+        sudo zypper -n install brave-browser
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg

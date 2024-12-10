@@ -10,6 +10,9 @@ native_firefox(){
         sudo rm /usr/local/share/applications/firefox.desktop
         sudo update-desktop-database /usr/local/share/applications/
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install MozillaFirefox
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y firefox-esr
@@ -37,6 +40,9 @@ remove_firefox(){
         elif [ "$PKGMGR" == "rpm-ostree" ]
             then
                 hide_firefox_on_atomic
+        elif [ "$PKGMGR" == "zypper" ]
+        then
+            sudo zypper -n rm MozillaFirefox
         elif [ "$PKGMGR" == "apt-get" ]
             then
                 sudo apt-get remove -y firefox

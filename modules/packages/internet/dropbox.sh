@@ -8,26 +8,17 @@ native_dropbox(){
     then
         sudo rpm-ostree install dropbox
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install dropbox
     elif [ "$PKGMGR" == "apt-get" ]
     then
-        native_dropbox_debian
+        sudo apt-get install -y nautilus-dropbox
     else
         echo "Unkown error has occurred."
     fi
 }
 
-native_dropbox_debian(){
-    DESKTOP=$(echo $XDG_CURRENT_DESKTOP)
-    if [ $DESKTOP == "GNOME" ]
-    then
-        sudo apt-get install -y nautilus-dropbox
-    elif [ $DESKTOP == "MATE" ]
-    then
-        sudo apt-get install caja-dropbox
-    else
-        sudo apt-get install -y nautilus-dropbox
-    fi
-}
 
 remove_dropbox(){
     if [ "$PKGMGR" == "dnf" ]

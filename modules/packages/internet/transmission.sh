@@ -4,6 +4,9 @@ install_transmission(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y transmission-gtk
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install transmission-gtk
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y transmission-gtk
@@ -19,6 +22,9 @@ remove_transmission(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm transmission-gtk
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y transmission-gtk
