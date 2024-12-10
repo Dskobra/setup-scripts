@@ -4,15 +4,18 @@ native_steam(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y steam
+    elif [ "$PKGMGR" == "rpm-ostree" ]
+    then
+        sudo rpm-ostree install steam
+        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install steam
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo dpkg --add-architecture i386
         sudo apt-get update
         sudo apt-get install -y steam
-    elif [ "$PKGMGR" == "rpm-ostree" ]
-    then
-        sudo rpm-ostree install steam
-        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     else
         echo "Unkown error has occurred."
     fi
@@ -27,6 +30,9 @@ native_steam_devices(){
         sudo rpm-ostree install steam-devices
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install steam-devices
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y steam-devices
@@ -42,6 +48,9 @@ remove_steam(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm steam
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y steam

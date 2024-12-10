@@ -4,6 +4,9 @@ native_discord(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y discord
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install discord
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "========================================================"
@@ -24,6 +27,9 @@ remove_discord(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm discord
     elif [ "$PKGMGR" == "apt-get" ]
     then
         echo "Not removing discord as it's not present in Debian repos."

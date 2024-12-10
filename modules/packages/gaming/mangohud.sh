@@ -4,6 +4,9 @@ native_mangohud(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y mangohud
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install mangohud
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y mangohud
