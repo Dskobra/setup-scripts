@@ -206,6 +206,7 @@ native_kde_desktop_menu(){
     echo "(3) Kleopatra             (4) KDE ISO Image Writer"
     echo "(5) Kate                  (6) Plasma X11"
     echo "(7) K3b"
+    echo "(f) Flatpak Apps"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -241,19 +242,15 @@ native_kde_desktop_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/k3b.sh
             ;;
 
-        p)
+        f | F)
+            flatpak_kde_desktop_menu
+            ;;
+
+        p | P)
             native_desktop_apps_menu
             ;;
 
-        P)
-            native_desktop_apps_menu
-            ;;
-
-        m)
-            native_menu
-            ;;
-
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -279,6 +276,7 @@ native_gnome_desktop_menu(){
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
     echo "(3) Gnome Tweaks           (4) Gnome X11"
+    echo "(f) Flatpak Apps"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -302,19 +300,15 @@ native_gnome_desktop_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_x11.sh
             ;;
 
-        p)
+        f | F)
+            flatpak_gnome_desktop_menu
+            ;;
+
+        p | P)
             native_desktop_apps_menu
             ;;
 
-        P)
-            native_desktop_apps_menu
-            ;;
-
-        m)
-            native_menu
-            ;;
-
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -341,6 +335,7 @@ native_internet_menu(){
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
     echo "(5) Remmina"
+    echo "(f) Flatpak Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -367,11 +362,11 @@ native_internet_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "native"
             ;;
 
-        m)
-            native_menu
+        f | F)
+            flatpak_gnome_desktop_menu
             ;;
 
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -397,6 +392,7 @@ native_multimedia_menu(){
     echo ""
     echo "(1) VLC Media Player       (2) OpenShot"
     echo "(3) xfburn                 (4) Audio/Video Codecs"
+    echo "(f) Flatpak Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -418,12 +414,12 @@ native_multimedia_menu(){
         4)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
-        
-        m)
-            native_menu
+
+        f | F)
+            flatpak_multimedia_menu
             ;;
         
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -448,6 +444,7 @@ native_gaming_menu(){
     echo "--------------"
     echo ""
     echo "(1) Game Clients           (2) Tools"
+    echo "(f) Flatpak Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -461,13 +458,14 @@ native_gaming_menu(){
         2) 
             native_gaming_tools_menu
             ;;
-        m)
+
+        f | F)
+            flatpak_gaming_menu
+            ;;
+        m | M)
             native_menu
             ;;
 
-        M)
-            native_menu
-            ;;
         0)
             exit
             ;;
@@ -489,6 +487,7 @@ native_gaming_clients_menu(){
     echo "---------------- ------"
     echo ""
     echo "(1) Steam                  (2) Lutris"
+    echo "(f) Flatpak Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -504,22 +503,18 @@ native_gaming_clients_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
-        p)
+        f | F)
+            flatpak_gaming_clients_menu
+            ;;
+
+        p | P)
             native_gaming_menu
             ;;
 
-        P)
-            native_gaming_menu
-            ;;
-
-
-        m)
+        m | M)
             native_menu
             ;;
 
-        M)
-            native_menu
-            ;;
         0)
             exit
             ;;
@@ -543,6 +538,7 @@ native_gaming_tools_menu(){
     echo "Runtimes include mangohud, gamescope and gamemode"
     echo ""
     echo "(1) Runtimes"
+    echo "(f) Flatpak Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -562,7 +558,11 @@ native_gaming_tools_menu(){
             flatpak install --user -y flathub com.vysp3r.ProtonPlus
             ;;
 
-        p)
+        f | F)
+            flatpak_gaming_tools_menu
+            ;;
+
+        p | P)
             native_gaming_menu
             ;;
         
@@ -570,11 +570,7 @@ native_gaming_tools_menu(){
             native_gaming_menu
             ;;
 
-        m)
-            native_menu
-            ;;
-
-        M)
+        m | M)
             native_menu
             ;;
         0)
@@ -600,6 +596,7 @@ native_office_menu(){
     echo "(1) LibreOffice               (2) QOwnNotes"
     echo "(3) Marknote                  (4) Claws-Mail"
     echo "(5) Thunderbird               (6) KeePassXC"
+    echo "(f) Flatpak Apps"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
     read -r input
@@ -630,11 +627,11 @@ native_office_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "native"
             ;;
 
-        m)
-            native_menu
+        f | F)
+            flatpak_office_menu
             ;;
 
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -663,6 +660,7 @@ native_development_menu(){
     echo "(1) SDKs              (2) IDEs"
     echo "(3) Github Desktop    (4) Containers"
     echo "(5) Lamp Stack"
+    echo "(f) Flatpak Apps"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -688,11 +686,11 @@ native_development_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
-        m)
-            native_menu
+        f | F)
+            flatpak_development_menu
             ;;
 
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -731,20 +729,14 @@ native_sdks_menu(){
         2)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
             ;;
-        
-        p)
+        f | F)
+            flatpak_sdks_menu
+            ;;
+        p | P)
             native_development_menu
             ;;
         
-        P)
-            native_development_menu
-            ;;
-        
-        m)
-            native_menu
-            ;;
-        
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -770,6 +762,7 @@ native_ides_menu(){
     echo ""
     echo "(1) VIM                               (2) VSCodium"
     echo "(3) Geany"
+    echo "(f) Flatpak Apps"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -789,19 +782,15 @@ native_ides_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
 
-        p)
+        F | F)
+            flatpak_ides_menu
+            ;;
+
+        p | P)
             native_development_menu
             ;;
 
-        P)
-            native_development_menu
-            ;;
-
-        m)
-            native_menu
-            ;;
-
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -827,6 +816,7 @@ native_utils_menu(){
     echo ""
     echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
     echo "(3) GtkHash                       (4) Virtualization"
+    echo "(f) Flatpak Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
@@ -849,11 +839,11 @@ native_utils_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
-        m)
-            native_menu
+        f | F)
+            flatpak_utils_menu
             ;;
 
-        M)
+        m | M)
             native_menu
             ;;
 
@@ -1055,6 +1045,7 @@ flatpak_kde_desktop_menu(){
     echo ""   
     echo "(1) KDE Patience       (2) Kolourpaint"
     echo "(3) Kleopatra          (4) KDE ISO Image Writer"
+    echo "(n) Native Apps"
     echo "(p) Previous Menu      (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1077,19 +1068,15 @@ flatpak_kde_desktop_menu(){
         4)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
             ;;
-        p)
+
+        n | N)
+            native_kde_desktop_menu
+            ;;
+        p | P)
             flatpak_desktop_apps_menu
             ;;
 
-        P)
-            flatpak_desktop_apps_menu
-            ;;
-
-        m)
-            flatpak_menu
-            ;;
-
-        M)
+        m | M)
             flatpak_menu
             ;;
 
@@ -1114,6 +1101,7 @@ flatpak_gnome_desktop_menu(){
     echo "-----------"
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
+    echo "(n) Native Apps"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -1128,19 +1116,15 @@ flatpak_gnome_desktop_menu(){
         2)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
             ;;
-        p)
+
+        n | N)
+            native_gnome_desktop_menu
+            ;;
+        p | P)
             flatpak_desktop_apps_menu
             ;;
 
-        P)
-            flatpak_desktop_apps_menu
-            ;;
-
-        m)
-            flatpak_menu
-            ;;
-
-        M)
+        m | M)
             flatpak_menu
             ;;
 
@@ -1167,6 +1151,7 @@ flatpak_internet_menu(){
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
     echo "(5) Remmina"
+    echo "(n) Native Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -1193,11 +1178,11 @@ flatpak_internet_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "flatpak"
             ;;
 
-        m)
-            flatpak_menu
+        n | N)
+            native_internet_menu
             ;;
 
-        M)
+        m | M)
             flatpak_menu
             ;;
 
@@ -1241,12 +1226,11 @@ flatpak_multimedia_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "flatpak"
             ;;
 
-        
-        m)
-            flatpak_menu
+        n | N)
+            native_multimedia_menu
             ;;
         
-        M)
+        m | M)
             flatpak_menu
             ;;
 
@@ -1272,6 +1256,7 @@ flatpak_gaming_menu(){
     echo ""
     echo "(1) Game Clients           (2) Tools"
     echo "(3) WoW Clients            (4) Other"
+    echo "(n) Native Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -1293,13 +1278,15 @@ flatpak_gaming_menu(){
         4)
             flatpak_gaming_other_menu
             ;;
-        m)
+
+        n | N)
+            native_gaming_menu
+            ;;
+
+        m | M)
             flatpak_menu
             ;;
 
-        M)
-            flatpak_menu
-            ;;
         0)
             exit
             ;;
@@ -1322,6 +1309,7 @@ flatpak_gaming_clients_menu(){
     echo ""
     echo "(1) Steam                     (2) Lutris"
     echo "(3) Bottles"
+    echo "(n) Native Apps"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1343,22 +1331,19 @@ flatpak_gaming_clients_menu(){
             flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
             ;;
 
-        p)
+        n | N)
+            native_gaming_clients_menu
+            ;;
+
+        p | P)
             flatpak_gaming_menu
             ;;
 
-        P)
-            flatpak_gaming_menu
-            ;;
 
-
-        m)
+        m | M)
             flatpak_menu
             ;;
 
-        M)
-            flatpak_menu
-            ;;
         0)
             exit
             ;;
@@ -1442,6 +1427,7 @@ flatpak_gaming_tools_menu(){
     echo ""   
     echo "(1) Runtimes                  (2) Protontricks"
     echo "(3) Proton Plus"
+    echo "(n) Native Apps"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1461,21 +1447,18 @@ flatpak_gaming_tools_menu(){
             flatpak install --user -y flathub com.vysp3r.ProtonPlus
             ;;
 
-        p)
-            flatpak_gaming_menu
+        n | N)
+            native_gaming_tools_menu
             ;;
-        
-        P)
+
+        p | P)
             flatpak_gaming_menu
             ;;
 
-        m)
+        m | M)
             flatpak_menu
             ;;
 
-        M)
-            flatpak_menu
-            ;;
         0)
             exit
             ;;
@@ -1569,6 +1552,7 @@ flatpak_office_menu(){
     echo "(3) Marknote              (4) Claws-Mail"
     echo "(5) Thunderbird           (6) Bitwarden"
     echo "(7) KeePassXC"
+    echo "(n) Native Apps"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
@@ -1603,11 +1587,11 @@ flatpak_office_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "flatpak"
             ;;
 
-        m)
-            flatpak_menu
+        n | N)
+            native_office_menu
             ;;
 
-        M)
+        m | M)
             flatpak_menu
             ;;
 
@@ -1633,6 +1617,7 @@ flatpak_development_menu(){
     echo ""
     echo "(1) SDKs              (2) IDEs"
     echo "(3) Github Desktop    (4) Podman Desktop"
+    echo "(n) Native Apps"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -1653,12 +1638,11 @@ flatpak_development_menu(){
         4)
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
-
-        m)
-            flatpak_menu
+        n | N)
+            native_development_menu
             ;;
 
-        M)
+        m | M)
             flatpak_menu
             ;;
 
@@ -1702,20 +1686,16 @@ flatpak_sdks_menu(){
         3)
             "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
             ;;
+
+        n | N)
+            native_sdks_menu
+            ;;
         
-        p)
+        p | P)
             flatpak_development_menu
             ;;
         
-        P)
-            flatpak_development_menu
-            ;;
-        
-        m)
-            flatpak_menu
-            ;;
-        
-        M)
+        m | M)
             flatpak_menu
             ;;
 
@@ -1764,6 +1744,10 @@ flatpak_ides_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
             ;;
 
+        n | N)
+            native_ides_menu
+            ;;
+
         p)
             flatpak_development_menu
             ;;
@@ -1802,6 +1786,7 @@ flatpak_utils_menu(){
     echo ""
     echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
     echo "(3) GtkHash                       (4) MissionCenter"
+    echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
@@ -1824,11 +1809,11 @@ flatpak_utils_menu(){
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
 
-        m)
-            flatpak_menu
+        n | N)
+            native_utils_menu
             ;;
 
-        M)
+        m | M)
             flatpak_menu
             ;;
 
