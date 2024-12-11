@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 native_discord(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y discord
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install discord
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "========================================================"
         echo "Discord isn't currently available in Debian."
@@ -21,16 +21,16 @@ native_discord(){
 }
 
 remove_discord(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y discord
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm discord
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "Not removing discord as it's not present in Debian repos."
     else

@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 native_game_runtimes(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y mangohud gamescope gamemode
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install mangohud gamescope gamemode
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y mangohud gamescope gamemode
     else

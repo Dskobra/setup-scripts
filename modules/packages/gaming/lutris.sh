@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 native_lutris(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y lutris
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install lutris
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y lutris
     else
@@ -16,16 +16,16 @@ native_lutris(){
 }
 
 remove_lutris(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y lutris
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm lutris
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y lutris
     else
