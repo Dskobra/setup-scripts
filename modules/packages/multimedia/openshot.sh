@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 native_openshot(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y openshot
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse" ]
     then
         sudo zypper -n install openshot-qt
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "apt-get" ]
     then
         sudo apt-get install -y openshot-qt
     else
@@ -16,16 +16,16 @@ native_openshot(){
 }
 
 remove_openshot(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y openshot
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm openshot-qt
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y openshot-qt
     else

@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 native_codecs(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y ffmpeg ffmpeg-libs.i686 ffmpeg-libs
@@ -12,7 +12,7 @@ native_codecs(){
 
         sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
         sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rpm-ostree install gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld\
         gstreamer1-plugins-ugly gstreamer1-vaapi
@@ -27,10 +27,10 @@ native_codecs(){
 
         sudo rpm-ostree install mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         opi codecs
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y ffmpeg mesa-va-drivers
     else

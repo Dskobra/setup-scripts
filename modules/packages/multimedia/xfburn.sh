@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 native_xfburn(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "dnf" ]
     then
         sudo dnf install -y xfburn
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "zypper" ]
     then
         sudo zypper -n install xfburn
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "apt-get" ]
     then
         sudo apt-get install -y xfburn
     else
