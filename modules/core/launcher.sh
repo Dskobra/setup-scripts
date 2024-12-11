@@ -10,7 +10,6 @@ distro_check(){
     if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
-
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
         opensuse_release_check
@@ -51,7 +50,7 @@ fedora_variant_check(){
     elif [ "$VARIANT" == "ostree" ]
     then
         PKGMGR="rpm-ostree"
-        PACKAGE_TYPE="flatpak"
+        DISTRO="fedora-atomic"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/ostree_menu.sh
     fi

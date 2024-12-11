@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 native_gnome_x11(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y gnome-session-xsession
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rpm-ostree install gnome-session-xsession
         #sudo rpm-ostree apply-live
