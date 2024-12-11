@@ -783,7 +783,7 @@ native_ides_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
 
-        F | F)
+        f | F)
             flatpak_ides_menu
             ;;
 
