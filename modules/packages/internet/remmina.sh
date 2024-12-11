@@ -2,13 +2,13 @@
 
 install_remmina(){
     
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y remmina
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install remmina
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y remmina
     else
@@ -18,16 +18,16 @@ install_remmina(){
 
 remove_remmina(){
 
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y remmina
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm remmina
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y remmina
     else
