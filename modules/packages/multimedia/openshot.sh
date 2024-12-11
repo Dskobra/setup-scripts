@@ -4,10 +4,10 @@ native_openshot(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y openshot
-    elif [ "$DISTRO" == "opensuse" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install openshot-qt
-    elif [ "$DISTRO" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y openshot-qt
     else

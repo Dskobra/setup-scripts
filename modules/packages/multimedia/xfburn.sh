@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 native_xfburn(){
-    if [ "$DISTRO" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y xfburn
-    elif [ "$DISTRO" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install xfburn
-    elif [ "$DISTRO" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y xfburn
     else

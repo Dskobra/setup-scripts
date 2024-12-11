@@ -19,7 +19,7 @@ remove_vlc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y vlc
-    elif [ "$DISTRO" == "fedora-atomice" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
