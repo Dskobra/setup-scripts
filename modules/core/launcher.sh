@@ -44,12 +44,10 @@ fedora_variant_check(){
     test -f /run/ostree-booted && VARIANT=ostree
     if [ -z "$VARIANT" ]
     then
-        PKGMGR="dnf"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     elif [ "$VARIANT" == "ostree" ]
     then
-        PKGMGR="rpm-ostree"
         DISTRO="fedora-atomic"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/ostree_menu.sh
@@ -59,7 +57,6 @@ fedora_variant_check(){
 opensuse_release_check(){
     if [ "$VERSION_ID" -gt "20240101" ]
     then
-        PKGMGR="zypper"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
@@ -71,7 +68,6 @@ opensuse_release_check(){
 debian_release_check(){
     if [ "$VERSION_ID" == "12" ]
     then
-        PKGMGR="apt-get"
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else

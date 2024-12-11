@@ -1,17 +1,17 @@
 #!/usr/bin/bash
 
 native_fmedia_writer(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y mediawriter
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         echo "============================================="
         echo "Fedora Mediawriter isn't available in openSUSE."
         echo "This will install the flatpak version."
         echo "============================================="
         flatpak install --user -y flathub org.fedoraproject.MediaWriter
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "============================================="
         echo "Fedora Mediawriter isn't available in Debian."
@@ -24,13 +24,13 @@ native_fmedia_writer(){
 }
 
 remove_fmedia_writer(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y mediawriter
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "Not removing Fedora media writer as it's not present in Debian repos."
     else
