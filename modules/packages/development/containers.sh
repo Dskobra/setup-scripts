@@ -1,18 +1,18 @@
 #!/usr/bin/bash
 
 native_containers(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y toolbox distrobox
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rpm-ostree install distrobox
         #sudo rpm-ostree apply-live
         $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install toolbox distrobox
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y distrobox podman-toolbox
     else
