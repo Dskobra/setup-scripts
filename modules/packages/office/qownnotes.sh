@@ -33,10 +33,10 @@ remove_qownnotes(){
         echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing marknote as it's not present in openSUSE repos."
+        echo "Not removing QOwnNotes as it's not present in openSUSE repos."
     elif [ "$DISTRO" == "debian" ]
     then
-        echo "Not removing marknote as it's not present in Debian repos."
+        echo "Not removing QOwnNotes as it's not present in Debian repos."
     else
         echo "Unkown error has occurred."
     fi
