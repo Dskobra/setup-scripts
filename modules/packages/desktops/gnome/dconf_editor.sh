@@ -5,6 +5,10 @@ native_dconf_editor(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y dconf-editor
+
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install dconf-editor
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y dconf-editor
@@ -20,6 +24,9 @@ remove_dconf_editor(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm dconf-editor
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y dconf-editor

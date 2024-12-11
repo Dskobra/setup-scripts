@@ -4,6 +4,9 @@ native_pavucontrol(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y pavucontrol
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install pavucontrol
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y pavucontrol
@@ -18,6 +21,9 @@ remove_pavucontrol(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm pavucontrol
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y pavucontrol

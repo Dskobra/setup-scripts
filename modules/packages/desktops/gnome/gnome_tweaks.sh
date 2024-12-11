@@ -9,6 +9,9 @@ native_gnome_tweaks(){
         sudo rpm-ostree install gnome-tweaks
         #sudo rpm-ostree apply-live
         $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install gnome-tweaks
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y gnome-tweaks
