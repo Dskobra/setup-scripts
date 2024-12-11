@@ -1208,6 +1208,7 @@ flatpak_multimedia_menu(){
     echo ""
     echo "(1) VLC Media Player          (2) OBS Studio"
     echo "(3) OpenShot"
+    echo "(n) Native Apps"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
     read -r input
