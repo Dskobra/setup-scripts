@@ -1860,11 +1860,9 @@ package_type_chooser(){
     read -r input
     if [ "$input" = 1 ] || [ -z "$input" ]
     then
-        #PACKAGE_TYPE="native"
         native_menu
     elif [ "$input" = 2 ] 
     then
-        #PACKAGE_TYPE="flatpak"
         flatpak_menu
     elif [ "$input" = 3 ]
     then
