@@ -1,18 +1,18 @@
 #!/usr/bin/bash
 
 install_v4l2loopback(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y akmod-v4l2loopback v4l2loopback
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rpm-ostree install -y akmod-v4l2loopback v4l2loopback
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install v4l2loopback-autoload
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y v4l2loopback-dkms v4l2loopback-utils
         sudo echo "v4l2loopback" | sudo tee /etc/modules-load.d/v4l2loopback.conf 
