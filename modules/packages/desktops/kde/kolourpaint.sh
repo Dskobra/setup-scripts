@@ -4,6 +4,9 @@ native_kolourpaint(){
     if [ "$PKGMGR" == "dnf" ]
     then
         sudo dnf install -y kolourpaint
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install kolourpaint
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y kolourpaint
@@ -19,6 +22,9 @@ remove_kolourpaint(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm kolourpaint
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y kolourpaint

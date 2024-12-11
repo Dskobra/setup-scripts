@@ -19,6 +19,9 @@ remove_kpat(){
     elif [ "$PKGMGR" == "rpm-ostree" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n rm kpat
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get remove -y kpat

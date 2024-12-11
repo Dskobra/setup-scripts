@@ -9,6 +9,9 @@ native_kate(){
         sudo rpm-ostree install kate kate-plugins --allow-inactive
         sudo rpm-ostree apply-live     
         #$SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
+    elif [ "$PKGMGR" == "zypper" ]
+    then
+        sudo zypper -n install kate kate-plugins
     elif [ "$PKGMGR" == "apt-get" ]
     then
         sudo apt-get install -y kate
