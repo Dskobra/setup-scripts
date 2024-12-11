@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_k3b(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y k3b
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then 
+        sudo zypper -n install k3b
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y k3b
     else

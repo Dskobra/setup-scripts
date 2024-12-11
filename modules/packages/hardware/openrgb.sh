@@ -1,15 +1,18 @@
 #!/usr/bin/bash
 
 install_openrgb(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y openrgb
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rpm-ostree install openrgb
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install OpenRGB
+    elif [ "$DISTRO" == "debian" ]
     then
         OPENRGB_LINK="https://openrgb.org/releases/release_0.9/openrgb_0.9_amd64_bookworm_b5f46e3.deb"
         OPENRGB_DEB="openrgb_0.9_amd64_bookworm_b5f46e3.deb"

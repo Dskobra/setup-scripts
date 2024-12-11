@@ -1,18 +1,22 @@
 #!/usr/bin/bash
 
 native_virtualization(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf update -y
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rpm-ostree install libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer
         sudo rpm-ostree apply-live
         #"$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install patterns-server-kvm_server
+        sudo zypper -n install patterns-server-kvm_tools
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y libvirt-daemon-config-network qemu-kvm virt-manager virt-viewer
     else

@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 native_plasma_x11(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y plasma-workspace-x11
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rpm-ostree install plasma-workspace-x11
         #sudo rpm-ostree apply-live

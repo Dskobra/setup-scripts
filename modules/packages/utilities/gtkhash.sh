@@ -1,10 +1,17 @@
 #!/usr/bin/bash
 
 native_gtkhash(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y gtkhash
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        echo "============================================="
+        echo "gtkhash isn't available in openSUSE."
+        echo "This will install the flatpak version."
+        echo "============================================="
+        flatpak install --user -y flathub org.gtkhash.gtkhash
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y gtkhash
     else
@@ -13,13 +20,13 @@ native_gtkhash(){
 }
 
 remove_gtkhash(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y gtkhash
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y gtkhash
     else

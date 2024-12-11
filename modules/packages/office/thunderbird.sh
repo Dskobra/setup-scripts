@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_thunderbird(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y thunderbird
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install MozillaThunderbird
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y thunderbird
     else
@@ -13,13 +16,16 @@ native_thunderbird(){
 }
 
 remove_thunderbird(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y thunderbird
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n rm MozillaThunderbird
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y thunderbird
     else

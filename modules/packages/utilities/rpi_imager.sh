@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_rpi_imager(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y rpi-imager
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install rpi-imager
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "========================================================"
         echo "Raspberry Pi Imager isn't currently available in Debian."
@@ -16,13 +19,16 @@ native_rpi_imager(){
 }
 
 remove_rpi_imager(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y rpi-imager
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n rm rpi-imager
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "Not removing Raspberry Pi Imager as it's not present in Debian repos."
     else

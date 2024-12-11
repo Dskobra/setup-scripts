@@ -1,25 +1,31 @@
 #!/usr/bin/bash
 
 native_libreoffice(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y libreoffice
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo apt-get install -y libreoffice
+        sudo zypper -n install libreoffice
+    elif [ "$DISTRO" == "debian" ]
+    then
+        sudo apt-get install -y libreoffice libreoffice-branding-openSUSE
     else
         echo "Unkown error has occurred."
     fi
 }
 
 remove_libreoffice(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y libreoffice*
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n rm libreoffice*
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y libreoffice*
     else

@@ -1,16 +1,19 @@
 #!/usr/bin/bash
 
 native_firefox(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y firefox
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo rm /usr/local/share/applications/org.mozilla.firefox.desktop
         sudo rm /usr/local/share/applications/firefox.desktop
         sudo update-desktop-database /usr/local/share/applications/
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install MozillaFirefox-branding-openSUSE
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y firefox-esr
         sudo install -d -m 0755 /etc/apt/keyrings
@@ -31,13 +34,16 @@ native_firefox(){
 }
 
 remove_firefox(){
-        if [ "$PKGMGR" == "dnf" ]
+        if [ "$DISTRO" == "fedora" ]
             then
                 sudo dnf remove -y firefox firefox-langpacks
-        elif [ "$PKGMGR" == "rpm-ostree" ]
+        elif [ "$DISTRO" == "fedora-atomic" ]
             then
                 hide_firefox_on_atomic
-        elif [ "$PKGMGR" == "apt-get" ]
+        elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+        then
+            sudo zypper -n rm MozillaFirefox
+        elif [ "$DISTRO" == "debian" ]
             then
                 sudo apt-get remove -y firefox
                 sudo apt-get remove -y firefox-esr

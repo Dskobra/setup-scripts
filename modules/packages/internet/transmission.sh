@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 install_transmission(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y transmission-gtk
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install transmission-gtk
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y transmission-gtk
     else
@@ -13,13 +16,16 @@ install_transmission(){
 }
 
 remove_transmission(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y transmission-gtk
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n rm transmission-gtk
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y transmission-gtk
     else

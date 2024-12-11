@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 
 install_cooler_control(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf copr enable -y codifryed/CoolerControl
         sudo dnf install -y coolercontrol
         sudo systemctl enable --now coolercontrold
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         sudo dnf copr enable -y codifryed/CoolerControl
         sudo rpm-ostree install coolercontrol
@@ -14,7 +14,11 @@ install_cooler_control(){
         sudo systemctl enable --now coolercontrold
         #sudo rpm-ostree apply-live
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        opi coolercontrol
+        sudo systemctl enable --now coolercontrold
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt install -y curl apt-transport-https
         curl -1sLf \
