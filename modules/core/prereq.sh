@@ -3,25 +3,23 @@
 # checks/installs basic packages such as flatpak, curl/wget and git.
 
 install_prereq(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal dnf-plugins-core"
         sudo dnf install -y curl wget flatpak dnf-plugins-core
         sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo dnf update -y
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Following packages will be installed: flatseal dnf-plugins-core"
         sudo rpm-ostree install dnf dnf-plugins-core
         sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo rpm-ostree apply-live
-    elif [ "$PKGMGR" == "zypper" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        #sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/ packman-essentials
-        #sudo zypper dup --from packman-essentials --allow-vendor-change
-        echo "Not yet supported."
+        echo "Following packages will be installed: curl wget flatpak flatseal opi"
         sudo zypper -n install wget curl flatpak opi
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal software-properties-common"
         sudo apt-get install -y curl wget flatpak
