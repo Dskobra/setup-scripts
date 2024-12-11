@@ -29,6 +29,7 @@ make_app_folder(){
 export SCRIPTS_FOLDER                           # stores full path for setup-scripts
 export APP_FOLDER="$HOME/Apps"                  # app folder thats made for some downloads
 export PKGMGR=""                                # stores package manager name such as dnf/rpm-ostree etc
+export DISTRO=""                                # stores distro name. Replaces PKGMGR
 export COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
 export VERSION="11.30.2024"
 export PACKAGE_TYPE="flatpak"
