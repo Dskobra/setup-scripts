@@ -28,6 +28,9 @@ remove_dropbox(){
     then
         sudo rpm-ostree remove dropbox
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n rm dropbox
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y caja-dropbox nautilus-dropbox
