@@ -6,7 +6,7 @@ native_thunderbird(){
         sudo dnf install -y thunderbird
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo zypper -n rm MozillaThunderbird
+        sudo zypper -n install MozillaThunderbird
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y thunderbird
