@@ -3,7 +3,7 @@
 ########################################
 # Native menus
 ########################################
-native_menu(){
+main_menu(){
     echo "---------------------------"   
     echo "|   DSK's Setup Scripts   |"
     echo "---------------------------" 
@@ -12,13 +12,12 @@ native_menu(){
     echo "$COPYRIGHT"
     echo "Released under the MIT license"
     echo ""
-    echo "/NATIVE MENU/"
     echo ""
-    echo "(1) Swap Menus                    (2) Hardware"
-    echo "(3) Desktop Apps                  (4) Internet"
-    echo "(5) Multimedia                    (6) Gaming"
-    echo "(7) Office                        (8) Development"
-    echo "(9) Utilities                     (10) Misc"
+    echo "(1) Hardware                      (2) Desktop Apps"
+    echo "(3) Internet                      (4) Multimedia"
+    echo "(5) Gaming                        (6) Office"
+    echo "(7) Development                   (8) Utilities"
+    echo "(9) Misc"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -27,41 +26,37 @@ native_menu(){
 
 
         1)
-            flatpak_menu
+            hardware_menu
             ;;
 
         2)
-            native_hardware_menu
+            desktop_apps_menu
             ;;
 
         3)
-            native_desktop_apps_menu
-            ;;
-
-        4)
             native_internet_menu
             ;;
 
-        5)
+        4)
             native_multimedia_menu
             ;;
 
-        6)
+        5)
             native_gaming_menu
             ;;
 
-        7)
+        6)
             native_office_menu
             ;;
-        8)
+        7)
             native_development_menu
             ;;
 
-        9)
+        8)
             native_utils_menu
             ;;
 
-        10)
+        9)
             miscellaneous_menu
             ;;
 
@@ -72,15 +67,15 @@ native_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_menu
+            main_menu
             ;;
 
         esac
         unset input
-        native_menu
+        main_menu
 }
 
-native_hardware_menu(){
+hardware_menu(){
     echo "----------------"
     echo "|   Hardware   |"
     echo "----------------"
@@ -126,11 +121,11 @@ native_hardware_menu(){
             ;;
 
         m)
-            native_menu
+            main_menu
             ;;
             
         M)
-            native_menu
+            main_menu
             ;;
         0)
             exit
@@ -139,15 +134,15 @@ native_hardware_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_hardware_menu
+            hardware_menu
             ;;
             
         esac
         unset input
-        native_hardware_menu
+        hardware_menu
 }
 
-native_desktop_apps_menu(){
+desktop_apps_menu(){
     echo "--------------------"
     echo "|   Desktop Apps   |"
     echo "--------------------"
@@ -175,11 +170,11 @@ native_desktop_apps_menu(){
             ;;
 
         m)
-            native_menu
+            main_menu
             ;;
 
         M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -189,12 +184,12 @@ native_desktop_apps_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_desktop_apps_menu
+            desktop_apps_menu
             ;;
             
         esac
         unset input
-        native_desktop_apps_menu
+        desktop_apps_menu
 }
 
 native_kde_desktop_menu(){
@@ -247,11 +242,11 @@ native_kde_desktop_menu(){
             ;;
 
         p | P)
-            native_desktop_apps_menu
+            desktop_apps_menu
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -267,6 +262,63 @@ native_kde_desktop_menu(){
         esac
         unset input
         native_kde_desktop_menu
+}
+
+flatpak_kde_desktop_menu(){
+    echo "-----------"
+    echo "|   KDE   |"
+    echo "-----------"
+    echo ""   
+    echo "(1) KDE Patience       (2) Kolourpaint"
+    echo "(3) Kleopatra          (4) KDE ISO Image Writer"
+    echo "(n) Native Apps"
+    echo "(p) Previous Menu      (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "flatpak"
+            ;;
+        
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "flatpak"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "flatpak"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
+            ;;
+
+        n | N)
+            native_kde_desktop_menu
+            ;;
+        p | P)
+            desktop_apps_menu
+            ;;
+
+        m | M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            flatpak_kde_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        flatpak_kde_desktop_menu
 }
 
 native_gnome_desktop_menu(){
@@ -305,11 +357,11 @@ native_gnome_desktop_menu(){
             ;;
 
         p | P)
-            native_desktop_apps_menu
+            desktop_apps_menu
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -325,6 +377,54 @@ native_gnome_desktop_menu(){
         esac
         unset input
         native_gnome_desktop_menu
+}
+
+flatpak_gnome_desktop_menu(){
+    echo "-----------"
+    echo "|   Gnome  |"
+    echo "-----------"
+    echo ""
+    echo "(1) Dconf Editor           (2) Pavucontrol"
+    echo "(n) Native Apps"
+    echo "(p) Previous Menu          (m) Main Menu "
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "flatpak"
+            ;;
+        
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
+            ;;
+
+        n | N)
+            native_gnome_desktop_menu
+            ;;
+        p | P)
+            desktop_apps_menu
+            ;;
+
+        m | M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            flatpak_gnome_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        flatpak_gnome_desktop_menu
 }
 
 native_internet_menu(){
@@ -367,7 +467,7 @@ native_internet_menu(){
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -420,7 +520,7 @@ native_multimedia_menu(){
             ;;
         
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -463,7 +563,7 @@ native_gaming_menu(){
             flatpak_gaming_menu
             ;;
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -512,7 +612,7 @@ native_gaming_clients_menu(){
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -571,7 +671,7 @@ native_gaming_tools_menu(){
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
         0)
             exit
@@ -632,7 +732,7 @@ native_office_menu(){
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -691,7 +791,7 @@ native_development_menu(){
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -738,7 +838,7 @@ native_sdks_menu(){
             ;;
         
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -792,7 +892,7 @@ native_ides_menu(){
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -845,7 +945,7 @@ native_utils_menu(){
             ;;
 
         m | M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -894,11 +994,11 @@ miscellaneous_menu(){
             ;;
 
         m)
-            native_menu
+            main_menu
             ;;
 
         M)
-            native_menu
+            main_menu
             ;;
 
         0)
@@ -919,230 +1019,6 @@ miscellaneous_menu(){
 # End native menus
 ########################################
 
-########################################
-# Flatpak/other menus
-########################################
-flatpak_menu(){
-    echo "---------------------------"   
-    echo "|   DSK's Setup Scripts   |"
-    echo "---------------------------" 
-    echo ""
-    echo "Version: $VERSION"
-    echo "$COPYRIGHT"
-    echo "Released under the MIT license"
-    echo ""
-    echo "/FLATPAK MENU/"
-    echo ""
-    echo "(1) Swap Menus                    (2) Desktop Apps"      
-    echo "(3) Internet                      (4) Multimedia"
-    echo "(5) Gaming                        (6) Office"
-    echo "(7) Development                   (8) Utilities"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-
-    case $input in
-
-
-        1)
-            native_menu
-            ;;
-
-        2)
-            flatpak_desktop_apps_menu
-            ;;
-
-        3)
-            flatpak_internet_menu
-            ;;
-
-        4)
-            flatpak_multimedia_menu
-            ;;
-
-        5)
-            flatpak_gaming_menu
-            ;;
-
-        6)
-            flatpak_office_menu
-            ;;
-        7)
-            flatpak_development_menu
-            ;;
-
-        8)
-            flatpak_utils_menu
-            ;;
-
-        9)
-            miscellaneous_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_menu
-            ;;
-
-        esac
-        unset input
-        flatpak_menu
-}
-
-flatpak_desktop_apps_menu(){
-    echo "--------------------"
-    echo "|   Desktop Apps   |"
-    echo "--------------------"
-    echo ""
-    echo "Apps for popular desktops"
-    echo ""
-    echo "(1) KDE                (2) GNOME"
-    echo "(m) Main Menu          (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            flatpak_kde_desktop_menu
-            ;;
-        
-        2)
-            flatpak_gnome_desktop_menu
-            ;;
-
-        m)
-            flatpak_menu
-            ;;
-
-        M)
-            flatpak_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_desktop_apps_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_desktop_apps_menu
-}
-
-flatpak_kde_desktop_menu(){
-    echo "-----------"
-    echo "|   KDE   |"
-    echo "-----------"
-    echo ""   
-    echo "(1) KDE Patience       (2) Kolourpaint"
-    echo "(3) Kleopatra          (4) KDE ISO Image Writer"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu      (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "flatpak"
-            ;;
-        
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "flatpak"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
-            ;;
-
-        n | N)
-            native_kde_desktop_menu
-            ;;
-        p | P)
-            flatpak_desktop_apps_menu
-            ;;
-
-        m | M)
-            flatpak_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_kde_desktop_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_kde_desktop_menu
-}
-
-flatpak_gnome_desktop_menu(){
-    echo "-----------"
-    echo "|   Gnome  |"
-    echo "-----------"
-    echo ""
-    echo "(1) Dconf Editor           (2) Pavucontrol"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu          (m) Main Menu "
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "flatpak"
-            ;;
-        
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
-            ;;
-
-        n | N)
-            native_gnome_desktop_menu
-            ;;
-        p | P)
-            flatpak_desktop_apps_menu
-            ;;
-
-        m | M)
-            flatpak_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gnome_desktop_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gnome_desktop_menu
-}
 
 flatpak_internet_menu(){
     echo "----------------"
@@ -1184,7 +1060,7 @@ flatpak_internet_menu(){
             ;;
 
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1233,7 +1109,7 @@ flatpak_multimedia_menu(){
             ;;
         
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1286,7 +1162,7 @@ flatpak_gaming_menu(){
             ;;
 
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1343,7 +1219,7 @@ flatpak_gaming_clients_menu(){
 
 
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1399,11 +1275,11 @@ other_gaming_wow_clients_menu(){
 
 
         m)
-            flatpak_menu
+            main_menu
             ;;
 
         M)
-            flatpak_menu
+            main_menu
             ;;
         0)
             exit
@@ -1458,7 +1334,7 @@ flatpak_gaming_tools_menu(){
             ;;
 
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1516,7 +1392,7 @@ flatpak_gaming_other_menu(){
             ;;
 
         m)
-            flatpak_menu
+            main_menu
             ;;
 
         p)
@@ -1528,7 +1404,7 @@ flatpak_gaming_other_menu(){
             ;;
 
         M)
-            flatpak_menu
+            main_menu
             ;;
         0)
             exit
@@ -1594,7 +1470,7 @@ flatpak_office_menu(){
             ;;
 
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1645,7 +1521,7 @@ flatpak_development_menu(){
             ;;
 
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1699,7 +1575,7 @@ flatpak_sdks_menu(){
             ;;
         
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1760,11 +1636,11 @@ flatpak_ides_menu(){
             ;;
 
         m)
-            flatpak_menu
+            main_menu
             ;;
 
         M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1817,7 +1693,7 @@ flatpak_utils_menu(){
             ;;
 
         m | M)
-            flatpak_menu
+            main_menu
             ;;
 
         0)
@@ -1838,31 +1714,5 @@ flatpak_utils_menu(){
 ########################################
 # End flatpak/other menus
 ########################################
-package_type_chooser(){
-    echo "Please input the package type you'd like to use."
-    echo "----------------------------------------"
-    echo "[1] Native [2] Flatpak [3] Help [0] Exit"
-    echo "----------------------------------------"
-    echo "(empty) default option which is native"
-    printf "Option: "
-    read -r input
-    if [ "$input" = 1 ] || [ -z "$input" ]
-    then
-        native_menu
-    elif [ "$input" = 2 ] 
-    then
-        flatpak_menu
-    elif [ "$input" = 3 ]
-    then
-        "$SCRIPTS_FOLDER"/modules/core/packages_help_page.sh
-        package_type_chooser
-    elif [ "$input" = 0 ]
-    then
-        echo "Will now exit."
-        exit
-    else
-        echo "Invalid option or error has occurred."
-    fi
-}
 
-package_type_chooser
+main_menu
