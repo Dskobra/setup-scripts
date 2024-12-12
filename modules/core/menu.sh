@@ -597,9 +597,8 @@ native_development_menu(){
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
-    echo "(1) SDKs              (2) IDEs"
-    echo "(3) Github Desktop    (4) Containers"
-    echo "(5) Lamp Stack"
+    echo "(1) IDEs/SDKs         (2) Github Desktop"
+    echo "(3) Containers        (4) Lamp Stack"
     echo "(f) Flatpak Apps"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
@@ -608,21 +607,18 @@ native_development_menu(){
     case $input in
 
         1)
-            native_sdks_menu
-            ;;
-        2)
-            native_ides_menu
+            native_ides_sdks_menu
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
@@ -649,60 +645,14 @@ native_development_menu(){
     native_development_menu
 }
 
-native_sdks_menu(){
-    echo "-----------"
-    echo "|  SDKs   |"
-    echo "-----------"
-    echo ""
-    echo "(1) C/C++ Compiler        (2) Python Dev Packages"
-    echo "(f) Flatpak Apps"
-    echo "(p) Previous Menu         (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
-            ;;
-        
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
-            ;;
-        f | F)
-            flatpak_sdks_menu
-            ;;
-        p | P)
-            native_development_menu
-            ;;
-        
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        native_sdks_menu
-        ;;
-        
-    esac
-    unset input
-    native_sdks_menu
-}
-
-native_ides_menu(){
-    echo "------------"
-    echo "|   IDEs   |"
-    echo "------------"
+native_ides_sdks_menu(){
+    echo "-----------------"
+    echo "|   IDEs/SDKs   |"
+    echo "-----------------"
     echo ""
     echo "(1) VIM                               (2) VSCodium"
-    echo "(3) Geany"
+    echo "(3) Geany                             (4) C/C++ Compiler"
+    echo "(5) Python Dev Packages"
     echo "(f) Flatpak Apps"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
@@ -723,8 +673,16 @@ native_ides_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
 
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
+            ;;
+        
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
+            ;;
+
         f | F)
-            flatpak_ides_menu
+            flatpak_ides_sdks_menu
             ;;
 
         p | P)
@@ -742,12 +700,12 @@ native_ides_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        native_ides_menu
+        native_ides_sdks_menu
         ;;
         
     esac
     unset input
-    native_ides_menu
+    native_ides_sdks_menu
 }
 
 native_utils_menu(){
@@ -1339,8 +1297,8 @@ flatpak_development_menu(){
     echo "|   Development   |"
     echo "-------------------"
     echo ""
-    echo "(1) SDKs              (2) IDEs"
-    echo "(3) Github Desktop    (4) Podman Desktop"
+    echo "(1) IDEs/SDKs         (2) Github Desktop"
+    echo "(3) Podman Desktop"
     echo "(n) Native Apps"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
@@ -1352,7 +1310,7 @@ flatpak_development_menu(){
             flatpak_sdks_menu
             ;;
         2)
-            flatpak_ides_menu
+            flatpak_ides_sdks_menu
             ;;
 
         3)
@@ -1385,67 +1343,15 @@ flatpak_development_menu(){
     flatpak_development_menu
 }
 
-flatpak_sdks_menu(){
-    echo "-----------"
-    echo "|  SDKs   |"
-    echo "-----------"
-    echo ""
-    echo "(1) Nodejs LTS        (2) openJDK 21 LTS"
-    echo "(3) openjfx 21 LTS"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu     (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk.sh
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
-            ;;
-
-        n | N)
-            native_sdks_menu
-            ;;
-        
-        p | P)
-            flatpak_development_menu
-            ;;
-        
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        flatpak_sdks_menu
-        ;;
-        
-    esac
-    unset input
-    flatpak_sdks_menu
-}
-
-flatpak_ides_menu(){
-    echo "------------"
-    echo "|   IDEs   |"
-    echo "------------"
+flatpak_ides_sdks_menu(){
+    echo "-----------------"
+    echo "|   IDEs/SDKs   |"
+    echo "-----------------"
     echo ""   
     echo "(1) VSCodium                          (2) Geany"
     echo "(3) Intellij IDEA                     (4) Pycharm"
+    echo "(5) Nodejs LTS                        (6) openJDK 21 LTS"
+    echo "(7) openjfx 21 LTS"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1469,8 +1375,20 @@ flatpak_ides_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
             ;;
 
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
+            ;;
+
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk.sh
+            ;;
+
+        7)
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
+            ;;
+
         n | N)
-            native_ides_menu
+            native_ides_sdks_menu
             ;;
 
         p)
@@ -1496,12 +1414,12 @@ flatpak_ides_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        flatpak_ides_menu
+        flatpak_ides_sdks_menu
         ;;
         
     esac
     unset input
-    flatpak_ides_menu
+    flatpak_ides_sdks_menu
 }
 
 flatpak_utils_menu(){
