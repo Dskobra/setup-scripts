@@ -1077,8 +1077,7 @@ flatpak_gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "(1) Clients/Tools          (2) WoW Clients"
-    echo "(3) Other"
+    echo "(1) Clients/Tools          (2) Other"
     echo "(n) Native Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -1091,14 +1090,6 @@ flatpak_gaming_menu(){
             ;;
 
         2) 
-            flatpak_gaming_tools_menu
-            ;;
-
-        3)
-            other_gaming_wow_clients_menu
-            ;;
-
-        4)
             flatpak_gaming_other_menu
             ;;
 
@@ -1191,65 +1182,6 @@ flatpak_gaming_clients_tools_menu(){
         flatpak_gaming_clients_tools_menu
 }
 
-other_gaming_wow_clients_menu(){
-    echo "----------------------"
-    echo "|  Clients  for WoW   |"
-    echo "---------------- ------"
-    echo ""
-    echo "Addon managers and extra stuff for World of Warcraft"
-    echo ""   
-    echo "(1) WoWUp                     (2) Warcraft Logs"
-    echo "(3) Weak Auras Companion"
-    echo "(p) Previous Menu             (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wowup.sh
-            ;;
-
-        2) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/warcraft_logs.sh
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/weakauras_companion.sh
-            ;;
-
-        p)
-            flatpak_gaming_menu
-            ;;
-
-        P)
-            flatpak_gaming_menu
-            ;;
-
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            other_gaming_wow_clients_menu
-            ;;
-            
-        esac
-        unset input
-        other_gaming_wow_clients_menu
-}
-
 flatpak_gaming_other_menu(){
     echo "-----------------"
     echo "|   Misc Stuff   |"
@@ -1258,6 +1190,8 @@ flatpak_gaming_other_menu(){
     echo "(1) Discord                (2) Vesktop"
     echo "(3) Prism Launcher         (4) Dolphin"
     echo "(5) Cemu                   (6) XIVLauncher"
+    echo "(7) WoWUp                  (8) Warcraft Logs"
+    echo "(9) WeakAuras Companion"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1287,6 +1221,18 @@ flatpak_gaming_other_menu(){
 
         6)
             flatpak install --user -y flathub dev.goats.xivlauncher
+            ;;
+
+        7)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wowup.sh
+            ;;
+
+        8)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/warcraft_logs.sh
+            ;;
+
+        9)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/weakauras_companion.sh
             ;;
 
         m)
