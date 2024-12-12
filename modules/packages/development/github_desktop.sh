@@ -34,7 +34,7 @@ remove_github_desktop(){
     then
         sudo rm /etc/zypp/repos.d/shiftkey-packages.repo
         sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
-        sudo zypper rm -n github-desktop
+        sudo zypper -n rm github-desktop
     elif [ "$DISTRO" == "debian" ]
     then
         sudo rm /etc/apt/sources.list.d/shiftkey-packages.list

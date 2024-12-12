@@ -26,6 +26,9 @@ remove_gtkhash(){
     elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        echo "Not removing gtkhash as it's not present in openSUSE repos."
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y gtkhash

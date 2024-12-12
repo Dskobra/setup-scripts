@@ -24,7 +24,7 @@ remove_geany(){
         echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo zypper -rm remove geany geany-plugins
+        sudo zypper -n rm geany geany-plugins
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y geany geany-plugin-markdown geany-plugin-spellcheck geany-plugin-treebrowser
