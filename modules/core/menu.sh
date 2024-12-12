@@ -264,63 +264,6 @@ native_kde_desktop_menu(){
         native_kde_desktop_menu
 }
 
-flatpak_kde_desktop_menu(){
-    echo "-----------"
-    echo "|   KDE   |"
-    echo "-----------"
-    echo ""   
-    echo "(1) KDE Patience       (2) Kolourpaint"
-    echo "(3) Kleopatra          (4) KDE ISO Image Writer"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu      (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "flatpak"
-            ;;
-        
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "flatpak"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
-            ;;
-
-        n | N)
-            native_kde_desktop_menu
-            ;;
-        p | P)
-            desktop_apps_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_kde_desktop_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_kde_desktop_menu
-}
-
 native_gnome_desktop_menu(){
     echo "-----------"
     echo "|   Gnome  |"
@@ -377,54 +320,6 @@ native_gnome_desktop_menu(){
         esac
         unset input
         native_gnome_desktop_menu
-}
-
-flatpak_gnome_desktop_menu(){
-    echo "-----------"
-    echo "|   Gnome  |"
-    echo "-----------"
-    echo ""
-    echo "(1) Dconf Editor           (2) Pavucontrol"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu          (m) Main Menu "
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "flatpak"
-            ;;
-        
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
-            ;;
-
-        n | N)
-            native_gnome_desktop_menu
-            ;;
-        p | P)
-            desktop_apps_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gnome_desktop_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gnome_desktop_menu
 }
 
 native_internet_menu(){
@@ -964,6 +859,113 @@ miscellaneous_menu(){
 # End native menus
 ########################################
 
+########################################
+# Flatpak/other menus
+########################################
+flatpak_kde_desktop_menu(){
+    echo "-----------"
+    echo "|   KDE   |"
+    echo "-----------"
+    echo ""   
+    echo "(1) KDE Patience       (2) Kolourpaint"
+    echo "(3) Kleopatra          (4) KDE ISO Image Writer"
+    echo "(n) Native Apps"
+    echo "(p) Previous Menu      (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "flatpak"
+            ;;
+        
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "flatpak"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "flatpak"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
+            ;;
+
+        n | N)
+            native_kde_desktop_menu
+            ;;
+        p | P)
+            desktop_apps_menu
+            ;;
+
+        m | M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            flatpak_kde_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        flatpak_kde_desktop_menu
+}
+
+flatpak_gnome_desktop_menu(){
+    echo "-----------"
+    echo "|   Gnome  |"
+    echo "-----------"
+    echo ""
+    echo "(1) Dconf Editor           (2) Pavucontrol"
+    echo "(n) Native Apps"
+    echo "(p) Previous Menu          (m) Main Menu "
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "flatpak"
+            ;;
+        
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
+            ;;
+
+        n | N)
+            native_gnome_desktop_menu
+            ;;
+        p | P)
+            desktop_apps_menu
+            ;;
+
+        m | M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            flatpak_gnome_desktop_menu
+            ;;
+            
+        esac
+        unset input
+        flatpak_gnome_desktop_menu
+}
 
 flatpak_internet_menu(){
     echo "----------------"
