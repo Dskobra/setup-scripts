@@ -13,7 +13,7 @@ main_menu(){
     echo "Released under the MIT license"
     echo ""
     echo ""
-    echo "(1) Hardware                      (2) Desktop Apps"
+    echo "(1) Hardware                      (2) KDE/GNOME Apps"
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
@@ -30,7 +30,7 @@ main_menu(){
             ;;
 
         2)
-            desktop_apps_menu
+            kde_gnome_apps_menu
             ;;
 
         3)
@@ -142,12 +142,12 @@ hardware_menu(){
         hardware_menu
 }
 
-desktop_apps_menu(){
-    echo "--------------------"
-    echo "|   Desktop Apps   |"
-    echo "--------------------"
+kde_gnome_apps_menu(){
+    echo "----------------------"
+    echo "|   KDE/GNOME Apps   |"
+    echo "----------------------"
     echo ""
-    echo "Apps for popular desktops"
+    echo "Individual apps for kde/gnome desktops"
     echo ""
     echo "(1) KDE                (2) GNOME"
     echo "(m) Main Menu"
@@ -184,12 +184,12 @@ desktop_apps_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            desktop_apps_menu
+            kde_gnome_apps_menu
             ;;
             
         esac
         unset input
-        desktop_apps_menu
+        kde_gnome_apps_menu
 }
 
 native_kde_desktop_menu(){
@@ -242,7 +242,7 @@ native_kde_desktop_menu(){
             ;;
 
         p | P)
-            desktop_apps_menu
+            kde_gnome_apps_menu
             ;;
 
         m | M)
@@ -300,7 +300,7 @@ native_gnome_desktop_menu(){
             ;;
 
         p | P)
-            desktop_apps_menu
+            kde_gnome_apps_menu
             ;;
 
         m | M)
@@ -855,7 +855,7 @@ flatpak_kde_desktop_menu(){
             native_kde_desktop_menu
             ;;
         p | P)
-            desktop_apps_menu
+            kde_gnome_apps_menu
             ;;
 
         m | M)
@@ -903,7 +903,7 @@ flatpak_gnome_desktop_menu(){
             native_gnome_desktop_menu
             ;;
         p | P)
-            desktop_apps_menu
+            kde_gnome_apps_menu
             ;;
 
         m | M)
