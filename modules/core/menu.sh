@@ -358,7 +358,7 @@ native_internet_menu(){
             ;;
 
         f | F)
-            flatpak_gnome_desktop_menu
+            flatpak_internet_menu
             ;;
 
         m | M)
