@@ -543,7 +543,7 @@ native_gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "(1) Game Clients           (2) Tools"
+    echo "(1 Clients/Tools"
     echo "(f) Flatpak Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -552,11 +552,7 @@ native_gaming_menu(){
     case $input in
 
         1)  
-            native_gaming_clients_menu
-            ;;
-
-        2) 
-            native_gaming_tools_menu
+            native_gaming_clients_tools_menu
             ;;
 
         f | F)
@@ -581,12 +577,13 @@ native_gaming_menu(){
         native_gaming_menu
 }
 
-native_gaming_clients_menu(){
-    echo "----------------------"
-    echo "|   Gaming Clients   |"
-    echo "---------------- ------"
+native_gaming_clients_tools_menu(){
+    echo "---------------------"
+    echo "|   Clients/Tools   |"
+    echo "---------------------"
     echo ""
     echo "(1) Steam                  (2) Lutris"
+    echo "(3) Runtimes"
     echo "(f) Flatpak Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
@@ -603,76 +600,22 @@ native_gaming_clients_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
-        f | F)
-            flatpak_gaming_clients_menu
-            ;;
-
-        p | P)
-            native_gaming_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            native_gaming_clients_menu
-            ;;
-            
-        esac
-        unset input
-        native_gaming_clients_menu
-}
-
-native_gaming_tools_menu(){
-    echo "--------------------"
-    echo "|   Gaming Tools   |"
-    echo "--------------------"
-    echo ""
-    echo "Runtimes include mangohud, gamescope and gamemode"
-    echo ""
-    echo "(1) Runtimes"
-    echo "(f) Flatpak Apps"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
             ;;
 
-        2)
-            flatpak install --user -y com.github.Matoking.protontricks
-            ;;
-
-        3)
-            flatpak install --user -y flathub com.vysp3r.ProtonPlus
-            ;;
-
         f | F)
-            flatpak_gaming_tools_menu
+            flatpak_gaming_clients_tools_menu
             ;;
 
         p | P)
-            native_gaming_menu
-            ;;
-        
-        P)
             native_gaming_menu
             ;;
 
         m | M)
             main_menu
             ;;
+
         0)
             exit
             ;;
@@ -680,12 +623,12 @@ native_gaming_tools_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_gaming_tools_menu
+            native_gaming_clients_tools_menu
             ;;
             
         esac
         unset input
-        native_gaming_tools_menu
+        native_gaming_clients_tools_menu
 }
 
 native_office_menu(){
@@ -1132,8 +1075,8 @@ flatpak_gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "(1) Game Clients           (2) Tools"
-    echo "(3) WoW Clients            (4) Other"
+    echo "(1) Clients/Tools          (2) WoW Clients"
+    echo "(3) Other"
     echo "(n) Native Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -1142,7 +1085,7 @@ flatpak_gaming_menu(){
     case $input in
 
         1)  
-            flatpak_gaming_clients_menu
+            flatpak_gaming_clients_tools_menu
             ;;
 
         2) 
@@ -1180,13 +1123,14 @@ flatpak_gaming_menu(){
         flatpak_gaming_menu
 }
 
-flatpak_gaming_clients_menu(){
+flatpak_gaming_clients_tools_menu(){
     echo "----------------------"
     echo "|   Gaming Clients   |"
     echo "---------------- ------"
     echo ""
     echo "(1) Steam                     (2) Lutris"
-    echo "(3) Bottles"
+    echo "(3) Runtimes                  (4) ProtonPlus"
+    echo "(5) Protontricks"
     echo "(n) Native Apps"
     echo "(p) Previous Menu             (m) Main Menu"
     echo "(0) Exit"
@@ -1204,13 +1148,19 @@ flatpak_gaming_clients_menu(){
             ;;
 
         3)
-            mkdir $HOME/bottles
-            flatpak install --user -y flathub com.usebottles.bottles
-            flatpak override com.usebottles.bottles --user --filesystem=xdg-config/MangoHud:ro
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
+            ;;
+
+        4)
+            flatpak install --user -y flathub com.vysp3r.ProtonPlus
+            ;;
+
+        5)
+            flatpak install --user -y flathub com.vysp3r.ProtonPlus
             ;;
 
         n | N)
-            native_gaming_clients_menu
+            native_gaming_clients_tools_menu
             ;;
 
         p | P)
@@ -1229,12 +1179,12 @@ flatpak_gaming_clients_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            flatpak_gaming_clients_menu
+            flatpak_gaming_clients_tools_menu
             ;;
             
         esac
         unset input
-        flatpak_gaming_clients_menu
+        flatpak_gaming_clients_tools_menu
 }
 
 other_gaming_wow_clients_menu(){
@@ -1294,62 +1244,6 @@ other_gaming_wow_clients_menu(){
         esac
         unset input
         other_gaming_wow_clients_menu
-}
-
-flatpak_gaming_tools_menu(){
-    echo "--------------------"
-    echo "|   Gaming Tools   |"
-    echo "--------------------"
-    echo ""
-    echo "Runtimes include mangohud, gamescope and gamemode"
-    echo ""   
-    echo "(1) Runtimes                  (2) Protontricks"
-    echo "(3) Proton Plus"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu             (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
-            ;;
-
-        2)
-            flatpak install --user -y com.github.Matoking.protontricks
-            ;;
-
-        3)
-            flatpak install --user -y flathub com.vysp3r.ProtonPlus
-            ;;
-
-        n | N)
-            native_gaming_tools_menu
-            ;;
-
-        p | P)
-            flatpak_gaming_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gaming_tools_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gaming_tools_menu
 }
 
 flatpak_gaming_other_menu(){
