@@ -438,7 +438,7 @@ native_gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "(1 Clients/Tools"
+    echo "(1) Clients/Tools"
     echo "(f) Flatpak Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -1111,7 +1111,7 @@ flatpak_gaming_clients_tools_menu(){
             ;;
 
         5)
-            flatpak install --user -y flathub com.vysp3r.ProtonPlus
+            flatpak install --user -y flathub com.github.Matoking.protontricks
             ;;
 
         n | N)
@@ -1307,17 +1307,13 @@ flatpak_development_menu(){
     case $input in
 
         1)
-            flatpak_sdks_menu
-            ;;
-        2)
             flatpak_ides_sdks_menu
             ;;
-
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "flatpak"
             ;;
 
-        4)
+        3)
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
         n | N)
