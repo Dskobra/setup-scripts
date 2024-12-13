@@ -10,7 +10,7 @@ main_menu(){
     echo "Released under the MIT license"
     echo ""
     echo ""
-    echo "(1) Hardware                      (2) Desktop Apps"      
+    echo "(1) Hardware                      (2) KDE/GNOME Apps"      
     echo "(3) Internet                      (4) Multimedia"
     echo "(5) Gaming                        (6) Office"
     echo "(7) Development                   (8) Utilities"
@@ -145,9 +145,9 @@ hardware_menu(){
 }
 
 desktop_apps_menu(){
-    echo "--------------------"
-    echo "|   Desktop Apps   |"
-    echo "--------------------"
+    echo "----------------------"
+    echo "|   KDE/GNOME Apps   |"
+    echo "----------------------"
     echo ""
     echo "Apps for popular desktops"
     echo ""
@@ -1084,7 +1084,7 @@ ostree_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/amd_codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/codecs.sh
             ;;
 
         2)
