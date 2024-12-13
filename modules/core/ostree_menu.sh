@@ -1084,7 +1084,7 @@ ostree_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
 
         2)
