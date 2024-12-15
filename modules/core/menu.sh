@@ -438,7 +438,7 @@ native_gaming_menu(){
     echo "|   Gaming   |"
     echo "--------------"
     echo ""
-    echo "(1) Clients/Tools"
+    echo "(1) Clients/Tools          (2) Other"
     echo "(f) Flatpak Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -448,6 +448,10 @@ native_gaming_menu(){
 
         1)  
             native_gaming_clients_tools_menu
+            ;;
+
+        2)
+            native_gaming_other_menu
             ;;
 
         f | F)
@@ -528,6 +532,57 @@ native_gaming_clients_tools_menu(){
         native_gaming_clients_tools_menu
 }
 
+native_gaming_other_menu(){
+    echo "-----------------"
+    echo "|   Misc Stuff   |"
+    echo "-----------------"
+    echo ""   
+    echo "(1) Discord"
+    echo "(f) Flatpak Apps"
+    echo "(p) Previous Menu          (m) Main Menu"
+    echo "(0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)  
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "native"
+            ;;
+
+        f | F)
+            flatpak_gaming_other_menu
+            ;;
+
+        m)
+            main_menu
+            ;;
+
+        p)
+            flatpak_gaming_menu
+            ;;
+
+        P)
+            flatpak_gaming_menu
+            ;;
+
+        M)
+            main_menu
+            ;;
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            native_gaming_other_menu
+            ;;
+            
+        esac
+        unset input
+        native_gaming_other_menu
+}
 native_office_menu(){
     echo "--------------"
     echo "|   Office   |"
@@ -1152,6 +1207,7 @@ flatpak_gaming_other_menu(){
     echo "(5) Cemu                   (6) XIVLauncher"
     echo "(7) WoWUp                  (8) Warcraft Logs"
     echo "(9) WeakAuras Companion"
+    echo "(f) Flatpak Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1193,6 +1249,10 @@ flatpak_gaming_other_menu(){
 
         9)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/weakauras_companion.sh
+            ;;
+
+        n | N)
+            native_gaming_other_menu
             ;;
 
         m)
