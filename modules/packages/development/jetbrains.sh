@@ -30,9 +30,9 @@ download_pycharm(){
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
         mv pycharm* "$APP_FOLDER"/pycharm
-        echo "=============================================================="
+        echo "============================================================"
         echo "Jetbrains Pycharm is located at $PYCHARM_LOCATION"
-        echo "=============================================================="
+        echo "============================================================"
     fi
 }
 

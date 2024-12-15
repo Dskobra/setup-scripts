@@ -13,9 +13,9 @@ download_openjdk(){
         mv openjdk21 "$APP_FOLDER"/openjdk21
         cd $SCRIPTS_FOLDER
         echo "openjdk is stored in $APP_FOLDER/openjdk21" >> openjdx.txt 
-        echo "=============================================================="
+        echo "================================================================"
         echo "Temurin openJDK 21 LTS is located at $OPENJDK_LOCATION"
-        echo "=============================================================="
+        echo "================================================================"
     fi
 }
 
