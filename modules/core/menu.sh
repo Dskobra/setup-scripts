@@ -1207,7 +1207,7 @@ flatpak_gaming_other_menu(){
     echo "(5) Cemu                   (6) XIVLauncher"
     echo "(7) WoWUp                  (8) Warcraft Logs"
     echo "(9) WeakAuras Companion"
-    echo "(f) Flatpak Apps"
+    echo "(n) Native Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
