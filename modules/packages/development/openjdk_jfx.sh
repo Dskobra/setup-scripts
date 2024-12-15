@@ -13,9 +13,9 @@ download_openjdk(){
         mv openjdk21 "$APP_FOLDER"/openjdk21
         cd $SCRIPTS_FOLDER
         echo "openjdk is stored in $APP_FOLDER/openjdk21" >> openjdx.txt 
-        echo "==========================================================="
-        echo "Temurin openJDK 21 LTS is located at ~/Apps/openjdk21"
-        echo "==========================================================="
+        echo "=============================================================="
+        echo "Temurin openJDK 21 LTS is located at $OPENJDK_LOCATION"
+        echo "=============================================================="
     fi
 }
 
@@ -32,12 +32,14 @@ download_openjfx(){
         mv openjfx21 "$APP_FOLDER"/openjfx21
         cd $SCRIPTS_FOLDER
         echo "openjfx is stored in $APP_FOLDER/openfx21" >> openjfx.txt
-        echo "==========================================================="
-        echo "Gluon openjfx 21 LTS is located at ~/Apps/openjfx21"
-        echo "==========================================================="
+        echo "=============================================================="
+        echo "Gluon openjfx 21 LTS is located at $OPENJFX_LOCATION"
+        echo "=============================================================="
     fi
 }
 
+OPENJDK_LOCATION="$APP_FOLDER/openjdk21"
+OPENJFX_LOCATION="$APP_FOLDER/openjfx21"
 if [ "$1" == "openjdk" ]
 then
     download_openjdk

@@ -13,6 +13,9 @@ download_idea(){
         tar -xvf idea.tar.gz
         rm idea.tar.gz
         mv idea* "$APP_FOLDER"/idea
+        echo "=============================================================="
+        echo "Jetbrains Intellij Idea is located at $IDEA_LOCATION"
+        echo "=============================================================="
     fi
 }
 
@@ -27,9 +30,14 @@ download_pycharm(){
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
         mv pycharm* "$APP_FOLDER"/pycharm
+        echo "=============================================================="
+        echo "Jetbrains Pycharm is located at $PYCHARM_LOCATION"
+        echo "=============================================================="
     fi
 }
 
+IDEA_LOCATION="$APP_FOLDER/idea"
+PYCHARM_LOCATION="$APP_FOLDER/pycharm"
 if [ "$1" == "idea" ]
 then
     download_idea
