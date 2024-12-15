@@ -1424,11 +1424,11 @@ flatpak_ides_sdks_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/idea.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/jetbrains.sh "idea"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/pycharm.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/jetbrains.sh "pycharm"
             ;;
 
         5)
@@ -1436,11 +1436,11 @@ flatpak_ides_sdks_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk_jfx.sh "openjdk"
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjfx.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk_jfx.sh "openjfx"
             ;;
 
         n | N)
