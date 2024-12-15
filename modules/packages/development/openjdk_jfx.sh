@@ -5,9 +5,6 @@ download_openjdk(){
     if test -d "$APP_FOLDER"/openjdk21; then
         echo "openjdk21 already downloaded."
     elif ! test -d "$APP_FOLDER"/openjdk21; then
-        echo "==========================================================="
-        echo "This downloads Temurin openJDK 21 LTS into ~/Apps/openjdk21"
-        echo "==========================================================="
         cd "$SCRIPTS_FOLDER"/temp || exit
         curl -L -o openjdk21.tar.gz "$OPENJDK_LINK"
         tar -xvf openjdk21.tar.gz
@@ -16,6 +13,9 @@ download_openjdk(){
         mv openjdk21 "$APP_FOLDER"/openjdk21
         cd $SCRIPTS_FOLDER
         echo "openjdk is stored in $APP_FOLDER/openjdk21" >> openjdx.txt 
+        echo "==========================================================="
+        echo "Temurin openJDK 21 LTS is located at ~/Apps/openjdk21"
+        echo "==========================================================="
     fi
 }
 
@@ -24,9 +24,6 @@ download_openjfx(){
     if test -d "$APP_FOLDER"/openjfx21; then
         echo "openjfx21 already downloaded."
     elif ! test -d "$APP_FOLDER"/openjfx21; then
-        echo "==========================================================="
-        echo "This downloads Gluon openjfx 21 LTS into ~/Apps/openjfx21"
-        echo "==========================================================="
         cd "$SCRIPTS_FOLDER"/temp || exit
         curl -L -o openjfx21.zip "$OPENJFX_LINK"
         unzip openjfx21.zip
@@ -34,7 +31,10 @@ download_openjfx(){
         rm openjfx21.zip
         mv openjfx21 "$APP_FOLDER"/openjfx21
         cd $SCRIPTS_FOLDER
-        echo "openjfx is stored in $APP_FOLDER/openfx21" >> openjfx.txt 
+        echo "openjfx is stored in $APP_FOLDER/openfx21" >> openjfx.txt
+        echo "==========================================================="
+        echo "Gluon openjfx 21 LTS is located at ~/Apps/openjfx21"
+        echo "==========================================================="
     fi
 }
 
