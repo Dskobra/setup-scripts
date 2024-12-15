@@ -1240,15 +1240,15 @@ flatpak_gaming_other_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wowup.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/warcraft_logs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
             ;;
 
         9)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/weakauras_companion.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
             ;;
 
         n | N)
