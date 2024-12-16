@@ -16,7 +16,9 @@ install_cooler_control(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        opi coolercontrol
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:codifryed/openSUSE_Tumbleweed/home:codifryed.repo
+        sudo zypper ref
+        sudo zypper -n install coolercontrol
         sudo systemctl enable --now coolercontrold
     elif [ "$DISTRO" == "debian" ]
     then

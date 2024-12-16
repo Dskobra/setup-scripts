@@ -6,7 +6,7 @@ native_vlc(){
         sudo dnf install -y vlc
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo zypper -n install vlc-qt
+        sudo zypper -n install vlc-qt vlc-codecs
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y vlc

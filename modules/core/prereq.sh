@@ -17,8 +17,8 @@ install_prereq(){
         sudo rpm-ostree apply-live
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Following packages will be installed: curl wget flatpak flatseal opi"
-        sudo zypper -n install wget curl flatpak opi
+        echo "Following packages will be installed: curl wget flatpak flatseal"
+        sudo zypper -n install wget curl flatpak
     elif [ "$DISTRO" == "debian" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal software-properties-common"

@@ -29,7 +29,10 @@ native_codecs(){
         "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        opi codecs
+        sudo zypper ref
+        sudo zypper dist-upgrade --from packman --allow-vendor-change
+        sudo zypper install --from packman ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
+
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y ffmpeg mesa-va-drivers
