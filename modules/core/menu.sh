@@ -832,7 +832,7 @@ miscellaneous_menu(){
     echo "---------------------"
     echo ""
     echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Remove Audio/Video Codecs  (4) Remove AMD hardware accelerated codecs "
+    echo "(3) Remove Audio/Video Codecs"
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -850,10 +850,6 @@ miscellaneous_menu(){
 
         3)
             "$SCRIPTS_FOLDER"/modules/misc/remove_codecs.sh
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/misc/remove_amd_codecs.sh
             ;;
 
         m)
