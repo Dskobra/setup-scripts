@@ -11,10 +11,8 @@ native_discord(){
     then
         echo "========================================================"
         echo "Discord isn't currently available in Debian."
-        echo "This will install the flatpak version."
+        echo "Please select the flatpak version."
         echo "========================================================"
-        flatpak install --user -y flathub com.discordapp.Discord
-        flatpak override --user com.discordapp.Discord --env=XDG_SESSION_TYPE=x11
     else
         echo "Unkown error has occurred."
     fi

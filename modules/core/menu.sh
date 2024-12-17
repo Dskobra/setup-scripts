@@ -297,7 +297,7 @@ native_gnome_desktop_menu(){
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
             ;;
 
         4)
