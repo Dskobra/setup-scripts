@@ -18,8 +18,8 @@ native_game_runtimes(){
 mkdir $HOME/.config/MangoHud           
 if [ "$1" == "flatpak" ]
 then
-    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08
-    flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08
+    flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
+    flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
 elif [ "$1" == "native" ]
 then
     native_game_runtimes
