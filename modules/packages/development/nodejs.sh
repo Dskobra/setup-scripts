@@ -6,11 +6,11 @@
 
 install_nodejs(){
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-    if [ "$PKGMGR" == "dnf" ] || [ "$PKGMGR" == "rpm-ostree" ]
+    if [ "$DISTRO" == "fedora" ] || [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
 		source ~/.bashrc
         nvm install lts/*
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         # Due to some unknown reason/issue on Debian nvm is unable to be run from
         # this script. source ~/.bashrc won't work nor will rerunning this after a shell
