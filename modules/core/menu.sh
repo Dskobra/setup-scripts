@@ -199,9 +199,9 @@ native_kde_desktop_menu(){
     echo ""
     echo "(1) KDE Patience          (2) Kolourpaint "
     echo "(3) Kleopatra             (4) KDE ISO Image Writer"
-    echo "(5) Kate                  (6) Plasma X11"
-    echo "(7) K3b                   (8) Krdc"
-    echo "(9) Krfb"
+    echo "(5) Kate                  (6) K3b"
+    echo "(7) Krdc                  (8) Krfb"
+    echo "(9) Plasma X11"
     echo "(f) Flatpak Apps"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
@@ -231,19 +231,19 @@ native_kde_desktop_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh 
-            ;;
-
-        7)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/k3b.sh
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/krdc.sh
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/krfb.sh
+            ;;
+
+        9)
+            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh 
             ;;
 
         f | F)
