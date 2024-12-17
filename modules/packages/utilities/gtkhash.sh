@@ -8,9 +8,8 @@ native_gtkhash(){
     then
         echo "============================================="
         echo "gtkhash isn't available in openSUSE."
-        echo "This will install the flatpak version."
+        echo "Please select the flatpak version."
         echo "============================================="
-        flatpak install --user -y flathub org.gtkhash.gtkhash
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y gtkhash

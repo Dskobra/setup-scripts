@@ -9,16 +9,14 @@ native_qownnotes(){
     then
         echo "==============================================="
         echo "QOwnNotes isn't currently available in openSUSE."
-        echo "This will install the flatpak version."
+        echo "Please select the flatpak version."
         echo "==============================================="
-        flatpak install --user -y flathub org.qownnotes.QOwnNotes
     elif [ "$DISTRO" == "debian" ]
     then
         echo "==============================================="
         echo "QOwnNotes isn't currently available in Debian."
-        echo "This will install the flatpak version."
+        echo "Please select the flatpak version."
         echo "==============================================="
-        flatpak install --user -y flathub org.qownnotes.QOwnNotes
     else
         echo "Unkown error has occurred."
     fi

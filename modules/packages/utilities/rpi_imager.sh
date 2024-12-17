@@ -11,7 +11,7 @@ native_rpi_imager(){
     then
         echo "========================================================"
         echo "Raspberry Pi Imager isn't currently available in Debian."
-        echo "This will install the flatpak version."
+        echo "Please select the flatpak version."
         echo "========================================================"
     else
         echo "Unkown error has occurred."

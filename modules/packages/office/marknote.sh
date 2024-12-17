@@ -11,9 +11,8 @@ native_marknote(){
     then
         echo "============================================="
         echo "Marknote isn't currently available in Debian."
-        echo "This will install the flatpak version."
+        echo "Please select the flatpak version."
         echo "============================================="
-        flatpak install --user -y flathub org.kde.marknote
     else
         echo "Unkown error has occurred."
     fi
