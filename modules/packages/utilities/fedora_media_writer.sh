@@ -27,9 +27,6 @@ remove_fmedia_writer(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y mediawriter
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         echo "Not removing Fedora media writer as it's not present in openSUSE repos."

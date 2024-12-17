@@ -4,10 +4,6 @@ native_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        sudo rpm-ostree install steam
-        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install steam
@@ -25,11 +21,6 @@ native_steam_devices(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam-devices
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        sudo rpm-ostree install steam-devices
-        #sudo rpm-ostree apply-live
-        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install steam-devices
@@ -45,9 +36,6 @@ remove_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y steam
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm steam

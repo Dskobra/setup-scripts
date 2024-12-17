@@ -29,9 +29,6 @@ remove_vscodium(){
     then
         sudo rm /etc/yum.repos.d/vscodium.repo
         sudo dnf remove -y codium
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo rm /etc/zypp/repos.d/vscodium.repo

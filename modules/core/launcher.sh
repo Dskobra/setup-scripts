@@ -48,9 +48,7 @@ fedora_variant_check(){
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     elif [ "$VARIANT" == "ostree" ]
     then
-        DISTRO="fedora-atomic"
-        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/core/ostree_menu.sh
+        echo "Atomic editions are not supported."
     fi
 }
 

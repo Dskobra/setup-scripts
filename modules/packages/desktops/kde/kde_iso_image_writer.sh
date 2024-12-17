@@ -27,9 +27,6 @@ remove_kde_iso_image_writer(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y isoimagewriter
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         echo "Not removing isoimagewriter as it's not present in openSUSE repos."

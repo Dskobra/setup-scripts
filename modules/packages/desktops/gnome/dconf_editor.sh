@@ -20,9 +20,6 @@ remove_dconf_editor(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y dconf-editor
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm dconf-editor

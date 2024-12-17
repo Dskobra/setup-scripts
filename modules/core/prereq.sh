@@ -9,12 +9,6 @@ install_prereq(){
         sudo dnf install -y curl wget flatpak dnf-plugins-core
         sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo dnf update -y
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Following packages will be installed: flatseal dnf-plugins-core"
-        sudo rpm-ostree install dnf dnf-plugins-core
-        sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        sudo rpm-ostree apply-live
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal"

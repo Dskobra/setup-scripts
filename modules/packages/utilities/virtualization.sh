@@ -6,12 +6,6 @@ native_virtualization(){
         sudo dnf update -y
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        sudo rpm-ostree install libvirt-daemon-config-network libvirt-daemon-kvm\
-        qemu-kvm virt-install virt-manager virt-viewer
-        sudo rpm-ostree apply-live
-        #"$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install patterns-server-kvm_server

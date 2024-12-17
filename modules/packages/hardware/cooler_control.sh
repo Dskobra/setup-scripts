@@ -6,14 +6,6 @@ install_cooler_control(){
         sudo dnf copr enable -y codifryed/CoolerControl
         sudo dnf install -y coolercontrol
         sudo systemctl enable --now coolercontrold
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        sudo dnf copr enable -y codifryed/CoolerControl
-        sudo rpm-ostree install coolercontrol
-        sudo rpm-ostree apply-live
-        sudo systemctl enable --now coolercontrold
-        #sudo rpm-ostree apply-live
-        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper addrepo https://download.opensuse.org/repositories/home:codifryed/openSUSE_Tumbleweed/home:codifryed.repo

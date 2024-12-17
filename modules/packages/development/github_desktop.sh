@@ -27,9 +27,6 @@ remove_github_desktop(){
         sudo rm /etc/yum.repos.d/shiftkey-packages.repo
         sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
         sudo dnf remove -y github-desktop
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo rm /etc/zypp/repos.d/shiftkey-packages.repo

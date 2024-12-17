@@ -16,9 +16,6 @@ remove_obsstudio(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y obs-studio
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y obs-studio

@@ -4,12 +4,6 @@ install_corectrl(){
     then
         sudo dnf install -y corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        sudo rpm-ostree install corectrl
-        xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
-        #sudo rpm-ostree apply-live
-        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo

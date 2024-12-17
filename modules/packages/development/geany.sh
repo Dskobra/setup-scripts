@@ -19,9 +19,6 @@ remove_geany(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm geany geany-plugins

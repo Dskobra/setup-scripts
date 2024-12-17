@@ -28,9 +28,6 @@ remove_qownnotes(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y qownnotes
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         echo "Not removing QOwnNotes as it's not present in openSUSE repos."

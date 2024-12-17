@@ -18,9 +18,6 @@ remove_pavucontrol(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y pavucontrol
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm pavucontrol

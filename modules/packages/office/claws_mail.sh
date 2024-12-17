@@ -19,9 +19,6 @@ remove_claws_mail(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y claws-mail
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        echo "Not removing package on atomic editions."
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n rm claws-mail

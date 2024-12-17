@@ -4,11 +4,6 @@ native_gnome_tweaks(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y gnome-tweaks
-    elif [ "$DISTRO" == "fedora-atomic" ]
-    then
-        sudo rpm-ostree install gnome-tweaks
-        #sudo rpm-ostree apply-live
-        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper -n install gnome-tweaks
