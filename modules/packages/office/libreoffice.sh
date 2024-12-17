@@ -6,10 +6,10 @@ native_libreoffice(){
         sudo dnf install -y libreoffice
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo zypper -n install libreoffice
+        sudo zypper -n install libreoffice libreoffice-branding-openSUSE
     elif [ "$DISTRO" == "debian" ]
     then
-        sudo apt-get install -y libreoffice libreoffice-branding-openSUSE
+        sudo apt-get install -y libreoffice 
     else
         echo "Unkown error has occurred."
     fi
