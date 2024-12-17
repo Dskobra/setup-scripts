@@ -15,19 +15,4 @@ native_krfb(){
     fi
 }
 
-
-
-remove_krfb(){
-    if [ "$DISTRO" == "fedora" ]
-    then
-        sudo dnf remove -y krfb
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
-    then
-        sudo zypper -n rm krfb
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y krfb
-    else
-        echo "Unkown error has occurred."
-    fi
-}
+native_krfb

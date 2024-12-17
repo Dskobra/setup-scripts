@@ -15,19 +15,4 @@ native_krdc(){
     fi
 }
 
-
-
-remove_krdc(){
-    if [ "$DISTRO" == "fedora" ]
-    then
-        sudo dnf remove -y krdc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
-    then
-        sudo zypper -n rm krdc
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y krdc
-    else
-        echo "Unkown error has occurred."
-    fi
-}
+native_krdc
