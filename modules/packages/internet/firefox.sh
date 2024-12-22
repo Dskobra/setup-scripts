@@ -1,16 +1,13 @@
 #!/usr/bin/bash
 
 native_firefox(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y firefox
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo rm /usr/local/share/applications/org.mozilla.firefox.desktop
-        sudo rm /usr/local/share/applications/firefox.desktop
-        sudo update-desktop-database /usr/local/share/applications/
-        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n install MozillaFirefox-branding-openSUSE
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y firefox-esr
         sudo install -d -m 0755 /etc/apt/keyrings
@@ -31,13 +28,13 @@ native_firefox(){
 }
 
 remove_firefox(){
-        if [ "$PKGMGR" == "dnf" ]
+        if [ "$DISTRO" == "fedora" ]
             then
                 sudo dnf remove -y firefox firefox-langpacks
-        elif [ "$PKGMGR" == "rpm-ostree" ]
-            then
-                hide_firefox_on_atomic
-        elif [ "$PKGMGR" == "apt-get" ]
+        elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+        then
+            sudo zypper -n rm MozillaFirefox
+        elif [ "$DISTRO" == "debian" ]
             then
                 sudo apt-get remove -y firefox
                 sudo apt-get remove -y firefox-esr
@@ -48,17 +45,6 @@ remove_firefox(){
         fi
 }
 
-hide_firefox_on_atomic(){
-        echo "==========================================================="
-        echo "This will hide the Firefox package instead of removing"
-        echo "it from the base image. Use the Native Menu to restore it."
-        echo "==========================================================="
-        sudo mkdir -p "/usr/local/share/applications/"
-        sudo cp "/usr/share/applications/org.mozilla.firefox.desktop" "/usr/local/share/applications/"
-        sudo sed -i "2a\\NotShowIn=GNOME;KDE" /usr/local/share/applications/org.mozilla.firefox.desktop
-        sudo update-desktop-database "/usr/local/share/applications/"
-}
-
 if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.mozilla.firefox
@@ -67,11 +53,6 @@ elif [ "$1" == "native" ]
 then
     flatpak uninstall --user -y org.mozilla.firefox
     native_firefox
-elif [ "$1" == "unhide" ]
-then
-    flatpak uninstall --user -y org.mozilla.firefox
-    sudo rm "/usr/local/share/applications/org.mozilla.firefox.desktop"
-    sudo update-desktop-database "/usr/local/share/applications/"
 else
     echo "error"
 fi

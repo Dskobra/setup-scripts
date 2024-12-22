@@ -1,29 +1,34 @@
 #!/usr/bin/bash
 
 native_kde_iso_image_writer(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y isoimagewriter
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        echo "==============================================="
+        echo "KDE ISO Image Writer isn't available in openSUSE"
+        echo "Please select the flatpak version."
+        echo "==============================================="
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "==============================================="
         echo "KDE ISO Image Writer isn't available in Debian"
-        echo "so using flatpak version instead."
+        echo "Please select the flatpak version."
         echo "==============================================="
-        flatpak install --user -y flathub org.kde.isoimagewriter
     else
         echo "Unkown error has occurred."
     fi
 }
 
 remove_kde_iso_image_writer(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y isoimagewriter
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        echo "Not removing isoimagewriter as it's not present in openSUSE repos."
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "Not removing isoimagewriter as it's not present in Debian repos."
     else

@@ -1,32 +1,37 @@
 #!/usr/bin/bash
 
 native_qownnotes(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         
         sudo dnf install -y qownnotes
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        echo "==============================================="
+        echo "QOwnNotes isn't currently available in openSUSE."
+        echo "Please select the flatpak version."
+        echo "==============================================="
+    elif [ "$DISTRO" == "debian" ]
     then
         echo "==============================================="
         echo "QOwnNotes isn't currently available in Debian."
-        echo "This will install the flatpak version."
+        echo "Please select the flatpak version."
         echo "==============================================="
-        flatpak install --user -y flathub org.qownnotes.QOwnNotes
     else
         echo "Unkown error has occurred."
     fi
 }
 
 remove_qownnotes(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y qownnotes
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        echo "Not removing QOwnNotes as it's not present in openSUSE repos."
+    elif [ "$DISTRO" == "debian" ]
     then
-        echo "Not removing marknote as it's not present in Debian repos."
+        echo "Not removing QOwnNotes as it's not present in Debian repos."
     else
         echo "Unkown error has occurred."
     fi

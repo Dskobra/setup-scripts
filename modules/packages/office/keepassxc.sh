@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_keepassxc(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y keepassxc
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install keepassxc
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y keepassxc
     else
@@ -13,13 +16,13 @@ native_keepassxc(){
 }
 
 remove_keepassxc(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y keepassxc
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n rm keepassxc
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y keepassxc
     else

@@ -1,15 +1,13 @@
 #!/usr/bin/bash
 
 native_containers(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y toolbox distrobox
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo rpm-ostree install distrobox
-        #sudo rpm-ostree apply-live
-        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n install toolbox distrobox
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y distrobox podman-toolbox
     else
@@ -17,5 +15,4 @@ native_containers(){
     fi
 }
 
-flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
 native_containers

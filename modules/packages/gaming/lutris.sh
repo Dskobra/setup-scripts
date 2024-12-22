@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_lutris(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y lutris
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install lutris
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y lutris
     else
@@ -13,13 +16,13 @@ native_lutris(){
 }
 
 remove_lutris(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y lutris
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n rm lutris
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y lutris
     else
@@ -31,7 +34,6 @@ remove_lutris(){
 mkdir $HOME/Games
 if [ "$1" == "flatpak" ]
 then
-    flatpak install --user -y flathub org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08
     flatpak install --user -y flathub net.lutris.Lutris
     flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
     remove_lutris

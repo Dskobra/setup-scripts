@@ -2,23 +2,19 @@
 
 native_brave_browser(){
     cd "$SCRIPTS_FOLDER"/temp
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf4 config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo dnf update -y
         sudo dnf install -y brave-browser
-
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo dnf4 config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        cd "$SCRIPTS_FOLDER"/temp
-        curl -L -o brave-core.asc https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-        sudo mv brave-core.asc /etc/pki/rpm-gpg/
-        sudo rpm-ostree refresh-md
-        sudo rpm-ostree install brave-browser
-        "$SCRIPTS_FOLDER"/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo zypper ref
+        sudo zypper -n install brave-browser
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
@@ -30,16 +26,16 @@ native_brave_browser(){
 }
 
 remove_brave_browser(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y brave-browser
         sudo rm "/etc/yum.repos.d/brave-browser.repo"
         sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
         sudo dnf update -y
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "fedora-atomic" ]
     then
         echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y brave-browser
         sudo rm "/etc/apt/sources.list.d/brave-browser-release.list"

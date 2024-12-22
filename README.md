@@ -3,7 +3,7 @@ Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
 * Fedora 40/41 Workstation/Spins
-* Fedora 40/41 Atomic Desktops
+* openSUSE Tumbleweed 20240101+
 * Debian 12
 
 ## Requirements
@@ -11,7 +11,6 @@ Set of scripts for installing several popular applications and drivers.
 * wget
 * flatpak
 * flatseal         (flatpak)
-* dnf              (fedora)
 * dnf-plugins-core (fedora)
 
 On first run setup.sh checks for the file ranonce.txt and if it doesn't exist it will install all the required packages

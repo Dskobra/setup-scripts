@@ -1,15 +1,13 @@
 #!/usr/bin/bash
 
 native_gnome_tweaks(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y gnome-tweaks
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo rpm-ostree install gnome-tweaks
-        #sudo rpm-ostree apply-live
-        $SCRIPTS_FOLDER/modules/core/confirm_reboot.sh
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n install gnome-tweaks
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y gnome-tweaks
     else
@@ -17,16 +15,4 @@ native_gnome_tweaks(){
     fi
 }
 
-if [ "$1" == "flatpak" ]
-then
-    echo "========================================================"
-    echo "This installs native version of Gnome Tweaks as it isn't"
-    echo "available as a flatpak"
-    echo "========================================================"
-    native_gnome_tweaks
-elif [ "$1" == "native" ]
-then
-    native_gnome_tweaks
-else
-    echo "error"
-fi
+native_gnome_tweaks

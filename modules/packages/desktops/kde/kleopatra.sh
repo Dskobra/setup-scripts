@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_kleopatra(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kleopatra
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install kleopatra
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y kleopatra
     else
@@ -15,13 +18,13 @@ native_kleopatra(){
 
 
 remove_kleopatra(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kleopatra
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n rm kleopatra
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y kleopatra
     else

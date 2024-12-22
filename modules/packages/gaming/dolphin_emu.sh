@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_dolphin_emu(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y dolphin-emu
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install dolphin-emu
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y dolphin-emu
     else
@@ -13,13 +16,13 @@ native_dolphin_emu(){
 }
 
 remove_dolphin_emu(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y dolphin-emu
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n rm dolphin-emu
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y dolphin-emu
     else

@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 native_kpat(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kpat
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install kpat
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y kpat
     else
@@ -13,13 +16,13 @@ native_kpat(){
 }
 
 remove_kpat(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kpat
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n rm kpat
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y kpat
     else

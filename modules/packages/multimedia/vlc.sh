@@ -1,11 +1,18 @@
 #!/usr/bin/bash
 
 native_vlc(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
+        sudo dnf install -y rpmfusion-free-release-tainted
+        sudo dnf install -y libdvdcss
         sudo dnf install -y vlc
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
+        sudo zypper -n install vlc-qt vlc-codecs
+    elif [ "$DISTRO" == "debian" ]
+    then
+        sudo apt-get install -y libdvd-pkg
+        sudo dpkg-reconfigure libdvd-pkg
         sudo apt-get install -y vlc
     else
         echo "Unkown error has occurred."
@@ -13,14 +20,17 @@ native_vlc(){
 }
 
 remove_vlc(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
+        sudo dnf remove -y rpmfusion-free-release-tainted
+        sudo dnf remove -y libdvdcss
         sudo dnf remove -y vlc
-    elif [ "$PKGMGR" == "rpm-ostree" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        echo "Not removing package on atomic editions."
-    elif [ "$PKGMGR" == "apt-get" ]
+        sudo zypper -n rm vlc-codecs vlc-qt 
+    elif [ "$DISTRO" == "debian" ]
     then
+        sudo apt-get remove -y libdvd-pkg
         sudo apt-get remove -y vlc
     else
         echo "Unkown error has occurred."

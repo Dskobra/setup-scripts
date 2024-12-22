@@ -1,11 +1,14 @@
 #!/usr/bin/bash
 
 native_lamp_stack(){
-    if [ "$PKGMGR" == "dnf" ]
+    if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y httpd mariadb mariadb-server\
         php phpMyAdmin
-    elif [ "$PKGMGR" == "apt-get" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    then
+        sudo zypper -n install apache2 mariadb php8 phpMyAdmin
+    elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get install -y apache2 mariadb-client\
         mariadb-server php phpmyadmin
