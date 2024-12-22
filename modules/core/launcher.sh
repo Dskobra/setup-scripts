@@ -12,10 +12,13 @@ distro_check(){
         fedora_release_check
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
-        opensuse_release_check
+        opensuse_tumbleweed_release_check
+    elif [ $DISTRO == "opensuse-leap" ]
+    then
+        opensuse_leap_release_check
     elif [ "$DISTRO" == "debian" ]
     then
-        debian_release_check
+        debian_release_checka
     else
         echo "Unsupported distro"
     fi
@@ -52,13 +55,24 @@ fedora_variant_check(){
     fi
 }
 
-opensuse_release_check(){
+opensuse_tumbleweed_release_check(){
     if [ "$VERSION_ID" -gt "20240101" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
         echo "These scripts only support Tumbleweed released on or after 01/01/2024"
+    fi
+
+}
+
+opensuse_leap_release_check(){
+    if [ "$VERSION_ID" -gt "15.6" ]
+    then
+        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+        "$SCRIPTS_FOLDER"/modules/core/menu.sh
+    else
+        echo "These scripts only support Leap 15.6+"
     fi
 
 }
