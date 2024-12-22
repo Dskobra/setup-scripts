@@ -7,7 +7,7 @@ check_for_libvirt_group(){
         sudo usermod -aG libvirt "$USER"
     else
         echo "Group doesn't exist. Please select the 'Virtualization' option"
-        echo "under 'Utilities' menu with 'Native' apps."
+        echo "under 'Utility Apps' menu with 'Native' apps."
     fi
 }
 
