@@ -76,9 +76,9 @@ main_menu(){
 }
 
 hardware_menu(){
-    echo "----------------"
-    echo "|   Hardware   |"
-    echo "----------------"
+    echo "-------------------"
+    echo "|Hardware|[NATIVE]|"
+    echo "-------------------"
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
@@ -193,16 +193,16 @@ kde_gnome_apps_menu(){
 }
 
 native_kde_desktop_menu(){
-    echo "-----------"
-    echo "|   KDE   |"
-    echo "-----------"
+    echo "-------------------"
+    echo "|KDE Apps|[NATIVE]|"
+    echo "-------------------"
     echo ""
     echo "(1) KDE Patience          (2) Kolourpaint "
     echo "(3) Kleopatra             (4) KDE ISO Image Writer"
     echo "(5) Kate                  (6) K3b"
     echo "(7) Krdc                  (8) Krfb"
     echo "(9) Plasma X11"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -274,13 +274,13 @@ native_kde_desktop_menu(){
 }
 
 native_gnome_desktop_menu(){
-    echo "-----------"
-    echo "|   Gnome  |"
-    echo "-----------"
+    echo "---------------------"
+    echo "|Gnome Apps|[NATIVE]|"
+    echo "---------------------"
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
     echo "(3) Gnome Tweaks           (4) Gnome X11"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
     printf "Option: "
@@ -332,14 +332,14 @@ native_gnome_desktop_menu(){
 }
 
 native_internet_menu(){
-    echo "----------------"
-    echo "|   Internet   |"
-    echo "----------------"
+    echo "------------------------"
+    echo "|Internet Apps|[NATIVE]|"
+    echo "------------------------"
     echo ""
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
     echo "(5) Remmina"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -390,13 +390,13 @@ native_internet_menu(){
 }
 
 native_multimedia_menu(){
-    echo "------------------"
-    echo "|   Multimedia   |"
-    echo "------------------"
+    echo "--------------------------"
+    echo "|Multimedia Apps|[NATIVE]|"
+    echo "--------------------------"
     echo ""
     echo "(1) Audio/Video Codecs    (2) VLC Media Player"
     echo "(3) OpenShot              (4) xfburn "
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -443,12 +443,12 @@ native_multimedia_menu(){
 }
 
 native_gaming_menu(){
-    echo "--------------"
-    echo "|   Gaming   |"
-    echo "--------------"
+    echo "----------------------"
+    echo "|Gaming Apps|[NATIVE]|"
+    echo "----------------------"
     echo ""
     echo "(1) Clients/Tools          (2) Other"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
     read -r input
@@ -486,15 +486,15 @@ native_gaming_menu(){
 }
 
 native_gaming_clients_tools_menu(){
-    echo "---------------------"
-    echo "|   Clients/Tools   |"
-    echo "---------------------"
+    echo "------------------------"
+    echo "|Clients/Tools|[NATIVE]|"
+    echo "------------------------"
     echo ""
     echo "Runtimes include mangohud, gamescope and gamemode"
     echo ""
     echo "(1) Steam                  (2) Lutris"
     echo "(3) Runtimes"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -542,12 +542,12 @@ native_gaming_clients_tools_menu(){
 }
 
 native_gaming_other_menu(){
-    echo "-----------------"
-    echo "|   Misc Stuff   |"
-    echo "-----------------"
+    echo "---------------------------"
+    echo "|Misc Gaming Apps|[NATIVE]|"
+    echo "---------------------------"
     echo ""   
     echo "(1) Discord"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -594,14 +594,14 @@ native_gaming_other_menu(){
 }
 
 native_office_menu(){
-    echo "--------------"
-    echo "|   Office   |"
-    echo "--------------"
+    echo "----------------------"
+    echo "|Office Apps|[NATIVE]|"
+    echo "----------------------"
     echo ""
     echo "(1) LibreOffice               (2) QOwnNotes"
     echo "(3) Marknote                  (4) Claws-Mail"
     echo "(5) Thunderbird               (6) KeePassXC"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
     read -r input
@@ -656,15 +656,15 @@ native_office_menu(){
 }
 
 native_development_menu(){
-    echo "-------------------"
-    echo "|   Development   |"
-    echo "-------------------"
+    echo "---------------------------"
+    echo "|Development Apps|[NATIVE]|"
+    echo "---------------------------"
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
     echo "(1) IDEs/SDKs         (2) Github Desktop"
     echo "(3) Containers        (4) Lamp Stack"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(m) Main Menu         (0) Exit"
     printf "Option: "
     read -r input
@@ -711,14 +711,14 @@ native_development_menu(){
 }
 
 native_ides_sdks_menu(){
-    echo "-----------------"
-    echo "|   IDEs/SDKs   |"
-    echo "-----------------"
+    echo "---------------------"
+    echo "|IDE's/SDKs|[NATIVE]|"
+    echo "---------------------"
     echo ""
     echo "(1) VIM                               (2) VSCodium"
     echo "(3) Geany                             (4) C/C++ Compiler"
     echo "(5) Python Dev Packages"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -774,13 +774,13 @@ native_ides_sdks_menu(){
 }
 
 native_utils_menu(){
-    echo "-----------------"
-    echo "|   Utilities   |"
-    echo "-----------------"
+    echo "-----------------------"
+    echo "|Utility Apps|[NATIVE]|"
+    echo "-----------------------"
     echo ""
     echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
     echo "(3) GtkHash                       (4) Virtualization"
-    echo "(f) Flatpak Apps"
+    echo "(f) Flatpak/Other"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
@@ -882,9 +882,9 @@ miscellaneous_menu(){
 # Flatpak/other menus
 ########################################
 flatpak_kde_desktop_menu(){
-    echo "-----------"
-    echo "|   KDE   |"
-    echo "-----------"
+    echo "--------------------------"
+    echo "|KDE Apps|[FLATPAK/OTHER]|"
+    echo "--------------------------"
     echo ""   
     echo "(1) KDE Patience       (2) Kolourpaint"
     echo "(3) Kleopatra          (4) KDE ISO Image Writer"
@@ -939,9 +939,9 @@ flatpak_kde_desktop_menu(){
 }
 
 flatpak_gnome_desktop_menu(){
-    echo "-----------"
-    echo "|   Gnome  |"
-    echo "-----------"
+    echo "----------------------------"
+    echo "|Gnome Apps|[FLATPAK/OTHER]|"
+    echo "----------------------------"
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
     echo "(n) Native Apps"
@@ -987,9 +987,9 @@ flatpak_gnome_desktop_menu(){
 }
 
 flatpak_internet_menu(){
-    echo "----------------"
-    echo "|   Internet   |"
-    echo "----------------"
+    echo "-------------------------------"
+    echo "|Internet Apps|[FLATPAK/OTHER]|"
+    echo "-------------------------------"
     echo ""
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
@@ -1045,9 +1045,9 @@ flatpak_internet_menu(){
 }
 
 flatpak_multimedia_menu(){
-    echo "------------------"
-    echo "|   Multimedia   |"
-    echo "------------------"
+    echo "----------------------------------"
+    echo "|Multimedia Apps|[FLATPAK/OTHER]|"
+    echo "---------------------------------"
     echo ""
     echo "(1) VLC Media Player          (2) OBS Studio"
     echo "(3) OpenShot"
@@ -1094,9 +1094,9 @@ flatpak_multimedia_menu(){
 }
 
 flatpak_gaming_menu(){
-    echo "--------------"
-    echo "|   Gaming   |"
-    echo "--------------"
+    echo "-----------------------------"
+    echo "|Gaming Apps|[FLATPAK/OTHER]|"
+    echo "-----------------------------"
     echo ""
     echo "(1) Clients/Tools          (2) Other"
     echo "(n) Native Apps"
@@ -1138,9 +1138,9 @@ flatpak_gaming_menu(){
 }
 
 flatpak_gaming_clients_tools_menu(){
-    echo "----------------------"
-    echo "|   Gaming Clients   |"
-    echo "---------------- ------"
+    echo "-------------------------------"
+    echo "|Clients/Tools|[FLATPAK/OTHER]|"
+    echo "-------------------------------"
     echo ""
     echo "Runtimes include mangohud, gamescope and gamemode"
     echo ""
@@ -1204,9 +1204,9 @@ flatpak_gaming_clients_tools_menu(){
 }
 
 flatpak_gaming_other_menu(){
-    echo "-----------------"
-    echo "|   Misc Stuff   |"
-    echo "-----------------"
+    echo "----------------------------------"
+    echo "|Misc Gaming Apps|[FLATPAK/OTHER]|"
+    echo "----------------------------------"
     echo ""   
     echo "(1) Discord                (2) Vesktop"
     echo "(3) Prism Launcher         (4) Dolphin"
@@ -1292,9 +1292,9 @@ flatpak_gaming_other_menu(){
 }
 
 flatpak_office_menu(){
-    echo "--------------"
-    echo "|   Office   |"
-    echo "--------------"
+    echo "-----------------------------"
+    echo "|Office Apps|[FLATPAK/OTHER]|"
+    echo "-----------------------------"
     echo ""
     echo "(1) LibreOffice           (2) QOwnNotes"
     echo "(3) Marknote              (4) Claws-Mail"
@@ -1359,9 +1359,9 @@ flatpak_office_menu(){
 }
 
 flatpak_development_menu(){
-    echo "-------------------"
-    echo "|   Development   |"
-    echo "-------------------"
+    echo "----------------------------------"
+    echo "|Development Apps|[FLATPAK/OTHER]|"
+    echo "----------------------------------"
     echo ""
     echo "(1) IDEs/SDKs         (2) Github Desktop"
     echo "(3) Podman Desktop"
@@ -1406,9 +1406,10 @@ flatpak_development_menu(){
 }
 
 flatpak_ides_sdks_menu(){
-    echo "-----------------"
-    echo "|   IDEs/SDKs   |"
-    echo "-----------------"
+
+    echo "---------------------------"
+    echo "|IDEs/SDKs|[FLATPAK/OTHER]|"
+    echo "---------------------------"
     echo ""   
     echo "(1) VSCodium                          (2) Geany"
     echo "(3) Intellij IDEA                     (4) Pycharm"
@@ -1485,9 +1486,9 @@ flatpak_ides_sdks_menu(){
 }
 
 flatpak_utils_menu(){
-    echo "-----------------"
-    echo "|   Utilities   |"
-    echo "-----------------"
+    echo "------------------------------"
+    echo "|Utility Apps|[FLATPAK/OTHER]|"
+    echo "------------------------------"
     echo ""
     echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
     echo "(3) GtkHash                       (4) MissionCenter"
