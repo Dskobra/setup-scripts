@@ -18,7 +18,7 @@ distro_check(){
         opensuse_leap_release_check
     elif [ "$DISTRO" == "debian" ]
     then
-        debian_release_checka
+        debian_release_check
     else
         echo "Unsupported distro"
     fi
