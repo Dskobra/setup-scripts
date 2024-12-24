@@ -598,9 +598,9 @@ native_office_menu(){
     echo "|Office Apps|[NATIVE]|"
     echo "----------------------"
     echo ""
-    echo "(1) LibreOffice               (2) QOwnNotes"
-    echo "(3) Marknote                  (4) Claws-Mail"
-    echo "(5) Thunderbird               (6) KeePassXC"
+    echo "(1) LibreOffice               (2) Marknote"
+    echo "(3) Claws-Mail                (4) Thunderbird"
+    echo "(5) KeePassXC"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
@@ -613,22 +613,18 @@ native_office_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh "native"
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "native"
             ;;
         
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "native"
             ;;
 
-        6)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "native"
             ;;
 
@@ -1296,10 +1292,9 @@ flatpak_office_menu(){
     echo "|Office Apps|[FLATPAK/OTHER]|"
     echo "-----------------------------"
     echo ""
-    echo "(1) LibreOffice           (2) QOwnNotes"
-    echo "(3) Marknote              (4) Claws-Mail"
-    echo "(5) Thunderbird           (6) Bitwarden"
-    echo "(7) KeePassXC"
+    echo "(1) LibreOffice           (2) Marknote"
+    echo "(3) Claws-Mail            (5) Thunderbird"
+    echo "(5) Bitwarden             (6) KeePassXC"
     echo "(n) Native Apps"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
@@ -1312,26 +1307,22 @@ flatpak_office_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh "flatpak"
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "flatpak"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "flatpak"
             ;;
         
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "flatpak"
             ;;
 
-        6)
+        5)
             flatpak install --user -y flathub com.bitwarden.desktop
             ;;
 
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "flatpak"
             ;;
 
