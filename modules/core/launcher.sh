@@ -13,6 +13,9 @@ distro_check(){
     elif [ $DISTRO == "opensuse-tumbleweed" ]
     then
         opensuse_tumbleweed_release_check
+    elif [ $DISTRO == "opensuse-slowroll" ]
+    then
+        opensuse_slowroll_release_check
     elif [ $DISTRO == "opensuse-leap" ]
     then
         opensuse_leap_release_check
@@ -62,6 +65,17 @@ opensuse_tumbleweed_release_check(){
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
         echo "These scripts only support Tumbleweed released on or after 01/01/2024"
+    fi
+
+}
+
+opensuse_slowroll_release_check(){
+    if [ "$VERSION_ID" -gt "20240101" ]
+    then
+        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+        "$SCRIPTS_FOLDER"/modules/core/menu.sh
+    else
+        echo "These scripts only support Slowroll released on or after 01/01/2024"
     fi
 
 }
