@@ -1,12 +1,11 @@
 #!/usr/bin/bash
 ########################################
-# These functions determine things like
-# distro and if using Fedora atomic
-# variants.
+# This determines type of distro
+# and if it's supported.
 ########################################
 distro_check(){
-# Read $DISTRO then figure out if it's supported
-# version
+# Read $DISTRO then execute the appropriate
+# distro function.
     if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
@@ -29,33 +28,17 @@ distro_check(){
 }
 
 fedora_release_check(){
-    # checks if Fedora version is among supported versions.
-    if [ "$VERSION_ID" == "40" ] || [ "$VERSION_ID" == "41" ]
-    then
-        fedora_variant_check                # run an extra check to see if it's an atomic variant
-    else
-        echo "These scripts only support Fedora 40/41"
-    fi
-
-}
-
-fedora_variant_check(){
-# Fedora Workstation/Server and Desktop Spins
-# use dnf as their package manager while
-# Atomic Desktop Editions use rpm-ostree
-# which is very different. Atomic editions
-# highly encourage flatpak so it is the default
-# and limited native packages are provided.
+    # Check fedora version then ensure it's not atomic.
     VARIANT="" 
     test -f /run/ostree-booted && VARIANT=ostree
-    if [ -z "$VARIANT" ]
+    if [ "$VERSION_ID" == "40" ] && [ -z "$VARIANT" ] || [ "$VERSION_ID" == "41" ] && [ -z "$VARIANT" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
-    elif [ "$VARIANT" == "ostree" ]
-    then
-        echo "Atomic editions are not supported."
+    else
+        echo "These scripts only support Fedora 40/41 non atomic editions."
     fi
+
 }
 
 opensuse_tumbleweed_release_check(){
