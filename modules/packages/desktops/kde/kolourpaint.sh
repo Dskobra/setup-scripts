@@ -4,7 +4,7 @@ native_kolourpaint(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kolourpaint
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install kolourpaint
     elif [ "$DISTRO" == "debian" ]

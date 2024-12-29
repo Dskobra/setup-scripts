@@ -4,7 +4,7 @@ native_krfb(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y krfb
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install krfb
     elif [ "$DISTRO" == "debian" ]
