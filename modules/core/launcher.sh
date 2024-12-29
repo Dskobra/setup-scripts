@@ -20,7 +20,7 @@ distro_check(){
     then
         debian_release_check
     else
-        echo "Unsupported distro"
+        echo "Unfortunately, '$DISTRO $VERSION_ID' is not a supported distro."
     fi
 
 }
