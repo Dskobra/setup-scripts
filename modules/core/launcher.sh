@@ -64,7 +64,7 @@ opensuse_slowroll_release_check(){
 }
 
 opensuse_leap_release_check(){
-    if [ "$VERSION_ID" -gt "15.6" ]
+    if [ "$VERSION_ID" == "15.6" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
