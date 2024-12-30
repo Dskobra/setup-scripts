@@ -4,7 +4,7 @@ native_geany(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install geany geany-plugins
     elif [ "$DISTRO" == "debian" ]

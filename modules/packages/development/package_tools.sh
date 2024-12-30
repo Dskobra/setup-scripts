@@ -6,7 +6,7 @@ native_package_tools(){
         sudo dnf install -y gcc-g++ autoconf automake bison flex libtool\
         m4 valgrind byacc ccache cscope indent ltrace perf strace koji\
         mock redhat-rpm-config rpm-build rpmdevtools
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install gcc-c++ autoconf automake bison flex libtool\
         m4 valgrind byacc ccache cscope indent ltrace perf strace rpm-build\
