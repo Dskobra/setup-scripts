@@ -4,7 +4,7 @@ native_rpi_imager(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y rpi-imager
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install rpi-imager
     elif [ "$DISTRO" == "debian" ]
@@ -22,7 +22,7 @@ remove_rpi_imager(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y rpi-imager
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm rpi-imager
     elif [ "$DISTRO" == "debian" ]

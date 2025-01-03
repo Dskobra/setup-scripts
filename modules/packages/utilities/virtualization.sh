@@ -6,7 +6,7 @@ native_virtualization(){
         sudo dnf update -y
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install patterns-server-kvm_server
         sudo zypper -n install patterns-server-kvm_tools

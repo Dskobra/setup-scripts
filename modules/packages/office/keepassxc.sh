@@ -4,7 +4,7 @@ native_keepassxc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y keepassxc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install keepassxc
     elif [ "$DISTRO" == "debian" ]
@@ -19,7 +19,7 @@ remove_keepassxc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y keepassxc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm keepassxc
     elif [ "$DISTRO" == "debian" ]

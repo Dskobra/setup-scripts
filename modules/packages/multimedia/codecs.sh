@@ -12,7 +12,7 @@ native_codecs(){
 
         sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
         sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/' packman-essentials
         sudo zypper ref

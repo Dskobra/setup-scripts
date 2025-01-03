@@ -4,7 +4,7 @@ native_gtkhash(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y gtkhash
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         echo "============================================="
         echo "gtkhash isn't available in openSUSE."
@@ -22,7 +22,7 @@ remove_gtkhash(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y gtkhash
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         echo "Not removing gtkhash as it's not present in openSUSE repos."
     elif [ "$DISTRO" == "debian" ]

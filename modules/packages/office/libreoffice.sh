@@ -4,7 +4,7 @@ native_libreoffice(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y libreoffice
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install libreoffice libreoffice-branding-openSUSE
     elif [ "$DISTRO" == "debian" ]
@@ -19,7 +19,7 @@ remove_libreoffice(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y libreoffice*
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm libreoffice*
     elif [ "$DISTRO" == "debian" ]

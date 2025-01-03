@@ -4,7 +4,7 @@ native_fmedia_writer(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y mediawriter
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         echo "============================================="
         echo "Fedora Mediawriter isn't available in openSUSE."
@@ -27,7 +27,7 @@ remove_fmedia_writer(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y mediawriter
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         echo "Not removing Fedora media writer as it's not present in openSUSE repos."
     elif [ "$DISTRO" == "debian" ]

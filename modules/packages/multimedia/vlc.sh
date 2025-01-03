@@ -6,7 +6,7 @@ native_vlc(){
         sudo dnf install -y rpmfusion-free-release-tainted
         sudo dnf install -y libdvdcss
         sudo dnf install -y vlc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install vlc-qt vlc-codecs
     elif [ "$DISTRO" == "debian" ]
@@ -25,7 +25,7 @@ remove_vlc(){
         sudo dnf remove -y rpmfusion-free-release-tainted
         sudo dnf remove -y libdvdcss
         sudo dnf remove -y vlc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm vlc-codecs vlc-qt 
     elif [ "$DISTRO" == "debian" ]
