@@ -13,7 +13,7 @@ install_corectrl(){
     then
         sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Slowroll/home:Dead_Mozay.repo
         sudo zypper refresh
-        sudo zypper install corectrl
+        sudo zypper -n install corectrl
     elif [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper addrepo https://download.opensuse.org/repositories/home:ecsos/15.6/home:ecsos.repo
