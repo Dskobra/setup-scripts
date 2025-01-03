@@ -29,7 +29,7 @@ make_app_folder(){
 export SCRIPTS_FOLDER                           # stores full path for setup-scripts
 export APP_FOLDER="$HOME/Apps"                  # app folder thats made for some downloads
 export DISTRO=""                                # stores distro name.
-export COPYRIGHT="Copyright (c) 2021-2024 Jordan Bottoms"
+export COPYRIGHT="Copyright (c) 2021-2025 Jordan Bottoms"
 export VERSION="12.22.2024"
 export PACKAGE_TYPE="flatpak"
 TEMP_FOLDER="missing"
