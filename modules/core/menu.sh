@@ -397,7 +397,7 @@ native_multimedia_menu(){
     echo "(1) Audio/Video Codecs    (2) VLC Media Player"
     echo "(3) OpenShot              (4) xfburn "
     echo "(f) Flatpak/Other"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
