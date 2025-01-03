@@ -31,7 +31,6 @@ export APP_FOLDER="$HOME/Apps"                  # app folder thats made for some
 export DISTRO=""                                # stores distro name.
 export COPYRIGHT="Copyright (c) 2021-2025 Jordan Bottoms"
 export VERSION="12.22.2024"
-export PACKAGE_TYPE="flatpak"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
 SCRIPTS_FOLDER=$(pwd)
