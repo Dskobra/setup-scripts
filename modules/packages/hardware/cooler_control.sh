@@ -14,7 +14,7 @@ install_cooler_control(){
         sudo systemctl enable --now coolercontrold
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        sudo zypper addrepo zypper addrepo https://download.opensuse.org/repositories/home:codifryed/openSUSE_Slowroll/home:codifryed.repo
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:codifryed/openSUSE_Slowroll/home:codifryed.repo
         sudo zypper ref
         sudo zypper -n install coolercontrol
         sudo systemctl enable --now coolercontrold
