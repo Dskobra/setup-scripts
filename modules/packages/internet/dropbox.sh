@@ -20,7 +20,7 @@ remove_dropbox(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y dropbox
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm dropbox
     elif [ "$DISTRO" == "debian" ]

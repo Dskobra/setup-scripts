@@ -8,7 +8,8 @@ native_brave_browser(){
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo dnf update -y
         sudo dnf install -y brave-browser
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo

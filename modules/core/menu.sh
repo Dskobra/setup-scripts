@@ -337,8 +337,7 @@ native_internet_menu(){
     echo "------------------------"
     echo ""
     echo "(1) Firefox                (2) Brave Browser"
-    echo "(3) Dropbox                (4) Transmissionbt"
-    echo "(5) Remmina"
+    echo "(3) Transmissionbt         (4) Remmina"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -353,16 +352,12 @@ native_internet_menu(){
         2)
             "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
             ;;
-        
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "native"
-            ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "native"
             ;;
 
-        5)  
+        4)  
             "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "native"
             ;;
 
