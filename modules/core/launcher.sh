@@ -47,7 +47,7 @@ opensuse_tumbleweed_release_check(){
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
-        echo "These scripts only support Tumbleweed released on or after 01/01/2024"
+        echo "These scripts only support Tumbleweed released on or after 10/01/2024"
     fi
 
 }
@@ -58,7 +58,7 @@ opensuse_slowroll_release_check(){
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
-        echo "These scripts only support Slowroll released on or after 01/01/2024"
+        echo "These scripts only support Slowroll released on or after 10/01/2024"
     fi
 
 }
