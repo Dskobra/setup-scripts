@@ -952,6 +952,7 @@ flatpak_gnome_desktop_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
             ;;
 
+        3)
             flatpak install --user -y flathub page.tesk.Refine
             ;;
 
