@@ -7,17 +7,15 @@ native_fmedia_writer(){
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         echo "============================================="
-        echo "Fedora Mediawriter isn't available in openSUSE."
-        echo "This will install the flatpak version."
+        echo "Fedora Mediawriter  isn't available in openSUSE."
+        echo "Please select the flatpak version."
         echo "============================================="
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     elif [ "$DISTRO" == "debian" ]
     then
         echo "============================================="
-        echo "Fedora Mediawriter isn't available in Debian."
-        echo "This will install the flatpak version."
+        echo "Fedora Mediawriter  isn't available in Debian."
+        echo "Please select the flatpak version."
         echo "============================================="
-        flatpak install --user -y flathub org.fedoraproject.MediaWriter
     else
         echo "Unkown error has occurred."
     fi
