@@ -6,7 +6,7 @@ native_firefox(){
         sudo dnf install -y firefox
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
-        sudo zypper -n install MozillaFirefox-branding-openSUSE
+        sudo zypper -n install MozillaFirefox MozillaFirefox-branding-openSUSE
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y firefox-esr
