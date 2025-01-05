@@ -19,7 +19,7 @@ remove_geany(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm geany geany-plugins
     elif [ "$DISTRO" == "debian" ]

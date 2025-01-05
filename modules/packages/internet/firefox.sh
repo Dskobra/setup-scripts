@@ -31,7 +31,7 @@ remove_firefox(){
         if [ "$DISTRO" == "fedora" ]
             then
                 sudo dnf remove -y firefox firefox-langpacks
-        elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+        elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
         then
             sudo zypper -n rm MozillaFirefox
         elif [ "$DISTRO" == "debian" ]

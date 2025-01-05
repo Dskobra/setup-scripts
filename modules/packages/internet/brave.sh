@@ -33,9 +33,11 @@ remove_brave_browser(){
         sudo rm "/etc/yum.repos.d/brave-browser.repo"
         sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
         sudo dnf update -y
-    elif [ "$DISTRO" == "fedora-atomic" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
-        echo "Not removing package on atomic editions."
+        sudo zypper -n rm brave-browser
+        sudo rm "/etc/zypp/repos.d/brave-browser.repo"
+        sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y brave-browser
