@@ -1197,9 +1197,9 @@ flatpak_gaming_other_menu(){
     echo ""   
     echo "(1) Discord                (2) Vesktop"
     echo "(3) Prism Launcher         (4) Dolphin"
-    echo "(5) Cemu                   (6) XIVLauncher"
-    echo "(7) WoWUp                  (8) Warcraft Logs"
-    echo "(9) WeakAuras Companion"
+    echo "(5) Cemu                   (6) WoWUp"
+    echo "(7) Warcraft Logs"
+    echo "(8) WeakAuras Companion"
     echo "(n) Native Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
@@ -1229,18 +1229,14 @@ flatpak_gaming_other_menu(){
             ;;
 
         6)
-            flatpak install --user -y flathub dev.goats.xivlauncher
-            ;;
-
-        7)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
             ;;
 
