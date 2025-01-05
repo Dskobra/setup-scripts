@@ -201,7 +201,6 @@ native_kde_desktop_menu(){
     echo "(3) Kleopatra             (4) KDE ISO Image Writer"
     echo "(5) Kate                  (6) K3b"
     echo "(7) Krdc                  (8) Krfb"
-    echo "(9) Plasma X11"
     echo "(f) Flatpak/Other"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
@@ -242,10 +241,6 @@ native_kde_desktop_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/krfb.sh
             ;;
 
-        9)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh 
-            ;;
-
         f | F)
             flatpak_kde_desktop_menu
             ;;
@@ -279,7 +274,7 @@ native_gnome_desktop_menu(){
     echo "---------------------"
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
-    echo "(3) Gnome Tweaks           (4) Gnome X11"
+    echo "(3) Gnome Tweaks"
     echo "(f) Flatpak/Other"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
@@ -298,10 +293,6 @@ native_gnome_desktop_menu(){
         
         3)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_x11.sh
             ;;
 
         f | F)
