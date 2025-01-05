@@ -31,13 +31,17 @@ remove_brave_browser(){
     then
         sudo dnf remove -y brave-browser
         sudo rm "/etc/yum.repos.d/brave-browser.repo"
-        sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-nightly"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"
         sudo dnf update -y
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm brave-browser
         sudo rm "/etc/zypp/repos.d/brave-browser.repo"
-        sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-nightly"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y brave-browser
