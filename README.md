@@ -2,9 +2,11 @@
 Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
-* Fedora 40/41 Workstation/Spins
-* openSUSE Tumbleweed 20240101+
-* Debian 12
+* Fedora (non atomic) 40/41+
+* openSUSE Tumbleweed 20241001+
+* openSUSE Slowroll   20241001+
+* openSUSE Leap       15.6+
+* Debian              12
 
 ## Requirements
 * curl

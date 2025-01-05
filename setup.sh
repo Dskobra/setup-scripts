@@ -30,7 +30,7 @@ export SCRIPTS_FOLDER                           # stores full path for setup-scr
 export APP_FOLDER="$HOME/Apps"                  # app folder thats made for some downloads
 export DISTRO=""                                # stores distro name.
 export COPYRIGHT="Copyright (c) 2021-2025 Jordan Bottoms"
-export VERSION="12.22.2024"
+export VERSION="1.5.2025"
 TEMP_FOLDER="missing"
 LOOK_FOR_APP_FOLDER="missing"
 SCRIPTS_FOLDER=$(pwd)
