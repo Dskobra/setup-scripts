@@ -935,6 +935,7 @@ flatpak_gnome_desktop_menu(){
     echo "----------------------------"
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
+    echo "(3) Refine"
     echo "(n) Native Apps"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
@@ -949,6 +950,9 @@ flatpak_gnome_desktop_menu(){
         
         2)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
+            ;;
+
+            flatpak install --user -y flathub page.tesk.Refine
             ;;
 
         n | N)
