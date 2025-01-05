@@ -4,7 +4,7 @@ native_kleopatra(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kleopatra
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install kleopatra
     elif [ "$DISTRO" == "debian" ]
@@ -21,7 +21,7 @@ remove_kleopatra(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kleopatra
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm kleopatra
     elif [ "$DISTRO" == "debian" ]

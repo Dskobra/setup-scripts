@@ -6,7 +6,17 @@ install_corectrl(){
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:ecsos/openSUSE_Tumbleweed/home:ecsos.repo
+        sudo zypper ref
+        sudo zypper -n install corectrl
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
+    then
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:ecsos/openSUSE_Slowroll/home:ecsos.repo
+        sudo zypper refresh
+        sudo zypper -n install corectrl
+    elif [ "$DISTRO" == "opensuse-leap" ]
+    then
+        sudo zypper addrepo https://download.opensuse.org/repositories/home:ecsos/15.6/home:ecsos.repo
         sudo zypper ref
         sudo zypper -n install corectrl
     elif [ "$DISTRO" == "debian" ]

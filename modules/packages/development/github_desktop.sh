@@ -6,7 +6,7 @@ native_github_desktop(){
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
         sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
         sudo dnf install -y github-desktop
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
         sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/zypp/repos.d/shiftkey-packages.repo'
@@ -27,7 +27,7 @@ remove_github_desktop(){
         sudo rm /etc/yum.repos.d/shiftkey-packages.repo
         sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key
         sudo dnf remove -y github-desktop
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo rm /etc/zypp/repos.d/shiftkey-packages.repo
         sudo rm /etc/pki/rpm-gpg/shiftkey-gpg.key

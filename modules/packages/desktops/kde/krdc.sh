@@ -4,7 +4,7 @@ native_krdc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y krdc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install krdc
     elif [ "$DISTRO" == "debian" ]

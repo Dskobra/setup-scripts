@@ -4,7 +4,7 @@ native_claws_mail(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y claws-mail
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install claws-mail
     elif [ "$DISTRO" == "debian" ]
@@ -19,7 +19,7 @@ remove_claws_mail(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y claws-mail
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm claws-mail
     elif [ "$DISTRO" == "debian" ]

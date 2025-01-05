@@ -4,7 +4,7 @@ native_openshot(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y openshot
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install openshot-qt
     elif [ "$DISTRO" == "debian" ]
@@ -19,7 +19,7 @@ remove_openshot(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y openshot
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm openshot-qt
     elif [ "$DISTRO" == "debian" ]

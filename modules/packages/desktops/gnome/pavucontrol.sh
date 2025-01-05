@@ -4,7 +4,7 @@ native_pavucontrol(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y pavucontrol
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install pavucontrol
     elif [ "$DISTRO" == "debian" ]
@@ -18,7 +18,7 @@ remove_pavucontrol(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y pavucontrol
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]  || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm pavucontrol
     elif [ "$DISTRO" == "debian" ]

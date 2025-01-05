@@ -201,7 +201,6 @@ native_kde_desktop_menu(){
     echo "(3) Kleopatra             (4) KDE ISO Image Writer"
     echo "(5) Kate                  (6) K3b"
     echo "(7) Krdc                  (8) Krfb"
-    echo "(9) Plasma X11"
     echo "(f) Flatpak/Other"
     echo "(p) Previous Menu         (m) Main Menu "
     echo "(0) Exit"
@@ -242,10 +241,6 @@ native_kde_desktop_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/krfb.sh
             ;;
 
-        9)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/plasma_x11.sh 
-            ;;
-
         f | F)
             flatpak_kde_desktop_menu
             ;;
@@ -279,7 +274,7 @@ native_gnome_desktop_menu(){
     echo "---------------------"
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
-    echo "(3) Gnome Tweaks           (4) Gnome X11"
+    echo "(3) Gnome Tweaks"
     echo "(f) Flatpak/Other"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
@@ -298,10 +293,6 @@ native_gnome_desktop_menu(){
         
         3)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_x11.sh
             ;;
 
         f | F)
@@ -337,8 +328,7 @@ native_internet_menu(){
     echo "------------------------"
     echo ""
     echo "(1) Firefox                (2) Brave Browser"
-    echo "(3) Dropbox                (4) Transmissionbt"
-    echo "(5) Remmina"
+    echo "(3) Transmissionbt         (4) Remmina"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -353,16 +343,12 @@ native_internet_menu(){
         2)
             "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
             ;;
-        
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "native"
-            ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "native"
             ;;
 
-        5)  
+        4)  
             "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "native"
             ;;
 
@@ -397,7 +383,7 @@ native_multimedia_menu(){
     echo "(1) Audio/Video Codecs    (2) VLC Media Player"
     echo "(3) OpenShot              (4) xfburn "
     echo "(f) Flatpak/Other"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(m) Main Menu             (0) Exit"
     printf "Option: "
     read -r input
     
@@ -598,9 +584,9 @@ native_office_menu(){
     echo "|Office Apps|[NATIVE]|"
     echo "----------------------"
     echo ""
-    echo "(1) LibreOffice               (2) QOwnNotes"
-    echo "(3) Marknote                  (4) Claws-Mail"
-    echo "(5) Thunderbird               (6) KeePassXC"
+    echo "(1) LibreOffice               (2) Marknote"
+    echo "(3) Claws-Mail                (4) Thunderbird"
+    echo "(5) KeePassXC"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
@@ -613,22 +599,18 @@ native_office_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh "native"
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "native"
             ;;
         
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "native"
             ;;
 
-        6)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "native"
             ;;
 
@@ -944,6 +926,7 @@ flatpak_gnome_desktop_menu(){
     echo "----------------------------"
     echo ""
     echo "(1) Dconf Editor           (2) Pavucontrol"
+    echo "(3) Refine"
     echo "(n) Native Apps"
     echo "(p) Previous Menu          (m) Main Menu "
     echo "(0) Exit"
@@ -958,6 +941,10 @@ flatpak_gnome_desktop_menu(){
         
         2)
             "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
+            ;;
+
+        3)
+            flatpak install --user -y flathub page.tesk.Refine
             ;;
 
         n | N)
@@ -1210,9 +1197,9 @@ flatpak_gaming_other_menu(){
     echo ""   
     echo "(1) Discord                (2) Vesktop"
     echo "(3) Prism Launcher         (4) Dolphin"
-    echo "(5) Cemu                   (6) XIVLauncher"
-    echo "(7) WoWUp                  (8) Warcraft Logs"
-    echo "(9) WeakAuras Companion"
+    echo "(5) Cemu                   (6) WoWUp"
+    echo "(7) Warcraft Logs"
+    echo "(8) WeakAuras Companion"
     echo "(n) Native Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
@@ -1242,18 +1229,14 @@ flatpak_gaming_other_menu(){
             ;;
 
         6)
-            flatpak install --user -y flathub dev.goats.xivlauncher
-            ;;
-
-        7)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
             ;;
 
@@ -1296,10 +1279,9 @@ flatpak_office_menu(){
     echo "|Office Apps|[FLATPAK/OTHER]|"
     echo "-----------------------------"
     echo ""
-    echo "(1) LibreOffice           (2) QOwnNotes"
-    echo "(3) Marknote              (4) Claws-Mail"
-    echo "(5) Thunderbird           (6) Bitwarden"
-    echo "(7) KeePassXC"
+    echo "(1) LibreOffice           (2) Marknote"
+    echo "(3) Claws-Mail            (5) Thunderbird"
+    echo "(5) Bitwarden             (6) KeePassXC"
     echo "(n) Native Apps"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
@@ -1312,26 +1294,22 @@ flatpak_office_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/qownnotes.sh "flatpak"
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "flatpak"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "flatpak"
             ;;
         
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "flatpak"
             ;;
 
-        6)
+        5)
             flatpak install --user -y flathub com.bitwarden.desktop
             ;;
 
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "flatpak"
             ;;
 

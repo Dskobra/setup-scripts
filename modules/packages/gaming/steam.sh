@@ -4,7 +4,7 @@ native_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install steam
     elif [ "$DISTRO" == "debian" ]
@@ -21,7 +21,7 @@ native_steam_devices(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam-devices
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install steam-devices
     elif [ "$DISTRO" == "debian" ]
@@ -36,7 +36,7 @@ remove_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y steam
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm steam
     elif [ "$DISTRO" == "debian" ]

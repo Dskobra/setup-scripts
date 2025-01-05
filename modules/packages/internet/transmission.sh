@@ -4,7 +4,7 @@ install_transmission(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y transmission-gtk
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install transmission-gtk
     elif [ "$DISTRO" == "debian" ]
@@ -19,7 +19,7 @@ remove_transmission(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y transmission-gtk
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm transmission-gtk
     elif [ "$DISTRO" == "debian" ]

@@ -4,7 +4,7 @@ native_vim(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y vim-enhanced
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install vim
     elif [ "$DISTRO" == "debian" ]

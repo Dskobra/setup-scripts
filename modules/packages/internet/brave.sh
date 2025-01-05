@@ -8,7 +8,8 @@ native_brave_browser(){
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo dnf update -y
         sudo dnf install -y brave-browser
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -30,11 +31,17 @@ remove_brave_browser(){
     then
         sudo dnf remove -y brave-browser
         sudo rm "/etc/yum.repos.d/brave-browser.repo"
-        sudo rm "/etc/pki/rpm-gpg/brave-core.asc"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-nightly"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"
         sudo dnf update -y
-    elif [ "$DISTRO" == "fedora-atomic" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
-        echo "Not removing package on atomic editions."
+        sudo zypper -n rm brave-browser
+        sudo rm "/etc/zypp/repos.d/brave-browser.repo"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-nightly"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
+        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"
     elif [ "$DISTRO" == "debian" ]
     then
         sudo apt-get remove -y brave-browser

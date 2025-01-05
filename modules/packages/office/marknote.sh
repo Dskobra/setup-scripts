@@ -4,7 +4,7 @@ native_marknote(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y marknote
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install marknote
     elif [ "$DISTRO" == "debian" ]
@@ -22,7 +22,7 @@ remove_marknote(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y marknote
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm marknote
     elif [ "$DISTRO" == "debian" ]

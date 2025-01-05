@@ -4,7 +4,7 @@ native_dolphin_emu(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y dolphin-emu
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install dolphin-emu
     elif [ "$DISTRO" == "debian" ]
@@ -19,7 +19,7 @@ remove_dolphin_emu(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y dolphin-emu
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm dolphin-emu
     elif [ "$DISTRO" == "debian" ]

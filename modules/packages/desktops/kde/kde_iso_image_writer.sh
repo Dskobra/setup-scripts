@@ -4,7 +4,7 @@ native_kde_iso_image_writer(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y isoimagewriter
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         echo "==============================================="
         echo "KDE ISO Image Writer isn't available in openSUSE"

@@ -4,7 +4,7 @@ native_discord(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y discord
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install discord
     elif [ "$DISTRO" == "debian" ]
@@ -22,7 +22,7 @@ remove_discord(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y discord
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm discord
     elif [ "$DISTRO" == "debian" ]

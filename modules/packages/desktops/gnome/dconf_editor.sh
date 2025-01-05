@@ -5,7 +5,7 @@ native_dconf_editor(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y dconf-editor
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n install dconf-editor
     elif [ "$DISTRO" == "debian" ]
@@ -20,7 +20,7 @@ remove_dconf_editor(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y dconf-editor
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]  || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
     then
         sudo zypper -n rm dconf-editor
     elif [ "$DISTRO" == "debian" ]
