@@ -7,20 +7,19 @@ download_wowup(){
     WOWUPLINK="https://github.com/WowUp/WowUp.CF/releases/download/v2.20.0/WowUp-CF-2.20.0.AppImage"
     WOWUPBINARY="WowUp-CF-2.20.0.AppImage"
     
-    if test -f /home/$USER/Apps/wow/"$WOWUPBINARY"; then
+    if test -f /opt/apps/wow/"$WOWUPBINARY"; then
         echo "WoWUp already downloaded."
-    elif ! test -f /home/$USER/Apps/wow/"$WOWUPBINARY"; then
-        cd /home/$USER/Apps/wow/ || exit
+    elif ! test -f /opt/apps/wow/ "$WOWUPBINARY"; then
+        cd /opt/apps/wow/ || exit
         curl -L -o "$WOWUPBINARY" "$WOWUPLINK"
         chmod +x "$WOWUPBINARY"
 
         curl -L -o $SCRIPTS_FOLDER/temp/wowup.png https://cdn.wowup.io/site/production/assets/images/wowup_white_lg_nopad.png
-        mv $SCRIPTS_FOLDER/temp/wowup.png /home/$USER/Apps/icons
+        mv $SCRIPTS_FOLDER/temp/wowup.png /opt/apps/icons
 
-        chmod +x wowup.sh $USER:$USER
+        chmod +x $SCRIPTS_FOLDER/modules/packages/gaming/wowup.sh $USER:$USER
         mv $SCRIPTS_FOLDER/modules/packages/gaming/wowup.sh /home/$USER/bin/wowup
-        mv $SCRIPTS_FOLDER/modules/packages/gaming//wowup.desktop /home/$USER/Desktop/wowup.desktop
-        echo "Icon=/home/$USER/Apps/icons/wowup.png" >> /home/$USER/Desktop/wowup.desktop
+        mv $SCRIPTS_FOLDER/modules/packages/gaming/wowup.desktop /home/$USER/Desktop/wowup.desktop
 
     fi
 }

@@ -10,6 +10,7 @@ export COPYRIGHT="Copyright (c) 2021-2025 Jordan Bottoms"
 export VERSION="1.5.2025"
 SCRIPTS_FOLDER=$(pwd)
 mkdir $SCRIPTS_FOLDER/temp
-mkdir /home/$USER/Apps/icons -p
+mkdir /home/$USER/Apps/
+mkdir /opt/apps/icons -p
 mkdir /home/$USER/bin
 "$SCRIPTS_FOLDER"/modules/core/launcher.sh

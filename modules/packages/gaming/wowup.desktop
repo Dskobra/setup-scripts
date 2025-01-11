@@ -7,3 +7,4 @@ Exec=wowup
 Terminal=false
 Type=Application
 Categories=Games;
+Icon=/opt/apps/icons/wowup.png
