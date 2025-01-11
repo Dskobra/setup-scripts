@@ -9,7 +9,7 @@ download_wowup(){
     
     if test -f /opt/apps/wow/"$WOWUPBINARY"; then
         echo "WoWUp already downloaded."
-    elif ! test -f /opt/apps/wow/ "$WOWUPBINARY"; then
+    elif ! test -f /opt/apps/wow/"$WOWUPBINARY"; then
         cd /opt/apps/wow/ || exit
         curl -L -o "$WOWUPBINARY" "$WOWUPLINK"
         chmod +x "$WOWUPBINARY"
