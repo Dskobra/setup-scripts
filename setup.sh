@@ -13,5 +13,5 @@ mkdir $SCRIPTS_FOLDER/temp
 mkdir /home/$USER/Apps/
 mkdir /home/$USER/bin
 sudo mkdir /opt/apps/icons -p
-chown /opt/apps/ -r $USER:$USER
+sudo chown $USER:$USER /opt/apps/ -R
 "$SCRIPTS_FOLDER"/modules/core/launcher.sh
