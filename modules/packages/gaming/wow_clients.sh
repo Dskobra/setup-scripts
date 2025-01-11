@@ -16,10 +16,11 @@ download_wowup(){
 
         curl -L -o $SCRIPTS_FOLDER/temp/wowup.png https://cdn.wowup.io/site/production/assets/images/wowup_white_lg_nopad.png
         mv $SCRIPTS_FOLDER/temp/wowup.png /home/$USER/Apps/icons
-        echo Icon=/home/$USER/Apps/icons/wowup.png >> wowup.desktop
-        chmod +x $USER:USER wowup
-        mv wowup /home/$USER/bin/wowup
-        mv wowup.desktop /home/$USER/Desktop/wowup
+
+        chmod +x $USER:$USER wowup
+        mv $SCRIPTS_FOLDER/packages/gaming/wowup /home/$USER/bin/wowup
+        mv $SCRIPTS_FOLDER/packages/gaming/wowup.desktop /home/$USER/Desktop/wowup
+        echo Icon=/home/$USER/Apps/icons/wowup.png >> /home/$USER/Desktop/wowup
 
     fi
 }
@@ -50,6 +51,7 @@ download_weakauras_companion(){
     fi
 }
 
+mkdir /home/$USER/Apps/wow
 if [ "$1" == "wowup" ]
 then
     download_wowup
