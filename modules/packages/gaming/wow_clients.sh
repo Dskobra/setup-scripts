@@ -28,10 +28,10 @@ download_warcraft_logs(){
     WOWLOGSLINK="https://github.com/RPGLogs/Uploaders-warcraftlogs/releases/download/v8.5.16/warcraftlogs-v8.5.16.AppImage"
     WOWLOGSBINARY="warcraftlogs-v8.5.16.AppImage"
     
-    if test -f ~/Desktop/"$WOWLOGSBINARY"; then
+    if test -f /opt/apps/wow/"$WOWLOGSBINARY"; then
         echo "Warcraft Logs already downloaded."
-    elif ! test -f ~/Desktop/"$WOWLOGSBINARY"; then
-        cd ~/Desktop/ || exit
+    elif ! test -f /opt/apps/wow/"$WOWLOGSBINARY"; then
+        cd /opt/apps/wow/ || exit
         curl -L -o "$WOWLOGSBINARY" "$WOWLOGSLINK"
         chmod +x "$WOWLOGSBINARY"
     fi
@@ -41,10 +41,10 @@ download_weakauras_companion(){
     WACOMPLINK="https://github.com/WeakAuras/WeakAuras-Companion/releases/download/v5.2.3/WeakAuras-Companion-5.2.3.AppImage"
     WACOMPBINARY="WeakAuras-Companion-5.2.3.AppImage"
     
-    if test -f ~/Desktop/"$WACOMPBINARY"; then
+    if test -f ~/opt/apps/wow/"$WACOMPBINARY"; then
         echo "WeakAuras Companion already downloaded."
-    elif ! test -f  ~/Desktop/"$WACOMPBINARY"; then
-        cd  ~/Desktop/ || exit
+    elif ! test -f  /opt/apps/wow/"$WACOMPBINARY"; then
+        cd  /opt/apps/wow/ || exit
         curl -L -o "$WACOMPBINARY" "$WACOMPLINK"
         chmod +x "$WACOMPBINARY"
     fi
