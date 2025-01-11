@@ -17,10 +17,10 @@ download_wowup(){
         curl -L -o $SCRIPTS_FOLDER/temp/wowup.png https://cdn.wowup.io/site/production/assets/images/wowup_white_lg_nopad.png
         mv $SCRIPTS_FOLDER/temp/wowup.png /home/$USER/Apps/icons
 
-        chmod +x $USER:$USER wowup
-        mv $SCRIPTS_FOLDER/packages/gaming/wowup /home/$USER/bin/wowup
-        mv $SCRIPTS_FOLDER/packages/gaming/wowup.desktop /home/$USER/Desktop/wowup
-        echo Icon=/home/$USER/Apps/icons/wowup.png >> /home/$USER/Desktop/wowup
+        chmod +x wowup.sh $USER:$USER
+        mv $SCRIPTS_FOLDER/packages/gaming/wowup.sh /home/$USER/bin/wowup
+        mv $SCRIPTS_FOLDER/packages/gaming/wowup.desktop /home/$USER/Desktop/wowup.desktop
+        echo "Icon=/home/$USER/Apps/icons/wowup.png" >> /home/$USER/Desktop/wowup.desktop
 
     fi
 }
