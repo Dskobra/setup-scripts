@@ -11,6 +11,7 @@ export VERSION="1.5.2025"
 SCRIPTS_FOLDER=$(pwd)
 mkdir $SCRIPTS_FOLDER/temp
 mkdir /home/$USER/Apps/
-mkdir /opt/apps/icons -p
 mkdir /home/$USER/bin
+sudo mkdir /opt/apps/icons -p
+chown /opt/apps/ -r $USER:$USER
 "$SCRIPTS_FOLDER"/modules/core/launcher.sh
