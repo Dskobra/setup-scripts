@@ -50,7 +50,7 @@ download_weakauras_companion(){
     fi
 }
 
-mkdir /home/$USER/Apps/wow
+mkdir /opt/apps/wow
 if [ "$1" == "wowup" ]
 then
     download_wowup
