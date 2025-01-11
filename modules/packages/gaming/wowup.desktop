@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=WowUpCf
+GenericName=wowupcf
+Comment=world of warcraft addon manager
+Keywords=games;world of warcraft;
+Exec=wowup
+Terminal=false
+Type=Application
+Categories=Games;
