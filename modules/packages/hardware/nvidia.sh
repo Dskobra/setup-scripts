@@ -4,6 +4,8 @@ install_nvidia(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvidia-xconfig nvidia-settings
+        sudo akmods --rebuild --force
+        sudo dracut --regenerate-all --force
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
