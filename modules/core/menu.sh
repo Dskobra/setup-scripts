@@ -760,8 +760,8 @@ native_utils_menu(){
     echo "|Utility Apps|[NATIVE]|"
     echo "-----------------------"
     echo ""
-    echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                       (4) Virtualization"
+    echo "(1) Raspberry Pi Imager           (2) GtkHash"
+    echo "(3) Virtualization"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -769,19 +769,16 @@ native_utils_menu(){
     
     case $input in
 
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh "native"
-            ;;
 
-        2)
+        1)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
@@ -1473,8 +1470,8 @@ flatpak_utils_menu(){
     echo "|Utility Apps|[FLATPAK/OTHER]|"
     echo "------------------------------"
     echo ""
-    echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                       (4) MissionCenter"
+    echo "(1) Raspberry Pi Imager           (2) GtkHash"
+    echo "(3) MissionCenter"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -1483,18 +1480,14 @@ flatpak_utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh "flatpak"
-            ;;
-
-        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "flatpak"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
             ;;
 
-        4)
+        3)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
 
