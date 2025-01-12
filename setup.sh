@@ -12,6 +12,8 @@ SCRIPTS_FOLDER=$(pwd)
 mkdir $SCRIPTS_FOLDER/temp
 mkdir /home/$USER/Apps/                         # old location. Remove once everything is updated
 mkdir /home/$USER/bin
-sudo mkdir /opt/apps/icons -p
+sudo mkdir /opt/apps/
+sudo mkdir /opt/apps/icons
+sudo mkdir /opt/apps/appimages
 sudo chown $USER:$USER /opt/apps/ -R
 "$SCRIPTS_FOLDER"/modules/core/launcher.sh

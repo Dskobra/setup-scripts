@@ -980,7 +980,7 @@ flatpak_internet_menu(){
     echo ""
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
-    echo "(5) Remmina"
+    echo "(5) Remmina                (6) Rclone/Browser"
     echo "(n) Native Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -1006,6 +1006,10 @@ flatpak_internet_menu(){
 
         5)  
             "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "flatpak"
+            ;;
+
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
             ;;
 
         n | N)
