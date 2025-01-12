@@ -2,7 +2,7 @@
 Name=Rclone Browser
 Comment=Simple cross-platform GUI for rclone
 Exec=rclone_browser
-Icon=rclone-browser.png
+Icon=/opt/apps/icons/rclone_browser.png
 Terminal=false
 Type=Application
 Categories=Network;

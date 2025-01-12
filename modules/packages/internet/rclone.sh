@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 install_rclone(){
-    sudo -v ; curl https://rclone.org/install.sh | sudo bash
+    #sudo -v ; curl https://rclone.org/install.sh | sudo bash
 
     RCLONE_BROWSER_LINK="https://github.com/kapitainsky/RcloneBrowser/releases/download/1.8.0/rclone-browser-1.8.0-a0b66c6-linux-x86_64.AppImage"
     RCLONE_BROWSER_BINARY="rclone-browser-1.8.0-a0b66c6-linux-x86_64.AppImage"
@@ -13,7 +13,7 @@ install_rclone(){
         curl -L -o "$RCLONE_BROWSER_BINARY" "$RCLONE_BROWSER_LINK"
         chmod +x "$RCLONE_BROWSER_BINARY"
 
-        curl -L -o $SCRIPTS_FOLDER/temp/rclone_browser.png https://github.com/kapitainsky/RcloneBrowser/blob/master/assets/rclone-browser-32x32.png
+        curl -L -o $SCRIPTS_FOLDER/temp/rclone_browser.png https://github.com/kapitainsky/RcloneBrowser/blob/master/assets/rclone-browser-32x32.png?raw=true
         mv $SCRIPTS_FOLDER/temp/rclone_browser.png /opt/apps/icons
 
         cd $SCRIPTS_FOLDER/modules/packages/internet/
