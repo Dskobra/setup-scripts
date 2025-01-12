@@ -29,7 +29,7 @@ download_pycharm(){
         curl -L -o pycharm.tar.gz "$PYCHARM_LINK"
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
-        mv pycharm* "$APP_FOLDER"/pycharm
+        mv pycharm* /opt/apps/pycharm
         echo "============================================================"
         echo "Jetbrains Pycharm is located at $PYCHARM_LOCATION"
         echo "============================================================"

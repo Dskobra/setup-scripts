@@ -35,6 +35,14 @@ download_warcraft_logs(){
         cd /opt/apps/wow/ || exit
         curl -L -o "$WOWLOGSBINARY" "$WOWLOGSLINK"
         chmod +x "$WOWLOGSBINARY"
+
+        curl -L -o $SCRIPTS_FOLDER/temp/warcraft_logs.png https://assets.rpglogs.com/img/warcraft/favicon.png
+        mv $SCRIPTS_FOLDER/temp/warcraft_logs.png /opt/apps/icons
+
+        cd $SCRIPTS_FOLDER/modules/packages/gaming/
+        chmod +x warcraft_logs.sh
+        mv $SCRIPTS_FOLDER/modules/packages/gaming/warcraft_logs.sh /home/$USER/bin/warcraft_logs
+        mv $SCRIPTS_FOLDER/modules/packages/gaming/warcraft_logs.desktop /home/$USER/Desktop/warcraft_logs.desktop
     fi
 }
 
@@ -48,6 +56,14 @@ download_weakauras_companion(){
         cd  /opt/apps/wow/ || exit
         curl -L -o "$WACOMPBINARY" "$WACOMPLINK"
         chmod +x "$WACOMPBINARY"
+
+        curl -L -o $SCRIPTS_FOLDER/temp/weakauras.png https://github.com/WeakAuras/WeakAuras-Companion/blob/v5.2.7/src/assets/weakauras.png?raw=true
+        mv $SCRIPTS_FOLDER/temp/weakauras.png /opt/apps/icons
+
+        cd $SCRIPTS_FOLDER/modules/packages/gaming/
+        chmod +x wa_companion.sh
+        mv $SCRIPTS_FOLDER/modules/packages/gaming/wa_companion.sh /home/$USER/bin/wa_companion
+        mv $SCRIPTS_FOLDER/modules/packages/gaming/wa_companion.desktop /home/$USER/Desktop/wa_companion.desktop
     fi
 }
 
