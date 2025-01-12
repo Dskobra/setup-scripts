@@ -1397,6 +1397,7 @@ flatpak_ides_sdks_menu(){
     echo "(3) Intellij IDEA                     (4) Pycharm"
     echo "(5) Nodejs LTS                        (6) openJDK 21 LTS"
     echo "(7) openjfx 21 LTS"
+    echo "(n) Native Apps"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
