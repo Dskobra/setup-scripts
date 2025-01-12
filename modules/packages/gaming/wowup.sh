@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-nohup /opt/apps/wow/WowUp*.AppImage &
+nohup /opt/apps/appimages/WowUp*.AppImage &

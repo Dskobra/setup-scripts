@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-nohup /opt/apps/wow/warcraftlogs*.AppImage &
+nohup /opt/apps/appimages/warcraftlogs*.AppImage &
