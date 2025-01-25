@@ -1224,10 +1224,9 @@ flatpak_ides_sdks_menu(){
     echo "|IDEs/SDKs|[FLATPAK/OTHER]|"
     echo "---------------------------"
     echo ""   
-    echo "(1) VSCodium                          (2) Geany"
-    echo "(3) Intellij IDEA                     (4) Pycharm"
-    echo "(5) Nodejs LTS                        (6) openJDK 21 LTS"
-    echo "(7) openjfx 21 LTS"
+    echo "(1) Nodejs LTS                        (2) openJDK 21 LTS"
+    echo "(3) openjfx 21 LTS                    (4) Intellij IDEA"
+    echo "(5) Pycharm"
     echo "(n) Native Apps"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
@@ -1237,31 +1236,23 @@ flatpak_ides_sdks_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "flatpak"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/jetbrains.sh "idea"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/jetbrains.sh "pycharm"
-            ;;
-
-        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
             ;;
 
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk_jfx.sh "openjdk"
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
             ;;
 
-        7)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk_jfx.sh "openjfx"
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
+            ;;
+
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
             ;;
 
         n | N)
