@@ -24,33 +24,4 @@ native_vscodium(){
     fi
 }
 
-remove_vscodium(){
-    if [ "$DISTRO" == "fedora" ]
-    then
-        sudo rm /etc/yum.repos.d/vscodium.repo
-        sudo dnf remove -y codium
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
-    then
-        sudo rm /etc/zypp/repos.d/vscodium.repo
-        sudo zypper -n rm codium
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo rm archive_uri-https_paulcarroty_gitlab_io_vscodium-deb-rpm-repo_debs_-bookworm.list
-        sudo apt-get remove -y codium
-        
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-if [ "$1" == "flatpak" ]
-then
-    flatpak install --user -y flathub com.vscodium.codium
-    remove_vscodium
-elif [ "$1" == "native" ]
-then
-    flatpak remove --user -y com.vscodium.codium
-    native_vscodium
-else
-    echo "error"
-fi
+native_vscodium
