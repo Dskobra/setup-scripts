@@ -1295,8 +1295,8 @@ flatpak_utils_menu(){
     echo "|Utility Apps|[FLATPAK/OTHER]|"
     echo "------------------------------"
     echo ""
-    echo "(1) Raspberry Pi Imager           (2) GtkHash"
-    echo "(3) MissionCenter"
+    echo "(1) UNetbootin                    (2) Raspberry Pi Imager"
+    echo "(3) GtkHash                       (4) MissionCenter"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -1309,10 +1309,13 @@ flatpak_utils_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
             ;;
 
         3)
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
+            ;;
+
+        4)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
 
