@@ -828,7 +828,7 @@ flatpak_internet_menu(){
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "flatpak"
+            flatpak install --user -y flathub com.dropbox.Client
             ;;
 
         4)
