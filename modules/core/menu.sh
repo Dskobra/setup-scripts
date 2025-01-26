@@ -1297,6 +1297,7 @@ flatpak_utils_menu(){
     echo ""
     echo "(1) UNetbootin                    (2) Raspberry Pi Imager"
     echo "(3) GtkHash                       (4) MissionCenter"
+    echo "(5) Gpu-Viewer"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -1317,6 +1318,10 @@ flatpak_utils_menu(){
 
         4)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
+            ;;
+
+        5)
+            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
             ;;
 
         n | N)
