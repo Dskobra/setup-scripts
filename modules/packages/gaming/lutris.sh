@@ -6,7 +6,10 @@ native_lutris(){
         sudo dnf install -y lutris
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        sudo zypper -n install lutris
+        # on systems with nvidia gpus you have to install their version of libOpenCL1 and
+        # libOpenCL1-32bit which requires accepting the license. auto confirm install and 
+        # auto accepting license doesnt seem to work together.
+        sudo zypper install lutris
     else
         echo "Unkown error has occurred."
     fi
