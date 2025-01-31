@@ -7,18 +7,6 @@ native_lutris(){
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install lutris
-    elif [ "$DISTRO" == "opensuse-leap" ]
-    then
-        echo "============================================"
-        echo "Lutris present in Leap is badly outdated."
-        echo "Please select the flatpak version."
-        echo "============================================"
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "==============================================="
-        echo "Lutris present in Debian is badly outdated."
-        echo "Please select the flatpak version."
-        echo "==============================================="
     else
         echo "Unkown error has occurred."
     fi
@@ -31,12 +19,6 @@ remove_lutris(){
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm lutris
-    elif [ "$DISTRO" == "opensuse-leap" ]
-    then
-        echo "Not removing."
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "Not removing."
     else
         echo "Unkown error has occurred."
     fi

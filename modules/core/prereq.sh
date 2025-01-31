@@ -9,18 +9,10 @@ install_prereq(){
         sudo dnf install -y curl wget flatpak dnf-plugins-core
         sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo dnf update -y
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal"
         sudo zypper -n install wget curl flatpak
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "Following packages will be installed: curl wget flatpak flatseal software-properties-common"
-        sudo apt-get install -y curl wget flatpak
-        sudo apt-get install -y software-properties-common
-        sudo apt-add-repository -y --component contrib non-free 
-        sudo dpkg --add-architecture i386
-        sudo apt-get update && sudo apt-get upgrade -y
     else
         echo "Unkown error has occurred."
     fi
