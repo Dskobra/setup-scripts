@@ -19,12 +19,9 @@ remove_keepassxc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y keepassxc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm keepassxc
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y keepassxc
     else
         echo "Unkown error has occurred."
     fi

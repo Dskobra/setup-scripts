@@ -4,12 +4,9 @@ native_openshot(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y openshot
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install openshot-qt
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y openshot-qt
     else
         echo "Unkown error has occurred."
     fi
@@ -19,12 +16,9 @@ remove_openshot(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y openshot
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm openshot-qt
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y openshot-qt
     else
         echo "Unkown error has occurred."
     fi

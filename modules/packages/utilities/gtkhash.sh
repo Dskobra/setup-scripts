@@ -4,15 +4,12 @@ native_gtkhash(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y gtkhash
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         echo "============================================="
         echo "gtkhash isn't available in openSUSE."
         echo "Please select the flatpak version."
         echo "============================================="
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y gtkhash
     else
         echo "Unkown error has occurred."
     fi
@@ -22,12 +19,9 @@ remove_gtkhash(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y gtkhash
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         echo "Not removing gtkhash as it's not present in openSUSE repos."
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y gtkhash
     else
         echo "Unkown error has occurred."
     fi

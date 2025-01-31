@@ -4,15 +4,9 @@ native_rpi_imager(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y rpi-imager
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install rpi-imager
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "========================================================"
-        echo "Raspberry Pi Imager isn't currently available in Debian."
-        echo "Please select the flatpak version."
-        echo "========================================================"
     else
         echo "Unkown error has occurred."
     fi
@@ -22,12 +16,9 @@ remove_rpi_imager(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y rpi-imager
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] 
     then
         sudo zypper -n rm rpi-imager
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "Not removing Raspberry Pi Imager as it's not present in Debian repos."
     else
         echo "Unkown error has occurred."
     fi

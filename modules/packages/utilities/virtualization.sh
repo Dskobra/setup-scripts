@@ -6,13 +6,10 @@ native_virtualization(){
         sudo dnf update -y
         sudo dnf install -y libvirt-daemon-config-network libvirt-daemon-kvm\
         qemu-kvm virt-install virt-manager virt-viewer
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install patterns-server-kvm_server
         sudo zypper -n install patterns-server-kvm_tools
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y libvirt-daemon-config-network qemu-kvm virt-manager virt-viewer
     else
         echo "Unkown error has occurred."
     fi

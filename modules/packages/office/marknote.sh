@@ -4,15 +4,9 @@ native_marknote(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y marknote
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install marknote
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "============================================="
-        echo "Marknote isn't currently available in Debian."
-        echo "Please select the flatpak version."
-        echo "============================================="
     else
         echo "Unkown error has occurred."
     fi
@@ -22,12 +16,9 @@ remove_marknote(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y marknote
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm marknote
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "Not removing marknote as it's not present in Debian repos."
     else
         echo "Unkown error has occurred."
     fi
