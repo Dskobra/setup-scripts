@@ -16,7 +16,6 @@ main_menu(){
     echo "(1) Hardware Apps                     (2) KDE Apps"
     echo "(3) Internet Apps                     (4) Office Apps"
     echo "(5) Development Apps                  (6) Utility Apps"
-    echo "(9) Misc"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -490,55 +489,6 @@ native_utils_menu(){
     unset input
     native_utils_menu
 }
-
-miscellaneous_menu(){
-    echo "---------------------"
-    echo "|   Miscellaneous   |"
-    echo "---------------------"
-    echo ""
-    echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Remove Audio/Video Codecs"
-    echo "(m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            sudo modprobe xpad
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/misc/remove_codecs.sh
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        miscellaneous_menu
-        ;;
-        
-    esac
-    unset input
-    miscellaneous_menu
-}
 ########################################
 # End native menus
 ########################################
@@ -659,249 +609,6 @@ flatpak_internet_menu(){
         esac
         unset input
         flatpak_internet_menu
-}
-
-flatpak_multimedia_menu(){
-    echo "----------------------------------"
-    echo "|Multimedia Apps|[FLATPAK/OTHER]|"
-    echo "---------------------------------"
-    echo ""
-    echo "(1) VLC Media Player          (2) OBS Studio"
-    echo "(3) OpenShot"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu                 (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh "flatpak"
-            ;;
-
-        2)
-            flatpak install --user -y flathub com.obsproject.Studio
-            ;;
-        
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "flatpak"
-            ;;
-
-        n | N)
-            native_multimedia_menu
-            ;;
-        
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_multimedia_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_multimedia_menu
-}
-
-flatpak_gaming_menu(){
-    echo "-----------------------------"
-    echo "|Gaming Apps|[FLATPAK/OTHER]|"
-    echo "-----------------------------"
-    echo ""
-    echo "(1) Clients/Tools          (2) Other"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu              (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            flatpak_gaming_clients_tools_menu
-            ;;
-
-        2) 
-            flatpak_gaming_other_menu
-            ;;
-
-        n | N)
-            native_gaming_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gaming_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gaming_menu
-}
-
-flatpak_gaming_clients_tools_menu(){
-    echo "-------------------------------"
-    echo "|Clients/Tools|[FLATPAK/OTHER]|"
-    echo "-------------------------------"
-    echo ""
-    echo "Runtimes include mangohud, gamescope and gamemode"
-    echo ""
-    echo "(1) Steam                     (2) Lutris"
-    echo "(3) Runtimes                  (4) ProtonPlus"
-    echo "(5) Protontricks"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu             (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
-            ;;
-
-        2) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
-            ;;
-
-        4)
-            flatpak install --user -y flathub com.vysp3r.ProtonPlus
-            ;;
-
-        5)
-            flatpak install --user -y flathub com.github.Matoking.protontricks
-            ;;
-
-        n | N)
-            native_gaming_clients_tools_menu
-            ;;
-
-        p | P)
-            flatpak_gaming_menu
-            ;;
-
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gaming_clients_tools_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gaming_clients_tools_menu
-}
-
-flatpak_gaming_other_menu(){
-    echo "----------------------------------"
-    echo "|Misc Gaming Apps|[FLATPAK/OTHER]|"
-    echo "----------------------------------"
-    echo ""   
-    echo "(1) Discord                (2) Vesktop"
-    echo "(3) Prism Launcher         (4) Dolphin"
-    echo "(5) Cemu                   (6) WoWUp"
-    echo "(7) Warcraft Logs"
-    echo "(8) WeakAuras Companion"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "flatpak"
-            ;;
-
-        2)
-            flatpak install --user -y flathub dev.vencord.Vesktop
-            ;;
-        
-        3)
-            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
-            ;;
-
-        4)
-            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-            ;;
-
-        5)
-            flatpak install --user -y flathub info.cemu.Cemu
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
-            ;;
-
-        7)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
-            ;;
-
-        8)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
-            ;;
-
-        n | N)
-            native_gaming_other_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        p)
-            flatpak_gaming_menu
-            ;;
-
-        P)
-            flatpak_gaming_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gaming_other_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gaming_other_menu
 }
 
 flatpak_office_menu(){
@@ -1090,9 +797,8 @@ flatpak_utils_menu(){
     echo "|Utility Apps|[FLATPAK/OTHER]|"
     echo "------------------------------"
     echo ""
-    echo "(1) UNetbootin                    (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                       (4) MissionCenter"
-    echo "(5) Gpu-Viewer"
+    echo "(1) Raspberry Pi Imager           (2) GtkHash"
+    echo "(3) MissionCenter                 (4) Gpu-Viewer"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -1105,17 +811,14 @@ flatpak_utils_menu(){
             ;;
 
         2)
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
             ;;
 
-        4)
+        3)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
 
-        5)
+        4)
             flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
             ;;
 
