@@ -651,8 +651,8 @@ native_utils_menu(){
     echo "|Utility Apps|[NATIVE]|"
     echo "-----------------------"
     echo ""
-    echo "(1) UNetbootin                    (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                       (4) Virtualization"
+    echo "(1) Raspberry Pi Imager           (2) GtkHash"
+    echo "(3) Virtualization"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -662,18 +662,14 @@ native_utils_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/unetbootin.sh  
-            ;;
-
-        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
