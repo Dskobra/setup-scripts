@@ -5,12 +5,9 @@ install_remmina(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y remmina
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install remmina
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y remmina
     else
         echo "Unkown error has occurred."
     fi
@@ -21,12 +18,9 @@ remove_remmina(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y remmina
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm remmina
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y remmina
     else
         echo "Unkown error has occurred."
     fi

@@ -18,18 +18,6 @@ install_nvidia(){
         sudo zypper ref
         sudo zypper install-new-recommends --repo NVIDIA
         xdg-open https://en.opensuse.org/SDB:NVIDIA_drivers
-    elif [ "$DISTRO" == "opensuse-leap" ]
-    then
-        sudo zypper -n install openSUSE-repos-Leap-NVIDIA
-        sudo zypper ref
-        sudo zypper -n install-new-recommends --repo NVIDIA
-        xdg-open https://en.opensuse.org/SDB:NVIDIA_drivers
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-add-repository -y --component non-free-firmware
-        sudo apt-get install -y linux-headers-amd64 dkms
-        sudo apt-get install -y nvidia-driver firmware-misc-nonfree
-        xdg-open https://wiki.debian.org/NvidiaGraphicsDrivers
     else
         echo "Unkown error has occurred."
     fi
