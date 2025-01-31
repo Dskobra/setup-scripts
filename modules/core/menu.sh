@@ -1114,7 +1114,7 @@ flatpak_office_menu(){
     echo "-----------------------------"
     echo ""
     echo "(1) LibreOffice           (2) Marknote"
-    echo "(3) Claws-Mail            (5) Thunderbird"
+    echo "(3) Claws-Mail            (4) Thunderbird"
     echo "(5) Bitwarden             (6) KeePassXC"
     echo "(n) Native Apps"
     echo "(m) Main Menu             (0) Exit"
