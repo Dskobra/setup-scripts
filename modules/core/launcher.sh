@@ -67,7 +67,7 @@ opensuse_leap_release_check(){
     if [ "$VERSION_ID" == "15.6" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/core/menu.sh
+        "$SCRIPTS_FOLDER"/modules/core/lts_menu.sh
     else
         echo "These scripts only support Leap 15.6+"
     fi
@@ -78,7 +78,7 @@ debian_release_check(){
     if [ "$VERSION_ID" == "12" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/core/menu.sh
+        "$SCRIPTS_FOLDER"/modules/core/lts_menu.sh
     else
         echo "These scripts only support Debian 12"
     fi
