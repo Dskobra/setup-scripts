@@ -651,8 +651,8 @@ native_utils_menu(){
     echo "|Utility Apps|[NATIVE]|"
     echo "-----------------------"
     echo ""
-    echo "(1) Raspberry Pi Imager           (2) GtkHash"
-    echo "(3) Virtualization"
+    echo "(1) UNetbootin                    (2) Raspberry Pi Imager"
+    echo "(3) GtkHash                       (4) Virtualization"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -662,14 +662,18 @@ native_utils_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/unetbootin.sh  
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
             ;;
 
         3)
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
+            ;;
+
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
@@ -1294,9 +1298,8 @@ flatpak_utils_menu(){
     echo "|Utility Apps|[FLATPAK/OTHER]|"
     echo "------------------------------"
     echo ""
-    echo "(1) UNetbootin                    (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                       (4) MissionCenter"
-    echo "(5) Gpu-Viewer"
+    echo "(1) Raspberry Pi Imager           (2) GtkHash"
+    echo "(3) MissionCenter                 (4) Gpu-Viewer"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -1309,17 +1312,14 @@ flatpak_utils_menu(){
             ;;
 
         2)
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
             ;;
 
-        4)
+        3)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
 
-        5)
+        4)
             flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
             ;;
 
