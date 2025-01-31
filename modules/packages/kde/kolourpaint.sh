@@ -4,12 +4,9 @@ native_kolourpaint(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kolourpaint
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install kolourpaint
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y kolourpaint
     else
         echo "Unkown error has occurred."
     fi
@@ -19,12 +16,9 @@ remove_kolourpaint(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kolourpaint
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm kolourpaint
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y kolourpaint
     else
         echo "Unkown error has occurred."
     fi

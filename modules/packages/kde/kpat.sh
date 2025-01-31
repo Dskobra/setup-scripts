@@ -4,7 +4,7 @@ native_kpat(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kpat
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install kpat
     elif [ "$DISTRO" == "debian" ]
@@ -19,7 +19,7 @@ remove_kpat(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kpat
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm kpat
     elif [ "$DISTRO" == "debian" ]
