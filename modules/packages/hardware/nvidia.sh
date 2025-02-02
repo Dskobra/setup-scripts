@@ -9,10 +9,11 @@ install_nvidia(){
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
+        echo "#####################nvidia GPU Instructions#####################"
         echo "Please open the KDE menu and search for YaST and enter your password when requested."
         echo "Click Software Repositories near the top."
         echo "Click Add in the bottom left and select Community Repositories near the top of the list."
-        echo "Select nVidia Graphics Drivers and accept the license agreement."
+        echo "Select nVidia Graphics Drivers and accept the GnuPG Key."
         echo "Once done close Software Repositories and open Software Management in YaST."
         echo "Now it should have auto selected the drivers for install on the right. So click Accept."
         echo "Lastly reboot once the updates are finished."

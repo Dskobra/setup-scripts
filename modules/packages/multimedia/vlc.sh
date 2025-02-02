@@ -9,6 +9,14 @@ native_vlc(){
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install vlc-qt vlc-codecs
+        echo "#####################libdvdcss2 aka dvd playback instructions#####################"
+        echo "Please open the KDE menu and search for YaST and enter your password when requested."
+        echo "Click Software Repositories near the top."
+        echo "Click Add in the bottom left and select Community Repositories near the top of the list."
+        echo "Select libdvcss and accept the GnuPG Key."
+        echo "Once done close Software Repositories and open Software Management in YaST."
+        echo "Search and install libdvdcss2."
+        echo "Simply reopen VLC or reboot."
     else
         echo "Unkown error has occurred."
     fi
