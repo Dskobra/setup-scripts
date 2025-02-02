@@ -36,7 +36,7 @@ fedora_release_check(){
 }
 
 opensuse_tumbleweed_release_check(){
-    if [ "$VERSION_ID" -gt "20250101" ]
+    if [ "$VERSION_ID" -ge "20250101" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
@@ -47,7 +47,7 @@ opensuse_tumbleweed_release_check(){
 }
 
 opensuse_slowroll_release_check(){
-    if [ "$VERSION_ID" -gt "20250101" ]
+    if [ "$VERSION_ID" -ge "20250101" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
