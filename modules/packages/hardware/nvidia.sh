@@ -9,6 +9,13 @@ install_nvidia(){
         xdg-open https://rpmfusion.org/Howto/NVIDIA?highlight=%28%5CbCategoryHowto%5Cb%29#Installing_the_drivers
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
+        echo "Please open the KDE menu and search for YaST and enter your password when requested."
+        echo "Click Software Repositories near the top."
+        echo "Click add in the bottom left and select Community Repositories near the top of the list."
+        echo "Select nVidia Graphics Drivers and accept the license agreement."
+        echo "Once done close Software Repositories and open Software Management in YaST."
+        echo "Now it should have auto selected the drivers for install on the right. So click Accept."
+        echo "Lastly reboot once the updates are finished."
         xdg-open "https://en.opensuse.org/SDB:NVIDIA_drivers#Via_YaST_(for_Leap_and_Tumbleweed)"
     else
         echo "Unkown error has occurred."
