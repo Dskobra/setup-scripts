@@ -4,12 +4,9 @@ install_transmission(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y transmission-gtk
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install transmission-gtk
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y transmission-gtk
     else
         echo "Unkown error has occurred."
     fi
@@ -19,7 +16,7 @@ remove_transmission(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y transmission-gtk
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm transmission-gtk
     elif [ "$DISTRO" == "debian" ]

@@ -3,37 +3,15 @@
 ### Main launch script which makes the temp/app folders
 ### and sets some variables
 
-make_temp(){
-    test -d "$SCRIPTS_FOLDER"/temp && TEMP_FOLDER="exists"
-    if [ "$TEMP_FOLDER" = "exists" ];
-        then
-           TEMP_FOLDER="exists"
-    elif [ "$TEMP_FOLDER" = "missing" ];
-        then
-        mkdir "$SCRIPTS_FOLDER"/temp            # make a temp folder for all files to be downloaded to
-    fi
-}
-
-make_app_folder(){
-### Store intellij idea and pycharm in ~/Apps
-    test -d "$HOME"/Apps && LOOK_FOR_APP_FOLDER="exists"
-    if [ "$LOOK_FOR_APP_FOLDER" = "exists" ];
-        then
-           LOOK_FOR_APP_FOLDER="exists"
-    elif [ "$LOOK_FOR_APP_FOLDER" = "missing" ];
-        then
-            mkdir "$APP_FOLDER"
-    fi
-}
-
 export SCRIPTS_FOLDER                           # stores full path for setup-scripts
-export APP_FOLDER="$HOME/Apps"                  # app folder thats made for some downloads
 export DISTRO=""                                # stores distro name.
 export COPYRIGHT="Copyright (c) 2021-2025 Jordan Bottoms"
-export VERSION="1.5.2025"
-TEMP_FOLDER="missing"
-LOOK_FOR_APP_FOLDER="missing"
+export VERSION="2.2.2025"
 SCRIPTS_FOLDER=$(pwd)
-make_temp
-make_app_folder
+mkdir $SCRIPTS_FOLDER/temp                       
+mkdir /home/$USER/bin
+sudo mkdir /opt/apps/
+sudo mkdir /opt/apps/icons
+sudo mkdir /opt/apps/appimages
+sudo chown $USER:$USER /opt/apps/ -R
 "$SCRIPTS_FOLDER"/modules/core/launcher.sh

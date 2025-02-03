@@ -13,7 +13,7 @@ main_menu(){
     echo "Released under the MIT license"
     echo ""
     echo ""
-    echo "(1) Hardware Apps                     (2) KDE/GNOME Apps"
+    echo "(1) Hardware Apps                     (2) KDE Apps"
     echo "(3) Internet Apps                     (4) Multimedia Apps"
     echo "(5) Gaming Apps                       (6) Office Apps"
     echo "(7) Development Apps                  (8) Utility Apps"
@@ -30,7 +30,7 @@ main_menu(){
             ;;
 
         2)
-            kde_gnome_apps_menu
+            native_kde_desktop_menu
             ;;
 
         3)
@@ -142,56 +142,6 @@ hardware_menu(){
         hardware_menu
 }
 
-kde_gnome_apps_menu(){
-    echo "----------------------"
-    echo "|   KDE/GNOME Apps   |"
-    echo "----------------------"
-    echo ""
-    echo "Individual apps for KDE/GNOME desktops"
-    echo ""
-    echo "(1) KDE                (2) GNOME"
-    echo "(m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            native_kde_desktop_menu
-            ;;
-        
-        2)
-            native_gnome_desktop_menu
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/mate_apps.sh
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            kde_gnome_apps_menu
-            ;;
-            
-        esac
-        unset input
-        kde_gnome_apps_menu
-}
-
 native_kde_desktop_menu(){
     echo "-------------------"
     echo "|KDE Apps|[NATIVE]|"
@@ -201,8 +151,7 @@ native_kde_desktop_menu(){
     echo "(3) Kleopatra             (4) KDE ISO Image Writer"
     echo "(5) Kate                  (6) K3b"
     echo "(7) Krdc                  (8) Krfb"
-    echo "(f) Flatpak/Other"
-    echo "(p) Previous Menu         (m) Main Menu "
+    echo "(f) Flatpak/Other         (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -210,43 +159,39 @@ native_kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh "native"
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh "native"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh "native"
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kate.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kate.sh "native"
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/k3b.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/k3b.sh
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/krdc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/krdc.sh
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/krfb.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/krfb.sh
             ;;
 
         f | F)
             flatpak_kde_desktop_menu
-            ;;
-
-        p | P)
-            kde_gnome_apps_menu
             ;;
 
         m | M)
@@ -266,60 +211,6 @@ native_kde_desktop_menu(){
         esac
         unset input
         native_kde_desktop_menu
-}
-
-native_gnome_desktop_menu(){
-    echo "---------------------"
-    echo "|GNOME Apps|[NATIVE]|"
-    echo "---------------------"
-    echo ""
-    echo "(1) Dconf Editor           (2) Pavucontrol"
-    echo "(3) Gnome Tweaks"
-    echo "(f) Flatpak/Other"
-    echo "(p) Previous Menu          (m) Main Menu "
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "native"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "native"
-            ;;
-        
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/gnome_tweaks.sh
-            ;;
-
-        f | F)
-            flatpak_gnome_desktop_menu
-            ;;
-
-        p | P)
-            kde_gnome_apps_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            native_gnome_desktop_menu
-            ;;
-            
-        esac
-        unset input
-        native_gnome_desktop_menu
 }
 
 native_internet_menu(){
@@ -760,8 +651,8 @@ native_utils_menu(){
     echo "|Utility Apps|[NATIVE]|"
     echo "-----------------------"
     echo ""
-    echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                       (4) Virtualization"
+    echo "(1) Raspberry Pi Imager           (2) GtkHash"
+    echo "(3) Virtualization"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -769,19 +660,16 @@ native_utils_menu(){
     
     case $input in
 
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh "native"
-            ;;
 
-        2)
+        1)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
@@ -870,8 +758,7 @@ flatpak_kde_desktop_menu(){
     echo ""   
     echo "(1) KDE Patience       (2) Kolourpaint"
     echo "(3) Kleopatra          (4) KDE ISO Image Writer"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu      (m) Main Menu"
+    echo "(n) Native Apps        (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -879,26 +766,23 @@ flatpak_kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kpat.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh "flatpak"
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kolourpaint.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh "flatpak"
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kleopatra.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh "flatpak"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/kde/kde_iso_image_writer.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh "flatpak"
             ;;
 
         n | N)
             native_kde_desktop_menu
-            ;;
-        p | P)
-            kde_gnome_apps_menu
             ;;
 
         m | M)
@@ -920,59 +804,6 @@ flatpak_kde_desktop_menu(){
         flatpak_kde_desktop_menu
 }
 
-flatpak_gnome_desktop_menu(){
-    echo "----------------------------"
-    echo "|Gnome Apps|[FLATPAK/OTHER]|"
-    echo "----------------------------"
-    echo ""
-    echo "(1) Dconf Editor           (2) Pavucontrol"
-    echo "(3) Refine"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu          (m) Main Menu "
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/dconf_editor.sh "flatpak"
-            ;;
-        
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/desktops/gnome/pavucontrol.sh "flatpak"
-            ;;
-
-        3)
-            flatpak install --user -y flathub page.tesk.Refine
-            ;;
-
-        n | N)
-            native_gnome_desktop_menu
-            ;;
-        p | P)
-            kde_gnome_apps_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gnome_desktop_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gnome_desktop_menu
-}
-
 flatpak_internet_menu(){
     echo "-------------------------------"
     echo "|Internet Apps|[FLATPAK/OTHER]|"
@@ -980,7 +811,7 @@ flatpak_internet_menu(){
     echo ""
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Dropbox                (4) Transmissionbt"
-    echo "(5) Remmina"
+    echo "(5) Remmina                (6) Rclone/Browser"
     echo "(n) Native Apps"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -997,7 +828,7 @@ flatpak_internet_menu(){
             ;;
         
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/dropbox.sh "flatpak"
+            flatpak install --user -y flathub com.dropbox.Client
             ;;
 
         4)
@@ -1006,6 +837,10 @@ flatpak_internet_menu(){
 
         5)  
             "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "flatpak"
+            ;;
+
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
             ;;
 
         n | N)
@@ -1198,8 +1033,7 @@ flatpak_gaming_other_menu(){
     echo "(1) Discord                (2) Vesktop"
     echo "(3) Prism Launcher         (4) Dolphin"
     echo "(5) Cemu                   (6) WoWUp"
-    echo "(7) Warcraft Logs"
-    echo "(8) WeakAuras Companion"
+    echo "(7) Warcraft Logs          (8) WeakAuras Companion"
     echo "(n) Native Apps"
     echo "(p) Previous Menu          (m) Main Menu"
     echo "(0) Exit"
@@ -1280,7 +1114,7 @@ flatpak_office_menu(){
     echo "-----------------------------"
     echo ""
     echo "(1) LibreOffice           (2) Marknote"
-    echo "(3) Claws-Mail            (5) Thunderbird"
+    echo "(3) Claws-Mail            (4) Thunderbird"
     echo "(5) Bitwarden             (6) KeePassXC"
     echo "(n) Native Apps"
     echo "(m) Main Menu             (0) Exit"
@@ -1389,10 +1223,10 @@ flatpak_ides_sdks_menu(){
     echo "|IDEs/SDKs|[FLATPAK/OTHER]|"
     echo "---------------------------"
     echo ""   
-    echo "(1) VSCodium                          (2) Geany"
-    echo "(3) Intellij IDEA                     (4) Pycharm"
-    echo "(5) Nodejs LTS                        (6) openJDK 21 LTS"
-    echo "(7) openjfx 21 LTS"
+    echo "(1) Nodejs LTS                        (2) openJDK 21 LTS"
+    echo "(3) openjfx 21 LTS                    (4) Intellij IDEA"
+    echo "(5) Pycharm"
+    echo "(n) Native Apps"
     echo "(p) Previous Menu                     (m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -1401,31 +1235,23 @@ flatpak_ides_sdks_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "flatpak"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/jetbrains.sh "idea"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/jetbrains.sh "pycharm"
-            ;;
-
-        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
             ;;
 
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk_jfx.sh "openjdk"
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
             ;;
 
-        7)
-            "$SCRIPTS_FOLDER"/modules/packages/development/openjdk_jfx.sh "openjfx"
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
+            ;;
+
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
             ;;
 
         n | N)
@@ -1468,8 +1294,8 @@ flatpak_utils_menu(){
     echo "|Utility Apps|[FLATPAK/OTHER]|"
     echo "------------------------------"
     echo ""
-    echo "(1) Fedora Media Writer           (2) Raspberry Pi Imager"
-    echo "(3) GtkHash                       (4) MissionCenter"
+    echo "(1) Raspberry Pi Imager           (2) GtkHash"
+    echo "(3) MissionCenter                 (4) Gpu-Viewer"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -1478,19 +1304,19 @@ flatpak_utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/fedora_media_writer.sh "flatpak"
-            ;;
-
-        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "flatpak"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
             ;;
 
-        4)
+        3)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
+            ;;
+
+        4)
+            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
             ;;
 
         n | N)

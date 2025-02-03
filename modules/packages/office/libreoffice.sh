@@ -4,12 +4,9 @@ native_libreoffice(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y libreoffice
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install libreoffice libreoffice-branding-openSUSE
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y libreoffice 
     else
         echo "Unkown error has occurred."
     fi
@@ -19,12 +16,9 @@ remove_libreoffice(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y libreoffice*
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm libreoffice*
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y libreoffice*
     else
         echo "Unkown error has occurred."
     fi

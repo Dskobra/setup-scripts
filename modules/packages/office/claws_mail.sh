@@ -4,12 +4,9 @@ native_claws_mail(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y claws-mail
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install claws-mail
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y claws-mail
     else
         echo "Unkown error has occurred."
     fi
@@ -19,12 +16,9 @@ remove_claws_mail(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y claws-mail
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm claws-mail
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y claws-mail
     else
         echo "Unkown error has occurred."
     fi

@@ -3,10 +3,8 @@ Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
 * Fedora (non atomic) 40/41
-* Debian              12
-* openSUSE Leap       15.6
-* openSUSE Tumbleweed 20241001+
-* openSUSE Slowroll   20241001+
+* openSUSE Tumbleweed 20250101+
+* openSUSE Slowroll   20250101+
 
 ## Requirements
 * curl

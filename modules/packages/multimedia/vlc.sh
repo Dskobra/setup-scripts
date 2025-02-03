@@ -6,14 +6,17 @@ native_vlc(){
         sudo dnf install -y rpmfusion-free-release-tainted
         sudo dnf install -y libdvdcss
         sudo dnf install -y vlc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install vlc-qt vlc-codecs
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y libdvd-pkg
-        sudo dpkg-reconfigure libdvd-pkg
-        sudo apt-get install -y vlc
+        echo "#####################libdvdcss2 aka dvd playback instructions#####################"
+        echo "1. Please open the KDE menu and search for YaST and enter your password when requested."
+        echo "2. Click Software Repositories near the top."
+        echo "3. Click Add in the bottom left and select Community Repositories near the top of the list."
+        echo "4. Select libdvcss and accept the GnuPG Key."
+        echo "5. Once done close Software Repositories and open Software Management in YaST."
+        echo "6. Search and install libdvdcss2."
+        echo "7. Simply reopen VLC or reboot."
     else
         echo "Unkown error has occurred."
     fi
@@ -25,13 +28,9 @@ remove_vlc(){
         sudo dnf remove -y rpmfusion-free-release-tainted
         sudo dnf remove -y libdvdcss
         sudo dnf remove -y vlc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm vlc-codecs vlc-qt 
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y libdvd-pkg
-        sudo apt-get remove -y vlc
     else
         echo "Unkown error has occurred."
     fi

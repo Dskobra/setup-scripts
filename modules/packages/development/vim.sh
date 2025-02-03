@@ -4,12 +4,9 @@ native_vim(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y vim-enhanced
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install vim
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y vim
     else
         echo "Unkown error has occurred."
     fi

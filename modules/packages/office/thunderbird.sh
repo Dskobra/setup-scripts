@@ -4,7 +4,7 @@ native_thunderbird(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y thunderbird
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install MozillaThunderbird
     elif [ "$DISTRO" == "debian" ]
@@ -19,12 +19,9 @@ remove_thunderbird(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y thunderbird
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm MozillaThunderbird
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y thunderbird
     else
         echo "Unkown error has occurred."
     fi

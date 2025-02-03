@@ -4,12 +4,9 @@ native_game_runtimes(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y mangohud gamescope gamemode
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install mangohud gamescope gamemode
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y mangohud gamescope gamemode
     else
         echo "Unkown error has occurred."
     fi

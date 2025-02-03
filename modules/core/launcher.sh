@@ -15,12 +15,6 @@ distro_check(){
     elif [ $DISTRO == "opensuse-slowroll" ]
     then
         opensuse_slowroll_release_check
-    elif [ $DISTRO == "opensuse-leap" ]
-    then
-        opensuse_leap_release_check
-    elif [ "$DISTRO" == "debian" ]
-    then
-        debian_release_check
     else
         echo "Unfortunately, '$DISTRO $VERSION_ID' is not a supported distro."
     fi
@@ -42,45 +36,23 @@ fedora_release_check(){
 }
 
 opensuse_tumbleweed_release_check(){
-    if [ "$VERSION_ID" -gt "20241001" ]
+    if [ "$VERSION_ID" -ge "20250101" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
-        echo "These scripts only support Tumbleweed released on or after 10/01/2024"
+        echo "These scripts only support Tumbleweed released on or after 01/01/2025"
     fi
 
 }
 
 opensuse_slowroll_release_check(){
-    if [ "$VERSION_ID" -gt "20241001" ]
+    if [ "$VERSION_ID" -ge "20250101" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
-        echo "These scripts only support Slowroll released on or after 10/01/2024"
-    fi
-
-}
-
-opensuse_leap_release_check(){
-    if [ "$VERSION_ID" == "15.6" ]
-    then
-        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/core/menu.sh
-    else
-        echo "These scripts only support Leap 15.6+"
-    fi
-
-}
-
-debian_release_check(){
-    if [ "$VERSION_ID" == "12" ]
-    then
-        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/core/menu.sh
-    else
-        echo "These scripts only support Debian 12"
+        echo "These scripts only support Slowroll released on or after 01/01/2025"
     fi
 
 }

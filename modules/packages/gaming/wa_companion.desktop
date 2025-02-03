@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=WeakAuras_Companion
+GenericName=wa_companion
+Comment=world of warcraft weak auras updater
+Keywords=games;world of warcraft;
+Exec=wa_companion
+Terminal=false
+Type=Application
+Categories=Games;
+Icon=/opt/apps/icons/weakauras.png

@@ -4,15 +4,9 @@ native_discord(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y discord
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install discord
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "========================================================"
-        echo "Discord isn't currently available in Debian."
-        echo "Please select the flatpak version."
-        echo "========================================================"
     else
         echo "Unkown error has occurred."
     fi
@@ -22,12 +16,9 @@ remove_discord(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y discord
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm discord
-    elif [ "$DISTRO" == "debian" ]
-    then
-        echo "Not removing discord as it's not present in Debian repos."
     else
         echo "Unkown error has occurred."
     fi
