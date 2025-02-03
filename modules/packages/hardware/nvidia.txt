@@ -1,0 +1,17 @@
+#####################nVIDIA GPU Instructions#####################
+Step 1. Please open the KDE menu and search for YaST and enter your password when requested.
+
+Step 2. Open Software Management and there should be a list of packages to install on the right if 
+it is a fresh install of openSUSE.
+
+Step 3. Verify either openSUSE-repos-Slowroll-NVIDIA or openSUSE-repos-Tumbleweed-NVIDIA is selected for install. 
+
+Step 4. Click Accept to install and Finish to close out.
+
+Step 5. With YaST still open click Software Repositories near the top.
+
+Step 6. Click refresh near the bottom right and select Refresh Enabled and accept the GnuPG Key."
+
+Step 7. Reopen Software Management and it should have auto selected the drivers for install on the right.
+
+Step 8. Click Accept and accept the licenses. Once done click Finish and reboot!
