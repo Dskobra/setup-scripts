@@ -12,12 +12,19 @@ native_codecs(){
 
         sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
         sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
         sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/' packman-essentials
         sudo zypper ref
-        sudo zypper dist-upgrade --from packman-essentials --allow-vendor-change
-        sudo zypper -n install --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
+        sudo zypper dup --from packman-essentials --allow-vendor-change
+        sudo zypper install --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
+
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
+    then
+        sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Slowroll/Essentials/' packman-essentials
+        sudo zypper ref
+        sudo zypper dup --from packman-essentials --allow-vendor-change
+        sudo zypper  --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
     else
         echo "Unkown error has occurred."
     fi
