@@ -3,6 +3,8 @@
 native_discord(){
     if [ "$DISTRO" == "fedora" ]
     then
+        sudo dnf install -y  libayatana-appindicator-gtk3  libayatana-ido-gtk3\
+        libayatana-indicator-gtk3 
         sudo dnf install -y discord
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
@@ -21,6 +23,24 @@ remove_discord(){
         sudo zypper -n rm discord
     else
         echo "Unkown error has occurred."
+    fi
+}
+
+download_discord(){
+    DISCORDLINK="https://discord.com/api/download?platform=linux&format=tar.gz"
+    if test -d /opt/apps/Discord; then
+        echo "Discord already downloaded."
+    elif ! test -d /opt/apps/Discord; then
+        cd "$SCRIPTS_FOLDER"/temp || exit
+        curl -L -o discord.tar.gz "$DISCORDLINK"
+        tar -xvf discord.tar.gz
+        rm discord.tar.gz
+        mv discord /opt/apps/Discord
+        cd $SCRIPTS_FOLDER
+        echo "Discord is stored in /opt/apps/Discord" >> "$SCRIPTS_FOLDER"/logs/discord.txt 
+        echo "================================================================"
+        echo "Discord is located at /opt/apps/Discord"
+        echo "================================================================"
     fi
 }
 
