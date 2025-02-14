@@ -19,6 +19,9 @@ install_rclone(){
         cp $SCRIPTS_FOLDER/modules/data/rclone_browser.sh /home/$USER/bin/rclone_browser
         cp $SCRIPTS_FOLDER/modules/data/rclone_browser.desktop /home/$USER/Desktop/rclone_browser.desktop
     fi
+
+    sudo -v ; curl https://rclone.org/install.sh | sudo bash
+
 }
 
 install_rclone
