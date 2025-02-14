@@ -324,7 +324,7 @@ native_gaming_menu(){
     echo "|Gaming Apps|[NATIVE]|"
     echo "----------------------"
     echo ""
-    echo "(1) Clients/Tools          (2) Other"
+    echo "(1) Clients/Tools"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -334,10 +334,6 @@ native_gaming_menu(){
 
         1)  
             native_gaming_clients_tools_menu
-            ;;
-
-        2)
-            native_gaming_other_menu
             ;;
 
         f | F)
@@ -416,58 +412,6 @@ native_gaming_clients_tools_menu(){
         esac
         unset input
         native_gaming_clients_tools_menu
-}
-
-native_gaming_other_menu(){
-    echo "---------------------------"
-    echo "|Misc Gaming Apps|[NATIVE]|"
-    echo "---------------------------"
-    echo ""   
-    echo "(1) Discord"
-    echo "(f) Flatpak/Other"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "native"
-            ;;
-
-        f | F)
-            flatpak_gaming_other_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        p)
-            flatpak_gaming_menu
-            ;;
-
-        P)
-            flatpak_gaming_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            native_gaming_other_menu
-            ;;
-            
-        esac
-        unset input
-        native_gaming_other_menu
 }
 
 native_office_menu(){

@@ -1,17 +1,5 @@
 #!/usr/bin/bash
 
-native_discord(){
-    if [ "$DISTRO" == "fedora" ]
-    then
-        sudo dnf install -y discord
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n install discord
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
 remove_discord(){
     if [ "$DISTRO" == "fedora" ]
     then
@@ -57,14 +45,6 @@ download_discord(){
     fi
 }
 
-if [ "$1" == "other" ]
-then   
-    remove_discord
-    install_discord_deps
-    download_discord
-elif [ "$1" == "native" ]
-then
-    native_discord
-else
-    echo "error"
-fi
+remove_discord
+install_discord_deps
+download_discord
