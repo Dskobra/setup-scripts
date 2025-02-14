@@ -3,8 +3,6 @@
 native_discord(){
     if [ "$DISTRO" == "fedora" ]
     then
-        sudo dnf install -y  libayatana-appindicator-gtk3  libayatana-ido-gtk3\
-        libayatana-indicator-gtk3 
         sudo dnf install -y discord
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
@@ -26,6 +24,20 @@ remove_discord(){
     fi
 }
 
+install_discord_deps(){
+    if [ "$DISTRO" == "fedora" ]
+    then
+        sudo dnf install -y  libayatana-appindicator-gtk3  libayatana-ido-gtk3\
+        libayatana-indicator-gtk3 
+    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    then
+        sudo zypper -n install discord
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+
 download_discord(){
     DISCORDLINK="https://discord.com/api/download?platform=linux&format=tar.gz"
     if test -d /opt/apps/Discord; then
@@ -44,14 +56,13 @@ download_discord(){
     fi
 }
 
-if [ "$1" == "flatpak" ]
-then
-    flatpak install --user -y flathub com.discordapp.Discord
-    flatpak override --user com.discordapp.Discord --env=XDG_SESSION_TYPE=x11
+if [ "$1" == "other" ]
+then   
     remove_discord
+    install_discord_deps
+    download_discord
 elif [ "$1" == "native" ]
 then
-    flatpak remove --user -y com.discordapp.Discord
     native_discord
 else
     echo "error"

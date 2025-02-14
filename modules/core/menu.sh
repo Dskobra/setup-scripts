@@ -1043,7 +1043,7 @@ flatpak_gaming_other_menu(){
     case $input in
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
             ;;
 
         2)
