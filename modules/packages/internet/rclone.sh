@@ -16,10 +16,8 @@ install_rclone(){
         curl -L -o $SCRIPTS_FOLDER/temp/rclone_browser.png https://github.com/kapitainsky/RcloneBrowser/blob/master/assets/rclone-browser-32x32.png?raw=true
         mv $SCRIPTS_FOLDER/temp/rclone_browser.png /opt/apps/icons
 
-        cd $SCRIPTS_FOLDER/modules/packages/internet/
-        chmod +x rclone_browser.sh
-        mv $SCRIPTS_FOLDER/modules/packages/internet/rclone_browser.sh /home/$USER/bin/rclone_browser
-        mv $SCRIPTS_FOLDER/modules/packages/internet/rclone_browser.desktop /home/$USER/Desktop/rclone_browser.desktop
+        cp $SCRIPTS_FOLDER/modules/data/rclone_browser.sh /home/$USER/bin/rclone_browser
+        cp $SCRIPTS_FOLDER/modules/data/rclone_browser.desktop /home/$USER/Desktop/rclone_browser.desktop
     fi
 }
 

@@ -19,8 +19,8 @@ download_wowup(){
 
         cd $SCRIPTS_FOLDER/modules/packages/gaming/
         chmod +x wowup.sh
-        cp $SCRIPTS_FOLDER/modules/packages/gaming/wowup.sh /home/$USER/bin/wowup
-        cp $SCRIPTS_FOLDER/modules/packages/gaming/wowup.desktop /home/$USER/Desktop/wowup.desktop
+        cp $SCRIPTS_FOLDER/modules/data/wowup.sh /home/$USER/bin/wowup
+        cp $SCRIPTS_FOLDER/modules/data/wowup.desktop /home/$USER/Desktop/wowup.desktop
 
     fi
 }
@@ -41,8 +41,8 @@ download_warcraft_logs(){
 
         cd $SCRIPTS_FOLDER/modules/packages/gaming/
         chmod +x warcraft_logs.sh
-        cp $SCRIPTS_FOLDER/modules/packages/gaming/warcraft_logs.sh /home/$USER/bin/warcraft_logs
-        cp $SCRIPTS_FOLDER/modules/packages/gaming/warcraft_logs.desktop /home/$USER/Desktop/warcraft_logs.desktop
+        cp $SCRIPTS_FOLDER/modules/data/warcraft_logs.sh /home/$USER/bin/warcraft_logs
+        cp $SCRIPTS_FOLDER/modules/data/warcraft_logs.desktop /home/$USER/Desktop/warcraft_logs.desktop
     fi
 }
 
@@ -62,8 +62,8 @@ download_weakauras_companion(){
 
         cd $SCRIPTS_FOLDER/modules/packages/gaming/
         chmod +x wa_companion.sh
-        cp $SCRIPTS_FOLDER/modules/packages/gaming/wa_companion.sh /home/$USER/bin/wa_companion
-        cp $SCRIPTS_FOLDER/modules/packages/gaming/wa_companion.desktop /home/$USER/Desktop/wa_companion.desktop
+        cp $SCRIPTS_FOLDER/modules/data/wa_companion.sh /home/$USER/bin/wa_companion
+        cp $SCRIPTS_FOLDER/modules/data/wa_companion.desktop /home/$USER/Desktop/wa_companion.desktop
     fi
 }
 
