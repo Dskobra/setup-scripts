@@ -31,7 +31,7 @@ install_discord_deps(){
         libayatana-indicator-gtk3 
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        sudo zypper -n install discord
+        sudo zypper -n install libatomic1 libayatana-appindicator3-1
     else
         echo "Unkown error has occurred."
     fi
