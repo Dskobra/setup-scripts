@@ -47,7 +47,7 @@ download_discord(){
         curl -L -o discord.tar.gz "$DISCORDLINK"
         tar -xvf discord.tar.gz
         rm discord.tar.gz
-        mv discord /opt/apps/Discord
+        mv Discord /opt/apps/Discord
         cd $SCRIPTS_FOLDER
         echo "Discord is stored in /opt/apps/Discord" >> "$SCRIPTS_FOLDER"/logs/discord.txt 
         echo "================================================================"
