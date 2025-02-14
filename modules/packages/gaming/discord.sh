@@ -49,7 +49,7 @@ download_discord(){
         rm discord.tar.gz
         mv Discord /opt/apps/Discord
         cd $SCRIPTS_FOLDER
-        echo "Discord is stored in /opt/apps/Discord" >> "$SCRIPTS_FOLDER"/logs/discord.txt 
+        echo "Discord is stored in /opt/apps/Discord" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "================================================================"
         echo "Discord is located at /opt/apps/Discord"
         echo "================================================================"

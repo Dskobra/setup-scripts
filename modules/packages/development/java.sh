@@ -12,7 +12,7 @@ download_openjdk(){
         rm openjdk21.tar.gz
         mv openjdk21 /opt/apps/openjdk21
         cd $SCRIPTS_FOLDER
-        echo "Temurin openJDK 21 LTS is located at /opt/apps/openjdk21" >> "$SCRIPTS_FOLDER"/logs/openjdx.txt 
+        echo "Temurin openJDK 21 LTS is located at /opt/apps/openjdk21" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "================================================================"
         echo "Temurin openJDK 21 LTS is located at $OPENJDK_LOCATION"
         echo "================================================================"
@@ -31,7 +31,7 @@ download_openjfx(){
         rm openjfx21.zip
         mv openjfx21 /opt/apps/openjfx21
         cd $SCRIPTS_FOLDER
-        echo "Gluon openjfx 21 LTS is located at /opt/apps/openfx21" >> "$SCRIPTS_FOLDER"/logs/openjfx.txt
+        echo "Gluon openjfx 21 LTS is located at /opt/apps/openfx21" >> "$SCRIPTS_FOLDER"/install.txt
         echo "=============================================================="
         echo "Gluon openjfx 21 LTS is located at $OPENJFX_LOCATION"
         echo "=============================================================="
@@ -49,7 +49,7 @@ download_idea(){
         tar -xvf idea.tar.gz
         rm idea.tar.gz
         mv idea* /opt/apps/idea
-        echo "Jetbrains Intellij Idea is located at /opt/apps/idea" >> "$SCRIPTS_FOLDER"/logs/idea.txt 
+        echo "Jetbrains Intellij Idea is located at /opt/apps/idea" >> "$SCRIPTS_FOLDER"/install.txt
         echo "=============================================================="
         echo "Jetbrains Intellij Idea is located at $IDEA_LOCATION"
         echo "=============================================================="
@@ -67,7 +67,7 @@ download_pycharm(){
         tar -xvf pycharm.tar.gz
         rm pycharm.tar.gz
         mv pycharm* /opt/apps/pycharm
-        echo "Jetbrains Pycharm is located at /opt/apps/pycharm" >> "$SCRIPTS_FOLDER"/logs/pycharm.txt 
+        echo "Jetbrains Pycharm is located at /opt/apps/pycharm" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "============================================================"
         echo "Jetbrains Pycharm is located at $PYCHARM_LOCATION"
         echo "============================================================"
