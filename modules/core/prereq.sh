@@ -21,9 +21,9 @@ install_prereq(){
 }
 
 run_prereq_check(){
-    ### make sure curl, wget and flatpak are installed.
+    ### check if required packages should be installed.
+    ### 0 (default) for yes and 1 for no
     PREREQ_FILE=$(cat $SCRIPTS_FOLDER/.prereq.txt)
-    echo $PREREQ_FILE
    if [ "$PREREQ_FILE" != "1" ]
     then
         mkdir /home/$USER/bin
