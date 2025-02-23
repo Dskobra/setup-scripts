@@ -479,9 +479,9 @@ native_development_menu(){
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
-    echo "(1) VIM                        (2) VSCodium"
-    echo "(3) Geany                      (4) C/C++ Compiler"
-    echo "(5) Python Dev Packages        (6) Github Desktop"
+    echo "(1) Github Desktop             (2) VIM"
+    echo "(3) VSCodium                   (4) Geany"
+    echo "(5) C/C++ Compiler             (6) Python Dev Packages"
     echo "(7) Containers                 (8) Lamp Stack"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                  (0) Exit"
@@ -491,27 +491,29 @@ native_development_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
         
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
+            
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
+           
             ;;
 
         7)
@@ -1074,10 +1076,10 @@ flatpak_development_menu(){
     echo "|Development Apps|[FLATPAK/OTHER]|"
     echo "----------------------------------"
     echo ""
-    echo "(1) Nodejs LTS                 (2) openJDK 21 LTS"
-    echo "(3) openjfx 21 LTS             (4) Intellij IDEA"
-    echo "(5) Pycharm                    (6) Github Desktop"
-    echo "(7) Podman Desktop"
+    echo "(1) Github Desktop                (2) Intellij IDEA"
+    echo "(3) Pycharm                       (4) Podman Desktop"             
+    echo "(5) Nodejs LTS                    (6) openJDK 21 LTS"
+    echo "(7) openjfx 21 LTS"
     echo "(n) Native Apps"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
@@ -1087,31 +1089,32 @@ flatpak_development_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
-            ;;
-
-        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "flatpak"
             ;;
 
-        7)
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
+            
+            ;;
+
+        4)
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+            ;;
+
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
+            ;;
+
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
+            ;;
+
+        7)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
             ;;
 
         n | N)
