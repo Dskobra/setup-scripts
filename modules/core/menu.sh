@@ -479,65 +479,12 @@ native_development_menu(){
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
-    echo "(1) IDEs/SDKs         (2) Github Desktop"
-    echo "(3) Containers        (4) Lamp Stack"
+    echo "(1) VIM                        (2) VSCodium"
+    echo "(3) Geany                      (4) C/C++ Compiler"
+    echo "(5) Python Dev Packages        (6) Github Desktop"
+    echo "(7) Containers                 (8) Lamp Stack"
     echo "(f) Flatpak/Other"
-    echo "(m) Main Menu         (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            native_ides_sdks_menu
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
-            ;;
-
-        f | F)
-            flatpak_development_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        native_development_menu
-        ;;
-        
-    esac
-    unset input
-    native_development_menu
-}
-
-native_ides_sdks_menu(){
-    echo "---------------------"
-    echo "|IDE's/SDKs|[NATIVE]|"
-    echo "---------------------"
-    echo ""
-    echo "(1) VIM                               (2) VSCodium"
-    echo "(3) Geany                             (4) C/C++ Compiler"
-    echo "(5) Python Dev Packages"
-    echo "(f) Flatpak/Other"
-    echo "(p) Previous Menu                     (m) Main Menu"
-    echo "(0) Exit"
+    echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
     
@@ -563,12 +510,20 @@ native_ides_sdks_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
             ;;
 
-        f | F)
-            flatpak_ides_sdks_menu
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
             ;;
 
-        p | P)
-            native_development_menu
+        7)
+            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
+            ;;
+
+        8)
+            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
+            ;;
+
+        f | F)
+            flatpak_development_menu
             ;;
 
         m | M)
@@ -582,12 +537,12 @@ native_ides_sdks_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        native_ides_sdks_menu
+        native_development_menu
         ;;
         
     esac
     unset input
-    native_ides_sdks_menu
+    native_development_menu
 }
 
 native_utils_menu(){
@@ -1119,64 +1074,17 @@ flatpak_development_menu(){
     echo "|Development Apps|[FLATPAK/OTHER]|"
     echo "----------------------------------"
     echo ""
-    echo "(1) IDEs/SDKs         (2) Github Desktop"
-    echo "(3) Podman Desktop"
+    echo "(1) Nodejs LTS                 (2) openJDK 21 LTS"
+    echo "(3) openjfx 21 LTS             (4) Intellij IDEA"
+    echo "(5) Pycharm                    (6) Github Desktop"
+    echo "(7) Podman Desktop"
     echo "(n) Native Apps"
-    echo "(m) Main Menu         (0) Exit"
+    echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
     read -r input
     
     case $input in
 
-        1)
-            flatpak_ides_sdks_menu
-            ;;
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "flatpak"
-            ;;
-
-        3)
-            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-            ;;
-        n | N)
-            native_development_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        flatpak_development_menu
-        ;;
-        
-    esac
-    unset input
-    flatpak_development_menu
-}
-
-flatpak_ides_sdks_menu(){
-
-    echo "---------------------------"
-    echo "|IDEs/SDKs|[FLATPAK/OTHER]|"
-    echo "---------------------------"
-    echo ""   
-    echo "(1) Nodejs LTS                        (2) openJDK 21 LTS"
-    echo "(3) openjfx 21 LTS                    (4) Intellij IDEA"
-    echo "(5) Pycharm"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu                     (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
 
         1)
             "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
@@ -1198,23 +1106,19 @@ flatpak_ides_sdks_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
             ;;
 
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "flatpak"
+            ;;
+
+        7)
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
+            ;;
+
         n | N)
-            native_ides_sdks_menu
+            native_development_menu
             ;;
 
-        p)
-            flatpak_development_menu
-            ;;
-
-        P)
-            flatpak_development_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
+        m | M)
             main_menu
             ;;
 
@@ -1225,12 +1129,12 @@ flatpak_ides_sdks_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        flatpak_ides_sdks_menu
+        flatpak_development_menu
         ;;
         
     esac
     unset input
-    flatpak_ides_sdks_menu
+    flatpak_development_menu
 }
 
 flatpak_utils_menu(){
