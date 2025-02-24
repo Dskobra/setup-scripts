@@ -39,7 +39,7 @@ download_openjfx(){
 }
 
 download_idea(){
-    IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2024.2.1.tar.gz"
+    IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2024.3.3.tar.gz"
     
     if test -d /opt/apps/idea; then
         echo "Intellij Idea already downloaded."
@@ -57,7 +57,7 @@ download_idea(){
 }
 
 download_pycharm(){
-    PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2024.2.1.tar.gz"
+    PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2024.3.3.tar.gz"
     
     if test -d /opt/apps/pycharm; then
         echo "Pycharm already downloaded."
