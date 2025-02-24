@@ -324,7 +324,10 @@ native_gaming_menu(){
     echo "|Gaming Apps|[NATIVE]|"
     echo "----------------------"
     echo ""
-    echo "(1) Clients/Tools"
+    echo "Runtimes include mangohud, gamemode, proton plus/tricks"
+    echo ""
+    echo "(1) Runtimes               (2) Steam"
+    echo "(3) Lutris"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -332,8 +335,18 @@ native_gaming_menu(){
     
     case $input in
 
+
         1)  
-            native_gaming_clients_tools_menu
+            
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
+            ;;
+
+        2) 
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
         f | F)
@@ -356,62 +369,6 @@ native_gaming_menu(){
         esac
         unset input
         native_gaming_menu
-}
-
-native_gaming_clients_tools_menu(){
-    echo "------------------------"
-    echo "|Clients/Tools|[NATIVE]|"
-    echo "------------------------"
-    echo ""
-    echo "Runtimes include mangohud, gamescope and gamemode"
-    echo ""
-    echo "(1) Steam                  (2) Lutris"
-    echo "(3) Runtimes"
-    echo "(f) Flatpak/Other"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
-            ;;
-
-        2) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
-            ;;
-
-        f | F)
-            flatpak_gaming_clients_tools_menu
-            ;;
-
-        p | P)
-            native_gaming_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            native_gaming_clients_tools_menu
-            ;;
-            
-        esac
-        unset input
-        native_gaming_clients_tools_menu
 }
 
 native_office_menu(){
@@ -821,20 +778,60 @@ flatpak_gaming_menu(){
     echo "|Gaming Apps|[FLATPAK/OTHER]|"
     echo "-----------------------------"
     echo ""
-    echo "(1) Clients/Tools          (2) Other"
+    echo "Runtimes include mangohud, gamemode, proton plus/tricks"
+    echo ""
+    echo "(1) Runtimes                (2) Steam"
+    echo "(3) Lutris                  (4) Discord"                
+    echo "(5) Prism Launcher          (6) Dolphin"
+    echo "(7) Cemu                    (8) WoWUp"
+    echo "(9) Warcraft Logs           (10) WeakAuras Companion"
     echo "(n) Native Apps"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(m) Main Menu               (0) Exit"
     printf "Option: "
     read -r input
     
     case $input in
 
         1)  
-            flatpak_gaming_clients_tools_menu
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
+            
             ;;
 
         2) 
-            flatpak_gaming_other_menu
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
+            ;;
+
+
+        4)  
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
+            ;;
+        
+        5)
+            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
+            ;;
+
+        6)
+            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+            ;;
+
+        7)
+            flatpak install --user -y flathub info.cemu.Cemu
+            ;;
+
+        8)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
+            ;;
+
+        9)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
+            ;;
+
+        10)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
             ;;
 
         n | N)
@@ -858,155 +855,6 @@ flatpak_gaming_menu(){
         esac
         unset input
         flatpak_gaming_menu
-}
-
-flatpak_gaming_clients_tools_menu(){
-    echo "-------------------------------"
-    echo "|Clients/Tools|[FLATPAK/OTHER]|"
-    echo "-------------------------------"
-    echo ""
-    echo "Runtimes include mangohud, gamescope and gamemode"
-    echo ""
-    echo "(1) Steam                     (2) Lutris"
-    echo "(3) Runtimes                  (4) ProtonPlus"
-    echo "(5) Protontricks"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu             (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
-            ;;
-
-        2) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
-            ;;
-
-        4)
-            flatpak install --user -y flathub com.vysp3r.ProtonPlus
-            ;;
-
-        5)
-            flatpak install --user -y flathub com.github.Matoking.protontricks
-            ;;
-
-        n | N)
-            native_gaming_clients_tools_menu
-            ;;
-
-        p | P)
-            flatpak_gaming_menu
-            ;;
-
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gaming_clients_tools_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gaming_clients_tools_menu
-}
-
-flatpak_gaming_other_menu(){
-    echo "----------------------------------"
-    echo "|Misc Gaming Apps|[FLATPAK/OTHER]|"
-    echo "----------------------------------"
-    echo ""   
-    echo "(1) Discord                (2) Vesktop"
-    echo "(3) Prism Launcher         (4) Dolphin"
-    echo "(5) Cemu                   (6) WoWUp"
-    echo "(7) Warcraft Logs          (8) WeakAuras Companion"
-    echo "(n) Native Apps"
-    echo "(p) Previous Menu          (m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
-            ;;
-
-        2)
-            flatpak install --user -y flathub dev.vencord.Vesktop
-            ;;
-        
-        3)
-            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
-            ;;
-
-        4)
-            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-            ;;
-
-        5)
-            flatpak install --user -y flathub info.cemu.Cemu
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
-            ;;
-
-        7)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
-            ;;
-
-        8)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
-            ;;
-
-        n | N)
-            native_gaming_other_menu
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        p)
-            flatpak_gaming_menu
-            ;;
-
-        P)
-            flatpak_gaming_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_gaming_other_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_gaming_other_menu
 }
 
 flatpak_office_menu(){
