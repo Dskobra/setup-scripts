@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 download_openjdk(){
-    OPENJDK_LINK="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.5%2B11/OpenJDK21U-jdk_x64_linux_hotspot_21.0.5_11.tar.gz"
+    OPENJDK_LINK="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz"
     if test -d /opt/apps/openjdk21; then
         echo "openjdk21 already downloaded."
     elif ! test -d /opt/apps//openjdk21; then
@@ -20,7 +20,7 @@ download_openjdk(){
 }
 
 download_openjfx(){
-    OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.5/openjfx-21.0.5_linux-x64_bin-sdk.zip"
+    OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.6/openjfx-21.0.6_linux-x64_bin-sdk.zip"
     if test -d /opt/apps/openjfx21; then
         echo "openjfx21 already downloaded."
     elif ! test -d /opt/apps/openjfx21; then
