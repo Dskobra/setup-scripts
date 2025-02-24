@@ -53,7 +53,7 @@ main_menu(){
             ;;
 
         8)
-            native_utils_menu
+            flatpak_utils_menu
             ;;
 
         9)
@@ -439,7 +439,8 @@ native_development_menu(){
     echo "(1) Github Desktop             (2) VIM"
     echo "(3) VSCodium                   (4) Geany"
     echo "(5) C/C++ Compiler             (6) Python Dev Packages"
-    echo "(7) Containers                 (8) Lamp Stack"
+    echo "(7) Containers                 (8) Virtualization"
+    echo "(9) Lamp Stack"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
@@ -478,6 +479,10 @@ native_development_menu(){
             ;;
 
         8)
+            "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
+            ;;
+
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
@@ -502,56 +507,6 @@ native_development_menu(){
     esac
     unset input
     native_development_menu
-}
-
-native_utils_menu(){
-    echo "-----------------------"
-    echo "|Utility Apps|[NATIVE]|"
-    echo "-----------------------"
-    echo ""
-    echo "(1) Raspberry Pi Imager           (2) GtkHash"
-    echo "(3) Virtualization"
-    echo "(f) Flatpak/Other"
-    echo "(m) Main Menu                     (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "native"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "native"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
-            ;;
-
-        f | F)
-            flatpak_utils_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        native_utils_menu
-        ;;
-        
-    esac
-    unset input
-    native_utils_menu
 }
 
 miscellaneous_menu(){
@@ -995,7 +950,6 @@ flatpak_utils_menu(){
     echo ""
     echo "(1) Raspberry Pi Imager           (2) GtkHash"
     echo "(3) MissionCenter                 (4) Gpu-Viewer"
-    echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
@@ -1003,11 +957,11 @@ flatpak_utils_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/rpi_imager.sh "flatpak"
+            flatpak install --user -y flathub org.raspberrypi.rpi-imager
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/gtkhash.sh "flatpak"
+            flatpak install --user -y flathub org.gtkhash.gtkhash
             ;;
 
         3)
