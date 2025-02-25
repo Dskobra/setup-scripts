@@ -13,10 +13,10 @@ main_menu(){
     echo "Released under the MIT license"
     echo ""
     echo ""
-    echo "(1) Hardware Apps                     (2) KDE Apps"
+    echo "(1) Hardware                          (2) KDE Apps"
     echo "(3) Internet Apps                     (4) Multimedia Apps"
     echo "(5) Gaming Apps                       (6) Office Apps"
-    echo "(7) Development Apps                  (8) Utility Apps"
+    echo "(7) Dev Apps                          (8) Utility Apps"
     echo "(9) Misc"
     echo "(0) Exit"
     printf "Option: "
@@ -49,7 +49,7 @@ main_menu(){
             native_office_menu
             ;;
         7)
-            native_development_menu
+            native_dev_menu
             ;;
 
         8)
@@ -76,9 +76,9 @@ main_menu(){
 }
 
 hardware_menu(){
-    echo "-------------------"
-    echo "|Hardware|[NATIVE]|"
-    echo "-------------------"
+    echo "-----------------------"
+    echo "|Hardware|[NATIVE(RPM)]|"
+    echo "-----------------------"
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
@@ -143,9 +143,9 @@ hardware_menu(){
 }
 
 native_kde_desktop_menu(){
-    echo "-------------------"
-    echo "|KDE Apps|[NATIVE]|"
-    echo "-------------------"
+    echo "------------------------"
+    echo "|KDE Apps|[NATIVE(RPM)]|"
+    echo "------------------------"
     echo ""
     echo "(1) KDE Patience          (2) Kolourpaint "
     echo "(3) Kleopatra             (4) KDE ISO Image Writer"
@@ -214,9 +214,9 @@ native_kde_desktop_menu(){
 }
 
 native_internet_menu(){
-    echo "------------------------"
-    echo "|Internet Apps|[NATIVE]|"
-    echo "------------------------"
+    echo "-----------------------------"
+    echo "|Internet Apps|[NATIVE(RPM)]|"
+    echo "-----------------------------"
     echo ""
     echo "(1) Firefox                (2) Brave Browser"
     echo "(3) Transmissionbt         (4) Remmina"
@@ -267,9 +267,9 @@ native_internet_menu(){
 }
 
 native_multimedia_menu(){
-    echo "--------------------------"
-    echo "|Multimedia Apps|[NATIVE]|"
-    echo "--------------------------"
+    echo "-------------------------------"
+    echo "|Multimedia Apps|[NATIVE(RPM)]|"
+    echo "-------------------------------"
     echo ""
     echo "(1) Audio/Video Codecs    (2) VLC Media Player"
     echo "(3) OpenShot              (4) xfburn "
@@ -320,9 +320,9 @@ native_multimedia_menu(){
 }
 
 native_gaming_menu(){
-    echo "----------------------"
-    echo "|Gaming Apps|[NATIVE]|"
-    echo "----------------------"
+    echo "---------------------------"
+    echo "|Gaming Apps|[NATIVE(RPM)]|"
+    echo "---------------------------"
     echo ""
     echo "Runtimes include mangohud, gamemode, proton plus/tricks"
     echo ""
@@ -372,9 +372,9 @@ native_gaming_menu(){
 }
 
 native_office_menu(){
-    echo "----------------------"
-    echo "|Office Apps|[NATIVE]|"
-    echo "----------------------"
+    echo "---------------------------"
+    echo "|Office Apps|[NATIVE(RPM)]|"
+    echo "---------------------------"
     echo ""
     echo "(1) LibreOffice               (2) Marknote"
     echo "(3) Claws-Mail                (4) Thunderbird"
@@ -429,12 +429,10 @@ native_office_menu(){
         native_office_menu
 }
 
-native_development_menu(){
-    echo "---------------------------"
-    echo "|Development Apps|[NATIVE]|"
-    echo "---------------------------"
-    echo ""
-    echo "Mostly IDEs and compilers."
+native_dev_menu(){
+    echo "------------------------"
+    echo "|Dev Apps|[NATIVE(RPM)]|"
+    echo "------------------------"
     echo ""
     echo "(1) VIM                        (2) VSCodium"
     echo "(3) Geany                      (4) C/C++ Compiler"
@@ -483,7 +481,7 @@ native_development_menu(){
             ;;
 
         f | F)
-            flatpak_development_menu
+            flatpak_dev_menu
             ;;
 
         m | M)
@@ -497,12 +495,12 @@ native_development_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        native_development_menu
+        native_dev_menu
         ;;
         
     esac
     unset input
-    native_development_menu
+    native_dev_menu
 }
 
 miscellaneous_menu(){
@@ -870,10 +868,10 @@ flatpak_office_menu(){
         flatpak_office_menu
 }
 
-flatpak_development_menu(){
-    echo "----------------------------------"
-    echo "|Development Apps|[FLATPAK/OTHER]|"
-    echo "----------------------------------"
+flatpak_dev_menu(){
+    echo "--------------------------"
+    echo "|Dev Apps|[FLATPAK/OTHER]|"
+    echo "--------------------------"
     echo ""
     echo "(1) Github Desktop                (2) Intellij IDEA"
     echo "(3) Pycharm                       (4) Podman Desktop"             
@@ -917,7 +915,7 @@ flatpak_development_menu(){
             ;;
 
         n | N)
-            native_development_menu
+            native_dev_menu
             ;;
 
         m | M)
@@ -931,12 +929,12 @@ flatpak_development_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        flatpak_development_menu
+        flatpak_dev_menu
         ;;
         
     esac
     unset input
-    flatpak_development_menu
+    flatpak_dev_menu
 }
 
 flatpak_utils_menu(){
