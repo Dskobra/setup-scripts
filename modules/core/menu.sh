@@ -76,9 +76,9 @@ main_menu(){
 }
 
 hardware_menu(){
-    echo "-----------------------"
+    echo "------------------------"
     echo "|Hardware|[NATIVE(RPM)]|"
-    echo "-----------------------"
+    echo "------------------------"
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
