@@ -436,11 +436,10 @@ native_development_menu(){
     echo ""
     echo "Mostly IDEs and compilers."
     echo ""
-    echo "(1) Github Desktop             (2) VIM"
-    echo "(3) VSCodium                   (4) Geany"
-    echo "(5) C/C++ Compiler             (6) Python Dev Packages"
-    echo "(7) Containers                 (8) Virtualization"
-    echo "(9) Lamp Stack"
+    echo "(1) VIM                        (2) VSCodium"
+    echo "(3) Geany                      (4) C/C++ Compiler"
+    echo "(5) Python Dev Packages        (6) Containers"
+    echo "(7) Virtualization             (8) Lamp Stack"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
@@ -448,41 +447,38 @@ native_development_menu(){
     
     case $input in
 
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "native"
-            ;;
 
-        2)
+        1)
             "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
         
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
             
             ;;
 
-        6)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
            
             ;;
 
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
