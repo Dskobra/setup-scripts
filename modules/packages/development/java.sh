@@ -8,7 +8,7 @@ download_openjdk(){
         cd "$SCRIPTS_FOLDER"/temp || exit
         curl -L -o openjdk21.tar.gz "$OPENJDK_LINK"
         tar -xvf openjdk21.tar.gz
-        mv jdk-21.0.5+11 openjdk21
+        mv jdk-21* openjdk21
         rm openjdk21.tar.gz
         mv openjdk21 /opt/apps/openjdk21
         cd $SCRIPTS_FOLDER
@@ -27,7 +27,7 @@ download_openjfx(){
         cd "$SCRIPTS_FOLDER"/temp || exit
         curl -L -o openjfx21.zip "$OPENJFX_LINK"
         unzip openjfx21.zip
-        mv javafx-sdk-21.0.5 openjfx21
+        mv javafx-sdk-21* openjfx21
         rm openjfx21.zip
         mv openjfx21 /opt/apps/openjfx21
         cd $SCRIPTS_FOLDER
