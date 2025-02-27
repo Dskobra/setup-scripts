@@ -15,9 +15,8 @@ main_menu(){
     echo ""
     echo "(1) Hardware                          (2) KDE Apps"
     echo "(3) Internet Apps                     (4) Multimedia Apps"
-    echo "(5) Gaming Apps                       (6) Office Apps"
-    echo "(7) Dev Apps                          (8) Utility Apps"
-    echo "(9) Misc"
+    echo "(5) Gaming Apps                       (6) Dev Apps"
+    echo "(7) Extra Apps                        (8) Misc"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -46,17 +45,14 @@ main_menu(){
             ;;
 
         6)
-            native_office_menu
-            ;;
-        7)
             native_dev_menu
             ;;
 
-        8)
-            flatpak_utils_menu
+        7)
+            native_extras_menu
             ;;
 
-        9)
+        8)
             miscellaneous_menu
             ;;
 
@@ -371,63 +367,6 @@ native_gaming_menu(){
         native_gaming_menu
 }
 
-native_office_menu(){
-    echo "---------------------------"
-    echo "|Office Apps|[NATIVE(RPM)]|"
-    echo "---------------------------"
-    echo ""
-    echo "(1) LibreOffice               (2) Marknote"
-    echo "(3) Claws-Mail                (4) Thunderbird"
-    echo "(5) KeePassXC"
-    echo "(f) Flatpak/Other"
-    echo "(m) Main Menu                 (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh "native"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "native"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "native"
-            ;;
-        
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "native"
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "native"
-            ;;
-
-        f | F)
-            flatpak_office_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            native_office_menu
-            ;;
-            
-        esac
-        unset input
-        native_office_menu
-}
 
 native_dev_menu(){
     echo "------------------------"
@@ -473,7 +412,7 @@ native_dev_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/utilities/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
         8)
@@ -502,6 +441,66 @@ native_dev_menu(){
     unset input
     native_dev_menu
 }
+
+native_extras_menu(){
+    echo "--------------------------"
+    echo "|Extra Apps|[NATIVE(RPM)]|"
+    echo "--------------------------"
+    echo ""
+    echo "(1) LibreOffice               (2) Marknote"
+    echo "(3) Claws-Mail                (4) Thunderbird"
+    echo "(5) KeePassXC"
+    echo "(f) Flatpak/Other"
+    echo "(m) Main Menu                 (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh "native"
+            ;;
+
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/marknote.sh "native"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/claws_mail.sh "native"
+            ;;
+        
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/thunderbird.sh "native"
+            ;;
+
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "native"
+            ;;
+
+        f | F)
+            flatpak_extras_menu
+            ;;
+
+        m | M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            native_extras_menu
+            ;;
+            
+        esac
+        unset input
+        native_extras_menu
+}
+
+
 
 miscellaneous_menu(){
     echo "---------------------"
@@ -806,68 +805,6 @@ flatpak_gaming_menu(){
         flatpak_gaming_menu
 }
 
-flatpak_office_menu(){
-    echo "-----------------------------"
-    echo "|Office Apps|[FLATPAK/OTHER]|"
-    echo "-----------------------------"
-    echo ""
-    echo "(1) LibreOffice           (2) Marknote"
-    echo "(3) Claws-Mail            (4) Thunderbird"
-    echo "(5) Bitwarden             (6) KeePassXC"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu             (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/office/libreoffice.sh "flatpak"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/office/marknote.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/office/claws_mail.sh "flatpak"
-            ;;
-        
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/office/thunderbird.sh "flatpak"
-            ;;
-
-        5)
-            flatpak install --user -y flathub com.bitwarden.desktop
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/office/keepassxc.sh "flatpak"
-            ;;
-
-        n | N)
-            native_office_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            flatpak_office_menu
-            ;;
-            
-        esac
-        unset input
-        flatpak_office_menu
-}
-
 flatpak_dev_menu(){
     echo "--------------------------"
     echo "|Dev Apps|[FLATPAK/OTHER]|"
@@ -935,6 +872,88 @@ flatpak_dev_menu(){
     esac
     unset input
     flatpak_dev_menu
+}
+
+flatpak_extras_menu(){
+    echo "-----------------------------"
+    echo "|Office Apps|[FLATPAK/OTHER]|"
+    echo "-----------------------------"
+    echo ""
+    echo "(1) LibreOffice               (2) Marknote"
+    echo "(3) Claws-Mail                (4) Thunderbird"
+    echo "(5) Bitwarden                 (6) KeePassXC"
+    echo "(7) Raspberry Pi Imager       (8) GtkHash"
+    echo "(9) MissionCenter             (10) Gpu-Viewer"
+    echo "(n) Native Apps"
+    echo "(m) Main Menu             (0) Exit"
+    printf "Option: "
+    read -r input
+    
+    case $input in
+
+        1)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh "flatpak"
+            ;;
+
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/marknote.sh "flatpak"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/claws_mail.sh "flatpak"
+            ;;
+        
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/thunderbird.sh "flatpak"
+            ;;
+
+        5)
+            flatpak install --user -y flathub com.bitwarden.desktop
+            ;;
+
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "flatpak"
+            ;;
+
+        7)
+            flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            ;;
+
+        8)
+            flatpak install --user -y flathub org.gtkhash.gtkhash
+            ;;
+
+        9)
+            flatpak install --user -y flathub io.missioncenter.MissionCenter
+            ;;
+
+        10)
+            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
+            ;;
+
+        
+
+        n | N)
+            native_extras_menu
+            ;;
+
+        m | M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            flatpak_extras_menu
+            ;;
+            
+        esac
+        unset input
+        flatpak_extras_menu
 }
 
 flatpak_utils_menu(){
