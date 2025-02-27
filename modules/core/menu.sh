@@ -886,7 +886,7 @@ flatpak_dev_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/github_desktop.sh "flatpak"
+            flatpak install --user -y flathub io.github.shiftey.Desktop
             ;;
 
         2)

@@ -1,17 +1,5 @@
 #!/usr/bin/bash
 
-remove_discord(){
-    if [ "$DISTRO" == "fedora" ]
-    then
-        sudo dnf remove -y discord
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n rm discord
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
 install_discord_deps(){
     if [ "$DISTRO" == "fedora" ]
     then
@@ -45,6 +33,5 @@ download_discord(){
     fi
 }
 
-remove_discord
 install_discord_deps
 download_discord
