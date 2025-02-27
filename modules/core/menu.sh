@@ -500,8 +500,6 @@ native_extras_menu(){
         native_extras_menu
 }
 
-
-
 miscellaneous_menu(){
     echo "---------------------"
     echo "|   Miscellaneous   |"
