@@ -548,6 +548,7 @@ miscellaneous_menu(){
     unset input
     miscellaneous_menu
 }
+
 ########################################
 # End native menus
 ########################################
@@ -813,7 +814,7 @@ flatpak_dev_menu(){
     echo "(5) Nodejs LTS                    (6) openJDK 21 LTS"
     echo "(7) openjfx 21 LTS"
     echo "(n) Native Apps"
-    echo "(m) Main Menu                  (0) Exit"
+    echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
     read -r input
     
@@ -873,17 +874,16 @@ flatpak_dev_menu(){
 }
 
 flatpak_extras_menu(){
-    echo "-----------------------------"
-    echo "|Office Apps|[FLATPAK/OTHER]|"
-    echo "-----------------------------"
+    echo "----------------------------"
+    echo "|Extra Apps|[FLATPAK/OTHER]|"
+    echo "----------------------------"
     echo ""
     echo "(1) LibreOffice               (2) Marknote"
-    echo "(3) Claws-Mail                (4) Thunderbird"
-    echo "(5) Bitwarden                 (6) KeePassXC"
-    echo "(7) Raspberry Pi Imager       (8) GtkHash"
-    echo "(9) MissionCenter             (10) Gpu-Viewer"
+    echo "(3) Bitwarden                 (4) KeePassXC"
+    echo "(5) Raspberry Pi Imager       (6) GtkHash"
+    echo "(7) MissionCenter             (8) Gpu-Viewer"
     echo "(n) Native Apps"
-    echo "(m) Main Menu             (0) Exit"
+    echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
     read -r input
     
@@ -898,38 +898,28 @@ flatpak_extras_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/claws_mail.sh "flatpak"
-            ;;
-        
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/thunderbird.sh "flatpak"
-            ;;
-
-        5)
             flatpak install --user -y flathub com.bitwarden.desktop
             ;;
 
-        6)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "flatpak"
             ;;
 
-        7)
+        5)
             flatpak install --user -y flathub org.raspberrypi.rpi-imager
             ;;
 
-        8)
+        6)
             flatpak install --user -y flathub org.gtkhash.gtkhash
             ;;
 
-        9)
+        7)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
 
-        10)
+        8)
             flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
             ;;
-
-        
 
         n | N)
             native_extras_menu
@@ -952,58 +942,6 @@ flatpak_extras_menu(){
         esac
         unset input
         flatpak_extras_menu
-}
-
-flatpak_utils_menu(){
-    echo "------------------------------"
-    echo "|Utility Apps|[FLATPAK/OTHER]|"
-    echo "------------------------------"
-    echo ""
-    echo "(1) Raspberry Pi Imager           (2) GtkHash"
-    echo "(3) MissionCenter                 (4) Gpu-Viewer"
-    echo "(m) Main Menu                     (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            flatpak install --user -y flathub org.raspberrypi.rpi-imager
-            ;;
-
-        2)
-            flatpak install --user -y flathub org.gtkhash.gtkhash
-            ;;
-
-        3)
-            flatpak install --user -y flathub io.missioncenter.MissionCenter
-            ;;
-
-        4)
-            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
-            ;;
-
-        n | N)
-            native_utils_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        flatpak_utils_menu
-        ;;
-        
-    esac
-    unset input
-    flatpak_utils_menu
 }
 
 ########################################
