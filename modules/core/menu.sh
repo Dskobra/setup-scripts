@@ -448,8 +448,7 @@ native_extras_menu(){
     echo "--------------------------"
     echo ""
     echo "(1) LibreOffice               (2) Marknote"
-    echo "(3) Claws-Mail                (4) Thunderbird"
-    echo "(5) KeePassXC"
+    echo "(3) KeePassXC"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
@@ -466,14 +465,6 @@ native_extras_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/claws_mail.sh "native"
-            ;;
-        
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/thunderbird.sh "native"
-            ;;
-
-        5)
             "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "native"
             ;;
 
