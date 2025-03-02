@@ -14,8 +14,8 @@ download_wowup(){
         curl -L -o "$WOWUPBINARY" "$WOWUPLINK"
         chmod +x "$WOWUPBINARY"
 
-        curl -L -o $SCRIPTS_FOLDER/temp/wowup.png https://cdn.wowup.io/site/production/assets/images/wowup_white_lg_nopad.png
-        mv $SCRIPTS_FOLDER/temp/wowup.png /opt/apps/icons
+        curl -L -o /opt/apps/temp/wowup.png https://cdn.wowup.io/site/production/assets/images/wowup_white_lg_nopad.png
+        mv /opt/apps/temp/wowup.png /opt/apps/icons
 
         cp $SCRIPTS_FOLDER/modules/data/wowup.sh /home/$USER/bin/wowup
         cp $SCRIPTS_FOLDER/modules/data/wowup.desktop /home/$USER/Desktop/wowup.desktop
@@ -34,8 +34,8 @@ download_warcraft_logs(){
         curl -L -o "$WOWLOGSBINARY" "$WOWLOGSLINK"
         chmod +x "$WOWLOGSBINARY"
 
-        curl -L -o $SCRIPTS_FOLDER/temp/warcraft_logs.png https://assets.rpglogs.com/img/warcraft/favicon.png
-        mv $SCRIPTS_FOLDER/temp/warcraft_logs.png /opt/apps/icons
+        curl -L -o /opt/apps/temp/warcraft_logs.png https://assets.rpglogs.com/img/warcraft/favicon.png
+        mv /opt/apps/temp/warcraft_logs.png /opt/apps/icons
 
         cp $SCRIPTS_FOLDER/modules/data/warcraft_logs.sh /home/$USER/bin/warcraft_logs
         cp $SCRIPTS_FOLDER/modules/data/warcraft_logs.desktop /home/$USER/Desktop/warcraft_logs.desktop
@@ -53,8 +53,8 @@ download_weakauras_companion(){
         curl -L -o "$WACOMPBINARY" "$WACOMPLINK"
         chmod +x "$WACOMPBINARY"
 
-        curl -L -o $SCRIPTS_FOLDER/temp/weakauras.png https://github.com/WeakAuras/WeakAuras-Companion/blob/v5.2.7/src/assets/weakauras.png?raw=true
-        mv $SCRIPTS_FOLDER/temp/weakauras.png /opt/apps/icons
+        curl -L -o /opt/apps/temp/weakauras.png https://github.com/WeakAuras/WeakAuras-Companion/blob/v5.2.7/src/assets/weakauras.png?raw=true
+        mv /opt/apps/temp/weakauras.png /opt/apps/icons
 
         cp $SCRIPTS_FOLDER/modules/data/wa_companion.sh /home/$USER/bin/wa_companion
         cp $SCRIPTS_FOLDER/modules/data/wa_companion.desktop /home/$USER/Desktop/wa_companion.desktop

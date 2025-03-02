@@ -19,13 +19,13 @@ download_discord(){
     if test -d /opt/apps/Discord; then
         echo "Discord already downloaded."
     elif ! test -d /opt/apps/Discord; then
-        cd "$SCRIPTS_FOLDER"/temp || exit
+        cd /opt/apps/temp || exit
         curl -L -o discord.tar.gz "$DISCORDLINK"
         tar -xvf discord.tar.gz
-        rm discord.tar.gz
         mv Discord /opt/apps/Discord
         ln -s "/opt/apps/Discord/Discord" "/home/$USER/bin/Discord"
         cp "$SCRIPTS_FOLDER"/modules/data/discord.desktop /home/$USER/Desktop
+        rm /opt/apps/temp/discord.tar.gz
         echo "Discord is stored in /opt/apps/Discord" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "================================================================"
         echo "Discord is located at /opt/apps/Discord"

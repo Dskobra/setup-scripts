@@ -30,6 +30,7 @@ run_prereq_check(){
         sudo mkdir /opt/apps/
         sudo mkdir /opt/apps/icons
         sudo mkdir /opt/apps/appimages
+        sudo mkdir /opt/apps/temp
         sudo chown $USER:$USER /opt/apps/ -R
         install_prereq
         echo "1" > $SCRIPTS_FOLDER/.prereq.txt
