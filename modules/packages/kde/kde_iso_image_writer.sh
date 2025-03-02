@@ -28,8 +28,6 @@ remove_kde_iso_image_writer(){
 }
 
 
-
-
 if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.kde.isoimagewriter

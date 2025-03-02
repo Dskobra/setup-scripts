@@ -27,7 +27,6 @@ remove_gtkhash(){
     fi
 }
 
-
 if [ "$1" == "flatpak" ]
 then
     flatpak install --user -y flathub org.gtkhash.gtkhash

@@ -9,7 +9,7 @@ native_vlc(){
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install vlc-qt vlc-codecs
-        echo "#####################libdvdcss2 aka dvd playback instructions#####################"
+        echo "#####################Dvd playback instructions#####################"
         echo "1. Please open the KDE menu and search for YaST and enter your password when requested."
         echo "2. Click Software Repositories near the top."
         echo "3. Click Add in the bottom left and select Community Repositories near the top of the list."

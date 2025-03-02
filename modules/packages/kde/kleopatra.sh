@@ -15,8 +15,6 @@ native_kleopatra(){
     fi
 }
 
-
-
 remove_kleopatra(){
     if [ "$DISTRO" == "fedora" ]
     then

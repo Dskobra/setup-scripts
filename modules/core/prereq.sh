@@ -21,16 +21,20 @@ install_prereq(){
 }
 
 run_prereq_check(){
-    ### make sure curl, wget and flatpak are installed.
-    RAN_ONCE_FILE=$SCRIPTS_FOLDER/.ranonce.txt
-    test -f "$RAN_ONCE_FILE" && RAN_ONCE_FILE="exists"
-    if [ "$RAN_ONCE_FILE" = "exists" ]
+    ### check if required packages should be installed.
+    ### 0 (default) for yes and 1 for no
+    PREREQ_FILE=$(cat $SCRIPTS_FOLDER/.prereq.txt)
+   if [ "$PREREQ_FILE" != "1" ]
     then
-        echo "Skipping first run steps."
-    else
+        mkdir /home/$USER/bin
+        sudo mkdir /opt/apps/
+        sudo mkdir /opt/apps/icons
+        sudo mkdir /opt/apps/appimages
+        sudo chown $USER:$USER /opt/apps/ -R
         install_prereq
-        touch "$SCRIPTS_FOLDER"/.ranonce.txt
+        echo "1" > $SCRIPTS_FOLDER/.prereq.txt
+    else
+        echo "Skipping first run steps."
     fi
 }
-RAN_ONCE_FILE="missing"
 run_prereq_check
