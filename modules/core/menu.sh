@@ -333,7 +333,7 @@ native_gaming_menu(){
 
 
         1)  
-            
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
             ;;
 
