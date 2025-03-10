@@ -12,7 +12,7 @@ native_lutris(){
         # install will result in auto declining the license for libOpenCL1 where if using 
         # --auto-agree-with-licenses (-l) will still ask for confirming before install even 
         # with -n flag. So just ask instead.
-        sudo zypper install lutris
+        sudo zypper -n install --auto-agree-with-licenses lutris
     else
         echo "Unkown error has occurred."
     fi
