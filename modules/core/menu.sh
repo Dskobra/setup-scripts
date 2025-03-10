@@ -320,10 +320,7 @@ native_gaming_menu(){
     echo "|Gaming Apps|[NATIVE(RPM)]|"
     echo "---------------------------"
     echo ""
-    echo "Runtimes include mangohud, gamemode, proton plus/tricks"
-    echo ""
-    echo "(1) Runtimes               (2) Steam"
-    echo "(3) Lutris"
+    echo "(1) Steam                  (2) Lutris"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -335,13 +332,12 @@ native_gaming_menu(){
         1)  
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
-            ;;
-
-        2) 
             "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
             ;;
 
-        3)
+        2) 
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
@@ -366,7 +362,6 @@ native_gaming_menu(){
         unset input
         native_gaming_menu
 }
-
 
 native_dev_menu(){
     echo "------------------------"
@@ -716,13 +711,11 @@ flatpak_gaming_menu(){
     echo "|Gaming Apps|[FLATPAK/OTHER]|"
     echo "-----------------------------"
     echo ""
-    echo "Runtimes include mangohud, gamemode, proton plus/tricks"
-    echo ""
-    echo "(1) Runtimes                (2) Steam"
-    echo "(3) Lutris                  (4) Discord"                
-    echo "(5) Prism Launcher          (6) Dolphin"
-    echo "(7) Cemu                    (8) WoWUp"
-    echo "(9) Warcraft Logs           (10) WeakAuras Companion"
+    echo "(1) Steam                   (2) Lutris"
+    echo "(3) Discord                 (4) Prism Launcher"                
+    echo "(5) Dolphin                 (6) Cemu "
+    echo "(7) WoWUp                   (8) Warcraft Logs"
+    echo "(9) WeakAuras Companion"
     echo "(n) Native Apps"
     echo "(m) Main Menu               (0) Exit"
     printf "Option: "
@@ -730,45 +723,43 @@ flatpak_gaming_menu(){
     
     case $input in
 
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
-            
-            ;;
 
-        2) 
+        1) 
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
             ;;
 
-        3)
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
             ;;
 
 
-        4)  
+        3)  
             "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
             ;;
         
-        5)
+        4)
             flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
-        6)
+        5)
             flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
             ;;
 
-        7)
+        6)
             flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
             ;;
 
-        10)
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
             ;;
 
