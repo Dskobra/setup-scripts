@@ -44,8 +44,9 @@ download_idea(){
         cd /opt/apps/temp || exit
         curl -L -o idea.tar.gz "$IDEA_LINK"
         tar -xvf idea.tar.gz
-        mv idea* /opt/apps/idea
         rm /opt/apps/temp/idea.tar.gz
+        mv /opt/apps/temp/idea* /opt/apps/idea
+        
         echo "Jetbrains Intellij Idea is located at /opt/apps/idea" >> "$SCRIPTS_FOLDER"/install.txt
         echo "=============================================================="
         echo "Jetbrains Intellij Idea is located at $IDEA_LOCATION"
@@ -61,8 +62,8 @@ download_pycharm(){
         cd /opt/apps/temp || exit
         curl -L -o pycharm.tar.gz "$PYCHARM_LINK"
         tar -xvf pycharm.tar.gz
-        mv pycharm* /opt/apps/pycharm
         rm /opt/apps/temp/pycharm.tar.gz
+        mv /opt/apps/temp/pycharm* /opt/apps/pycharm
         echo "Jetbrains Pycharm is located at /opt/apps/pycharm" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "============================================================"
         echo "Jetbrains Pycharm is located at $PYCHARM_LOCATION"
