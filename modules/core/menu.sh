@@ -491,8 +491,7 @@ miscellaneous_menu(){
     echo "|   Miscellaneous   |"
     echo "---------------------"
     echo ""
-    echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Remove Audio/Video Codecs"
+    echo "(1) Setup xbox controller      (2) Remove Audio/Video Codecs"
     echo "(m) Main Menu"
     echo "(0) Exit"
     printf "Option: "
@@ -505,10 +504,6 @@ miscellaneous_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/misc/remove_codecs.sh
             ;;
 
