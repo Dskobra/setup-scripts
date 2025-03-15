@@ -16,7 +16,7 @@ main_menu(){
     echo "(1) Hardware                          (2) KDE Apps"
     echo "(3) Internet Apps                     (4) Multimedia Apps"
     echo "(5) Gaming Apps                       (6) Dev Apps"
-    echo "(7) Extra Apps                        (8) Misc"
+    echo "(7) Extra Apps"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -50,10 +50,6 @@ main_menu(){
 
         7)
             native_extras_menu
-            ;;
-
-        8)
-            miscellaneous_menu
             ;;
 
         0)
@@ -486,7 +482,7 @@ native_extras_menu(){
         native_extras_menu
 }
 
-miscellaneous_menu(){
+#####################miscellaneous_menu(){
     echo "---------------------"
     echo "|   Miscellaneous   |"
     echo "---------------------"
@@ -528,9 +524,7 @@ miscellaneous_menu(){
     esac
     unset input
     miscellaneous_menu
-}
-
-########################################
+}###################
 # End native menus
 ########################################
 
