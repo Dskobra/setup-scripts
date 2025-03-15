@@ -482,49 +482,7 @@ native_extras_menu(){
         native_extras_menu
 }
 
-#####################miscellaneous_menu(){
-    echo "---------------------"
-    echo "|   Miscellaneous   |"
-    echo "---------------------"
-    echo ""
-    echo "(1) Setup xbox controller      (2) Remove Audio/Video Codecs"
-    echo "(m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            sudo modprobe xpad
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/misc/remove_codecs.sh
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        miscellaneous_menu
-        ;;
-        
-    esac
-    unset input
-    miscellaneous_menu
-}###################
+########################################
 # End native menus
 ########################################
 
