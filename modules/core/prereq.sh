@@ -3,12 +3,24 @@
 # checks/installs basic packages such as flatpak, curl/wget and git.
 
 install_prereq(){
+    # package names are same accross most distros. Check these first. 
+    wget_check
+    curl_check
+    flatpak_check
     if [ "$DISTRO" == "fedora" ]
     then
-        echo "Following packages will be installed: curl wget flatpak flatseal dnf-plugins-core"
-        sudo dnf install -y curl wget flatpak dnf-plugins-core
-        sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-        sudo dnf update -y
+        dnf_plugins_core_check
+        echo $PACKAGES_TO_INSTALL
+        if [ -z "$PACKAGES_TO_INSTALL" ]
+        then
+            echo "Dependencies are installed."
+        else
+            echo "Following packages will be installed: curl wget flatpak flatseal dnf-plugins-core"
+            sudo dnf install -y $PACKAGES_TO_INSTALL
+            #sudo dnf install -y curl wget flatpak dnf-plugins-core
+            sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            sudo dnf update -y
+        fi
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal"
@@ -59,10 +71,6 @@ run_prereq_check(){
     PREREQ_FILE=$(cat $SCRIPTS_FOLDER/.prereq.txt)
    if [ "$PREREQ_FILE" != "1" ]
     then
-        wget_check
-        curl_check
-        flatpak_check
-        echo $PACKAGES_TO_INSTALL
         mkdir /home/$USER/bin
         sudo mkdir /opt/apps/
         sudo mkdir /opt/apps/icons
