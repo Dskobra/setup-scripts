@@ -22,8 +22,15 @@ install_prereq(){
         rpmfusion_check
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        echo "Following packages will be installed: curl wget flatpak flatseal"
-        sudo zypper -n install wget curl flatpak
+        echo $PACKAGES_TO_INSTALL
+        if [ -z "$PACKAGES_TO_INSTALL" ]
+        then
+            echo "Dependencies are installed."
+        else
+            echo "Following packages will be installed: curl wget flatpak flatseal"
+            sudo zypper -n $PACKAGES_TO_INSTALL
+            #sudo zypper -n install wget curl flatpak
+        fi
     else
         echo "Unkown error has occurred."
     fi
@@ -72,6 +79,7 @@ rpmfusion_check(){
 
     fi
 }
+
 run_prereq_check(){
     ### check if required packages should be installed.
     ### 0 (default) for yes and 1 for no
