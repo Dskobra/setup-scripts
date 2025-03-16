@@ -3,7 +3,7 @@
 # checks/installs basic packages such as flatpak, curl/wget and git.
 
 install_prereq(){
-    # package names are same accross most distros. Check these first. 
+    # package names are same across most distros. Check these first. 
     wget_check
     curl_check
     flatpak_check
@@ -18,9 +18,8 @@ install_prereq(){
             echo "Following packages will be installed: curl wget flatpak flatseal dnf-plugins-core"
             sudo dnf install -y $PACKAGES_TO_INSTALL
             #sudo dnf install -y curl wget flatpak dnf-plugins-core
-            sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-            sudo dnf update -y
         fi
+        rpmfusion_check
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
         echo "Following packages will be installed: curl wget flatpak flatseal"
@@ -34,7 +33,7 @@ install_prereq(){
 
 wget_check(){
     if test -f /usr/bin/wget; then
-        echo "Wget already installed."
+        echo "wget already installed."
     elif ! test -f /usr/bin/wget; then
         PACKAGES_TO_INSTALL+=" wget"
     fi
@@ -65,6 +64,14 @@ dnf_plugins_core_check(){
     fi
 }
 
+rpmfusion_check(){
+    if test -f /etc/yum.repos.d/rpmfusion-free.repo && test -f /etc/yum.repos.d/rpmfusion-nonfree.repo; then
+        echo "rpmfusion already installed."
+    elif ! test -f /etc/yum.repos.d/rpmfusion-free.repo; then
+        sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+    fi
+}
 run_prereq_check(){
     ### check if required packages should be installed.
     ### 0 (default) for yes and 1 for no
