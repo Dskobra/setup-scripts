@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
-### Main launch script which makes the temp/app folders
-### and sets some variables
+### Main launch script which sets some variables
 
 export SCRIPTS_FOLDER                           # stores full path for setup-scripts
 export DISTRO=""                                # stores distro name.
