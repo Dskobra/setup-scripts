@@ -2,11 +2,10 @@
 
 # checks/installs basic packages such as flatpak, curl/wget and git.
 
-install_prereq(){
+prereq_check(){
     # package names are same across most distros. Check these first. 
-    wget_check
-    curl_check
-    flatpak_check
+    apps_folder_check
+    deps_check
     if [ "$DISTRO" == "fedora" ]
     then
         dnf_plugins_core_check
@@ -38,24 +37,73 @@ install_prereq(){
     flatpak install --user -y flathub com.github.tchx84.Flatseal        # allows easily managing permissions for flatpaks
 }
 
-wget_check(){
+apps_folder_check(){
+    if test -d /home/$USER/bin; then
+        echo "bin folder present."
+    elif ! test -d /home/$USER/bin; then
+        mkdir /home/$USER/bin
+        echo "Created /home/$USER/bin folder"
+
+    fi
+
+    if test -d /opt/apps/; then
+        echo "Apps folder present."
+    elif ! test -d /opt/apps/; then
+        echo "apps folder missing."
+        sudo mkdir /opt/apps/
+        sudo mkdir /opt/apps/icons
+        sudo mkdir /opt/apps/appimages
+        sudo mkdir /opt/apps/temp
+        sudo chown $USER:$USER /opt/apps/ -R
+        echo "Created /opt/apps folder"
+
+    fi
+
+    if test -d /opt/apps/icons; then
+        echo "Apps icons folder present."
+    elif ! test -d /opt/apps/icons; then
+        echo "Apps icon folder missing."
+        sudo mkdir /opt/apps/icons
+        sudo chown $USER:$USER /opt/apps/icons -R
+        echo "Created /opt/apps/icons folder"
+
+    fi
+
+    if test -d /opt/apps/appimages; then
+        echo "Apps appimages folder present."
+    elif ! test -d /opt/apps/appimages; then
+        echo "Apps appimages folder missing."
+        sudo mkdir /opt/apps/appimages
+        sudo chown $USER:$USER /opt/apps/appimages -R
+        echo "Created /opt/apps/appimages folder"
+
+    fi
+
+    if test -d /opt/apps/temp; then
+        echo "temp folder present."
+    elif ! test -d /opt/apps/temp; then
+        echo "apps temp folder missing."
+        sudo mkdir /opt/apps/temp
+        sudo chown $USER:$USER /opt/apps/temp -R
+        echo "Created /opt/apps/temp folder"
+
+    fi
+}
+
+deps_check(){
     if test -f /usr/bin/wget; then
         echo "wget already installed."
     elif ! test -f /usr/bin/wget; then
         PACKAGES_TO_INSTALL+=" wget"
     fi
-}
 
-curl_check(){
     if test -f /usr/bin/curl; then
         echo "Curl already installed."
     elif ! test -f /usr/bin/curl; then
         PACKAGES_TO_INSTALL+=" curl"
     fi
-}
 
-flatpak_check(){
-    if test -f /usr/bin/flatpak; then
+        if test -f /usr/bin/flatpak; then
         echo "flatpak already installed."
     elif ! test -f /usr/bin/flatpak; then
         PACKAGES_TO_INSTALL+=" flatpak"
@@ -86,7 +134,6 @@ run_prereq_check(){
     PREREQ_FILE=$(cat $SCRIPTS_FOLDER/.prereq.txt)
    if [ "$PREREQ_FILE" != "1" ]
     then
-        mkdir /home/$USER/bin
         sudo mkdir /opt/apps/
         sudo mkdir /opt/apps/icons
         sudo mkdir /opt/apps/appimages
@@ -100,4 +147,5 @@ run_prereq_check(){
 }
 
 PACKAGES_TO_INSTALL=""
-run_prereq_check
+#run_prereq_check
+prereq_check
