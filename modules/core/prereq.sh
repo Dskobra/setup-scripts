@@ -39,55 +39,58 @@ prereq_check(){
 
 apps_folder_check(){
     if test -d /home/$USER/bin; then
-        echo "bin folder present."
+        echo "Found folder: /home/$USER/bin"
     elif ! test -d /home/$USER/bin; then
         mkdir /home/$USER/bin
-        echo "Created /home/$USER/bin folder"
+        echo "Created folder: /home/$USER/bin"
 
     fi
 
     if test -d /opt/apps/; then
-        echo "Apps folder present."
+        echo "Found folder: /opt/apps/" 
     elif ! test -d /opt/apps/; then
-        echo "apps folder missing."
         sudo mkdir /opt/apps/
         sudo mkdir /opt/apps/icons
         sudo mkdir /opt/apps/appimages
         sudo mkdir /opt/apps/temp
         sudo chown $USER:$USER /opt/apps/ -R
-        echo "Created /opt/apps folder"
+        echo "Created folder: /opt/apps/"
+        echo "Created folder: /opt/apps/icons"
+        echo "Created folder: /opt/apps/appimages"
+        echo "Created folder: /opt/apps/temp"
 
     fi
 
     if test -d /opt/apps/icons; then
-        echo "Apps icons folder present."
+        echo "Found folder: /opt/apps/icons"
     elif ! test -d /opt/apps/icons; then
-        echo "Apps icon folder missing."
+        echo "Missing folder: /opt/apps/icons"
         sudo mkdir /opt/apps/icons
         sudo chown $USER:$USER /opt/apps/icons -R
-        echo "Created /opt/apps/icons folder"
+        echo "Created folder: /opt/apps/icons"
 
     fi
 
     if test -d /opt/apps/appimages; then
-        echo "Apps appimages folder present."
+        echo "Found folder: /opt/apps/appimages"
     elif ! test -d /opt/apps/appimages; then
-        echo "Apps appimages folder missing."
+        echo "Missing folder: /opt/apps/appimages"
         sudo mkdir /opt/apps/appimages
         sudo chown $USER:$USER /opt/apps/appimages -R
-        echo "Created /opt/apps/appimages folder"
+        echo "Created folder: /opt/apps/appimages"
 
     fi
 
     if test -d /opt/apps/temp; then
-        echo "temp folder present."
+        echo "Found folder: /opt/apps/temp"
     elif ! test -d /opt/apps/temp; then
-        echo "apps temp folder missing."
+        echo "Missing folder: /opt/apps/temp"
         sudo mkdir /opt/apps/temp
         sudo chown $USER:$USER /opt/apps/temp -R
-        echo "Created /opt/apps/temp folder"
+        echo "Created folder: /opt/apps/temp folder"
 
     fi
+    echo "$APPS_FOLDER_PRESENT"
 }
 
 deps_check(){
@@ -147,5 +150,7 @@ run_prereq_check(){
 }
 
 PACKAGES_TO_INSTALL=""
+APPS_FOLDERS_PRESENT=""
+APPS_FOLDERS_MISSING=""
 #run_prereq_check
 prereq_check
