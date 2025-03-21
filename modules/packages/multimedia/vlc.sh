@@ -8,11 +8,11 @@ native_vlc(){
         sudo dnf install -y vlc
     elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        sudo zypper -n remove vlc-qt
-        sudo zypper  install --from packman-essentials vlc-qt vlc-codecs
         sudo zypper ar -cfp 90 'http://opensuse-guide.org/repo/openSUSE_Tumbleweed/' 'libdvdcss repository'
         sudo zypper --gpg-auto-import-keys ref
-        sudo zypper install --from 'libdvdcss repository' libdvdcss2
+        sudo zypper -n remove vlc-qt
+        sudo zypper -n install --from packman-essentials vlc-qt vlc-codecs
+        sudo zypper -n install --from 'libdvdcss repository' libdvdcss2
     else
         echo "Unkown error has occurred."
     fi
