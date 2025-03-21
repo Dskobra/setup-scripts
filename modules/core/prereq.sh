@@ -14,7 +14,7 @@ prereq_check(){
         then
             echo "Dependencies are installed."
         else
-            echo "Following packages will be installed: curl wget flatpak flatseal dnf-plugins-core"
+            echo "Following packages will be installed: $PACKAGES_TO_INSTALL flatseal"
             sudo dnf install -y $PACKAGES_TO_INSTALL
             #sudo dnf install -y curl wget flatpak dnf-plugins-core
         fi
@@ -26,8 +26,8 @@ prereq_check(){
         then
             echo "Dependencies are installed."
         else
-            echo "Following packages will be installed: curl wget flatpak flatseal"
-            sudo zypper -n $PACKAGES_TO_INSTALL
+            echo "Following packages will be installed: $PACKAGES_TO_INSTALL flatseal"
+            sudo zypper -n install $PACKAGES_TO_INSTALL
             #sudo zypper -n install wget curl flatpak
         fi
     else
@@ -97,19 +97,19 @@ deps_check(){
     if test -f /usr/bin/wget; then
         echo "wget already installed."
     elif ! test -f /usr/bin/wget; then
-        PACKAGES_TO_INSTALL+=" wget"
+        PACKAGES_TO_INSTALL+=" wget "
     fi
 
     if test -f /usr/bin/curl; then
         echo "Curl already installed."
     elif ! test -f /usr/bin/curl; then
-        PACKAGES_TO_INSTALL+=" curl"
+        PACKAGES_TO_INSTALL+=" curl "
     fi
 
         if test -f /usr/bin/flatpak; then
         echo "flatpak already installed."
     elif ! test -f /usr/bin/flatpak; then
-        PACKAGES_TO_INSTALL+=" flatpak"
+        PACKAGES_TO_INSTALL+=" flatpak "
 
     fi
 }
@@ -118,7 +118,7 @@ dnf_plugins_core_check(){
     if test -f /etc/dnf/plugins/copr.conf; then
         echo "dnf-plugins-core already installed."
     elif ! test -f /etc/dnf/plugins/copr.conf; then
-        PACKAGES_TO_INSTALL+=" dnf-plugins-core"
+        PACKAGES_TO_INSTALL+=" dnf-plugins-core "
     fi
 }
 
@@ -131,26 +131,5 @@ rpmfusion_check(){
     fi
 }
 
-run_prereq_check(){
-    ### check if required packages should be installed.
-    ### 0 (default) for yes and 1 for no
-    PREREQ_FILE=$(cat $SCRIPTS_FOLDER/.prereq.txt)
-   if [ "$PREREQ_FILE" != "1" ]
-    then
-        sudo mkdir /opt/apps/
-        sudo mkdir /opt/apps/icons
-        sudo mkdir /opt/apps/appimages
-        sudo mkdir /opt/apps/temp
-        sudo chown $USER:$USER /opt/apps/ -R
-        install_prereq
-        echo "1" > $SCRIPTS_FOLDER/.prereq.txt
-    else
-        echo "Skipping first run steps."
-    fi
-}
-
 PACKAGES_TO_INSTALL=""
-APPS_FOLDERS_PRESENT=""
-APPS_FOLDERS_MISSING=""
-#run_prereq_check
 prereq_check
