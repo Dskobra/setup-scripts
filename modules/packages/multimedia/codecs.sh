@@ -21,6 +21,10 @@ native_codecs(){
         sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Slowroll/Essentials/' packman-essentials
         sudo zypper --gpg-auto-import-keys ref
         sudo zypper  install --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
+
+        sudo zypper al Mesa Mesa-dri Mesa-gallium Mesa-libEGL1 Mesa-libGL1 Mesa-libva
+        sudo zypper dup --from packman-essentials --allow-vendor-change
+        sudo zypper rl Mesa Mesa-dri Mesa-gallium Mesa-libEGL1 Mesa-libGL1 Mesa-libva
     else
         echo "Unkown error has occurred."
     fi
