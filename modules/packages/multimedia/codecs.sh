@@ -24,7 +24,7 @@ native_codecs(){
 
         sudo zypper al Mesa Mesa-dri Mesa-gallium Mesa-libEGL1 Mesa-libGL1 Mesa-libva
         sudo zypper dup --from packman-essentials --allow-vendor-change
-        sudo zypper rl Mesa Mesa-dri Mesa-gallium Mesa-libEGL1 Mesa-libGL1 Mesa-libva
+        sudo zypper rl Mesa Mesa-dri Mesa-gallium Mesa-libEGL1 Mesa-libGL1 Mesa-libva libgbm1
     else
         echo "Unkown error has occurred."
     fi
