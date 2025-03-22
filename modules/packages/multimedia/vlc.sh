@@ -43,7 +43,7 @@ opensuse_warning(){
         sudo zypper ar -cfp 90 'http://opensuse-guide.org/repo/openSUSE_Tumbleweed/' 'libdvdcss repository'
         sudo zypper --gpg-auto-import-keys ref
         sudo zypper -n remove vlc-qt
-        sudo zypper -n install --from packman-essentials vlc-qt vlc-codecs
+        sudo zypper install --from packman-essentials vlc-qt vlc-codecs
         sudo zypper -n install --from 'libdvdcss repository' libdvdcss2
     elif [ "$input" == "n" ] || [ "$input" == "N" ]
     then
