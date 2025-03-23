@@ -137,5 +137,5 @@ rpmfusion_check(){
 }
 
 PACKAGES_TO_INSTALL=""
-USELESS_VAR=""
+USELESS_VAR=""          # dont echo if folders are present or else it lists them even after script makes them
 prereq_check
