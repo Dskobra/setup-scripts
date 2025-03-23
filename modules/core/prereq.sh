@@ -39,7 +39,8 @@ prereq_check(){
 
 apps_folder_check(){
     if test -d /home/$USER/bin; then
-        echo "Found folder: /home/$USER/bin"
+        #echo "Found folder: /home/$USER/bin"
+        USELESS_VAR=""
     elif ! test -d /home/$USER/bin; then
         mkdir /home/$USER/bin
         echo "Created folder: /home/$USER/bin"
@@ -47,7 +48,8 @@ apps_folder_check(){
     fi
 
     if test -d /opt/apps/; then
-        echo "Found folder: /opt/apps/" 
+        #echo "Found folder: /opt/apps/" 
+        USELESS_VAR=""
     elif ! test -d /opt/apps/; then
         sudo mkdir /opt/apps/
         sudo mkdir /opt/apps/icons
@@ -62,7 +64,8 @@ apps_folder_check(){
     fi
 
     if test -d /opt/apps/icons; then
-        echo "Found folder: /opt/apps/icons"
+        #echo "Found folder: /opt/apps/icons"
+        USELESS_VAR=""
     elif ! test -d /opt/apps/icons; then
         echo "Missing folder: /opt/apps/icons"
         sudo mkdir /opt/apps/icons
@@ -73,6 +76,7 @@ apps_folder_check(){
 
     if test -d /opt/apps/appimages; then
         echo "Found folder: /opt/apps/appimages"
+        USELESS_VAR=""
     elif ! test -d /opt/apps/appimages; then
         echo "Missing folder: /opt/apps/appimages"
         sudo mkdir /opt/apps/appimages
@@ -82,7 +86,8 @@ apps_folder_check(){
     fi
 
     if test -d /opt/apps/temp; then
-        echo "Found folder: /opt/apps/temp"
+        #echo "Found folder: /opt/apps/temp"
+        USELESS_VAR=""
     elif ! test -d /opt/apps/temp; then
         echo "Missing folder: /opt/apps/temp"
         sudo mkdir /opt/apps/temp
@@ -90,27 +95,24 @@ apps_folder_check(){
         echo "Created folder: /opt/apps/temp folder"
 
     fi
-    echo "$APPS_FOLDER_PRESENT"
 }
 
 deps_check(){
     if test -f /usr/bin/wget; then
-        #echo "wget already installed."
+        echo "wget already installed."
         USELESS_VAR=""
     elif ! test -f /usr/bin/wget; then
         PACKAGES_TO_INSTALL+=" wget "
     fi
 
     if test -f /usr/bin/curl; then
-        #echo "Curl already installed."
-        USELESS_VAR=""
+        echo "Curl already installed."
     elif ! test -f /usr/bin/curl; then
         PACKAGES_TO_INSTALL+=" curl "
     fi
 
     if test -f /usr/bin/flatpak; then
-        #echo "flatpak already installed."
-        USELESS_VAR=""
+        echo "flatpak already installed."
     elif ! test -f /usr/bin/flatpak; then
         PACKAGES_TO_INSTALL+=" flatpak "
 
