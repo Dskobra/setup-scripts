@@ -75,7 +75,7 @@ apps_folder_check(){
     fi
 
     if test -d /opt/apps/appimages; then
-        echo "Found folder: /opt/apps/appimages"
+        #echo "Found folder: /opt/apps/appimages"
         USELESS_VAR=""
     elif ! test -d /opt/apps/appimages; then
         echo "Missing folder: /opt/apps/appimages"
