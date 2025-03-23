@@ -95,19 +95,22 @@ apps_folder_check(){
 
 deps_check(){
     if test -f /usr/bin/wget; then
-        echo "wget already installed."
+        #echo "wget already installed."
+        USELESS_VAR=""
     elif ! test -f /usr/bin/wget; then
         PACKAGES_TO_INSTALL+=" wget "
     fi
 
     if test -f /usr/bin/curl; then
-        echo "Curl already installed."
+        #echo "Curl already installed."
+        USELESS_VAR=""
     elif ! test -f /usr/bin/curl; then
         PACKAGES_TO_INSTALL+=" curl "
     fi
 
-        if test -f /usr/bin/flatpak; then
-        echo "flatpak already installed."
+    if test -f /usr/bin/flatpak; then
+        #echo "flatpak already installed."
+        USELESS_VAR=""
     elif ! test -f /usr/bin/flatpak; then
         PACKAGES_TO_INSTALL+=" flatpak "
 
@@ -132,4 +135,5 @@ rpmfusion_check(){
 }
 
 PACKAGES_TO_INSTALL=""
+USELESS_VAR=""
 prereq_check
