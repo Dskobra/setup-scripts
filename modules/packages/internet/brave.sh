@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 native_brave_browser(){
-    cd "$SCRIPTS_FOLDER"/temp
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf4 config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
