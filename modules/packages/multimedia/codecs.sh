@@ -11,12 +11,6 @@ native_codecs(){
 
         sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
         sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
-    then
-        sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/' packman-essentials
-        sudo zypper --gpg-auto-import-keys ref
-        sudo zypper -n install --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
-        sudo zypper -n dup --from packman-essentials --allow-vendor-change
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Slowroll/Essentials/' packman-essentials

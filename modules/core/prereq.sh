@@ -19,7 +19,7 @@ prereq_check(){
             #sudo dnf install -y curl wget flatpak dnf-plugins-core
         fi
         rpmfusion_check
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         echo $PACKAGES_TO_INSTALL
         if [ -z "$PACKAGES_TO_INSTALL" ]

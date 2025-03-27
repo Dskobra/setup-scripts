@@ -4,7 +4,7 @@ native_kolourpaint(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kolourpaint
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install kolourpaint
     else
@@ -16,7 +16,7 @@ remove_kolourpaint(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kolourpaint
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm kolourpaint
     else

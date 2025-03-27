@@ -5,7 +5,7 @@ install_discord_deps(){
     then
         sudo dnf install -y  libayatana-appindicator-gtk3  libayatana-ido-gtk3\
         libayatana-indicator-gtk3 
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install libatomic1 libayatana-appindicator3-1
     else

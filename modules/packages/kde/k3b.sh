@@ -4,7 +4,7 @@ native_k3b(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y k3b
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then 
         sudo zypper -n install k3b
     else

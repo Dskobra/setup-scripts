@@ -4,11 +4,6 @@ install_corectrl(){
     then
         sudo dnf install -y corectrl
         xdg-open https://gitlab.com/corectrl/corectrl/-/wikis/Setup
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ]
-    then
-        sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
-        sudo zypper ref
-        sudo zypper -n install corectrl
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Slowroll/home:Dead_Mozay.repo

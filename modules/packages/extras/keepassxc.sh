@@ -4,12 +4,9 @@ native_keepassxc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y keepassxc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install keepassxc
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y keepassxc
     else
         echo "Unkown error has occurred."
     fi
@@ -19,7 +16,7 @@ remove_keepassxc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y keepassxc
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm keepassxc
     else

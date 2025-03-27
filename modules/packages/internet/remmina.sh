@@ -5,7 +5,7 @@ install_remmina(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y remmina
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install remmina
     else
@@ -18,7 +18,7 @@ remove_remmina(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y remmina
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm remmina
     else

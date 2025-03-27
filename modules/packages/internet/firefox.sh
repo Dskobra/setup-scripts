@@ -4,7 +4,7 @@ native_firefox(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y firefox
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install MozillaFirefox MozillaFirefox-branding-openSUSE
     else
@@ -16,15 +16,9 @@ remove_firefox(){
         if [ "$DISTRO" == "fedora" ]
             then
                 sudo dnf remove -y firefox firefox-langpacks
-        elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ] || [ "$DISTRO" == "opensuse-leap" ]
+        elif [ "$DISTRO" == "opensuse-slowroll" ]
         then
             sudo zypper -n rm MozillaFirefox MozillaFirefox-branding-openSUSE
-        elif [ "$DISTRO" == "debian" ]
-            then
-                sudo apt-get remove -y firefox
-                sudo apt-get remove -y firefox-esr
-                sudo rm "/etc/apt/sources.list.d/mozilla.list"
-                sudo rm "/etc/apt/keyrings/packages.mozilla.org.asc"
         else
             echo "Unkown error has occurred."
         fi
