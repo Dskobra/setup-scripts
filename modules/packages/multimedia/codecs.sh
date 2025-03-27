@@ -21,6 +21,5 @@ native_codecs(){
         echo "Unkown error has occurred."
     fi
 }
-# personal note idk if it's switching mesa vendor to packman thats creating system instability on my pc or some other issue.
-# and frankly tired of manually selecting packages to change vendors. So just change mesa and codecs etc....
+
 native_codecs

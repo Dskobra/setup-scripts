@@ -7,7 +7,7 @@ install_nvidia(){
         sudo dnf install -y akmod-nvidia-open kmod-nvidia-open nvidia-settings
         sudo akmods --rebuild --force
         sudo dracut --regenerate-all --force
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         #this is for enabling the official repos and closed drivers from nvidia by installing the patterns 
         #package. Packages here require accepting a license agreement.
