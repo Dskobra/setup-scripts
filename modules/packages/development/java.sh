@@ -5,13 +5,12 @@ download_openjdk(){
     if test -d /opt/apps/openjdk21; then
         echo "openjdk21 already downloaded."
     elif ! test -d /opt/apps//openjdk21; then
-        cd "$SCRIPTS_FOLDER"/temp || exit
+        cd /opt/apps/temp || exit
         curl -L -o openjdk21.tar.gz "$OPENJDK_LINK"
         tar -xvf openjdk21.tar.gz
         mv jdk-21* openjdk21
-        rm openjdk21.tar.gz
         mv openjdk21 /opt/apps/openjdk21
-        cd $SCRIPTS_FOLDER
+        rm /opt/apps/temp/openjdk21.tar.gz
         echo "Temurin openJDK 21 LTS is located at /opt/apps/openjdk21" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "================================================================"
         echo "Temurin openJDK 21 LTS is located at $OPENJDK_LOCATION"
@@ -24,13 +23,12 @@ download_openjfx(){
     if test -d /opt/apps/openjfx21; then
         echo "openjfx21 already downloaded."
     elif ! test -d /opt/apps/openjfx21; then
-        cd "$SCRIPTS_FOLDER"/temp || exit
+        cd /opt/apps/temp || exit
         curl -L -o openjfx21.zip "$OPENJFX_LINK"
         unzip openjfx21.zip
         mv javafx-sdk-21* openjfx21
-        rm openjfx21.zip
         mv openjfx21 /opt/apps/openjfx21
-        cd $SCRIPTS_FOLDER
+        rm /opt/apps/temp/openjfx21.zip
         echo "Gluon openjfx 21 LTS is located at /opt/apps/openfx21" >> "$SCRIPTS_FOLDER"/install.txt
         echo "=============================================================="
         echo "Gluon openjfx 21 LTS is located at $OPENJFX_LOCATION"
@@ -40,15 +38,15 @@ download_openjfx(){
 
 download_idea(){
     IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2024.3.3.tar.gz"
-    
     if test -d /opt/apps/idea; then
         echo "Intellij Idea already downloaded."
     elif ! test -d /opt/apps/idea; then
-        cd "$SCRIPTS_FOLDER"/temp || exit
+        cd /opt/apps/temp || exit
         curl -L -o idea.tar.gz "$IDEA_LINK"
         tar -xvf idea.tar.gz
-        rm idea.tar.gz
-        mv idea* /opt/apps/idea
+        rm /opt/apps/temp/idea.tar.gz
+        mv /opt/apps/temp/idea* /opt/apps/idea
+        
         echo "Jetbrains Intellij Idea is located at /opt/apps/idea" >> "$SCRIPTS_FOLDER"/install.txt
         echo "=============================================================="
         echo "Jetbrains Intellij Idea is located at $IDEA_LOCATION"
@@ -58,15 +56,14 @@ download_idea(){
 
 download_pycharm(){
     PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2024.3.3.tar.gz"
-    
     if test -d /opt/apps/pycharm; then
         echo "Pycharm already downloaded."
     elif ! test -d /opt/apps/pycharm; then
-        cd "$SCRIPTS_FOLDER"/temp || exit
+        cd /opt/apps/temp || exit
         curl -L -o pycharm.tar.gz "$PYCHARM_LINK"
         tar -xvf pycharm.tar.gz
-        rm pycharm.tar.gz
-        mv pycharm* /opt/apps/pycharm
+        rm /opt/apps/temp/pycharm.tar.gz
+        mv /opt/apps/temp/pycharm* /opt/apps/pycharm
         echo "Jetbrains Pycharm is located at /opt/apps/pycharm" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "============================================================"
         echo "Jetbrains Pycharm is located at $PYCHARM_LOCATION"

@@ -9,9 +9,6 @@ distro_check(){
     if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
-    elif [ $DISTRO == "opensuse-tumbleweed" ]
-    then
-        opensuse_tumbleweed_release_check
     elif [ $DISTRO == "opensuse-slowroll" ]
     then
         opensuse_slowroll_release_check
@@ -25,23 +22,12 @@ fedora_release_check(){
     # Check fedora version then ensure it's not atomic.
     VARIANT="" 
     test -f /run/ostree-booted && VARIANT=ostree
-    if [ "$VERSION_ID" == "40" ] && [ -z "$VARIANT" ] || [ "$VERSION_ID" == "41" ] && [ -z "$VARIANT" ]
+    if [ "$VERSION_ID" == "41" ] && [ -z "$VARIANT" ] || [ "$VERSION_ID" == "42" ] && [ -z "$VARIANT" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
-        echo "These scripts only support Fedora 40/41 non atomic editions."
-    fi
-
-}
-
-opensuse_tumbleweed_release_check(){
-    if [ "$VERSION_ID" -ge "20250101" ]
-    then
-        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/core/menu.sh
-    else
-        echo "These scripts only support Tumbleweed released on or after 01/01/2025"
+        echo "These scripts only support Fedora 41/42 non atomic editions."
     fi
 
 }

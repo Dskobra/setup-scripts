@@ -4,7 +4,7 @@ native_game_runtimes(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y mangohud gamemode
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install mangohud gamemode
     else

@@ -4,12 +4,9 @@ native_kleopatra(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kleopatra
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install kleopatra
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y kleopatra
     else
         echo "Unkown error has occurred."
     fi
@@ -19,7 +16,7 @@ remove_kleopatra(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kleopatra
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm kleopatra
     else

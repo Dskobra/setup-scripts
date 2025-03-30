@@ -5,7 +5,7 @@ native_lamp_stack(){
     then
         sudo dnf install -y httpd mariadb mariadb-server\
         php phpMyAdmin
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install apache2 mariadb php8 phpMyAdmin
     else

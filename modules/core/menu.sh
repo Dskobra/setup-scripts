@@ -16,7 +16,7 @@ main_menu(){
     echo "(1) Hardware                          (2) KDE Apps"
     echo "(3) Internet Apps                     (4) Multimedia Apps"
     echo "(5) Gaming Apps                       (6) Dev Apps"
-    echo "(7) Extra Apps                        (8) Misc"
+    echo "(7) Extra Apps"
     echo "(0) Exit"
     printf "Option: "
     read -r input
@@ -50,10 +50,6 @@ main_menu(){
 
         7)
             native_extras_menu
-            ;;
-
-        8)
-            miscellaneous_menu
             ;;
 
         0)
@@ -320,10 +316,7 @@ native_gaming_menu(){
     echo "|Gaming Apps|[NATIVE(RPM)]|"
     echo "---------------------------"
     echo ""
-    echo "Runtimes include mangohud, gamemode, proton plus/tricks"
-    echo ""
-    echo "(1) Runtimes               (2) Steam"
-    echo "(3) Lutris"
+    echo "(1) Steam                  (2) Lutris"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu              (0) Exit"
     printf "Option: "
@@ -333,15 +326,14 @@ native_gaming_menu(){
 
 
         1)  
-            
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
-            ;;
-
-        2) 
             "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
             ;;
 
-        3)
+        2) 
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
@@ -366,7 +358,6 @@ native_gaming_menu(){
         unset input
         native_gaming_menu
 }
-
 
 native_dev_menu(){
     echo "------------------------"
@@ -489,55 +480,6 @@ native_extras_menu(){
         esac
         unset input
         native_extras_menu
-}
-
-miscellaneous_menu(){
-    echo "---------------------"
-    echo "|   Miscellaneous   |"
-    echo "---------------------"
-    echo ""
-    echo "(1) Setup xbox controller      (2) Add user to libvirt group"
-    echo "(3) Remove Audio/Video Codecs"
-    echo "(m) Main Menu"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            sudo modprobe xpad
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/misc/check_for_libvirt_group.sh
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/misc/remove_codecs.sh
-            ;;
-
-        m)
-            main_menu
-            ;;
-
-        M)
-            main_menu
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        miscellaneous_menu
-        ;;
-        
-    esac
-    unset input
-    miscellaneous_menu
 }
 
 ########################################
@@ -716,13 +658,11 @@ flatpak_gaming_menu(){
     echo "|Gaming Apps|[FLATPAK/OTHER]|"
     echo "-----------------------------"
     echo ""
-    echo "Runtimes include mangohud, gamemode, proton plus/tricks"
-    echo ""
-    echo "(1) Runtimes                (2) Steam"
-    echo "(3) Lutris                  (4) Discord"                
-    echo "(5) Prism Launcher          (6) Dolphin"
-    echo "(7) Cemu                    (8) WoWUp"
-    echo "(9) Warcraft Logs           (10) WeakAuras Companion"
+    echo "(1) Steam                   (2) Lutris"
+    echo "(3) Discord                 (4) Prism Launcher"                
+    echo "(5) Dolphin                 (6) Cemu "
+    echo "(7) WoWUp                   (8) Warcraft Logs"
+    echo "(9) WeakAuras Companion"
     echo "(n) Native Apps"
     echo "(m) Main Menu               (0) Exit"
     printf "Option: "
@@ -730,45 +670,43 @@ flatpak_gaming_menu(){
     
     case $input in
 
-        1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
-            
-            ;;
 
-        2) 
+        1) 
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
             ;;
 
-        3)
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
             ;;
 
 
-        4)  
+        3)  
             "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
             ;;
         
-        5)
+        4)
             flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
 
-        6)
+        5)
             flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
             ;;
 
-        7)
+        6)
             flatpak install --user -y flathub info.cemu.Cemu
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
             ;;
 
-        10)
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
             ;;
 

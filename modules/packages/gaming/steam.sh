@@ -4,7 +4,7 @@ native_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install steam
     else
@@ -16,7 +16,7 @@ native_steam_devices(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam-devices
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n install steam-devices
     else
@@ -28,7 +28,7 @@ remove_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y steam
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm steam
     else

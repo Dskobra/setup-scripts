@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 native_brave_browser(){
-    cd "$SCRIPTS_FOLDER"/temp
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf4 config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -9,7 +8,7 @@ native_brave_browser(){
         sudo dnf update -y
         sudo dnf install -y brave-browser
 
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -29,7 +28,7 @@ remove_brave_browser(){
         sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
         sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"
         sudo dnf update -y
-    elif [ "$DISTRO" == "opensuse-tumbleweed" ] || [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper -n rm brave-browser
         sudo rm "/etc/zypp/repos.d/brave-browser.repo"
