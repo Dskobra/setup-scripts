@@ -17,3 +17,4 @@ structure
 * setup.sh            -       Main launch script. Always use this.
 * modules/core        -       Core scripts. Everything needed to run is here.
 * modules/packages    -       Commands for installing everything.
+* modules/data        -       Launch scripts for some apps like wowup.
