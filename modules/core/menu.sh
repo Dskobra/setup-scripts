@@ -752,6 +752,7 @@ flatpak_dev_menu(){
 
         1)
             flatpak install --user -y flathub io.github.shiftey.Desktop
+            "$SCRIPTS_FOLDER"/modules/packages/development/gh_cli.sh
             ;;
 
         2)
