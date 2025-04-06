@@ -8,4 +8,3 @@ export COPYRIGHT="Copyright (c) 2021-2025 Jordan Bottoms"
 export VERSION="3.29.2025"
 SCRIPTS_FOLDER=$(pwd)                     
 "$SCRIPTS_FOLDER"/modules/core/launcher.sh
-# testing out git clients
