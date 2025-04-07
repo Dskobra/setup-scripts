@@ -364,11 +364,11 @@ native_dev_menu(){
     echo "|Dev Apps|[NATIVE(RPM)]|"
     echo "------------------------"
     echo ""
-    echo "(1) Git                        (2) VIM"
-    echo "(3) VSCodium                   (4) Geany"
-    echo "(5) C/C++ Compiler             (6) Python Dev Packages"
-    echo "(7) Containers                 (8) Virtualization"
-    echo "(9) Lamp Stack"
+    echo "(1) Git                        (2) Kommit"
+    echo "(3) VIM                        (4) VSCodium"
+    echo "(5) Geany                      (6) C/C++ Compiler"
+    echo "(7) Python Dev Packages        (8) Containers"
+    echo "(9) Virtualization             (10) Lamp Stack"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
@@ -378,40 +378,44 @@ native_dev_menu(){
 
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh "git"
+            ;;
+
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh "kommit"
             ;;
         
-        2)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
 
-        3)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
             ;;
 
-        4)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
         
-        5)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
             
             ;;
 
-        6)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
            
             ;;
 
-        7)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        8)
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
-        9)
+        10)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
@@ -443,8 +447,7 @@ native_extras_menu(){
     echo "|Extra Apps|[NATIVE(RPM)]|"
     echo "--------------------------"
     echo ""
-    echo "(1) LibreOffice               (2) Marknote"
-    echo "(3) KeePassXC"
+    echo "(1) LibreOffice               (2) KeePassXC"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
@@ -457,10 +460,6 @@ native_extras_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/marknote.sh "native"
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "native"
             ;;
 
@@ -743,10 +742,9 @@ flatpak_dev_menu(){
     echo "|Dev Apps|[FLATPAK/OTHER]|"
     echo "--------------------------"
     echo ""
-    echo "(1) Github Desktop                (2) Intellij IDEA"
-    echo "(3) Pycharm                       (4) Podman Desktop"             
-    echo "(5) Nodejs LTS                    (6) openJDK 21 LTS"
-    echo "(7) openjfx 21 LTS"
+    echo "(1) Intellij IDEA                 (2) Pycharm"
+    echo "(3) Podman Desktop                (4) Nodejs LTS"
+    echo "(5) openJDK 21 LTS                (6) openjfx 21 LTS"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -756,32 +754,27 @@ flatpak_dev_menu(){
 
 
         1)
-            flatpak install --user -y flathub io.github.shiftey.Desktop
-            "$SCRIPTS_FOLDER"/modules/packages/development/gh_cli.sh
-            ;;
-
-        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
             
             ;;
 
-        4)
+        3)
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
             ;;
 
-        6)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
             ;;
 
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
             ;;
 
@@ -813,7 +806,7 @@ flatpak_extras_menu(){
     echo "|Extra Apps|[FLATPAK/OTHER]|"
     echo "----------------------------"
     echo ""
-    echo "(1) LibreOffice               (2) Marknote"
+    echo "(1) LibreOffice               (2) Bookup"
     echo "(3) Bitwarden                 (4) KeePassXC"
     echo "(5) Raspberry Pi Imager       (6) GtkHash"
     echo "(7) MissionCenter             (8) Gpu-Viewer"
@@ -829,7 +822,7 @@ flatpak_extras_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/marknote.sh "flatpak"
+            flatpak install --user flathub org.gnome.gitlab.ilhooq.Bookup
             ;;
 
         3)

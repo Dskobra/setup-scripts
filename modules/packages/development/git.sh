@@ -12,4 +12,24 @@ native_git(){
     fi
 }
 
-native_git
+native_kommit(){
+    if [ "$DISTRO" == "fedora" ]
+    then
+        sudo dnf install -y kommit
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
+    then
+        sudo zypper -n install kommit
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+if [ "$1" == "git" ]
+then
+    native_git
+elif [ "$1" == "kommit" ]
+then
+    native_kommit
+else
+    echo "error"
+fi
