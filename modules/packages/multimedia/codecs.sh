@@ -38,4 +38,3 @@ then
 else
     echo "Codecs already installed."
 fi
-"$SCRIPTS_FOLDER"/modules/core/launcher.sh
