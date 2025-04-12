@@ -264,7 +264,7 @@ native_multimedia_menu(){
     echo "-------------------------------"
     echo ""
     echo "(1) VLC Media Player      (2) OpenShot"
-    echo "(4) xfburn"
+    echo "(3) xfburn"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
@@ -273,17 +273,17 @@ native_multimedia_menu(){
     case $input in
 
 
-        2)
+        1)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh "native"
             ;;
         
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "native"
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
