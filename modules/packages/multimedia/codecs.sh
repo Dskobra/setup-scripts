@@ -8,10 +8,12 @@ native_codecs(){
         gstreamer1-plugins-bad-freeworld gstreamer1-plugins-bad-freeworld.i686
 
         sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
-        sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
         sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
+
+        sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
         sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
 
+        
         sudo dnf swap -y mesa-vulkan-drivers mesa-vulkan-drivers-freeworld
         sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.i686
     elif [ "$DISTRO" == "opensuse-slowroll" ]

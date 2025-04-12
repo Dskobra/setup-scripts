@@ -220,10 +220,12 @@ native_internet_menu(){
     case $input in
 
         1)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "native"
             ;;
 
         2)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
             ;;
 
