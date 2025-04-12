@@ -15,7 +15,8 @@ native_codecs(){
 
         
         sudo dnf swap -y mesa-vulkan-drivers mesa-vulkan-drivers-freeworld
-        sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.i686
+        sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.
+        echo "1" > "$SCRIPTS_FOLDER"/modules/multimedia/codecs.log
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Slowroll/Essentials/' packman-essentials
@@ -28,3 +29,15 @@ native_codecs(){
 }
 
 native_codecs
+
+codecs_installed=""
+
+
+if [ "$VERSION_ID" == "41" ] && [ -z "$VARIANT" ] || [ "$VERSION_ID" == "42" ] && [ -z "$VARIANT" ]
+then
+    "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+    "$SCRIPTS_FOLDER"/modules/core/menu.sh
+else
+    echo "These scripts only support Fedora 41/42 non atomic editions."
+fi
+"$SCRIPTS_FOLDER"/modules/core/launcher.sh
