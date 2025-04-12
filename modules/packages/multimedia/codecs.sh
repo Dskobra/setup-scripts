@@ -15,7 +15,7 @@ native_codecs(){
 
         
         sudo dnf swap -y mesa-vulkan-drivers mesa-vulkan-drivers-freeworld
-        sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.
+        sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.i686
         echo "1" > "$SCRIPTS_FOLDER"/modules/multimedia/codecs.txt
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
