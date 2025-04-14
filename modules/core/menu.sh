@@ -824,7 +824,7 @@ flatpak_extras_menu(){
             ;;
 
         2)
-            flatpak install --user flathub org.gnome.gitlab.ilhooq.Bookup
+            flatpak install --user -y flathub org.gnome.gitlab.ilhooq.Bookup
             ;;
 
         3)
