@@ -171,6 +171,7 @@ native_kde_desktop_menu(){
             ;;
 
         6)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/kde/k3b.sh
             ;;
 
@@ -220,10 +221,12 @@ native_internet_menu(){
     case $input in
 
         1)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "native"
             ;;
 
         2)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
             ;;
 
@@ -263,8 +266,8 @@ native_multimedia_menu(){
     echo "|Multimedia Apps|[NATIVE(RPM)]|"
     echo "-------------------------------"
     echo ""
-    echo "(1) Audio/Video Codecs    (2) VLC Media Player"
-    echo "(3) OpenShot              (4) xfburn "
+    echo "(1) VLC Media Player      (2) OpenShot"
+    echo "(3) xfburn"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu             (0) Exit"
     printf "Option: "
@@ -272,19 +275,19 @@ native_multimedia_menu(){
     
     case $input in
 
+
         1)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            ;;
-
-        2)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh "native"
             ;;
         
-        3)
+        2)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "native"
             ;;
 
-        4)
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
@@ -364,10 +367,11 @@ native_dev_menu(){
     echo "|Dev Apps|[NATIVE(RPM)]|"
     echo "------------------------"
     echo ""
-    echo "(1) VIM                        (2) VSCodium"
-    echo "(3) Geany                      (4) C/C++ Compiler"
-    echo "(5) Python Dev Packages        (6) Containers"
-    echo "(7) Virtualization             (8) Lamp Stack"
+    echo "(1) Git                        (2) Kommit"
+    echo "(3) VIM                        (4) VSCodium"
+    echo "(5) Geany                      (6) C/C++ Compiler"
+    echo "(7) Python Dev Packages        (8) Containers"
+    echo "(9) Virtualization             (10) Lamp Stack"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                  (0) Exit"
     printf "Option: "
@@ -376,37 +380,45 @@ native_dev_menu(){
     case $input in
 
 
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
+        1)  
+            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh "git"
             ;;
 
         2)
+            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh "kommit"
+            ;;
+        
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
+            ;;
+
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
             ;;
 
-        3)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
         
-        4)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
             
             ;;
 
-        5)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
            
             ;;
 
-        6)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        7)
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
-        8)
+        10)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
@@ -438,8 +450,7 @@ native_extras_menu(){
     echo "|Extra Apps|[NATIVE(RPM)]|"
     echo "--------------------------"
     echo ""
-    echo "(1) LibreOffice               (2) Marknote"
-    echo "(3) KeePassXC"
+    echo "(1) LibreOffice               (2) KeePassXC"
     echo "(f) Flatpak/Other"
     echo "(m) Main Menu                 (0) Exit"
     printf "Option: "
@@ -452,10 +463,6 @@ native_extras_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/marknote.sh "native"
-            ;;
-
-        3)
             "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "native"
             ;;
 
@@ -683,6 +690,7 @@ flatpak_gaming_menu(){
 
 
         3)  
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
             ;;
         
@@ -738,10 +746,9 @@ flatpak_dev_menu(){
     echo "|Dev Apps|[FLATPAK/OTHER]|"
     echo "--------------------------"
     echo ""
-    echo "(1) Github Desktop                (2) Intellij IDEA"
-    echo "(3) Pycharm                       (4) Podman Desktop"             
-    echo "(5) Nodejs LTS                    (6) openJDK 21 LTS"
-    echo "(7) openjfx 21 LTS"
+    echo "(1) Intellij IDEA                 (2) Pycharm"
+    echo "(3) Podman Desktop                (4) Nodejs LTS"
+    echo "(5) openJDK 21 LTS                (6) openjfx 21 LTS"
     echo "(n) Native Apps"
     echo "(m) Main Menu                     (0) Exit"
     printf "Option: "
@@ -751,31 +758,27 @@ flatpak_dev_menu(){
 
 
         1)
-            flatpak install --user -y flathub io.github.shiftey.Desktop
-            ;;
-
-        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
             ;;
 
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
             
             ;;
 
-        4)
+        3)
             flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
             ;;
 
-        6)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
             ;;
 
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
             ;;
 
@@ -807,7 +810,7 @@ flatpak_extras_menu(){
     echo "|Extra Apps|[FLATPAK/OTHER]|"
     echo "----------------------------"
     echo ""
-    echo "(1) LibreOffice               (2) Marknote"
+    echo "(1) LibreOffice               (2) Bookup"
     echo "(3) Bitwarden                 (4) KeePassXC"
     echo "(5) Raspberry Pi Imager       (6) GtkHash"
     echo "(7) MissionCenter             (8) Gpu-Viewer"
@@ -823,7 +826,7 @@ flatpak_extras_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/marknote.sh "flatpak"
+            flatpak install --user -y flathub org.gnome.gitlab.ilhooq.Bookup
             ;;
 
         3)
