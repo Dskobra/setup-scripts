@@ -171,6 +171,7 @@ native_kde_desktop_menu(){
             ;;
 
         6)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/kde/k3b.sh
             ;;
 
@@ -689,6 +690,7 @@ flatpak_gaming_menu(){
 
 
         3)  
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
             ;;
         
