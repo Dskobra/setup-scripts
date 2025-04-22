@@ -50,7 +50,7 @@ download_openjdk(){
 }
 
 download_openjfx(){
-    OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.6/openjfx-21.0.6_linux-x64_bin-sdk.zip"
+    OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.7/openjfx-21.0.7_linux-x64_bin-sdk.zip"
     if test -d /opt/apps/openjfx21; then
         echo "openjfx21 already downloaded."
     elif ! test -d /opt/apps/openjfx21; then
@@ -68,7 +68,7 @@ download_openjfx(){
 }
 
 download_idea(){
-    IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2024.3.3.tar.gz"
+    IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2025.1.tar.gz"
     if test -d /opt/apps/idea; then
         echo "Intellij Idea already downloaded."
     elif ! test -d /opt/apps/idea; then
@@ -86,7 +86,7 @@ download_idea(){
 }
 
 download_pycharm(){
-    PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2024.3.3.tar.gz"
+    PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2025.1.tar.gz"
     if test -d /opt/apps/pycharm; then
         echo "Pycharm already downloaded."
     elif ! test -d /opt/apps/pycharm; then
