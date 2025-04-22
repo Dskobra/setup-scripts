@@ -10,6 +10,7 @@ native_jdk(){
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
         echo "Temurin is only available on openSUSE Leap/SLES."
+        download_openjdk
     else
         echo "Unkown error has occurred."
     fi
@@ -107,7 +108,7 @@ PYCHARM_LOCATION="/opt/apps/pycharm"
 
 if [ "$1" == "openjdk" ]
 then
-    download_openjdk
+    native_jdk
 elif [ "$1" == "openjfx" ]
 then
     download_openjfx
