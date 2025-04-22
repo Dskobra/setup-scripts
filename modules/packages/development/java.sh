@@ -14,21 +14,36 @@ native_jdk(){
         echo "Unkown error has occurred."
     fi
 }
+
 download_openjdk(){
-    OPENJDK_LINK="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz"
     if test -d /opt/apps/openjdk21; then
         echo "openjdk21 already downloaded."
     elif ! test -d /opt/apps//openjdk21; then
         cd /opt/apps/temp || exit
-        curl -L -o openjdk21.tar.gz "$OPENJDK_LINK"
-        tar -xvf openjdk21.tar.gz
+        # script provided by Adoptium Temurin https://github.com/adoptium/api.adoptium.net/blob/main/docs/cookbook.adoc#example-two
+        set -eu
+
+        # Specify the Java version and platform
+        API_URL="https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse"
+
+        # Fetch the archive
+        FETCH_URL=$(curl -s -w %{redirect_url} "${API_URL}")
+        FILENAME=$(curl -OLs -w %{filename_effective} "${FETCH_URL}")
+
+        # Validate the checksum
+        curl -Ls "${FETCH_URL}.sha256.txt" | sha256sum -c --status
+
+        echo "Downloaded successfully as ${FILENAME}"
+
+        tar -xvf OpenJDK21U-jdk_x64_linux_hotspot_21.*.tar.gz
         mv jdk-21* openjdk21
         mv openjdk21 /opt/apps/openjdk21
-        rm /opt/apps/temp/openjdk21.tar.gz
+        rm /opt/apps/temp/OpenJDK21U-jdk_x64_linux_hotspot_21.*.tar.gz
         echo "Temurin openJDK 21 LTS is located at /opt/apps/openjdk21" >> "$SCRIPTS_FOLDER"/install.txt 
         echo "================================================================"
         echo "Temurin openJDK 21 LTS is located at $OPENJDK_LOCATION"
         echo "================================================================"
+
     fi
 }
 
