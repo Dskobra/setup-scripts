@@ -9,7 +9,8 @@ native_jdk(){
         sudo alternatives --set java /usr/lib/jvm/temurin-21-jdk/bin/java
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        echo "Temurin is only available on openSUSE Leap/SLES."
+        echo "Temurin JDK repo is only available on openSUSE Leap/SLES."
+        echo "This will dowload the tarball instead."
         download_openjdk
     else
         echo "Unkown error has occurred."
