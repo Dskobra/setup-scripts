@@ -1,5 +1,19 @@
 #!/usr/bin/bash
-
+native_jdk(){
+    if [ "$DISTRO" == "fedora" ]
+    then
+        sudo dnf install -y adoptium-temurin-java-repository
+        sudo sed -i '/enabled=0/c enabled=1' /etc/yum.repos.d/adpotium-temurin-java-repository.repo
+        sudo dnf update -y
+        sudo dnf install -y temurin-21-jdk
+        sudo alternatives --set java /usr/lib/jvm/temurin-21-jdk/bin/java
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
+    then
+        echo "Temurin is only available on openSUSE Leap/SLES."
+    else
+        echo "Unkown error has occurred."
+    fi
+}
 download_openjdk(){
     OPENJDK_LINK="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz"
     if test -d /opt/apps/openjdk21; then
