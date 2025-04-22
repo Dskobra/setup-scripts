@@ -18,7 +18,7 @@ native_jdk(){
 download_openjdk(){
     if test -d /opt/apps/openjdk21; then
         echo "openjdk21 already downloaded."
-    elif ! test -d /opt/apps//openjdk21; then
+    elif ! test -d /opt/apps/openjdk21; then
         cd /opt/apps/temp || exit
         # script provided by Adoptium Temurin https://github.com/adoptium/api.adoptium.net/blob/main/docs/cookbook.adoc#example-two
         set -eu
