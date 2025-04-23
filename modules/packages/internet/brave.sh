@@ -7,13 +7,6 @@ native_brave_browser(){
         sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         sudo dnf update -y
         sudo dnf install -y brave-browser
-
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        sudo zypper ref
-        sudo zypper -n install brave-browser
     else
         echo "Unkown error has occurred."
     fi
@@ -28,13 +21,6 @@ remove_brave_browser(){
         sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
         sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"
         sudo dnf update -y
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n rm brave-browser
-        sudo rm "/etc/zypp/repos.d/brave-browser.repo"
-        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-nightly"
-        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
-        sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"        
     else
         echo "Unkown error has occurred."
     fi

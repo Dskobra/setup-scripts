@@ -4,9 +4,6 @@ native_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n install steam
     else
         echo "Unkown error has occurred."
     fi
@@ -16,9 +13,6 @@ native_steam_devices(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam-devices
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n install steam-devices
     else
         echo "Unkown error has occurred."
     fi
@@ -28,9 +22,6 @@ remove_steam(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y steam
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n rm steam
     else
         echo "Unkown error has occurred."
     fi

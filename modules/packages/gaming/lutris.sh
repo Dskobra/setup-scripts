@@ -4,9 +4,6 @@ native_lutris(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y lutris
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n install --auto-agree-with-licenses lutris
     else
         echo "Unkown error has occurred."
     fi
@@ -16,9 +13,6 @@ remove_lutris(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y lutris
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n rm lutris
     else
         echo "Unkown error has occurred."
     fi
