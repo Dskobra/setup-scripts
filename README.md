@@ -3,14 +3,13 @@ Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
 * Fedora (non atomic) 41/42
-* openSUSE Slowroll   20250101+
 
 ## Requirements
 * curl
 * wget
+* dnf-plugins-core
 * flatpak
 * flatseal         (flatpak)
-* dnf-plugins-core (fedora)
 
 structure
 -------------
