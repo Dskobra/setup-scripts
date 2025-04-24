@@ -13,6 +13,7 @@ native_steam_devices(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y steam-devices
+        sudo dnf mark user -y steam-devices
     else
         echo "Unkown error has occurred."
     fi
@@ -37,8 +38,8 @@ then
 elif [ "$1" == "native" ]
 then
     flatpak remove --user -y com.valvesoftware.Steam
-    native_steam
     native_steam_devices
+    native_steam
 else
     echo "error"
 fi
