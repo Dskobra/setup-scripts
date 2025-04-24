@@ -500,7 +500,7 @@ flatpak_kde_desktop_menu(){
     echo "--------------------------"
     echo "|KDE Apps|[FLATPAK/OTHER]|"
     echo "--------------------------"
-    echo ""   
+    echo ""
     echo "(1) KDE Patience       (2) Kolourpaint"
     echo "(3) Kleopatra          (4) KDE ISO Image Writer"
     echo "(n) Native Apps        (m) Main Menu"
@@ -876,6 +876,22 @@ flatpak_extras_menu(){
         flatpak_extras_menu
 }
 
+help(){
+    echo "native        -      applications that are built either by your distro or provided by 3rd party/community repository. These are"
+    echo "                     rpm files and built/optimized specifically for your distro. Generally the recommended choice."
+    echo ""
+    echo ""
+    echo "flatpak       -      applications built for all distros. Often maintained by developers directly. Automatically handles codecs"
+    echo "                     like ffmpeg and mesa with gpu acceleration that won't break on updates. OBS is an example where the flatpak"
+    echo "                     release is directly maintained by developers."
+    echo ""
+    echo ""
+    echo "appimage      -      applications with their required components built into a single file. wowup for example only offers an appimage."
+    echo ""
+    echo ""
+    echo "tarball       -      compressed file similar to a zip file. The folder is laid out just like it is when normally installed except"
+    echo "                     it's ready to use and requires no installation. Generally you copy this somewhere and create a shortcut."
+}
 ########################################
 # End flatpak/other menus
 ########################################
