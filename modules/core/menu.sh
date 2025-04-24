@@ -890,7 +890,8 @@ help(){
     echo ""
     echo ""
     echo "tarball       -      compressed file similar to a zip file. The folder is laid out just like it is when normally installed except"
-    echo "                     it's ready to use and requires no installation. Generally you copy this somewhere and create a shortcut."
+    echo "                     it's ready to use and requires no installation. Generally you copy this somewhere like /opt or /usr/local/share"
+    echo "                     and create a shortcut."
 }
 ########################################
 # End flatpak/other menus
