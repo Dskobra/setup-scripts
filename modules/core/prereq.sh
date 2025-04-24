@@ -8,7 +8,7 @@ prereq_check(){
     deps_check
     if [ "$DISTRO" == "fedora" ]
     then
-        dnf_plugins_core_check
+        #dnf_plugins_core_check
         echo $PACKAGES_TO_INSTALL
         if [ -z "$PACKAGES_TO_INSTALL" ]
         then
@@ -105,6 +105,12 @@ deps_check(){
     elif ! test -f /usr/bin/flatpak; then
         PACKAGES_TO_INSTALL+=" flatpak "
 
+    fi
+
+    if test -f /etc/dnf/plugins/copr.conf; then
+        echo "dnf-plugins-core already installed."
+    elif ! test -f /etc/dnf/plugins/copr.conf; then
+        PACKAGES_TO_INSTALL+=" dnf-plugins-core "
     fi
 }
 

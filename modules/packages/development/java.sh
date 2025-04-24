@@ -12,38 +12,6 @@ native_jdk(){
     fi
 }
 
-download_openjdk(){
-    if test -d /opt/apps/openjdk21; then
-        echo "openjdk21 already downloaded."
-    elif ! test -d /opt/apps/openjdk21; then
-        cd /opt/apps/temp || exit
-        # script provided by Adoptium Temurin https://github.com/adoptium/api.adoptium.net/blob/main/docs/cookbook.adoc#example-two
-        set -eu
-
-        # Specify the Java version and platform
-        API_URL="https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse"
-
-        # Fetch the archive
-        FETCH_URL=$(curl -s -w %{redirect_url} "${API_URL}")
-        FILENAME=$(curl -OLs -w %{filename_effective} "${FETCH_URL}")
-
-        # Validate the checksum
-        curl -Ls "${FETCH_URL}.sha256.txt" | sha256sum -c --status
-
-        echo "Downloaded successfully as ${FILENAME}"
-
-        tar -xvf OpenJDK21U-jdk_x64_linux_hotspot_21.*.tar.gz
-        mv jdk-21* openjdk21
-        mv openjdk21 /opt/apps/openjdk21
-        rm /opt/apps/temp/OpenJDK21U-jdk_x64_linux_hotspot_21.*.tar.gz
-        echo "Temurin openJDK 21 LTS is located at /opt/apps/openjdk21" >> "$SCRIPTS_FOLDER"/install.txt 
-        echo "================================================================"
-        echo "Temurin openJDK 21 LTS is located at $OPENJDK_LOCATION"
-        echo "================================================================"
-
-    fi
-}
-
 download_openjfx(){
     OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.7/openjfx-21.0.7_linux-x64_bin-sdk.zip"
     if test -d /opt/apps/openjfx21; then
