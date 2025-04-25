@@ -78,6 +78,7 @@ hardware_menu(){
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Corectrl          (fedora)                    (2) Nvidia Driver               (rpmfusion)"
     echo "(3) CoolerControl     (fedora copr)               (4) OpenRGB                     (fedora)"
     echo "(5) Virtual Camera    (rpmfusion)"
@@ -139,6 +140,7 @@ native_kde_desktop_menu(){
     echo "|KDE|"
     echo "-----"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) KDE Patience      (fedora)                    (2) Kolourpaint                 (fedora)"
     echo "(3) Kleopatra         (fedora)                    (4) KDE ISO Image Writer        (fedora)"
     echo "(5) Kate              (fedora)                    (6) K3b                         (fedora)"
@@ -219,6 +221,7 @@ native_internet_menu(){
     echo "|Internet|"
     echo "----------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Firefox           (fedora)                    (2) Brave Browser               (brave)"
     echo "(3) Transmissionbt    (fedora)                    (4) Remmina                     (fedora)"
     echo "(5) Rclone            (fedora)"
@@ -279,6 +282,7 @@ native_multimedia_menu(){
     echo "|Multimedia|"
     echo "------------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) VLC Media Player  (fedora)                    (2) OpenShot                    (fedora)"
     echo "(3) xfburn            (fedora)"
     echo "(f) Non-native                                    (m) Main Menu"
@@ -335,6 +339,7 @@ native_gaming_menu(){
     echo "|Gaming|"
     echo "--------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Steam             (rpmfusion)                 (2) Lutris                      (fedora)"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
@@ -388,11 +393,13 @@ native_dev_menu(){
     echo "|Development|"
     echo "-------------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Git               (fedora)                    (2) Kommit                      (fedora)"
     echo "(3) VIM               (fedora)                    (4) VSCodium                    (codium)"
     echo "(5) Geany             (fedora)                    (6) C/C++ Compiler              (fedora)"
-    echo "(7) Python IDLE       (fedora)                    (8) Containers                  (fedora)"
-    echo "(9) Virtualization    (fedora)                    (10) Lamp Stack                 (fedora)"
+    echo "(7) openJDK 21 LTS    (adoptium repo)             (8) Python IDLE                 (fedora)"
+    echo "(9) Containers        (fedora)                    (10) Virtualization             (fedora)"
+    echo "(11) Lamp Stack       (fedora)"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -423,23 +430,26 @@ native_dev_menu(){
         
         6)
             "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
-            
             ;;
 
         7)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
+            ;;
+        
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
            
             ;;
 
-        8)
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        9)
+        10)
             "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
-        10)
+        11)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
@@ -475,6 +485,7 @@ native_extras_menu(){
     echo "|Extras|"
     echo "--------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) LibreOffice       (fedora)                    (2) KeePassXC                   (fedora)"
     echo "(f) Non-native"
     echo "(m) Main Menu                                     (h) Help"
@@ -531,6 +542,7 @@ non_native_kde_desktop_menu(){
     echo "|KDE|"
     echo "-----"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) KDE Patience      (flatpak)                   (2) Kolourpaint                 (flatpak)"
     echo "(3) Kleopatra         (flatpak)                   (4) KDE ISO Image Writer        (flatpak)"
     echo "(n) Native                                        (m) Main Menu"
@@ -588,6 +600,7 @@ non_native_internet_menu(){
     echo "|Internet|"
     echo "----------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Firefox           (flatpak)                   (2) Brave Browser               (flatpak)"
     echo "(3) Dropbox           (flatpak)                   (4) Transmissionbt              (flatpak)"
     echo "(5) Remmina           (flatpak)           "
@@ -654,6 +667,7 @@ non_native_multimedia_menu(){
     echo "|Multimedia|"
     echo "------------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) VLC Media Player  (flatpak)                   (2) OBS Studio                  (flatpak)"
     echo "(3) OpenShot          (flatpak)"
     echo "(n) Native                                        (m) Main Menu"
@@ -707,6 +721,7 @@ non_native_gaming_menu(){
     echo "|Gaming|"
     echo "--------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Steam             (flatpak)                   (2) Lutris                      (flatpak)"
     echo "(3) Discord           (discord)                   (4) Prism Launcher              (flatpak)"                
     echo "(5) Dolphin           (flatpak)                   (6) Cemu                        (flatpak)"
@@ -791,10 +806,10 @@ non_native_dev_menu(){
     echo "--------------"
     echo "|Development|"
     echo "-------------"
-    echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Intellij IDEA     (jetbrains/tarball)         (2) Pycharm                     (jetbrains/tarball)"
     echo "(3) Podman Desktop    (flatpak)                   (4) Nodejs LTS                  (nvm script)"
-    echo "(5) openJDK 21 LTS    (adoptium repo)             (6) openjfx 21 LTS              (gluon/tarball)"
+    echo "(5) openjfx 21 LTS    (gluon/tarball)"
     echo "(n) Native                                        (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -821,10 +836,6 @@ non_native_dev_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
-            ;;
-
-        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
             ;;
 
@@ -860,6 +871,7 @@ non_native_extras_menu(){
     echo "|Extras|"
     echo "--------"
     echo ""
+    echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) LibreOffice       (flatpak)                   (2) Bookup                      (flatpak) "
     echo "(3) Bitwarden         (flatpak)                   (4) KeePassXC                   (flatpak) "
     echo "(5) RpiImager         (flatpak)                   (6) GtkHash                     (flatpak)"
