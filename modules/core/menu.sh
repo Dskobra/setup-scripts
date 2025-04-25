@@ -17,7 +17,7 @@ main_menu(){
     echo "(3) Internet Apps                     (4) Multimedia Apps"
     echo "(5) Gaming Apps                       (6) Dev Apps"
     echo "(7) Extra Apps"
-    echo "(0) Exit"
+    echo "(h) Help                              (0) Exit"
     printf "Option: "
     read -r input
     
@@ -52,6 +52,10 @@ main_menu(){
             native_extras_menu
             ;;
 
+        h | H)
+            help
+            ;;
+
         0)
             exit
             ;;
@@ -68,17 +72,17 @@ main_menu(){
 }
 
 hardware_menu(){
-    echo "------------------------"
-    echo "|Hardware|[NATIVE(RPM)]|"
-    echo "------------------------"
+    echo "----------"
+    echo "|Hardware|"
+    echo "----------"
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
-    echo "(1) Corectrl(amd)       (2) Nvidia Driver"
-    echo "(3) CoolerControl       (4) OpenRGB"
-    echo "(5) Virtual Camera"
-    echo "(h) Help"
-    echo "(m) Main Menu           (0) Exit"
+    echo "(1) Corectrl          (fedora)                    (2) Nvidia Driver               (rpmfusion)"
+    echo "(3) CoolerControl     (fedora copr)               (4) OpenRGB                     (fedora)"
+    echo "(5) Virtual Camera    (rpmfusion)"
+    echo "(m) Main Menu                                     (h) Help"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -103,14 +107,6 @@ hardware_menu(){
         5)
             "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
             ;;
-        
-        h)
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Hardware"
-            ;;
-
-        H)
-            xdg-open "https://github.com/Dskobra/setup-scripts/wiki/Hardware"
-            ;;
 
         m)
             main_menu
@@ -118,6 +114,10 @@ hardware_menu(){
             
         M)
             main_menu
+            ;;
+
+        h | H)
+            help
             ;;
         0)
             exit
@@ -135,16 +135,16 @@ hardware_menu(){
 }
 
 native_kde_desktop_menu(){
-    echo "------------------------"
-    echo "|KDE Apps|[NATIVE(RPM)]|"
-    echo "------------------------"
+    echo "-----"
+    echo "|KDE|"
+    echo "-----"
     echo ""
-    echo "(1) KDE Patience          (2) Kolourpaint "
-    echo "(3) Kleopatra             (4) KDE ISO Image Writer"
-    echo "(5) Kate                  (6) K3b"
-    echo "(7) Krdc                  (8) Krfb"
-    echo "(f) Flatpak/Other         (m) Main Menu"
-    echo "(0) Exit"
+    echo "(1) KDE Patience      (fedora)                    (2) Kolourpaint                 (fedora)"
+    echo "(3) Kleopatra         (fedora)                    (4) KDE ISO Image Writer        (fedora)"
+    echo "(5) Kate              (fedora)                    (6) K3b                         (fedora)"
+    echo "(7) Krdc              (fedora)                    (8) Krfb                        (fedora)"
+    echo "(f) Non-native                                    (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -184,11 +184,19 @@ native_kde_desktop_menu(){
             ;;
 
         f | F)
-            flatpak_kde_desktop_menu
+            non_native_kde_desktop_menu
+            ;;
+
+        h | H)
+            help
             ;;
 
         m | M)
             main_menu
+            ;;
+
+        h | H)
+            help
             ;;
 
         0)
@@ -207,14 +215,14 @@ native_kde_desktop_menu(){
 }
 
 native_internet_menu(){
-    echo "-----------------------------"
-    echo "|Internet Apps|[NATIVE(RPM)]|"
-    echo "-----------------------------"
+    echo "----------"
+    echo "|Internet|"
+    echo "----------"
     echo ""
-    echo "(1) Firefox                (2) Brave Browser"
-    echo "(3) Transmissionbt         (4) Remmina"
-    echo "(f) Flatpak/Other"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(1) Firefox           (fedora)                    (2) Brave Browser               (brave)"
+    echo "(3) Transmissionbt    (fedora)                    (4) Remmina                     (fedora)"
+    echo "(f) Non-native                                    (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -239,7 +247,11 @@ native_internet_menu(){
             ;;
 
         f | F)
-            flatpak_internet_menu
+            non_native_internet_menu
+            ;;
+
+        h | H)
+            help
             ;;
 
         m | M)
@@ -262,14 +274,14 @@ native_internet_menu(){
 }
 
 native_multimedia_menu(){
-    echo "-------------------------------"
-    echo "|Multimedia Apps|[NATIVE(RPM)]|"
-    echo "-------------------------------"
+    echo "------------"
+    echo "|Multimedia|"
+    echo "------------"
     echo ""
-    echo "(1) VLC Media Player      (2) OpenShot"
-    echo "(3) xfburn"
-    echo "(f) Flatpak/Other"
-    echo "(m) Main Menu             (0) Exit"
+    echo "(1) VLC Media Player  (fedora)                    (2) OpenShot                    (fedora)"
+    echo "(3) xfburn            (fedora)"
+    echo "(f) Non-native                                    (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -292,11 +304,14 @@ native_multimedia_menu(){
             ;;
 
         f | F)
-            flatpak_multimedia_menu
+            non_native_multimedia_menu
             ;;
-        
         m | M)
             main_menu
+            ;;
+
+        h | H)
+            help
             ;;
 
         0)
@@ -315,13 +330,13 @@ native_multimedia_menu(){
 }
 
 native_gaming_menu(){
-    echo "---------------------------"
-    echo "|Gaming Apps|[NATIVE(RPM)]|"
-    echo "---------------------------"
+    echo "--------"
+    echo "|Gaming|"
+    echo "--------"
     echo ""
-    echo "(1) Steam                  (2) Lutris"
-    echo "(f) Flatpak/Other"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(1) Steam             (rpmfusion)                 (2) Lutris                      (fedora)"
+    echo "(f) Non-native                                    (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -341,10 +356,15 @@ native_gaming_menu(){
             ;;
 
         f | F)
-            flatpak_gaming_menu
+            non_native_gaming_menu
             ;;
+
         m | M)
             main_menu
+            ;;
+
+        h | H)
+            help
             ;;
 
         0)
@@ -363,17 +383,17 @@ native_gaming_menu(){
 }
 
 native_dev_menu(){
-    echo "------------------------"
-    echo "|Dev Apps|[NATIVE(RPM)]|"
-    echo "------------------------"
+    echo "--------------"
+    echo "|Development|"
+    echo "-------------"
     echo ""
-    echo "(1) Git                        (2) Kommit"
-    echo "(3) VIM                        (4) VSCodium"
-    echo "(5) Geany                      (6) C/C++ Compiler"
-    echo "(7) Python Dev Packages        (8) Containers"
-    echo "(9) Virtualization             (10) Lamp Stack"
-    echo "(f) Flatpak/Other"
-    echo "(m) Main Menu                  (0) Exit"
+    echo "(1) Git               (fedora)                    (2) Kommit                      (fedora)"
+    echo "(3) VIM               (fedora)                    (4) VSCodium                    (codium)"
+    echo "(5) Geany             (fedora)                    (6) C/C++ Compiler              (fedora)"
+    echo "(7) Python IDLE       (fedora)                    (8) Containers                  (fedora)"
+    echo "(9) Virtualization    (fedora)                    (10) Lamp Stack                 (fedora)"
+    echo "(f) Non-native                                    (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -423,11 +443,15 @@ native_dev_menu(){
             ;;
 
         f | F)
-            flatpak_dev_menu
+            non_native_dev_menu
             ;;
 
         m | M)
             main_menu
+            ;;
+
+         h | H)
+            help
             ;;
 
         0)
@@ -446,13 +470,14 @@ native_dev_menu(){
 }
 
 native_extras_menu(){
-    echo "--------------------------"
-    echo "|Extra Apps|[NATIVE(RPM)]|"
-    echo "--------------------------"
+    echo "--------"
+    echo "|Extras|"
+    echo "--------"
     echo ""
-    echo "(1) LibreOffice               (2) KeePassXC"
-    echo "(f) Flatpak/Other"
-    echo "(m) Main Menu                 (0) Exit"
+    echo "(1) LibreOffice       (fedora)                    (2) KeePassXC                   (fedora)"
+    echo "(f) Non-native"
+    echo "(m) Main Menu                                     (h) Help"
+    echo "(0) Exit"
     printf "Option: "
     read -r input
     
@@ -467,11 +492,15 @@ native_extras_menu(){
             ;;
 
         f | F)
-            flatpak_extras_menu
+            non_native_extras_menu
             ;;
 
         m | M)
             main_menu
+            ;;
+
+        h | H)
+            help
             ;;
 
         0)
@@ -496,15 +525,15 @@ native_extras_menu(){
 ########################################
 # Flatpak/other menus
 ########################################
-flatpak_kde_desktop_menu(){
-    echo "--------------------------"
-    echo "|KDE Apps|[FLATPAK/OTHER]|"
-    echo "--------------------------"
+non_native_kde_desktop_menu(){
+    echo "-----"
+    echo "|KDE|"
+    echo "-----"
     echo ""
-    echo "(1) KDE Patience       (2) Kolourpaint"
-    echo "(3) Kleopatra          (4) KDE ISO Image Writer"
-    echo "(n) Native Apps        (m) Main Menu"
-    echo "(0) Exit"
+    echo "(1) KDE Patience      (flatpak)                   (2) Kolourpaint                 (flatpak)"
+    echo "(3) Kleopatra         (flatpak)                   (4) KDE ISO Image Writer        (flatpak)"
+    echo "(n) Native                                        (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -534,6 +563,10 @@ flatpak_kde_desktop_menu(){
             main_menu
             ;;
 
+        h | H)
+            help
+            ;;
+
         0)
             exit
             ;;
@@ -541,24 +574,24 @@ flatpak_kde_desktop_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            flatpak_kde_desktop_menu
+            non_native_kde_desktop_menu
             ;;
             
         esac
         unset input
-        flatpak_kde_desktop_menu
+        non_native_kde_desktop_menu
 }
 
-flatpak_internet_menu(){
-    echo "-------------------------------"
-    echo "|Internet Apps|[FLATPAK/OTHER]|"
-    echo "-------------------------------"
+non_native_internet_menu(){
+    echo "----------"
+    echo "|Internet|"
+    echo "----------"
     echo ""
-    echo "(1) Firefox                (2) Brave Browser"
-    echo "(3) Dropbox                (4) Transmissionbt"
-    echo "(5) Remmina                (6) Rclone/Browser"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu              (0) Exit"
+    echo "(1) Firefox           (flatpak)                   (2) Brave Browser               (flatpak)"
+    echo "(3) Dropbox           (flatpak)                   (4) Transmissionbt              (flatpak)"
+    echo "(5) Remmina           (flatpak)                   (6) Rclone/Browser              (appimage/rclone)"
+    echo "(n) Native                                        (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -596,6 +629,10 @@ flatpak_internet_menu(){
             main_menu
             ;;
 
+        h | H)
+            help
+            ;;
+
         0)
             exit
             ;;
@@ -603,23 +640,23 @@ flatpak_internet_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            flatpak_internet_menu
+            non_native_internet_menu
             ;;
             
         esac
         unset input
-        flatpak_internet_menu
+        non_native_internet_menu
 }
 
-flatpak_multimedia_menu(){
-    echo "----------------------------------"
-    echo "|Multimedia Apps|[FLATPAK/OTHER]|"
-    echo "---------------------------------"
+non_native_multimedia_menu(){
+    echo "------------"
+    echo "|Multimedia|"
+    echo "------------"
     echo ""
-    echo "(1) VLC Media Player          (2) OBS Studio"
-    echo "(3) OpenShot"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu                 (0) Exit"
+    echo "(1) VLC Media Player  (flatpak)                   (2) OBS Studio                  (flatpak)"
+    echo "(3) OpenShot          (flatpak)"
+    echo "(n) Native                                        (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -645,6 +682,10 @@ flatpak_multimedia_menu(){
             main_menu
             ;;
 
+        h | H)
+            help
+            ;;
+
         0)
             exit
             ;;
@@ -652,26 +693,26 @@ flatpak_multimedia_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            flatpak_multimedia_menu
+            non_native_multimedia_menu
             ;;
             
         esac
         unset input
-        flatpak_multimedia_menu
+        non_native_multimedia_menu
 }
 
-flatpak_gaming_menu(){
-    echo "-----------------------------"
-    echo "|Gaming Apps|[FLATPAK/OTHER]|"
-    echo "-----------------------------"
+non_native_gaming_menu(){
+    echo "--------"
+    echo "|Gaming|"
+    echo "--------"
     echo ""
-    echo "(1) Steam                   (2) Lutris"
-    echo "(3) Discord                 (4) Prism Launcher"                
-    echo "(5) Dolphin                 (6) Cemu "
-    echo "(7) WoWUp                   (8) Warcraft Logs"
-    echo "(9) WeakAuras Companion"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu               (0) Exit"
+    echo "(1) Steam             (flatpak)                   (2) Lutris                      (flatpak)"
+    echo "(3) Discord           (discord)                   (4) Prism Launcher              (flatpak)"                
+    echo "(5) Dolphin           (flatpak)                   (6) Cemu                        (flatpak)"
+    echo "(7) WoWUp             (appimage)                  (8) Warcraft Logs               (appimage)"
+    echo "(9) WeakAuras         (appimage)"
+    echo "(n) Native                                        (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -726,6 +767,10 @@ flatpak_gaming_menu(){
             main_menu
             ;;
 
+        h | H)
+            help
+            ;;
+
         0)
             exit
             ;;
@@ -733,24 +778,24 @@ flatpak_gaming_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            flatpak_gaming_menu
+            non_native_gaming_menu
             ;;
             
         esac
         unset input
-        flatpak_gaming_menu
+        non_native_gaming_menu
 }
 
-flatpak_dev_menu(){
-    echo "--------------------------"
-    echo "|Dev Apps|[FLATPAK/OTHER]|"
-    echo "--------------------------"
+non_native_dev_menu(){
+    echo "--------------"
+    echo "|Development|"
+    echo "-------------"
     echo ""
-    echo "(1) Intellij IDEA                 (2) Pycharm"
-    echo "(3) Podman Desktop                (4) Nodejs LTS"
-    echo "(5) openJDK 21 LTS                (6) openjfx 21 LTS"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu                     (0) Exit"
+    echo "(1) Intellij IDEA     (jetbrains)                 (2) Pycharm                     (jetbrains)"
+    echo "(3) Podman Desktop    (flatpak)                   (4) Nodejs LTS                  (nvm)"
+    echo "(5) openJDK 21 LTS    (adoptium)                  (6) openjfx 21 LTS              (gluon)"
+    echo "(n) Native                                        (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -790,6 +835,10 @@ flatpak_dev_menu(){
             main_menu
             ;;
 
+        h | H)
+            help
+            ;;
+
         0)
             exit
             ;;
@@ -797,25 +846,25 @@ flatpak_dev_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        flatpak_dev_menu
+        non_native_dev_menu
         ;;
         
     esac
     unset input
-    flatpak_dev_menu
+    non_native_dev_menu
 }
 
-flatpak_extras_menu(){
-    echo "----------------------------"
-    echo "|Extra Apps|[FLATPAK/OTHER]|"
-    echo "----------------------------"
+non_native_extras_menu(){
+    echo "--------"
+    echo "|Extras|"
+    echo "--------"
     echo ""
-    echo "(1) LibreOffice               (2) Bookup"
-    echo "(3) Bitwarden                 (4) KeePassXC"
-    echo "(5) Raspberry Pi Imager       (6) GtkHash"
-    echo "(7) MissionCenter             (8) Gpu-Viewer"
-    echo "(n) Native Apps"
-    echo "(m) Main Menu                 (0) Exit"
+    echo "(1) LibreOffice       (flatpak)                   (2) Bookup                      (flatpak) "
+    echo "(3) Bitwarden         (flatpak)                   (4) KeePassXC                   (flatpak) "
+    echo "(5) RpiImager         (flatpak)                   (6) GtkHash                     (flatpak)"
+    echo "(7) MissionCenter     (flatpak)                   (8) Gpu-Viewer                  (flatpak) "
+    echo "(n) Native                                        (m) Main Menu"
+    echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
     
@@ -861,6 +910,10 @@ flatpak_extras_menu(){
             main_menu
             ;;
 
+        h | H)
+            help
+            ;;
+
         0)
             exit
             ;;
@@ -868,15 +921,22 @@ flatpak_extras_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            flatpak_extras_menu
+            non_native_extras_menu
             ;;
             
         esac
         unset input
-        flatpak_extras_menu
+        non_native_extras_menu
 }
 
 help(){
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
     echo "native        -      applications that are built either by your distro or provided by 3rd party/community repository. These are"
     echo "                     rpm files and built/optimized specifically for your distro. Generally the recommended choice."
     echo ""
