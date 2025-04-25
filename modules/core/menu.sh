@@ -397,7 +397,7 @@ native_dev_menu(){
     echo "(1) Git               (fedora)                    (2) Kommit                      (fedora)"
     echo "(3) VIM               (fedora)                    (4) VSCodium                    (codium)"
     echo "(5) Geany             (fedora)                    (6) C/C++ Compiler              (fedora)"
-    echo "(7) openJDK 21 LTS    (adoptium repo)             (8) Python IDLE                 (fedora)"
+    echo "(7) openJDK 21 LTS    (adoptium)                  (8) Python IDLE                 (fedora)"
     echo "(9) Containers        (fedora)                    (10) Virtualization             (fedora)"
     echo "(11) Lamp Stack       (fedora)"
     echo "(f) Non-native                                    (m) Main Menu"
