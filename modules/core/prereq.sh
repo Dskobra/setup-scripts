@@ -8,7 +8,6 @@ prereq_check(){
     deps_check
     if [ "$DISTRO" == "fedora" ]
     then
-        #dnf_plugins_core_check
         echo $PACKAGES_TO_INSTALL
         if [ -z "$PACKAGES_TO_INSTALL" ]
         then
@@ -16,7 +15,6 @@ prereq_check(){
         else
             echo "Following packages will be installed: $PACKAGES_TO_INSTALL flatseal"
             sudo dnf install -y $PACKAGES_TO_INSTALL
-            #sudo dnf install -y curl wget flatpak dnf-plugins-core
         fi
         rpmfusion_check
     else
@@ -107,14 +105,6 @@ deps_check(){
 
     fi
 
-    if test -f /etc/dnf/plugins/copr.conf; then
-        echo "dnf-plugins-core already installed."
-    elif ! test -f /etc/dnf/plugins/copr.conf; then
-        PACKAGES_TO_INSTALL+=" dnf-plugins-core "
-    fi
-}
-
-dnf_plugins_core_check(){
     if test -f /etc/dnf/plugins/copr.conf; then
         echo "dnf-plugins-core already installed."
     elif ! test -f /etc/dnf/plugins/copr.conf; then

@@ -1,11 +1,6 @@
 #!/usr/bin/bash
-########################################
-# This determines type of distro
-# and if it's supported.
-########################################
 distro_check(){
-# Read $DISTRO then execute the appropriate
-# distro function.
+    # check if fedora
     if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
@@ -28,10 +23,6 @@ fedora_release_check(){
     fi
 
 }
-
-########################################
-# End of grouped functions
-########################################
 
 DISTRO=$(source /etc/os-release ; echo $ID)                      # store basic distro name
 VERSION_ID=$(source /etc/os-release ; echo "$VERSION_ID")        # store distro version number
