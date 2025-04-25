@@ -17,13 +17,6 @@ native_codecs(){
         sudo dnf swap -y mesa-vulkan-drivers mesa-vulkan-drivers-freeworld
         sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.i686
         echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Slowroll/Essentials/' packman-essentials
-        sudo zypper --gpg-auto-import-keys ref
-        sudo zypper -n install --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
-        sudo zypper -n dup --from packman-essentials --allow-vendor-change
-        echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
     else
         echo "Unkown error has occurred."
     fi
