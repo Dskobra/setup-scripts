@@ -346,13 +346,13 @@ native_gaming_menu(){
 
         1)  
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "native"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
             ;;
 
         2) 
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "native"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
             ;;
 
@@ -721,12 +721,12 @@ non_native_gaming_menu(){
 
 
         1) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "flatpak"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_runtimes.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "flatpak"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
             ;;
 
