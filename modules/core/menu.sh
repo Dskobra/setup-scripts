@@ -394,12 +394,11 @@ native_dev_menu(){
     echo "-------------"
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Git               (fedora)                    (2) Kommit                      (fedora)"
-    echo "(3) VIM               (fedora)                    (4) VSCodium                    (codium)"
-    echo "(5) Geany             (fedora)                    (6) C/C++ Compiler              (fedora)"
-    echo "(7) openJDK 21 LTS    (adoptium)                  (8) Python IDLE                 (fedora)"
-    echo "(9) Containers        (fedora)                    (10) Virtualization             (fedora)"
-    echo "(11) Lamp Stack       (fedora)"
+    echo "(1) Git               (fedora)                    (2) VIM                         (fedora)"
+    echo "(3) VSCodium          (codium)                    (4) Geany                       (fedora)"
+    echo "(5) GCC               (fedora)                    (6) openJDK 21 LTS              (adoptium)"
+    echo "(7) Python IDLE       (fedora)                    (8) Containers                  (fedora)"
+    echo "(9) Virtualization    (fedora)                    (10) Lamp Stack                 (fedora)"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -411,45 +410,41 @@ native_dev_menu(){
         1)  
             "$SCRIPTS_FOLDER"/modules/packages/development/git.sh "git"
             ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh "kommit"
-            ;;
         
-        3)
+        2)
             "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
 
-        4)
+        3)
             "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
             ;;
 
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
         
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/development/package_tools.sh
+        5)
+            "$SCRIPTS_FOLDER"/modules/packages/development/gcc.sh
             ;;
 
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
             ;;
         
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
            
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        10)
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
-        11)
+        10)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 

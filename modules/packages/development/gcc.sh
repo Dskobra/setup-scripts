@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-native_package_tools(){
+native_gcc(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf4 groupinstall -y "Development Tools"
@@ -10,4 +10,4 @@ native_package_tools(){
     fi
 }
 
-native_package_tools
+native_gcc
