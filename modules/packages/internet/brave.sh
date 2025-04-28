@@ -3,11 +3,6 @@
 native_brave_browser(){
     if [ "$DISTRO" == "fedora" ]
     then
-        #sudo dnf4 config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        #sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-        #sudo dnf update -y
-        #sudo dnf install -y brave-browser
-
         curl -fsSLO "https://dl.brave.com/install.sh{,.asc}" && gpg --keyserver hkps://keys.openpgp.org --recv-keys D16166072CACDF2C9429CBF11BF41E37D039F691 && gpg --verify install.sh.asc
         curl -fsS https://dl.brave.com/install.sh | sh
     else
