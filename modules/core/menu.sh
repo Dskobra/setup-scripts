@@ -223,8 +223,7 @@ native_internet_menu(){
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Firefox           (fedora)                    (2) Brave Browser               (brave)"
-    echo "(3) Transmissionbt    (fedora)                    (4) Remmina                     (fedora)"
-    echo "(5) Rclone            (fedora)"
+    echo "(3) Transmissionbt    (fedora)                    (4) Rclone                      (fedora)"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -247,7 +246,7 @@ native_internet_menu(){
             ;;
 
         4)  
-            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
             ;;
 
         f | F)
@@ -598,7 +597,6 @@ non_native_internet_menu(){
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Firefox           (flatpak)                   (2) Brave Browser               (flatpak)"
     echo "(3) Dropbox           (flatpak)                   (4) Transmissionbt              (flatpak)"
-    echo "(5) Remmina           (flatpak)           "
     echo "(n) Native                                        (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -620,14 +618,6 @@ non_native_internet_menu(){
 
         4)
             "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "flatpak"
-            ;;
-
-        5)  
-            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh "flatpak"
-            ;;
-
-        6)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
             ;;
 
         n | N)
