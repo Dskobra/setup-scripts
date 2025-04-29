@@ -4,9 +4,6 @@ native_libreoffice(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y libreoffice
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n install libreoffice libreoffice-branding-openSUSE
     else
         echo "Unkown error has occurred."
     fi
@@ -16,9 +13,6 @@ remove_libreoffice(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y libreoffice*
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n rm libreoffice*
     else
         echo "Unkown error has occurred."
     fi

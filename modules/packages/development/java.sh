@@ -1,25 +1,19 @@
 #!/usr/bin/bash
-
-download_openjdk(){
-    OPENJDK_LINK="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz"
-    if test -d /opt/apps/openjdk21; then
-        echo "openjdk21 already downloaded."
-    elif ! test -d /opt/apps//openjdk21; then
-        cd /opt/apps/temp || exit
-        curl -L -o openjdk21.tar.gz "$OPENJDK_LINK"
-        tar -xvf openjdk21.tar.gz
-        mv jdk-21* openjdk21
-        mv openjdk21 /opt/apps/openjdk21
-        rm /opt/apps/temp/openjdk21.tar.gz
-        echo "Temurin openJDK 21 LTS is located at /opt/apps/openjdk21" >> "$SCRIPTS_FOLDER"/install.txt 
-        echo "================================================================"
-        echo "Temurin openJDK 21 LTS is located at $OPENJDK_LOCATION"
-        echo "================================================================"
+native_jdk(){
+    if [ "$DISTRO" == "fedora" ]
+    then
+        sudo dnf install -y adoptium-temurin-java-repository
+        sudo sed -i '/enabled=0/c enabled=1' /etc/yum.repos.d/adpotium-temurin-java-repository.repo
+        sudo dnf update -y
+        sudo dnf install -y temurin-21-jdk
+        sudo alternatives --set java /usr/lib/jvm/temurin-21-jdk/bin/java
+    else
+        echo "Unkown error has occurred."
     fi
 }
 
 download_openjfx(){
-    OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.6/openjfx-21.0.6_linux-x64_bin-sdk.zip"
+    OPENJFX_LINK="https://download2.gluonhq.com/openjfx/21.0.7/openjfx-21.0.7_linux-x64_bin-sdk.zip"
     if test -d /opt/apps/openjfx21; then
         echo "openjfx21 already downloaded."
     elif ! test -d /opt/apps/openjfx21; then
@@ -37,7 +31,7 @@ download_openjfx(){
 }
 
 download_idea(){
-    IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2024.3.3.tar.gz"
+    IDEA_LINK="https://download.jetbrains.com/idea/ideaIC-2025.1.tar.gz"
     if test -d /opt/apps/idea; then
         echo "Intellij Idea already downloaded."
     elif ! test -d /opt/apps/idea; then
@@ -55,7 +49,7 @@ download_idea(){
 }
 
 download_pycharm(){
-    PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2024.3.3.tar.gz"
+    PYCHARM_LINK="https://download.jetbrains.com/python/pycharm-community-2025.1.tar.gz"
     if test -d /opt/apps/pycharm; then
         echo "Pycharm already downloaded."
     elif ! test -d /opt/apps/pycharm; then
@@ -78,7 +72,7 @@ PYCHARM_LOCATION="/opt/apps/pycharm"
 
 if [ "$1" == "openjdk" ]
 then
-    download_openjdk
+    native_jdk
 elif [ "$1" == "openjfx" ]
 then
     download_openjfx

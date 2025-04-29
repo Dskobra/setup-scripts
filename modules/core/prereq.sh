@@ -8,7 +8,6 @@ prereq_check(){
     deps_check
     if [ "$DISTRO" == "fedora" ]
     then
-        dnf_plugins_core_check
         echo $PACKAGES_TO_INSTALL
         if [ -z "$PACKAGES_TO_INSTALL" ]
         then
@@ -16,20 +15,8 @@ prereq_check(){
         else
             echo "Following packages will be installed: $PACKAGES_TO_INSTALL flatseal"
             sudo dnf install -y $PACKAGES_TO_INSTALL
-            #sudo dnf install -y curl wget flatpak dnf-plugins-core
         fi
         rpmfusion_check
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        echo $PACKAGES_TO_INSTALL
-        if [ -z "$PACKAGES_TO_INSTALL" ]
-        then
-            echo "Dependencies are installed."
-        else
-            echo "Following packages will be installed: $PACKAGES_TO_INSTALL flatseal"
-            sudo zypper -n install $PACKAGES_TO_INSTALL
-            #sudo zypper -n install wget curl flatpak
-        fi
     else
         echo "Unkown error has occurred."
     fi
@@ -117,9 +104,7 @@ deps_check(){
         PACKAGES_TO_INSTALL+=" flatpak "
 
     fi
-}
 
-dnf_plugins_core_check(){
     if test -f /etc/dnf/plugins/copr.conf; then
         echo "dnf-plugins-core already installed."
     elif ! test -f /etc/dnf/plugins/copr.conf; then

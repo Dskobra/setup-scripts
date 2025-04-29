@@ -5,9 +5,6 @@ install_remmina(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y remmina
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n install remmina
     else
         echo "Unkown error has occurred."
     fi
@@ -18,9 +15,6 @@ remove_remmina(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y remmina
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n rm remmina
     else
         echo "Unkown error has occurred."
     fi

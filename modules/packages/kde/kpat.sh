@@ -4,12 +4,6 @@ native_kpat(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y kpat
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n install kpat
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get install -y kpat
     else
         echo "Unkown error has occurred."
     fi
@@ -19,12 +13,6 @@ remove_kpat(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y kpat
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        sudo zypper -n rm kpat
-    elif [ "$DISTRO" == "debian" ]
-    then
-        sudo apt-get remove -y kpat
     else
         echo "Unkown error has occurred."
     fi

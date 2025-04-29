@@ -1,8 +1,7 @@
 #!/usr/bin/bash
 
-# installs the node version manager script for
-# managing multiple nodejs. this installs the latest 
-#LTS release.
+# installs the latest nodejs LTS release using nvm (node version manager)
+# which helps manage multiple nodejs installs.
 
 install_nodejs(){
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
@@ -11,5 +10,3 @@ install_nodejs(){
 }
 
 install_nodejs
-
-# random note, but on debian it puts nvm into ~/.nvm while fedora is ~/.config/nvm

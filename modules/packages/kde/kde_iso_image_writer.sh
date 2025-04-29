@@ -4,12 +4,6 @@ native_kde_iso_image_writer(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y isoimagewriter
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        echo "==============================================="
-        echo "KDE ISO Image Writer isn't available in openSUSE"
-        echo "Please select the flatpak version."
-        echo "==============================================="
     else
         echo "Unkown error has occurred."
     fi
@@ -19,9 +13,6 @@ remove_kde_iso_image_writer(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf remove -y isoimagewriter
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
-    then
-        echo "Not removing isoimagewriter as it's not present in openSUSE repos."
     else
         echo "Unkown error has occurred."
     fi
