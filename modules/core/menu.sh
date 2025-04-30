@@ -173,7 +173,6 @@ native_kde_desktop_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/kde/k3b.sh
             ;;
 
@@ -246,7 +245,7 @@ native_internet_menu(){
             ;;
 
         4)  
-            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh "native"
             ;;
 
         f | F)
@@ -303,7 +302,6 @@ native_multimedia_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
@@ -596,7 +594,8 @@ non_native_internet_menu(){
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Firefox           (flatpak)                   (2) Brave Browser               (flatpak)"
-    echo "(3) Dropbox           (flatpak)                   (4) Transmissionbt              (flatpak)"
+    echo "(3) Dropbox           (flatpak)                   (4) Rclone                      (rclone script)"
+    echo "(5) Transmissionbt    (flatpak)"
     echo "(n) Native                                        (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -617,6 +616,10 @@ non_native_internet_menu(){
             ;;
 
         4)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh "script"
+            ;;
+
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "flatpak"
             ;;
 

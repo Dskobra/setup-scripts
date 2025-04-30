@@ -40,12 +40,10 @@ apps_folder_check(){
     elif ! test -d /opt/apps/; then
         sudo mkdir /opt/apps/
         sudo mkdir /opt/apps/icons
-        sudo mkdir /opt/apps/appimages
         sudo mkdir /opt/apps/temp
         sudo chown $USER:$USER /opt/apps/ -R
         echo "Created folder: /opt/apps/"
         echo "Created folder: /opt/apps/icons"
-        echo "Created folder: /opt/apps/appimages"
         echo "Created folder: /opt/apps/temp"
 
     fi
@@ -58,17 +56,6 @@ apps_folder_check(){
         sudo mkdir /opt/apps/icons
         sudo chown $USER:$USER /opt/apps/icons -R
         echo "Created folder: /opt/apps/icons"
-
-    fi
-
-    if test -d /opt/apps/appimages; then
-        #echo "Found folder: /opt/apps/appimages"
-        USELESS_VAR=""
-    elif ! test -d /opt/apps/appimages; then
-        echo "Missing folder: /opt/apps/appimages"
-        sudo mkdir /opt/apps/appimages
-        sudo chown $USER:$USER /opt/apps/appimages -R
-        echo "Created folder: /opt/apps/appimages"
 
     fi
 
