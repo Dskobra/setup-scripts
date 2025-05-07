@@ -338,6 +338,7 @@ native_gaming_menu(){
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Steam             (rpmfusion)                 (2) Lutris                      (fedora)"
+    echo "(3) Discord           (rpmfusion)"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -356,6 +357,10 @@ native_gaming_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "native"
             "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
+            ;;
+
+        3)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "native"
             ;;
 
         f | F)
@@ -711,7 +716,7 @@ non_native_gaming_menu(){
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Steam             (flatpak)                   (2) Lutris                      (flatpak)"
-    echo "(3) Discord           (discord)                   (4) Prism Launcher              (flatpak)"                
+    echo "(3) Discord           (flatpak)                   (4) Prism Launcher              (flatpak)"                
     echo "(5) Dolphin           (flatpak)                   (6) Cemu                        (flatpak)"
     echo "(7) WoWUp             (appimage)                  (8) Warcraft Logs               (appimage)"
     echo "(9) WeakAuras         (appimage)"
@@ -735,8 +740,7 @@ non_native_gaming_menu(){
 
 
         3)  
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "other"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "flatpak"
             ;;
         
         4)

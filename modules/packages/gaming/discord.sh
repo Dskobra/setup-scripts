@@ -30,5 +30,14 @@ download_discord(){
     fi
 }
 
-install_discord_deps
-download_discord
+if [ "$1" == "flatpak" ]
+then
+    flatpak install --user flathub com.discordapp.Discord
+    sudo dnf remove -y discord
+elif [ "$1" == "native" ]
+then
+    flatpak remove --user -y com.discordapp.Discord
+    sudo dnf install -y  discord 
+else
+    echo "error"
+fi
