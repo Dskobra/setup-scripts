@@ -21,9 +21,7 @@ script_rclone(){
         curl -L -o "$RCLONE_BROWSER_BINARY" "$RCLONE_BROWSER_LINK"
         chmod +x "$RCLONE_BROWSER_BINARY"
         mv /opt/apps/temp/$RCLONE_BROWSER_BINARY $HOME/Desktop
-    fi
-
-    
+    fi  
 
 }
 

@@ -222,7 +222,7 @@ native_internet_menu(){
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Firefox           (fedora)                    (2) Brave Browser               (brave)"
-    echo "(3) Transmissionbt    (fedora)                    (4) Rclone                      (fedora)"
+    echo "(3) Transmissionbt    (fedora)                    (4) Mega                        (mega)"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -245,7 +245,7 @@ native_internet_menu(){
             ;;
 
         4)  
-            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/internet/mega.sh
             ;;
 
         f | F)
