@@ -49,7 +49,7 @@ main_menu(){
             ;;
 
         7)
-            native_extras_menu
+            non_native_extras_menu
             ;;
 
         h | H)
@@ -397,10 +397,10 @@ native_dev_menu(){
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) Git               (fedora)                    (2) VIM                         (fedora)"
-    echo "(3) VSCodium          (codium)                    (4) Geany                       (fedora)"
-    echo "(5) GCC               (fedora)                    (6) openJDK 21 LTS              (adoptium)"
-    echo "(7) Python IDLE       (fedora)                    (8) Containers                  (fedora)"
-    echo "(9) Virtualization    (fedora)                    (10) Lamp Stack                 (fedora)"
+    echo "(3) Geany             (fedora)                    (4) GCC                         (fedora)"
+    echo "(5) openJDK 21 LTS    (adoptium)                  (6) Python IDLE                 (fedora)"
+    echo "(7) Containers        (fedora)                    (8) Virtualization              (fedora)"
+    echo "(9) Lamp Stack       (fedora)"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -418,35 +418,31 @@ native_dev_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vscodium.sh "native"
-            ;;
-
-        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
             ;;
         
-        5)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/development/gcc.sh
             ;;
 
-        6)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
             ;;
         
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
            
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        9)
+        8)
             "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
-        10)
+        9)
             "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
@@ -475,56 +471,6 @@ native_dev_menu(){
     esac
     unset input
     native_dev_menu
-}
-
-native_extras_menu(){
-    echo "--------"
-    echo "|Extras|"
-    echo "--------"
-    echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) LibreOffice       (fedora)                    (2) KeePassXC                   (fedora)"
-    echo "(f) Non-native"
-    echo "(m) Main Menu                                     (h) Help"
-    echo "(0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh "native"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "native"
-            ;;
-
-        f | F)
-            non_native_extras_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        h | H)
-            help
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            native_extras_menu
-            ;;
-            
-        esac
-        unset input
-        native_extras_menu
 }
 
 ########################################
@@ -864,11 +810,11 @@ non_native_extras_menu(){
     echo "--------"
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) LibreOffice       (flatpak)                   (2) Bookup                      (flatpak) "
-    echo "(3) Bitwarden         (flatpak)                   (4) KeePassXC                   (flatpak) "
+    echo "(1) LibreOffice       (flatpak)                   (2) QOwnNotes                   (flatpak)"
+    echo "(3) Bitwarden         (flatpak)                   (4) KeePassXC                   (flatpak)"
     echo "(5) RpiImager         (flatpak)                   (6) GtkHash                     (flatpak)"
-    echo "(7) MissionCenter     (flatpak)                   (8) Gpu-Viewer                  (flatpak) "
-    echo "(n) Native                                        (m) Main Menu"
+    echo "(7) MissionCenter     (flatpak)                   (8) Gpu-Viewer                  (flatpak)"
+    echo "(m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
     read -r input
@@ -880,7 +826,7 @@ non_native_extras_menu(){
             ;;
 
         2)
-            flatpak install --user -y flathub org.gnome.gitlab.ilhooq.Bookup
+            flatpak install --user -y flathub org.qownnotes.QOwnNotes
             ;;
 
         3)
@@ -905,10 +851,6 @@ non_native_extras_menu(){
 
         8)
             flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
-            ;;
-
-        n | N)
-            native_extras_menu
             ;;
 
         m | M)
