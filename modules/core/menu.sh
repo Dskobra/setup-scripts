@@ -811,9 +811,9 @@ non_native_extras_menu(){
     echo ""
     echo "/app name/            /source/                    /app name/                      /source/"
     echo "(1) LibreOffice       (flatpak)                   (2) QOwnNotes                   (flatpak)"
-    echo "(3) Bitwarden         (flatpak)                   (4) KeePassXC                   (flatpak)"
-    echo "(5) RpiImager         (flatpak)                   (6) GtkHash                     (flatpak)"
-    echo "(7) MissionCenter     (flatpak)                   (8) Gpu-Viewer                  (flatpak)"
+    echo "(3) Bitwarden         (flatpak)                   (4) RpiImager                   (flatpak)"
+    echo "(5) GtkHash           (flatpak)                   (6) MissionCenter               (flatpak)"
+    echo "(7) Gpu-Viewer        (flatpak)"
     echo "(m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -834,22 +834,18 @@ non_native_extras_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/keepassxc.sh "flatpak"
-            ;;
-
-        5)
             flatpak install --user -y flathub org.raspberrypi.rpi-imager
             ;;
 
-        6)
+        5)
             flatpak install --user -y flathub org.gtkhash.gtkhash
             ;;
 
-        7)
+        6)
             flatpak install --user -y flathub io.missioncenter.MissionCenter
             ;;
 
-        8)
+        7)
             flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
             ;;
 
