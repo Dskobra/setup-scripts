@@ -196,10 +196,6 @@ native_kde_desktop_menu(){
             main_menu
             ;;
 
-        h | H)
-            help
-            ;;
-
         0)
             exit
             ;;
