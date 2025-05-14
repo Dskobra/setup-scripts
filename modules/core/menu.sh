@@ -37,7 +37,7 @@ main_menu(){
             ;;
 
         4)
-            native_multimedia_menu
+            multimedia_menu
             ;;
 
         5)
@@ -140,36 +140,34 @@ native_kde_desktop_menu(){
     echo "|KDE|"
     echo "-----"
     echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) KDE Patience      (fedora)                    (2) Kolourpaint                 (fedora)"
-    echo "(3) Kleopatra         (fedora)                    (4) KDE ISO Image Writer        (fedora)"
-    echo "(5) Kate              (fedora)                    (6) K3b                         (fedora)"
-    echo "(7) Krdc              (fedora)                    (8) Krfb                        (fedora)"
-    echo "(f) Non-native                                    (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
+    echo "(1) KDE Patience                                  (2) Kolourpaint"
+    echo "(3) Kleopatra                                     (4) KDE ISO Image Writer"
+    echo "(5) Kate                                          (6) K3b"
+    echo "(7) Krdc                                          (8) Krfb "
+    echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
     
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kate.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kate.sh
             ;;
 
         6)
@@ -182,14 +180,6 @@ native_kde_desktop_menu(){
 
         8)
             "$SCRIPTS_FOLDER"/modules/packages/kde/krfb.sh
-            ;;
-
-        f | F)
-            non_native_kde_desktop_menu
-            ;;
-
-        h | H)
-            help
             ;;
 
         m | M)
@@ -268,16 +258,14 @@ internet_menu(){
         internet_menu
 }
 
-native_multimedia_menu(){
+multimedia_menu(){
     echo "------------"
     echo "|Multimedia|"
     echo "------------"
     echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) VLC Media Player  (fedora)                    (2) OpenShot                    (fedora)"
-    echo "(3) xfburn            (fedora)"
-    echo "(f) Non-native                                    (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
+    echo "(1) VLC Media Player                              (2) OpenShot"
+    echo "(3) OBS Studio                                    (4) xfburn"
+    echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
     
@@ -285,28 +273,23 @@ native_multimedia_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh
+            ;;
+
+        3)
+            flatpak install --user -y flathub com.obsproject.Studio
             ;;
 
         3)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
-        f | F)
-            non_native_multimedia_menu
-            ;;
         m | M)
             main_menu
-            ;;
-
-        h | H)
-            help
             ;;
 
         0)
@@ -316,12 +299,12 @@ native_multimedia_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_multimedia_menu
+            multimedia_menu
             ;;
             
         esac
         unset input
-        native_multimedia_menu
+        multimedia_menu
 }
 
 gaming_menu(){
@@ -608,7 +591,7 @@ non_internet_menu(){
         non_internet_menu
 }
 
-non_native_multimedia_menu(){
+non_multimedia_menu(){
     echo "------------"
     echo "|Multimedia|"
     echo "------------"
@@ -636,7 +619,7 @@ non_native_multimedia_menu(){
             ;;
 
         n | N)
-            native_multimedia_menu
+            multimedia_menu
             ;;
         
         m | M)
@@ -654,12 +637,12 @@ non_native_multimedia_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            non_native_multimedia_menu
+            non_multimedia_menu
             ;;
             
         esac
         unset input
-        non_native_multimedia_menu
+        non_multimedia_menu
 }
 
 non_gaming_menu(){
