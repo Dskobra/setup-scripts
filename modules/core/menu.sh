@@ -49,7 +49,7 @@ main_menu(){
             ;;
 
         7)
-            non_native_extras_menu
+            extras_menu
             ;;
 
         h | H)
@@ -337,8 +337,7 @@ gaming_menu(){
     echo "(5) Dolphin                                       (6) Cemu"
     echo "(7) WoWUp                                         (8) Warcraft Logs"
     echo "(9) WeakAuras"
-    echo "(f) Non-native                                    (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
+    echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
     
@@ -384,10 +383,6 @@ gaming_menu(){
 
         m | M)
             main_menu
-            ;;
-
-        h | H)
-            help
             ;;
 
         0)
@@ -819,18 +814,16 @@ non_native_dev_menu(){
     non_native_dev_menu
 }
 
-non_native_extras_menu(){
+extras_menu(){
     echo "--------"
     echo "|Extras|"
     echo "--------"
     echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) LibreOffice       (flatpak)                   (2) QOwnNotes                   (flatpak)"
-    echo "(3) Bitwarden         (flatpak)                   (4) RpiImager                   (flatpak)"
-    echo "(5) GtkHash           (flatpak)                   (6) MissionCenter               (flatpak)"
-    echo "(7) Gpu-Viewer        (flatpak)"
-    echo "(m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
+    echo "(1) LibreOffice                                   (2) QOwnNotes"
+    echo "(3) Bitwarden                                     (4) RpiImager"
+    echo "(5) GtkHash                                       (6) MissionCenter"
+    echo "(7) Gpu-Viewer"
+    echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
     
@@ -868,10 +861,6 @@ non_native_extras_menu(){
             main_menu
             ;;
 
-        h | H)
-            help
-            ;;
-
         0)
             exit
             ;;
@@ -879,12 +868,12 @@ non_native_extras_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            non_native_extras_menu
+            extras_menu
             ;;
             
         esac
         unset input
-        non_native_extras_menu
+        extras_menu
 }
 
 help(){
