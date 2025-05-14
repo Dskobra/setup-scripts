@@ -10,3 +10,5 @@ help(){
     echo "                         officially supported release. Automatically handles installing required components and audio/video codecs at the cost"
     echo "                         of more space. Generally recommended for applications involving audio/video codecs or when officially supported."
 }
+
+help
