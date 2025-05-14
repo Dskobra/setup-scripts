@@ -385,14 +385,14 @@ native_dev_menu(){
     echo "|Development|"
     echo "-------------"
     echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Git               (fedora)                    (2) VIM                         (fedora)"
-    echo "(3) Geany             (fedora)                    (4) GCC                         (fedora)"
-    echo "(5) openJDK 21 LTS    (adoptium)                  (6) Python IDLE                 (fedora)"
-    echo "(7) Containers        (fedora)                    (8) Virtualization              (fedora)"
-    echo "(9) Lamp Stack       (fedora)"
-    echo "(f) Non-native                                    (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
+    echo "(1) VIM                                           (2) Geany"
+    echo "(3) Intellij IDEA                                 (4) Pycharm"
+    echo "(5) Python IDLE                                   (6) Containers"
+    echo "(7) Virtualization                                (8) Git"
+    echo "(9) GCC                                           (10) openJDK 21 LTS"
+    echo "(11) openjfx 21 LTS                               (12) Nodejs LTS"
+    echo "(13) Lamp Stack"
+    echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
     
@@ -400,44 +400,55 @@ native_dev_menu(){
 
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh "git"
+            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
             ;;
-        
+
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/gcc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
-            ;;
-        
-        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
-           
             ;;
 
-        7)
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
             ;;
 
-        8)
+        7)
             "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
-        9)
-            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
+        8)
+            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh
             ;;
 
-        f | F)
-            non_native_dev_menu
+        9)
+            "$SCRIPTS_FOLDER"/modules/packages/development/gcc.sh
+            ;;
+
+        10)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
+            ;;
+
+        11)
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
+            ;;
+
+        12)
+            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
+            ;;
+
+        13)
+            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
             ;;
 
         m | M)
@@ -463,337 +474,6 @@ native_dev_menu(){
     native_dev_menu
 }
 
-########################################
-# End native menus
-########################################
-
-########################################
-# Flatpak/other menus
-########################################
-non_native_kde_desktop_menu(){
-    echo "-----"
-    echo "|KDE|"
-    echo "-----"
-    echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) KDE Patience      (flatpak)                   (2) Kolourpaint                 (flatpak)"
-    echo "(3) Kleopatra         (flatpak)                   (4) KDE ISO Image Writer        (flatpak)"
-    echo "(n) Native                                        (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh "flatpak"
-            ;;
-        
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh "flatpak"
-            ;;
-
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh "flatpak"
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh "flatpak"
-            ;;
-
-        n | N)
-            native_kde_desktop_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        h | H)
-            help
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            non_native_kde_desktop_menu
-            ;;
-            
-        esac
-        unset input
-        non_native_kde_desktop_menu
-}
-
-non_internet_menu(){
-    echo "----------"
-    echo "|Internet|"
-    echo "----------"
-    echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Firefox           (flatpak)                   (2) Brave Browser               (flatpak)"
-    echo "(3) Dropbox           (flatpak)                   (4) Rclone                      (rclone script)"
-    echo "(5) Transmissionbt    (flatpak)"
-    echo "(n) Native                                        (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "flatpak"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "flatpak"
-            ;;
-        
-        3)
-            flatpak install --user -y flathub com.dropbox.Client
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh "script"
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "flatpak"
-            ;;
-
-        n | N)
-            internet_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        h | H)
-            help
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            non_internet_menu
-            ;;
-            
-        esac
-        unset input
-        non_internet_menu
-}
-
-non_multimedia_menu(){
-    echo "------------"
-    echo "|Multimedia|"
-    echo "------------"
-    echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) VLC Media Player  (flatpak)                   (2) OBS Studio                  (flatpak)"
-    echo "(3) OpenShot          (flatpak)"
-    echo "(n) Native                                        (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh "flatpak"
-            ;;
-
-        2)
-            flatpak install --user -y flathub com.obsproject.Studio
-            ;;
-        
-        3)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh "flatpak"
-            ;;
-
-        n | N)
-            multimedia_menu
-            ;;
-        
-        m | M)
-            main_menu
-            ;;
-
-        h | H)
-            help
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            non_multimedia_menu
-            ;;
-            
-        esac
-        unset input
-        non_multimedia_menu
-}
-
-non_gaming_menu(){
-    echo "--------"
-    echo "|Gaming|"
-    echo "--------"
-    echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Steam             (flatpak)                   (2) Lutris                      (flatpak)"
-    echo "(3) Discord           (flatpak)                   (4) Prism Launcher              (flatpak)"                
-    echo "(5) Dolphin           (flatpak)                   (6) Cemu                        (flatpak)"
-    echo "(7) WoWUp             (appimage)                  (8) Warcraft Logs               (appimage)"
-    echo "(9) WeakAuras         (appimage)"
-    echo "(n) Native                                        (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-
-        1) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "flatpak"
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "flatpak"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "flatpak"
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "flatpak"
-            ;;
-
-
-        3)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "flatpak"
-            ;;
-        
-        4)
-            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
-            ;;
-
-        5)
-            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-            ;;
-
-        6)
-            flatpak install --user -y flathub info.cemu.Cemu
-            ;;
-
-        7)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
-            ;;
-
-        8)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
-            ;;
-
-        9)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
-            ;;
-
-        n | N)
-            gaming_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        h | H)
-            help
-            ;;
-
-        0)
-            exit
-            ;;
-
-        *)
-            echo -n "Unknown entry"
-            echo ""
-            non_gaming_menu
-            ;;
-            
-        esac
-        unset input
-        non_gaming_menu
-}
-
-non_native_dev_menu(){
-    echo "--------------"
-    echo "|Development|"
-    echo "-------------"
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Intellij IDEA     (jetbrains/tarball)         (2) Pycharm                     (jetbrains/tarball)"
-    echo "(3) Podman Desktop    (flatpak)                   (4) Nodejs LTS                  (nvm script)"
-    echo "(5) openjfx 21 LTS    (gluon/tarball)"
-    echo "(n) Native                                        (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
-    printf "Option: "
-    read -r input
-    
-    case $input in
-
-
-        1)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
-            ;;
-
-        2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
-            
-            ;;
-
-        3)
-            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
-            ;;
-
-        4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
-            ;;
-
-        5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
-            ;;
-
-        n | N)
-            native_dev_menu
-            ;;
-
-        m | M)
-            main_menu
-            ;;
-
-        h | H)
-            help
-            ;;
-
-        0)
-            exit
-            ;;
-
-    *)
-        echo -n "Unknown entry"
-        echo ""
-        non_native_dev_menu
-        ;;
-        
-    esac
-    unset input
-    non_native_dev_menu
-}
-
 extras_menu(){
     echo "--------"
     echo "|Extras|"
@@ -806,7 +486,7 @@ extras_menu(){
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
-    
+
     case $input in
 
         1)
@@ -850,31 +530,13 @@ extras_menu(){
             echo ""
             extras_menu
             ;;
-            
+
         esac
         unset input
         extras_menu
 }
-
-help(){
-    echo "native        -      applications that are built either by your distro or provided by 3rd party/community repository. These are"
-    echo "                     rpm files and built/optimized specifically for your distro. Generally the recommended choice."
-    echo ""
-    echo ""
-    echo "flatpak       -      applications built for all distros. Often maintained by developers directly. Automatically handles codecs"
-    echo "                     like ffmpeg and mesa with gpu acceleration that won't break on updates. OBS is an example where the flatpak"
-    echo "                     release is directly maintained by developers."
-    echo ""
-    echo ""
-    echo "appimage      -      applications with their required components built into a single file. wowup for example only offers an appimage."
-    echo ""
-    echo ""
-    echo "tarball       -      compressed file similar to a zip file. The folder is laid out just like it is when normally installed except"
-    echo "                     it's ready to use and requires no installation. Generally you copy this somewhere like /opt or /usr/local/share"
-    echo "                     and create a shortcut."
-}
 ########################################
-# End flatpak/other menus
+# End native menus
 ########################################
 
 main_menu
