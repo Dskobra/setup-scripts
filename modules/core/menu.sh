@@ -41,7 +41,7 @@ main_menu(){
             ;;
 
         5)
-            native_gaming_menu
+            gaming_menu
             ;;
 
         6)
@@ -327,7 +327,7 @@ native_multimedia_menu(){
         native_multimedia_menu
 }
 
-native_gaming_menu(){
+gaming_menu(){
     echo "--------"
     echo "|Gaming|"
     echo "--------"
@@ -397,12 +397,12 @@ native_gaming_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_gaming_menu
+            gaming_menu
             ;;
             
         esac
         unset input
-        native_gaming_menu
+        gaming_menu
 }
 
 native_dev_menu(){
@@ -670,7 +670,7 @@ non_native_multimedia_menu(){
         non_native_multimedia_menu
 }
 
-non_native_gaming_menu(){
+non_gaming_menu(){
     echo "--------"
     echo "|Gaming|"
     echo "--------"
@@ -729,7 +729,7 @@ non_native_gaming_menu(){
             ;;
 
         n | N)
-            native_gaming_menu
+            gaming_menu
             ;;
 
         m | M)
@@ -747,12 +747,12 @@ non_native_gaming_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            non_native_gaming_menu
+            non_gaming_menu
             ;;
             
         esac
         unset input
-        non_native_gaming_menu
+        non_gaming_menu
 }
 
 non_native_dev_menu(){
