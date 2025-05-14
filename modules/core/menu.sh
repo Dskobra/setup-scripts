@@ -834,7 +834,7 @@ non_native_extras_menu(){
             ;;
 
         5)
-            flatpak install --user -y flathub org.gtkhash.gtkhash
+            "$SCRIPTS_FOLDER"/modules/packages/extras/gtkhash.sh
             ;;
 
         6)

@@ -24,7 +24,6 @@ package_chooser(){
     echo ""
     echo "1: flatpak 2: native"
     read -r input
-    read input
     if [ "$input" == "1" ] || [ -z "$input" ]
     then
         flatpak install --user -y flathub org.gtkhash.gtkhash
@@ -34,18 +33,6 @@ package_chooser(){
         flatpak remove --user -y org.gtkhash.gtkhash
         native_gtkhash
     else
-        echo ""
+        echo "Unkown error has occurred."
     fi
 }
-
-if [ "$1" == "flatpak" ]
-then
-    flatpak install --user -y flathub org.gtkhash.gtkhash
-    remove_gtkhash
-elif [ "$1" == "native" ]
-then
-    flatpak remove --user -y org.gtkhash.gtkhash
-    native_gtkhash
-else
-    echo "error"
-fi
