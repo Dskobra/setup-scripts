@@ -33,7 +33,7 @@ package_chooser(){
         sudo dnf install -y  discord
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
-        flatpak install --user flathub com.discordapp.Discord
+        flatpak install --user -y flathub com.discordapp.Discord
         sudo dnf remove -y discord
     elif [ "$PACKAGE_TYPE" == "3" ]
     then
