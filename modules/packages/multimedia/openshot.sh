@@ -2,8 +2,8 @@
 package_chooser(){
     echo "Select the type of package to install."
     echo "Enter an option or leave blank for default"
-    echo "(1) Native                (2) Flatpak(default)"
-    echo "(3) Help                  (0) Cancel"
+    echo "(1) Native                                        (2) Flatpak(default)"
+    echo "(3) Help                                          (3) Cancel"
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
@@ -24,3 +24,5 @@ package_chooser(){
         echo "Unkown error has occurred."
     fi
 }
+
+package_chooser

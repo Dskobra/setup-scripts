@@ -29,3 +29,5 @@ package_chooser(){
         echo "Unkown error has occurred."
     fi
 }
+
+package_chooser
