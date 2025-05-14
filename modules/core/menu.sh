@@ -344,19 +344,15 @@ native_gaming_menu(){
 
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "native"
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "native"
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
             ;;
 
         f | F)

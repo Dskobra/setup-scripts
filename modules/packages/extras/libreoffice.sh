@@ -8,12 +8,12 @@ package_chooser(){
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
-        flatpak install --user -y flathub org.libreoffice.LibreOffice
-        sudo dnf remove -y libreoffice*
-    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
-    then
         flatpak remove --user -y org.libreoffice.LibreOffice
         sudo dnf install -y libreoffice
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
+    then
+        flatpak install --user -y flathub org.libreoffice.LibreOffice
+        sudo dnf remove -y libreoffice*
     elif [ "$PACKAGE_TYPE" == "3" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh
