@@ -33,7 +33,7 @@ main_menu(){
             ;;
 
         3)
-            native_internet_menu
+            internet_menu
             ;;
 
         4)
@@ -211,45 +211,42 @@ native_kde_desktop_menu(){
         native_kde_desktop_menu
 }
 
-native_internet_menu(){
+internet_menu(){
     echo "----------"
     echo "|Internet|"
     echo "----------"
     echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Firefox           (fedora)                    (2) Brave Browser               (brave)"
-    echo "(3) Transmissionbt    (fedora)                    (4) Mega                        (mega)"
-    echo "(f) Non-native                                    (m) Main Menu"
-    echo "(h) Help                                          (0) Exit"
+    echo "(1) Firefox                                       (2) Brave Browser"
+    echo "(3) Transmissionbt                                (4) Mega"
+    echo "(5) Dropbox                                       (6) Rclone"
+    echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
     
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh "native"
+            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh
             ;;
 
         4)  
             "$SCRIPTS_FOLDER"/modules/packages/internet/mega.sh
             ;;
 
-        f | F)
-            non_native_internet_menu
+        5)
+            flatpak install --user -y flathub com.dropbox.Client
             ;;
 
-        h | H)
-            help
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
             ;;
 
         m | M)
@@ -263,12 +260,12 @@ native_internet_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_internet_menu
+            internet_menu
             ;;
             
         esac
         unset input
-        native_internet_menu
+        internet_menu
 }
 
 native_multimedia_menu(){
@@ -548,7 +545,7 @@ non_native_kde_desktop_menu(){
         non_native_kde_desktop_menu
 }
 
-non_native_internet_menu(){
+non_internet_menu(){
     echo "----------"
     echo "|Internet|"
     echo "----------"
@@ -585,7 +582,7 @@ non_native_internet_menu(){
             ;;
 
         n | N)
-            native_internet_menu
+            internet_menu
             ;;
 
         m | M)
@@ -603,12 +600,12 @@ non_native_internet_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            non_native_internet_menu
+            non_internet_menu
             ;;
             
         esac
         unset input
-        non_native_internet_menu
+        non_internet_menu
 }
 
 non_native_multimedia_menu(){
