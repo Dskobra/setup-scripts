@@ -1,31 +1,28 @@
 #!/usr/bin/bash
 
-native_libreoffice(){
-    if [ "$DISTRO" == "fedora" ]
+package_chooser(){
+    echo "Select the type of package to install."
+    echo "Enter an option or leave blank for default"
+    echo "(1) Native                (2) Flatpak(default)"
+    echo "(3) Help                  (3) Cancel"
+    read -r PACKAGE_TYPE
+    if [ "$PACKAGE_TYPE" == "1" ]
     then
-        sudo dnf install -y libreoffice
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-remove_libreoffice(){
-    if [ "$DISTRO" == "fedora" ]
-    then
+        flatpak install --user -y flathub org.libreoffice.LibreOffice
         sudo dnf remove -y libreoffice*
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
+    then
+        flatpak remove --user -y org.libreoffice.LibreOffice
+        sudo dnf install -y libreoffice
+    elif [ "$PACKAGE_TYPE" == "3" ]
+    then
+        "$SCRIPTS_FOLDER"/modules/core/help.sh
+    elif [ "$PACKAGE_TYPE" == "0" ]
+    then
+        echo "User canceled"
     else
         echo "Unkown error has occurred."
     fi
 }
 
-if [ "$1" == "flatpak" ]
-then
-    flatpak install --user -y flathub org.libreoffice.LibreOffice
-    remove_libreoffice
-elif [ "$1" == "native" ]
-then
-    flatpak remove --user -y org.libreoffice.LibreOffice
-    native_libreoffice
-else
-    echo "error"
-fi
+package_chooser

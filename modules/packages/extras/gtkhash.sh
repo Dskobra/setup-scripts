@@ -1,24 +1,5 @@
 #!/usr/bin/bash
 
-native_gtkhash(){
-    if [ "$DISTRO" == "fedora" ]
-    then
-        sudo dnf install -y gtkhash
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-remove_gtkhash(){
-    if [ "$DISTRO" == "fedora" ]
-    then
-        sudo dnf remove -y gtkhash
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-
 package_chooser(){
     echo "Select the type of package to install."
     echo "Enter an option or leave blank for default"
@@ -28,11 +9,11 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak remove --user -y org.gtkhash.gtkhash
-        native_gtkhash
+        sudo dnf install -y gtkhash
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak install --user -y flathub org.gtkhash.gtkhash
-        remove_gtkhash
+        sudo dnf remove -y gtkhash
     elif [ "$PACKAGE_TYPE" == "3" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh

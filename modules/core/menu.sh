@@ -818,7 +818,7 @@ non_native_extras_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh "flatpak"
+            "$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh
             ;;
 
         2)
@@ -830,7 +830,7 @@ non_native_extras_menu(){
             ;;
 
         4)
-            flatpak install --user -y flathub org.raspberrypi.rpi-imager
+            "$SCRIPTS_FOLDER"/modules/packages/extras/rpi_imager.sh
             ;;
 
         5)
