@@ -332,9 +332,11 @@ native_gaming_menu(){
     echo "|Gaming|"
     echo "--------"
     echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Steam             (rpmfusion)                 (2) Lutris                      (fedora)"
-    echo "(3) Discord           (rpmfusion)"
+    echo "(1) Steam                                         (2) Lutris"
+    echo "(3) Discord                                       (4) Prism Launcher"
+    echo "(5) Dolphin                                       (6) Cemu"
+    echo "(7) WoWUp                                         (8) Warcraft Logs"
+    echo "(9) WeakAuras"
     echo "(f) Non-native                                    (m) Main Menu"
     echo "(h) Help                                          (0) Exit"
     printf "Option: "
@@ -355,9 +357,30 @@ native_gaming_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
             ;;
 
-        f | F)
-            non_native_gaming_menu
+        4)
+            flatpak install --user -y flathub org.prismlauncher.PrismLauncher
             ;;
+
+        5)
+            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+            ;;
+
+        6)
+            flatpak install --user -y flathub info.cemu.Cemu
+            ;;
+
+        7)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
+            ;;
+
+        8)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
+            ;;
+
+        9)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
+            ;;
+
 
         m | M)
             main_menu
