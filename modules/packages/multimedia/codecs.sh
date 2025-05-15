@@ -17,6 +17,11 @@ native_codecs(){
         sudo dnf swap -y mesa-vulkan-drivers mesa-vulkan-drivers-freeworld
         sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.i686
         echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+
+        rm "$SCRIPTS_FOLDER"/modules/packages/multimedia/mesa_versions.txt
+        rpm -q mesa-va-drivers-freeworld >> "$SCRIPTS_FOLDER"/modules/packages/multimedia/mesa_versions.txt
+        rpm -q mesa-vdpau-drivers-freeworld >> "$SCRIPTS_FOLDER"/modules/packages/multimedia/mesa_versions.txt
+        rpm -q mesa-vulkan-drivers-freeworld >> "$SCRIPTS_FOLDER"/modules/packages/multimedia/mesa_versions.txt
     else
         echo "Unkown error has occurred."
     fi
