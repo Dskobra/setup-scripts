@@ -16,7 +16,7 @@ main_menu(){
     echo "(1) Hardware                          (2) KDE Apps"
     echo "(3) Internet Apps                     (4) Multimedia Apps"
     echo "(5) Gaming Apps                       (6) Dev Apps"
-    echo "(7) Extra Apps"
+    echo "(7) Extra Apps                        (8) Misc"
     echo "(h) Help                              (0) Exit"
     printf "Option: "
     read -r input
@@ -50,6 +50,10 @@ main_menu(){
 
         7)
             extras_menu
+            ;;
+
+        8)
+            misc_menu
             ;;
 
         h | H)
@@ -538,6 +542,47 @@ extras_menu(){
         esac
         unset input
         extras_menu
+}
+
+misc_menu(){
+    echo "--------"
+    echo "|Misc fixes|"
+    echo "--------"
+    echo ""
+    echo "(1) Reinstall codecs                              (2) Remove codecs"
+    echo "(m) Main Menu                                     (0) Exit"
+    printf "Option: "
+    read -r input
+
+    case $input in
+
+        1)
+            echo "override" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            ;;
+
+        2)
+            echo "remove" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            ;;
+
+        m | M)
+            main_menu
+            ;;
+
+        0)
+            exit
+            ;;
+
+        *)
+            echo -n "Unknown entry"
+            echo ""
+            misc_menu
+            ;;
+
+        esac
+        unset input
+        misc_menu
 }
 ########################################
 # End native menus
