@@ -53,7 +53,7 @@ main_menu(){
             ;;
 
         h | H)
-            help
+            "$SCRIPTS_FOLDER"/modules/core/help.sh
             ;;
 
         0)
