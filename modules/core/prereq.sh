@@ -25,14 +25,6 @@ prereq_check(){
 }
 
 apps_folder_check(){
-    if test -d /home/$USER/bin; then
-        #echo "Found folder: /home/$USER/bin"
-        USELESS_VAR=""
-    elif ! test -d /home/$USER/bin; then
-        mkdir /home/$USER/bin
-        echo "Created folder: /home/$USER/bin"
-
-    fi
 
     if test -d /opt/apps/; then
         #echo "Found folder: /opt/apps/" 
