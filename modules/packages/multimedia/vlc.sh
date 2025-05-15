@@ -4,7 +4,7 @@ package_chooser(){
     echo "Select the type of package to install."
     echo "Enter an option or leave blank for default"
     echo "(1) Native                                        (2) Flatpak(default)"
-    echo "(3) Help                                          (3) Cancel"
+    echo "(h) Help                                          (3) Cancel"
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
@@ -19,7 +19,7 @@ package_chooser(){
         sudo dnf remove -y rpmfusion-free-release-tainted
         sudo dnf remove -y libdvdcss
         sudo dnf remove -y vlc
-    elif [ "$PACKAGE_TYPE" == "3" ]
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh
     elif [ "$PACKAGE_TYPE" == "0" ]

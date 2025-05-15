@@ -20,7 +20,7 @@ package_chooser(){
         sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-nightly"
         sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-beta"
         sudo rm "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave"
-    elif [ "$PACKAGE_TYPE" == "3" ]
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh
     elif [ "$PACKAGE_TYPE" == "0" ]

@@ -5,7 +5,7 @@ xiv_launcher(){
     echo "if you do not wish to run it through steam."
     echo "(1) Steam as Native                               (2) Steam as Flatpak"
     echo "(3) XIV Flatpak (non steam)"
-    echo "(4) Help                                          (0) Cancel"
+    echo "(h) Help                                          (0) Cancel"
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
@@ -17,7 +17,7 @@ xiv_launcher(){
     elif [ "$PACKAGE_TYPE" == "3" ]
     then
         flatpak install --user -y flathub dev.goats.xivlauncher
-    elif [ "$PACKAGE_TYPE" == "4" ]
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         help
     elif [ "$PACKAGE_TYPE" == "0" ]

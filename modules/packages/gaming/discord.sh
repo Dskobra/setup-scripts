@@ -25,7 +25,7 @@ package_chooser(){
     echo "Select the type of package to install."
     echo "Enter an option or leave blank for default"
     echo "(1) Native(default)                               (2) Flatpak"
-    echo "(3) Help                                          (0) Cancel"
+    echo "(h) Help                                          (0) Cancel"
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
@@ -35,7 +35,7 @@ package_chooser(){
     then
         flatpak install --user -y flathub com.discordapp.Discord
         sudo dnf remove -y discord
-    elif [ "$PACKAGE_TYPE" == "3" ]
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh
     elif [ "$PACKAGE_TYPE" == "0" ]
