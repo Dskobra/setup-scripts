@@ -315,8 +315,8 @@ gaming_menu(){
     echo "(1) Steam                                         (2) Lutris"
     echo "(3) Discord                                       (4) Prism Launcher"
     echo "(5) Dolphin                                       (6) Cemu"
-    echo "(7) WoWUp                                         (8) Warcraft Logs"
-    echo "(9) WeakAuras"
+    echo "(7) XIV Launcher                                  (8) WoWUp"
+    echo "(9) Warcraft Logs                                 (10) WeakAuras"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -349,14 +349,18 @@ gaming_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/xiv.sh
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
             ;;
 
         9)
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
+            ;;
+
+        10)
             "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
             ;;
 
