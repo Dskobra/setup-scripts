@@ -65,7 +65,6 @@ download_pycharm(){
     fi
 }
 
-OPENJDK_LOCATION="/opt/apps/openjdk21"
 OPENJFX_LOCATION="/opt/apps/openjfx21"
 IDEA_LOCATION="/opt/apps/idea"
 PYCHARM_LOCATION="/opt/apps/pycharm"
