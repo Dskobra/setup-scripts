@@ -1,12 +1,11 @@
 #!/usr/bin/bash
 
 xiv_launcher(){
-    echo "Select the type of package to install."
+    echo "First 2 options are to use XIV Launcher with Steam. Use XIV Flatpak "
+    echo "if you do not wish to run it through steam."
     echo "(1) Steam as Native                               (2) Steam as Flatpak"
     echo "(3) XIV Flatpak (non steam)"
     echo "(4) Help                                          (0) Cancel"
-    echo "First 2 options are to use XIV Launcher with Steam. Use XIV Flatpak "
-    echo "if you do not wish to run it through steam."
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
