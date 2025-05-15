@@ -2,6 +2,7 @@
 
 package_chooser(){
     echo "Select the type of package to install."
+    echo "Enter an option or leave blank for default"
     echo "(1) Native                                        (2) Flatpak(default)"
     echo "(h) Help                                          (0) Cancel"
     read -r PACKAGE_TYPE

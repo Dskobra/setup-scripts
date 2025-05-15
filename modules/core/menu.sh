@@ -339,7 +339,7 @@ gaming_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin-emu.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh
             ;;
 
         6)
