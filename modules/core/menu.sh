@@ -345,7 +345,7 @@ gaming_menu(){
             ;;
 
         5)
-            flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin-emu.sh
             ;;
 
         6)
