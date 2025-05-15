@@ -8,14 +8,14 @@ package_chooser(){
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
-        flatpak install --user -y flathub org.videolan.VLC
+        flatpak uninstall --user -y org.videolan.VLC
         "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         sudo dnf install -y rpmfusion-free-release-tainted
         sudo dnf install -y libdvdcss
         sudo dnf install -y vlc
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
-        flatpak uninstall --user -y org.videolan.VLC
+        flatpak install --user -y flathub org.videolan.VLC
         sudo dnf remove -y rpmfusion-free-release-tainted
         sudo dnf remove -y libdvdcss
         sudo dnf remove -y vlc
