@@ -82,12 +82,10 @@ hardware_menu(){
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
-    echo "/app name/            /source/                    /app name/                      /source/"
-    echo "(1) Corectrl          (fedora)                    (2) Nvidia Driver               (rpmfusion)"
-    echo "(3) CoolerControl     (fedora copr)               (4) OpenRGB                     (fedora)"
-    echo "(5) Virtual Camera    (rpmfusion)"
-    echo "(m) Main Menu                                     (h) Help"
-    echo "(0) Exit"
+    echo "(1) Corectrl                                      (2) Nvidia Driver"
+    echo "(3) CoolerControl                                 (4) OpenRGB"
+    echo "(5) Virtual Camera "
+    echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
     
@@ -119,10 +117,6 @@ hardware_menu(){
             
         M)
             main_menu
-            ;;
-
-        h | H)
-            help
             ;;
         0)
             exit
@@ -288,7 +282,7 @@ multimedia_menu(){
             flatpak install --user -y flathub com.obsproject.Studio
             ;;
 
-        3)
+        4)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
