@@ -96,7 +96,7 @@ hardware_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh "standard"
             ;;
 
         3)
@@ -566,6 +566,10 @@ misc_menu(){
         3)
             echo "amd" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            ;;
+
+        4)
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh "open"
             ;;
 
         m | M)
