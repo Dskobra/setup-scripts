@@ -1,31 +1,29 @@
 #!/usr/bin/bash
 
-native_firefox(){
-    if [ "$DISTRO" == "fedora" ]
+package_chooser(){
+    echo "Select the type of package to install."
+    echo "Enter an option or leave blank for default"
+    echo "(1) Native                                        (2) Flatpak(default)"
+    echo "(h) Help                                          (0) Cancel"
+    read -r PACKAGE_TYPE
+    if [ "$PACKAGE_TYPE" == "1" ]
     then
+        flatpak uninstall --user -y org.mozilla.firefox
+        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         sudo dnf install -y firefox
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
+    then
+        flatpak install --user -y flathub org.mozilla.firefox
+        sudo dnf remove -y firefox firefox-langpacks
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
+    then
+        "$SCRIPTS_FOLDER"/modules/core/help.sh
+    elif [ "$PACKAGE_TYPE" == "0" ]
+    then
+        echo "User canceled"
     else
         echo "Unkown error has occurred."
     fi
 }
 
-remove_firefox(){
-        if [ "$DISTRO" == "fedora" ]
-            then
-                sudo dnf remove -y firefox firefox-langpacks
-        else
-            echo "Unkown error has occurred."
-        fi
-}
-
-if [ "$1" == "flatpak" ]
-then
-    flatpak install --user -y flathub org.mozilla.firefox
-    remove_firefox
-elif [ "$1" == "native" ]
-then
-    flatpak uninstall --user -y org.mozilla.firefox
-    native_firefox
-else
-    echo "error"
-fi
+package_chooser

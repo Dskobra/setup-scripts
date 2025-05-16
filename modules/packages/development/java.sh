@@ -3,7 +3,7 @@ native_jdk(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf install -y adoptium-temurin-java-repository
-        sudo sed -i '/enabled=0/c enabled=1' /etc/yum.repos.d/adpotium-temurin-java-repository.repo
+        sudo sed -i '/enabled=0/c enabled=1' /etc/yum.repos.d/adoptium-temurin-java-repository.repo
         sudo dnf update -y
         sudo dnf install -y temurin-21-jdk
         sudo alternatives --set java /usr/lib/jvm/temurin-21-jdk/bin/java
@@ -65,7 +65,6 @@ download_pycharm(){
     fi
 }
 
-OPENJDK_LOCATION="/opt/apps/openjdk21"
 OPENJFX_LOCATION="/opt/apps/openjfx21"
 IDEA_LOCATION="/opt/apps/idea"
 PYCHARM_LOCATION="/opt/apps/pycharm"

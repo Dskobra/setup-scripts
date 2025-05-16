@@ -1,35 +1,33 @@
 #!/usr/bin/bash
 
-native_vlc(){
-    if [ "$DISTRO" == "fedora" ]
+package_chooser(){
+    echo "Select the type of package to install."
+    echo "Enter an option or leave blank for default"
+    echo "(1) Native                                        (2) Flatpak(default)"
+    echo "(h) Help                                          (0) Cancel"
+    read -r PACKAGE_TYPE
+    if [ "$PACKAGE_TYPE" == "1" ]
     then
+        flatpak uninstall --user -y org.videolan.VLC
+        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         sudo dnf install -y rpmfusion-free-release-tainted
         sudo dnf install -y libdvdcss
         sudo dnf install -y vlc
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-remove_vlc(){
-    if [ "$DISTRO" == "fedora" ]
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
+        flatpak install --user -y flathub org.videolan.VLC
         sudo dnf remove -y rpmfusion-free-release-tainted
         sudo dnf remove -y libdvdcss
         sudo dnf remove -y vlc
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
+    then
+        "$SCRIPTS_FOLDER"/modules/core/help.sh
+    elif [ "$PACKAGE_TYPE" == "0" ]
+    then
+        echo "User canceled"
     else
         echo "Unkown error has occurred."
     fi
 }
 
-if [ "$1" == "flatpak" ]
-then
-    flatpak install --user -y flathub org.videolan.VLC
-    remove_vlc
-elif [ "$1" == "native" ]
-then
-    flatpak uninstall --user -y org.videolan.VLC
-    native_vlc
-else
-    echo "error"
-fi
+package_chooser

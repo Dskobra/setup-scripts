@@ -9,9 +9,4 @@ native_git(){
     fi
 }
 
-if [ "$1" == "git" ]
-then
-    native_git
-else
-    echo "error"
-fi
+native_git

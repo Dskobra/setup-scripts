@@ -1,31 +1,28 @@
 #!/usr/bin/bash
 
-native_dolphin_emu(){
-    if [ "$DISTRO" == "fedora" ]
+package_chooser(){
+    echo "Select the type of package to install."
+    echo "Enter an option or leave blank for default"
+    echo "(1) Native                                        (2) Flatpak(default)"
+    echo "(h) Help                                          (0) Cancel"
+    read -r PACKAGE_TYPE
+    if [ "$PACKAGE_TYPE" == "1" ]
     then
+        flatpak remove --user -y org.DolphinEmu.dolphin-emu
         sudo dnf install -y dolphin-emu
-    else
-        echo "Unkown error has occurred."
-    fi
-}
-
-remove_dolphin_emu(){
-    if [ "$DISTRO" == "fedora" ]
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
+        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
         sudo dnf remove -y dolphin-emu
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
+    then
+        "$SCRIPTS_FOLDER"/modules/core/help.sh
+    elif [ "$PACKAGE_TYPE" == "0" ]
+    then
+        echo "User canceled"
     else
         echo "Unkown error has occurred."
     fi
 }
 
-if [ "$1" == "flatpak" ]
-then
-    flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
-    remove_dolphin_emu
-elif [ "$1" == "native" ]
-then
-    flatpak remove --user -y org.DolphinEmu.dolphin-emu
-    native_dolphin_emu
-else
-    echo "error"
-fi
+package_chooser
