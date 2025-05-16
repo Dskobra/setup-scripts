@@ -22,7 +22,7 @@ install_nvidia_open(){
         sudo sh -c 'echo "%_with_kmod_nvidia_open 1" > /etc/rpm/macros.nvidia-kmod'
         sudo akmods --kernels $(uname -r) --rebuild
         sudo dnf install -y rpmfusion-nonfree-release-tainted
-        sudo dnf swap akmod-nvidia akmod-nvidia-open
+        sudo dnf swap -y akmod-nvidia akmod-nvidia-open
         sudo akmods --rebuild --force
         sudo dracut --regenerate-all --force
 
