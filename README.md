@@ -11,9 +11,10 @@ Set of scripts for installing several popular applications and drivers.
 * flatpak
 * flatseal         (flatpak)
 
+Note: these will be installed automatically.
+
 structure
 -------------
 * setup.sh            -       Main launch script. Always use this.
 * modules/core        -       Core scripts. Everything needed to run is here.
 * modules/packages    -       Commands for installing everything.
-* modules/data        -       Launch scripts for some apps like wowup.
