@@ -543,7 +543,10 @@ misc_menu(){
     echo "|Misc fixes|"
     echo "--------"
     echo ""
+    echo "AMD Codecs are the mesa hardware accelerated audio/video codecs"
+    echo "for AMD GPUS ONLY."
     echo "(1) Reinstall codecs                              (2) Remove codecs"
+    echo "(3) AMD Codecs"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -557,6 +560,11 @@ misc_menu(){
 
         2)
             echo "remove" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            ;;
+
+        3)
+            echo "amd" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
 
