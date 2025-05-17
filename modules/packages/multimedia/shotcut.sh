@@ -1,24 +1,19 @@
 #!/usr/bin/bash
-
 package_chooser(){
     echo "Select the type of package to install."
     echo "Enter an option or leave blank for default"
-    echo "(1) Native(default)                               (2) Flatpak"
+    echo "(1) Native                                        (2) Flatpak(default)"
     echo "(h) Help                                          (0) Cancel"
     read -r PACKAGE_TYPE
-    if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
+    if [ "$PACKAGE_TYPE" == "1" ]
     then
-        flatpak uninstall --user -y org.videolan.VLC
+        flatpak uninstall --user -y flathub org.shotcut.Shotcut
         "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
-        sudo dnf install -y rpmfusion-free-release-tainted
-        sudo dnf install -y libdvdcss
-        sudo dnf install -y vlc
-    elif [ "$PACKAGE_TYPE" == "2" ]
+        sudo dnf install -y shotcut
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
-        flatpak install --user -y flathub org.videolan.VLC
-        sudo dnf remove -y rpmfusion-free-release-tainted
-        sudo dnf remove -y libdvdcss
-        sudo dnf remove -y vlc
+        flatpak install --user -y flathub org.shotcut.Shotcut
+        sudo dnf remove -y shotcut
     elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh

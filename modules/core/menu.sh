@@ -262,7 +262,8 @@ multimedia_menu(){
     echo "------------"
     echo ""
     echo "(1) VLC Media Player                              (2) OpenShot"
-    echo "(3) OBS Studio                                    (4) xfburn"
+    echo "(3) Shotcut                                       (4) Kdenlive"
+    echo "(5) OBS Studio                                    (6) xfburn"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -279,10 +280,18 @@ multimedia_menu(){
             ;;
 
         3)
-            flatpak install --user -y flathub com.obsproject.Studio
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/shotcut.sh
             ;;
 
         4)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/kdenlive.sh
+            ;;
+
+        5)
+            flatpak install --user -y flathub com.obsproject.Studio
+            ;;
+
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
