@@ -6,7 +6,6 @@ native_codecs(){
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y ffmpeg ffmpeg-libs.i686 ffmpeg-libs\
         gstreamer1-plugins-bad-freeworld gstreamer1-plugins-bad-freeworld.i686
-        echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
     else
         echo "Unkown error has occurred."
     fi
@@ -71,6 +70,7 @@ then
 elif [ "$CODECS_INSTALLED" == "remove" ]
 then
     remove_codecs
+    echo "0" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
 else
     echo "Codecs already installed."
 fi
