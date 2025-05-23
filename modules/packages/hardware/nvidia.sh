@@ -37,7 +37,9 @@ help(){
     echo ""
     echo ""
     echo "//Open//"
-    echo "While not recommended by rpmfusion it is largely on par feature wise vs the closed driver."
+    echo "While not recommended by rpmfusion it is now on par with the closed driver."
+    echo "Nvidia recommends this for RTX 2000/3000/4000 and required for RTX 5000."
+    echo "Requires Nvidia RTX 2000 or higher."
 }
 
 package_chooser(){
