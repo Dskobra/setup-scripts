@@ -31,12 +31,36 @@ install_nvidia_open(){
     fi
 }
 
-if [ "$1" == "standard" ]
-then
-    install_nvidia
-elif [ "$1" == "open" ]
-then
-    install_nvidia_open
-else
-    echo "error"
-fi
+help(){
+    echo "//Proprietary//"
+    echo "Non open source driver. Currently rpmfusion recommends this vs the open source driver."
+    echo ""
+    echo ""
+    echo "//Open//"
+    echo "While not recommended by rpmfusion it is largely on par feature wise vs the closed driver."
+}
+
+package_chooser(){
+    echo "Select the type of package to install."
+    echo "Enter an option or leave blank for default"
+    echo "(1) Proprietary (default)                         (2) Open"
+    echo "(h) Help                                          (0) Cancel"
+    read -r PACKAGE_TYPE
+    if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
+    then
+        install_nvidia
+    elif [ "$PACKAGE_TYPE" == "2" ]
+    then
+        install_nvidia_open
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
+    then
+        help
+    elif [ "$PACKAGE_TYPE" == "0" ]
+    then
+        echo "User canceled"
+    else
+        echo "Unkown error has occurred."
+    fi
+}
+
+package_chooser
