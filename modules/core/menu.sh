@@ -207,6 +207,7 @@ internet_menu(){
     echo "(1) Firefox                                       (2) Brave Browser"
     echo "(3) Transmissionbt                                (4) Mega"
     echo "(5) Dropbox                                       (6) Rclone"
+    echo "(7) Remmina"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -235,6 +236,10 @@ internet_menu(){
 
         6)
             "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
+            ;;
+
+        7)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
             ;;
 
         m | M)
