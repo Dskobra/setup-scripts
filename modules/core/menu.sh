@@ -498,7 +498,7 @@ extras_menu(){
     echo "(1) LibreOffice                                   (2) QOwnNotes"
     echo "(3) Bitwarden                                     (4) RpiImager"
     echo "(5) GtkHash                                       (6) MissionCenter"
-    echo "(7) Gpu-Viewer"
+    echo "(7) Gpu-Viewer                                    (8) Gear Lever"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -531,6 +531,10 @@ extras_menu(){
 
         7)
             flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
+            ;;
+
+        8)
+            flatpak install --user -y flathub it.mijorus.gearlever
             ;;
 
         m | M)
