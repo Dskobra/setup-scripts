@@ -82,9 +82,9 @@ hardware_menu(){
     echo ""
     echo "Hardware and device drivers etc"
     echo ""
-    echo "(1) Corectrl                                      (2) Nvidia Driver"
-    echo "(3) CoolerControl                                 (4) OpenRGB"
-    echo "(5) Virtual Camera "
+    echo "(1) Corectrl                                      (2) Lact"
+    echo "(3) Nvidia Driver                                 (4) CoolerControl"
+    echo "(5) OpenRGB                                       (6) Virtual Camera "
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -96,18 +96,22 @@ hardware_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/lact.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
             ;;
 
         5)
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
+            ;;
+
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
             ;;
 
