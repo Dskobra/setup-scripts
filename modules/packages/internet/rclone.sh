@@ -17,10 +17,10 @@ script_rclone(){
 
 
 package_chooser(){
-    echo "Select the type of package to install."
-    echo "Enter an option or leave blank for default"
+    echo "                      |-----Package type-----|"
     echo "(1) Native                                        (2) Script(default)"
     echo "(h) Help                                          (0) Cancel"
+    echo "Enter an option or leave blank for default"
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
