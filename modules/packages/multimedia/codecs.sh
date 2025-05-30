@@ -11,7 +11,7 @@ native_codecs(){
     fi
 }
 
-amd_video_accel_codecs(){
+amd_gpu_codecs(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
@@ -62,7 +62,7 @@ then
     echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
 elif [ "$CODECS_INSTALLED" == "amd" ]
 then
-    amd_video_accel_codecs
+    amd_gpu_codecs
 elif [ "$CODECS_INSTALLED" == "override" ]
 then
     remove_codecs

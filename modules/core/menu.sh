@@ -565,10 +565,10 @@ misc_menu(){
     echo "|Misc fixes|"
     echo "--------"
     echo ""
-    echo "AMD Codecs are the mesa hardware accelerated audio/video codecs"
-    echo "for AMD GPUS ONLY."
+    echo "AMD GPU codecs are the mesa hardware accelerated audio/video codecs"
+    echo "for AMD GPUS ONLY. They do nothing for Nvidia."
     echo "(1) Reinstall codecs                              (2) Remove codecs"
-    echo "(3) AMD Codecs"
+    echo "(3) AMD GPU codecs"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
