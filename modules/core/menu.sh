@@ -29,7 +29,7 @@ main_menu(){
             ;;
 
         2)
-            native_kde_desktop_menu
+            kde_desktop_menu
             ;;
 
         3)
@@ -45,7 +45,7 @@ main_menu(){
             ;;
 
         6)
-            native_dev_menu
+            dev_menu
             ;;
 
         7)
@@ -115,13 +115,10 @@ hardware_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
             ;;
 
-        m)
+        m | M)
             main_menu
             ;;
             
-        M)
-            main_menu
-            ;;
         0)
             exit
             ;;
@@ -137,7 +134,7 @@ hardware_menu(){
         hardware_menu
 }
 
-native_kde_desktop_menu(){
+kde_desktop_menu(){
     echo "-----"
     echo "|KDE|"
     echo "-----"
@@ -195,12 +192,12 @@ native_kde_desktop_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_kde_desktop_menu
+            kde_desktop_menu
             ;;
             
         esac
         unset input
-        native_kde_desktop_menu
+        kde_desktop_menu
 }
 
 internet_menu(){
@@ -400,7 +397,7 @@ gaming_menu(){
         gaming_menu
 }
 
-native_dev_menu(){
+dev_menu(){
     echo "--------------"
     echo "|Development|"
     echo "-------------"
@@ -486,12 +483,12 @@ native_dev_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        native_dev_menu
+        dev_menu
         ;;
         
     esac
     unset input
-    native_dev_menu
+    dev_menu
 }
 
 extras_menu(){
