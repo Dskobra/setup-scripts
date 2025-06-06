@@ -80,11 +80,12 @@ hardware_menu(){
     echo "|Hardware|"
     echo "----------"
     echo ""
-    echo "Hardware and device drivers etc"
+    echo "Drivers and tools for managing hardware"
     echo ""
-    echo "(1) Corectrl                                      (2) Lact"
-    echo "(3) Nvidia Driver                                 (4) CoolerControl"
-    echo "(5) OpenRGB                                       (6) Virtual Camera "
+    echo "(1) Lact                                          (2) CoolerControl"
+    echo "(3) Nvidia Driver                                 (4) OpenRGB"
+    echo "(5) Virtual Camera                                (6) CPU-X"
+    echo "(7) Gpu-Viewer"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -92,11 +93,11 @@ hardware_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/corectrl.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/lact.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/lact.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
             ;;
 
         3)
@@ -104,15 +105,19 @@ hardware_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
-            ;;
-
-        5)
             "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
             ;;
 
-        6)
+        5)
             "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
+            ;;
+
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cpux.sh
+            ;;
+
+        7)
+            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
             ;;
 
         m | M)
@@ -499,7 +504,7 @@ extras_menu(){
     echo "(1) LibreOffice                                   (2) QOwnNotes"
     echo "(3) Bitwarden                                     (4) RpiImager"
     echo "(5) GtkHash                                       (6) MissionCenter"
-    echo "(7) Gpu-Viewer                                    (8) Gear Lever"
+    echo "(7) Gear Lever"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -531,10 +536,6 @@ extras_menu(){
             ;;
 
         7)
-            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
-            ;;
-
-        8)
             flatpak install --user -y flathub it.mijorus.gearlever
             ;;
 
