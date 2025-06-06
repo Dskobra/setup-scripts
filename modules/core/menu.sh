@@ -29,7 +29,7 @@ main_menu(){
             ;;
 
         2)
-            native_kde_desktop_menu
+            kde_desktop_menu
             ;;
 
         3)
@@ -45,7 +45,7 @@ main_menu(){
             ;;
 
         6)
-            native_dev_menu
+            dev_menu
             ;;
 
         7)
@@ -80,11 +80,12 @@ hardware_menu(){
     echo "|Hardware|"
     echo "----------"
     echo ""
-    echo "Hardware and device drivers etc"
+    echo "Drivers and tools for managing hardware"
     echo ""
-    echo "(1) Corectrl                                      (2) Nvidia Driver"
-    echo "(3) CoolerControl                                 (4) OpenRGB"
-    echo "(5) Virtual Camera "
+    echo "(1) Lact                                          (2) CoolerControl"
+    echo "(3) Nvidia Driver                                 (4) OpenRGB"
+    echo "(5) Virtual Camera                                (6) CPU-X"
+    echo "(7) Gpu-Viewer"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -92,15 +93,15 @@ hardware_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/corectrl.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/lact.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
             ;;
 
         4)
@@ -111,13 +112,18 @@ hardware_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
             ;;
 
-        m)
+        6)
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cpux.sh
+            ;;
+
+        7)
+            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
+            ;;
+
+        m | M)
             main_menu
             ;;
             
-        M)
-            main_menu
-            ;;
         0)
             exit
             ;;
@@ -133,7 +139,7 @@ hardware_menu(){
         hardware_menu
 }
 
-native_kde_desktop_menu(){
+kde_desktop_menu(){
     echo "-----"
     echo "|KDE|"
     echo "-----"
@@ -191,12 +197,12 @@ native_kde_desktop_menu(){
         *)
             echo -n "Unknown entry"
             echo ""
-            native_kde_desktop_menu
+            kde_desktop_menu
             ;;
             
         esac
         unset input
-        native_kde_desktop_menu
+        kde_desktop_menu
 }
 
 internet_menu(){
@@ -207,6 +213,7 @@ internet_menu(){
     echo "(1) Firefox                                       (2) Brave Browser"
     echo "(3) Transmissionbt                                (4) Mega"
     echo "(5) Dropbox                                       (6) Rclone"
+    echo "(7) Remmina"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -237,6 +244,10 @@ internet_menu(){
             "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
             ;;
 
+        7)
+            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
+            ;;
+
         m | M)
             main_menu
             ;;
@@ -262,7 +273,8 @@ multimedia_menu(){
     echo "------------"
     echo ""
     echo "(1) VLC Media Player                              (2) OpenShot"
-    echo "(3) OBS Studio                                    (4) xfburn"
+    echo "(3) Shotcut                                       (4) Kdenlive"
+    echo "(5) OBS Studio                                    (6) xfburn"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -279,10 +291,18 @@ multimedia_menu(){
             ;;
 
         3)
-            flatpak install --user -y flathub com.obsproject.Studio
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/shotcut.sh
             ;;
 
         4)
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/kdenlive.sh
+            ;;
+
+        5)
+            flatpak install --user -y flathub com.obsproject.Studio
+            ;;
+
+        6)
             "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
             ;;
 
@@ -382,7 +402,7 @@ gaming_menu(){
         gaming_menu
 }
 
-native_dev_menu(){
+dev_menu(){
     echo "--------------"
     echo "|Development|"
     echo "-------------"
@@ -468,12 +488,12 @@ native_dev_menu(){
     *)
         echo -n "Unknown entry"
         echo ""
-        native_dev_menu
+        dev_menu
         ;;
         
     esac
     unset input
-    native_dev_menu
+    dev_menu
 }
 
 extras_menu(){
@@ -484,7 +504,7 @@ extras_menu(){
     echo "(1) LibreOffice                                   (2) QOwnNotes"
     echo "(3) Bitwarden                                     (4) RpiImager"
     echo "(5) GtkHash                                       (6) MissionCenter"
-    echo "(7) Gpu-Viewer"
+    echo "(7) Gear Lever"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -516,7 +536,7 @@ extras_menu(){
             ;;
 
         7)
-            flatpak install --user -y flathub io.github.arunsivaramanneo.GPUViewer
+            flatpak install --user -y flathub it.mijorus.gearlever
             ;;
 
         m | M)
@@ -543,10 +563,10 @@ misc_menu(){
     echo "|Misc fixes|"
     echo "--------"
     echo ""
-    echo "AMD Codecs are the mesa hardware accelerated audio/video codecs"
-    echo "for AMD GPUS ONLY."
+    echo "AMD GPU codecs are the mesa hardware accelerated audio/video codecs"
+    echo "for AMD GPUS ONLY. They do nothing for Nvidia."
     echo "(1) Reinstall codecs                              (2) Remove codecs"
-    echo "(3) AMD Codecs"
+    echo "(3) AMD GPU codecs"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input

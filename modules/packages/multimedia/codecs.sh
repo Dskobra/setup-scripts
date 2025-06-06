@@ -6,13 +6,12 @@ native_codecs(){
         sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
         sudo dnf install -y ffmpeg ffmpeg-libs.i686 ffmpeg-libs\
         gstreamer1-plugins-bad-freeworld gstreamer1-plugins-bad-freeworld.i686
-        echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
     else
         echo "Unkown error has occurred."
     fi
 }
 
-amd_video_accel_codecs(){
+amd_gpu_codecs(){
     if [ "$DISTRO" == "fedora" ]
     then
         sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
@@ -63,7 +62,7 @@ then
     echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
 elif [ "$CODECS_INSTALLED" == "amd" ]
 then
-    amd_video_accel_codecs
+    amd_gpu_codecs
 elif [ "$CODECS_INSTALLED" == "override" ]
 then
     remove_codecs
@@ -71,6 +70,7 @@ then
 elif [ "$CODECS_INSTALLED" == "remove" ]
 then
     remove_codecs
+    echo "0" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
 else
     echo "Codecs already installed."
 fi

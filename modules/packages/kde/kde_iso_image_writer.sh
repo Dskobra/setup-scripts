@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 package_chooser(){
-    echo "Select the type of package to install."
-    echo "Enter an option or leave blank for default"
+   echo "                      |-----Package type-----|"
     echo "(1) Native(default)                               (2) Flatpak"
     echo "(h) Help                                          (0) Cancel"
+    echo "Enter an option or leave blank for default"
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
