@@ -9,7 +9,6 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak remove --user -y net.lutris.Lutris
-        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "native"
         sudo dnf install -y lutris
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]

@@ -9,7 +9,6 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak remove --user -y com.valvesoftware.Steam
-        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         "$SCRIPTS_FOLDER"/modules/packages/gaming/game_tools.sh "native"
         sudo dnf install -y steam
     elif [ "$PACKAGE_TYPE" == "2" ]
