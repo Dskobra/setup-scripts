@@ -1,9 +1,31 @@
 #!/usr/bin/bash
 
-install_lact(){
-    sudo dnf copr enable -y ilyaz/LACT
-    sudo dnf install -y lact
-    sudo systemctl enable --now lactd
+package_chooser(){
+    echo "                      |-----Package type-----|"
+    echo "(1) Native(default)                               (2) Flatpak"
+    echo "(h) Help                                          (0) Cancel"
+    echo "Enter an option or leave blank for default"
+    read -r PACKAGE_TYPE
+    if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
+    then
+        flatpak remove --user -y io.github.ilya_zlobintsev.LACT
+        sudo dnf copr enable -y ilyaz/LACT
+        sudo dnf install -y lact
+        sudo systemctl enable --now lactd
+    elif [ "$PACKAGE_TYPE" == "2" ]
+    then
+        flatpak install --user -y flathub io.github.ilya_zlobintsev.LACT
+        sudo dnf remove -y lact
+        xdg-open "https://github.com/ilya-zlobintsev/LACT/blob/master/flatpak/README.md"
+    elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
+    then
+        "$SCRIPTS_FOLDER"/modules/core/help.sh
+    elif [ "$PACKAGE_TYPE" == "0" ]
+    then
+        echo "User canceled"
+    else
+        echo "Unkown error has occurred."
+    fi
 }
 
-install_lact
+package_chooser
