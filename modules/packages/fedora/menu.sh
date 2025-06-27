@@ -155,35 +155,35 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/kpat.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/kleopatra.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/kde_iso_image_writer.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/kate.sh
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/k3b.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/k3b.sh
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/krdc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/krdc.sh
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/krfb.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/krfb.sh
             ;;
 
         m | M)
