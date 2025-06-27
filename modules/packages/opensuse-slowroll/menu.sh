@@ -54,8 +54,7 @@ main_menu(){
             ;;
 
         7)
-            echo "Disabled atm"
-            #extras_menu
+            extras_menu
             ;;
 
         8)
