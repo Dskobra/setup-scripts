@@ -8,7 +8,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak uninstall --user -y flathub org.kde.kdenlive
-        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+        "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
         sudo dnf install -y kdenlive
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
