@@ -343,15 +343,15 @@ gaming_menu(){
 
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/steam.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/lutris.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/discord.sh
             ;;
 
         4)
@@ -359,7 +359,7 @@ gaming_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/dolphin_emu.sh
             ;;
 
         6)
@@ -367,19 +367,19 @@ gaming_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/xiv.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/xiv.sh
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wowup"
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/wow_clients.sh "wowup"
             ;;
 
         9)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wclogs"
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/wow_clients.sh "wclogs"
             ;;
 
         10)
-            "$SCRIPTS_FOLDER"/modules/packages/gaming/wow_clients.sh "wacompanion"
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/wow_clients.sh "wacompanion"
             ;;
 
 
