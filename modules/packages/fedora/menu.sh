@@ -93,27 +93,27 @@ hardware_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/lact.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/lact.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/cooler_control.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/nvidia.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/openrgb.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/v4l2loopback.sh
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/cpux.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/cpux.sh
             ;;
 
         7)
