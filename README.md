@@ -2,7 +2,7 @@
 Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
-* Fedora (non atomic) 41/42
+* Fedora 41/42 (non atomic)
 
 ## Requirements
 * curl
