@@ -221,19 +221,19 @@ internet_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/internet/firefox.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/internet/brave.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/internet/transmission.sh
             ;;
 
         4)  
-            "$SCRIPTS_FOLDER"/modules/packages/internet/mega.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/internet/mega.sh
             ;;
 
         5)
@@ -241,11 +241,11 @@ internet_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/rclone.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/internet/rclone.sh
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/internet/remmina.sh
             ;;
 
         m | M)
