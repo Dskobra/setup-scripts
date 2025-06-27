@@ -17,6 +17,17 @@ prereq_check(){
             sudo dnf install -y $PACKAGES_TO_INSTALL
         fi
         rpmfusion_check
+    elif [ "$DISTRO" == "opensuse-slowroll" ]
+    then
+        echo $PACKAGES_TO_INSTALL
+        if [ -z "$PACKAGES_TO_INSTALL" ]
+        then
+            echo "Dependencies are installed."
+        else
+            echo "Following packages will be installed: $PACKAGES_TO_INSTALL flatseal"
+            sudo zypper -n install $PACKAGES_TO_INSTALL
+            #sudo zypper -n install wget curl flatpak
+        fi
     else
         echo "Unkown error has occurred."
     fi
