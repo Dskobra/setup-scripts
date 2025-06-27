@@ -512,7 +512,7 @@ extras_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/extras/libreoffice.sh
             ;;
 
         2)
@@ -524,11 +524,11 @@ extras_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/extras/rpi_imager.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/extras/gtkhash.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/extras/gtkhash.sh
             ;;
 
         6)
