@@ -283,19 +283,19 @@ multimedia_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/vlc.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/openshot.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/shotcut.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/shotcut.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/kdenlive.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/kdenlive.sh
             ;;
 
         5)
@@ -303,7 +303,7 @@ multimedia_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/xfburn.sh
             ;;
 
         m | M)
@@ -574,18 +574,18 @@ misc_menu(){
     case $input in
 
         1)
-            echo "override" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            echo "override" > "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
             ;;
 
         2)
-            echo "remove" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            echo "remove" > "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
             ;;
 
         3)
-            echo "amd" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            echo "amd" > "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
             ;;
 
         m | M)
