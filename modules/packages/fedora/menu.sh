@@ -422,11 +422,11 @@ dev_menu(){
 
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/vim.sh
+            sudo dnf install -y vim-enhanced
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/geany.sh
+            sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
             ;;
 
         3)
@@ -438,11 +438,12 @@ dev_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/python_tools.sh
+            sudo dnf install -y python3-idle python3-devel
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/containers.sh
+            sudo dnf install -y toolbox distrobox docker-compose-switch
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
         7)
@@ -450,11 +451,12 @@ dev_menu(){
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/git.sh
+            sudo dnf install -y git git-gui gh git-cola
             ;;
 
         9)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/gcc.sh
+            sudo dnf4 groupinstall -y "Development Tools"
+            sudo dnf4 groupinstall -y "C Development Tools and Libraries"
             ;;
 
         10)
@@ -466,11 +468,13 @@ dev_menu(){
             ;;
 
         12)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/nodejs.sh
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+            source ~/.bashrc
+            nvm install lts/*
             ;;
 
         13)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/development/lamp.sh
+            sudo dnf install -y httpd mariadb mariadb-server php phpMyAdmin
             ;;
 
         m | M)
