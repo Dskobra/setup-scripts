@@ -2,21 +2,23 @@
 
 package_chooser(){
     echo "                      |-----Package type-----|"
-    echo "(1) Native                                        (2) Flatpak(default)"
+    echo "(1) Native(default)                               (2) Flatpak"
     echo "(h) Help                                          (0) Cancel"
     echo "Enter an option or leave blank for default"
     read -r PACKAGE_TYPE
-    if [ "$PACKAGE_TYPE" == "1" ]
+    if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
-        flatpak remove --user -y net.lutris.Lutris
+        flatpak remove --user -y com.valvesoftware.Steam
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "native"
-        sudo dnf install -y lutris
-    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
+        sudo zypper -n install steam
+    elif [ "$PACKAGE_TYPE" == "2" ]
     then
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "flatpak"
-        flatpak install --user -y flathub net.lutris.Lutris
-        flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
-        sudo dnf remove -y lutris
+        echo "gamemode and steam-devices package will also be installed for performance optimization"
+        echo "and controller support."
+        flatpak install --user -y flathub com.valvesoftware.Steam
+        flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
+        sudo zypper -n rm steam
     elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh

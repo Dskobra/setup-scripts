@@ -9,14 +9,14 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak remove --user -y net.lutris.Lutris
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "native"
-        sudo dnf install -y lutris
+        "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/game_tools.sh "native"
+        sudo zypper -n install --auto-agree-with-licenses lutris
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "flatpak"
+        "$SCRIPTS_FOLDER"/modules/packages/fedora/gaming/game_tools.sh "flatpak"
         flatpak install --user -y flathub net.lutris.Lutris
         flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
-        sudo dnf remove -y lutris
+        sudo zypper -n rm lutris
     elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh

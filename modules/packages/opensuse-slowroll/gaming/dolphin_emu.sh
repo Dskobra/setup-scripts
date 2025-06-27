@@ -8,15 +8,12 @@ package_chooser(){
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
-        flatpak remove --user -y net.lutris.Lutris
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "native"
-        sudo dnf install -y lutris
+        flatpak remove --user -y org.DolphinEmu.dolphin-emu
+        sudo zypper -n install dolphin-emu
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "flatpak"
-        flatpak install --user -y flathub net.lutris.Lutris
-        flatpak override net.lutris.Lutris --user --filesystem=xdg-config/MangoHud:ro
-        sudo dnf remove -y lutris
+        flatpak install --user -y flathub org.DolphinEmu.dolphin-emu
+        sudo zypper -n rm dolphin-emu
     elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh
@@ -27,5 +24,5 @@ package_chooser(){
         echo "Unkown error has occurred."
     fi
 }
-mkdir $HOME/Games
+
 package_chooser
