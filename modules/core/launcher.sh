@@ -30,9 +30,9 @@ fedora_release_check(){
 opensuse_slowroll_release_check(){
     if [ "$VERSION_ID" -ge "20250101" ]
     then
-        #"$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        #"$SCRIPTS_FOLDER"/modules/core/menu.sh
-        echo "Disabled atm"
+        "$SCRIPTS_FOLDER"/modules/core/prereq.sh
+        #"$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/menu.sh
+        echo "Menu is disabled atm"
     else
         echo "These scripts only support Slowroll released on or after 01/01/2025"
     fi
