@@ -97,7 +97,9 @@ hardware_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/cooler_control.sh
+            sudo dnf copr enable -y codifryed/CoolerControl
+            sudo dnf install -y coolercontrol
+            sudo systemctl enable --now coolercontrold
             ;;
 
         3)
@@ -105,11 +107,13 @@ hardware_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/openrgb.sh
+            sudo dnf install -y openrgb
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/hardware/v4l2loopback.sh
+            sudo dnf install -y akmod-v4l2loopback v4l2loopback
+            sudo akmods --rebuild --force
+            sudo dracut --regenerate-all --force
             ;;
 
         6)
@@ -175,15 +179,15 @@ kde_desktop_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/k3b.sh
+            sudo dnf install -y k3b
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/krdc.sh
+            sudo dnf install -y krdc
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/kde/krfb.sh
+            sudo dnf install -y krfb
             ;;
 
         m | M)
@@ -303,7 +307,7 @@ multimedia_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/xfburn.sh
+            sudo dnf install -y xfburn
             ;;
 
         m | M)
