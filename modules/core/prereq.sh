@@ -7,6 +7,7 @@ deps_check(){
     if [ "$DEPS" == "0" ]
     then
         install_deps
+        echo "1" > "$SCRIPTS_FOLDER"/.deps.txt
     elif [ "$DEPS" == "1" ]
     then
         echo "Not installing dependencies."
