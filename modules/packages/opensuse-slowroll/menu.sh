@@ -25,23 +25,28 @@ main_menu(){
 
 
         1)
-            hardware_menu
+            echo "Disabled atm"
+            #hardware_menu
             ;;
 
         2)
-            kde_desktop_menu
+            echo "Disabled atm"
+            #kde_desktop_menu
             ;;
 
         3)
-            internet_menu
+            echo "Disabled atm"
+            #internet_menu
             ;;
 
         4)
-            multimedia_menu
+            echo "Disabled atm"
+            #multimedia_menu
             ;;
 
         5)
-            gaming_menu
+            echo "Disabled atm"
+            #gaming_menu
             ;;
 
         6)
@@ -49,11 +54,13 @@ main_menu(){
             ;;
 
         7)
-            extras_menu
+            echo "Disabled atm"
+            #extras_menu
             ;;
 
         8)
-            misc_menu
+            echo "Disabled atm"
+            #misc_menu
             ;;
 
         h | H)
@@ -422,11 +429,11 @@ dev_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/vim.sh
+            sudo zypper -n install vim
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/geany.sh
+            sudo zypper -n install geany geany-plugins
             ;;
 
         3)
@@ -438,11 +445,13 @@ dev_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/python_tools.sh
+            sudo zypper -n install python3-idle python3-devel
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/containers.sh
+            sudo zypper -n install patterns-containers-container_runtime toolbox distrobox
+            sudo zypper -n install docker-compose-switch
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
         7)
@@ -450,11 +459,11 @@ dev_menu(){
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/git.sh
+            sudo zypper -n install git git-gui gh git-cola
             ;;
 
         9)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/gcc.sh
+            sudo zypper -n install patterns-devel-C-C++-devel_C_C++
             ;;
 
         10)
@@ -466,11 +475,13 @@ dev_menu(){
             ;;
 
         12)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/nodejs.sh
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+            source ~/.bashrc
+            nvm install lts/*
             ;;
 
         13)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/lamp.sh
+            sudo zypper -n install apache2 mariadb php8 phpMyAdmin
             ;;
 
         m | M)
@@ -528,7 +539,7 @@ extras_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/extras/gtkhash.sh
+            flatpak install --user -y flathub org.gtkhash.gtkhash
             ;;
 
         6)
