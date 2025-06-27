@@ -23,10 +23,10 @@ amd_gpu_codecs(){
 
         sudo dnf swap -y mesa-vulkan-drivers mesa-vulkan-drivers-freeworld
         sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.i686
-        echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+        echo "1" > "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.txt
 
-        rm "$SCRIPTS_FOLDER"/mesa_versions.txt
-        { rpm -q mesa-va-drivers-freeworld; rpm -q mesa-vdpau-drivers-freeworld; rpm -q mesa-vulkan-drivers-freeworld; } >> "$SCRIPTS_FOLDER"/mesa_versions.txt
+        rm "$SCRIPTS_FOLDER"/modules/packages/fedora/mesa_versions.txt
+        { rpm -q mesa-va-drivers-freeworld; rpm -q mesa-vdpau-drivers-freeworld; rpm -q mesa-vulkan-drivers-freeworld; } >> "$SCRIPTS_FOLDER"/modules/packages/fedora/mesa_versions.txt
     else
         echo "Unkown error has occurred."
     fi
@@ -53,13 +53,13 @@ remove_codecs(){
     fi
 }
 
-CODECS_INSTALLED="$(cat < "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt)"
+CODECS_INSTALLED="$(cat < "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.txt)"
 
 
 if [ "$CODECS_INSTALLED" == "0" ]
 then
     native_codecs
-    echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+    echo "1" > "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.txt
 elif [ "$CODECS_INSTALLED" == "amd" ]
 then
     amd_gpu_codecs
@@ -70,7 +70,7 @@ then
 elif [ "$CODECS_INSTALLED" == "remove" ]
 then
     remove_codecs
-    echo "0" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+    echo "0" > "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.txt
 else
     echo "Codecs already installed."
 fi
