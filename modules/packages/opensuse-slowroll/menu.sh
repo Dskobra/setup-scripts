@@ -44,8 +44,7 @@ main_menu(){
             ;;
 
         5)
-            echo "Disabled atm"
-            #gaming_menu
+            gaming_menu
             ;;
 
         6)
