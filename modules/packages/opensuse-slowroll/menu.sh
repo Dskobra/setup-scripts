@@ -245,7 +245,7 @@ internet_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/internet/rclone.sh
+            "$SCRIPTS_FOLDER"/modules/packages/shared/rclone.sh
             ;;
 
         7)
@@ -371,19 +371,19 @@ gaming_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/xiv.sh
+            "$SCRIPTS_FOLDER"/modules/packages/shared/xiv.sh
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/wow_clients.sh "wowup"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/wow_clients.sh "wowup"
             ;;
 
         9)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/wow_clients.sh "wclogs"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/wow_clients.sh "wclogs"
             ;;
 
         10)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/wow_clients.sh "wacompanion"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/wow_clients.sh "wacompanion"
             ;;
 
 
@@ -434,11 +434,11 @@ dev_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/java.sh "idea"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/java.sh "idea"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/java.sh "pycharm"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/java.sh "pycharm"
             ;;
 
         5)
@@ -464,11 +464,11 @@ dev_menu(){
             ;;
 
         10)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/java.sh "openjdk"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/java.sh "openjdk"
             ;;
 
         11)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/java.sh "openjfx"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/java.sh "openjfx"
             ;;
 
         12)
