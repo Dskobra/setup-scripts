@@ -99,7 +99,7 @@ hardware_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/hardware/cooler_control.sh
+            opi coolercontrol
             ;;
 
         3)
