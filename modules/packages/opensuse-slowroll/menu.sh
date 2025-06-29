@@ -34,8 +34,7 @@ main_menu(){
             ;;
 
         3)
-            echo "Disabled atm"
-            #internet_menu
+            internet_menu
             ;;
 
         4)
