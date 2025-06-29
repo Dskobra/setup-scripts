@@ -40,8 +40,7 @@ main_menu(){
             ;;
 
         4)
-            echo "Disabled atm"
-            #multimedia_menu
+            multimedia_menu
             ;;
 
         5)
