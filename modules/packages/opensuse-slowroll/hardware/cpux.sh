@@ -8,11 +8,11 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak remove --user -y io.github.thetumultuousunicornofdarkness.cpu-x
-        sudo dnf install -y cpu-x
+        sudo zypper -n install cpu-x
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
         flatpak install --user -y flathub io.github.thetumultuousunicornofdarkness.cpu-x
-        sudo dnf remove -y cpu-x
+        sudo zypper -n rm cpu-x
     elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh
