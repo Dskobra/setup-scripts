@@ -10,11 +10,7 @@ package_chooser(){
     then
         flatpak uninstall --user -y com.brave.Browser
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
-        cd /opt/apps/temp || exit
-        curl -fsSLO "https://dl.brave.com/install.sh{,.asc}" && gpg --keyserver hkps://keys.openpgp.org --recv-keys D16166072CACDF2C9429CBF11BF41E37D039F691 && gpg --verify install.sh.asc
-        curl -fsS https://dl.brave.com/install.sh | sh
-        rm install.sh
-        rm install.sh.asc
+        opi -n brave
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
         flatpak install --user -y flathub com.brave.Browser

@@ -236,7 +236,7 @@ internet_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/internet/mega.sh
+            opi -n megasync
             ;;
 
         5)
