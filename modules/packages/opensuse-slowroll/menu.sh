@@ -309,7 +309,7 @@ multimedia_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/xfburn.sh
+            sudo zypper -n install xfburn
             ;;
 
         m | M)

@@ -5,10 +5,10 @@ native_codecs(){
     sudo zypper --gpg-auto-import-keys ref
     sudo zypper -n install --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
     sudo zypper -n dup --from packman-essentials --allow-vendor-change
-    echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+    echo "1" > "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.txt
 }
 
-CODECS_INSTALLED="$(cat < "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt)"
+CODECS_INSTALLED="$(cat < "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.txt)"
 
 
 if [ "$CODECS_INSTALLED" == "0" ]
