@@ -99,7 +99,8 @@ hardware_menu(){
             ;;
 
         2)
-            opi coolercontrol
+            opi -n coolercontrol
+            sudo systemctl enable --now coolercontrold
             ;;
 
         3)
