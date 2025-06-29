@@ -109,11 +109,12 @@ hardware_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/hardware/openrgb.sh
+            sudo zypper -n install OpenRGB
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/hardware/v4l2loopback.sh
+            sudo zypper -n install v4l2loopback-autoload
+            sudo dracut --regenerate-all --force
             ;;
 
         6)
