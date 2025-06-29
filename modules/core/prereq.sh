@@ -23,7 +23,7 @@ install_deps(){
         sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        sudo zypper -n install wget curl flatpak
+        sudo zypper -n install wget curl flatpak opi
     else
         echo "Unkown error has occurred."
     fi
