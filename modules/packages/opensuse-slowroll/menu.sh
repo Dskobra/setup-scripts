@@ -25,8 +25,7 @@ main_menu(){
 
 
         1)
-            echo "Disabled atm"
-            #hardware_menu
+            hardware_menu
             ;;
 
         2)
@@ -97,7 +96,8 @@ hardware_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/hardware/lact.sh
+            flatpak install --user -y flathub io.github.ilya_zlobintsev.LACT
+            xdg-open "https://github.com/ilya-zlobintsev/LACT/blob/master/flatpak/README.md"
             ;;
 
         2)
