@@ -29,8 +29,7 @@ main_menu(){
             ;;
 
         2)
-            echo "Disabled atm"
-            #kde_desktop_menu
+            kde_desktop_menu
             ;;
 
         3)
@@ -171,7 +170,7 @@ kde_desktop_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/kde_iso_image_writer.sh
+            flatpak install --user -y flathub org.kde.isoimagewriter
             ;;
 
         5)
@@ -179,15 +178,15 @@ kde_desktop_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/k3b.sh
+            sudo zypper -n install k3b
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/krdc.sh
+            sudo zypper -n install krdc
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/krfb.sh
+            sudo zypper -n install krfb
             ;;
 
         m | M)
