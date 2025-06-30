@@ -512,7 +512,7 @@ extras_menu(){
     echo "(1) LibreOffice                                   (2) QOwnNotes"
     echo "(3) Bitwarden                                     (4) RpiImager"
     echo "(5) GtkHash                                       (6) MissionCenter"
-    echo "(7) Gear Lever"
+    echo "(7) Gear Lever                                    (8) Myrln"
     echo "(m) Main Menu                                     (0) Exit"
     printf "Option: "
     read -r input
@@ -545,6 +545,10 @@ extras_menu(){
 
         7)
             flatpak install --user -y flathub it.mijorus.gearlever
+            ;;
+
+        8)
+            sudo zypper -n install myrlyn
             ;;
 
         m | M)
