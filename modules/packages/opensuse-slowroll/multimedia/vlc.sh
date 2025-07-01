@@ -12,8 +12,6 @@ package_chooser(){
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
         sudo zypper ar -cfp 90 'http://opensuse-guide.org/repo/openSUSE_Tumbleweed/' 'libdvdcss repository'
         sudo zypper --gpg-auto-import-keys ref
-        sudo zypper -n install --from packman-essentials vlc vlc-qt libvlc5 libvlccore9 vlc-codecs
-        sudo zypper -n dup --from packman-essentials --allow-vendor-change
         sudo zypper -n install --from 'libdvdcss repository' libdvdcss2
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
