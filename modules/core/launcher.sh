@@ -28,12 +28,12 @@ fedora_release_check(){
 }
 
 opensuse_slowroll_release_check(){
-    if [ "$VERSION_ID" -ge "20250101" ]
+    if [ "$VERSION_ID" -ge "20250501" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/menu.sh
     else
-        echo "These scripts only support Slowroll released on or after 01/01/2025"
+        echo "These scripts only support Slowroll released on or after 05/01/2025"
     fi
 
 }
