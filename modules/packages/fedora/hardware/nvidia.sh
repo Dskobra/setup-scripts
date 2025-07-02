@@ -33,13 +33,14 @@ install_nvidia_open(){
 
 help(){
     echo "//Proprietary//"
-    echo "Non open source driver. Currently rpmfusion recommends this vs the open source driver."
+    echo "Non open source kernel driver. RRPMFusion recommends this vs the open source"
+    echo "driver. Not compatible with RTX 5000 or higher."
     echo ""
     echo ""
     echo "//Open//"
-    echo "While not recommended by rpmfusion it is now on par with the closed driver."
-    echo "Nvidia recommends this for RTX 2000/3000/4000 and required for RTX 5000."
-    echo "Requires Nvidia RTX 2000 or higher."
+    echo "Official open source kernel driver. While not recommended by RRPMFusion, Nvidia"
+    echo "recommends this for RTX 2000/3000/4000 and required for RTX 5000."
+    echo "Requires Nvidia RTX 2000 or higher. Note: Some gpus may perform worse with this."
 }
 
 package_chooser(){

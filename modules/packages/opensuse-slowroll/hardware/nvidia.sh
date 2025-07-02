@@ -21,12 +21,12 @@ install_nvidia_open(){
 
 help(){
     echo "//Proprietary//"
-    echo "Non open source kernel driver. Some gpus may perform better with this."
+    echo "Non open source kernel driver. Not compatible with RTX 5000 or higher."
     echo ""
     echo ""
     echo "//Open//"
     echo "Official open source kernel driver. Nvidia recommends this for RTX 2000/3000/4000 and required for RTX 5000."
-    echo "Requires Nvidia RTX 2000 or higher."
+    echo "Requires Nvidia RTX 2000 or higher. Note: Some gpus may perform worse with this."
 }
 
 package_chooser(){
