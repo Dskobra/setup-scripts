@@ -4,7 +4,6 @@ install_nvidia(){
     #this is for enabling the official repos and closed drivers from nvidia by installing the patterns
     #package. Packages here require accepting a license agreement.
 
-    sudo zypper -n install openSUSE-repos-Tumbleweed-NVIDIA
     sudo zypper -n install openSUSE-repos-Slowroll-NVIDIA
     sudo zypper --gpg-auto-import-keys ref
     sudo zypper -n install --auto-agree-with-licenses nvidia-video-G06 nvidia-settings nvidia-modprobe
