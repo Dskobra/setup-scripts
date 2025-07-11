@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-mkdir $HOME/.config/MangoHud
 flatpak install --user -y flathub com.vysp3r.ProtonPlus
 flatpak install --user -y flathub com.github.Matoking.protontricks
 sudo dnf install -y steam-devices
