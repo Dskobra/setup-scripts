@@ -5,9 +5,6 @@ install_nvidia(){
     then
         sudo dnf install -y akmod-nvidia nvidia-settings\
         xorg-x11-drv-nvidia-cuda
-        sudo akmods --rebuild --force
-        sudo dracut --regenerate-all --force
-
     else
         echo "Unkown error has occurred."
     fi
@@ -16,13 +13,9 @@ install_nvidia(){
 install_nvidia_open(){
     if [ "$DISTRO" == "fedora" ]
     then
-        sudo dnf install -y akmod-nvidia nvidia-settings\
-        xorg-x11-drv-nvidia-cuda
-
         sudo sh -c 'echo "%_with_kmod_nvidia_open 1" > /etc/rpm/macros.nvidia-kmod'
-        sudo akmods --kernels $(uname -r) --rebuild
         sudo dnf install -y rpmfusion-nonfree-release-tainted
-        sudo dnf swap -y akmod-nvidia akmod-nvidia-open
+        sudo dnf install -y akmod-nvidia-open
         sudo akmods --rebuild --force
         sudo dracut --regenerate-all --force
 
@@ -52,8 +45,11 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
         install_nvidia
+        sudo akmods --rebuild --force
+        sudo dracut --regenerate-all --force
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
+        install_nvidia
         install_nvidia_open
     elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
