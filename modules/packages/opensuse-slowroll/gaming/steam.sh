@@ -10,7 +10,7 @@ package_chooser(){
     then
         flatpak remove --user -y com.valvesoftware.Steam
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "native"
-        sudo zypper -n install steam
+        sudo zypper -n install --auto-agree-with-licenses steam
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/game_tools.sh "flatpak"
