@@ -1,7 +1,10 @@
 #!/usr/bin/bash
 
 native_codecs(){
-    opi -n codecs
+    sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Slowroll/Essentials/' packman-essentials
+    sudo zypper --gpg-auto-import-keys ref
+    sudo zypper -n install --from packman-essentials ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec
+    sudo zypper -n dup --from packman-essentials --allow-vendor-change
     echo "1" > "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.txt
 }
 
