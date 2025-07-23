@@ -2,18 +2,18 @@
 
 package_chooser(){
     echo "                      |-----Package type-----|"
-    echo "(1) Native(default)                               (2) Flatpak"
+    echo "(1) Native                                        (2) Flatpak(default)"
     echo "(h) Help                                          (0) Cancel"
     echo "Enter an option or leave blank for default"
     read -r PACKAGE_TYPE
-    if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
+    if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak uninstall --user -y org.videolan.VLC
         "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
         sudo zypper ar -cfp 90 'http://opensuse-guide.org/repo/openSUSE_Tumbleweed/' 'libdvdcss repository'
         sudo zypper --gpg-auto-import-keys ref
         sudo zypper -n install --from 'libdvdcss repository' libdvdcss2
-    elif [ "$PACKAGE_TYPE" == "2" ]
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak install --user -y flathub org.videolan.VLC
          sudo zypper -n rm vlc-codecs vlc-qt libdvdcss2
