@@ -1,18 +1,14 @@
 #!/usr/bin/bash
 
 install_nvidia(){
-    #this is for enabling the official repos and closed drivers from nvidia by installing the patterns
-    #package. Packages here require accepting a license agreement.
-
-    # run zypper dup first as it should auto install the nvidia open kernel driver
     sudo zypper -n  install openSUSE-repos-Slowroll-NVIDIA
-    sudo zypper -n dup
     sudo zypper --gpg-auto-import-keys ref
-    # also install lts kernel driver as backup
-    sudo zypper -n install --auto-agree-with-licenses nvidia-video-G06 nvidia-settings nvidia-modprobe \
-    nvidia-userspace-meta-G06 nvidia-open-driver-G06-signed-kmp-longterm libnvidia-egl-x111-32bit \
-    libnvidia-egl-wayland1-32bit libnvidia-egl-gbm1-32bit
-    sudo zypper install-new-recommends --repo repo-non-free
+    sudo zypper -n dup --auto-agree-with-licenses
+    sudo zypper -n install --auto-agree-with-licenses nvidia-open-driver-G06-signed-kmp-longterm nvidia-video-G06 \
+    nvidia-userspace-meta-G06 nvidia-persistenced nvidia-modprobe nvidia-gl-G06 nvidia-compute-utils-G06 \
+    nvidia-compute-G06 nvidia-common-G06 libnvidia-egl-x111 libnvidia-egl-wayland1 libnvidia-egl-gbm1 libOpenCL1 \
+    clinfo nvidia-settings
+    sudo dracut --regenerate-all --force
 }
 
 install_nvidia
