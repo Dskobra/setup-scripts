@@ -19,11 +19,11 @@ deps_check(){
 install_deps(){
     if [ "$DISTRO" == "fedora" ]
     then
-        sudo dnf install -y wget curl flatpak dnf-plugins-core
+        sudo dnf install -y wget curl flatpak dnf-plugins-core zenity
         sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     elif [ "$DISTRO" == "opensuse-slowroll" ]
     then
-        sudo zypper -n install wget curl flatpak opi
+        sudo zypper -n install wget curl flatpak opi zenity
     else
         echo "Unkown error has occurred."
     fi
