@@ -15,8 +15,8 @@ CODECS_INSTALLED="$(cat < "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/m
 
 if [ "$CODECS_INSTALLED" == "0" ]
 then
-    #native_codecs
-    zenity --error --text="Packman-Essentials currently is having dependency issues. So this is disabled."
+    native_codecs
+    #zenity --error --text="Packman-Essentials currently is having dependency issues. So this is disabled."
 else
     echo "Codecs already installed."
 fi
