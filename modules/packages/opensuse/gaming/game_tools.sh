@@ -9,7 +9,7 @@ then
     flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
 elif [ "$1" == "native" ]
 then
-    "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
+    "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/codecs.sh
     sudo zypper -n install mangohud
 else
     echo "error"

@@ -9,7 +9,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak uninstall --user -y com.brave.Browser
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
+        "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/codecs.sh
         opi -n brave
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then

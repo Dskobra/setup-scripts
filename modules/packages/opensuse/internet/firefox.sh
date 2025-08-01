@@ -9,7 +9,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak uninstall --user -y org.mozilla.firefox
-       "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
+       "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/codecs.sh
         sudo zypper -n install MozillaFirefox MozillaFirefox-branding-openSUSE
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
