@@ -7,7 +7,7 @@ native_codecs(){
     then
         sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/' packman-essentials
     else
-        echo "Unfortunately, '$DISTRO $VERSION_ID' is not a supported distro."
+        echo "Error has occured."
     fi
     sudo zypper --gpg-auto-import-keys ref
     # note try this code out once packman fixes its dependency issues again <_<
