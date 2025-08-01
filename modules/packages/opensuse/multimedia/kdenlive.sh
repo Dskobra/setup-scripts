@@ -8,7 +8,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak uninstall --user -y flathub org.kde.kdenlive
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
+        "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/codecs.sh
         sudo zypper -n install kdenlive
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then

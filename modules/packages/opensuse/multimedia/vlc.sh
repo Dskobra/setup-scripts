@@ -9,7 +9,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak uninstall --user -y org.videolan.VLC
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
+       "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/codecs.sh
         sudo zypper ar -cfp 90 'http://opensuse-guide.org/repo/openSUSE_Tumbleweed/' 'libdvdcss repository'
         sudo zypper --gpg-auto-import-keys ref
         sudo zypper -n install --from 'libdvdcss repository' libdvdcss2

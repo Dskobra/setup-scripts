@@ -8,13 +8,17 @@ package_chooser(){
     read -r PACKAGE_TYPE
     if [ "$PACKAGE_TYPE" == "1" ]
     then
-        flatpak uninstall --user -y org.openshot.OpenShot
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/codecs.sh
-        sudo zypper -n install openshot-qt
+        flatpak remove --user -y com.valvesoftware.Steam
+        "$SCRIPTS_FOLDER"/modules/packages/opensuse/gaming/game_tools.sh "native"
+        sudo zypper -n install --auto-agree-with-licenses steam
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
-        flatpak install --user -y flathub org.openshot.OpenShot
-        sudo zypper -n rm openshot-qt
+        "$SCRIPTS_FOLDER"/modules/packages/opensuse/gaming/game_tools.sh "flatpak"
+        echo "gamemode and steam-devices package will also be installed for performance optimization"
+        echo "and controller support."
+        flatpak install --user -y flathub com.valvesoftware.Steam
+        flatpak override com.valvesoftware.Steam  --user --filesystem=xdg-config/MangoHud:ro
+        sudo zypper -n rm steam
     elif [ "$PACKAGE_TYPE" == "h" ]  || [ "$PACKAGE_TYPE" == "H" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/help.sh
@@ -25,5 +29,5 @@ package_chooser(){
         echo "Unkown error has occurred."
     fi
 }
-
+mkdir $HOME/Games
 package_chooser

@@ -4,9 +4,9 @@ distro_check(){
     if [ "$DISTRO" == "fedora" ]
     then
         fedora_release_check
-    elif [ "$DISTRO" == "opensuse-slowroll" ]
+    elif [ "$DISTRO" == "opensuse-slowroll" ] ||  [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        opensuse_slowroll_release_check
+        opensuse_release_check
     else
         echo "Unfortunately, '$DISTRO $VERSION_ID' is not a supported distro."
     fi
@@ -24,13 +24,13 @@ fedora_release_check(){
 
 }
 
-opensuse_slowroll_release_check(){
+opensuse_release_check(){
     if [ "$VERSION_ID" -ge "20250501" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
-        "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/menu.sh
+        "$SCRIPTS_FOLDER"/modules/packages/opensuse/menu.sh
     else
-        echo "These scripts only support Slowroll released on or after 05/01/2025"
+        echo "These scripts only support Slowroll/Tumbleweed released on or after 05/01/2025"
     fi
 
 }
