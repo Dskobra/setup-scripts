@@ -99,7 +99,7 @@ hardware_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/hardware/nvidia.sh
             ;;
 
         4)
@@ -112,7 +112,7 @@ hardware_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/hardware/cpux.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/hardware/cpux.sh
             ;;
 
         7)
@@ -154,15 +154,15 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/kde/kpat.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/kde/kleopatra.sh
             ;;
 
         4)
@@ -170,7 +170,7 @@ kde_desktop_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/kde/kate.sh
             ;;
 
         6)
@@ -220,15 +220,15 @@ internet_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/internet/firefox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/internet/firefox.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/internet/brave.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/internet/brave.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/internet/transmission.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/internet/transmission.sh
             ;;
 
         4)
@@ -244,7 +244,7 @@ internet_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/internet/remmina.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/internet/remmina.sh
             ;;
 
         m | M)
@@ -282,19 +282,19 @@ multimedia_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/vlc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/vlc.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/openshot.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/openshot.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/shotcut.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/shotcut.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/multimedia/kdenlive.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/multimedia/kdenlive.sh
             ;;
 
         5)
@@ -342,15 +342,15 @@ gaming_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/gaming/steam.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/gaming/lutris.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/discord.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/gaming/discord.sh
             ;;
 
         4)
@@ -358,7 +358,7 @@ gaming_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/gaming/dolphin_emu.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/gaming/dolphin_emu.sh
             ;;
 
         6)
@@ -447,7 +447,7 @@ dev_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/development/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/development/virtualization.sh
             ;;
 
         8)
@@ -515,7 +515,7 @@ extras_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/extras/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/extras/libreoffice.sh
             ;;
 
         2)
@@ -527,7 +527,7 @@ extras_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/opensuse-slowroll/extras/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/extras/rpi_imager.sh
             ;;
 
         5)
