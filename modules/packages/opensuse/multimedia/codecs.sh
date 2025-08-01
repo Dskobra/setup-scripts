@@ -5,7 +5,7 @@ native_codecs(){
         sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Slowroll/Essentials/' packman-essentials
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweedl/Essentials/' packman-essentials
+        sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials/' packman-essentials
     else
         echo "Unfortunately, '$DISTRO $VERSION_ID' is not a supported distro."
     fi
