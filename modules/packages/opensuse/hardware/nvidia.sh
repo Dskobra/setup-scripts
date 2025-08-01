@@ -18,4 +18,5 @@ install_nvidia(){
 
 }
 
-install_nvidia
+#install_nvidia
+echo "disabled atm"
