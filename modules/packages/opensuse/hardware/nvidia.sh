@@ -6,7 +6,7 @@ install_nvidia(){
         sudo zypper -n  install openSUSE-repos-Slowroll-NVIDIA
     elif [ "$DISTRO" == "opensuse-tumbleweed" ]
     then
-        openSUSE-repos-Tumbleweed-NVIDIA
+        sudo zypper -n install openSUSE-repos-Tumbleweed-NVIDIA
     else
         echo "Unfortunately, '$DISTRO $VERSION_ID' is not a supported distro."
     fi
