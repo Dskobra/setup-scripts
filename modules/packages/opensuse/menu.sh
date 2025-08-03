@@ -89,8 +89,7 @@ hardware_menu(){
     case $input in
 
         1)
-            flatpak install --user -y flathub io.github.ilya_zlobintsev.LACT
-            xdg-open "https://github.com/ilya-zlobintsev/LACT/blob/master/flatpak/README.md"
+            "$SCRIPTS_FOLDER"/modules/packages/opensuse/hardware/lact.sh
             ;;
 
         2)
