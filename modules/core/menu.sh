@@ -93,7 +93,7 @@ hardware_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/hardware/lact.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/lact.sh
             ;;
 
         2)
@@ -103,7 +103,7 @@ hardware_menu(){
             ;;
 
         3)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/nvidia.sh
             ;;
 
         4)
@@ -117,7 +117,7 @@ hardware_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/hardware/cpux.sh
+            "$SCRIPTS_FOLDER"/modules/packages/hardware/cpux.sh
             ;;
 
         7)
@@ -159,23 +159,23 @@ kde_desktop_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kpat.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kolourpaint.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kleopatra.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kde_iso_image_writer.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/kde/kate.sh
+            "$SCRIPTS_FOLDER"/modules/packages/kde/kate.sh
             ;;
 
         6)
@@ -225,19 +225,19 @@ internet_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/firefox.sh
             ;;
 
         2)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/brave.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/transmission.sh
             ;;
 
         4)  
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/internet/mega.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/mega.sh
             ;;
 
         5)
@@ -249,7 +249,7 @@ internet_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
+            "$SCRIPTS_FOLDER"/modules/packages/internet/remmina.sh
             ;;
 
         m | M)
@@ -287,19 +287,19 @@ multimedia_menu(){
 
 
         1)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/vlc.sh
             ;;
         
         2)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/openshot.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/shotcut.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/shotcut.sh
             ;;
 
         4)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/kdenlive.sh
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/kdenlive.sh
             ;;
 
         5)
@@ -347,15 +347,15 @@ gaming_menu(){
 
 
         1)  
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/steam.sh
             ;;
 
         2) 
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/lutris.sh
             ;;
 
         3)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/discord.sh
             ;;
 
         4)
@@ -363,7 +363,7 @@ gaming_menu(){
             ;;
 
         5)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh
+            "$SCRIPTS_FOLDER"/modules/packages/gaming/dolphin_emu.sh
             ;;
 
         6)
@@ -451,7 +451,7 @@ dev_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
             ;;
 
         8)
@@ -464,7 +464,7 @@ dev_menu(){
             ;;
 
         10)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/development/java.sh
+            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh
             ;;
 
         11)
@@ -520,7 +520,7 @@ extras_menu(){
     case $input in
 
         1)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh
+            "$SCRIPTS_FOLDER"/modules/packages/extras/libreoffice.sh
             ;;
 
         2)
@@ -532,11 +532,11 @@ extras_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/extras/rpi_imager.sh
+            "$SCRIPTS_FOLDER"/modules/packages/extras/rpi_imager.sh
             ;;
 
         5)
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/extras/gtkhash.sh
+            "$SCRIPTS_FOLDER"/modules/packages/extras/gtkhash.sh
             ;;
 
         6)
@@ -582,18 +582,18 @@ misc_menu(){
     case $input in
 
         1)
-            echo "override" > "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            echo "override" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
 
         2)
-            echo "remove" > "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            echo "remove" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
 
         3)
-            echo "amd" > "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
-            "$SCRIPTS_FOLDER""$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
+            echo "amd" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
+            "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
             ;;
 
         m | M)
