@@ -9,7 +9,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak uninstall --user -y com.brave.Browser
-        "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
+        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         cd /opt/apps/temp || exit
         curl -fsSLO "https://dl.brave.com/install.sh{,.asc}" && gpg --keyserver hkps://keys.openpgp.org --recv-keys D16166072CACDF2C9429CBF11BF41E37D039F691 && gpg --verify install.sh.asc
         curl -fsS https://dl.brave.com/install.sh | sh

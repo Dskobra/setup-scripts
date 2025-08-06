@@ -9,7 +9,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak uninstall --user -y org.mozilla.firefox
-        "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
+        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         sudo dnf install -y firefox
     elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then

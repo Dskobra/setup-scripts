@@ -9,7 +9,7 @@ package_chooser(){
     if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak uninstall --user -y org.videolan.VLC
-        "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
+        "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
         sudo dnf install -y rpmfusion-free-release-tainted
         sudo dnf install -y libdvdcss
         sudo dnf install -y vlc

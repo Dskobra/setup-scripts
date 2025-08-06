@@ -14,7 +14,7 @@ then
     flatpak install --user -y runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08
 elif [ "$1" == "native" ]
 then
-    "$SCRIPTS_FOLDER"/modules/packages/fedora/multimedia/codecs.sh
+    "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
     sudo dnf install -y mangohud
 else
     echo "error"
