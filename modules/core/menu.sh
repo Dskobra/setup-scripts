@@ -451,7 +451,7 @@ dev_menu(){
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/extras/virtualization.sh
             ;;
 
         8)
@@ -464,11 +464,11 @@ dev_menu(){
             ;;
 
         10)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
+            "$SCRIPTS_FOLDER"/modules/packages/extras/java.sh "openjdk"
             ;;
 
         11)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
+            "$SCRIPTS_FOLDER"/modules/packages/extras/java.sh "openjfx"
             ;;
 
         12)
