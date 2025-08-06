@@ -2,11 +2,11 @@
 
 package_chooser(){
     echo "                      |-----Package type-----|"
-    echo "(1) Native(default)                               (2) Flatpak"
+    echo "(1) Native                                        (2) Flatpak(default)"
     echo "(h) Help                                          (0) Cancel"
     echo "Enter an option or leave blank for default"
     read -r PACKAGE_TYPE
-    if [ "$PACKAGE_TYPE" == "1" ] || [ -z "$PACKAGE_TYPE" ]
+    if [ "$PACKAGE_TYPE" == "1" ]
     then
         flatpak uninstall --user -y com.brave.Browser
         "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.sh
@@ -15,7 +15,7 @@ package_chooser(){
         curl -fsS https://dl.brave.com/install.sh | sh
         rm install.sh
         rm install.sh.asc
-    elif [ "$PACKAGE_TYPE" == "2" ]
+    elif [ "$PACKAGE_TYPE" == "2" ] || [ -z "$PACKAGE_TYPE" ]
     then
         flatpak install --user -y flathub com.brave.Browser
         sudo dnf remove -y brave-browser
