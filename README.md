@@ -8,7 +8,7 @@ Set of scripts for installing several popular applications and drivers.
 * curl
 * wget
 * flatpak
-* dnf-plugins-core (fedora)
+* dnf-plugins-core
 * flatseal         (flatpak)
 
 Note: these will be installed automatically.
