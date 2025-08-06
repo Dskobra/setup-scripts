@@ -11,10 +11,7 @@ distro_check(){
 }
 
 fedora_release_check(){
-    # Check fedora version then ensure it's not atomic.
-    VARIANT="" 
-    test -f /run/ostree-booted && VARIANT=ostree
-    if [ "$VERSION_ID" == "41" ] && [ -z "$VARIANT" ] || [ "$VERSION_ID" == "42" ] && [ -z "$VARIANT" ]
+    if [ "$VERSION_ID" == "41" ] || [ "$VERSION_ID" == "42" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh

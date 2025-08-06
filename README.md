@@ -2,13 +2,13 @@
 Set of scripts for installing several popular applications and drivers.
 
 ## Supported Distros
-* Fedora (non atomic) 41/42
+* Fedora 41/42 (non atomic)
 
 ## Requirements
 * curl
 * wget
-* dnf-plugins-core
 * flatpak
+* dnf-plugins-core
 * flatseal         (flatpak)
 
 Note: these will be installed automatically.

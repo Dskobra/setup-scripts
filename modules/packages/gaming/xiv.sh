@@ -13,7 +13,6 @@ xiv_launcher(){
     elif [ "$PACKAGE_TYPE" == "2" ]
     then
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Blooym/xlm/main/setup/install-flatpak.sh)"
-        sudo dnf remove -y gtkhash
     elif [ "$PACKAGE_TYPE" == "3" ]
     then
         flatpak install --user -y flathub dev.goats.xivlauncher

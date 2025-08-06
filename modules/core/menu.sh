@@ -97,7 +97,9 @@ hardware_menu(){
             ;;
 
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/cooler_control.sh
+            sudo dnf copr enable -y codifryed/CoolerControl
+            sudo dnf install -y coolercontrol
+            sudo systemctl enable --now coolercontrold
             ;;
 
         3)
@@ -105,11 +107,13 @@ hardware_menu(){
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/openrgb.sh
+            sudo dnf install -y openrgb
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/hardware/v4l2loopback.sh
+            sudo dnf install -y akmod-v4l2loopback v4l2loopback
+            sudo akmods --rebuild --force
+            sudo dracut --regenerate-all --force
             ;;
 
         6)
@@ -175,15 +179,15 @@ kde_desktop_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/k3b.sh
+            sudo dnf install -y k3b
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/krdc.sh
+            sudo dnf install -y krdc
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/kde/krfb.sh
+            sudo dnf install -y krfb
             ;;
 
         m | M)
@@ -303,7 +307,7 @@ multimedia_menu(){
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/multimedia/xfburn.sh
+            sudo dnf install -y xfburn
             ;;
 
         m | M)
@@ -422,55 +426,59 @@ dev_menu(){
 
 
         1)  
-            "$SCRIPTS_FOLDER"/modules/packages/development/vim.sh
+            sudo dnf install -y vim-enhanced
             ;;
         
         2)
-            "$SCRIPTS_FOLDER"/modules/packages/development/geany.sh
+            sudo dnf install -y geany geany-plugins-markdown geany-plugins-spellcheck geany-plugins-treebrowser
             ;;
 
         3)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "idea"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/java.sh "idea"
             ;;
 
         4)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "pycharm"
+            "$SCRIPTS_FOLDER"/modules/packages/shared/java.sh "pycharm"
             ;;
 
         5)
-            "$SCRIPTS_FOLDER"/modules/packages/development/python_tools.sh
+            sudo dnf install -y python3-idle python3-devel
             ;;
 
         6)
-            "$SCRIPTS_FOLDER"/modules/packages/development/containers.sh
+            sudo dnf install -y toolbox distrobox docker-compose-switch
+            flatpak install --user -y flathub io.podman_desktop.PodmanDesktop
             ;;
 
         7)
-            "$SCRIPTS_FOLDER"/modules/packages/development/virtualization.sh
+            "$SCRIPTS_FOLDER"/modules/packages/extras/virtualization.sh
             ;;
 
         8)
-            "$SCRIPTS_FOLDER"/modules/packages/development/git.sh
+            sudo dnf install -y git git-gui gh git-cola
             ;;
 
         9)
-            "$SCRIPTS_FOLDER"/modules/packages/development/gcc.sh
+            sudo dnf4 groupinstall -y "Development Tools"
+            sudo dnf4 groupinstall -y "C Development Tools and Libraries"
             ;;
 
         10)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjdk"
+            "$SCRIPTS_FOLDER"/modules/packages/extras/java.sh "openjdk"
             ;;
 
         11)
-            "$SCRIPTS_FOLDER"/modules/packages/development/java.sh "openjfx"
+            "$SCRIPTS_FOLDER"/modules/packages/extras/java.sh "openjfx"
             ;;
 
         12)
-            "$SCRIPTS_FOLDER"/modules/packages/development/nodejs.sh
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+            source ~/.bashrc
+            nvm install lts/*
             ;;
 
         13)
-            "$SCRIPTS_FOLDER"/modules/packages/development/lamp.sh
+            sudo dnf install -y httpd mariadb mariadb-server php phpMyAdmin
             ;;
 
         m | M)

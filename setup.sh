@@ -6,6 +6,6 @@ export SCRIPTS_FOLDER                           # stores full path for setup-scr
 export DISTRO=""                                # stores distro name.
 export VERSION_ID=""
 export COPYRIGHT="Copyright (c) 2021-2025 Jordan Bottoms"
-export VERSION="6.5.2025"
+export VERSION="8.6.2025"
 SCRIPTS_FOLDER=$(pwd)                     
 "$SCRIPTS_FOLDER"/modules/core/launcher.sh

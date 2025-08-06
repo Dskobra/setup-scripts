@@ -1,3 +1,3 @@
 *.vscode
 *.kate-swp
-*.prereq.txt
+*.deps.txt

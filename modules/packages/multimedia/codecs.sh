@@ -25,8 +25,8 @@ amd_gpu_codecs(){
         sudo dnf swap -y mesa-vulkan-drivers.i686 mesa-vulkan-drivers-freeworld.i686
         echo "1" > "$SCRIPTS_FOLDER"/modules/packages/multimedia/codecs.txt
 
-        rm "$SCRIPTS_FOLDER"/mesa_versions.txt
-        { rpm -q mesa-va-drivers-freeworld; rpm -q mesa-vdpau-drivers-freeworld; rpm -q mesa-vulkan-drivers-freeworld; } >> "$SCRIPTS_FOLDER"/mesa_versions.txt
+        rm "$SCRIPTS_FOLDER"/modules/packages/mesa_versions.txt
+        { rpm -q mesa-va-drivers-freeworld; rpm -q mesa-vdpau-drivers-freeworld; rpm -q mesa-vulkan-drivers-freeworld; } >> "$SCRIPTS_FOLDER"/modules/packages/mesa_versions.txt
     else
         echo "Unkown error has occurred."
     fi
