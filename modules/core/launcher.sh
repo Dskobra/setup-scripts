@@ -11,12 +11,12 @@ distro_check(){
 }
 
 fedora_release_check(){
-    if [ "$VERSION_ID" == "41" ] || [ "$VERSION_ID" == "42" ]
+    if [ "$VERSION_ID" == "42" ] || [ "$VERSION_ID" == "43" ]
     then
         "$SCRIPTS_FOLDER"/modules/core/prereq.sh
         "$SCRIPTS_FOLDER"/modules/core/menu.sh
     else
-        echo "These scripts only support Fedora 41/42 non atomic editions."
+        echo "These scripts only support Fedora 42/43 non atomic editions."
     fi
 
 }
